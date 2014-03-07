@@ -201,7 +201,7 @@ texture=Hospitable
 x=-75224
 y=0
 z=64969
-r=1516
+r=30160
 seed=1227187223
 [/Planet]
 

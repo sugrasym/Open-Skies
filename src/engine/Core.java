@@ -20,6 +20,7 @@ package engine;
 
 import celestial.Ship.Player;
 import celestial.Ship.Ship;
+import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.input.InputManager;
@@ -41,7 +42,6 @@ import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.filters.BloomFilter;
-import com.jme3.post.ssao.SSAOFilter;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
@@ -53,6 +53,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jmeplanet.PlanetAppState;
 import lib.astral.AstralIO;
 import lib.astral.AstralIO.Everything;
 import lib.astral.Parser;
@@ -82,7 +83,9 @@ public class Core {
     BloomFilter bloom = new BloomFilter(BloomFilter.GlowMode.SceneAndObjects);
     //engine resources
     Joystick joy;
+    AppStateManager stateManager;
     BulletAppState bulletAppState;
+    PlanetAppState planetAppState;
     AssetManager assets;
     Camera rawCam;
     InputManager input;
@@ -92,7 +95,7 @@ public class Core {
 
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState,
             AssetManager assets, Camera rawCam, InputManager input,
-            AppSettings settings, ViewPort view) {
+            AppSettings settings, ViewPort view, AppStateManager stateManager) {
         this.rootNode = rootNode;
         this.guiNode = guiNode;
         this.bulletAppState = bulletAppState;
@@ -101,6 +104,7 @@ public class Core {
         this.input = input;
         this.settings = settings;
         this.view = view;
+        this.stateManager = stateManager;
         fpp  = new FilterPostProcessor(assets);
         //initialize
         init();
@@ -111,6 +115,7 @@ public class Core {
         initAmbientLight();
         initFilters();
         initMouse();
+        initPlanet();
         //initJoyStick();
         initKeys();
         newGame("Default");
@@ -127,7 +132,7 @@ public class Core {
         //find the one we want
         Term game = null;
         for (int a = 0; a < games.size(); a++) {
-            if (games.get(a).getValue("name").matches(name)) {
+            if (games.get(a).getValue("name").equals(name)) {
                 game = games.get(a);
             }
         }
@@ -142,7 +147,7 @@ public class Core {
         Ship ship = null;
         ArrayList<Term> types = ships.getTermsOfType("Ship");
         for (int a = 0; a < types.size(); a++) {
-            if (types.get(a).getValue("type").matches(shipName)) {
+            if (types.get(a).getValue("type").equals(shipName)) {
                 ship = new Ship(universe, types.get(a));
                 break;
             }
@@ -239,6 +244,11 @@ public class Core {
         bulletAppState.getPhysicsSpace().addCollisionListener(listener);
     }
 
+    private void initPlanet() {
+        planetAppState = new PlanetAppState(rootNode, null);
+        stateManager.attach(planetAppState);
+    }
+    
     /*
      * Input Mapping
      */
@@ -345,31 +355,31 @@ public class Core {
         public void onAction(String name, boolean keyPressed, float tpf) {
             Vector2f origin = input.getCursorPosition();
             String[] split = name.split("_");
-            if (split[0].matches("KEY")) {
+            if (split[0].equals("KEY")) {
                 if (!hud.handleKeyAction(state, name, keyPressed)) {
                     //handle nav actions
-                    if (name.matches("KEY_Q")) {
+                    if (name.equals("KEY_Q")) {
                         if (keyPressed) {
                             universe.getPlayer().getActiveShip().setRoll(1);
                         } else {
                             universe.getPlayer().getActiveShip().setRoll(0);
                         }
                     }
-                    if (name.matches("KEY_E")) {
+                    if (name.equals("KEY_E")) {
                         if (keyPressed) {
                             universe.getPlayer().getActiveShip().setRoll(-1);
                         } else {
                             universe.getPlayer().getActiveShip().setRoll(0);
                         }
                     }
-                    if (name.matches("KEY_W")) {
+                    if (name.equals("KEY_W")) {
                         if (keyPressed) {
                             universe.getPlayer().getActiveShip().setThrottle(1);
                         } else {
                             universe.getPlayer().getActiveShip().setThrottle(0);
                         }
                     }
-                    if (name.matches("KEY_S")) {
+                    if (name.equals("KEY_S")) {
                         if (keyPressed) {
                             if (keyPressed) {
                                 universe.getPlayer().getActiveShip().setThrottle(-1);
@@ -378,28 +388,28 @@ public class Core {
                             }
                         }
                     }
-                    if (name.matches("KEY_A")) {
+                    if (name.equals("KEY_A")) {
                         if (keyPressed) {
                             universe.getPlayer().getActiveShip().setYaw(1);
                         } else {
                             universe.getPlayer().getActiveShip().setYaw(0);
                         }
                     }
-                    if (name.matches("KEY_D")) {
+                    if (name.equals("KEY_D")) {
                         if (keyPressed) {
                             universe.getPlayer().getActiveShip().setYaw(-1);
                         } else {
                             universe.getPlayer().getActiveShip().setYaw(0);
                         }
                     }
-                    if (name.matches("KEY_UP")) {
+                    if (name.equals("KEY_UP")) {
                         if (keyPressed) {
                             universe.getPlayer().getActiveShip().setPitch(-1);
                         } else {
                             universe.getPlayer().getActiveShip().setPitch(0);
                         }
                     }
-                    if (name.matches("KEY_DOWN")) {
+                    if (name.equals("KEY_DOWN")) {
                         if (keyPressed) {
                             universe.getPlayer().getActiveShip().setPitch(1);
                         } else {
@@ -407,7 +417,7 @@ public class Core {
                         }
                     }
                 }
-            } else if (split[0].matches("MOUSE")) {
+            } else if (split[0].equals("MOUSE")) {
                 hud.handleMouseAction(state, name, keyPressed, new Vector3f(origin.x, origin.y, 0));
             } else {
                 /*
@@ -415,17 +425,17 @@ public class Core {
                  * engine.
                  */
                 //engine mode selection
-                if (name.matches("Normal")) {
+                if (name.equals("Normal")) {
                     player.getActiveShip().setEngine(Ship.EngineMode.NORMAL);
-                } else if (name.matches("Cruise")) {
+                } else if (name.equals("Cruise")) {
                     player.getActiveShip().setEngine(Ship.EngineMode.CRUISE);
-                } else if (name.matches("Newton")) {
+                } else if (name.equals("Newton")) {
                     player.getActiveShip().setEngine(Ship.EngineMode.NEWTON);
                 }
                 //quickload and quicksave
-                if (name.matches("QuickSave")) {
+                if (name.equals("QuickSave")) {
                     save("Quick");
-                } else if (name.matches("QuickLoad")) {
+                } else if (name.equals("QuickLoad")) {
                     load("Quick");
                 }
             }
@@ -485,11 +495,11 @@ public class Core {
 
     public final void addEntity(Entity entity) {
         entity.construct(assets);
-        entity.attach(rootNode, bulletAppState);
+        entity.attach(rootNode, bulletAppState, planetAppState);
     }
 
     public final void removeEntity(Entity entity) {
-        entity.detach(rootNode, bulletAppState);
+        entity.detach(rootNode, bulletAppState, planetAppState);
         entity.deconstruct();
     }
 

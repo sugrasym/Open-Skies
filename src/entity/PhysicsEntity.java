@@ -37,6 +37,7 @@ import com.jme3.scene.control.Control;
 import com.jme3.scene.shape.Box;
 import java.io.IOException;
 import java.io.Serializable;
+import jmeplanet.PlanetAppState;
 
 /**
  *
@@ -105,7 +106,7 @@ public class PhysicsEntity implements Entity, Serializable {
      * For out of system calls the object just needs to be alive or dying and in
      * the entity list the game engine updates.
      */
-    public void attach(Node node, BulletAppState physics) {
+    public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         node.attachChild(spatial);
         physics.getPhysicsSpace().add(spatial);
         this.physics.setLinearVelocity(getVelocity().clone());
@@ -113,7 +114,7 @@ public class PhysicsEntity implements Entity, Serializable {
         this.physics.setPhysicsRotation(rotation.clone());
     }
 
-    public void detach(Node node, BulletAppState physics) {
+    public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         setVelocity(this.physics.getLinearVelocity().clone());
         location = this.physics.getPhysicsLocation().clone();
         rotation = this.physics.getPhysicsRotation().clone();

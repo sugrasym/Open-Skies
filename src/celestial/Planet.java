@@ -1,17 +1,17 @@
 /*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*
  * Defines a planet. Planets in this simulation have infinite mass so they will
@@ -20,6 +20,7 @@
 package celestial;
 
 import com.jme3.asset.AssetManager;
+import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.SphereCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.material.Material;
@@ -28,6 +29,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Geometry;
+import com.jme3.scene.Node;
 import com.jme3.scene.shape.Sphere;
 import com.jme3.texture.Image;
 import com.jme3.texture.Texture2D;
@@ -36,16 +38,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Random;
+import jmeplanet.FractalDataSource;
+import jmeplanet.PlanetAppState;
+import jmeplanet.Utility;
 import lib.astral.Parser.Term;
-import org.ankh.unfall.planet.PlanetInformation;
-import org.ankh.unfall.planet.ProceduralPlanet;
-import org.ankh.unfall.planet.texgen.ContinentalGenerator;
-import org.ankh.unfall.planet.texgen.PlanetGenerator;
-import org.ankh.unfall.planet.texgen.palette.TerrainPalette;
-import org.ankh.unfall.planet.texgen.palette.ranges.EarthPalette;
-import org.ankh.unfall.planet.texgen.palette.ranges.HospitablePalette;
-import org.ankh.unfall.planet.texgen.palette.ranges.MarsPalette;
-import org.ankh.unfall.planet.texgen.palette.ranges.StrangePalette;
 import universe.Universe;
 
 /**
@@ -55,6 +51,7 @@ import universe.Universe;
 public class Planet extends Celestial {
 
     transient private Texture2D tex;
+    transient private jmeplanet.Planet fractalPlanet;
     private Term type;
     private int seed = 0;
     protected float radius;
@@ -68,15 +65,17 @@ public class Planet extends Celestial {
 
     public void construct(AssetManager assets) {
         generateProceduralPlanet(assets);
-        //initializes the physics as a sphere
-        SphereCollisionShape sphereShape = new SphereCollisionShape(radius);
-        //setup dynamic physics
-        physics = new RigidBodyControl(sphereShape, getMass());
-        //add physics to mesh
-        spatial.addControl(physics);
-        //store physics name control
-        nameControl.setParent(this);
-        spatial.addControl(nameControl);
+        if (spatial != null) {
+            //initializes the physics as a sphere
+            SphereCollisionShape sphereShape = new SphereCollisionShape(radius);
+            //setup dynamic physics
+            physics = new RigidBodyControl(sphereShape, getMass());
+            //add physics to mesh
+            spatial.addControl(physics);
+            //store physics name control
+            nameControl.setParent(this);
+            spatial.addControl(nameControl);
+        }
     }
 
     public void deconstruct() {
@@ -86,42 +85,29 @@ public class Planet extends Celestial {
         physics = null;
     }
 
+    public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
+        super.attach(node, physics, planetAppState);
+        if (fractalPlanet != null) {
+            planetAppState.addPlanet(fractalPlanet);
+        }
+    }
+
+    public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
+        super.detach(node, physics, planetAppState);
+        if (fractalPlanet != null) {
+            planetAppState.removePlanet(fractalPlanet);
+        }
+    }
+
     private void generateProceduralPlanet(AssetManager assets) {
         Random sRand = new Random(seed);
-        if (type.getValue("group").matches("rock")) {
-            /*
-             * The procedural planet generator in the com package gets to do
-             * all the heavy lifting and we just read the output.
-             */
-            //create planet parameters
-            PlanetInformation infos = new PlanetInformation();
-            infos.setDaytime(360);
-            infos.setEquatorTemperature(sRand.nextInt(40) + 10);
-            infos.setPoleTemperature(sRand.nextInt(infos.getEquatorTemperature()) - 50);
-            infos.setRadius(radius);
-            infos.setWaterInPercent(sRand.nextFloat());
-            infos.setHeightFactor(0.2f);
-            infos.setSeed((int) seed);
-            infos.setHumidity(sRand.nextFloat());
-            infos.setSmoothness(sRand.nextInt(3) + 7);
-            //setup palette
-            TerrainPalette palette = null;
-            String pal = type.getValue("palette");
-            if (pal.matches("Earth")) {
-                palette = new EarthPalette(infos);
-            } else if (pal.matches("Mars")) {
-                palette = new MarsPalette(infos);
-            } else if (pal.matches("Hospitable")) {
-                palette = new HospitablePalette(infos);
-            } else if (pal.matches("Strange")) {
-                palette = new StrangePalette(infos);
-            }
-            //create generator
-            PlanetGenerator generator = new ContinentalGenerator(4096, 2048, infos, palette);
-            ProceduralPlanet p = new ProceduralPlanet(infos, generator, assets);
-            //store planet spatial
-            spatial = p.getPlanetGeometry();
-        } else if (type.getValue("group").matches("singlegas")) {
+        if (type.getValue("group").equals("rock")) {
+            // generate fractal planet
+            FractalDataSource planetDataSource = new FractalDataSource(4);
+            planetDataSource.setHeightScale(900f);
+            fractalPlanet = Utility.createEarthLikePlanet(assets, radius, null, planetDataSource);
+            spatial = fractalPlanet;
+        } else if (type.getValue("group").equals("singlegas")) {
             //create a canvas
             BufferedImage buff = new BufferedImage(2048, 1024, BufferedImage.TYPE_INT_RGB);
             Graphics2D gfx = (Graphics2D) buff.getGraphics();
@@ -191,7 +177,7 @@ public class Planet extends Celestial {
             setTex(new Texture2D(load));
             mat.setTexture("DiffuseMap", getTex());
             spatial.setMaterial(mat);
-        } else if (type.getValue("group").matches("doublegas")) {
+        } else if (type.getValue("group").equals("doublegas")) {
             //create a canvas
             BufferedImage buff = new BufferedImage(2048, 1024, BufferedImage.TYPE_INT_RGB);
             Graphics2D gfx = (Graphics2D) buff.getGraphics();
@@ -292,8 +278,10 @@ public class Planet extends Celestial {
         }
         //rotate
         setRotation(getRotation().fromAngles(FastMath.PI / 2, 0, 0));
-        //setup shadow
-        spatial.setShadowMode(RenderQueue.ShadowMode.CastAndReceive);
+        if (spatial != null) {
+            //setup shadow
+            spatial.setShadowMode(RenderQueue.ShadowMode.CastAndReceive);
+        }
     }
 
     protected void alive() {

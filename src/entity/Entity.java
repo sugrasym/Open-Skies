@@ -23,6 +23,7 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
+import jmeplanet.PlanetAppState;
 
 /**
  *
@@ -47,8 +48,8 @@ public interface Entity {
     /*
      * Used for attaching and removing the entity from a node
      */
-    public void attach(Node node, BulletAppState physics);
-    public void detach(Node node, BulletAppState physics);
+    public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState);
+    public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState);
     /*
      * Used for getting and setting the state of an object
      */

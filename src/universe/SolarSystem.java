@@ -36,6 +36,7 @@ import com.jme3.util.SkyFactory;
 import entity.Entity;
 import java.io.Serializable;
 import java.util.ArrayList;
+import jmeplanet.PlanetAppState;
 import lib.astral.Parser;
 import lib.astral.Parser.Term;
 
@@ -389,17 +390,17 @@ public class SolarSystem implements Entity, Serializable {
     }
 
     @Override
-    public void attach(Node node, BulletAppState physics) {
+    public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         for (int a = 0; a < celestials.size(); a++) {
-            celestials.get(a).attach(node, physics);
+            celestials.get(a).attach(node, physics, planetAppState);
         }
         node.attachChild(skybox);
     }
 
     @Override
-    public void detach(Node node, BulletAppState physics) {
+    public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         for (int a = 0; a < celestials.size(); a++) {
-            celestials.get(a).detach(node, physics);
+            celestials.get(a).detach(node, physics, planetAppState);
         }
         node.detachChild(skybox);
     }

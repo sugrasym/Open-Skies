@@ -56,7 +56,7 @@ public class Main extends SimpleApplication {
         bulletAppState.getPhysicsSpace().setGravity(Vector3f.ZERO);
         //bulletAppState.getPhysicsSpace().enableDebug(assetManager);
         //start engine
-        core = new Core(rootNode, guiNode, bulletAppState, assetManager, cam, inputManager, settings, viewPort);
+        core = new Core(rootNode, guiNode, bulletAppState, assetManager, cam, inputManager, settings, viewPort, stateManager);
         //setup camera
         cam.setFrustumFar(Integer.MAX_VALUE);
         //viewPort.addProcessor(fpp);

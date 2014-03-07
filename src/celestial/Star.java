@@ -25,6 +25,7 @@ import com.jme3.material.RenderState;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Node;
 import java.util.Random;
+import jmeplanet.PlanetAppState;
 import lib.astral.Parser.Term;
 import universe.Universe;
 
@@ -114,12 +115,12 @@ public class Star extends Planet {
      b -= (0.0 * b);
      return new ColorRGBA(r, g, b, light.getAlpha());
      }*/
-    public void attach(Node node, BulletAppState physics) {
+    public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         node.attachChild(emitter);
         node.addLight(light);
     }
 
-    public void detach(Node node, BulletAppState physics) {
+    public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         node.detachChild(emitter);
         node.removeLight(light);
     }
