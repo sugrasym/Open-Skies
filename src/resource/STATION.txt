@@ -1,0 +1,11 @@
+[Station]
+type=Basic Outpost
+thrust=0
+torque=0
+shield=300000
+shieldRecharge=4000
+hull=10000
+fuel=2500000000000
+mass=0
+sensor=5000
+[/Station]

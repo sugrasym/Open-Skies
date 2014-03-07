@@ -1,0 +1,42 @@
+#################Ageiran Fighters
+
+#Light Fighters
+[Ship]
+type=Sparrow
+#physics
+mass=1
+thrust=75
+torque=9
+#stats
+shield=10571
+shieldRecharge=180
+hull=1510
+fuel=250000
+sensor=2500
+[/Ship]
+
+#Medium Fighters
+[Ship]
+type=Crow
+thrust=93
+torque=6.7
+shield=14028
+shieldRecharge=213
+hull=2810
+fuel=290000
+mass=1.6
+sensor=2450
+[/Ship]
+
+#Heavy Fighters
+[Ship]
+type=Raven
+thrust=99
+torque=4.1
+shield=17000
+shieldRecharge=248
+hull=3302
+fuel=320000
+mass=2.2
+sensor=2425
+[/Ship]

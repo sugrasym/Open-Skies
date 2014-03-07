@@ -1,0 +1,44 @@
+[Skybox]
+name=Black 0
+asset=complexblack0.dds
+[/Skybox]
+
+[Skybox]
+name=Black 1
+asset=complexblack1.dds
+[/Skybox]
+
+[Skybox]
+name=Blue 0
+asset=complexblue0.dds
+[/Skybox]
+
+[Skybox]
+name=Blue 1
+asset=complexblue1.dds
+[/Skybox]
+
+[Skybox]
+name=Brown 0
+asset=complexbrown0.dds
+[/Skybox]
+
+[Skybox]
+name=Brown 1
+asset=complexbrown1.dds
+[/Skybox]
+
+[Skybox]
+name=Dark
+asset=complexdark.dds
+[/Skybox]
+
+[Skybox]
+name=Green 0
+asset=complexgreen0.dds
+[/Skybox]
+
+[Skybox]
+name=Orange 1
+asset=complexorange1.dds
+[/Skybox]

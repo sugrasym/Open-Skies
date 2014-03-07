@@ -1,0 +1,47 @@
+################################################################################
+Open Skies Control Card
+################################################################################
+
+Navigation
+--------------------------------------------------------------------------------
+
+F1 - Select normal engine mode (Weapons online, low speed)
+F2 - Select cruise engine mode (Weapons offline, much faster)
+    - The above modes resemble how you'd expect a space ship to fly based on
+      popular science fiction. They are also the ones that are most useful in
+      combat since they allow you to manauver easily.
+
+F3 - Select newton engine mode (Weapons online, inertia only)
+    - Used for coasting.
+
+Joystick Axis control pitch, yaw, and roll.
+Joystick throttle controls thrust. It supports both forward and reverse.
+
+W - Fire forward thruster
+S - Fire rear thruster
+A - Yaw left
+D - Yaw Right
+
+Q - Roll left
+E - Roll right
+
+Up Arrow - Pitch down
+Down Arrow - Pitch up
+
+Overview Window (when focused)
+--------------------------------------------------------------------------------
+
+PGUP - Toggle show Station names
+PGDWN - Toggle show Ship names
+
+END - Cycle through sensor modes
+
+Note that sensor modes have different returns and therefore different uses.
+- Short Active : 1/2 range, can see anything.
+- Active       : Normal range, can't see secrets
+- Passive      : 10x range, can't see ships
+- Deep Field   : 100x range, can't see ships or stations.
+
+The overview is displayed as if you are looking down at the ecliptic plane of
+the solar system. The cyan line shows the direction you are facing on the XZ
+plane, and the yellow line shows the direction you are moving on the XZ plane.

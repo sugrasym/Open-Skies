@@ -1,0 +1,13 @@
+[Nebula]
+name=flame
+asset=flame.png
+x=2
+y=2
+[/Nebula]
+
+[Nebula]
+name=smoketrail
+asset=smoketrail.png
+x=1
+y=3
+[/Nebula]

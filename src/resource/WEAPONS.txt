@@ -1,0 +1,51 @@
+########Ageiran Weapons########
+#Ageiran weapons are med damage at med range.
+
+[Weapon]
+#weapon info
+name=Talon 1
+type=turret
+#shell info
+damage=105
+range=350
+speed=400
+mass=5
+refire=0.35
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Talon 2
+type=turret
+#shell info
+damage=110
+range=375
+speed=410
+mass=8
+refire=0.35
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Talon 3
+type=turret
+#shell info
+damage=120
+range=402
+speed=415
+mass=11
+refire=0.34
+[/Weapon]
+
+########SPECIAL TEST WEAPONS########
+[Weapon]
+#weapon info
+name=Ka Ka Ka
+type=turret
+#shell info
+damage=35
+range=750
+speed=800
+mass=5
+refire=0.35
+[/Weapon]

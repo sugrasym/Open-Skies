@@ -1,0 +1,10 @@
+[Field]
+name=Dark Asteroid Field
+group=rock
+blockSize=1000
+count=2500
+rockScale=10
+diversity=1
+asset=Dark Asteroid
+cylinder=Dark Asteroid Cylinder
+[/Field]

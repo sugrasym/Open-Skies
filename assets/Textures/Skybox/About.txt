@@ -1,0 +1,1 @@
+In order to keep Github's reccomended usage limits, the uncompressed textures are NOT in the repository. Instead, there is a 7z archive containing the files that should be in this directory. This archive must be extracted here before the game can be tested.
