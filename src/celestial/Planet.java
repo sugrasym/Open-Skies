@@ -1,17 +1,17 @@
 /*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*
  * Defines a planet. Planets in this simulation have infinite mass so they will
@@ -53,12 +53,14 @@ public class Planet extends Celestial {
 
     public void construct(AssetManager assets) {
         generateProceduralPlanet(assets);
-        //initializes the physics as a sphere
-        SphereCollisionShape sphereShape = new SphereCollisionShape(radius);
-        //setup dynamic physics
-        physics = new RigidBodyControl(sphereShape, getMass());
-        //add physics to mesh
-        spatial.addControl(physics);
+        if (spatial != null) {
+            //initializes the physics as a sphere
+            SphereCollisionShape sphereShape = new SphereCollisionShape(radius);
+            //setup dynamic physics
+            physics = new RigidBodyControl(sphereShape, getMass());
+            //add physics to mesh
+            spatial.addControl(physics);
+        }
     }
 
     public void deconstruct() {
@@ -69,12 +71,26 @@ public class Planet extends Celestial {
     }
 
     private void generateProceduralPlanet(AssetManager assets) {
+        //setup seeded rng
         Random sRand = new Random(seed);
-        // Add planet
-        FractalDataSource planetDataSource = new FractalDataSource(seed);
-        planetDataSource.setHeightScale(0.015f*radius);
-        fractalPlanet = Utility.createEarthLikePlanet(assets, radius, null, planetDataSource);
-        spatial = fractalPlanet;
+        //get group and palette
+        String group = type.getValue("group");
+        String palette = type.getValue("palette");
+        //split based on planet group
+        if (group.equals("rock")) {
+            if (palette.equals("Earth")) {
+                // Add planet
+                FractalDataSource planetDataSource = new FractalDataSource(seed);
+                planetDataSource.setHeightScale(0.015f * radius);
+                fractalPlanet = Utility.createEarthLikePlanet(assets, radius, null, planetDataSource);
+                spatial = fractalPlanet;
+            } else if (palette.equals("Barren")) {
+                FractalDataSource moonDataSource = new FractalDataSource(seed);
+                moonDataSource.setHeightScale(0.015f * radius);
+                fractalPlanet = Utility.createMoonLikePlanet(assets, radius, moonDataSource);
+                spatial = fractalPlanet;
+            }
+        }
     }
 
     protected void alive() {
@@ -89,10 +105,12 @@ public class Planet extends Celestial {
     }
 
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
-        node.attachChild(spatial);
-        physics.getPhysicsSpace().add(spatial);
-        if (fractalPlanet != null) {
-            planetAppState.addPlanet(fractalPlanet);
+        if (spatial != null) {
+            node.attachChild(spatial);
+            physics.getPhysicsSpace().add(spatial);
+            if (fractalPlanet != null) {
+                planetAppState.addPlanet(fractalPlanet);
+            }
         }
     }
 

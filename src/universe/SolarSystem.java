@@ -321,7 +321,6 @@ public class SolarSystem implements Entity, Serializable {
         ArrayList<Term> boxes = sky.getTermsOfType("Skybox");
         for (int a = 0; a < boxes.size(); a++) {
             if (boxes.get(a).getValue("name").equals(thisSystem.getValue("sky"))) {
-                //TODO: Fix skyboxes
                 skybox = Utility.createSkyBox(assets, "Textures/Skybox/"+boxes.get(a).getValue("asset"), true);
                 break;
             }

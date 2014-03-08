@@ -1,11 +1,14 @@
 [Star]
 name=White
 color=1,1,1
+group=star
+palette=star
 [/Star]
 
 [Planet]
 name=BandedGas
 group=gas
+palette=BandedGas
 [/Planet]
 
 [Planet]
@@ -15,7 +18,7 @@ palette=Earth
 [/Planet]
 
 [Planet]
-name=Martian
+name=Barren
 group=rock
-palette=Mars
+palette=Barren
 [/Planet]
