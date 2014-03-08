@@ -96,12 +96,23 @@ seed=-947179745
 [Planet]
 name=Planet 1
 system=System 2
-texture=Barren
+texture=BandedGas
 x=56343
 y=0
 z=-5849
 r=1777
 seed=-733945596
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 2
+texture=Terran
+x=-24364
+y=0
+z=42829
+r=4584
+seed=390204260
 [/Planet]
 
 [System]

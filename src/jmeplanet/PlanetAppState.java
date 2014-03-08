@@ -159,14 +159,16 @@ public class PlanetAppState extends AbstractAppState implements Control {
         //update short camera
         nearCam.setLocation(farCam.getLocation());
         nearCam.setRotation(farCam.getRotation());
+        if (planets.size() > 0) {
+            this.nearestPlanet = findNearestPlanet();
 
-        this.nearestPlanet = findNearestPlanet();
-
-        for (Planet planet : this.planets) {
-            planet.setCameraPosition(this.app.getCamera().getLocation());
+            for (Planet planet : this.planets) {
+                planet.setCameraPosition(this.app.getCamera().getLocation());
+            }
+            updateFogAndBloom();
+        } else {
+            stopFogAndBloom();
         }
-
-        updateFogAndBloom();
     }
 
     @Override
@@ -214,6 +216,12 @@ public class PlanetAppState extends AbstractAppState implements Control {
             }
         }
         return cPlanet;
+    }
+
+    protected void stopFogAndBloom() {
+        nearFog.setEnabled(false);
+        farFog.setEnabled(false);
+        farBloom.setEnabled(true);
     }
 
     protected void updateFogAndBloom() {
@@ -267,13 +275,13 @@ public class PlanetAppState extends AbstractAppState implements Control {
 
     public void setCameraShip(Ship cameraShip) {
         this.cameraShip = cameraShip;
-        if(cameraShip != null) {
+        if (cameraShip != null) {
             cameraShip.getSpatial().addControl(this);
         }
     }
-    
+
     public void freeCamera() {
-        if(cameraShip != null) {
+        if (cameraShip != null) {
             cameraShip.getSpatial().removeControl(this);
         }
         cameraShip = null;
