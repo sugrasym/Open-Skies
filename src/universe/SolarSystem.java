@@ -322,7 +322,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < boxes.size(); a++) {
             if (boxes.get(a).getValue("name").equals(thisSystem.getValue("sky"))) {
                 //TODO: Fix skyboxes
-                skybox = Utility.createSkyBox(assets, "Textures/blue-glow-1024.dds");
+                skybox = Utility.createSkyBox(assets, "Textures/Skybox/"+boxes.get(a).getValue("asset"), true);
                 break;
             }
         }
