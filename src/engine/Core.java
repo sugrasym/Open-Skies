@@ -26,6 +26,7 @@ import com.jme3.input.KeyInput;
 import com.jme3.input.RawInputListener;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.input.event.JoyAxisEvent;
 import com.jme3.input.event.JoyButtonEvent;
 import com.jme3.input.event.KeyInputEvent;
@@ -99,6 +100,7 @@ public class Core {
 
     private void init() {
         initKeys();
+        initMouse();
         newGame("Default");
         //do last
         initPhysicsListeners();
@@ -163,6 +165,17 @@ public class Core {
         state = GameState.IN_SPACE;
         //TODO: init code
 
+    }
+    
+    private void initMouse() {
+        //mouse buttons
+        input.addMapping("MOUSE_LClick", new MouseButtonTrigger(0));
+        input.addMapping("MOUSE_RClick", new MouseButtonTrigger(1));
+        input.addMapping("MOUSE_CClick", new MouseButtonTrigger(2));
+        //store
+        input.addListener(actionListener, new String[]{"MOUSE_LClick",
+                    "MOUSE_RClick",
+                    "MOUSE_CClick"});
     }
 
     private void initKeys() {
@@ -306,7 +319,7 @@ public class Core {
                     }
                 }
             } else if (split[0].matches("MOUSE")) {
-                //hud.handleMouseAction(state, name, keyPressed, new Vector3f(origin.x, origin.y, 0));
+                hud.handleMouseAction(state, name, keyPressed, new Vector3f(origin.x, origin.y, 0));
             } else {
                 /*
                  * These events are handled here because they are for the
