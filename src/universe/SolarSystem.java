@@ -21,6 +21,8 @@ package universe;
 
 import celestial.Nebula;
 import celestial.Planet;
+import celestial.Ship.Ship;
+import celestial.Ship.Station;
 import celestial.Star;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
@@ -77,7 +79,7 @@ public class SolarSystem implements Entity, Serializable {
         //nebula
         ArrayList<Term> nebula = info.getTermsOfType("Nebula");
         for (int a = 0; a < nebula.size(); a++) {
-            if (nebula.get(a).getValue("system").matches(getName())) {
+            if (nebula.get(a).getValue("system").equals(getName())) {
                 //this star needs to be created and stored
                 getCelestials().add(makeNebula(assets, nebula.get(a)));
             }
@@ -85,7 +87,7 @@ public class SolarSystem implements Entity, Serializable {
         //star
         ArrayList<Term> stars = info.getTermsOfType("Star");
         for (int a = 0; a < stars.size(); a++) {
-            if (stars.get(a).getValue("system").matches(getName())) {
+            if (stars.get(a).getValue("system").equals(getName())) {
                 //this star needs to be created and stored
                 getCelestials().add(makeStar(assets, stars.get(a)));
             }
@@ -93,11 +95,83 @@ public class SolarSystem implements Entity, Serializable {
         //planet
         ArrayList<Term> planets = info.getTermsOfType("Planet");
         for (int a = 0; a < planets.size(); a++) {
-            if (planets.get(a).getValue("system").matches(getName())) {
+            if (planets.get(a).getValue("system").equals(getName())) {
                 //this planet needs to be created and stored
                 getCelestials().add(makePlanet(assets, planets.get(a)));
             }
         }
+        //station
+        ArrayList<Term> stations = info.getTermsOfType("Station");
+        for (int a = 0; a < stations.size(); a++) {
+            if (stations.get(a).getValue("system").equals(getName())) {
+                //this ship needs to be created and stored
+                getCelestials().add(makeStation(stations.get(a)));
+            }
+        }
+        //ship
+        ArrayList<Term> ships = info.getTermsOfType("Ship");
+        for (int a = 0; a < ships.size(); a++) {
+            if (ships.get(a).getValue("system").equals(getName())) {
+                //this ship needs to be created and stored
+                getCelestials().add(makeShip(ships.get(a)));
+            }
+        }
+    }
+    
+    private Station makeStation(Term shipTerm) {
+        Station station = null;
+        {
+            String type = shipTerm.getValue("station");
+            Parser tmp = new Parser("STATION.txt");
+            ArrayList<Term> list = tmp.getTermsOfType("Station");
+            Term hull = null;
+            for (int a = 0; a < list.size(); a++) {
+                if (list.get(a).getValue("type").equals(type)) {
+                    hull = list.get(a);
+                    break;
+                }
+            }
+            //extract terms
+            String sName = shipTerm.getValue("name");
+            float sx = Float.parseFloat(shipTerm.getValue("x"));
+            float sy = Float.parseFloat(shipTerm.getValue("y"));
+            float sz = Float.parseFloat(shipTerm.getValue("z"));
+            //create ship
+            station = new Station(universe, hull);
+            //position ship
+            station.setLocation(new Vector3f(sx, sy, sz));
+            station.setCurrentSystem(this);
+            station.setName(sName);
+        }
+        return station;
+    }
+
+    private Ship makeShip(Term shipTerm) {
+        Ship ship = null;
+        {
+            String type = shipTerm.getValue("ship");
+            Parser tmp = new Parser("SHIP.txt");
+            ArrayList<Term> list = tmp.getTermsOfType("Ship");
+            Term hull = null;
+            for (int a = 0; a < list.size(); a++) {
+                if (list.get(a).getValue("type").equals(type)) {
+                    hull = list.get(a);
+                    break;
+                }
+            }
+            //extract terms
+            String sName = shipTerm.getValue("name");
+            float sx = Float.parseFloat(shipTerm.getValue("x"));
+            float sy = Float.parseFloat(shipTerm.getValue("y"));
+            float sz = Float.parseFloat(shipTerm.getValue("z"));
+            //create ship
+            ship = new Ship(universe, hull);
+            //position ship
+            ship.setLocation(new Vector3f(sx, sy, sz));
+            ship.setCurrentSystem(this);
+            ship.setName(sName);
+        }
+        return ship;
     }
 
     private Planet makePlanet(AssetManager assets, Term planetTerm) {
@@ -109,7 +183,7 @@ public class SolarSystem implements Entity, Serializable {
             Term tex = null;
             ArrayList<Term> list = tmp.getTermsOfType("Planet");
             for (int a = 0; a < list.size(); a++) {
-                if (list.get(a).getValue("name").matches(texture)) {
+                if (list.get(a).getValue("name").equals(texture)) {
                     tex = list.get(a);
                     break;
                 }
@@ -138,7 +212,7 @@ public class SolarSystem implements Entity, Serializable {
             Term tex = null;
             ArrayList<Term> list = tmp.getTermsOfType("Star");
             for (int a = 0; a < list.size(); a++) {
-                if (list.get(a).getValue("name").matches(texture)) {
+                if (list.get(a).getValue("name").equals(texture)) {
                     tex = list.get(a);
                     break;
                 }
@@ -182,7 +256,7 @@ public class SolarSystem implements Entity, Serializable {
             ArrayList<Term> terms = tmp.getTermsOfType("Nebula");
             Term fin = null;
             for (int o = 0; o < terms.size(); o++) {
-                if (terms.get(o).getValue("name").matches(texture)) {
+                if (terms.get(o).getValue("name").equals(texture)) {
                     fin = terms.get(o);
                     break;
                 }
@@ -246,7 +320,7 @@ public class SolarSystem implements Entity, Serializable {
         Parser sky = new Parser("SKY.txt");
         ArrayList<Term> boxes = sky.getTermsOfType("Skybox");
         for (int a = 0; a < boxes.size(); a++) {
-            if (boxes.get(a).getValue("name").matches(thisSystem.getValue("sky"))) {
+            if (boxes.get(a).getValue("name").equals(thisSystem.getValue("sky"))) {
                 //TODO: Fix skyboxes
                 skybox = Utility.createSkyBox(assets, "Textures/blue-glow-1024.dds");
                 break;
