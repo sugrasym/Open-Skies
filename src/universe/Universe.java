@@ -18,13 +18,12 @@
  */
 package universe;
 
-import cargo.Item;
 import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import java.io.Serializable;
 import java.util.ArrayList;
-import lib.Parser;
-import lib.Parser.Term;
+import lib.astral.Parser;
+import lib.astral.Parser.Term;
 
 /**
  *

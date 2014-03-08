@@ -29,7 +29,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Sphere;
 import jmeplanet.PlanetAppState;
-import lib.Parser.Term;
+import lib.astral.Parser.Term;
 import universe.Universe;
 
 /**

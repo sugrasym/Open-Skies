@@ -21,7 +21,7 @@ package celestial;
 
 import entity.PhysicsEntity;
 import java.io.Serializable;
-import lib.AstralIO;
+import lib.astral.AstralIO;
 import universe.SolarSystem;
 import universe.Universe;
 

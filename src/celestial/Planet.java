@@ -29,7 +29,7 @@ import java.util.Random;
 import jmeplanet.FractalDataSource;
 import jmeplanet.PlanetAppState;
 import jmeplanet.Utility;
-import lib.Parser.Term;
+import lib.astral.Parser.Term;
 import universe.Universe;
 
 /**

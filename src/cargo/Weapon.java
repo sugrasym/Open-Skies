@@ -20,7 +20,7 @@ package cargo;
 
 import entity.Entity;
 import java.util.ArrayList;
-import lib.Parser;
+import lib.astral.Parser;
 
 /**
  *
