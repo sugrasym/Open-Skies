@@ -103,10 +103,10 @@ public class HUD {
     public void periodicUpdate(float tpf) {
         try {
         //special update on simple windows
-        health.updateHealth(getUniverse().getPlayer().getActiveShip());
-        fuel.updateFuel(getUniverse().getPlayer().getActiveShip());
-        overview.updateOverview(getUniverse().getPlayer().getActiveShip());
-        equipment.update(getUniverse().getPlayer().getActiveShip());
+        health.updateHealth(getUniverse().getPlayerShip());
+        fuel.updateFuel(getUniverse().getPlayerShip());
+        overview.updateOverview(getUniverse().getPlayerShip());
+        equipment.update(getUniverse().getPlayerShip());
         //periodic update on other windows
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).periodicUpdate();

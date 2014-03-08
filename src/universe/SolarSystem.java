@@ -19,16 +19,14 @@
  */
 package universe;
 
-import celestial.Field;
+import celestial.Nebula;
 import celestial.Planet;
-import celestial.Ship.Ship;
-import celestial.Ship.Station;
 import celestial.Star;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
-import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.renderer.queue.RenderQueue.Bucket;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
@@ -37,8 +35,9 @@ import entity.Entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import jmeplanet.PlanetAppState;
-import lib.astral.Parser;
-import lib.astral.Parser.Term;
+import jmeplanet.Utility;
+import lib.Parser;
+import lib.Parser.Term;
 
 /**
  *
@@ -47,7 +46,7 @@ import lib.astral.Parser.Term;
 public class SolarSystem implements Entity, Serializable {
     //this system
 
-    transient Spatial skybox;
+    Spatial skybox;
     protected String name;
     float x;
     float y;
@@ -67,31 +66,30 @@ public class SolarSystem implements Entity, Serializable {
         this.thisSystem = thisSystem;
     }
 
-    public final void initSystem() {
+    public final void initSystem(AssetManager assets) {
         /*
-         * Adds all member objects
-         //nebula
-         /*ArrayList<Term> nebula = info.getTermsOfType("Nebula");
-         for (int a = 0; a < nebula.size(); a++) {
-         if (nebula.get(a).getValue("system").matches(getName())) {
-         //this star needs to be created and stored
-         getCelestials().add(makeNebula(nebula.get(a)));
-         }
-         }*/
+         * Adds all member objects. Member objects are any object that is
+         * a member of this system according to the "system" param and is
+         * one of the following
+         *
+         * Planet
+         * Star
+         * Nebula
+         */
+        //nebula
+        ArrayList<Term> nebula = info.getTermsOfType("Nebula");
+        for (int a = 0; a < nebula.size(); a++) {
+            if (nebula.get(a).getValue("system").matches(getName())) {
+                //this star needs to be created and stored
+                getCelestials().add(makeNebula(assets, nebula.get(a)));
+            }
+        }
         //star
         ArrayList<Term> stars = info.getTermsOfType("Star");
         for (int a = 0; a < stars.size(); a++) {
             if (stars.get(a).getValue("system").matches(getName())) {
                 //this star needs to be created and stored
-                getCelestials().add(makeStar(stars.get(a)));
-            }
-        }
-        //field
-        ArrayList<Term> fields = info.getTermsOfType("Field");
-        for (int a = 0; a < fields.size(); a++) {
-            if (fields.get(a).getValue("system").matches(getName())) {
-                //this field needs to be created and stored
-                getCelestials().add(makeField(fields.get(a)));
+                getCelestials().add(makeStar(assets, stars.get(a)));
             }
         }
         //planet
@@ -99,84 +97,12 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < planets.size(); a++) {
             if (planets.get(a).getValue("system").matches(getName())) {
                 //this planet needs to be created and stored
-                getCelestials().add(makePlanet(planets.get(a)));
-            }
-        }
-        //station
-        ArrayList<Term> stations = info.getTermsOfType("Station");
-        for (int a = 0; a < stations.size(); a++) {
-            if (stations.get(a).getValue("system").matches(getName())) {
-                //this ship needs to be created and stored
-                getCelestials().add(makeStation(stations.get(a)));
-            }
-        }
-        //ship
-        ArrayList<Term> ships = info.getTermsOfType("Ship");
-        for (int a = 0; a < ships.size(); a++) {
-            if (ships.get(a).getValue("system").matches(getName())) {
-                //this ship needs to be created and stored
-                getCelestials().add(makeShip(ships.get(a)));
+                getCelestials().add(makePlanet(assets, planets.get(a)));
             }
         }
     }
 
-    private Station makeStation(Term shipTerm) {
-        Station station = null;
-        {
-            String type = shipTerm.getValue("station");
-            Parser tmp = new Parser("STATION.txt");
-            ArrayList<Term> list = tmp.getTermsOfType("Station");
-            Term hull = null;
-            for (int a = 0; a < list.size(); a++) {
-                if (list.get(a).getValue("type").matches(type)) {
-                    hull = list.get(a);
-                    break;
-                }
-            }
-            //extract terms
-            String sName = shipTerm.getValue("name");
-            float sx = Float.parseFloat(shipTerm.getValue("x"));
-            float sy = Float.parseFloat(shipTerm.getValue("y"));
-            float sz = Float.parseFloat(shipTerm.getValue("z"));
-            //create ship
-            station = new Station(universe, hull);
-            //position ship
-            station.setLocation(new Vector3f(sx, sy, sz));
-            station.setCurrentSystem(this);
-            station.setName(sName);
-        }
-        return station;
-    }
-
-    private Ship makeShip(Term shipTerm) {
-        Ship ship = null;
-        {
-            String type = shipTerm.getValue("ship");
-            Parser tmp = new Parser("SHIP.txt");
-            ArrayList<Term> list = tmp.getTermsOfType("Ship");
-            Term hull = null;
-            for (int a = 0; a < list.size(); a++) {
-                if (list.get(a).getValue("type").matches(type)) {
-                    hull = list.get(a);
-                    break;
-                }
-            }
-            //extract terms
-            String sName = shipTerm.getValue("name");
-            float sx = Float.parseFloat(shipTerm.getValue("x"));
-            float sy = Float.parseFloat(shipTerm.getValue("y"));
-            float sz = Float.parseFloat(shipTerm.getValue("z"));
-            //create ship
-            ship = new Ship(universe, hull);
-            //position ship
-            ship.setLocation(new Vector3f(sx, sy, sz));
-            ship.setCurrentSystem(this);
-            ship.setName(sName);
-        }
-        return ship;
-    }
-
-    private Planet makePlanet(Term planetTerm) {
+    private Planet makePlanet(AssetManager assets, Term planetTerm) {
         Planet planet = null;
         {
             String texture = planetTerm.getValue("texture");
@@ -205,7 +131,7 @@ public class SolarSystem implements Entity, Serializable {
         return planet;
     }
 
-    private Star makeStar(Term starTerm) {
+    private Star makeStar(AssetManager assets, Term starTerm) {
         Star star = null;
         {
             String texture = starTerm.getValue("texture");
@@ -225,103 +151,53 @@ public class SolarSystem implements Entity, Serializable {
             float px = Float.parseFloat(starTerm.getValue("x"));
             float py = Float.parseFloat(starTerm.getValue("y"));
             float pz = Float.parseFloat(starTerm.getValue("z"));
-            //seed
-            int seed = Integer.parseInt(starTerm.getValue("seed"));
             //make planet and store
             star = new Star(universe, pName, tex, radius);
-            star.setSeed(seed);
             star.setLocation(new Vector3f(px, py, pz));
         }
         return star;
     }
 
-    private Field makeField(Term fieldTerm) {
-        Field field = null;
+    private Nebula makeNebula(AssetManager assets, Term nebulaTerm) {
+        Nebula nebula = null;
         {
             //extract terms
-            String pName = fieldTerm.getValue("name");
-            String texture = fieldTerm.getValue("type");
-            //find logical texture
-            Parser tmp = new Parser("FIELD.txt");
-            Term tex = null;
-            ArrayList<Term> list = tmp.getTermsOfType("Field");
-            for (int a = 0; a < list.size(); a++) {
-                if (list.get(a).getValue("name").matches(texture)) {
-                    tex = list.get(a);
+            String pName = nebulaTerm.getValue("name");
+            String texture = nebulaTerm.getValue("type");
+            //position
+            float px = Float.parseFloat(nebulaTerm.getValue("x"));
+            float py = Float.parseFloat(nebulaTerm.getValue("y"));
+            float pz = Float.parseFloat(nebulaTerm.getValue("z"));
+            //dimension
+            float l = Float.parseFloat(nebulaTerm.getValue("l"));
+            float w = Float.parseFloat(nebulaTerm.getValue("w"));
+            float h = Float.parseFloat(nebulaTerm.getValue("h"));
+            //color
+            String col = nebulaTerm.getValue("color");
+            String[] colArr = col.split(",");
+            float r = Float.parseFloat(colArr[0]);
+            float g = Float.parseFloat(colArr[1]);
+            float b = Float.parseFloat(colArr[2]);
+            float a = Float.parseFloat(colArr[3]);
+            //texture
+            Parser tmp = new Parser("PARTICLE.txt");
+            ArrayList<Term> terms = tmp.getTermsOfType("Nebula");
+            Term fin = null;
+            for (int o = 0; o < terms.size(); o++) {
+                if (terms.get(o).getValue("name").matches(texture)) {
+                    fin = terms.get(o);
                     break;
                 }
             }
-            //position
-            float px = Float.parseFloat(fieldTerm.getValue("x"));
-            float py = Float.parseFloat(fieldTerm.getValue("y"));
-            float pz = Float.parseFloat(fieldTerm.getValue("z"));
-            //dimension
-            float l = Float.parseFloat(fieldTerm.getValue("l"));
-            float w = Float.parseFloat(fieldTerm.getValue("w"));
-            float h = Float.parseFloat(fieldTerm.getValue("h"));
-            //seed
-            int seed = Integer.parseInt(fieldTerm.getValue("seed"));
-            //calculate params
-            Vector3f location = new Vector3f(px,py,pz);
-            Vector3f bounds = new Vector3f(l,h,w);
-            //create field
-            field = new Field(universe, tex, seed, location, bounds);
-            field.setName(pName);
+            //make planet and store
+            nebula = new Nebula(universe, pName, fin, new ColorRGBA(r, g, b, a), new Vector3f(l, w, h));
+            nebula.setLocation(new Vector3f(px, py, pz));
         }
-        return field;
+        return nebula;
     }
 
-    /*private Nebula makeNebula(Term nebulaTerm) {
-     Nebula nebula = null;
-     {
-     //extract terms
-     String pName = nebulaTerm.getValue("name");
-     String texture = nebulaTerm.getValue("type");
-     //position
-     float px = Float.parseFloat(nebulaTerm.getValue("x"));
-     float py = Float.parseFloat(nebulaTerm.getValue("y"));
-     float pz = Float.parseFloat(nebulaTerm.getValue("z"));
-     //dimension
-     float l = Float.parseFloat(nebulaTerm.getValue("l"));
-     float w = Float.parseFloat(nebulaTerm.getValue("w"));
-     float h = Float.parseFloat(nebulaTerm.getValue("h"));
-     //color
-     String col = nebulaTerm.getValue("color");
-     String[] colArr = col.split(",");
-     float r = Float.parseFloat(colArr[0]);
-     float g = Float.parseFloat(colArr[1]);
-     float b = Float.parseFloat(colArr[2]);
-     float a = Float.parseFloat(colArr[3]);
-     //seed
-     int seed = Integer.parseInt(nebulaTerm.getValue("seed"));
-     //texture
-     Parser tmp = new Parser("PARTICLE.txt");
-     ArrayList<Term> terms = tmp.getTermsOfType("Nebula");
-     Term fin = null;
-     for (int o = 0; o < terms.size(); o++) {
-     if (terms.get(o).getValue("name").matches(texture)) {
-     fin = terms.get(o);
-     break;
-     }
-     }
-     //make planet and store
-     nebula = new Nebula(universe,pName, fin, new ColorRGBA(r, g, b, a), new Vector3f(l, w, h));
-     nebula.setSeed(seed);
-     nebula.setLocation(new Vector3f(px, py, pz));
-     }
-     return nebula;
-     }*/
     public ArrayList<Entity> getCelestials() {
         return celestials;
-    }
-
-    public Entity getCelestialWithPhysicsName(String physicsName) {
-        Entity entity = null;
-        {
-            for (int a = 0; a < celestials.size(); a++) {
-            }
-        }
-        return entity;
     }
 
     public void setCelestials(ArrayList<Entity> celestials) {
@@ -373,9 +249,8 @@ public class SolarSystem implements Entity, Serializable {
         ArrayList<Term> boxes = sky.getTermsOfType("Skybox");
         for (int a = 0; a < boxes.size(); a++) {
             if (boxes.get(a).getValue("name").matches(thisSystem.getValue("sky"))) {
-                skybox = SkyFactory.createSky(assets, "Textures/Skybox/" + boxes.get(a).getValue("asset"), false);
-                skybox.setQueueBucket(Bucket.Sky);
-                skybox.setShadowMode(RenderQueue.ShadowMode.Off);
+                //TODO: Fix skyboxes
+                skybox = Utility.createSkyBox(assets, "Textures/blue-glow-1024.dds");
                 break;
             }
         }
@@ -384,9 +259,6 @@ public class SolarSystem implements Entity, Serializable {
     @Override
     public void deconstruct() {
         skybox = null;
-        for (int a = 0; a < celestials.size(); a++) {
-            celestials.get(a).deconstruct();
-        }
     }
 
     @Override
@@ -434,6 +306,6 @@ public class SolarSystem implements Entity, Serializable {
 
     @Override
     public Vector3f getPhysicsLocation() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -5,12 +5,7 @@ color=1,1,1
 
 [Planet]
 name=BandedGas
-group=singlegas
-[/Planet]
-
-[Planet]
-name=DoubleBandedGas
-group=doublegas
+group=gas
 [/Planet]
 
 [Planet]
@@ -20,19 +15,7 @@ palette=Earth
 [/Planet]
 
 [Planet]
-name=Hospitable
-group=rock
-palette=Hospitable
-[/Planet]
-
-[Planet]
 name=Martian
 group=rock
 palette=Mars
-[/Planet]
-
-[Planet]
-name=Strange
-group=rock
-palette=Strange
 [/Planet]

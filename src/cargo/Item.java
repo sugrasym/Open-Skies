@@ -21,8 +21,8 @@ package cargo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import lib.astral.Parser;
-import lib.astral.Parser.Term;
+import lib.Parser;
+import lib.Parser.Term;
 
 public class Item implements Serializable {
     //parameters

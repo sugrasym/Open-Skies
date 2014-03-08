@@ -45,24 +45,22 @@ import jmeplanet.PlanetAppState;
  */
 public class PhysicsEntity implements Entity, Serializable {
     //name
-
     private String name = "";
     //texture and geometry crap
-    transient protected Material mat;
-    transient protected Spatial spatial;
+    protected Material mat;
+    protected Spatial spatial;
     //entity crap
     private State state = State.ALIVE;
     /*
      *  WARNING WARNING WARNING
      *  When changing geometry location you must do it in the physics space.
-     *  Changing it in the mesh will cause bad things. These are for out of
-     *  system only.
+     *  Changing it in the mesh will cause bad things.
      */
     Vector3f location = new Vector3f(0, 0, 0);
     Quaternion rotation = Quaternion.ZERO;
     private Vector3f velocity = new Vector3f(0,0,0);
     //physics crap
-    transient protected RigidBodyControl physics;
+    protected RigidBodyControl physics;
     private float mass = 0;
     protected PhysicsNameControl nameControl = new PhysicsNameControl();
 
@@ -74,6 +72,7 @@ public class PhysicsEntity implements Entity, Serializable {
      * Implementations of entity
      */
     public void periodicUpdate(float tpf) {
+        
     }
 
     public void construct(AssetManager assets) {
@@ -87,12 +86,8 @@ public class PhysicsEntity implements Entity, Serializable {
         SphereCollisionShape sphereShape = new SphereCollisionShape(1.0f);
         //setup dynamic physics
         physics = new RigidBodyControl(sphereShape, mass);
-        physics.setPhysicsLocation(location);
         //add physics to mesh
         spatial.addControl(physics);
-        //store physics name control
-        nameControl.setParent(this);
-        spatial.addControl(nameControl);
     }
 
     public void deconstruct() {
@@ -108,7 +103,7 @@ public class PhysicsEntity implements Entity, Serializable {
      */
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         node.attachChild(spatial);
-        physics.getPhysicsSpace().add(spatial);
+        physics.getPhysicsSpace().add(spatial);        
         this.physics.setLinearVelocity(getVelocity().clone());
         this.physics.setPhysicsLocation(location.clone());
         this.physics.setPhysicsRotation(rotation.clone());
@@ -121,10 +116,11 @@ public class PhysicsEntity implements Entity, Serializable {
         node.detachChild(spatial);
         physics.getPhysicsSpace().remove(spatial);
     }
-
+    
     /*
      *More state information
      */
+
     public State getState() {
         return state;
     }
@@ -141,7 +137,6 @@ public class PhysicsEntity implements Entity, Serializable {
         location = loc.clone();
     }
 
-    @Override
     public Quaternion getRotation() {
         return rotation.clone();
     }
@@ -149,7 +144,7 @@ public class PhysicsEntity implements Entity, Serializable {
     public void setRotation(Quaternion rot) {
         rotation = rot.clone();
     }
-
+      
     @Override
     public String getName() {
         return name;
@@ -170,23 +165,23 @@ public class PhysicsEntity implements Entity, Serializable {
     public void setMass(float mass) {
         this.mass = mass;
     }
-
+    
     public void applyCentralForce(Vector3f force) {
         physics.applyCentralForce(force);
     }
-
+    
     public void applyForce(Vector3f force, Vector3f location) {
         physics.applyForce(force, location);
     }
-
+    
     public void applyTorque(Vector3f torque) {
         physics.applyTorque(torque);
     }
-
+    
     public void clearForces() {
         physics.clearForces();
     }
-
+    
     /*
      * For getting physics info
      */
@@ -219,7 +214,7 @@ public class PhysicsEntity implements Entity, Serializable {
 
     public Vector3f getVelocity() {
         return velocity;
-    }
+}
 
     public void setVelocity(Vector3f velocity) {
         this.velocity = velocity;

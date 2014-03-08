@@ -93,7 +93,7 @@ public class Utility {
         sky.setShadowMode(ShadowMode.Off);
         sky.setModelBound(new BoundingSphere(Float.POSITIVE_INFINITY, Vector3f.ZERO));
 
-        Image cube = assetManager.loadTexture("Textures/blue-glow-1024.dds").getImage();
+        Image cube = assetManager.loadTexture(textureName).getImage();
         TextureCubeMap cubemap = new TextureCubeMap(cube);
 
         Material mat = new Material(assetManager, "Common/MatDefs/Misc/Sky.j3md");

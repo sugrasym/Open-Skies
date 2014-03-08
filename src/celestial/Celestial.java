@@ -21,7 +21,7 @@ package celestial;
 
 import entity.PhysicsEntity;
 import java.io.Serializable;
-import lib.astral.AstralIO;
+import lib.AstralIO;
 import universe.SolarSystem;
 import universe.Universe;
 
@@ -33,14 +33,12 @@ public class Celestial extends PhysicsEntity implements Serializable {
 
     //protected variables that need to be accessed by children
     protected double tpf;
-    protected Universe universe;
     //identity
     protected static AstralIO io = new AstralIO();
     protected SolarSystem currentSystem;
 
     public Celestial(float mass, Universe universe) {
         super(mass);
-        this.universe = universe;
     }
     /*
      * For compartmentalizing behaviors. This is a cleaner solution than
@@ -48,11 +46,9 @@ public class Celestial extends PhysicsEntity implements Serializable {
      */
 
     protected void alive() {
-        updateVectors();
     }
 
     protected void dying() {
-        setState(State.DEAD);
     }
 
     protected void dead() {
@@ -60,12 +56,6 @@ public class Celestial extends PhysicsEntity implements Serializable {
 
     public SolarSystem getCurrentSystem() {
         return currentSystem;
-    }
-    
-    public void updateVectors() {
-        setLocation(physics.getPhysicsLocation().clone());
-        setRotation(physics.getPhysicsRotation().clone());
-        setVelocity(physics.getLinearVelocity().clone());
     }
 
     public void setCurrentSystem(SolarSystem currentSystem) {

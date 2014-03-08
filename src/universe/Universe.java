@@ -18,12 +18,13 @@
  */
 package universe;
 
-import celestial.Ship.Player;
+import cargo.Item;
+import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import java.io.Serializable;
 import java.util.ArrayList;
-import lib.astral.Parser;
-import lib.astral.Parser.Term;
+import lib.Parser;
+import lib.Parser.Term;
 
 /**
  *
@@ -32,8 +33,8 @@ import lib.astral.Parser.Term;
 public class Universe implements Serializable {
     
     private ArrayList<SolarSystem> systems = new ArrayList<>();
-    private Player player;
-    transient AssetManager assets;
+    protected Ship playerShip;
+    AssetManager assets;
     
     public Universe(AssetManager assets) {
         this.assets = assets;
@@ -50,31 +51,21 @@ public class Universe implements Serializable {
         for (int a = 0; a < solars.size(); a++) {
             getSystems().add(makeSystem(parse, solars.get(a)));
         }
+        //generate the player
+        ArrayList<Term> games = parse.getTermsOfType("NewGame");
+        System.out.println("INFO: Found " + games.size() + " games to read.");
+        //there should only be of these, pick the first one
+        //makePlayer(games.get(0));
     }
     
     private SolarSystem makeSystem(Parser parse, Term thisSystem) {
         SolarSystem system = null;
         {
             system = new SolarSystem(this, thisSystem, parse);
-            system.initSystem();
+            system.initSystem(assets);
         }
-        System.out.println(system.getName() + " solar system created. ");
+        System.out.println("Zeus: " + system.getName() + " solar system created. ");
         return system;
-    }
-    
-    public void deconstruct() {
-        for(int a = 0; a < systems.size(); a++) {
-            systems.get(a).deconstruct();
-        }
-    }
-    
-    public SolarSystem getSystemWithName(String name) {
-        for(int a = 0; a < systems.size(); a++) {
-            if(systems.get(a).getName().matches(name)) {
-                return systems.get(a);
-            }
-        }
-        return null;
     }
     
     public ArrayList<SolarSystem> getSystems() {
@@ -84,12 +75,12 @@ public class Universe implements Serializable {
     public void setSystems(ArrayList<SolarSystem> systems) {
         this.systems = systems;
     }
-
-    public Player getPlayer() {
-        return player;
+    
+    public Ship getPlayerShip() {
+        return playerShip;
     }
-
-    public void setPlayer(Player player) {
-        this.player = player;
+    
+    public void setPlayerShip(Ship playerShip) {
+        this.playerShip = playerShip;
     }
 }

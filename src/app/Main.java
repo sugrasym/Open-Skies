@@ -20,29 +20,24 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.filters.BloomFilter;
-import com.jme3.post.ssao.SSAOFilter;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.plugins.blender.BlenderModelLoader;
-import com.jme3.system.AppSettings;
 import engine.Core;
+import jmeplanet.PlanetAppState;
 
 /**
  * - What do you say to Goons? - Die.
  */
 public class Main extends SimpleApplication {
+    //fpp
+    FilterPostProcessor fpp;
+    PlanetAppState planetAppState;
     //engine
     private BulletAppState bulletAppState;
     Core core;
 
     public static void main(String[] args) {
         Main app = new Main();
-        //setup joystick
-        AppSettings set = new AppSettings(true);
-        set.setUseJoysticks(true);
-        set.setResolution(1024, 768);
-        set.setVSync(true);
-        app.setShowSettings(true);
-        app.setSettings(set);
         app.start();
     }
 
@@ -54,16 +49,21 @@ public class Main extends SimpleApplication {
         bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState);
         bulletAppState.getPhysicsSpace().setGravity(Vector3f.ZERO);
-        //bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+        //setup planet generator
+        planetAppState = new PlanetAppState(rootNode, null);
+        stateManager.attach(planetAppState);
         //start engine
-        core = new Core(rootNode, guiNode, bulletAppState, assetManager, cam, inputManager, settings, viewPort, stateManager);
-        //setup camera
-        cam.setFrustumFar(Integer.MAX_VALUE);
-        //viewPort.addProcessor(fpp);
+        core = new Core(rootNode, guiNode, bulletAppState, assetManager, planetAppState);
+        //setup post processing
+        fpp = new FilterPostProcessor(assetManager);
+        /*bloom.setDownSamplingFactor(4.0f);
+        bloom.setBloomIntensity(2.0f);
+        bloom.setBlurScale(1.0f);*/
+        viewPort.addProcessor(fpp);
         //remove cruft
         setDisplayFps(false);
         setDisplayStatView(false);
-        flyCam.setEnabled(false);
+        flyCam.setMoveSpeed(40000);
     }
 
     @Override
