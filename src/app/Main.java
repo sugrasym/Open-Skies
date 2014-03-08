@@ -64,6 +64,7 @@ public class Main extends SimpleApplication {
         setDisplayFps(false);
         setDisplayStatView(false);
         flyCam.setMoveSpeed(40000);
+        flyCam.setEnabled(false);
     }
 
     @Override

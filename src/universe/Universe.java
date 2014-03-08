@@ -82,4 +82,13 @@ public class Universe implements Serializable {
     public void setPlayerShip(Ship playerShip) {
         this.playerShip = playerShip;
     }
+    
+    public SolarSystem getSystemWithName(String name) {
+        for(int a = 0; a < systems.size(); a++) {
+            if(systems.get(a).getName().equals(name)) {
+                return systems.get(a);
+            }
+        }
+        return null;
+    }
 }
