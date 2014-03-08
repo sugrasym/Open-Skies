@@ -53,7 +53,7 @@ public class Main extends SimpleApplication {
         planetAppState = new PlanetAppState(rootNode, null);
         stateManager.attach(planetAppState);
         //start engine
-        core = new Core(rootNode, guiNode, bulletAppState, assetManager, planetAppState);
+        core = new Core(rootNode, guiNode, bulletAppState, assetManager, planetAppState, inputManager, settings);
         //setup post processing
         fpp = new FilterPostProcessor(assetManager);
         /*bloom.setDownSamplingFactor(4.0f);

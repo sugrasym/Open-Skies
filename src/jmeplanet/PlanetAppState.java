@@ -33,6 +33,8 @@ import celestial.Ship.Ship;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
+import com.jme3.export.JmeExporter;
+import com.jme3.export.JmeImporter;
 import com.jme3.light.DirectionalLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
@@ -40,12 +42,15 @@ import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.filters.BloomFilter;
 import com.jme3.post.filters.FogFilter;
 import com.jme3.renderer.Camera;
+import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.control.Control;
 import com.jme3.shadow.CompareMode;
 import com.jme3.shadow.DirectionalLightShadowRenderer;
 import com.jme3.shadow.EdgeFilteringMode;
 import engine.AstralCamera;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +58,7 @@ import java.util.List;
  * PlanetAppState
  *
  */
-public class PlanetAppState extends AbstractAppState {
+public class PlanetAppState extends AbstractAppState implements Control {
 
     protected Application app;
     protected List<Planet> planets;
@@ -262,5 +267,41 @@ public class PlanetAppState extends AbstractAppState {
 
     public void setCameraShip(Ship cameraShip) {
         this.cameraShip = cameraShip;
+        if(cameraShip != null) {
+            cameraShip.getSpatial().addControl(this);
+        }
+    }
+    
+    public void freeCamera() {
+        if(cameraShip != null) {
+            cameraShip.getSpatial().removeControl(this);
+        }
+        cameraShip = null;
+        astralCamera = null;
+    }
+
+    @Override
+    public Control cloneForSpatial(Spatial spatial) {
+        return this;
+    }
+
+    @Override
+    public void setSpatial(Spatial spatial) {
+        //
+    }
+
+    @Override
+    public void render(RenderManager rm, ViewPort vp) {
+        //
+    }
+
+    @Override
+    public void write(JmeExporter ex) throws IOException {
+        //
+    }
+
+    @Override
+    public void read(JmeImporter im) throws IOException {
+        //
     }
 }
