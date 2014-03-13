@@ -161,7 +161,7 @@ public class Utility {
         planetMaterial.setTexture("SlopeColorMap", rock);
 
         // create planet
-        Planet planet = new Planet("Planet", radius, planetMaterial, dataSource);
+        Planet planet = new Planet("Planet", radius, planetMaterial, dataSource, false);
 
         // create ocean
         if (oceanMaterial == null) {
@@ -216,8 +216,25 @@ public class Utility {
         planetMaterial.setTexture("SlopeColorMap", rock);
 
         // create planet
-        Planet planet = new Planet("Moon", radius, planetMaterial, dataSource);
+        Planet planet = new Planet("Moon", radius, planetMaterial, dataSource, false);
 
         return planet;
+    }
+
+    public static Planet createAtmosphereShell(AssetManager assetManager, float radius, HeightDataSource dataSource) {
+        // Prepare planet material
+        Material planetMaterial = new Material(assetManager, "JmePlanet/MatDefs/Terrain.j3md");
+        // create planet
+        Planet planet = new Planet("Atmosphere Shell", radius, planetMaterial, dataSource, true);
+        // create atmosphere
+        Material atmosphereMaterial = new Material(assetManager, "JmePlanet/MatDefs/Atmosphere.j3md");
+        float atmosphereRadius = radius + (radius * .025f);
+        atmosphereMaterial.setColor("Ambient", new ColorRGBA(0.5f, 0.5f, 1f, 1f));
+        atmosphereMaterial.setColor("Diffuse", new ColorRGBA(0.18867780436772762f, 0.4978442963618773f, 0.6616065586417131f, 1.0f));
+        atmosphereMaterial.setColor("Specular", new ColorRGBA(0.7f, 0.7f, 1f, 1f));
+        atmosphereMaterial.setFloat("Shininess", 3.0f);
+        planet.createAtmosphere(atmosphereMaterial, atmosphereRadius);
+        return planet;
+
     }
 }

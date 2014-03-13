@@ -22,6 +22,7 @@ package celestial;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.SphereCollisionShape;
+import com.jme3.bullet.control.GhostControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.material.Material;
 import com.jme3.material.RenderState.BlendMode;
@@ -51,6 +52,8 @@ public class Planet extends Celestial {
 
     private Texture2D tex;
     jmeplanet.Planet fractalPlanet;
+    jmeplanet.Planet atmosphereShell;
+    protected RigidBodyControl atmospherePhysics;
     private Term type;
     private int seed = 0;
     protected float radius;
@@ -71,6 +74,10 @@ public class Planet extends Celestial {
             physics = new RigidBodyControl(sphereShape, getMass());
             //add physics to mesh
             spatial.addControl(physics);
+            if (atmosphereShell != null) {
+                atmospherePhysics = new RigidBodyControl(sphereShape, getMass());
+                atmosphereShell.addControl(atmospherePhysics);
+            }
         }
     }
 
@@ -79,6 +86,8 @@ public class Planet extends Celestial {
         mat = null;
         spatial = null;
         physics = null;
+        atmosphereShell = null;
+        atmospherePhysics = null;
     }
 
     private void generateProceduralPlanet(AssetManager assets) {
@@ -172,9 +181,13 @@ public class Planet extends Celestial {
                 setTex(new Texture2D(load));
                 mat.setTexture("DiffuseMap", getTex());
                 spatial.setMaterial(mat);
-                //rotate
-                setRotation(getRotation().fromAngles(FastMath.PI / 2, 0, 0));
             }
+            //rotate
+            setRotation(getRotation().fromAngles(FastMath.PI / 2, 0, 0));
+            //add an atmosphere
+            FractalDataSource planetDataSource = new FractalDataSource(seed);
+            planetDataSource.setHeightScale(0.015f * radius);
+            atmosphereShell = Utility.createAtmosphereShell(assets, radius * 1.05f, planetDataSource);
         }
     }
 
@@ -185,6 +198,11 @@ public class Planet extends Celestial {
                 physics.setPhysicsLocation(getLocation());
                 physics.setPhysicsRotation(getRotation());
                 spatial.setLocalRotation(getRotation());
+                if (atmosphereShell != null) {
+                    atmospherePhysics.setPhysicsLocation(getLocation());
+                    atmospherePhysics.setPhysicsRotation(getRotation());
+                    atmosphereShell.setLocalRotation(getRotation());
+                }
             }
         }
     }
@@ -196,6 +214,11 @@ public class Planet extends Celestial {
             if (fractalPlanet != null) {
                 planetAppState.addPlanet(fractalPlanet);
             }
+            if (atmosphereShell != null) {
+                node.attachChild(atmosphereShell);
+                physics.getPhysicsSpace().add(atmospherePhysics);
+                planetAppState.addPlanet(atmosphereShell);
+            }
         }
     }
 
@@ -204,6 +227,11 @@ public class Planet extends Celestial {
         physics.getPhysicsSpace().remove(spatial);
         if (fractalPlanet != null) {
             planetAppState.removePlanet(fractalPlanet);
+        }
+        if (atmosphereShell != null) {
+            node.detachChild(atmosphereShell);
+            physics.getPhysicsSpace().remove(atmospherePhysics);
+            planetAppState.removePlanet(atmosphereShell);
         }
     }
 
