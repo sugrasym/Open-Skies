@@ -74,6 +74,10 @@ public class PhysicsEntity implements Entity, Serializable {
     public void periodicUpdate(float tpf) {
         
     }
+    
+    public void oosPeriodicUpdate(float tpf) {
+        //called only when the player is not in the same system
+    }
 
     public void construct(AssetManager assets) {
         //create the mesh and material

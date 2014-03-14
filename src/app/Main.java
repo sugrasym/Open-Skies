@@ -19,7 +19,6 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
-import com.jme3.post.filters.BloomFilter;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.plugins.blender.BlenderModelLoader;
 import engine.Core;

@@ -39,6 +39,7 @@ public interface Entity {
      * Updates the object.
      */
     public void periodicUpdate(float tpf);
+    public void oosPeriodicUpdate(float tpf);
     /*
      * Constructs and deconstructs the object. Must be called AFTER the
      * constructor has been called for cleanliness.

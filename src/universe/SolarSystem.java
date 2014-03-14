@@ -294,6 +294,17 @@ public class SolarSystem implements Entity, Serializable {
             }
         }
     }
+    
+    @Override
+    public void oosPeriodicUpdate(float tpf) {
+        for (int a = 0; a < celestials.size(); a++) {
+            celestials.get(a).oosPeriodicUpdate(tpf);
+            if (celestials.get(a).getState() == Entity.State.DEAD) {
+                //remove the entity
+                celestials.remove(a);
+            }
+        }
+    }
 
     @Override
     public State getState() {

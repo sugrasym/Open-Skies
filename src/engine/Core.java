@@ -166,7 +166,7 @@ public class Core {
         //TODO: init code
 
     }
-    
+
     private void initMouse() {
         //mouse buttons
         input.addMapping("MOUSE_LClick", new MouseButtonTrigger(0));
@@ -174,8 +174,8 @@ public class Core {
         input.addMapping("MOUSE_CClick", new MouseButtonTrigger(2));
         //store
         input.addListener(actionListener, new String[]{"MOUSE_LClick",
-                    "MOUSE_RClick",
-                    "MOUSE_CClick"});
+            "MOUSE_RClick",
+            "MOUSE_CClick"});
     }
 
     private void initKeys() {
@@ -420,9 +420,15 @@ public class Core {
          * In-game updating
          */
         if (state == GameState.IN_SPACE) {
-            //update world
+            //update player system
+            universe.getPlayerShip().getCurrentSystem().periodicUpdate(tpf);
+            //update everything else
             for (int a = 0; a < universe.getSystems().size(); a++) {
-                universe.getSystems().get(a).periodicUpdate(tpf);
+                if (universe.getSystems().get(a) != universe.getPlayerShip().getCurrentSystem()) {
+                    universe.getSystems().get(a).oosPeriodicUpdate(tpf);
+                } else {
+                    //this is the system the player is in
+                }
             }
             //update HUD
             hud.periodicUpdate(tpf);

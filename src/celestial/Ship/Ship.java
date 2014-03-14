@@ -154,6 +154,10 @@ public class Ship extends Celestial {
         return eul;
     }
 
+    /*
+     * Methods for in-system updating. It primarily uses the physics system.
+     */
+    
     protected void alive() {
         super.alive();
         //check health
@@ -250,6 +254,25 @@ public class Ship extends Celestial {
             roll = 1;
         }
         roll(roll);
+    }
+    
+    /*
+     * Methods for out of system updating, does not use any of the physics system.
+     */
+    
+    @Override
+    protected void oosAlive() {
+        super.oosAlive();
+    }
+    
+    @Override
+    protected void oosDying() {
+        super.oosDying();
+    }
+    
+    @Override
+    protected void oosDead() {
+        super.oosDead();
     }
 
     /*
