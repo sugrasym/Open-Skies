@@ -1,7 +1,7 @@
 [NewGame]
 name=Default
 ship=Sparrow
-system=System 6
+system=System 15
 x=25000
 y=0
 z=-25000
@@ -882,7 +882,7 @@ seed=-641930556
 [Planet]
 name=Planet 1
 system=System 15
-texture=Chthonian
+texture=Martian
 x=-2781
 y=0
 z=-63152
@@ -893,7 +893,7 @@ seed=675688836
 [Planet]
 name=Planet 2
 system=System 15
-texture=Chthonian
+texture=WetMartian
 x=-57291
 y=0
 z=-52846

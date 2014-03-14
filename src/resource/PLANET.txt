@@ -31,10 +31,26 @@ probability=0.1
 [/Planet]
 
 [Planet]
+name=Martian
+group=rock
+palette=Mars
+hasWater=false
+probability=0.075
+[/Planet]
+
+[Planet]
+name=WetMartian
+group=rock
+palette=Mars
+hasWater=true
+probability=0.025
+[/Planet]
+
+[Planet]
 name=Barren
 group=rock
 palette=Barren
-probability=0.3
+probability=0.2
 [/Planet]
 
 ################################################################################

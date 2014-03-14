@@ -102,22 +102,32 @@ public class Planet extends Celestial {
         String palette = type.getValue("palette");
         //split based on planet group
         if (group.equals("rock")) {
+            //determine height scale
+            float heightScale = (sRand.nextFloat()*0.02f)+0.01f; //1% to 3%
             if (palette.equals("Earth")) {
                 // Add planet
                 FractalDataSource planetDataSource = new FractalDataSource(seed);
-                planetDataSource.setHeightScale(0.015f * radius);
+                planetDataSource.setHeightScale(heightScale * radius);
                 fractalPlanet = Utility.createEarthLikePlanet(assets, radius, null, planetDataSource);
                 spatial = fractalPlanet;
             } else if (palette.equals("Barren")) {
                 FractalDataSource moonDataSource = new FractalDataSource(seed);
-                moonDataSource.setHeightScale(0.015f * radius);
+                moonDataSource.setHeightScale(heightScale * radius);
                 fractalPlanet = Utility.createMoonLikePlanet(assets, radius, moonDataSource);
                 spatial = fractalPlanet;
             } else if (palette.equals("Lava")) {
                 // Add planet
                 FractalDataSource planetDataSource = new FractalDataSource(seed);
-                planetDataSource.setHeightScale(0.015f * radius);
+                planetDataSource.setHeightScale(heightScale * radius);
                 fractalPlanet = Utility.createChthonianPlanet(assets, radius, null, planetDataSource, seed);
+                spatial = fractalPlanet;
+            } else if (palette.equals("Mars")) {
+                //determine water presence
+                boolean hasWater = Boolean.parseBoolean(type.getValue("hasWater"));
+                // Add planet
+                FractalDataSource planetDataSource = new FractalDataSource(seed);
+                planetDataSource.setHeightScale(heightScale * radius);
+                fractalPlanet = Utility.createMarsLikePlanet(assets, radius, null, planetDataSource, hasWater, seed);
                 spatial = fractalPlanet;
             }
         } else if (group.equals("gas")) {

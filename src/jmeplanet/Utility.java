@@ -182,7 +182,7 @@ public class Utility {
 
         return planet;
     }
-    
+
     public static Planet createChthonianPlanet(AssetManager assetManager, float radius, Material oceanMaterial, HeightDataSource dataSource, int seed) {
 
         float heightScale = dataSource.getHeightScale();
@@ -215,7 +215,7 @@ public class Utility {
         Texture rock = assetManager.loadTexture("Textures/rock.png");
         rock.setWrap(Texture.WrapMode.Repeat);
         planetMaterial.setTexture("SlopeColorMap", rock);
-        
+
         // create planet
         Planet planet = new Planet("Chthonian", radius, planetMaterial, dataSource, false);
         // create ocean
@@ -224,6 +224,62 @@ public class Utility {
         }
         planet.createOcean(oceanMaterial);
 
+        // create atmosphere
+        Material atmosphereMaterial = new Material(assetManager, "JmePlanet/MatDefs/Atmosphere.j3md");
+        float atmosphereRadius = radius + (radius * .025f);
+        ColorRGBA airColor = createSeededAirColor(seed);
+        atmosphereMaterial.setColor("Ambient", airColor);
+        atmosphereMaterial.setColor("Diffuse", airColor);
+        atmosphereMaterial.setColor("Specular", airColor);
+        atmosphereMaterial.setFloat("Shininess", 3.0f);
+
+        planet.createAtmosphere(atmosphereMaterial, atmosphereRadius);
+
+        return planet;
+    }
+
+    public static Planet createMarsLikePlanet(AssetManager assetManager, float radius, Material oceanMaterial, HeightDataSource dataSource, boolean wetMars, int seed) {
+
+        float heightScale = dataSource.getHeightScale();
+
+        // Prepare planet material
+        Material planetMaterial = new Material(assetManager, "JmePlanet/MatDefs/Terrain.j3md");
+
+        // lowlands
+        Texture dirt = assetManager.loadTexture("Textures/mars_lowland.png");
+        dirt.setWrap(Texture.WrapMode.Repeat);
+        planetMaterial.setTexture("Region1ColorMap", dirt);
+        planetMaterial.setVector3("Region1", new Vector3f(0, heightScale * 0.2f, 0));
+        // midlands
+        Texture grass = assetManager.loadTexture("Textures/mars_midland.png");
+        grass.setWrap(Texture.WrapMode.Repeat);
+        planetMaterial.setTexture("Region2ColorMap", grass);
+        planetMaterial.setVector3("Region2", new Vector3f(heightScale * 0.16f, heightScale * 1.05f, 0));
+        // highlands
+        Texture gravel = assetManager.loadTexture("Textures/mars_highland.png");
+        gravel.setWrap(Texture.WrapMode.Repeat);
+        planetMaterial.setTexture("Region3ColorMap", gravel);
+        planetMaterial.setVector3("Region3", new Vector3f(heightScale * 0.84f, heightScale * 1.1f, 0));
+        // snow texture
+        Texture snow = assetManager.loadTexture("Textures/snow.png");
+        snow.setWrap(Texture.WrapMode.Repeat);
+        planetMaterial.setTexture("Region4ColorMap", snow);
+        planetMaterial.setVector3("Region4", new Vector3f(heightScale * 0.94f, heightScale * 1.5f, 0));
+
+        // rock texture
+        Texture rock = assetManager.loadTexture("Textures/rock.png");
+        rock.setWrap(Texture.WrapMode.Repeat);
+        planetMaterial.setTexture("SlopeColorMap", rock);
+
+        // create planet
+        Planet planet = new Planet("Planet", radius, planetMaterial, dataSource, false);
+        if (wetMars) {
+            // create ocean
+            if (oceanMaterial == null) {
+                oceanMaterial = assetManager.loadMaterial("Materials/Ocean.j3m");
+            }
+            planet.createOcean(oceanMaterial);
+        }
         // create atmosphere
         Material atmosphereMaterial = new Material(assetManager, "JmePlanet/MatDefs/Atmosphere.j3md");
         float atmosphereRadius = radius + (radius * .025f);
@@ -293,14 +349,13 @@ public class Utility {
         return planet;
 
     }
-    
+
     public static ColorRGBA createSeededAirColor(int seed) {
         Random rnd = new Random(seed);
-        float r = rnd.nextFloat()/2;
-        float g = rnd.nextFloat()/2;
-        float b = rnd.nextFloat()/2;
-        float a = rnd.nextFloat()/4;
-        return new ColorRGBA(r,g,b,a);
+        float r = rnd.nextFloat() / 2;
+        float g = rnd.nextFloat() / 2;
+        float b = rnd.nextFloat() / 2;
+        float a = rnd.nextFloat() / 4;
+        return new ColorRGBA(r, g, b, a);
     }
-    
 }
