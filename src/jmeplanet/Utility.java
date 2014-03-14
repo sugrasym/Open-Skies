@@ -42,6 +42,7 @@ import com.jme3.texture.Image;
 import com.jme3.texture.Texture;
 import com.jme3.texture.TextureCubeMap;
 import java.nio.ByteBuffer;
+import java.util.Random;
 import jmeplanet.HeightDataSource;
 import jmeplanet.Planet;
 
@@ -181,6 +182,61 @@ public class Utility {
 
         return planet;
     }
+    
+    public static Planet createChthonianPlanet(AssetManager assetManager, float radius, Material oceanMaterial, HeightDataSource dataSource, int seed) {
+
+        float heightScale = dataSource.getHeightScale();
+
+        // Prepare planet material
+        Material planetMaterial = new Material(assetManager, "JmePlanet/MatDefs/Terrain.j3md");
+
+        // region1 texture
+        Texture region1 = assetManager.loadTexture("Textures/lava.png");
+        region1.setWrap(Texture.WrapMode.Repeat);
+        planetMaterial.setTexture("Region1ColorMap", region1);
+        planetMaterial.setVector3("Region1", new Vector3f(heightScale * 0f, heightScale * 0.75f, 0));
+        // region2 texture
+        Texture region2 = assetManager.loadTexture("Textures/moon.png");
+        region2.setWrap(Texture.WrapMode.Repeat);
+        planetMaterial.setTexture("Region2ColorMap", region2);
+        planetMaterial.setVector3("Region2", new Vector3f(heightScale * 0f, heightScale * 0.75f, 0));
+        // region3 texture
+        Texture region3 = assetManager.loadTexture("Textures/moon.png");
+        region3.setWrap(Texture.WrapMode.Repeat);
+        planetMaterial.setTexture("Region3ColorMap", region3);
+        planetMaterial.setVector3("Region3", new Vector3f(heightScale * 0f, heightScale * 0.75f, 0));
+        // region4 texture
+        Texture region4 = assetManager.loadTexture("Textures/moon_rough.png");
+        region4.setWrap(Texture.WrapMode.Repeat);
+        planetMaterial.setTexture("Region4ColorMap", region4);
+        planetMaterial.setVector3("Region4", new Vector3f(heightScale * 0.5f, heightScale * 1.0f, 0));
+
+        // rock texture
+        Texture rock = assetManager.loadTexture("Textures/rock.png");
+        rock.setWrap(Texture.WrapMode.Repeat);
+        planetMaterial.setTexture("SlopeColorMap", rock);
+        
+        // create planet
+        Planet planet = new Planet("Chthonian", radius, planetMaterial, dataSource, false);
+        // create ocean
+        if (oceanMaterial == null) {
+            oceanMaterial = assetManager.loadMaterial("Materials/Lava.j3m");
+        }
+        planet.createOcean(oceanMaterial);
+
+        // create atmosphere
+        Material atmosphereMaterial = new Material(assetManager, "JmePlanet/MatDefs/Atmosphere.j3md");
+        float atmosphereRadius = radius + (radius * .025f);
+        ColorRGBA airColor = createSeededAirColor(seed);
+        atmosphereMaterial.setColor("Ambient", airColor);
+        atmosphereMaterial.setColor("Diffuse", airColor);
+        atmosphereMaterial.setColor("Specular", airColor);
+        atmosphereMaterial.setFloat("Shininess", 3.0f);
+
+        planet.createAtmosphere(atmosphereMaterial, atmosphereRadius);
+
+        return planet;
+    }
 
     public static Planet createMoonLikePlanet(AssetManager assetManager, float radius, HeightDataSource dataSource) {
 
@@ -237,4 +293,14 @@ public class Utility {
         return planet;
 
     }
+    
+    public static ColorRGBA createSeededAirColor(int seed) {
+        Random rnd = new Random(seed);
+        float r = rnd.nextFloat()/2;
+        float g = rnd.nextFloat()/2;
+        float b = rnd.nextFloat()/2;
+        float a = rnd.nextFloat()/4;
+        return new ColorRGBA(r,g,b,a);
+    }
+    
 }

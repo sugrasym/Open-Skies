@@ -113,6 +113,12 @@ public class Planet extends Celestial {
                 moonDataSource.setHeightScale(0.015f * radius);
                 fractalPlanet = Utility.createMoonLikePlanet(assets, radius, moonDataSource);
                 spatial = fractalPlanet;
+            } else if (palette.equals("Lava")) {
+                // Add planet
+                FractalDataSource planetDataSource = new FractalDataSource(seed);
+                planetDataSource.setHeightScale(0.015f * radius);
+                fractalPlanet = Utility.createChthonianPlanet(assets, radius, null, planetDataSource, seed);
+                spatial = fractalPlanet;
             }
         } else if (group.equals("gas")) {
             Color airColor = Color.WHITE;
