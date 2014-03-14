@@ -34,7 +34,7 @@ public class WorldMaker {
 
     public WorldMaker() {
         //generate universe
-        String out = generate(1, 7, 80, 100, 100, 120000, 360000, 500, 6000, 1, 3, 110000, 1000000);
+        String out = generate(1, 7, 80, 100, 100, 64000, 256000, 500, 5000, 0, 3, 32000, 128000);
         //save
         AstralIO tmp = new AstralIO();
         tmp.writeFile("new-UNIVERSE.txt", out);
@@ -122,49 +122,49 @@ public class WorldMaker {
                      * CREATE NEBULA
                      * 
                      */
-                    /*int numNebula = rnd.nextInt(maxNebulaPerSystem);
-                     if (numNebula < minNebulaPerSystem) {
-                     numNebula = minNebulaPerSystem;
-                     }
-                     for (int b = 0; b < numNebula; b++) {
-                     //pick texture
-                     pick = rnd.nextInt(nebTypes.size());
-                     Term type = nebTypes.get(pick);
-                     //pick name
-                     String name = "Nebula " + b;
-                     //pick position
-                     x = rnd.nextInt(size * 4) - size * 2;
-                     y = 0;
-                     z = rnd.nextInt(size * 4) - size * 2;
-                     //pick dimension
-                     r = rnd.nextInt(Math.min(2 * size, maxNebulaSize));
-                     if (r < minNebulaSize) {
-                     r = minNebulaSize;
-                     }
-                     int hScale = rnd.nextInt(3) + 2;
-                     int h = r / hScale;
-                     //pick color
-                     float red = rnd.nextFloat() / 2;
-                     float green = rnd.nextFloat() / 2;
-                     float blue = rnd.nextFloat() / 2;
-                     //seed
-                     seed = rnd.nextInt();
-                     //generate entry
-                     thisSystem +=
-                     "[Nebula]\n"
-                     + "name=" + name + "\n"
-                     + "system=" + systemName + "\n"
-                     + "type=" + type.getValue("name") + "\n"
-                     + "color=" + red + "," + green + "," + blue + "," + 1 + "\n"
-                     + "x=" + x + "\n"
-                     + "y=" + y + "\n"
-                     + "z=" + z + "\n"
-                     + "l=" + r + "\n"
-                     + "w=" + h + "\n"
-                     + "h=" + r + "\n"
-                     + "seed=" + seed + "\n"
-                     + "[/Nebula]\n\n";
-                     }*/
+                    int numNebula = rnd.nextInt(maxNebulaPerSystem);
+                    if (numNebula < minNebulaPerSystem) {
+                        numNebula = minNebulaPerSystem;
+                    }
+                    for (int b = 0; b < numNebula; b++) {
+                        //pick texture
+                        pick = rnd.nextInt(nebTypes.size());
+                        Term type = nebTypes.get(pick);
+                        //pick name
+                        String name = "Nebula " + b;
+                        //pick position
+                        x = rnd.nextInt(size * 3) - (int)(size*1.5);
+                        y = 0;
+                        z = rnd.nextInt(size * 3) - (int)(size*1.5);
+                        //pick dimension
+                        r = (int)(rnd.nextFloat()*(maxNebulaSize-minNebulaSize))+minNebulaSize;
+                        if (r < minNebulaSize) {
+                            r = minNebulaSize;
+                        }
+                        //int hScale = rnd.nextInt(3) + 2;
+                        int h = 32000;
+                        //pick color
+                        float red = rnd.nextFloat() / 50;
+                        float green = rnd.nextFloat() / 50;
+                        float blue = rnd.nextFloat() / 50;
+                        //seed
+                        seed = rnd.nextInt();
+                        //generate entry
+                        thisSystem +=
+                                "[Nebula]\n"
+                                + "name=" + name + "\n"
+                                + "system=" + systemName + "\n"
+                                + "type=" + type.getValue("name") + "\n"
+                                + "color=" + red + "," + green + "," + blue + "," + 1 + "\n"
+                                + "x=" + x + "\n"
+                                + "y=" + y + "\n"
+                                + "z=" + z + "\n"
+                                + "l=" + r + "\n"
+                                + "w=" + h + "\n"
+                                + "h=" + r + "\n"
+                                + "seed=" + seed + "\n"
+                                + "[/Nebula]\n\n";
+                    }
                     /*
                      * CREATE PLANETS
                      */
@@ -246,7 +246,7 @@ public class WorldMaker {
             for (int a = 1; a < stops.length; a++) {
                 //determine if we can pass this stop
                 //System.out.println(val + " " + stops[a-1]);
-                if (val >= stops[a-1]) {
+                if (val >= stops[a - 1]) {
                     index = a;
                 }
             }

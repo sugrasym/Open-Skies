@@ -24,6 +24,7 @@ import com.jme3.effect.Particle;
 import com.jme3.effect.ParticleEmitter;
 import com.jme3.effect.ParticleMesh;
 import com.jme3.material.Material;
+import com.jme3.material.RenderState;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
@@ -40,8 +41,8 @@ public class Nebula extends Celestial {
     //constants
 
     public static final double DENSITY = (1000.0f / 80000000000000.0f);
-    public static final int MIN_PARTICLES = 5;
-    public static final int MAX_PARTICLES = 1000;
+    public static final int MIN_PARTICLES = 50;
+    public static final int MAX_PARTICLES = 2000;
     //end constants
     Random rnd = new Random();
     private Term type;
@@ -69,6 +70,7 @@ public class Nebula extends Celestial {
         emitter = new NebulaEmitter("Emitter", ParticleMesh.Type.Triangle, particles);
         mat = new Material(assets, "Common/MatDefs/Misc/Particle.j3md");
         mat.setTexture("Texture", assets.loadTexture("Effects/Nebula/" + type.getValue("asset")));
+        mat.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Color);
         emitter.setMaterial(mat);
         //setup emitter
         emitter.setEnabled(true);
@@ -76,12 +78,12 @@ public class Nebula extends Celestial {
         emitter.setImagesY(Integer.parseInt(type.getValue("y")));
         emitter.setEndColor(color);
         emitter.setStartColor(color); // IRRELEVENT
-        emitter.setStartSize(20000f);
-        emitter.setEndSize(19000f);
+        emitter.setStartSize(32000f);
+        emitter.setEndSize(16000f);
         emitter.setGravity(0, 0, 0);
         emitter.setLowLife(Float.MAX_VALUE);
         emitter.setHighLife(Float.MAX_VALUE);
-        emitter.getParticleInfluencer().setVelocityVariation(0.3f);
+        emitter.getParticleInfluencer().setVelocityVariation(0f);
         emitter.emittParticleVolume();
     }
 
