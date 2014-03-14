@@ -15,7 +15,7 @@ Material Ocean : Common/MatDefs/Light/Lighting.j3md {
         PackedNormalParallax : false
         ParallaxHeight : 0.0
         SteepParallax : false
-        DiffuseMap : Flip Repeat Textures/ocean.jpg
+        DiffuseMap : Flip Repeat Textures/ocean.png
         UseAlpha : false
      }
     AdditionalRenderState {

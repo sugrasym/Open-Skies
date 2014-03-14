@@ -135,28 +135,28 @@ public class Utility {
         Material planetMaterial = new Material(assetManager, "JmePlanet/MatDefs/Terrain.j3md");
 
         // shore texture
-        Texture dirt = assetManager.loadTexture("Textures/dirt.jpg");
+        Texture dirt = assetManager.loadTexture("Textures/dirt.png");
         dirt.setWrap(Texture.WrapMode.Repeat);
         planetMaterial.setTexture("Region1ColorMap", dirt);
         planetMaterial.setVector3("Region1", new Vector3f(0, heightScale * 0.2f, 0));
         // grass texture
-        Texture grass = assetManager.loadTexture("Textures/grass.jpg");
+        Texture grass = assetManager.loadTexture("Textures/grass.png");
         grass.setWrap(Texture.WrapMode.Repeat);
         planetMaterial.setTexture("Region2ColorMap", grass);
         planetMaterial.setVector3("Region2", new Vector3f(heightScale * 0.16f, heightScale * 1.05f, 0));
         // gravel texture
-        Texture gravel = assetManager.loadTexture("Textures/gravel_mud.jpg");
+        Texture gravel = assetManager.loadTexture("Textures/gravel_mud.png");
         gravel.setWrap(Texture.WrapMode.Repeat);
         planetMaterial.setTexture("Region3ColorMap", gravel);
         planetMaterial.setVector3("Region3", new Vector3f(heightScale * 0.84f, heightScale * 1.1f, 0));
         // snow texture
-        Texture snow = assetManager.loadTexture("Textures/snow.jpg");
+        Texture snow = assetManager.loadTexture("Textures/snow.png");
         snow.setWrap(Texture.WrapMode.Repeat);
         planetMaterial.setTexture("Region4ColorMap", snow);
         planetMaterial.setVector3("Region4", new Vector3f(heightScale * 0.94f, heightScale * 1.5f, 0));
 
         // rock texture
-        Texture rock = assetManager.loadTexture("Textures/rock.jpg");
+        Texture rock = assetManager.loadTexture("Textures/rock.png");
         rock.setWrap(Texture.WrapMode.Repeat);
         planetMaterial.setTexture("SlopeColorMap", rock);
 
@@ -211,7 +211,7 @@ public class Utility {
         planetMaterial.setVector3("Region4", new Vector3f(heightScale * 0.5f, heightScale * 1.0f, 0));
 
         // rock texture
-        Texture rock = assetManager.loadTexture("Textures/rock.jpg");
+        Texture rock = assetManager.loadTexture("Textures/rock.png");
         rock.setWrap(Texture.WrapMode.Repeat);
         planetMaterial.setTexture("SlopeColorMap", rock);
 
