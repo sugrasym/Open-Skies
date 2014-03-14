@@ -221,7 +221,7 @@ public class Utility {
         return planet;
     }
 
-    public static Planet createAtmosphereShell(AssetManager assetManager, float radius, HeightDataSource dataSource) {
+    public static Planet createAtmosphereShell(AssetManager assetManager, float radius, HeightDataSource dataSource, ColorRGBA color) {
         // Prepare planet material
         Material planetMaterial = new Material(assetManager, "JmePlanet/MatDefs/Terrain.j3md");
         // create planet
@@ -229,9 +229,9 @@ public class Utility {
         // create atmosphere
         Material atmosphereMaterial = new Material(assetManager, "JmePlanet/MatDefs/Atmosphere.j3md");
         float atmosphereRadius = radius + (radius * .025f);
-        atmosphereMaterial.setColor("Ambient", new ColorRGBA(0.5f, 0.5f, 1f, 1f));
-        atmosphereMaterial.setColor("Diffuse", new ColorRGBA(0.18867780436772762f, 0.4978442963618773f, 0.6616065586417131f, 1.0f));
-        atmosphereMaterial.setColor("Specular", new ColorRGBA(0.7f, 0.7f, 1f, 1f));
+        atmosphereMaterial.setColor("Ambient", color.mult(0.1f));
+        atmosphereMaterial.setColor("Diffuse", color);
+        atmosphereMaterial.setColor("Specular", new ColorRGBA(0.01f, 0.01f, 0.01f, 0.01f));
         atmosphereMaterial.setFloat("Shininess", 3.0f);
         planet.createAtmosphere(atmosphereMaterial, atmosphereRadius);
         return planet;

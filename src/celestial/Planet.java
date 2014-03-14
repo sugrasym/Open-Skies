@@ -21,6 +21,7 @@ package celestial;
 
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.bullet.collision.shapes.SphereCollisionShape;
 import com.jme3.bullet.control.GhostControl;
 import com.jme3.bullet.control.RigidBodyControl;
@@ -77,6 +78,9 @@ public class Planet extends Celestial {
             if (atmosphereShell != null) {
                 atmospherePhysics = new RigidBodyControl(sphereShape, getMass());
                 atmosphereShell.addControl(atmospherePhysics);
+                //avoid collissions
+                atmospherePhysics.setKinematic(false);
+                atmosphereShell.getControl(RigidBodyControl.class).setCollideWithGroups(PhysicsCollisionObject.COLLISION_GROUP_NONE);
             }
         }
     }
@@ -111,6 +115,7 @@ public class Planet extends Celestial {
                 spatial = fractalPlanet;
             }
         } else if (group.equals("gas")) {
+            Color airColor = Color.WHITE;
             if (palette.equals("BandedGas")) {
                 //create a canvas
                 BufferedImage buff = new BufferedImage(2048, 1024, BufferedImage.TYPE_INT_RGB);
@@ -154,7 +159,8 @@ public class Planet extends Celestial {
                 //pick a hue
                 float hue = sRand.nextFloat();
                 //draw a baseplate
-                gfx.setColor(new Color(Color.HSBtoRGB(hue, sat, value)));
+                airColor = new Color(Color.HSBtoRGB(hue, sat, value));
+                gfx.setColor(airColor);
                 gfx.fillRect(0, 0, buff.getWidth(), buff.getHeight());
                 //pass 1, big bands
                 for (int a = 0; a < bands / 2; a++) {
@@ -187,7 +193,13 @@ public class Planet extends Celestial {
             //add an atmosphere
             FractalDataSource planetDataSource = new FractalDataSource(seed);
             planetDataSource.setHeightScale(0.015f * radius);
-            atmosphereShell = Utility.createAtmosphereShell(assets, radius * 1.05f, planetDataSource);
+            //generate color
+            float colR = (float) airColor.getRed() / 255.0f;
+            float colG = (float) airColor.getGreen() / 255.0f;
+            float colB = (float) airColor.getBlue() / 255.0f;
+            ColorRGBA atmoColor = new ColorRGBA(colR, colG, colB, 0.5f);
+            //generate shell
+            atmosphereShell = Utility.createAtmosphereShell(assets, radius * 1.01f, planetDataSource, atmoColor);
         }
     }
 
