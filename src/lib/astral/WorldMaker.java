@@ -1,17 +1,17 @@
 /*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*
  * Program for generating universes. This allows decent looking, arbitrarily
@@ -123,48 +123,48 @@ public class WorldMaker {
                      * 
                      */
                     /*int numNebula = rnd.nextInt(maxNebulaPerSystem);
-                    if (numNebula < minNebulaPerSystem) {
-                        numNebula = minNebulaPerSystem;
-                    }
-                    for (int b = 0; b < numNebula; b++) {
-                        //pick texture
-                        pick = rnd.nextInt(nebTypes.size());
-                        Term type = nebTypes.get(pick);
-                        //pick name
-                        String name = "Nebula " + b;
-                        //pick position
-                        x = rnd.nextInt(size * 4) - size * 2;
-                        y = 0;
-                        z = rnd.nextInt(size * 4) - size * 2;
-                        //pick dimension
-                        r = rnd.nextInt(Math.min(2 * size, maxNebulaSize));
-                        if (r < minNebulaSize) {
-                            r = minNebulaSize;
-                        }
-                        int hScale = rnd.nextInt(3) + 2;
-                        int h = r / hScale;
-                        //pick color
-                        float red = rnd.nextFloat() / 2;
-                        float green = rnd.nextFloat() / 2;
-                        float blue = rnd.nextFloat() / 2;
-                        //seed
-                        seed = rnd.nextInt();
-                        //generate entry
-                        thisSystem +=
-                                "[Nebula]\n"
-                                + "name=" + name + "\n"
-                                + "system=" + systemName + "\n"
-                                + "type=" + type.getValue("name") + "\n"
-                                + "color=" + red + "," + green + "," + blue + "," + 1 + "\n"
-                                + "x=" + x + "\n"
-                                + "y=" + y + "\n"
-                                + "z=" + z + "\n"
-                                + "l=" + r + "\n"
-                                + "w=" + h + "\n"
-                                + "h=" + r + "\n"
-                                + "seed=" + seed + "\n"
-                                + "[/Nebula]\n\n";
-                    }*/
+                     if (numNebula < minNebulaPerSystem) {
+                     numNebula = minNebulaPerSystem;
+                     }
+                     for (int b = 0; b < numNebula; b++) {
+                     //pick texture
+                     pick = rnd.nextInt(nebTypes.size());
+                     Term type = nebTypes.get(pick);
+                     //pick name
+                     String name = "Nebula " + b;
+                     //pick position
+                     x = rnd.nextInt(size * 4) - size * 2;
+                     y = 0;
+                     z = rnd.nextInt(size * 4) - size * 2;
+                     //pick dimension
+                     r = rnd.nextInt(Math.min(2 * size, maxNebulaSize));
+                     if (r < minNebulaSize) {
+                     r = minNebulaSize;
+                     }
+                     int hScale = rnd.nextInt(3) + 2;
+                     int h = r / hScale;
+                     //pick color
+                     float red = rnd.nextFloat() / 2;
+                     float green = rnd.nextFloat() / 2;
+                     float blue = rnd.nextFloat() / 2;
+                     //seed
+                     seed = rnd.nextInt();
+                     //generate entry
+                     thisSystem +=
+                     "[Nebula]\n"
+                     + "name=" + name + "\n"
+                     + "system=" + systemName + "\n"
+                     + "type=" + type.getValue("name") + "\n"
+                     + "color=" + red + "," + green + "," + blue + "," + 1 + "\n"
+                     + "x=" + x + "\n"
+                     + "y=" + y + "\n"
+                     + "z=" + z + "\n"
+                     + "l=" + r + "\n"
+                     + "w=" + h + "\n"
+                     + "h=" + r + "\n"
+                     + "seed=" + seed + "\n"
+                     + "[/Nebula]\n\n";
+                     }*/
                     /*
                      * CREATE PLANETS
                      */
@@ -175,9 +175,7 @@ public class WorldMaker {
                     }
                     for (int b = 0; b < numPlanets; b++) {
                         //pick texture
-                        pick = rnd.nextInt(planetTypes.size());
-                        Term type = planetTypes.get(pick);
-                        String texture = type.getValue("name");
+                        String texture = pickPlanetTexture(planetTypes);
                         //pick name
                         String name = "Planet " + b;
                         //pick seed
@@ -220,6 +218,51 @@ public class WorldMaker {
             }
         }
         return ret;
+    }
+
+    private String pickPlanetTexture(ArrayList<Term> planetTypes) {
+        //make a list of planet probabilities
+        float[] prob = new float[planetTypes.size()];
+        for (int a = 0; a < planetTypes.size(); a++) {
+            prob[a] = Float.parseFloat(planetTypes.get(a).getValue("probability"));
+        }
+        /*
+         * We know these probabilities add up to 1. The probability values therefore
+         * define the stops at which that planet ends and the next one begins within
+         * the spectrum.
+         * 
+         * That means it's basically a histogram.
+         */
+        //generate histogram
+        float[] stops = new float[planetTypes.size()];
+        for (int a = 0; a < stops.length; a++) {
+            stops[a] = sumAtIndex(a, prob);
+        }
+        //pick a random point on the spectrum
+        float val = new Random().nextFloat();
+        //figure out where this lies on the array
+        int index = 0;
+        {
+            for (int a = 1; a < stops.length; a++) {
+                //determine if we can pass this stop
+                //System.out.println(val + " " + stops[a-1]);
+                if (val >= stops[a-1]) {
+                    index = a;
+                }
+            }
+        }
+        //return the chosen one
+        Term type = planetTypes.get(index);
+        System.out.println(index + " :: " + type.getValue("name"));
+        return type.getValue("name");
+    }
+
+    private float sumAtIndex(int index, float[] arr) {
+        float sum = 0;
+        for (int a = 0; a <= index; a++) {
+            sum += arr[a];
+        }
+        return sum;
     }
 
     public class Simpling {

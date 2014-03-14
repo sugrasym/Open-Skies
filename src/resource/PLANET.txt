@@ -5,20 +5,40 @@ group=star
 palette=star
 [/Star]
 
+################################################################################
+#Make sure planet probabilities add up to 1.0!
+################################################################################
+
 [Planet]
 name=BandedGas
 group=gas
 palette=BandedGas
+probability=0.5
 [/Planet]
 
 [Planet]
 name=Terran
 group=rock
 palette=Earth
+probability=0.1
 [/Planet]
 
 [Planet]
 name=Barren
 group=rock
 palette=Barren
+probability=0.4
+[/Planet]
+
+################################################################################
+#The empty planet, keep last in file
+#The world maker needs an empty planet at the end of the list to properly
+#calculate planet probabilities.
+################################################################################
+
+[Planet]
+name=NeverShouldAppearInAnyUniverseForAnyReason HINTITWONTWORKLOL
+group=pony
+palette=friendship
+probability=0.0
 [/Planet]
