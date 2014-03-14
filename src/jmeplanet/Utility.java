@@ -190,22 +190,22 @@ public class Utility {
         Material planetMaterial = new Material(assetManager, "JmePlanet/MatDefs/Terrain.j3md");
 
         // region1 texture
-        Texture region1 = assetManager.loadTexture("Textures/moon_sea.jpg");
+        Texture region1 = assetManager.loadTexture("Textures/moon_sea.png");
         region1.setWrap(Texture.WrapMode.Repeat);
         planetMaterial.setTexture("Region1ColorMap", region1);
         planetMaterial.setVector3("Region1", new Vector3f(heightScale * 0f, heightScale * 0.75f, 0));
         // region2 texture
-        Texture region2 = assetManager.loadTexture("Textures/moon.jpg");
+        Texture region2 = assetManager.loadTexture("Textures/moon.png");
         region2.setWrap(Texture.WrapMode.Repeat);
         planetMaterial.setTexture("Region2ColorMap", region2);
         planetMaterial.setVector3("Region2", new Vector3f(heightScale * 0f, heightScale * 0.75f, 0));
         // region3 texture
-        Texture region3 = assetManager.loadTexture("Textures/moon.jpg");
+        Texture region3 = assetManager.loadTexture("Textures/moon.png");
         region3.setWrap(Texture.WrapMode.Repeat);
         planetMaterial.setTexture("Region3ColorMap", region3);
         planetMaterial.setVector3("Region3", new Vector3f(heightScale * 0f, heightScale * 0.75f, 0));
         // region4 texture
-        Texture region4 = assetManager.loadTexture("Textures/moon_rough.jpg");
+        Texture region4 = assetManager.loadTexture("Textures/moon_rough.png");
         region4.setWrap(Texture.WrapMode.Repeat);
         planetMaterial.setTexture("Region4ColorMap", region4);
         planetMaterial.setVector3("Region4", new Vector3f(heightScale * 0.5f, heightScale * 1.0f, 0));
