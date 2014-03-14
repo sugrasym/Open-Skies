@@ -1,7 +1,7 @@
 [NewGame]
 name=Default
 ship=Sparrow
-system=System 15
+system=System 6
 x=25000
 y=0
 z=-25000
@@ -27,6 +27,228 @@ z=-25100
 
 [System]
 name=System 0
+x=98
+y=0
+z=-100
+sky=Green 0
+[/System]
+
+[Star]
+name=System 0
+system=System 0
+texture=White
+x=22704
+y=0
+z=40708
+r=6244
+seed=-149398693
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 0
+texture=Barren
+x=20396
+y=0
+z=-82716
+r=2325
+seed=-171252163
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 0
+texture=Martian
+x=-33469
+y=0
+z=171258
+r=5716
+seed=-1065998803
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 0
+texture=Barren
+x=-102374
+y=0
+z=174092
+r=2468
+seed=1264911198
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 0
+texture=BandedGas
+x=-117595
+y=0
+z=171322
+r=2659
+seed=-366124654
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 0
+texture=BandedGas
+x=133934
+y=0
+z=-68998
+r=3277
+seed=-897773530
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 0
+texture=BandedGas
+x=-28875
+y=0
+z=182095
+r=3876
+seed=1453490075
+[/Planet]
+
+[System]
+name=System 1
+x=98
+y=0
+z=21
+sky=Black 0
+[/System]
+
+[Star]
+name=System 1
+system=System 1
+texture=White
+x=-293
+y=0
+z=-15299
+r=6000
+seed=-567827488
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 1
+texture=BandedGas
+x=-158750
+y=0
+z=164441
+r=4186
+seed=-852029201
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 1
+texture=BandedGas
+x=141615
+y=0
+z=-241154
+r=3851
+seed=-1125138944
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 1
+texture=BandedGas
+x=-117861
+y=0
+z=121013
+r=500
+seed=1184396100
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 1
+texture=Barren
+x=-101314
+y=0
+z=-79936
+r=5222
+seed=1927776795
+[/Planet]
+
+[System]
+name=System 2
+x=-18
+y=0
+z=-18
+sky=Blue 0
+[/System]
+
+[Star]
+name=System 2
+system=System 2
+texture=White
+x=-12404
+y=0
+z=-1188
+r=11525
+seed=1751877752
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 2
+texture=Barren
+x=86663
+y=0
+z=103627
+r=5932
+seed=1658188171
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 2
+texture=Chthonian
+x=104752
+y=0
+z=26861
+r=3080
+seed=754625830
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 2
+texture=Barren
+x=-79097
+y=0
+z=77376
+r=1362
+seed=-1753807790
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 2
+texture=Martian
+x=58217
+y=0
+z=-108213
+r=3406
+seed=1442442717
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 2
+texture=Terran
+x=46846
+y=0
+z=100213
+r=1005
+seed=-915425403
+[/Planet]
+
+[System]
+name=System 3
 x=-30
 y=0
 z=5
@@ -34,1302 +256,1179 @@ sky=Brown 1
 [/System]
 
 [Star]
-name=System 0
-system=System 0
+name=System 3
+system=System 3
 texture=White
-x=5652
+x=1323
 y=0
-z=-2417
-r=6000
-seed=-649859219
+z=-3455
+r=6621
+seed=-522127669
 [/Star]
 
 [Planet]
 name=Planet 0
-system=System 0
-texture=BandedGas
-x=-54060
+system=System 3
+texture=Chthonian
+x=56808
 y=0
-z=-56855
-r=3600
-seed=-262949720
+z=19436
+r=2091
+seed=1300182799
 [/Planet]
 
 [Planet]
 name=Planet 1
-system=System 0
-texture=Terran
-x=52363
+system=System 3
+texture=BandedGas
+x=-109475
 y=0
-z=-42864
-r=5989
-seed=-1814829747
+z=56886
+r=4469
+seed=-144700617
 [/Planet]
 
 [Planet]
 name=Planet 2
-system=System 0
+system=System 3
 texture=BandedGas
-x=18057
+x=-60936
 y=0
-z=51315
-r=570
-seed=-1139065287
+z=108803
+r=1374
+seed=-814838260
 [/Planet]
 
 [Planet]
 name=Planet 3
-system=System 0
+system=System 3
 texture=BandedGas
-x=-59697
+x=-63318
 y=0
-z=-54177
-r=4783
-seed=-1886761798
+z=42543
+r=5950
+seed=-1039390178
 [/Planet]
 
 [Planet]
 name=Planet 4
-system=System 0
-texture=Barren
-x=-48336
-y=0
-z=13458
-r=5493
-seed=-828938162
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 0
-texture=BandedGas
-x=-53604
-y=0
-z=-57755
-r=898
-seed=34725461
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 0
-texture=Barren
-x=-23142
-y=0
-z=-58858
-r=4775
-seed=-1447058169
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 0
-texture=BandedGas
-x=-23852
-y=0
-z=-43471
-r=5630
-seed=137284007
-[/Planet]
-
-[System]
-name=System 1
-x=-97
-y=0
-z=41
-sky=Brown 0
-[/System]
-
-[Star]
-name=System 1
-system=System 1
-texture=White
-x=-5279
-y=0
-z=-5881
-r=7016
-seed=1949458091
-[/Star]
-
-[Planet]
-name=Planet 2
-system=System 1
-texture=BandedGas
-x=56295
-y=0
-z=37714
-r=5598
-seed=357835208
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 1
-texture=BandedGas
-x=58506
-y=0
-z=25576
-r=3947
-seed=1992113503
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 1
-texture=Barren
-x=59398
-y=0
-z=14871
-r=2250
-seed=1402431518
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 1
-texture=BandedGas
-x=12352
-y=0
-z=-55002
-r=5670
-seed=-1546574965
-[/Planet]
-
-[System]
-name=System 2
-x=-18
-y=0
-z=-53
-sky=Blue 0
-[/System]
-
-[Star]
-name=System 2
-system=System 2
-texture=White
-x=4675
-y=0
-z=-10043
-r=6301
-seed=1630715866
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 2
-texture=BandedGas
-x=-135193
-y=0
-z=78620
-r=4954
-seed=1720729640
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 2
-texture=Terran
-x=-124854
-y=0
-z=35974
-r=3675
-seed=186972082
-[/Planet]
-
-[System]
-name=System 3
-x=38
-y=0
-z=-6
-sky=Green 0
-[/System]
-
-[Star]
-name=System 3
 system=System 3
-texture=White
-x=12041
+texture=BandedGas
+x=-77815
 y=0
-z=6596
-r=8207
-seed=-1187683325
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 3
-texture=Barren
-x=6086
-y=0
-z=96630
-r=1112
-seed=-1442477896
+z=-5996
+r=3937
+seed=1818056974
 [/Planet]
 
 [System]
 name=System 4
-x=-63
+x=-95
 y=0
-z=-80
-sky=Brown 0
+z=54
+sky=Blue 1
 [/System]
 
 [Star]
 name=System 4
 system=System 4
 texture=White
-x=2108
+x=-13065
 y=0
-z=5305
-r=8869
-seed=-1571754110
+z=-207
+r=6000
+seed=-1133795864
 [/Star]
+
+[Planet]
+name=Planet 1
+system=System 4
+texture=BandedGas
+x=-63438
+y=0
+z=76294
+r=4154
+seed=2142024639
+[/Planet]
 
 [System]
 name=System 5
-x=12
+x=26
 y=0
-z=-7
-sky=Blue 1
+z=-4
+sky=Black 0
 [/System]
 
 [Star]
 name=System 5
 system=System 5
 texture=White
-x=6265
+x=-2043
 y=0
-z=12187
-r=10058
-seed=-866852796
-[/Star]
-
-[Planet]
-name=Planet 2
-system=System 5
-texture=BandedGas
-x=-16394
-y=0
-z=-87143
-r=1675
-seed=-1952378593
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 5
-texture=BandedGas
-x=67534
-y=0
-z=-93976
-r=5978
-seed=1252493305
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 5
-texture=BandedGas
-x=-54956
-y=0
-z=-100136
-r=739
-seed=-704500096
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 5
-texture=Barren
-x=-105239
-y=0
-z=104513
-r=2194
-seed=-2144417735
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 5
-texture=BandedGas
-x=-56703
-y=0
-z=-47077
-r=2182
-seed=650102230
-[/Planet]
-
-[System]
-name=System 6
-x=-57
-y=0
-z=21
-sky=Green 0
-[/System]
-
-[Star]
-name=System 6
-system=System 6
-texture=White
-x=-16737
-y=0
-z=11335
-r=6226
-seed=1059707900
+z=8713
+r=7531
+seed=779203973
 [/Star]
 
 [Planet]
 name=Planet 0
-system=System 6
-texture=BandedGas
-x=-100798
+system=System 5
+texture=Barren
+x=-101388
 y=0
-z=76254
-r=1264
-seed=1560284315
+z=42322
+r=4708
+seed=1031526771
 [/Planet]
+
+[System]
+name=System 6
+x=-41
+y=0
+z=17
+sky=Black 0
+[/System]
+
+[Star]
+name=System 6
+system=System 6
+texture=White
+x=-14297
+y=0
+z=-10756
+r=11591
+seed=-1062256291
+[/Star]
 
 [Planet]
 name=Planet 1
 system=System 6
-texture=Chthonian
-x=-63390
+texture=Martian
+x=-95707
 y=0
-z=-67872
-r=3588
-seed=169482797
+z=25076
+r=1891
+seed=566911905
 [/Planet]
 
 [Planet]
 name=Planet 2
 system=System 6
-texture=Chthonian
-x=132829
+texture=Terran
+x=11376
 y=0
-z=-142422
-r=3148
-seed=252701241
+z=60915
+r=535
+seed=-2147152361
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 6
+texture=BandedGas
+x=94170
+y=0
+z=92597
+r=4644
+seed=-1252449775
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 6
+texture=BandedGas
+x=-117690
+y=0
+z=13227
+r=500
+seed=1149624300
 [/Planet]
 
 [System]
 name=System 7
-x=-42
+x=25
 y=0
-z=-91
-sky=Blue 0
+z=25
+sky=Black 0
 [/System]
 
 [Star]
 name=System 7
 system=System 7
 texture=White
-x=7457
+x=-11026
 y=0
-z=-12540
-r=7172
-seed=-623196230
+z=-27631
+r=8344
+seed=-1160854984
 [/Star]
 
 [Planet]
-name=Planet 0
+name=Planet 1
 system=System 7
 texture=BandedGas
-x=-83690
+x=211482
 y=0
-z=-22655
-r=5576
-seed=-54250517
+z=101572
+r=1389
+seed=-1498495294
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 7
+texture=Barren
+x=-183205
+y=0
+z=-75332
+r=2102
+seed=1877199822
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 7
+texture=Barren
+x=30760
+y=0
+z=-188958
+r=5834
+seed=1618234310
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 7
+texture=Terran
+x=199738
+y=0
+z=214157
+r=5794
+seed=801249983
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 7
+texture=BandedGas
+x=-177312
+y=0
+z=132673
+r=760
+seed=-1976996288
 [/Planet]
 
 [System]
 name=System 8
-x=-8
+x=97
 y=0
-z=38
-sky=Black 1
+z=-71
+sky=Black 0
 [/System]
 
 [Star]
 name=System 8
 system=System 8
 texture=White
-x=2166
+x=-3723
 y=0
-z=7158
-r=11307
-seed=-751429115
-[/Star]
-
-[System]
-name=System 9
-x=-34
-y=0
-z=-53
-sky=Black 0
-[/System]
-
-[Star]
-name=System 9
-system=System 9
-texture=White
-x=4600
-y=0
-z=-7108
-r=8603
-seed=-640156968
+z=3064
+r=9755
+seed=-1482040472
 [/Star]
 
 [Planet]
 name=Planet 0
-system=System 9
-texture=Barren
-x=115241
+system=System 8
+texture=Martian
+x=-86868
 y=0
-z=84794
-r=2508
-seed=60212669
+z=96920
+r=5635
+seed=2130614362
 [/Planet]
 
 [Planet]
 name=Planet 1
-system=System 9
+system=System 8
 texture=BandedGas
-x=-117393
+x=72246
 y=0
-z=-123760
-r=1091
-seed=-2130387377
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 9
-texture=BandedGas
-x=-71953
-y=0
-z=-54626
-r=5851
-seed=-203028105
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 9
-texture=Barren
-x=-76184
-y=0
-z=-79041
-r=667
-seed=-1005780761
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 9
-texture=BandedGas
-x=79762
-y=0
-z=-43090
-r=3772
-seed=2112313233
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 9
-texture=BandedGas
-x=-110089
-y=0
-z=-19503
-r=5052
-seed=-20888452
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 9
-texture=BandedGas
-x=64740
-y=0
-z=50418
-r=5595
-seed=-168114469
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 9
-texture=Barren
-x=75227
-y=0
-z=-125434
-r=4963
-seed=-1318946982
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 9
-texture=Barren
-x=113679
-y=0
-z=49504
-r=5109
-seed=1767611067
+z=-117725
+r=5574
+seed=1532451067
 [/Planet]
 
 [System]
-name=System 10
-x=15
+name=System 9
+x=-20
 y=0
-z=81
-sky=Orange 1
-[/System]
-
-[Star]
-name=System 10
-system=System 10
-texture=White
-x=12888
-y=0
-z=3263
-r=6000
-seed=1545483205
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 10
-texture=Barren
-x=-36933
-y=0
-z=119917
-r=834
-seed=1823406772
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 10
-texture=BandedGas
-x=70660
-y=0
-z=66806
-r=1251
-seed=-1304682642
-[/Planet]
-
-[System]
-name=System 11
-x=23
-y=0
-z=-99
-sky=Blue 0
-[/System]
-
-[Star]
-name=System 11
-system=System 11
-texture=White
-x=3315
-y=0
-z=-155
-r=7693
-seed=91506889
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 11
-texture=Terran
-x=-57259
-y=0
-z=-33900
-r=4044
-seed=-1538940854
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 11
-texture=Terran
-x=-35784
-y=0
-z=55062
-r=2036
-seed=1025097748
-[/Planet]
-
-[System]
-name=System 12
-x=-18
-y=0
-z=81
-sky=Orange 1
-[/System]
-
-[Star]
-name=System 12
-system=System 12
-texture=White
-x=8507
-y=0
-z=-5830
-r=6000
-seed=1326894257
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 12
-texture=BandedGas
-x=58711
-y=0
-z=-6537
-r=2804
-seed=544618855
-[/Planet]
-
-[System]
-name=System 13
-x=-7
-y=0
-z=97
+z=18
 sky=Green 0
 [/System]
 
 [Star]
-name=System 13
-system=System 13
+name=System 9
+system=System 9
 texture=White
-x=-3223
+x=14057
 y=0
-z=-4410
-r=6485
-seed=941786782
+z=-14196
+r=8497
+seed=297712919
 [/Star]
 
 [Planet]
 name=Planet 0
-system=System 13
+system=System 9
 texture=BandedGas
-x=53276
+x=98952
 y=0
-z=57960
-r=1385
-seed=1170228
+z=90363
+r=3425
+seed=-563715402
 [/Planet]
 
 [Planet]
 name=Planet 1
-system=System 13
+system=System 9
 texture=BandedGas
-x=-52819
+x=109786
 y=0
-z=29801
-r=863
-seed=-1890241049
-[/Planet]
-
-[System]
-name=System 14
-x=-53
-y=0
-z=44
-sky=Dark
-[/System]
-
-[Star]
-name=System 14
-system=System 14
-texture=White
-x=-8979
-y=0
-z=5596
-r=6000
-seed=-1821201602
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 14
-texture=BandedGas
-x=46162
-y=0
-z=47185
-r=2702
-seed=-1243160651
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 14
-texture=Barren
-x=61627
-y=0
-z=78759
-r=777
-seed=-978486785
+z=107209
+r=5114
+seed=-509822629
 [/Planet]
 
 [Planet]
 name=Planet 2
-system=System 14
-texture=Terran
-x=49803
+system=System 9
+texture=BandedGas
+x=28082
 y=0
-z=-65986
-r=5314
-seed=-1220150813
+z=-66603
+r=500
+seed=1436991760
 [/Planet]
 
 [Planet]
 name=Planet 3
-system=System 14
-texture=Barren
-x=-23407
-y=0
-z=-76296
-r=4437
-seed=1030079055
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 14
-texture=Barren
-x=62921
-y=0
-z=-6372
-r=2468
-seed=-1199445527
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 14
+system=System 9
 texture=BandedGas
-x=14507
+x=-38657
 y=0
-z=-63653
-r=4668
-seed=146437954
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 14
-texture=BandedGas
-x=46558
-y=0
-z=66032
-r=3830
-seed=1321249867
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 14
-texture=Barren
-x=-71491
-y=0
-z=-51255
-r=1289
-seed=353506567
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 14
-texture=Barren
-x=-48969
-y=0
-z=-59064
-r=2956
-seed=709447042
+z=-105308
+r=2215
+seed=-852116209
 [/Planet]
 
 [System]
-name=System 15
-x=60
+name=System 10
+x=-38
 y=0
-z=-19
+z=-3
 sky=Brown 1
 [/System]
 
 [Star]
+name=System 10
+system=System 10
+texture=White
+x=17297
+y=0
+z=-12766
+r=6000
+seed=2077716290
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 10
+texture=Terran
+x=289668
+y=0
+z=104097
+r=3141
+seed=2071633955
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 10
+texture=BandedGas
+x=101986
+y=0
+z=61862
+r=5532
+seed=-274333596
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 10
+texture=Chthonian
+x=-302641
+y=0
+z=-139518
+r=2824
+seed=-360058080
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 10
+texture=BandedGas
+x=183499
+y=0
+z=50740
+r=500
+seed=487402291
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 10
+texture=BandedGas
+x=254444
+y=0
+z=-222915
+r=5001
+seed=459374500
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 10
+texture=BandedGas
+x=-220085
+y=0
+z=280751
+r=5311
+seed=-42100182
+[/Planet]
+
+[System]
+name=System 11
+x=-24
+y=0
+z=-91
+sky=Green 0
+[/System]
+
+[Star]
+name=System 11
+system=System 11
+texture=White
+x=13802
+y=0
+z=734
+r=6000
+seed=458764175
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 11
+texture=Terran
+x=-107659
+y=0
+z=75635
+r=500
+seed=-26466330
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 11
+texture=BandedGas
+x=85118
+y=0
+z=117924
+r=1224
+seed=1705029
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 11
+texture=BandedGas
+x=-37372
+y=0
+z=-30864
+r=824
+seed=247385926
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 11
+texture=BandedGas
+x=-39096
+y=0
+z=13624
+r=3939
+seed=-896059797
+[/Planet]
+
+[System]
+name=System 12
+x=-22
+y=0
+z=-66
+sky=Blue 0
+[/System]
+
+[Star]
+name=System 12
+system=System 12
+texture=White
+x=8362
+y=0
+z=-7181
+r=9497
+seed=-1399087941
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 12
+texture=Barren
+x=-95832
+y=0
+z=46566
+r=2559
+seed=1599837698
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 12
+texture=BandedGas
+x=-112628
+y=0
+z=-76957
+r=540
+seed=-1715508255
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 12
+texture=BandedGas
+x=-90358
+y=0
+z=-104013
+r=4759
+seed=13020777
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 12
+texture=Martian
+x=-58121
+y=0
+z=-59970
+r=4986
+seed=1671578078
+[/Planet]
+
+[System]
+name=System 13
+x=82
+y=0
+z=11
+sky=Green 0
+[/System]
+
+[Star]
+name=System 13
+system=System 13
+texture=White
+x=11202
+y=0
+z=-2027
+r=6000
+seed=1304607424
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 13
+texture=Barren
+x=77434
+y=0
+z=-116317
+r=4775
+seed=456768952
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 13
+texture=Chthonian
+x=-137
+y=0
+z=-81650
+r=2625
+seed=1261405739
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 13
+texture=Barren
+x=-117894
+y=0
+z=100070
+r=2108
+seed=-411479912
+[/Planet]
+
+[System]
+name=System 14
+x=-74
+y=0
+z=-7
+sky=Orange 1
+[/System]
+
+[Star]
+name=System 14
+system=System 14
+texture=White
+x=-11046
+y=0
+z=5482
+r=11187
+seed=-1158263351
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 14
+texture=BandedGas
+x=83057
+y=0
+z=87828
+r=4041
+seed=417676506
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 14
+texture=BandedGas
+x=-10004
+y=0
+z=-78239
+r=5033
+seed=-1398040219
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 14
+texture=Martian
+x=106970
+y=0
+z=-45003
+r=4014
+seed=-2072702144
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 14
+texture=BandedGas
+x=5397
+y=0
+z=91972
+r=4224
+seed=-1520697054
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 14
+texture=BandedGas
+x=86483
+y=0
+z=-66464
+r=5036
+seed=960329826
+[/Planet]
+
+[System]
+name=System 15
+x=13
+y=0
+z=9
+sky=Black 0
+[/System]
+
+[Star]
 name=System 15
 system=System 15
 texture=White
-x=12040
+x=13208
 y=0
-z=-7590
-r=6000
-seed=-2109426106
+z=-3155
+r=9562
+seed=1067833230
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 15
 texture=BandedGas
-x=60829
+x=94574
 y=0
-z=-19894
-r=3113
-seed=-641930556
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 15
-texture=Martian
-x=-2781
-y=0
-z=-63152
-r=4919
-seed=675688836
+z=-31210
+r=3037
+seed=-1738856479
 [/Planet]
 
 [Planet]
 name=Planet 2
 system=System 15
-texture=WetMartian
-x=-57291
+texture=Chthonian
+x=-63843
 y=0
-z=-52846
-r=5084
-seed=-126598093
+z=25494
+r=2294
+seed=1321656922
 [/Planet]
 
 [Planet]
 name=Planet 3
 system=System 15
 texture=BandedGas
-x=6630
+x=-24292
 y=0
-z=106376
-r=1359
-seed=-1359920557
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 15
-texture=BandedGas
-x=2469
-y=0
-z=90618
-r=1553
-seed=-1630811797
+z=-71245
+r=5287
+seed=770029675
 [/Planet]
 
 [System]
 name=System 16
-x=95
+x=64
 y=0
-z=13
+z=7
+sky=Green 0
+[/System]
+
+[Star]
+name=System 16
+system=System 16
+texture=White
+x=7287
+y=0
+z=11954
+r=10190
+seed=1326798819
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 16
+texture=BandedGas
+x=-109813
+y=0
+z=110809
+r=4191
+seed=-1939671345
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 16
+texture=BandedGas
+x=-92465
+y=0
+z=119879
+r=2300
+seed=-1204447994
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 16
+texture=Barren
+x=2657
+y=0
+z=-86499
+r=500
+seed=658662439
+[/Planet]
+
+[System]
+name=System 17
+x=-22
+y=0
+z=-96
+sky=Blue 0
+[/System]
+
+[Star]
+name=System 17
+system=System 17
+texture=White
+x=-23096
+y=0
+z=3826
+r=6000
+seed=441614850
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 17
+texture=BandedGas
+x=-143099
+y=0
+z=-147484
+r=4179
+seed=-1925386275
+[/Planet]
+
+[System]
+name=System 18
+x=63
+y=0
+z=-75
+sky=Blue 0
+[/System]
+
+[Star]
+name=System 18
+system=System 18
+texture=White
+x=1319
+y=0
+z=-5723
+r=6327
+seed=-619221998
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 18
+texture=Barren
+x=-21005
+y=0
+z=-90318
+r=5822
+seed=129434775
+[/Planet]
+
+[System]
+name=System 19
+x=16
+y=0
+z=-72
+sky=Blue 1
+[/System]
+
+[Star]
+name=System 19
+system=System 19
+texture=White
+x=10899
+y=0
+z=10100
+r=6000
+seed=-1729593294
+[/Star]
+
+[Planet]
+name=Planet 1
+system=System 19
+texture=BandedGas
+x=27769
+y=0
+z=48197
+r=3420
+seed=-327055900
+[/Planet]
+
+[System]
+name=System 20
+x=75
+y=0
+z=97
+sky=Dark
+[/System]
+
+[Star]
+name=System 20
+system=System 20
+texture=White
+x=-9816
+y=0
+z=13739
+r=11767
+seed=1108374123
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 20
+texture=BandedGas
+x=-81353
+y=0
+z=73158
+r=5782
+seed=-1046814685
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 20
+texture=Barren
+x=32155
+y=0
+z=-75022
+r=5538
+seed=2076591987
+[/Planet]
+
+[System]
+name=System 21
+x=-60
+y=0
+z=-69
 sky=Brown 0
 [/System]
 
 [Star]
-name=System 16
-system=System 16
+name=System 21
+system=System 21
 texture=White
-x=1409
+x=17856
 y=0
-z=-9561
+z=275
 r=6000
-seed=968707960
+seed=118437955
 [/Star]
 
 [Planet]
 name=Planet 0
-system=System 16
-texture=BandedGas
-x=23328
-y=0
-z=-92655
-r=1622
-seed=-1916630614
-[/Planet]
-
-[System]
-name=System 17
-x=-51
-y=0
-z=-76
-sky=Dark
-[/System]
-
-[Star]
-name=System 17
-system=System 17
-texture=White
-x=458
-y=0
-z=-2932
-r=6777
-seed=1509657242
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 17
-texture=Chthonian
-x=-52827
-y=0
-z=17020
-r=4058
-seed=97306587
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 17
-texture=BandedGas
-x=-2714
-y=0
-z=-52063
-r=5005
-seed=-507803906
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 17
-texture=BandedGas
-x=-59774
-y=0
-z=422
-r=3622
-seed=1875727134
-[/Planet]
-
-[System]
-name=System 18
-x=36
-y=0
-z=-83
-sky=Green 0
-[/System]
-
-[Star]
-name=System 18
-system=System 18
-texture=White
-x=-2769
-y=0
-z=-2789
-r=7009
-seed=-920260335
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 18
+system=System 21
 texture=Barren
-x=-21217
+x=-200800
 y=0
-z=-42837
-r=987
-seed=-812108687
-[/Planet]
-
-[System]
-name=System 19
-x=-13
-y=0
-z=-99
-sky=Green 0
-[/System]
-
-[Star]
-name=System 19
-system=System 19
-texture=White
-x=-415
-y=0
-z=7609
-r=11320
-seed=929492829
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 19
-texture=Terran
-x=-48039
-y=0
-z=-61179
-r=1977
-seed=-1511543073
-[/Planet]
-
-[System]
-name=System 20
-x=-6
-y=0
-z=-19
-sky=Blue 0
-[/System]
-
-[Star]
-name=System 20
-system=System 20
-texture=White
-x=-7870
-y=0
-z=10882
-r=6000
-seed=-434264093
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 20
-texture=BandedGas
-x=97225
-y=0
-z=97887
-r=1415
-seed=-242134021
+z=163880
+r=4992
+seed=648844531
 [/Planet]
 
 [Planet]
 name=Planet 1
-system=System 20
-texture=Barren
-x=-108327
+system=System 21
+texture=BandedGas
+x=-198081
 y=0
-z=-2431
-r=1197
-seed=643704605
+z=-153577
+r=2133
+seed=1209334416
+[/Planet]
+
+[System]
+name=System 22
+x=-69
+y=0
+z=10
+sky=Blue 1
+[/System]
+
+[Star]
+name=System 22
+system=System 22
+texture=White
+x=-2646
+y=0
+z=13947
+r=6859
+seed=762560199
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 22
+texture=Barren
+x=-89899
+y=0
+z=-98100
+r=1811
+seed=1974779850
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 22
+texture=Barren
+x=-76237
+y=0
+z=213436
+r=3860
+seed=-2064546822
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 22
+texture=BandedGas
+x=114011
+y=0
+z=-134464
+r=5361
+seed=-23349708
 [/Planet]
 
 [Planet]
 name=Planet 3
-system=System 20
+system=System 22
 texture=BandedGas
-x=75622
+x=217704
 y=0
-z=-119978
-r=1215
-seed=2027707598
+z=-138810
+r=5048
+seed=1395882705
 [/Planet]
 
 [System]
-name=System 21
-x=-100
+name=System 23
+x=50
+y=0
+z=83
+sky=Blue 1
+[/System]
+
+[Star]
+name=System 23
+system=System 23
+texture=White
+x=6427
+y=0
+z=-2586
+r=6702
+seed=-1768699772
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 23
+texture=Martian
+x=56139
+y=0
+z=-66305
+r=2277
+seed=-1944812331
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 23
+texture=Barren
+x=-29583
+y=0
+z=-68882
+r=1834
+seed=714263078
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 23
+texture=BandedGas
+x=108923
+y=0
+z=-59179
+r=4713
+seed=-444744067
+[/Planet]
+
+[System]
+name=System 24
+x=34
 y=0
 z=-7
-sky=Green 0
+sky=Blue 1
 [/System]
 
 [Star]
-name=System 21
-system=System 21
+name=System 24
+system=System 24
 texture=White
-x=-5816
+x=-39453
 y=0
-z=7510
-r=11780
-seed=720579233
-[/Star]
-
-[Planet]
-name=Planet 1
-system=System 21
-texture=BandedGas
-x=40034
-y=0
-z=84409
-r=1469
-seed=-725317540
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 21
-texture=BandedGas
-x=45210
-y=0
-z=-80827
-r=500
-seed=319306543
-[/Planet]
-
-[System]
-name=System 22
-x=-61
-y=0
-z=-45
-sky=Orange 1
-[/System]
-
-[Star]
-name=System 22
-system=System 22
-texture=White
-x=-3493
-y=0
-z=-8072
+z=-40194
 r=6000
-seed=417821539
+seed=1214791676
 [/Star]
 
 [Planet]
 name=Planet 0
-system=System 22
-texture=Terran
-x=44548
+system=System 24
+texture=Chthonian
+x=-254540
 y=0
-z=423
-r=500
-seed=1878341366
+z=-306902
+r=2005
+seed=904000102
 [/Planet]
 
 [Planet]
 name=Planet 1
-system=System 22
+system=System 24
 texture=BandedGas
-x=5216
+x=-175723
 y=0
-z=74576
+z=-203746
 r=500
-seed=-1982586250
+seed=-40846360
 [/Planet]
 
 [Planet]
 name=Planet 2
-system=System 22
-texture=Barren
-x=-26937
-y=0
-z=32142
-r=2662
-seed=-1110987630
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 22
+system=System 24
 texture=BandedGas
-x=72335
+x=-341158
 y=0
-z=17849
-r=3152
-seed=2043827336
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 22
-texture=Barren
-x=-63673
-y=0
-z=-50421
-r=1121
-seed=-561051101
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 22
-texture=BandedGas
-x=-10591
-y=0
-z=41146
-r=5320
-seed=-1705970913
-[/Planet]
-
-[System]
-name=System 23
-x=0
-y=0
-z=-15
-sky=Dark
-[/System]
-
-[Star]
-name=System 23
-system=System 23
-texture=White
-x=4294
-y=0
-z=4164
-r=8240
-seed=-1158297546
-[/Star]
-
-[Planet]
-name=Planet 2
-system=System 23
-texture=BandedGas
-x=72137
-y=0
-z=-76695
-r=1215
-seed=-1976010680
+z=-8940
+r=3600
+seed=-887542685
 [/Planet]
 
 [Planet]
 name=Planet 3
-system=System 23
+system=System 24
 texture=Barren
-x=73389
+x=-295205
 y=0
-z=-49192
-r=4700
-seed=-432188952
+z=-170154
+r=5262
+seed=-1524061328
 [/Planet]
 
 [Planet]
-name=Planet 6
-system=System 23
-texture=BandedGas
-x=-75639
-y=0
-z=-5681
-r=4861
-seed=1628323319
-[/Planet]
-
-[System]
-name=System 24
-x=-33
-y=0
-z=45
-sky=Blue 0
-[/System]
-
-[Star]
-name=System 24
+name=Planet 4
 system=System 24
-texture=White
-x=-12229
+texture=Chthonian
+x=268114
 y=0
-z=-9922
-r=11703
-seed=355305336
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 24
-texture=BandedGas
-x=-163449
-y=0
-z=-143150
-r=4929
-seed=1190937229
+z=-256382
+r=4590
+seed=336755439
 [/Planet]
 
 [System]
 name=System 25
-x=-30
+x=33
 y=0
-z=67
+z=16
 sky=Orange 1
 [/System]
 
@@ -1337,199 +1436,144 @@ sky=Orange 1
 name=System 25
 system=System 25
 texture=White
-x=-3792
+x=38876
 y=0
-z=-4363
-r=8630
-seed=895607108
-[/Star]
-
-[Planet]
-name=Planet 1
-system=System 25
-texture=Chthonian
-x=-110108
-y=0
-z=-102101
-r=2218
-seed=1109340507
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 25
-texture=BandedGas
-x=62015
-y=0
-z=-20319
-r=1047
-seed=1954903798
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 25
-texture=Barren
-x=-12520
-y=0
-z=-73787
-r=5088
-seed=1277299734
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 25
-texture=BandedGas
-x=-74660
-y=0
-z=98109
-r=3705
-seed=218657130
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 25
-texture=BandedGas
-x=73277
-y=0
-z=-46251
-r=4396
-seed=-1451790494
-[/Planet]
-
-[System]
-name=System 26
-x=67
-y=0
-z=-31
-sky=Black 1
-[/System]
-
-[Star]
-name=System 26
-system=System 26
-texture=White
-x=1962
-y=0
-z=-1868
-r=6000
-seed=1018060002
+z=2078
+r=7313
+seed=487895231
 [/Star]
 
 [Planet]
 name=Planet 0
-system=System 26
+system=System 25
 texture=BandedGas
-x=29991
+x=-168356
 y=0
-z=-36232
-r=5283
-seed=-46442775
+z=-79584
+r=3584
+seed=1818485700
 [/Planet]
 
 [Planet]
 name=Planet 1
-system=System 26
+system=System 25
 texture=BandedGas
-x=-14833
+x=-118247
 y=0
-z=47009
-r=2198
-seed=-942518750
+z=204418
+r=1771
+seed=550116984
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 25
+texture=BandedGas
+x=-300011
+y=0
+z=223513
+r=500
+seed=303920537
 [/Planet]
 
 [System]
-name=System 27
-x=92
+name=System 26
+x=-37
 y=0
-z=65
+z=-37
 sky=Orange 1
 [/System]
 
 [Star]
+name=System 26
+system=System 26
+texture=White
+x=-2494
+y=0
+z=2273
+r=7460
+seed=-1661225493
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 26
+texture=BandedGas
+x=-4611
+y=0
+z=-61345
+r=5829
+seed=768552521
+[/Planet]
+
+[System]
+name=System 27
+x=-47
+y=0
+z=-55
+sky=Brown 0
+[/System]
+
+[Star]
 name=System 27
 system=System 27
 texture=White
-x=9997
+x=10548
 y=0
-z=18107
+z=-8024
 r=6000
-seed=-1994383215
+seed=-644325503
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 27
-texture=BandedGas
-x=130079
+texture=Martian
+x=-63773
 y=0
-z=101237
-r=5933
-seed=-1100722330
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 27
-texture=Barren
-x=138865
-y=0
-z=-58487
-r=4292
-seed=-332914040
+z=75815
+r=670
+seed=1720147504
 [/Planet]
 
 [Planet]
 name=Planet 2
 system=System 27
 texture=BandedGas
-x=-26164
+x=-27597
 y=0
-z=88670
-r=996
-seed=167338987
+z=15976
+r=5622
+seed=479821118
 [/Planet]
 
 [Planet]
 name=Planet 3
 system=System 27
 texture=BandedGas
-x=-63645
+x=20396
 y=0
-z=-66362
-r=5255
-seed=-221017053
+z=36589
+r=2482
+seed=1946573672
 [/Planet]
 
 [Planet]
 name=Planet 4
 system=System 27
 texture=BandedGas
-x=149851
+x=5069
 y=0
-z=85715
-r=1944
-seed=992309718
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 27
-texture=Chthonian
-x=-82585
-y=0
-z=144202
-r=2763
-seed=1683492310
+z=-58178
+r=5025
+seed=1829060921
 [/Planet]
 
 [System]
 name=System 28
-x=93
+x=-23
 y=0
-z=66
+z=60
 sky=Blue 1
 [/System]
 
@@ -1537,540 +1581,650 @@ sky=Blue 1
 name=System 28
 system=System 28
 texture=White
-x=7324
+x=2878
 y=0
-z=2911
-r=11693
-seed=-1309882146
+z=3218
+r=6000
+seed=1622401347
 [/Star]
+
+[Planet]
+name=Planet 0
+system=System 28
+texture=Barren
+x=71425
+y=0
+z=57691
+r=2201
+seed=-167080378
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 28
+texture=BandedGas
+x=-24472
+y=0
+z=87941
+r=5223
+seed=615016679
+[/Planet]
 
 [System]
 name=System 29
-x=-33
+x=-50
 y=0
-z=68
-sky=Orange 1
+z=81
+sky=Black 0
 [/System]
 
 [Star]
 name=System 29
 system=System 29
 texture=White
-x=-2119
+x=-6824
 y=0
-z=4197
-r=8470
-seed=-2005977252
+z=11760
+r=11335
+seed=2141736974
 [/Star]
 
 [Planet]
-name=Planet 1
+name=Planet 0
 system=System 29
 texture=BandedGas
-x=51590
+x=6644
 y=0
-z=37895
-r=3581
-seed=-778435381
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 29
-texture=BandedGas
-x=58809
-y=0
-z=43297
-r=3213
-seed=-830313735
+z=-112203
+r=5173
+seed=57165465
 [/Planet]
 
 [System]
 name=System 30
-x=62
+x=90
 y=0
-z=-52
-sky=Blue 1
+z=-72
+sky=Black 0
 [/System]
 
 [Star]
 name=System 30
 system=System 30
 texture=White
-x=12288
+x=-33554
 y=0
-z=-1772
+z=-31551
 r=6000
-seed=-7304402
+seed=1462094546
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 30
-texture=Barren
-x=79445
+texture=Martian
+x=127023
 y=0
-z=124554
-r=4113
-seed=2104342142
+z=171976
+r=5468
+seed=381534395
 [/Planet]
 
 [Planet]
 name=Planet 1
 system=System 30
 texture=BandedGas
-x=-35200
+x=-219764
 y=0
-z=-49450
-r=3975
-seed=1367267926
+z=-35382
+r=607
+seed=1778039456
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 30
+texture=BandedGas
+x=266894
+y=0
+z=-111235
+r=2482
+seed=1103243891
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 30
+texture=BandedGas
+x=155944
+y=0
+z=-70943
+r=5951
+seed=761207646
 [/Planet]
 
 [System]
 name=System 31
-x=-62
+x=-18
 y=0
-z=26
-sky=Black 0
+z=61
+sky=Blue 0
 [/System]
 
 [Star]
 name=System 31
 system=System 31
 texture=White
-x=375
+x=-1484
 y=0
-z=5932
-r=11191
-seed=-9193370
-[/Star]
-
-[System]
-name=System 32
-x=-50
-y=0
-z=-25
-sky=Dark
-[/System]
-
-[Star]
-name=System 32
-system=System 32
-texture=White
-x=1827
-y=0
-z=-1794
+z=-2983
 r=6000
-seed=1850705913
+seed=-1497388715
 [/Star]
 
 [Planet]
 name=Planet 0
-system=System 32
+system=System 31
 texture=Barren
-x=56126
+x=-181876
 y=0
-z=21882
-r=1965
-seed=-863936079
+z=54849
+r=4397
+seed=-1317507335
 [/Planet]
 
 [Planet]
 name=Planet 1
-system=System 32
-texture=Barren
-x=46240
+system=System 31
+texture=WetMartian
+x=89337
 y=0
-z=-21512
-r=1567
-seed=2112672948
+z=61638
+r=2527
+seed=1989233911
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 31
+texture=BandedGas
+x=42507
+y=0
+z=211428
+r=924
+seed=-1378671794
 [/Planet]
 
 [Planet]
 name=Planet 3
-system=System 32
-texture=Barren
-x=-33358
+system=System 31
+texture=BandedGas
+x=148700
 y=0
-z=-23890
-r=2864
-seed=1018359250
+z=-7033
+r=5311
+seed=-1355108294
 [/Planet]
 
 [System]
-name=System 33
-x=-64
+name=System 32
+x=-79
 y=0
-z=-49
-sky=Black 0
-[/System]
-
-[Star]
-name=System 33
-system=System 33
-texture=White
-x=1747
-y=0
-z=-785
-r=6000
-seed=-1277561505
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 33
-texture=Barren
-x=-37906
-y=0
-z=-29014
-r=3168
-seed=-1605936051
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 33
-texture=Terran
-x=58321
-y=0
-z=4291
-r=1468
-seed=2083365791
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 33
-texture=Barren
-x=-25255
-y=0
-z=54443
-r=4918
-seed=512698211
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 33
-texture=Terran
-x=39576
-y=0
-z=25909
-r=5778
-seed=1074021778
-[/Planet]
-
-[System]
-name=System 34
-x=-88
-y=0
-z=-80
+z=-95
 sky=Orange 1
 [/System]
 
 [Star]
-name=System 34
-system=System 34
+name=System 32
+system=System 32
 texture=White
-x=-11836
+x=-3296
 y=0
-z=-3075
-r=7013
-seed=1915183063
+z=4292
+r=6000
+seed=945477042
 [/Star]
 
 [Planet]
-name=Planet 1
-system=System 34
+name=Planet 0
+system=System 32
 texture=BandedGas
-x=48944
+x=-42052
 y=0
-z=118481
-r=1288
-seed=-112443901
+z=-113375
+r=1671
+seed=-276878431
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 32
+texture=Terran
+x=-116887
+y=0
+z=42038
+r=4524
+seed=1999516475
 [/Planet]
 
 [Planet]
 name=Planet 2
-system=System 34
-texture=BandedGas
-x=103220
-y=0
-z=85382
-r=4616
-seed=180936631
-[/Planet]
-
-[System]
-name=System 35
-x=-85
-y=0
-z=19
-sky=Green 0
-[/System]
-
-[Star]
-name=System 35
-system=System 35
-texture=White
-x=-3044
-y=0
-z=-6301
-r=6367
-seed=1449049239
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 35
-texture=BandedGas
-x=-2687
-y=0
-z=58576
-r=4609
-seed=1340486398
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 35
-texture=BandedGas
-x=-17135
-y=0
-z=-49177
-r=2825
-seed=497874587
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 35
-texture=Barren
-x=28939
-y=0
-z=27332
-r=4033
-seed=-1975600017
-[/Planet]
-
-[System]
-name=System 36
-x=54
-y=0
-z=-24
-sky=Black 1
-[/System]
-
-[Star]
-name=System 36
-system=System 36
-texture=White
-x=707
-y=0
-z=194
-r=6000
-seed=-1843045023
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 36
+system=System 32
 texture=Terran
-x=6715
+x=-101278
 y=0
-z=-56877
-r=1425
-seed=-1812714352
+z=-59747
+r=1262
+seed=1797346764
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 32
+texture=Chthonian
+x=29441
+y=0
+z=55800
+r=500
+seed=1604786644
 [/Planet]
 
 [Planet]
 name=Planet 4
-system=System 36
-texture=BandedGas
-x=-22924
+system=System 32
+texture=Terran
+x=44559
 y=0
-z=52095
-r=692
-seed=-1103465943
+z=54102
+r=1855
+seed=2072491797
 [/Planet]
 
 [System]
-name=System 37
-x=-100
+name=System 33
+x=-4
 y=0
-z=40
-sky=Dark
-[/System]
-
-[Star]
-name=System 37
-system=System 37
-texture=White
-x=-3215
-y=0
-z=-7805
-r=10039
-seed=-1190799504
-[/Star]
-
-[Planet]
-name=Planet 1
-system=System 37
-texture=BandedGas
-x=74767
-y=0
-z=-8011
-r=3324
-seed=961418062
-[/Planet]
-
-[System]
-name=System 38
-x=-32
-y=0
-z=-53
-sky=Dark
-[/System]
-
-[Star]
-name=System 38
-system=System 38
-texture=White
-x=15258
-y=0
-z=-8660
-r=6000
-seed=1100917313
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 38
-texture=BandedGas
-x=-74306
-y=0
-z=-99326
-r=1818
-seed=-1674085007
-[/Planet]
-
-[System]
-name=System 39
-x=-36
-y=0
-z=-50
+z=51
 sky=Brown 1
 [/System]
 
 [Star]
-name=System 39
-system=System 39
+name=System 33
+system=System 33
 texture=White
-x=-4647
+x=-20583
 y=0
-z=-4839
-r=6000
-seed=359840530
+z=10365
+r=11684
+seed=-1204201225
 [/Star]
 
 [Planet]
-name=Planet 1
-system=System 39
-texture=BandedGas
-x=38316
+name=Planet 0
+system=System 33
+texture=Barren
+x=-39946
 y=0
-z=49953
-r=5555
-seed=882959200
+z=-132265
+r=500
+seed=589418105
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 33
+texture=Barren
+x=144675
+y=0
+z=-218569
+r=5384
+seed=-1296392372
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 33
+texture=Terran
+x=-248227
+y=0
+z=167468
+r=3912
+seed=-652257536
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 33
+texture=BandedGas
+x=102331
+y=0
+z=-161898
+r=532
+seed=263852008
+[/Planet]
+
+[System]
+name=System 34
+x=-36
+y=0
+z=9
+sky=Brown 1
+[/System]
+
+[Star]
+name=System 34
+system=System 34
+texture=White
+x=-13041
+y=0
+z=12541
+r=7645
+seed=75003765
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 34
+texture=BandedGas
+x=-185144
+y=0
+z=156670
+r=2996
+seed=997406890
+[/Planet]
+
+[System]
+name=System 35
+x=-4
+y=0
+z=47
+sky=Brown 1
+[/System]
+
+[Star]
+name=System 35
+system=System 35
+texture=White
+x=-5749
+y=0
+z=10318
+r=6000
+seed=945743118
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 35
+texture=BandedGas
+x=-31573
+y=0
+z=76127
+r=3083
+seed=-1394365305
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 35
+texture=BandedGas
+x=158504
+y=0
+z=135780
+r=4781
+seed=1902795122
+[/Planet]
+
+[System]
+name=System 36
+x=75
+y=0
+z=54
+sky=Brown 0
+[/System]
+
+[Star]
+name=System 36
+system=System 36
+texture=White
+x=3275
+y=0
+z=2006
+r=9103
+seed=1483844394
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 36
+texture=Barren
+x=-17581
+y=0
+z=-92696
+r=697
+seed=-1581445501
+[/Planet]
+
+[System]
+name=System 37
+x=5
+y=0
+z=-57
+sky=Brown 0
+[/System]
+
+[Star]
+name=System 37
+system=System 37
+texture=White
+x=-15123
+y=0
+z=6254
+r=6000
+seed=268346667
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 37
+texture=Martian
+x=111583
+y=0
+z=194922
+r=5052
+seed=-1879161203
+[/Planet]
+
+[System]
+name=System 38
+x=-65
+y=0
+z=-81
+sky=Blue 1
+[/System]
+
+[Star]
+name=System 38
+system=System 38
+texture=White
+x=-9729
+y=0
+z=-17094
+r=6000
+seed=-262651033
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 38
+texture=Barren
+x=141677
+y=0
+z=-209281
+r=1078
+seed=1630251393
+[/Planet]
+
+[System]
+name=System 39
+x=76
+y=0
+z=-17
+sky=Brown 0
+[/System]
+
+[Star]
+name=System 39
+system=System 39
+texture=White
+x=8136
+y=0
+z=7419
+r=9885
+seed=1615232178
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 39
+texture=Barren
+x=-63534
+y=0
+z=67988
+r=500
+seed=-646032500
 [/Planet]
 
 [System]
 name=System 40
-x=60
+x=-87
 y=0
-z=-31
-sky=Dark
+z=-69
+sky=Blue 1
 [/System]
 
 [Star]
 name=System 40
 system=System 40
 texture=White
-x=2216
+x=-6445
 y=0
-z=-5861
+z=1999
 r=6000
-seed=928727605
+seed=-836485018
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 40
-texture=Barren
-x=12938
+texture=BandedGas
+x=117132
 y=0
-z=-55522
-r=4739
-seed=1907465957
+z=119389
+r=5652
+seed=1067059216
 [/Planet]
 
 [Planet]
 name=Planet 1
 system=System 40
-texture=Chthonian
-x=357
+texture=BandedGas
+x=-15944
 y=0
-z=-48401
-r=685
-seed=1947453112
+z=-108394
+r=1334
+seed=1737909481
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 40
+texture=Terran
+x=-103895
+y=0
+z=73462
+r=3039
+seed=-88129597
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 40
+texture=Terran
+x=-95339
+y=0
+z=80121
+r=2338
+seed=-1715267868
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 40
+texture=Martian
+x=91916
+y=0
+z=117073
+r=3108
+seed=-1087512407
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 40
+texture=BandedGas
+x=117176
+y=0
+z=38630
+r=500
+seed=918326477
 [/Planet]
 
 [System]
 name=System 41
-x=-14
+x=11
 y=0
-z=27
-sky=Blue 1
+z=-57
+sky=Brown 0
 [/System]
 
 [Star]
 name=System 41
 system=System 41
 texture=White
-x=-3562
+x=-41314
 y=0
-z=6220
-r=10275
-seed=-1388595105
+z=16752
+r=10000
+seed=-3106122
 [/Star]
+
+[Planet]
+name=Planet 0
+system=System 41
+texture=BandedGas
+x=127981
+y=0
+z=305267
+r=500
+seed=978480262
+[/Planet]
 
 [Planet]
 name=Planet 1
 system=System 41
 texture=BandedGas
-x=45939
+x=301736
 y=0
-z=-45344
-r=2772
-seed=-1145687652
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 41
-texture=BandedGas
-x=51400
-y=0
-z=-58961
-r=1393
-seed=-529333410
+z=317284
+r=1408
+seed=-49249287
 [/Planet]
 
 [System]
 name=System 42
-x=-64
+x=-33
 y=0
-z=-11
+z=-59
 sky=Green 0
 [/System]
 
@@ -2078,191 +2232,114 @@ sky=Green 0
 name=System 42
 system=System 42
 texture=White
-x=-3190
+x=-8671
 y=0
-z=-1356
+z=1807
 r=6000
-seed=-134114210
+seed=-849244426
 [/Star]
 
 [Planet]
-name=Planet 1
+name=Planet 0
 system=System 42
 texture=Barren
-x=-23438
+x=88711
 y=0
-z=34209
-r=500
-seed=380099473
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 42
-texture=BandedGas
-x=-7620
-y=0
-z=44749
-r=2203
-seed=-1360328708
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 42
-texture=Chthonian
-x=-39494
-y=0
-z=34157
-r=2613
-seed=-1909207760
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 42
-texture=Terran
-x=37699
-y=0
-z=-12945
-r=1936
-seed=-1182732938
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 42
-texture=Terran
-x=-34881
-y=0
-z=48044
-r=500
-seed=-1853559998
+z=1330
+r=885
+seed=-572982557
 [/Planet]
 
 [System]
 name=System 43
-x=12
+x=31
 y=0
-z=55
-sky=Black 1
+z=16
+sky=Blue 1
 [/System]
 
 [Star]
 name=System 43
 system=System 43
 texture=White
-x=1005
+x=16190
 y=0
-z=15809
-r=6000
-seed=938970377
+z=4285
+r=9627
+seed=352654671
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 43
 texture=BandedGas
-x=68175
+x=-106657
 y=0
-z=-109660
-r=5210
-seed=-1804040625
+z=13361
+r=3663
+seed=-463955700
 [/Planet]
 
 [Planet]
 name=Planet 1
 system=System 43
 texture=BandedGas
-x=-61289
+x=-106750
 y=0
-z=-40060
-r=911
-seed=-491115967
+z=-29142
+r=3863
+seed=733784040
 [/Planet]
 
 [Planet]
 name=Planet 2
 system=System 43
 texture=BandedGas
-x=-28627
+x=32389
 y=0
-z=-116419
-r=4506
-seed=-1716678834
+z=84037
+r=612
+seed=-509857400
 [/Planet]
 
 [Planet]
 name=Planet 3
 system=System 43
-texture=Chthonian
-x=141076
+texture=BandedGas
+x=-100778
 y=0
-z=-77455
-r=4020
-seed=2025353674
+z=129156
+r=2205
+seed=-687282124
 [/Planet]
 
 [Planet]
 name=Planet 4
 system=System 43
-texture=BandedGas
-x=101658
+texture=Chthonian
+x=111793
 y=0
-z=88428
-r=2686
-seed=-395059471
+z=126790
+r=689
+seed=225578727
 [/Planet]
 
 [Planet]
 name=Planet 5
 system=System 43
-texture=Barren
-x=-116019
-y=0
-z=98386
-r=2526
-seed=-1380003265
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 43
 texture=BandedGas
-x=57721
+x=96113
 y=0
-z=97180
-r=500
-seed=-858991618
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 43
-texture=Terran
-x=137319
-y=0
-z=114697
-r=1996
-seed=392654112
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 43
-texture=BandedGas
-x=122540
-y=0
-z=99575
-r=4716
-seed=1571980366
+z=-9647
+r=5579
+seed=-275600843
 [/Planet]
 
 [System]
 name=System 44
-x=67
+x=22
 y=0
-z=-56
+z=9
 sky=Green 0
 [/System]
 
@@ -2270,18 +2347,73 @@ sky=Green 0
 name=System 44
 system=System 44
 texture=White
-x=-8586
+x=-10017
 y=0
-z=-4114
+z=-1527
 r=6000
-seed=1632990280
+seed=428195563
 [/Star]
+
+[Planet]
+name=Planet 0
+system=System 44
+texture=BandedGas
+x=-83500
+y=0
+z=15321
+r=4923
+seed=-1588483830
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 44
+texture=BandedGas
+x=116522
+y=0
+z=7663
+r=5794
+seed=-911670206
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 44
+texture=BandedGas
+x=16496
+y=0
+z=78146
+r=3384
+seed=1142648869
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 44
+texture=Barren
+x=-19259
+y=0
+z=117351
+r=3930
+seed=2010400777
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 44
+texture=WetMartian
+x=-121517
+y=0
+z=-19607
+r=1183
+seed=-1041925635
+[/Planet]
 
 [System]
 name=System 45
-x=-68
+x=-33
 y=0
-z=-93
+z=-21
 sky=Orange 1
 [/System]
 
@@ -2289,481 +2421,371 @@ sky=Orange 1
 name=System 45
 system=System 45
 texture=White
-x=20863
+x=-24338
 y=0
-z=-21532
+z=8259
 r=6000
-seed=-502790540
+seed=1348329849
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 45
 texture=BandedGas
-x=143800
+x=65291
 y=0
-z=79387
-r=927
-seed=-1093390642
+z=87116
+r=703
+seed=1549523500
 [/Planet]
 
 [Planet]
 name=Planet 1
 system=System 45
-texture=BandedGas
-x=-172240
+texture=Terran
+x=213141
 y=0
-z=147595
-r=500
-seed=389103337
+z=16839
+r=2417
+seed=-1644673417
 [/Planet]
 
 [System]
 name=System 46
-x=62
+x=-35
 y=0
-z=-63
+z=-60
+sky=Brown 0
+[/System]
+
+[Star]
+name=System 46
+system=System 46
+texture=White
+x=-13566
+y=0
+z=-37763
+r=11990
+seed=-395057813
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 46
+texture=BandedGas
+x=-217319
+y=0
+z=-302839
+r=4401
+seed=-94148205
+[/Planet]
+
+[System]
+name=System 47
+x=91
+y=0
+z=-44
 sky=Green 0
 [/System]
 
 [Star]
-name=System 46
-system=System 46
-texture=White
-x=-7930
-y=0
-z=-9840
-r=10281
-seed=466764159
-[/Star]
-
-[Planet]
-name=Planet 1
-system=System 46
-texture=Terran
-x=-82622
-y=0
-z=-17876
-r=3717
-seed=1237800734
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 46
-texture=BandedGas
-x=68082
-y=0
-z=-53358
-r=3853
-seed=2007511331
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 46
-texture=Terran
-x=99442
-y=0
-z=-99389
-r=1376
-seed=1231733607
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 46
-texture=Barren
-x=42362
-y=0
-z=96020
-r=3234
-seed=-1907502937
-[/Planet]
-
-[System]
-name=System 47
-x=-96
-y=0
-z=-40
-sky=Brown 1
-[/System]
-
-[Star]
 name=System 47
 system=System 47
 texture=White
-x=6653
+x=24065
 y=0
-z=2558
+z=-21197
 r=6000
-seed=1106617477
+seed=285133979
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 47
-texture=BandedGas
-x=47384
+texture=Chthonian
+x=227895
 y=0
-z=29957
-r=879
-seed=-1979509832
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 47
-texture=BandedGas
-x=-53989
-y=0
-z=49257
-r=500
-seed=-1122225509
+z=-101772
+r=4807
+seed=997427926
 [/Planet]
 
 [Planet]
 name=Planet 2
 system=System 47
-texture=BandedGas
-x=-17125
+texture=Martian
+x=218453
 y=0
-z=61183
-r=894
-seed=1956875485
+z=80325
+r=4969
+seed=-345234840
 [/Planet]
 
 [Planet]
 name=Planet 3
 system=System 47
-texture=BandedGas
-x=60752
+texture=Barren
+x=11893
 y=0
-z=41523
-r=1705
-seed=664265052
+z=-242638
+r=1512
+seed=272405097
 [/Planet]
 
 [Planet]
 name=Planet 4
 system=System 47
-texture=Barren
-x=51901
-y=0
-z=-9984
-r=1263
-seed=1150352785
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 47
-texture=Barren
-x=65470
-y=0
-z=36293
-r=1628
-seed=-153975328
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 47
 texture=BandedGas
-x=48637
+x=-30213
 y=0
-z=-17217
-r=2587
-seed=-1353552079
+z=-166319
+r=500
+seed=-945882099
 [/Planet]
 
 [System]
 name=System 48
-x=-40
+x=-22
 y=0
-z=70
-sky=Blue 1
+z=-36
+sky=Green 0
 [/System]
 
 [Star]
 name=System 48
 system=System 48
 texture=White
-x=-3699
+x=-16875
 y=0
-z=15543
-r=10957
-seed=-986765853
-[/Star]
-
-[Planet]
-name=Planet 1
-system=System 48
-texture=BandedGas
-x=-58545
-y=0
-z=-143089
-r=5048
-seed=1612845054
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 48
-texture=BandedGas
-x=-8855
-y=0
-z=-144874
-r=2440
-seed=1568030682
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 48
-texture=BandedGas
-x=126487
-y=0
-z=140232
-r=2881
-seed=-906818649
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 48
-texture=Chthonian
-x=87807
-y=0
-z=145861
-r=2727
-seed=-871757059
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 48
-texture=Barren
-x=-3998
-y=0
-z=-139205
-r=2889
-seed=-1875732975
-[/Planet]
-
-[System]
-name=System 49
-x=-73
-y=0
-z=6
-sky=Brown 0
-[/System]
-
-[Star]
-name=System 49
-system=System 49
-texture=White
-x=-13148
-y=0
-z=-16609
-r=6000
-seed=-1180088907
+z=-13143
+r=10181
+seed=-1824618468
 [/Star]
 
 [Planet]
 name=Planet 0
-system=System 49
-texture=Barren
-x=-79539
+system=System 48
+texture=Chthonian
+x=152986
 y=0
-z=85221
-r=2431
-seed=-1070228764
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 49
-texture=BandedGas
-x=45687
-y=0
-z=-123035
-r=3897
-seed=1469624710
+z=23180
+r=1554
+seed=540725968
 [/Planet]
 
 [System]
-name=System 50
-x=-45
+name=System 49
+x=84
 y=0
-z=73
+z=2
 sky=Black 1
 [/System]
 
 [Star]
+name=System 49
+system=System 49
+texture=White
+x=-3725
+y=0
+z=-4412
+r=10407
+seed=-2083546835
+[/Star]
+
+[Planet]
+name=Planet 3
+system=System 49
+texture=Chthonian
+x=34512
+y=0
+z=69697
+r=3766
+seed=933842932
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 49
+texture=BandedGas
+x=-65902
+y=0
+z=117418
+r=5004
+seed=-687382392
+[/Planet]
+
+[System]
+name=System 50
+x=74
+y=0
+z=69
+sky=Brown 0
+[/System]
+
+[Star]
 name=System 50
 system=System 50
 texture=White
-x=7690
+x=-13709
 y=0
-z=-5318
-r=6593
-seed=-1930268218
+z=10782
+r=6000
+seed=1101883737
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 50
 texture=BandedGas
-x=64221
+x=20410
 y=0
-z=-69028
-r=3426
-seed=-1642081212
+z=-26147
+r=900
+seed=-2106824239
 [/Planet]
 
 [Planet]
 name=Planet 1
 system=System 50
-texture=BandedGas
-x=-25697
+texture=Terran
+x=631
 y=0
-z=-68385
-r=4461
-seed=546051122
+z=-83821
+r=4840
+seed=1130808275
 [/Planet]
 
 [Planet]
 name=Planet 3
 system=System 50
-texture=Chthonian
-x=-56751
-y=0
-z=4724
-r=566
-seed=-1696208739
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 50
-texture=Barren
-x=-28155
-y=0
-z=63437
-r=5098
-seed=-276857970
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 50
-texture=Terran
-x=46455
-y=0
-z=58181
-r=3244
-seed=-225806208
-[/Planet]
-
-[System]
-name=System 51
-x=-14
-y=0
-z=37
-sky=Brown 0
-[/System]
-
-[Star]
-name=System 51
-system=System 51
-texture=White
-x=7335
-y=0
-z=-2771
-r=6662
-seed=1731331160
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 51
 texture=BandedGas
-x=45308
+x=61743
 y=0
-z=-18096
+z=102553
 r=500
-seed=1331270542
-[/Planet]
-
-[System]
-name=System 52
-x=31
-y=0
-z=-89
-sky=Blue 1
-[/System]
-
-[Star]
-name=System 52
-system=System 52
-texture=White
-x=-5808
-y=0
-z=-13708
-r=6000
-seed=-667421436
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 52
-texture=Terran
-x=-132724
-y=0
-z=-132914
-r=2249
-seed=-162987294
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 52
-texture=Barren
-x=-91569
-y=0
-z=-3906
-r=4756
-seed=-2098417736
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 52
-texture=BandedGas
-x=19799
-y=0
-z=116162
-r=5899
-seed=1276497865
+seed=502871123
 [/Planet]
 
 [Planet]
 name=Planet 4
-system=System 52
-texture=BandedGas
-x=-127608
+system=System 50
+texture=Barren
+x=15171
 y=0
-z=34069
-r=2704
-seed=-295890223
+z=-75377
+r=2566
+seed=-1230860396
 [/Planet]
 
 [System]
-name=System 53
-x=-69
+name=System 51
+x=69
 y=0
-z=-32
+z=-44
+sky=Blue 1
+[/System]
+
+[Star]
+name=System 51
+system=System 51
+texture=White
+x=7359
+y=0
+z=-13110
+r=11153
+seed=926801505
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 51
+texture=Barren
+x=240595
+y=0
+z=75882
+r=500
+seed=1285756480
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 51
+texture=Chthonian
+x=-35336
+y=0
+z=97750
+r=2481
+seed=-1928470059
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 51
+texture=BandedGas
+x=-229269
+y=0
+z=-59573
+r=3314
+seed=1176324821
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 51
+texture=Barren
+x=-173562
+y=0
+z=198669
+r=500
+seed=-115935529
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 51
+texture=BandedGas
+x=-232304
+y=0
+z=158847
+r=3068
+seed=1324386899
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 51
+texture=BandedGas
+x=30585
+y=0
+z=-110702
+r=5190
+seed=-1059647425
+[/Planet]
+
+[System]
+name=System 52
+x=67
+y=0
+z=-14
+sky=Brown 0
+[/System]
+
+[Star]
+name=System 52
+system=System 52
+texture=White
+x=-13916
+y=0
+z=6050
+r=8224
+seed=487985019
+[/Star]
+
+[System]
+name=System 53
+x=-95
+y=0
+z=75
 sky=Black 1
 [/System]
 
@@ -2771,895 +2793,620 @@ sky=Black 1
 name=System 53
 system=System 53
 texture=White
-x=12247
+x=6525
 y=0
-z=-3629
-r=6000
-seed=1805816056
+z=13974
+r=8851
+seed=235711691
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 53
-texture=Barren
-x=71026
+texture=Chthonian
+x=118180
 y=0
-z=-48456
-r=3213
-seed=1347214950
+z=-57172
+r=1123
+seed=-1329436789
 [/Planet]
 
 [Planet]
 name=Planet 1
 system=System 53
 texture=BandedGas
-x=-58345
+x=113751
 y=0
-z=-68272
-r=500
-seed=1466028275
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 53
-texture=Barren
-x=58583
-y=0
-z=-25704
-r=733
-seed=1874256008
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 53
-texture=Chthonian
-x=45973
-y=0
-z=75703
-r=3724
-seed=-398182581
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 53
-texture=BandedGas
-x=7138
-y=0
-z=48775
-r=5912
-seed=-1733457442
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 53
-texture=BandedGas
-x=55494
-y=0
-z=-41691
-r=3689
-seed=1879701079
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 53
-texture=Barren
-x=-39241
-y=0
-z=84781
-r=4537
-seed=-2009885688
+z=91510
+r=2385
+seed=143423602
 [/Planet]
 
 [System]
 name=System 54
-x=-77
+x=-74
 y=0
-z=41
-sky=Dark
-[/System]
-
-[Star]
-name=System 54
-system=System 54
-texture=White
-x=17810
-y=0
-z=-19103
-r=11778
-seed=652386309
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 54
-texture=Barren
-x=134203
-y=0
-z=-163297
-r=4949
-seed=418907202
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 54
-texture=Barren
-x=-123820
-y=0
-z=75554
-r=563
-seed=-1439357838
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 54
-texture=BandedGas
-x=103447
-y=0
-z=-149283
-r=3538
-seed=-1923003565
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 54
-texture=BandedGas
-x=63567
-y=0
-z=-164174
-r=653
-seed=-2015447463
-[/Planet]
-
-[System]
-name=System 55
-x=-99
-y=0
-z=-73
-sky=Brown 1
-[/System]
-
-[Star]
-name=System 55
-system=System 55
-texture=White
-x=6681
-y=0
-z=-8108
-r=6000
-seed=1065478326
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 55
-texture=Chthonian
-x=-59921
-y=0
-z=-92262
-r=2280
-seed=30960959
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 55
-texture=Barren
-x=79796
-y=0
-z=153154
-r=4195
-seed=-1583166474
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 55
-texture=BandedGas
-x=-94102
-y=0
-z=21351
-r=1872
-seed=1957772655
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 55
-texture=Chthonian
-x=-64342
-y=0
-z=-27287
-r=2584
-seed=-1701286956
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 55
-texture=BandedGas
-x=143372
-y=0
-z=-21440
-r=1505
-seed=-967933485
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 55
-texture=BandedGas
-x=-104092
-y=0
-z=-73521
-r=4799
-seed=1788585396
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 55
-texture=BandedGas
-x=140912
-y=0
-z=134783
-r=1044
-seed=-558984787
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 55
-texture=BandedGas
-x=26727
-y=0
-z=-142487
-r=4276
-seed=720493941
-[/Planet]
-
-[System]
-name=System 56
-x=70
-y=0
-z=64
-sky=Orange 1
-[/System]
-
-[Star]
-name=System 56
-system=System 56
-texture=White
-x=-3724
-y=0
-z=-4476
-r=6496
-seed=-435854471
-[/Star]
-
-[Planet]
-name=Planet 1
-system=System 56
-texture=Terran
-x=67706
-y=0
-z=57162
-r=2448
-seed=-227162136
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 56
-texture=BandedGas
-x=14974
-y=0
-z=-42767
-r=1918
-seed=-1797644359
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 56
-texture=Barren
-x=-60876
-y=0
-z=44033
-r=1025
-seed=693137566
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 56
-texture=Barren
-x=51797
-y=0
-z=-66309
-r=739
-seed=-756607305
-[/Planet]
-
-[System]
-name=System 57
-x=-85
-y=0
-z=-25
-sky=Brown 1
-[/System]
-
-[Star]
-name=System 57
-system=System 57
-texture=White
-x=-1010
-y=0
-z=12646
-r=6000
-seed=-1678428274
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 57
-texture=Terran
-x=-66315
-y=0
-z=-60960
-r=748
-seed=2096768960
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 57
-texture=Barren
-x=39689
-y=0
-z=102648
-r=1029
-seed=1000703838
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 57
-texture=BandedGas
-x=-36722
-y=0
-z=97546
-r=500
-seed=1540788532
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 57
-texture=Terran
-x=76680
-y=0
-z=33124
-r=4918
-seed=1526634411
-[/Planet]
-
-[System]
-name=System 58
-x=-86
-y=0
-z=79
+z=-56
 sky=Blue 1
 [/System]
 
 [Star]
-name=System 58
-system=System 58
+name=System 54
+system=System 54
 texture=White
-x=-8154
+x=-6998
 y=0
-z=-6508
-r=8799
-seed=-1102136710
+z=9630
+r=6000
+seed=-7574893
 [/Star]
 
 [Planet]
 name=Planet 0
-system=System 58
+system=System 54
 texture=BandedGas
-x=-62872
+x=-55369
 y=0
-z=-42924
-r=2498
-seed=-974507828
+z=-15010
+r=2432
+seed=2249334
 [/Planet]
 
 [Planet]
 name=Planet 1
-system=System 58
-texture=BandedGas
-x=-65314
+system=System 54
+texture=Chthonian
+x=-17923
 y=0
-z=53464
-r=4750
-seed=10104229
+z=-93409
+r=500
+seed=243097660
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 54
+texture=Barren
+x=-7181
+y=0
+z=-67716
+r=4337
+seed=1442274864
 [/Planet]
 
 [Planet]
 name=Planet 3
-system=System 58
-texture=BandedGas
-x=61967
+system=System 54
+texture=Terran
+x=90741
 y=0
-z=-8344
-r=1068
-seed=-1707106285
+z=51890
+r=1084
+seed=1006366594
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 54
+texture=WetMartian
+x=115854
+y=0
+z=-22817
+r=3162
+seed=1470800
 [/Planet]
 
 [Planet]
 name=Planet 5
-system=System 58
-texture=Barren
-x=51055
+system=System 54
+texture=BandedGas
+x=108150
 y=0
-z=-4191
-r=1814
-seed=1358022192
+z=-114573
+r=1413
+seed=-845821729
 [/Planet]
 
 [System]
-name=System 59
-x=30
+name=System 55
+x=-5
 y=0
-z=97
+z=-37
+sky=Green 0
+[/System]
+
+[Star]
+name=System 55
+system=System 55
+texture=White
+x=14018
+y=0
+z=-13344
+r=8414
+seed=-21720054
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 55
+texture=BandedGas
+x=-25856
+y=0
+z=51797
+r=3862
+seed=1068919575
+[/Planet]
+
+[System]
+name=System 56
+x=13
+y=0
+z=33
 sky=Blue 0
 [/System]
 
 [Star]
+name=System 56
+system=System 56
+texture=White
+x=16709
+y=0
+z=6785
+r=9816
+seed=2108785638
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 56
+texture=Terran
+x=-184214
+y=0
+z=36326
+r=5579
+seed=-1914813345
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 56
+texture=BandedGas
+x=101447
+y=0
+z=54963
+r=793
+seed=-1877903769
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 56
+texture=Chthonian
+x=198904
+y=0
+z=204984
+r=4013
+seed=1745234702
+[/Planet]
+
+[System]
+name=System 57
+x=0
+y=0
+z=-40
+sky=Dark
+[/System]
+
+[Star]
+name=System 57
+system=System 57
+texture=White
+x=2374
+y=0
+z=9764
+r=6000
+seed=-1705510880
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 57
+texture=BandedGas
+x=-7637
+y=0
+z=75320
+r=2381
+seed=-1280818109
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 57
+texture=BandedGas
+x=-13893
+y=0
+z=-116889
+r=2407
+seed=642778905
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 57
+texture=Terran
+x=-19420
+y=0
+z=76604
+r=5659
+seed=-372965864
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 57
+texture=WetMartian
+x=63093
+y=0
+z=-69298
+r=5211
+seed=525631170
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 57
+texture=BandedGas
+x=25728
+y=0
+z=-95703
+r=1631
+seed=-1170988164
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 57
+texture=BandedGas
+x=85897
+y=0
+z=-110026
+r=4045
+seed=1860864952
+[/Planet]
+
+[System]
+name=System 58
+x=68
+y=0
+z=83
+sky=Orange 1
+[/System]
+
+[Star]
+name=System 58
+system=System 58
+texture=White
+x=793
+y=0
+z=10411
+r=10706
+seed=-1861660301
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 58
+texture=BandedGas
+x=88478
+y=0
+z=89134
+r=500
+seed=658103374
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 58
+texture=Barren
+x=-73996
+y=0
+z=3021
+r=4127
+seed=-1209606331
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 58
+texture=Martian
+x=91549
+y=0
+z=56067
+r=5808
+seed=1208470844
+[/Planet]
+
+[System]
+name=System 59
+x=84
+y=0
+z=-46
+sky=Brown 1
+[/System]
+
+[Star]
 name=System 59
 system=System 59
 texture=White
-x=5307
+x=-2783
 y=0
-z=-12536
+z=-2034
 r=6000
-seed=1315907527
+seed=-641881788
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 59
 texture=BandedGas
-x=44067
+x=20326
 y=0
-z=-69625
-r=3719
-seed=1457344431
+z=-117862
+r=5389
+seed=-336942174
 [/Planet]
 
 [Planet]
 name=Planet 1
 system=System 59
-texture=Chthonian
-x=-102329
+texture=Terran
+x=-74187
 y=0
-z=-60704
-r=5300
-seed=1505033446
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 59
-texture=BandedGas
-x=100345
-y=0
-z=100540
-r=3738
-seed=-1328625003
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 59
-texture=Barren
-x=3842
-y=0
-z=51754
-r=575
-seed=-1857128997
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 59
-texture=Barren
-x=-3806
-y=0
-z=69018
-r=4411
-seed=81256406
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 59
-texture=Chthonian
-x=27821
-y=0
-z=74219
-r=3191
-seed=1139065978
+z=-69807
+r=4730
+seed=1940963575
 [/Planet]
 
 [System]
 name=System 60
-x=-82
+x=-28
 y=0
-z=16
-sky=Brown 0
+z=-8
+sky=Dark
 [/System]
 
 [Star]
 name=System 60
 system=System 60
 texture=White
-x=-3578
+x=-2298
 y=0
-z=-8135
+z=-4703
 r=6000
-seed=-1835524415
+seed=1061764219
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 60
 texture=BandedGas
-x=52983
+x=-148266
 y=0
-z=45596
-r=1020
-seed=-155118135
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 60
-texture=BandedGas
-x=51720
-y=0
-z=61048
-r=2374
-seed=-1811610420
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 60
-texture=BandedGas
-x=37
-y=0
-z=54923
-r=3790
-seed=636055098
+z=41021
+r=821
+seed=202514963
 [/Planet]
 
 [System]
 name=System 61
-x=-30
+x=59
 y=0
-z=-86
-sky=Black 1
+z=29
+sky=Dark
 [/System]
 
 [Star]
 name=System 61
 system=System 61
 texture=White
-x=-465
+x=18137
 y=0
-z=-4390
-r=11106
-seed=1164058920
+z=-719
+r=6000
+seed=628598018
 [/Star]
+
+[Planet]
+name=Planet 0
+system=System 61
+texture=BandedGas
+x=110372
+y=0
+z=114449
+r=500
+seed=264373591
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 61
+texture=Terran
+x=-58837
+y=0
+z=52024
+r=711
+seed=-1107366030
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 61
+texture=BandedGas
+x=-19079
+y=0
+z=148543
+r=500
+seed=-1770343645
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 61
+texture=BandedGas
+x=-34560
+y=0
+z=165943
+r=694
+seed=1832957008
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 61
+texture=BandedGas
+x=67414
+y=0
+z=-47079
+r=1924
+seed=2131057703
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 61
+texture=BandedGas
+x=-16030
+y=0
+z=44011
+r=4394
+seed=75398974
+[/Planet]
 
 [System]
 name=System 62
-x=43
+x=-22
 y=0
-z=-86
-sky=Orange 1
+z=-60
+sky=Blue 1
 [/System]
 
 [Star]
 name=System 62
 system=System 62
 texture=White
-x=-14231
+x=30549
 y=0
-z=-10786
-r=6035
-seed=-1658965127
+z=38479
+r=11665
+seed=-860293861
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 62
 texture=BandedGas
-x=74607
+x=-147755
 y=0
-z=-22160
-r=4495
-seed=1069912716
+z=171757
+r=1696
+seed=-1471731521
 [/Planet]
 
 [Planet]
 name=Planet 1
 system=System 62
-texture=Barren
-x=-3417
+texture=Chthonian
+x=301835
 y=0
-z=59665
-r=2279
-seed=1957406042
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 62
-texture=BandedGas
-x=-93345
-y=0
-z=34082
-r=4234
-seed=602658548
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 62
-texture=BandedGas
-x=-19616
-y=0
-z=-56779
-r=1067
-seed=37247380
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 62
-texture=BandedGas
-x=52359
-y=0
-z=15104
-r=3389
-seed=-822502657
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 62
-texture=BandedGas
-x=-63298
-y=0
-z=45226
-r=1093
-seed=2043162033
+z=206632
+r=4389
+seed=-2014291392
 [/Planet]
 
 [System]
 name=System 63
-x=11
+x=26
 y=0
-z=49
-sky=Brown 0
+z=-36
+sky=Blue 1
 [/System]
 
 [Star]
 name=System 63
 system=System 63
 texture=White
-x=-2060
+x=-4914
 y=0
-z=-944
-r=10197
-seed=-110028381
+z=5493
+r=6000
+seed=980913703
 [/Star]
+
+[Planet]
+name=Planet 0
+system=System 63
+texture=BandedGas
+x=150090
+y=0
+z=156654
+r=500
+seed=1223384886
+[/Planet]
 
 [System]
 name=System 64
-x=-66
+x=-10
 y=0
-z=-30
-sky=Blue 0
+z=65
+sky=Dark
 [/System]
 
 [Star]
 name=System 64
 system=System 64
 texture=White
-x=13475
+x=1109
 y=0
-z=8102
+z=-10772
 r=6000
-seed=1692526850
+seed=-210832011
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 64
-texture=Chthonian
-x=-60152
-y=0
-z=-96667
-r=5733
-seed=-959703019
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 64
-texture=Barren
-x=89580
-y=0
-z=70331
-r=2510
-seed=-1636328162
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 64
 texture=BandedGas
-x=14085
+x=76072
 y=0
-z=112470
-r=500
-seed=-1267279659
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 64
-texture=Barren
-x=118022
-y=0
-z=82734
-r=4361
-seed=736694855
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 64
-texture=Barren
-x=38232
-y=0
-z=-108839
-r=1072
-seed=-388571209
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 64
-texture=Barren
-x=-33804
-y=0
-z=114005
-r=2323
-seed=-1776869944
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 64
-texture=BandedGas
-x=-3864
-y=0
-z=-57580
-r=2913
-seed=1685928421
+z=94232
+r=2108
+seed=-1707319311
 [/Planet]
 
 [System]
 name=System 65
-x=-33
+x=-34
 y=0
-z=-41
-sky=Black 0
+z=-66
+sky=Green 0
 [/System]
 
 [Star]
 name=System 65
 system=System 65
 texture=White
-x=5396
+x=20085
 y=0
-z=7952
+z=-15884
 r=6000
-seed=-390364348
+seed=-1486241774
 [/Star]
-
-[Planet]
-name=Planet 1
-system=System 65
-texture=BandedGas
-x=90679
-y=0
-z=33980
-r=635
-seed=1891280943
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 65
-texture=BandedGas
-x=63429
-y=0
-z=43102
-r=2964
-seed=-280922613
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 65
-texture=BandedGas
-x=-31266
-y=0
-z=-46910
-r=2173
-seed=-1712049000
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 65
-texture=BandedGas
-x=-97616
-y=0
-z=-27816
-r=5099
-seed=-1733578668
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 65
-texture=BandedGas
-x=60080
-y=0
-z=-24547
-r=1920
-seed=1416988872
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 65
-texture=BandedGas
-x=-39635
-y=0
-z=-10816
-r=3513
-seed=1971664489
-[/Planet]
 
 [System]
 name=System 66
-x=-34
+x=-85
 y=0
-z=28
+z=78
 sky=Brown 0
 [/System]
 
@@ -3667,106 +3414,73 @@ sky=Brown 0
 name=System 66
 system=System 66
 texture=White
-x=-20548
+x=7624
 y=0
-z=10110
+z=-23
 r=6000
-seed=-352387336
+seed=-168589068
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 66
-texture=BandedGas
-x=62974
+texture=WetMartian
+x=-16653
 y=0
-z=102739
-r=2911
-seed=601424827
+z=-51529
+r=2400
+seed=974782541
 [/Planet]
 
 [Planet]
 name=Planet 1
 system=System 66
-texture=BandedGas
-x=29796
+texture=Chthonian
+x=24006
 y=0
-z=109367
-r=5093
-seed=100699067
+z=-40841
+r=3868
+seed=703749196
 [/Planet]
 
 [Planet]
 name=Planet 2
 system=System 66
-texture=BandedGas
-x=-110664
+texture=Chthonian
+x=59847
 y=0
-z=-76305
-r=2924
-seed=-1945830373
+z=17217
+r=5645
+seed=1949996517
 [/Planet]
 
 [Planet]
 name=Planet 3
 system=System 66
-texture=Terran
-x=-55954
-y=0
-z=-45450
-r=3595
-seed=-737396745
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 66
-texture=Barren
-x=-9448
-y=0
-z=-77338
-r=5590
-seed=-633726656
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 66
 texture=BandedGas
-x=129859
+x=-54487
 y=0
-z=125188
-r=5906
-seed=983916784
+z=-71238
+r=1665
+seed=1848235201
 [/Planet]
 
 [Planet]
-name=Planet 7
+name=Planet 4
 system=System 66
-texture=Terran
-x=56602
+texture=Martian
+x=86861
 y=0
-z=-134546
-r=5466
-seed=-264985656
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 66
-texture=Barren
-x=130217
-y=0
-z=91491
-r=4245
-seed=692718186
+z=-27812
+r=3545
+seed=878895543
 [/Planet]
 
 [System]
 name=System 67
-x=-13
+x=73
 y=0
-z=91
+z=50
 sky=Brown 1
 [/System]
 
@@ -3774,199 +3488,111 @@ sky=Brown 1
 name=System 67
 system=System 67
 texture=White
-x=-16743
+x=23088
 y=0
-z=-61
-r=6000
-seed=-47137180
+z=-9285
+r=9023
+seed=1560267216
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 67
-texture=BandedGas
-x=4687
-y=0
-z=-134049
-r=5153
-seed=1946402208
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 67
 texture=Barren
-x=-70885
+x=236584
 y=0
-z=-29822
-r=2399
-seed=-1966402400
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 67
-texture=Chthonian
-x=-60146
-y=0
-z=11945
-r=500
-seed=2054848665
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 67
-texture=BandedGas
-x=-31422
-y=0
-z=113749
-r=5537
-seed=-1552102746
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 67
-texture=Barren
-x=-107895
-y=0
-z=100827
-r=2726
-seed=424766189
+z=-185755
+r=1991
+seed=-570913316
 [/Planet]
 
 [System]
 name=System 68
 x=-64
 y=0
-z=-40
-sky=Green 0
+z=99
+sky=Dark
 [/System]
 
 [Star]
 name=System 68
 system=System 68
 texture=White
-x=6852
+x=13805
 y=0
-z=4800
+z=-1582
 r=6000
-seed=-861675431
+seed=275179368
 [/Star]
 
 [Planet]
 name=Planet 1
 system=System 68
 texture=BandedGas
-x=-13510
+x=22716
 y=0
-z=-54545
-r=5204
-seed=1832262563
+z=130305
+r=2794
+seed=-1566864255
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 68
+texture=BandedGas
+x=-149988
+y=0
+z=-45379
+r=3005
+seed=1263812352
 [/Planet]
 
 [Planet]
 name=Planet 3
 system=System 68
-texture=BandedGas
-x=-40543
+texture=Terran
+x=22117
 y=0
-z=-14472
-r=3388
-seed=-494252167
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 68
-texture=Barren
-x=-27290
-y=0
-z=-51190
-r=5195
-seed=-1653199444
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 68
-texture=Barren
-x=-48714
-y=0
-z=53255
-r=3318
-seed=1542118009
+z=-54904
+r=1466
+seed=632400308
 [/Planet]
 
 [System]
 name=System 69
-x=56
+x=-47
 y=0
-z=-74
-sky=Blue 0
+z=-3
+sky=Black 1
 [/System]
 
 [Star]
 name=System 69
 system=System 69
 texture=White
-x=-7312
+x=19372
 y=0
-z=7424
+z=-7233
 r=6000
-seed=-1751803734
+seed=-1924165730
 [/Star]
 
 [Planet]
-name=Planet 1
+name=Planet 0
 system=System 69
 texture=Barren
-x=56262
+x=-72018
 y=0
-z=-16500
-r=4691
-seed=192006290
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 69
-texture=Barren
-x=10462
-y=0
-z=43698
-r=758
-seed=-509317378
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 69
-texture=Barren
-x=-52327
-y=0
-z=-50891
-r=3862
-seed=-1484818972
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 69
-texture=BandedGas
-x=34652
-y=0
-z=-16635
-r=979
-seed=1285661679
+z=-115165
+r=1039
+seed=-1313679224
 [/Planet]
 
 [System]
 name=System 70
-x=-4
+x=-71
 y=0
-z=-4
+z=-7
 sky=Black 0
 [/System]
 
@@ -3974,210 +3600,155 @@ sky=Black 0
 name=System 70
 system=System 70
 texture=White
-x=-1865
+x=-7758
 y=0
-z=-6805
-r=8520
-seed=88683639
+z=-13963
+r=6000
+seed=238012278
 [/Star]
 
 [Planet]
-name=Planet 3
-system=System 70
-texture=Chthonian
-x=48093
-y=0
-z=59706
-r=3360
-seed=-1379458264
-[/Planet]
-
-[Planet]
-name=Planet 6
+name=Planet 0
 system=System 70
 texture=BandedGas
-x=38871
+x=-99387
 y=0
-z=37074
-r=500
-seed=-1621475559
+z=73091
+r=4059
+seed=-1537722931
 [/Planet]
 
 [System]
 name=System 71
-x=5
+x=47
 y=0
-z=-84
-sky=Blue 0
+z=49
+sky=Black 1
 [/System]
 
 [Star]
 name=System 71
 system=System 71
 texture=White
-x=-2150
+x=4729
 y=0
-z=14633
+z=4778
 r=6000
-seed=1305764647
+seed=944915608
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 71
-texture=BandedGas
-x=58908
+texture=WetMartian
+x=-64055
 y=0
-z=-34160
-r=3748
-seed=1349227102
+z=11986
+r=5438
+seed=314661727
 [/Planet]
 
 [Planet]
 name=Planet 1
 system=System 71
-texture=Terran
-x=101482
+texture=Chthonian
+x=72460
 y=0
-z=108521
-r=4471
-seed=-1705150480
+z=-67500
+r=1026
+seed=-1333091608
 [/Planet]
 
 [Planet]
 name=Planet 2
 system=System 71
-texture=Barren
-x=-73856
+texture=Terran
+x=-34568
 y=0
-z=-72423
-r=5723
-seed=193559041
+z=-101471
+r=4951
+seed=690043406
 [/Planet]
 
 [Planet]
 name=Planet 3
 system=System 71
-texture=BandedGas
-x=-22364
+texture=Chthonian
+x=-86593
 y=0
-z=83408
-r=2022
-seed=1924041245
+z=75663
+r=4605
+seed=-771349370
 [/Planet]
 
 [Planet]
 name=Planet 4
 system=System 71
 texture=BandedGas
-x=-15730
+x=-109909
 y=0
-z=88179
-r=1300
-seed=1095251394
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 71
-texture=BandedGas
-x=-113744
-y=0
-z=-121768
-r=2924
-seed=1735257139
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 71
-texture=Barren
-x=14734
-y=0
-z=-104524
-r=740
-seed=1426083211
+z=116351
+r=1753
+seed=1914313737
 [/Planet]
 
 [System]
 name=System 72
-x=-83
+x=45
 y=0
-z=92
-sky=Blue 1
+z=-94
+sky=Brown 0
 [/System]
 
 [Star]
 name=System 72
 system=System 72
 texture=White
-x=1383
+x=8990
 y=0
-z=-4433
-r=6000
-seed=-918871943
+z=-11927
+r=6122
+seed=1749217558
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 72
-texture=BandedGas
-x=-32265
+texture=Terran
+x=86016
 y=0
-z=-52727
-r=3801
-seed=602346857
+z=-8559
+r=3892
+seed=-1994639530
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 72
+texture=BandedGas
+x=49373
+y=0
+z=-73553
+r=837
+seed=-1981955852
 [/Planet]
 
 [Planet]
 name=Planet 2
 system=System 72
 texture=BandedGas
-x=36133
+x=-114119
 y=0
-z=12533
-r=1733
-seed=-272627655
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 72
-texture=BandedGas
-x=-95683
-y=0
-z=67218
-r=2628
-seed=1267497744
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 72
-texture=BandedGas
-x=-96935
-y=0
-z=-87139
-r=5540
-seed=1722529321
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 72
-texture=BandedGas
-x=22937
-y=0
-z=63600
-r=2228
-seed=1361329145
+z=40559
+r=2318
+seed=-29614392
 [/Planet]
 
 [System]
 name=System 73
-x=20
+x=-2
 y=0
-z=79
+z=-75
 sky=Dark
 [/System]
 
@@ -4185,344 +3756,344 @@ sky=Dark
 name=System 73
 system=System 73
 texture=White
-x=4353
+x=7283
 y=0
-z=-546
-r=11157
-seed=-522192366
-[/Star]
-
-[System]
-name=System 74
-x=9
-y=0
-z=-71
-sky=Blue 0
-[/System]
-
-[Star]
-name=System 74
-system=System 74
-texture=White
-x=-358
-y=0
-z=-9352
-r=6000
-seed=-607594042
+z=-1625
+r=9043
+seed=-1439609378
 [/Star]
 
 [Planet]
 name=Planet 0
-system=System 74
+system=System 73
 texture=BandedGas
-x=117858
+x=20265
 y=0
-z=48550
-r=4046
-seed=-218691716
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 74
-texture=BandedGas
-x=117455
-y=0
-z=117095
-r=640
-seed=178503044
+z=-79479
+r=3647
+seed=-666981218
 [/Planet]
 
 [Planet]
 name=Planet 2
-system=System 74
-texture=Terran
-x=-37472
-y=0
-z=40025
-r=500
-seed=-2064301578
-[/Planet]
-
-[System]
-name=System 75
-x=-64
-y=0
-z=-86
-sky=Brown 1
-[/System]
-
-[Star]
-name=System 75
-system=System 75
-texture=White
-x=3039
-y=0
-z=-7179
-r=6000
-seed=-1255472274
-[/Star]
-
-[Planet]
-name=Planet 2
-system=System 75
-texture=Terran
-x=-55880
-y=0
-z=16277
-r=500
-seed=-1712606897
-[/Planet]
-
-[System]
-name=System 76
-x=-11
-y=0
-z=12
-sky=Brown 0
-[/System]
-
-[Star]
-name=System 76
-system=System 76
-texture=White
-x=10021
-y=0
-z=-15082
-r=6000
-seed=-1240196450
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 76
-texture=Barren
-x=-95259
-y=0
-z=12350
-r=3378
-seed=-235778061
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 76
+system=System 73
 texture=BandedGas
-x=-8117
+x=-84428
 y=0
-z=132010
-r=3315
-seed=-154747322
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 76
-texture=BandedGas
-x=-73865
-y=0
-z=-4806
-r=500
-seed=-891353176
+z=89306
+r=5497
+seed=1642821572
 [/Planet]
 
 [Planet]
 name=Planet 3
-system=System 76
+system=System 73
 texture=BandedGas
-x=-93209
+x=39062
 y=0
-z=54353
-r=4363
-seed=339310321
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 76
-texture=BandedGas
-x=-85261
-y=0
-z=83152
-r=1705
-seed=-382372075
+z=-75606
+r=4990
+seed=1983928748
 [/Planet]
 
 [Planet]
 name=Planet 5
-system=System 76
-texture=Barren
-x=-46245
+system=System 73
+texture=Martian
+x=99623
 y=0
-z=97496
-r=4199
-seed=-788614760
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 76
-texture=Chthonian
-x=-77543
-y=0
-z=-50123
-r=2796
-seed=-1293475775
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 76
-texture=BandedGas
-x=41617
-y=0
-z=115288
-r=2632
-seed=-555481587
+z=-106957
+r=5721
+seed=-2029223241
 [/Planet]
 
 [System]
-name=System 77
-x=-33
+name=System 74
+x=59
 y=0
-z=-11
+z=50
 sky=Green 0
 [/System]
 
 [Star]
+name=System 74
+system=System 74
+texture=White
+x=14529
+y=0
+z=-31421
+r=6000
+seed=1957612904
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 74
+texture=BandedGas
+x=120148
+y=0
+z=-162802
+r=4980
+seed=-1980949528
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 74
+texture=Barren
+x=92505
+y=0
+z=167362
+r=5329
+seed=-739051939
+[/Planet]
+
+[System]
+name=System 75
+x=-90
+y=0
+z=61
+sky=Brown 0
+[/System]
+
+[Star]
+name=System 75
+system=System 75
+texture=White
+x=-10526
+y=0
+z=-12989
+r=11266
+seed=1200681093
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 75
+texture=BandedGas
+x=9889
+y=0
+z=136240
+r=2944
+seed=-1731524960
+[/Planet]
+
+[System]
+name=System 76
+x=78
+y=0
+z=-74
+sky=Green 0
+[/System]
+
+[Star]
+name=System 76
+system=System 76
+texture=White
+x=-3426
+y=0
+z=-9079
+r=7264
+seed=-25883171
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 76
+texture=BandedGas
+x=81564
+y=0
+z=-25458
+r=4011
+seed=411004219
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 76
+texture=Terran
+x=40835
+y=0
+z=28701
+r=5393
+seed=1489861676
+[/Planet]
+
+[System]
+name=System 77
+x=-51
+y=0
+z=45
+sky=Blue 0
+[/System]
+
+[Star]
 name=System 77
 system=System 77
 texture=White
-x=9778
+x=485
 y=0
-z=-8232
+z=5662
 r=6000
-seed=-648171148
+seed=-917595853
 [/Star]
+
+[Planet]
+name=Planet 0
+system=System 77
+texture=BandedGas
+x=-176059
+y=0
+z=14607
+r=2918
+seed=254487970
+[/Planet]
 
 [Planet]
 name=Planet 1
 system=System 77
-texture=Barren
-x=-55883
+texture=Terran
+x=70860
 y=0
-z=-15636
-r=4317
-seed=1614567331
+z=-106100
+r=5140
+seed=696597098
 [/Planet]
 
 [System]
 name=System 78
-x=-60
+x=9
 y=0
-z=94
-sky=Dark
+z=-24
+sky=Orange 1
 [/System]
 
 [Star]
 name=System 78
 system=System 78
 texture=White
-x=-5254
+x=-21294
 y=0
-z=-1162
-r=11455
-seed=743384551
+z=11548
+r=6112
+seed=-393688386
 [/Star]
 
 [Planet]
-name=Planet 4
+name=Planet 0
+system=System 78
+texture=BandedGas
+x=-102066
+y=0
+z=-166010
+r=3192
+seed=-875024493
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 78
+texture=BandedGas
+x=-83119
+y=0
+z=126442
+r=5667
+seed=-661512095
+[/Planet]
+
+[Planet]
+name=Planet 2
 system=System 78
 texture=Chthonian
-x=-58969
+x=40077
 y=0
-z=-57365
-r=3504
-seed=-1682129309
+z=-87818
+r=1520
+seed=-273525075
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 78
+texture=BandedGas
+x=-127212
+y=0
+z=47352
+r=5833
+seed=-874825525
 [/Planet]
 
 [System]
 name=System 79
-x=-88
+x=-53
 y=0
-z=99
-sky=Dark
+z=-65
+sky=Blue 1
 [/System]
 
 [Star]
 name=System 79
 system=System 79
 texture=White
-x=-7448
+x=-11348
 y=0
-z=-11080
-r=8273
-seed=-1922760976
+z=-12261
+r=6359
+seed=718638525
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 79
-texture=Terran
-x=-117614
+texture=BandedGas
+x=710
 y=0
-z=-36802
-r=4438
-seed=812390281
+z=59612
+r=1475
+seed=-466795029
 [/Planet]
 
 [Planet]
 name=Planet 1
 system=System 79
 texture=BandedGas
-x=-91027
+x=-58532
 y=0
-z=-77
-r=5679
-seed=-517464395
+z=-137073
+r=3850
+seed=730269636
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 79
+texture=Terran
+x=-36884
+y=0
+z=83669
+r=5906
+seed=-1646900731
 [/Planet]
 
 [Planet]
 name=Planet 3
 system=System 79
 texture=BandedGas
-x=65959
+x=70980
 y=0
-z=125515
+z=-60284
 r=500
-seed=-111694167
+seed=151822900
 [/Planet]
 
 [Planet]
 name=Planet 4
 system=System 79
-texture=BandedGas
-x=119616
+texture=Martian
+x=134650
 y=0
-z=11065
-r=1565
-seed=-2117807139
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 79
-texture=BandedGas
-x=-109817
-y=0
-z=121616
-r=5288
-seed=1120612232
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 79
-texture=BandedGas
-x=-58255
-y=0
-z=119770
-r=3609
-seed=480566441
+z=-39527
+r=500
+seed=240656302
 [/Planet]
 
