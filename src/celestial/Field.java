@@ -21,8 +21,10 @@ package celestial;
 import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.collision.shapes.SphereCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
 import com.jme3.material.RenderState;
 import com.jme3.math.FastMath;
@@ -64,6 +66,7 @@ public class Field extends Celestial implements Serializable {
     private ArrayList<Block> zones = new ArrayList<>();
     //node for attatching blocks
     private Node node;
+    private BulletAppState bulletAppState;
 
     public Field(Universe universe, String name, Term field, int seed, Vector3f location, Vector3f bounds) {
         super(Float.POSITIVE_INFINITY, universe);
@@ -298,6 +301,11 @@ public class Field extends Celestial implements Serializable {
                 roids[a].setLocalTranslation(map[a].x, map[a].y, map[a].z);
                 roids[a].rotate(rot[a].x, rot[a].y, rot[a].z);
                 roids[a].scale(getRockScale());
+                CollisionShape hullShape = CollisionShapeFactory.createMeshShape(roids[a]);
+                RigidBodyControl box = new RigidBodyControl(hullShape);
+                box.setMass(0);
+                box.setKinematic(false);
+                roids[a].addControl(box);
                 System.out.println("Working - " + ((float) a / (float) map.length) * 100.0f);
             }
         }
@@ -342,13 +350,18 @@ public class Field extends Celestial implements Serializable {
         private void remove(Node node) {
             for (int a = 0; a < roids.length; a++) {
                 node.detachChild(roids[a]);
+                bulletAppState.getPhysicsSpace().remove(roids[a]);
             }
         }
 
         private void add(Node node) {
             for (int a = 0; a < roids.length; a++) {
                 node.attachChild(roids[a]);
-                roids[a].setLocalTranslation(location.add(map[a]));
+                roids[a].getControl(RigidBodyControl.class).setPhysicsLocation(location.add(map[a]));
+                /*roids[a].getControl(RigidBodyControl.class).setLinearVelocity(Vector3f.ZERO);
+                roids[a].getControl(RigidBodyControl.class).setAngularVelocity(Vector3f.ZERO);
+                roids[a].getControl(RigidBodyControl.class).clearForces();*/
+                bulletAppState.getPhysicsSpace().add(roids[a]);
             }
         }
     }
@@ -356,6 +369,7 @@ public class Field extends Celestial implements Serializable {
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         super.attach(node, physics, planetAppState);
         this.node = node;
+        this.bulletAppState = physics;
     }
 
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
