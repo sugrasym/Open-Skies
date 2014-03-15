@@ -64,6 +64,7 @@ public class Field extends Celestial implements Serializable {
     //stores the position and rotation of each member of the block
     private Block[] patterns;
     private ArrayList<Block> zones = new ArrayList<>();
+    private int step = 0;
     //node for attatching blocks
     private Node node;
     private BulletAppState bulletAppState;
@@ -85,31 +86,6 @@ public class Field extends Celestial implements Serializable {
     }
 
     public void construct(AssetManager assets) {
-        /*
-         * Setup the cylinder and ~physics~
-         */
-        String ast = type.getValue("cylinder");
-        spatial = assets.loadModel("Models/" + ast + "/Model.blend");
-        mat = new Material(assets, "Common/MatDefs/Light/Lighting.j3md");
-        mat.setTexture("DiffuseMap",
-                assets.loadTexture("Models/" + ast + "/tex.png"));
-        spatial.setMaterial(mat);
-        spatial.setShadowMode(RenderQueue.ShadowMode.Off);
-        //mat.getAdditionalRenderState().setAlphaTest(true);
-        //mat.getAdditionalRenderState().setFaceCullMode(RenderState.FaceCullMode.Off);
-        //mat.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
-        //spatial.setQueueBucket(RenderQueue.Bucket.Transparent);
-        spatial.setMaterial(mat);
-        //initializes the physics as a sphere
-        SphereCollisionShape sphereShape = new SphereCollisionShape(0.0f);
-        //setup dynamic physics
-        physics = new RigidBodyControl(sphereShape, getMass());
-        physics.setPhysicsLocation(location);
-        //add physics to mesh
-        spatial.addControl(physics);
-        //store physics name control
-        nameControl.setParent(this);
-        spatial.addControl(nameControl);
         /*
          * Make asteroid dummies
          */
@@ -150,7 +126,7 @@ public class Field extends Celestial implements Serializable {
     private void generatePatterns() {
         setBlocks(new Block[diversity]);
         for (int x = 0; x < diversity; x++) {
-            Random rnd = new Random(seed);
+            Random rnd = new Random(seed+x);
             Vector3f[] map = new Vector3f[count];
             Vector3f[] rot = new Vector3f[count];
             for (int a = 0; a < count; a++) {
@@ -200,16 +176,20 @@ public class Field extends Celestial implements Serializable {
                     } else if (dist > getBlockSize() * 1.0) {
                         localBlock.remove(node);
                         zones.remove(localBlock);
+                        //increment through cycle
+                        step++;
+                        step %= diversity;
                     }
                 }
                 if (inABlock == false) {
-                    Block tmp = new Block(patterns[0]);
+                    Block tmp = new Block(patterns[step]);
                     tmp.setLocation(host.getPhysicsLocation());
                     zones.add(tmp);
                     tmp.add(node);
                 }
             } else {
                 //out of field
+                System.out.println("reached");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -359,20 +339,18 @@ public class Field extends Celestial implements Serializable {
                 node.attachChild(roids[a]);
                 roids[a].getControl(RigidBodyControl.class).setPhysicsLocation(location.add(map[a]));
                 /*roids[a].getControl(RigidBodyControl.class).setLinearVelocity(Vector3f.ZERO);
-                roids[a].getControl(RigidBodyControl.class).setAngularVelocity(Vector3f.ZERO);
-                roids[a].getControl(RigidBodyControl.class).clearForces();*/
+                 roids[a].getControl(RigidBodyControl.class).setAngularVelocity(Vector3f.ZERO);
+                 roids[a].getControl(RigidBodyControl.class).clearForces();*/
                 bulletAppState.getPhysicsSpace().add(roids[a]);
             }
         }
     }
 
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
-        super.attach(node, physics, planetAppState);
         this.node = node;
         this.bulletAppState = physics;
     }
 
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
-        super.detach(node, physics, planetAppState);
     }
 }

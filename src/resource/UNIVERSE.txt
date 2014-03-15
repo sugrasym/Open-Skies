@@ -172,9 +172,9 @@ type=Dark Asteroid Field
 x=0
 y=0
 z=0
-l=60000
-w=32000
-h=60000
+l=600000
+w=320000
+h=600000
 seed=-1337
 [/Field]
 
