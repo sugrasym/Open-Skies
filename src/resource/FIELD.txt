@@ -1,7 +1,7 @@
 [Field]
 name=Dark Asteroid Field
 group=rock
-blockSize=1000
+blockSize=10000
 count=2500
 rockScale=10
 diversity=1

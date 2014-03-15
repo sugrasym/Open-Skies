@@ -273,31 +273,34 @@ public class Field extends Celestial implements Serializable {
 
         private Vector3f[] map;
         private Vector3f[] rot;
+        private Spatial[] roids;
         private Node block;
 
         public Block(Vector3f[] map, Vector3f[] rot) {
             this.map = map;
             this.rot = rot;
+            roids = new Spatial[rot.length];
         }
 
         public void constructBlock() {
             block = new Node();
             for (int a = 0; a < map.length; a++) {
-                addRoid(map[a], rot[a]);
+                addRoid(map[a], rot[a], roids[a]);
                 System.out.println("Working - " + ((float) a / (float) map.length) * 100.0f);
             }
         }
 
-        private void addRoid(Vector3f loc, Vector3f rot) {
-            Spatial myGeom = asteroid.clone();
-            myGeom.setLocalTranslation(loc.x, loc.y, loc.z);
-            myGeom.rotate(rot.x, rot.y, rot.z);
-            myGeom.scale(getRockScale());
-            block.attachChild(myGeom);
+        private void addRoid(Vector3f loc, Vector3f rot, Spatial roid) {
+            roid = asteroid.clone();
+            roid.setLocalTranslation(loc.x, loc.y, loc.z);
+            roid.rotate(rot.x, rot.y, rot.z);
+            roid.scale(getRockScale());
+            block.attachChild(roid);
         }
 
         public void deconstructBlock() {
             block = null;
+            roids = null;
         }
 
         public Node getBlock() {
