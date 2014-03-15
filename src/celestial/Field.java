@@ -305,10 +305,10 @@ public class Field extends Celestial implements Serializable {
                 roids[a].setLocalTranslation(map[a].x, map[a].y, map[a].z);
                 roids[a].rotate(rot[a].x, rot[a].y, rot[a].z);
                 roids[a].scale(getRockScale());
-                CollisionShape hullShape = CollisionShapeFactory.createMeshShape(roids[a]);
+                CollisionShape hullShape = CollisionShapeFactory.createDynamicMeshShape(roids[a]);
                 RigidBodyControl box = new RigidBodyControl(hullShape);
-                box.setMass(0);
-                box.setKinematic(false);
+                //box.setMass(0);
+                //box.setKinematic(false);
                 roids[a].addControl(box);
                 System.out.println("Working - " + ((float) a / (float) map.length) * 100.0f);
             }
@@ -362,9 +362,9 @@ public class Field extends Celestial implements Serializable {
             for (int a = 0; a < roids.length; a++) {
                 node.attachChild(roids[a]);
                 roids[a].getControl(RigidBodyControl.class).setPhysicsLocation(location.add(map[a]));
-                /*roids[a].getControl(RigidBodyControl.class).setLinearVelocity(Vector3f.ZERO);
-                 roids[a].getControl(RigidBodyControl.class).setAngularVelocity(Vector3f.ZERO);
-                 roids[a].getControl(RigidBodyControl.class).clearForces();*/
+                roids[a].getControl(RigidBodyControl.class).setLinearVelocity(Vector3f.ZERO);
+                roids[a].getControl(RigidBodyControl.class).setAngularVelocity(Vector3f.ZERO);
+                roids[a].getControl(RigidBodyControl.class).clearForces();
                 bulletAppState.getPhysicsSpace().add(roids[a]);
             }
         }
