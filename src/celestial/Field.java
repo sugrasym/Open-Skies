@@ -1,22 +1,21 @@
 /*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*
  * Impossibly dense clouds of rocks in space
  */
-
 package celestial;
 
 import celestial.Ship.Ship;
@@ -44,6 +43,7 @@ import universe.Universe;
  */
 public class Field extends Celestial implements Serializable {
     //location of the field
+
     private Universe universe;
     private Vector3f location = new Vector3f(0, 0, 0);
     //seed to generate a block
@@ -61,7 +61,7 @@ public class Field extends Celestial implements Serializable {
     private int diversity = 1;
     //stores the position and rotation of each member of the block
     private Block[] patterns;
-    private ArrayList<Node> zones = new ArrayList<>();
+    private ArrayList<Block> zones = new ArrayList<>();
     //node for attatching blocks
     private Node node;
 
@@ -190,20 +190,20 @@ public class Field extends Celestial implements Serializable {
                 //calculate distance to block
                 boolean inABlock = false;
                 for (int a = 0; a < zones.size(); a++) {
-                    Node localBlock = zones.get(a);
-                    float dist = localBlock.getLocalTranslation().distance(host.getPhysicsLocation());
+                    Block localBlock = zones.get(a);
+                    float dist = localBlock.getLocation().distance(host.getPhysicsLocation());
                     if (dist < getBlockSize() * 0.5) {
                         inABlock = true;
                     } else if (dist > getBlockSize() * 1.0) {
-                        node.detachChild(localBlock);
+                        localBlock.remove(node);
                         zones.remove(localBlock);
                     }
                 }
                 if (inABlock == false) {
-                    Node tmp = (Node) patterns[0].getBlock().clone();
-                    tmp.setLocalTranslation(host.getPhysicsLocation());
+                    Block tmp = new Block(patterns[0]);
+                    tmp.setLocation(host.getPhysicsLocation());
                     zones.add(tmp);
-                    node.attachChild(tmp);
+                    tmp.add(node);
                 }
             } else {
                 //out of field
@@ -275,11 +275,20 @@ public class Field extends Celestial implements Serializable {
         private Vector3f[] rot;
         private Spatial[] roids;
         private Node block;
+        //location
+        private Vector3f location;
 
         public Block(Vector3f[] map, Vector3f[] rot) {
             this.map = map;
             this.rot = rot;
             roids = new Spatial[rot.length];
+        }
+
+        public Block(Block toClone) {
+            this.map = toClone.getMap().clone();
+            this.rot = toClone.getRot().clone();
+            this.roids = toClone.getRoids().clone();
+            this.block = toClone.getBlock().clone(true);
         }
 
         public void constructBlock() {
@@ -310,8 +319,49 @@ public class Field extends Celestial implements Serializable {
         public void setBlock(Node block) {
             this.block = block;
         }
+
+        public Spatial[] getRoids() {
+            return roids;
+        }
+
+        public void setRoids(Spatial[] roids) {
+            this.roids = roids;
+        }
+
+        public Vector3f[] getMap() {
+            return map;
+        }
+
+        public void setMap(Vector3f[] map) {
+            this.map = map;
+        }
+
+        public Vector3f[] getRot() {
+            return rot;
+        }
+
+        public void setRot(Vector3f[] rot) {
+            this.rot = rot;
+        }
+
+        public Vector3f getLocation() {
+            return location;
+        }
+
+        public void setLocation(Vector3f location) {
+            this.location = location;
+        }
+
+        private void remove(Node node) {
+            node.detachChild(block);
+        }
+
+        private void add(Node node) {
+            node.attachChild(block);
+            block.setLocalTranslation(location);
+        }
     }
-    
+
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         super.attach(node, physics, planetAppState);
         this.node = node;
