@@ -274,7 +274,7 @@ public class Field extends Celestial implements Serializable {
         private Vector3f[] map;
         private Vector3f[] rot;
         private Spatial[] roids;
-        private Node block;
+        //private Node block;
         //location
         private Vector3f location;
 
@@ -288,36 +288,23 @@ public class Field extends Celestial implements Serializable {
             this.map = toClone.getMap().clone();
             this.rot = toClone.getRot().clone();
             this.roids = toClone.getRoids().clone();
-            this.block = toClone.getBlock().clone(true);
+            //this.block = toClone.getBlock().clone(true);
         }
 
         public void constructBlock() {
-            block = new Node();
+            //block = new Node();
             for (int a = 0; a < map.length; a++) {
-                addRoid(map[a], rot[a], roids[a]);
+                roids[a] = asteroid.clone();
+                roids[a].setLocalTranslation(map[a].x, map[a].y, map[a].z);
+                roids[a].rotate(rot[a].x, rot[a].y, rot[a].z);
+                roids[a].scale(getRockScale());
                 System.out.println("Working - " + ((float) a / (float) map.length) * 100.0f);
             }
         }
 
-        private void addRoid(Vector3f loc, Vector3f rot, Spatial roid) {
-            roid = asteroid.clone();
-            roid.setLocalTranslation(loc.x, loc.y, loc.z);
-            roid.rotate(rot.x, rot.y, rot.z);
-            roid.scale(getRockScale());
-            block.attachChild(roid);
-        }
-
         public void deconstructBlock() {
-            block = null;
+            //block = null;
             roids = null;
-        }
-
-        public Node getBlock() {
-            return block;
-        }
-
-        public void setBlock(Node block) {
-            this.block = block;
         }
 
         public Spatial[] getRoids() {
@@ -353,12 +340,16 @@ public class Field extends Celestial implements Serializable {
         }
 
         private void remove(Node node) {
-            node.detachChild(block);
+            for (int a = 0; a < roids.length; a++) {
+                node.detachChild(roids[a]);
+            }
         }
 
         private void add(Node node) {
-            node.attachChild(block);
-            block.setLocalTranslation(location);
+            for (int a = 0; a < roids.length; a++) {
+                node.attachChild(roids[a]);
+                roids[a].setLocalTranslation(location.add(map[a]));
+            }
         }
     }
 
