@@ -32,6 +32,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import entity.Entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
@@ -126,7 +127,7 @@ public class Field extends Celestial implements Serializable {
     private void generatePatterns() {
         setBlocks(new Block[diversity]);
         for (int x = 0; x < diversity; x++) {
-            Random rnd = new Random(seed+x);
+            Random rnd = new Random(seed + x);
             Vector3f[] map = new Vector3f[count];
             Vector3f[] rot = new Vector3f[count];
             for (int a = 0; a < count; a++) {
@@ -162,34 +163,57 @@ public class Field extends Celestial implements Serializable {
         }
     }
 
+    private boolean noExclusionZone() {
+        for (int a = 0; a < universe.getPlayerShip().getCurrentSystem().getCelestials().size(); a++) {
+            Entity test = universe.getPlayerShip().getCurrentSystem().getCelestials().get(a);
+            if (test instanceof Planet) {
+                Planet tmp = (Planet) test;
+                double dist = tmp.getLocation().distance(universe.getPlayerShip().getPhysicsLocation());
+                if (Math.max(dist - tmp.getRadius(), 0) < blockSize) {
+                    //we are in an exclusion zone!
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     protected void alive() {
         Ship host = universe.getPlayerShip();
         try {
-            if (pointInsideField(host.getPhysicsLocation())) {
-                //calculate distance to block
-                boolean inABlock = false;
-                for (int a = 0; a < zones.size(); a++) {
-                    Block localBlock = zones.get(a);
-                    float dist = localBlock.getLocation().distance(host.getPhysicsLocation());
-                    if (dist < getBlockSize() * 0.5) {
-                        inABlock = true;
-                    } else if (dist > getBlockSize() * 1.0) {
-                        localBlock.remove(node);
-                        zones.remove(localBlock);
+            if (noExclusionZone()) {
+                if (pointInsideField(host.getPhysicsLocation())) {
+                    //calculate distance to block
+                    boolean inABlock = false;
+                    for (int a = 0; a < zones.size(); a++) {
+                        Block localBlock = zones.get(a);
+                        float dist = localBlock.getLocation().distance(host.getPhysicsLocation());
+                        if (dist < getBlockSize() * 0.5) {
+                            inABlock = true;
+                        } else if (dist >= getBlockSize()) {
+                            localBlock.remove(node);
+                            zones.remove(localBlock);
+                        }
+                    }
+                    if (inABlock == false) {
+                        Block tmp = new Block(patterns[step]);
+                        tmp.setLocation(host.getPhysicsLocation());
+                        zones.add(tmp);
+                        tmp.add(node);
                         //increment through cycle
                         step++;
                         step %= diversity;
                     }
-                }
-                if (inABlock == false) {
-                    Block tmp = new Block(patterns[step]);
-                    tmp.setLocation(host.getPhysicsLocation());
-                    zones.add(tmp);
-                    tmp.add(node);
+                } else {
+                    //out of field
                 }
             } else {
-                //out of field
-                System.out.println("reached");
+                //remove asteroids, we are in an exclusion zone
+                for (int a = 0; a < zones.size(); a++) {
+                    Block localBlock = zones.get(a);
+                    localBlock.remove(node);
+                    zones.remove(localBlock);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
