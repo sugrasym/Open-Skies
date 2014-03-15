@@ -165,6 +165,19 @@ r=5143
 seed=1060866065
 [/Star]
 
+[Field]
+name=Test Field
+system=System 2
+type=Dark Asteroid Field
+x=0
+y=0
+z=0
+l=60000
+w=32000
+h=60000
+seed=-1337
+[/Field]
+
 [Nebula]
 name=Nebula 0
 system=System 2

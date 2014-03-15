@@ -19,6 +19,7 @@
  */
 package universe;
 
+import celestial.Field;
 import celestial.Nebula;
 import celestial.Planet;
 import celestial.Ship.Ship;
@@ -76,6 +77,14 @@ public class SolarSystem implements Entity, Serializable {
          * Star
          * Nebula
          */
+        //nebula
+        ArrayList<Term> field = info.getTermsOfType("Field");
+        for (int a = 0; a < field.size(); a++) {
+            if (field.get(a).getValue("system").equals(getName())) {
+                //this star needs to be created and stored
+                getCelestials().add(makeField(assets, field.get(a)));
+            }
+        }
         //nebula
         ArrayList<Term> nebula = info.getTermsOfType("Nebula");
         for (int a = 0; a < nebula.size(); a++) {
@@ -228,6 +237,38 @@ public class SolarSystem implements Entity, Serializable {
             star.setLocation(new Vector3f(px, py, pz));
         }
         return star;
+    }
+    
+    private Field makeField(AssetManager assets, Term fieldTerm) {
+        Field field = null;
+        {
+            //extract terms
+            String pName = fieldTerm.getValue("name");
+            String texture = fieldTerm.getValue("type");
+            int seed = Integer.parseInt(fieldTerm.getValue("seed"));
+            //position
+            float px = Float.parseFloat(fieldTerm.getValue("x"));
+            float py = Float.parseFloat(fieldTerm.getValue("y"));
+            float pz = Float.parseFloat(fieldTerm.getValue("z"));
+            //dimension
+            float l = Float.parseFloat(fieldTerm.getValue("l"));
+            float w = Float.parseFloat(fieldTerm.getValue("w"));
+            float h = Float.parseFloat(fieldTerm.getValue("h"));
+            //texture
+            Parser tmp = new Parser("FIELD.txt");
+            ArrayList<Term> terms = tmp.getTermsOfType("Field");
+            Term fin = null;
+            for (int o = 0; o < terms.size(); o++) {
+                if (terms.get(o).getValue("name").equals(texture)) {
+                    fin = terms.get(o);
+                    break;
+                }
+            }
+            //make planet and store
+            field = new Field(universe, pName,fin, seed, new Vector3f(px,py,pz), new Vector3f(l, w, h));
+            field.setLocation(new Vector3f(px, py, pz));
+        }
+        return field;
     }
 
     private Nebula makeNebula(AssetManager assets, Term nebulaTerm) {
@@ -389,5 +430,9 @@ public class SolarSystem implements Entity, Serializable {
     @Override
     public Vector3f getPhysicsLocation() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public Universe getUniverse() {
+        return universe;
     }
 }
