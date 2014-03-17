@@ -209,25 +209,23 @@ public class OverviewWindow extends AstralWindow {
         }
 
         protected void drawVectorLines(Graphics2D gfx) {
-            /*
-             * IDEAS
-             * 
-             * - show the point on the map where you could be fully stopped at your current velocity
-             * - allow you to "lock" a vector in red and keep it there for your own uses.
-             */
-            /*
-             * These two lines represent the vector of your velocity and the vector
-             * of your direction. They will simplify navigation in 2D space.
-             */
+            drawYawVector(gfx);
+            drawDirectionVector(gfx);
+        }
+
+        private void drawYawVector(Graphics2D gfx) {
+            //draw yaw vector
             gfx.setColor(Color.CYAN);
             Vector3f pointer = sensorShip.getRotationAxis();
             double dTheta = Math.atan2(pointer.z, pointer.x) - FastMath.PI;
             double dpx = Math.cos(dTheta) * getWidth() / 2;
             double dpy = Math.sin(dTheta) * getHeight() / 2;
             gfx.drawLine(getWidth() / 2, (getHeight() / 2), (int) dpx + (getWidth() / 2), (int) dpy + (getHeight() / 2));
-            //calculate direction vector
+        }
+
+        private void drawDirectionVector(Graphics2D gfx) {
+            //draw velocity vector
             gfx.setColor(Color.yellow);
-            //calculate velocity vector
             Vector3f vel = sensorShip.getLinearVelocity();
             double vTheta = Math.atan2(vel.z, vel.x);
             double vpx = Math.cos(vTheta) * getWidth() / 2;
