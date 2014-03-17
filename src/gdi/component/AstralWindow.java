@@ -1,17 +1,17 @@
 /*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*
  * This is a window. It stores components.
@@ -83,9 +83,14 @@ public class AstralWindow extends AstralComponent {
 
     @Override
     public void periodicUpdate() {
-        geo_background.setLocalTranslation(x, y, 0);
-        for (int a = 0; a < components.size(); a++) {
-            components.get(a).periodicUpdate();
+        if (visible) {
+            geo_background.setLocalTranslation(x, y, 0);
+            for (int a = 0; a < components.size(); a++) {
+                components.get(a).periodicUpdate();
+            }
+        } else {
+            //move it off the frame
+            geo_background.setLocalTranslation(-1000000000, -1000000000, 0);
         }
     }
 
@@ -155,8 +160,8 @@ public class AstralWindow extends AstralComponent {
     @Override
     public void handleMousePressedEvent(String me, Vector3f mouseLoc) {
         if (visible) {
-            Vector3f adjLoc = new Vector3f(mouseLoc.x - x, (int) (mouseLoc.y-(mouseLoc.z-getHeight())+y), 0);
-            Rectangle mRect = new Rectangle((int)adjLoc.x, (int)adjLoc.y, 1, 1);
+            Vector3f adjLoc = new Vector3f(mouseLoc.x - x, (int) (mouseLoc.y - (mouseLoc.z - getHeight()) + y), 0);
+            Rectangle mRect = new Rectangle((int) adjLoc.x, (int) adjLoc.y, 1, 1);
             for (int a = 0; a < components.size(); a++) {
                 if (components.get(a).intersects(mRect)) {
                     components.get(a).setFocused(true);
@@ -170,10 +175,10 @@ public class AstralWindow extends AstralComponent {
 
     @Override
     public void handleMouseReleasedEvent(String me, Vector3f mouseLoc) {
-        Vector3f adjLoc = new Vector3f(mouseLoc.x - x, (int) (mouseLoc.y-(mouseLoc.z-getHeight())+y), 0);
+        Vector3f adjLoc = new Vector3f(mouseLoc.x - x, (int) (mouseLoc.y - (mouseLoc.z - getHeight()) + y), 0);
         if (visible) {
             for (int a = 0; a < components.size(); a++) {
-                if(components.get(a).isFocused()) {
+                if (components.get(a).isFocused()) {
                     components.get(a).handleMouseReleasedEvent(me, adjLoc);
                 }
             }

@@ -257,91 +257,110 @@ public class Core {
         public void onAction(String name, boolean keyPressed, float tpf) {
             Vector2f origin = input.getCursorPosition();
             String[] split = name.split("_");
-            if (split[0].matches("KEY")) {
+            if (split[0].equals("KEY")) {
                 if (!hud.handleKeyAction(state, name, keyPressed)) {
-                    //handle nav actions
-                    if (name.matches("KEY_Q")) {
-                        if (keyPressed) {
-                            universe.getPlayerShip().setRoll(1);
-                        } else {
-                            universe.getPlayerShip().setRoll(0);
-                        }
-                    }
-                    if (name.matches("KEY_E")) {
-                        if (keyPressed) {
-                            universe.getPlayerShip().setRoll(-1);
-                        } else {
-                            universe.getPlayerShip().setRoll(0);
-                        }
-                    }
-                    if (name.matches("KEY_W")) {
-                        if (keyPressed) {
-                            universe.getPlayerShip().setThrottle(1);
-                        } else {
-                            universe.getPlayerShip().setThrottle(0);
-                        }
-                    }
-                    if (name.matches("KEY_S")) {
-                        if (keyPressed) {
-                            if (keyPressed) {
-                                universe.getPlayerShip().setThrottle(-1);
-                            } else {
-                                universe.getPlayerShip().setThrottle(0);
-                            }
-                        }
-                    }
-                    if (name.matches("KEY_A")) {
-                        if (keyPressed) {
-                            universe.getPlayerShip().setYaw(1);
-                        } else {
-                            universe.getPlayerShip().setYaw(0);
-                        }
-                    }
-                    if (name.matches("KEY_D")) {
-                        if (keyPressed) {
-                            universe.getPlayerShip().setYaw(-1);
-                        } else {
-                            universe.getPlayerShip().setYaw(0);
-                        }
-                    }
-                    if (name.matches("KEY_UP")) {
-                        if (keyPressed) {
-                            universe.getPlayerShip().setPitch(-1);
-                        } else {
-                            universe.getPlayerShip().setPitch(0);
-                        }
-                    }
-                    if (name.matches("KEY_DOWN")) {
-                        if (keyPressed) {
-                            universe.getPlayerShip().setPitch(1);
-                        } else {
-                            universe.getPlayerShip().setPitch(0);
-                        }
+                    if (state == GameState.IN_SPACE) {
+                        handleInSpaceKeys(name, keyPressed);
                     }
                 }
-            } else if (split[0].matches("MOUSE")) {
-                hud.handleMouseAction(state, name, keyPressed, new Vector3f(origin.x, origin.y, 0));
+            } else if (split[0].equals("MOUSE")) {
+                if (state == GameState.IN_SPACE) {
+                    hud.handleMouseAction(state, name, keyPressed, new Vector3f(origin.x, origin.y, 0));
+                }
             } else {
                 /*
                  * These events are handled here because they are for the
                  * engine.
                  */
                 //engine mode selection
-                if (name.matches("Normal")) {
+                if (name.equals("Normal")) {
                     universe.getPlayerShip().setEngine(Ship.EngineMode.NORMAL);
-                } else if (name.matches("Cruise")) {
+                } else if (name.equals("Cruise")) {
                     universe.getPlayerShip().setEngine(Ship.EngineMode.CRUISE);
-                } else if (name.matches("Newton")) {
+                } else if (name.equals("Newton")) {
                     universe.getPlayerShip().setEngine(Ship.EngineMode.NEWTON);
                 }
                 //quickload and quicksave
-                if (name.matches("QuickSave")) {
+                if (name.equals("QuickSave")) {
                     save("Quick");
-                } else if (name.matches("QuickLoad")) {
+                } else if (name.equals("QuickLoad")) {
                     load("Quick");
                 }
             }
 
+        }
+
+        private void handleInSpaceKeys(String name, boolean keyPressed) {
+            //these keys show and hide GDI elements
+            if (keyPressed) {
+                if (name.equals("KEY_1")) {
+                    //toggle equipment window
+                    hud.toggleEquipmentWindow();
+                }
+                if (name.equals("KEY_2")) {
+                    //toggle overview window
+                    hud.toggleSensorWindow();
+                }
+            }
+            //handle nav actions
+            if (name.equals("KEY_Q")) {
+                if (keyPressed) {
+                    universe.getPlayerShip().setRoll(1);
+                } else {
+                    universe.getPlayerShip().setRoll(0);
+                }
+            }
+            if (name.equals("KEY_E")) {
+                if (keyPressed) {
+                    universe.getPlayerShip().setRoll(-1);
+                } else {
+                    universe.getPlayerShip().setRoll(0);
+                }
+            }
+            if (name.equals("KEY_W")) {
+                if (keyPressed) {
+                    universe.getPlayerShip().setThrottle(1);
+                } else {
+                    universe.getPlayerShip().setThrottle(0);
+                }
+            }
+            if (name.equals("KEY_S")) {
+                if (keyPressed) {
+                    if (keyPressed) {
+                        universe.getPlayerShip().setThrottle(-1);
+                    } else {
+                        universe.getPlayerShip().setThrottle(0);
+                    }
+                }
+            }
+            if (name.equals("KEY_A")) {
+                if (keyPressed) {
+                    universe.getPlayerShip().setYaw(1);
+                } else {
+                    universe.getPlayerShip().setYaw(0);
+                }
+            }
+            if (name.equals("KEY_D")) {
+                if (keyPressed) {
+                    universe.getPlayerShip().setYaw(-1);
+                } else {
+                    universe.getPlayerShip().setYaw(0);
+                }
+            }
+            if (name.equals("KEY_UP")) {
+                if (keyPressed) {
+                    universe.getPlayerShip().setPitch(-1);
+                } else {
+                    universe.getPlayerShip().setPitch(0);
+                }
+            }
+            if (name.equals("KEY_DOWN")) {
+                if (keyPressed) {
+                    universe.getPlayerShip().setPitch(1);
+                } else {
+                    universe.getPlayerShip().setPitch(0);
+                }
+            }
         }
     };
 

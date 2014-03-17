@@ -202,4 +202,12 @@ public class HUD {
     public void setUniverse(Universe universe) {
         this.universe = universe;
     }
+    
+    public void toggleSensorWindow() {
+        overview.setVisible(!overview.isVisible());
+    }
+    
+    public void toggleEquipmentWindow() {
+        equipment.setVisible(!equipment.isVisible());
+    }
 }
