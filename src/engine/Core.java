@@ -57,9 +57,9 @@ import universe.Universe;
  * @author Nathan Wiehoff
  */
 public class Core {
-
+    
     public enum GameState {
-
+        
         PAUSED,
         IN_SPACE,
     }
@@ -85,7 +85,7 @@ public class Core {
     AppSettings settings;
     AssetManager assets;
     InputManager input;
-
+    
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState, AssetManager assets, PlanetAppState planetAppState, InputManager input, AppSettings settings) {
         this.rootNode = rootNode;
         this.guiNode = guiNode;
@@ -97,7 +97,7 @@ public class Core {
         //initialize
         init();
     }
-
+    
     private void init() {
         initKeys();
         initMouse();
@@ -107,18 +107,18 @@ public class Core {
         initHud();
         //bulletAppState.getPhysicsSpace().enableDebug(assets);
     }
-
+    
     private void initHud() {
         hud = new HUD(guiNode, universe, settings.getWidth(),
                 settings.getHeight(), assets);
         hud.add();
     }
-
+    
     private void initPhysicsListeners() {
         CollisionListener listener = new CollisionListener();
         bulletAppState.getPhysicsSpace().addCollisionListener(listener);
     }
-
+    
     private void newGame(String name) {
         //get the game from the universe
         Parser parse = new Parser("UNIVERSE.txt");
@@ -167,7 +167,7 @@ public class Core {
         //TODO: init code
 
     }
-
+    
     private void initMouse() {
         //mouse buttons
         input.addMapping("MOUSE_LClick", new MouseButtonTrigger(0));
@@ -178,7 +178,7 @@ public class Core {
             "MOUSE_RClick",
             "MOUSE_CClick"});
     }
-
+    
     private void initKeys() {
         //Number keys
         input.addMapping("KEY_0", new KeyTrigger(KeyInput.KEY_0));
@@ -253,7 +253,7 @@ public class Core {
             "KEY_Q", "KEY_E", "KEY_UP", "KEY_DOWN", "KEY_BACKSPACE",
             "Normal", "Cruise",
             "Newton", "QuickSave", "QuickLoad",
-            "KEY_END","KEY_HOME", "KEY_PGUP", "KEY_PGDN"});
+            "KEY_END", "KEY_HOME", "KEY_PGUP", "KEY_PGDN"});
     }
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {
@@ -277,9 +277,9 @@ public class Core {
                     load("Quick");
                 }
             }
-
+            
         }
-
+        
         private void handleInSpaceKeys(String name, boolean keyPressed) {
             //these keys show and hide GDI elements
             if (keyPressed) {
@@ -291,6 +291,10 @@ public class Core {
                     //toggle overview window
                     hud.toggleSensorWindow();
                 }
+            }
+            //all stop
+            if (name.equals("KEY_HOME")) {
+                universe.getPlayerShip().setAllStop(keyPressed);
             }
             //handle nav actions
             if (name.equals("KEY_Q")) {
@@ -397,16 +401,16 @@ public class Core {
     public final void addSystem(SolarSystem system) {
         addEntity(system);
     }
-
+    
     public final void removeSystem(SolarSystem system) {
         removeEntity(system);
     }
-
+    
     public final void addEntity(Entity entity) {
         entity.construct(assets);
         entity.attach(rootNode, bulletAppState, planetAppState);
     }
-
+    
     public final void removeEntity(Entity entity) {
         entity.detach(rootNode, bulletAppState, planetAppState);
         entity.deconstruct();
@@ -442,7 +446,7 @@ public class Core {
             hud.periodicUpdate(tpf);
         }
     }
-
+    
     public void render(RenderManager rm) {
         //render hud
         hud.render(assets);
@@ -459,7 +463,7 @@ public class Core {
             Logger.getLogger(Core.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public void load(String gameName) {
         try {
             //unload universe

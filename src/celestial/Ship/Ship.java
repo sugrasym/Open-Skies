@@ -41,12 +41,15 @@ import universe.Universe;
  */
 public class Ship extends Celestial {
 
+    public static final double STOP_LOW_VEL_BOUND = 1;
+    public static final float STOP_CAUTION = 0.25f;
+
     public enum EngineMode {
 
         NORMAL,
         NEWTON
     }
-    public static final float NORMAL_DAMP = 0.25f;
+    public static final float NORMAL_DAMP = 0.26f;
     public static final float NEWTON_DAMP = 0;
     private Term type;
     //health
@@ -68,6 +71,7 @@ public class Ship extends Celestial {
     private float pitch = 0;
     private float yaw = 0;
     private float roll = 0;
+    private boolean allStop = false;
     //sensor
     private float sensor;
     private Ship target;
@@ -154,7 +158,11 @@ public class Ship extends Celestial {
         //check health
         updateHealth();
         //check throttle
-        updateThrottle();
+        if (!allStop) {
+            updateThrottle();
+        } else {
+            updateAllStop();
+        }
         updateTorque();
     }
 
@@ -242,6 +250,45 @@ public class Ship extends Celestial {
             roll = 1;
         }
         roll(roll);
+    }
+
+    protected void updateAllStop() {
+        //get linear velocity
+        Vector3f lVol = physics.getLinearVelocity();
+        if (lVol.length() > STOP_LOW_VEL_BOUND) {
+            //apply counter force
+            if (Math.abs(lVol.getX()) > STOP_LOW_VEL_BOUND) {
+                float correction = -Math.signum(lVol.getX()) * thrust * STOP_CAUTION;
+                if (sufficientFuel(correction)) {
+                    physics.applyCentralForce(Vector3f.UNIT_X.mult(correction));
+                    useFuel(correction);
+                }
+            } else {
+                physics.setLinearVelocity(new Vector3f(0, lVol.getY(), lVol.getZ()));
+            }
+            if (Math.abs(lVol.getY()) > STOP_LOW_VEL_BOUND) {
+                float correction = -Math.signum(lVol.getY()) * thrust * STOP_CAUTION;
+                if (sufficientFuel(correction)) {
+                    physics.applyCentralForce(Vector3f.UNIT_Y.mult(correction));
+                    useFuel(correction);
+                }
+            } else {
+                physics.setLinearVelocity(new Vector3f(lVol.getX(), 0, lVol.getY()));
+            }
+            if (Math.abs(lVol.getZ()) > STOP_LOW_VEL_BOUND) {
+                float correction = -Math.signum(lVol.getZ()) * thrust * STOP_CAUTION;
+                if (sufficientFuel(correction)) {
+                    physics.applyCentralForce(Vector3f.UNIT_Z.mult(correction));
+                    useFuel(correction);
+                }
+            } else {
+                physics.setLinearVelocity(new Vector3f(lVol.getX(), lVol.getY(), 0));
+            }
+        } else {
+            physics.setLinearVelocity(Vector3f.ZERO);
+            //we're done
+            allStop = false;
+        }
     }
 
     /*
@@ -478,5 +525,13 @@ public class Ship extends Celestial {
 
     private boolean sufficientFuel(float force) {
         return fuel - Math.abs(force * burnMultiplier) * tpf >= 0;
+    }
+
+    public boolean isAllStop() {
+        return allStop;
+    }
+
+    public void setAllStop(boolean allStop) {
+        this.allStop = allStop;
     }
 }
