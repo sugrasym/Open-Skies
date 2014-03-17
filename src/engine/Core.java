@@ -237,6 +237,8 @@ public class Core {
         input.addMapping("QuickLoad", new KeyTrigger(KeyInput.KEY_PAUSE));
         //end key
         input.addMapping("KEY_END", new KeyTrigger(KeyInput.KEY_END));
+        //home key
+        input.addMapping("KEY_HOME", new KeyTrigger(KeyInput.KEY_HOME));
         //page keys
         input.addMapping("KEY_PGUP", new KeyTrigger(KeyInput.KEY_PGUP));
         input.addMapping("KEY_PGDN", new KeyTrigger(KeyInput.KEY_PGDN));
@@ -251,7 +253,7 @@ public class Core {
             "KEY_Q", "KEY_E", "KEY_UP", "KEY_DOWN", "KEY_BACKSPACE",
             "Normal", "Cruise",
             "Newton", "QuickSave", "QuickLoad",
-            "KEY_END", "KEY_PGUP", "KEY_PGDN"});
+            "KEY_END","KEY_HOME", "KEY_PGUP", "KEY_PGDN"});
     }
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {

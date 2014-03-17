@@ -29,7 +29,8 @@ Overview Window (when focused)
 PGUP - Toggle show Station names
 PGDWN - Toggle show Ship names
 
-END - Cycle through sensor modes
+END - Increase view area 2x
+HOME - Decrease view area 2x
 
 Note that sensor modes have different returns and therefore different uses.
 - Short Active : 1/2 range, can see anything.

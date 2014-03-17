@@ -1,7 +1,7 @@
 [NewGame]
 name=Default
 ship=Sparrow
-system=System 13
+system=System 2
 x=25000
 y=0
 z=-25000
