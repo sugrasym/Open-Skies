@@ -268,18 +268,6 @@ public class Core {
                     hud.handleMouseAction(state, name, keyPressed, new Vector3f(origin.x, origin.y, 0));
                 }
             } else {
-                /*
-                 * These events are handled here because they are for the
-                 * engine.
-                 */
-                //engine mode selection
-                if (name.equals("Normal")) {
-                    universe.getPlayerShip().setEngine(Ship.EngineMode.NORMAL);
-                } else if (name.equals("Cruise")) {
-                    universe.getPlayerShip().setEngine(Ship.EngineMode.CRUISE);
-                } else if (name.equals("Newton")) {
-                    universe.getPlayerShip().setEngine(Ship.EngineMode.NEWTON);
-                }
                 //quickload and quicksave
                 if (name.equals("QuickSave")) {
                     save("Quick");
@@ -326,11 +314,9 @@ public class Core {
             }
             if (name.equals("KEY_S")) {
                 if (keyPressed) {
-                    if (keyPressed) {
-                        universe.getPlayerShip().setThrottle(-1);
-                    } else {
-                        universe.getPlayerShip().setThrottle(0);
-                    }
+                    universe.getPlayerShip().setThrottle(-1);
+                } else {
+                    universe.getPlayerShip().setThrottle(0);
                 }
             }
             if (name.equals("KEY_A")) {

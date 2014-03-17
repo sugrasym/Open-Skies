@@ -4,16 +4,6 @@ Open Skies Control Card
 
 Navigation
 --------------------------------------------------------------------------------
-
-F1 - Select normal engine mode (Weapons online, low speed)
-F2 - Select cruise engine mode (Weapons offline, much faster)
-    - The above modes resemble how you'd expect a space ship to fly based on
-      popular science fiction. They are also the ones that are most useful in
-      combat since they allow you to manauver easily.
-
-F3 - Select newton engine mode (Weapons online, inertia only)
-    - Used for coasting.
-
 Joystick Axis control pitch, yaw, and roll.
 Joystick throttle controls thrust. It supports both forward and reverse.
 
@@ -27,6 +17,11 @@ E - Roll right
 
 Up Arrow - Pitch down
 Down Arrow - Pitch up
+
+User Interface
+--------------------------------------------------------------------------------
+1 - Toggle Equipment Window
+2 - Toggle Overview Window
 
 Overview Window (when focused)
 --------------------------------------------------------------------------------

@@ -41,22 +41,12 @@ import universe.Universe;
  */
 public class Ship extends Celestial {
 
-    public EngineMode getEngine() {
-        return engine;
-    }
-
-    public void setEngine(EngineMode engine) {
-        this.engine = engine;
-    }
-
     public enum EngineMode {
 
         NORMAL,
-        CRUISE,
         NEWTON
     }
-    public static final float NORMAL_DAMP = 0.50f;
-    public static final float CRUISE_DAMP = 0.15f;
+    public static final float NORMAL_DAMP = 0.25f;
     public static final float NEWTON_DAMP = 0;
     private Term type;
     //health
@@ -68,6 +58,8 @@ public class Ship extends Celestial {
     //fuel
     private float fuel;
     private float maxFuel;
+    //fuel efficiency
+    private float burnMultiplier = 1;
     //navigation
     transient Node core;
     transient Node nav;
@@ -157,7 +149,6 @@ public class Ship extends Celestial {
     /*
      * Methods for in-system updating. It primarily uses the physics system.
      */
-    
     protected void alive() {
         super.alive();
         //check health
@@ -188,7 +179,7 @@ public class Ship extends Celestial {
         if (shield < 0) {
             shield = 0;
         }
-        if (hull < 0) {
+        if (hull <= 0) {
             setState(State.DYING);
         }
     }
@@ -209,25 +200,22 @@ public class Ship extends Celestial {
             fireForwardThrusters(Math.abs(throttle));
         }
         /*
-         * Update the drag coefficient based on engine mode
-         * - Normal : Low speed, weapons online
-         * - Cruise : High speed, weapons offline
-         * - Newton : Any speed, weapons online
-         */
-        if (engine == EngineMode.CRUISE) {
-            physics.setLinearDamping(CRUISE_DAMP);
-        } else if (engine == EngineMode.NORMAL) {
-            physics.setLinearDamping(NORMAL_DAMP);
-        } else if (engine == EngineMode.NEWTON) {
-            physics.setLinearDamping(NEWTON_DAMP);
-        }
-        /*
          * Without fuel you won't have any inertial engines so it makes sense
          * to drop to newton mode in that case
          */
         if (fuel <= 0) {
             setEngine(EngineMode.NEWTON);
             physics.setLinearDamping(NEWTON_DAMP);
+        } else {
+            /*
+             * Update the drag coefficient based on whether we are accelerating.
+             * When accelerating, drag is applied.
+             */
+            if (throttle != 0) {
+                physics.setLinearDamping(NORMAL_DAMP);
+            } else {
+                physics.setLinearDamping(NEWTON_DAMP);
+            }
         }
     }
 
@@ -255,21 +243,20 @@ public class Ship extends Celestial {
         }
         roll(roll);
     }
-    
+
     /*
      * Methods for out of system updating, does not use any of the physics system.
      */
-    
     @Override
     protected void oosAlive() {
         super.oosAlive();
     }
-    
+
     @Override
     protected void oosDying() {
         super.oosDying();
     }
-    
+
     @Override
     protected void oosDead() {
         super.oosDead();
@@ -316,9 +303,9 @@ public class Ship extends Celestial {
     }
 
     public void applyTorque(float force, Vector3f axis) {
-        if (fuel - Math.abs(force) * tpf >= 0) {
+        if (sufficientFuel(force)) {
             physics.applyTorque(axis.mult(force));
-            fuel -= Math.abs(force) * tpf;
+            useFuel(force);
         }
     }
 
@@ -330,29 +317,12 @@ public class Ship extends Celestial {
         applyThrust(getThrust() * percent);
     }
 
-    public void stop() {
-        /*
-         * Attempts to set the ship's velocity to 0 by applying the proper
-         * series of reverse thrusts
-         */
-        Vector3f vel = getLinearVelocity();
-        if (vel.x != 0) {
-            physics.applyCentralForce(vel.mult(Vector3f.UNIT_X));
-        }
-        if (vel.y != 0) {
-            physics.applyCentralForce(vel.mult(Vector3f.UNIT_Y));
-        }
-        if (vel.z != 0) {
-            physics.applyCentralForce(vel.mult(Vector3f.UNIT_Z));
-        }
-    }
-
     public void applyThrust(float force) {
         if (engine != EngineMode.NEWTON) {
-            if (fuel - Math.abs(force) * tpf >= 0) {
+            if (sufficientFuel(force)) {
                 Vector3f direction = physics.getPhysicsRotation().mult(Vector3f.UNIT_Z);
                 physics.applyCentralForce(direction.mult(force));
-                fuel -= Math.abs(force) * tpf;
+                useFuel(force);
             }
         }
     }
@@ -492,5 +462,21 @@ public class Ship extends Celestial {
 
     public Term getType() {
         return type;
+    }
+
+    public EngineMode getEngine() {
+        return engine;
+    }
+
+    public void setEngine(EngineMode engine) {
+        this.engine = engine;
+    }
+
+    private void useFuel(float force) {
+        fuel -= Math.abs(force * burnMultiplier) * tpf;
+    }
+
+    private boolean sufficientFuel(float force) {
+        return fuel - Math.abs(force * burnMultiplier) * tpf >= 0;
     }
 }

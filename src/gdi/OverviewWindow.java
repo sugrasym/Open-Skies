@@ -74,8 +74,6 @@ public class OverviewWindow extends AstralWindow {
         //update engine label
         if(sensorShip.getEngine() == Ship.EngineMode.NORMAL) {
             engineLabel.setText("NORMAL");
-        } else if(sensorShip.getEngine() == Ship.EngineMode.CRUISE) {
-            engineLabel.setText("CRUISE");
         } else if(sensorShip.getEngine() == Ship.EngineMode.NEWTON) {
             engineLabel.setText("NEWTON");
         } else {

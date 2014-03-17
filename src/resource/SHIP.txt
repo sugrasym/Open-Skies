@@ -5,7 +5,7 @@
 type=Sparrow
 #physics
 mass=1
-thrust=750
+thrust=75
 torque=9
 #stats
 shield=10571
