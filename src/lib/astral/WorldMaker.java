@@ -34,7 +34,7 @@ public class WorldMaker {
 
     public WorldMaker() {
         //generate universe
-        String out = generate(1, 7, 80, 100, 100, 64000, 256000, 500, 5000, 0, 3, 32000, 128000);
+        String out = generate(1, 7, 80, 100, 100, 64000, 256000, 500, 5000, 0, 0.25f, 0.25f);
         //save
         AstralIO tmp = new AstralIO();
         tmp.writeFile("new-UNIVERSE.txt", out);
@@ -47,7 +47,7 @@ public class WorldMaker {
 
     public final String generate(int minPlanetsPerSystem, int maxPlanetsPerSystem, int minSystems, int maxSystems,
             int worldSize, int minSystemSize, int maxSystemSize, int minPlanetSize,
-            int maxPlanetSize, int minNebulaPerSystem, int maxNebulaPerSystem, int minNebulaSize, int maxNebulaSize) {
+            int maxPlanetSize, int minNebulaPerSystem, float nebulaProbability, float fieldProbability) {
         String ret = "";
         {
             //precache parsers
@@ -59,6 +59,8 @@ public class WorldMaker {
             ArrayList<Term> nebTypes = particle.getTermsOfType("Nebula");
             Parser planets = new Parser("PLANET.txt");
             ArrayList<Term> planetTypes = planets.getTermsOfType("Planet");
+            Parser fields = new Parser("FIELD.txt");
+            ArrayList<Term> fieldTypes = fields.getTermsOfType("Field");
             //start rng
             Random rnd = new Random();
             //determine the number of systems to make
@@ -122,25 +124,17 @@ public class WorldMaker {
                      * CREATE NEBULA
                      * 
                      */
-                    int numNebula = rnd.nextInt(maxNebulaPerSystem);
-                    if (numNebula < minNebulaPerSystem) {
-                        numNebula = minNebulaPerSystem;
-                    }
-                    for (int b = 0; b < numNebula; b++) {
+                    if (rnd.nextFloat() < nebulaProbability) {
                         //pick texture
                         pick = rnd.nextInt(nebTypes.size());
                         Term type = nebTypes.get(pick);
                         //pick name
-                        String name = "Nebula " + b;
-                        //pick position
-                        x = rnd.nextInt(size * 3) - (int)(size*1.5);
+                        String name = systemName + " Cloud";
+                        //set for center and span of system
+                        x = 0;
                         y = 0;
-                        z = rnd.nextInt(size * 3) - (int)(size*1.5);
-                        //pick dimension
-                        r = (int)(rnd.nextFloat()*(maxNebulaSize-minNebulaSize))+minNebulaSize;
-                        if (r < minNebulaSize) {
-                            r = minNebulaSize;
-                        }
+                        z = 0;
+                        r = size * 3;
                         //int hScale = rnd.nextInt(3) + 2;
                         int h = 32000;
                         //pick color
@@ -164,6 +158,39 @@ public class WorldMaker {
                                 + "h=" + r + "\n"
                                 + "seed=" + seed + "\n"
                                 + "[/Nebula]\n\n";
+                    }
+                    /*
+                     * CREATE FIELDS
+                     */
+                    if (rnd.nextFloat() < fieldProbability) {
+                        //pick texture
+                        pick = rnd.nextInt(fieldTypes.size());
+                        Term type = fieldTypes.get(pick);
+                        //pick name
+                        String name = systemName + " Field";
+                        //set for center and span of system
+                        x = 0;
+                        y = 0;
+                        z = 0;
+                        r = size * 3;
+                        //int hScale = rnd.nextInt(3) + 2;
+                        int h = 32000;
+                        //seed
+                        seed = rnd.nextInt();
+                        //generate entry
+                        thisSystem +=
+                                "[Field]\n"
+                                + "name=" + name + "\n"
+                                + "system=" + systemName + "\n"
+                                + "type=" + type.getValue("name") + "\n"
+                                + "x=" + x + "\n"
+                                + "y=" + y + "\n"
+                                + "z=" + z + "\n"
+                                + "l=" + r + "\n"
+                                + "w=" + h + "\n"
+                                + "h=" + r + "\n"
+                                + "seed=" + seed + "\n"
+                                + "[/Field]\n\n";
                     }
                     /*
                      * CREATE PLANETS
