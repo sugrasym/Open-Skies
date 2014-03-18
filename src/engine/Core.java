@@ -154,6 +154,9 @@ public class Core {
         ship.setLocation(new Vector3f(x, y, z));
         ship.setCurrentSystem(start);
         start.putEntityInSystem(ship);
+        //store initial cargo
+        String cargo = game.getValue("cargo");
+        ship.addInitialCargo(cargo);
         //setup start system
         addSystem(start);
 

@@ -173,12 +173,17 @@ public class SolarSystem implements Entity, Serializable {
             float sx = Float.parseFloat(shipTerm.getValue("x"));
             float sy = Float.parseFloat(shipTerm.getValue("y"));
             float sz = Float.parseFloat(shipTerm.getValue("z"));
+            String cargo = shipTerm.getValue("cargo");
             //create ship
             ship = new Ship(universe, hull);
             //position ship
             ship.setLocation(new Vector3f(sx, sy, sz));
             ship.setCurrentSystem(this);
             ship.setName(sName);
+            //store cargo
+            if(cargo != null) {
+                ship.addInitialCargo(cargo);
+            }
         }
         return ship;
     }
