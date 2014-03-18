@@ -22,6 +22,10 @@ User Interface
 --------------------------------------------------------------------------------
 1 - Toggle Equipment Window
 2 - Toggle Overview Window
+3 - Toggle Cargo Window
+
+UP ARROW - Scroll List Up
+DOWN ARROW - Scroll List Down
 
 Overview Window (when focused)
 --------------------------------------------------------------------------------
