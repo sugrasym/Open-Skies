@@ -33,8 +33,8 @@ public class AstralComponent {
 
     protected int x;
     protected int y;
-    private int width;
-    private int height;
+    protected int width;
+    protected int height;
     protected boolean focused;
     protected boolean visible;
     protected String name;
@@ -47,6 +47,10 @@ public class AstralComponent {
     public AstralComponent(int width, int height) {
         this.width = width;
         this.height = height;
+    }
+    
+    public AstralComponent() {
+        
     }
 
     /*

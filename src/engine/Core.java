@@ -291,6 +291,10 @@ public class Core {
                     //toggle overview window
                     hud.toggleSensorWindow();
                 }
+                if (name.equals("KEY_3")) {
+                    //toggle overview window
+                    hud.toggleCargoWindow();
+                }
             }
             //all stop
             if (name.equals("KEY_HOME")) {

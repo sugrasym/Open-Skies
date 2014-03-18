@@ -1,0 +1,53 @@
+################################################################################
+#Commodities
+################################################################################
+
+[Item]
+name=Consumer Goods
+type=commodity
+volume=1
+mass=2
+HP=100
+minPrice=300
+maxPrice=950
+group=product
+store=60
+description=Consumer goods are household items that are relatively easy to produce. Small personal fabrication devices are ubiquitous and capable of converting a sufficient quantity of input materials into a desired good. This process is so lightweight that it often doesn't require any additional energy beyond what all stations can generate internally, making consumer goods manufacturing an attractive option for light stations such as customs offices. 
+[/Item]
+
+################################################################################
+#Weapons
+################################################################################
+
+[Item]
+name=Ka Ka Ka
+type=cannon
+volume=1
+mass=10
+HP=100
+minPrice=500
+maxPrice=750
+group=weapon
+store=1000
+description=Devtest weapon
+[/Item]
+
+################################################################################
+#Ammunition
+################################################################################
+
+################################################################################
+#Special
+################################################################################
+
+[Item]
+name=NOTHING
+type=NOTHING
+volume=0
+mass=0
+HP=0
+minPrice=0
+maxPrice=0
+store=1000
+description=Empty space.
+[/Item]

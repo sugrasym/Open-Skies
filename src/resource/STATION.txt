@@ -8,4 +8,5 @@ hull=10000
 fuel=2500000000000
 mass=0
 sensor=5000
+cargo=125000000
 [/Station]

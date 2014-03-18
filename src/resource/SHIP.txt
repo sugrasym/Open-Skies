@@ -13,6 +13,7 @@ shieldRecharge=180
 hull=1510
 fuel=250000
 sensor=2500
+cargo=75
 [/Ship]
 
 #Medium Fighters
@@ -26,6 +27,7 @@ hull=2810
 fuel=290000
 mass=1.6
 sensor=2450
+cargo=125
 [/Ship]
 
 #Heavy Fighters
@@ -39,4 +41,5 @@ hull=3302
 fuel=320000
 mass=2.2
 sensor=2425
+cargo=200
 [/Ship]

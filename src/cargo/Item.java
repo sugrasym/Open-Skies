@@ -1,17 +1,17 @@
 /*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*
  * Extensible framework for in-game items.
@@ -23,13 +23,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import lib.astral.Parser;
 import lib.astral.Parser.Term;
+import universe.Universe;
 
 public class Item implements Serializable {
     //parameters
-    public static final String TYPE_TURRET = "turret";
-    public static final String TYPE_COMMODITY = "commodity";
 
-    private double volume;
+    public static final String TYPE_CANNON = "cannon";
+    public static final String TYPE_MISSILE = "missile";
+    public static final String TYPE_TURRET = "turret";
+    public static final String TYPE_BATTERY = "battery";
+    public static final String TYPE_COMMODITY = "commodity";
+    public static final String TYPE_SHIP = "ship";
+    public static final String TYPE_STATION = "station";
+    private int volume;
+    private int store;
     private double mass;
     private double HP;
     private String name;
@@ -49,12 +56,12 @@ public class Item implements Serializable {
     }
 
     private void init() {
-        Parser parse = new Parser("ITEMS.txt");
+        Parser parse = Universe.getCache().getItemCache();
         ArrayList<Term> terms = parse.getTermsOfType("Item");
         Term relevant = null;
         for (int a = 0; a < terms.size(); a++) {
             String termName = terms.get(a).getValue("name");
-            if (termName.matches(getName())) {
+            if (termName.equals(getName())) {
                 //get the stats we want
                 relevant = terms.get(a);
                 //and end
@@ -64,15 +71,21 @@ public class Item implements Serializable {
         if (relevant != null) {
             //extract
             type = relevant.getValue("type");
-            volume = Double.parseDouble(relevant.getValue("volume"));
+            volume = Integer.parseInt(relevant.getValue("volume"));
             mass = Double.parseDouble(relevant.getValue("mass"));
             HP = Double.parseDouble(relevant.getValue("HP"));
             minPrice = Integer.parseInt(relevant.getValue("minPrice"));
             maxPrice = Integer.parseInt(relevant.getValue("maxPrice"));
             description = relevant.getValue("description");
             group = relevant.getValue("group");
+            String st = relevant.getValue("store");
+            if (st != null) {
+                store = Integer.parseInt(relevant.getValue("store"));
+            } else {
+                store = 1000;
+            }
         } else {
-            System.out.println("Hades: The item " + getName() + " does not exist in ITEMS.txt");
+            System.out.println("The item " + getName() + " does not exist in ITEM.txt");
         }
     }
 
@@ -98,7 +111,7 @@ public class Item implements Serializable {
         return volume * quantity;
     }
 
-    public void setVolume(double volume) {
+    public void setVolume(int volume) {
         this.volume = volume;
     }
 
@@ -176,7 +189,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return name + "["+quantity+"]";
+        return name + "[" + quantity + "]";
     }
 
     public int getQuantity() {
@@ -185,5 +198,13 @@ public class Item implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getStore() {
+        return store;
+    }
+
+    public void setStore(int store) {
+        this.store = store;
     }
 }

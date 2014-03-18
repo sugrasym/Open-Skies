@@ -1,17 +1,17 @@
 /*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*
  * Manages window components
@@ -22,6 +22,7 @@ import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import engine.Core.GameState;
+import gdi.CargoWindow;
 import gdi.EquipmentWindow;
 import gdi.FuelWindow;
 import gdi.HealthWindow;
@@ -48,6 +49,7 @@ public class HUD {
     FuelWindow fuel;
     OverviewWindow overview;
     EquipmentWindow equipment;
+    CargoWindow cargoWindow;
     //display
     private int width;
     private int height;
@@ -86,6 +88,11 @@ public class HUD {
         equipment.setY(15);
         equipment.setVisible(true);
         windows.add(equipment);
+        //cargo window
+        cargoWindow = new CargoWindow(assets);
+        cargoWindow.setX((width / 2) - cargoWindow.getWidth() / 2);
+        cargoWindow.setY((height / 2) - cargoWindow.getHeight() / 2);
+        windows.add(cargoWindow);
     }
 
     public void add() {
@@ -102,16 +109,17 @@ public class HUD {
 
     public void periodicUpdate(float tpf) {
         try {
-        //special update on simple windows
-        health.updateHealth(getUniverse().getPlayerShip());
-        fuel.updateFuel(getUniverse().getPlayerShip());
-        overview.updateOverview(getUniverse().getPlayerShip());
-        equipment.update(getUniverse().getPlayerShip());
-        //periodic update on other windows
-        for (int a = 0; a < windows.size(); a++) {
-            windows.get(a).periodicUpdate();
-        }
-        } catch(Exception e) {
+            //special update on simple windows
+            health.updateHealth(getUniverse().getPlayerShip());
+            fuel.updateFuel(getUniverse().getPlayerShip());
+            overview.updateOverview(getUniverse().getPlayerShip());
+            equipment.update(getUniverse().getPlayerShip());
+            cargoWindow.update(getUniverse().getPlayerShip());
+            //periodic update on other windows
+            for (int a = 0; a < windows.size(); a++) {
+                windows.get(a).periodicUpdate();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -128,7 +136,7 @@ public class HUD {
         //handle event
         for (int a = 0; a < windows.size(); a++) {
             if (windows.get(a).isFocused() && windows.get(a).isVisible()) {
-                Vector3f adjLoc = new Vector3f(mouseLoc.x, height-mouseLoc.y,height);
+                Vector3f adjLoc = new Vector3f(mouseLoc.x, height - mouseLoc.y, height);
                 if (!mousePressed) {
                     windows.get(a).handleMouseReleasedEvent(name, adjLoc);
                 } else {
@@ -202,12 +210,16 @@ public class HUD {
     public void setUniverse(Universe universe) {
         this.universe = universe;
     }
-    
+
     public void toggleSensorWindow() {
         overview.setVisible(!overview.isVisible());
     }
-    
+
     public void toggleEquipmentWindow() {
         equipment.setVisible(!equipment.isVisible());
+    }
+    
+    public void toggleCargoWindow() {
+        cargoWindow.setVisible(!cargoWindow.isVisible());
     }
 }

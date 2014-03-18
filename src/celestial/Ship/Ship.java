@@ -18,6 +18,7 @@
  */
 package celestial.Ship;
 
+import cargo.Item;
 import celestial.Celestial;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
@@ -29,6 +30,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jmeplanet.PlanetAppState;
@@ -72,12 +74,19 @@ public class Ship extends Celestial {
     private float yaw = 0;
     private float roll = 0;
     private boolean allStop = false;
+    //docking
+    protected boolean docked = false;
     //sensor
     private float sensor;
     private Ship target;
     //physics stats
     private float thrust; //engine force
     private float torque; //turning force
+    //cargo
+    protected double cargo;
+    protected ArrayList<Item> cargoBay = new ArrayList();
+    //money
+    protected long cash = 0;
 
     public Ship(Universe universe, Term type) {
         super(Float.parseFloat(type.getValue("mass")), universe);
@@ -95,6 +104,7 @@ public class Ship extends Celestial {
         setMaxHull(hull = Float.parseFloat(getType().getValue("hull")));
         setMaxFuel(fuel = Float.parseFloat(getType().getValue("fuel")));
         setSensor(Float.parseFloat(getType().getValue("sensor")));
+        setCargo(Float.parseFloat(getType().getValue("cargo")));
     }
 
     private void initNav() {
@@ -533,5 +543,147 @@ public class Ship extends Celestial {
 
     public void setAllStop(boolean allStop) {
         this.allStop = allStop;
+    }
+
+    /*
+     * Cargo code
+     */
+    public double getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(double cargo) {
+        this.cargo = cargo;
+    }
+
+    public ArrayList<Item> getCargoBay() {
+        return cargoBay;
+    }
+
+    public boolean addToCargoBay(Item item) {
+        if (item != null) {
+            /*
+             * Puts an item into the cargo bay if there is space available.
+             */
+            double used = 0;
+            for (int a = 0; a < cargoBay.size(); a++) {
+                used += cargoBay.get(a).getVolume();
+            }
+            double fVol = 0;
+            if (cargoBay.contains(item)) {
+                fVol = item.getVolume() / item.getQuantity();
+            } else {
+                fVol = item.getVolume();
+            }
+            if ((cargo - used) > fVol) {
+                if (!cargoBay.contains(item)) {
+                    cargoBay.add(item);
+                } else {
+                    item.setQuantity(item.getQuantity() + 1);
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    public void removeFromCargoBay(Item item) {
+        if (item.getQuantity() > 1) {
+            item.setQuantity(item.getQuantity() - 1);
+        } else {
+            cargoBay.remove(item);
+        }
+    }
+
+    public int getNumInCargoBay(Item item) {
+        int count = 0;
+        if (item != null) {
+            String iname = item.getName();
+            String itype = item.getType();
+            String group = item.getGroup();
+            for (int a = 0; a < cargoBay.size(); a++) {
+                Item tmp = cargoBay.get(a);
+                if (iname.equals(tmp.getName())) {
+                    if (itype.equals(tmp.getType())) {
+                        if (group.equals(tmp.getGroup())) {
+                            count += tmp.getQuantity();
+                        }
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
+    public double getBayUsed() {
+        double cmass = 0;
+        for (int a = 0; a < cargoBay.size(); a++) {
+            cmass += cargoBay.get(a).getVolume();
+        }
+        return cmass;
+    }
+
+    public boolean hasInCargo(Item item) {
+        return cargoBay.contains(item);
+    }
+
+    public boolean hasInCargo(String item) {
+        for (int a = 0; a < cargoBay.size(); a++) {
+            if (cargoBay.get(a).getName().equals(item)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hasGroupInCargo(String group) {
+        for (int a = 0; a < cargoBay.size(); a++) {
+            if (cargoBay.get(a).getGroup().equals(group)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addInitialCargo(String cargo) {
+        if (cargo != null) {
+            String[] stuff = cargo.split("/");
+            for (int a = 0; a < stuff.length; a++) {
+                String[] tb = stuff[a].split("~");
+                Item tmp = new Item(tb[0]);
+                int count = 1;
+                if (tb.length == 2) {
+                    count = Integer.parseInt(tb[1]);
+                }
+                for (int v = 0; v < count; v++) {
+                    addToCargoBay(tmp);
+                }
+            }
+        }
+    }
+
+    /*
+     * Docking
+     */
+    public boolean isDocked() {
+        return docked;
+    }
+
+    public void setDocked(boolean docked) {
+        this.docked = docked;
+    }
+
+    /*
+     * Cash
+     */
+    public long getCash() {
+        return cash;
+    }
+
+    public void setCash(long cash) {
+        this.cash = cash;
     }
 }

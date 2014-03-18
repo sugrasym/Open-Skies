@@ -59,6 +59,11 @@ public class AstralList extends AstralComponent {
         super(width, height);
         this.parent = parent;
     }
+    
+    public AstralList(AstralWindow parent) {
+        super();
+        this.parent = parent;
+    }
 
     @Override
     public void render(Graphics f) {
