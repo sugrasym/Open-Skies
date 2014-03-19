@@ -5,7 +5,7 @@ system=System 2
 x=25000
 y=0
 z=-25000
-cargo=Consumer Goods~4
+cargo=Ka Ka Ka~2
 [/NewGame]
 
 [Station]

@@ -41,7 +41,7 @@ refire=0.34
 [Weapon]
 #weapon info
 name=Ka Ka Ka
-type=turret
+type=cannon
 #shell info
 damage=35
 range=750

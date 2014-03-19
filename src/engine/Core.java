@@ -299,6 +299,10 @@ public class Core {
                     hud.toggleCargoWindow();
                 }
             }
+            //fire
+            if (name.equals("KEY_SPACE")) {
+                universe.getPlayerShip().fireActiveModules();
+            }
             //all stop
             if (name.equals("KEY_HOME")) {
                 universe.getPlayerShip().setAllStop(keyPressed);

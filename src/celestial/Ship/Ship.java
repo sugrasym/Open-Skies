@@ -823,6 +823,11 @@ public class Ship extends Celestial {
         }
     }
     
+    public void fireActiveModules() {
+        fireActiveTurrets(target);
+        fireActiveGuns(target);
+    }
+    
     public double getNearWeaponRange() {
         /*
          * Returns the range of the closest range onlined weapon.

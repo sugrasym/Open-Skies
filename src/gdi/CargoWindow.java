@@ -88,10 +88,10 @@ public class CargoWindow extends AstralWindow {
             cargoList.clearList();
             propertyList.clearList();
             optionList.clearList();
-            /*//add equipment
-             for (int a = 0; a < ship.getHardpoints().size(); a++) {
-             logicalCargoList.add(ship.getHardpoints().get(a).getMounted());
-             }*/
+            //add equipment
+            for (int a = 0; a < ship.getHardpoints().size(); a++) {
+                logicalCargoList.add(ship.getHardpoints().get(a).getMounted());
+            }
             //add cargo goods
             ArrayList<Item> cargo = ship.getCargoBay();
             for (int a = 0; a < cargo.size(); a++) {
@@ -296,11 +296,11 @@ public class CargoWindow extends AstralWindow {
             } else if (command.equals(CMD_UNMOUNT)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 Equipment tmp = (Equipment) selected;
-                //ship.unfit(tmp);
+                ship.unfit(tmp);
             } else if (command.equals(CMD_MOUNT)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 Equipment tmp = (Equipment) selected;
-                //ship.fit(tmp);
+                ship.fit(tmp);
             } else if (command.equals(CMD_STACK)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 ArrayList<Item> cargoBay = ship.getCargoBay();
