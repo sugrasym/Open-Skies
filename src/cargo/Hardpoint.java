@@ -19,6 +19,7 @@
 package cargo;
 
 import celestial.Ship.Ship;
+import com.jme3.math.Vector3f;
 import entity.Entity;
 import java.io.Serializable;
 
@@ -28,21 +29,19 @@ import java.io.Serializable;
  */
 public class Hardpoint implements Serializable {
 
-    String type;
+    protected String type;
     protected int size;
     protected Equipment mounted;
     Equipment empty = new Equipment("NOTHING");
     Ship host;
-    //position in polar coodinates
-    protected double r; //distance from center
-    protected double t; //angle
+    //relative position in x,y,z from the origin
+    protected Vector3f loc;
 
-    public Hardpoint(Ship host, String type, int size, double r, double t) {
+    public Hardpoint(Ship host, String type, int size, Vector3f loc) {
         this.type = type;
         this.size = size;
         this.host = host;
-        this.r = r;
-        this.t = t;
+        this.loc = loc;
         //mount nothing
         mount(empty);
     }
@@ -75,22 +74,6 @@ public class Hardpoint implements Serializable {
         }
     }
 
-    public double getR() {
-        return r;
-    }
-
-    public void setR(double r) {
-        this.r = r;
-    }
-
-    public double getT() {
-        return t;
-    }
-
-    public void setT(double t) {
-        this.t = t;
-    }
-
     @Override
     public String toString() {
         return getMounted().toString();
@@ -109,7 +92,6 @@ public class Hardpoint implements Serializable {
     }
 
     private void setMounted(Equipment mounted) {
-        //THIS DAMN METHOD HAD BETTER FUCKING STAY PRIVATE
         this.mounted = mounted;
     }
 
@@ -119,5 +101,25 @@ public class Hardpoint implements Serializable {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public Vector3f getLoc() {
+        return loc;
+    }
+
+    public void setLoc(Vector3f loc) {
+        this.loc = loc;
+    }
+    
+    public boolean notNothing() {
+        return !mounted.getName().equals("NOTHING");
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

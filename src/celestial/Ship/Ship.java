@@ -18,7 +18,10 @@
  */
 package celestial.Ship;
 
+import cargo.Equipment;
+import cargo.Hardpoint;
 import cargo.Item;
+import cargo.Weapon;
 import celestial.Celestial;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
@@ -30,6 +33,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import entity.Entity;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,6 +89,7 @@ public class Ship extends Celestial {
     //cargo
     protected double cargo;
     protected ArrayList<Item> cargoBay = new ArrayList();
+    protected ArrayList<Hardpoint> hardpoints = new ArrayList();
     //money
     protected long cash = 0;
 
@@ -105,6 +110,7 @@ public class Ship extends Celestial {
         setMaxFuel(fuel = Float.parseFloat(getType().getValue("fuel")));
         setSensor(Float.parseFloat(getType().getValue("sensor")));
         setCargo(Float.parseFloat(getType().getValue("cargo")));
+        installHardpoints(getType());
     }
 
     private void initNav() {
@@ -174,6 +180,7 @@ public class Ship extends Celestial {
             updateAllStop();
         }
         updateTorque();
+        updateHardpoints();
     }
 
     protected void dying() {
@@ -298,6 +305,13 @@ public class Ship extends Celestial {
             physics.setLinearVelocity(Vector3f.ZERO);
             //we're done
             allStop = false;
+        }
+    }
+
+    protected void updateHardpoints() {
+        //update hard points
+        for (int a = 0; a < hardpoints.size(); a++) {
+            hardpoints.get(a).periodicUpdate(tpf);
         }
     }
 
@@ -685,5 +699,104 @@ public class Ship extends Celestial {
 
     public void setCash(long cash) {
         this.cash = cash;
+    }
+
+    /*
+     * Hardpoints
+     */
+    protected void installHardpoints(Term relevant) throws NumberFormatException {
+        /*
+         * Equips the ship with hardpoints
+         */
+        String complex = relevant.getValue("hardpoint");
+        if (complex != null) {
+            String[] arr = complex.split("/");
+            for (int a = 0; a < arr.length; a++) {
+                String[] re = arr[a].split(",");
+                String hType = re[0];
+                int hSize = Integer.parseInt(re[1]);
+                float hx = Float.parseFloat(re[2]);
+                float hy = Float.parseFloat(re[3]);
+                float hz = Float.parseFloat(re[4]);
+                hardpoints.add(new Hardpoint(this, hType, hSize, new Vector3f(hx, hy, hz)));
+            }
+        }
+    }
+
+    /*
+     * Fitting
+     */
+    public void fit(Equipment equipment) {
+        for (int a = 0; a < hardpoints.size(); a++) {
+            if (equipment.getQuantity() == 1) {
+                if (hardpoints.get(a).isEmpty()) {
+                    if (hardpoints.get(a).getSize() >= equipment.getVolume()) {
+                        if (hardpoints.get(a).getType().equals(equipment.getType())) {
+                            hardpoints.get(a).mount(equipment);
+                            //is this a weapon?
+                            Weapon wep = (Weapon) equipment;
+                            //wep.initGraphics();
+                            //remove from cargo
+                            cargoBay.remove(equipment);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void unfit(Equipment equipment) {
+        try {
+            for (int a = 0; a < hardpoints.size(); a++) {
+                if (hardpoints.get(a).getMounted() == equipment) {
+                    if (getBayUsed() + equipment.getVolume() <= cargo) {
+                        hardpoints.get(a).unmount(equipment);
+                        cargoBay.add(equipment);
+                    } else {
+                        //not enough room
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Ship.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void fireActiveTurrets(Entity target) {
+        for (int a = 0; a < hardpoints.size(); a++) {
+            if (hardpoints.get(a).getType().equals(Item.TYPE_TURRET) || hardpoints.get(a).getType().equals(Item.TYPE_BATTERY)) {
+                hardpoints.get(a).activate(target);
+            }
+        }
+    }
+
+    public void fireActiveGuns(Entity target) {
+        for (int a = 0; a < hardpoints.size(); a++) {
+            if (hardpoints.get(a).getType().equals(Item.TYPE_CANNON) || hardpoints.get(a).getType().equals(Item.TYPE_MISSILE)) {
+                hardpoints.get(a).activate(target);
+            }
+        }
+    }
+
+    public double getNearWeaponRange() {
+        /*
+         * Returns the range of the closest range onlined weapon.
+         */
+        double range = Double.MAX_VALUE;
+        for (int a = 0; a < hardpoints.size(); a++) {
+            if (hardpoints.get(a).isEnabled()) {
+                if (hardpoints.get(a).notNothing()) {
+                    if (hardpoints.get(a).getMounted().getRange() < range) {
+                        range = hardpoints.get(a).getMounted().getRange();
+                    }
+                }
+            }
+        }
+        return range;
+    }
+
+    public ArrayList<Hardpoint> getHardpoints() {
+        return hardpoints;
     }
 }
