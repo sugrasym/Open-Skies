@@ -19,7 +19,13 @@
 package cargo;
 
 import celestial.Ship.Ship;
+import com.jme3.asset.AssetManager;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.Node;
+import com.jme3.scene.shape.Box;
 import entity.Entity;
 import java.io.Serializable;
 
@@ -36,6 +42,7 @@ public class Hardpoint implements Serializable {
     Ship host;
     //relative position in x,y,z from the origin
     protected Vector3f loc;
+    protected transient Node node;
 
     public Hardpoint(Ship host, String type, int size, Vector3f loc) {
         this.type = type;
@@ -121,5 +128,29 @@ public class Hardpoint implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Node getNode() {
+        return node;
+    }
+
+    public void setNode(Node node) {
+        this.node = node;
+    }
+    
+    public void initNode() {
+        node = new Node();
+        node.move(loc);
+    }
+    
+    public void showDebugHardpoint(AssetManager assets) {
+        Box point = new Box(0.1f,0.1f,0.1f);      
+        Geometry red = new Geometry("DebugHardpoint", point);
+        red.setLocalTranslation(Vector3f.ZERO);
+        Material mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
+        mat.setColor("Color", ColorRGBA.Red);
+        red.setMaterial(mat);
+        //add to node
+        node.attachChild(red);
     }
 }

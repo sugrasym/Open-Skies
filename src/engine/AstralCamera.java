@@ -56,15 +56,15 @@ public class AstralCamera {
     public void periodicUpdate(float tpf) {
         if (spatial != null) {
             if (mode == Mode.LOOSE) {
-                node.setLocalTranslation(spatial.getLocalTranslation());
-                node.setLocalRotation(spatial.getLocalRotation());
+                node.setLocalTranslation(spatial.getWorldTranslation());
+                node.setLocalRotation(spatial.getWorldRotation());
                 //copy to camera
                 cam.setLocation(camNode.getWorldTranslation());
                 cam.lookAt(lookNode.getWorldTranslation(),
                         target.getPhysicsRotation().mult(Vector3f.UNIT_Y));
             } else if (mode == Mode.TIGHT) {
-                node.setLocalTranslation(spatial.getLocalTranslation());
-                node.setLocalRotation(spatial.getLocalRotation());
+                node.setLocalTranslation(spatial.getWorldTranslation());
+                node.setLocalRotation(spatial.getWorldRotation());
                 cam.setLocation(camNode.getWorldTranslation());
                 cam.lookAt(node.getWorldTranslation(),
                         target.getPhysicsRotation().mult(Vector3f.UNIT_Y));

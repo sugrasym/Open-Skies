@@ -41,29 +41,4 @@ public class Station extends Ship {
         super.alive();
         //update station stuff
     }
-    
-    public void construct(AssetManager assets) {
-        //Get name
-        String name = getType().getValue("type");
-        //load model
-        spatial = assets.loadModel("Models/" + name + "/Model.blend");
-        //load texture
-        mat = new Material(assets, "Common/MatDefs/Light/Lighting.j3md");
-        mat.setTexture("DiffuseMap",
-                assets.loadTexture("Models/" + name + "/tex.png"));
-        spatial.setShadowMode(RenderQueue.ShadowMode.CastAndReceive);
-        //setup texture
-        spatial.setMaterial(mat);
-        //setup physics
-        CollisionShape hullShape = CollisionShapeFactory.createMeshShape(spatial);
-        physics = new RigidBodyControl(hullShape, 0);
-        spatial.addControl(physics);
-        physics.setSleepingThresholds(0, 0);
-        physics.setAngularDamping(0.99f); //i do NOT want to deal with this at 0
-        physics.setLinearDamping(0.99f);
-        spatial.setName(this.getClass().getName());
-        //store physics name control
-        nameControl.setParent(this);
-        spatial.addControl(nameControl);
-    }
 }
