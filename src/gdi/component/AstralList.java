@@ -39,7 +39,7 @@ public class AstralList extends AstralComponent {
     protected Font font = new Font("Monospaced", Font.PLAIN, 12);
     protected Color fontColor = amber;
     protected Color backColor = windowGrey;
-    protected Color selectColor = amber;
+    protected Color selectColor = Color.DARK_GRAY;
     BufferedImage buffer;
     //index and scrolling
     protected int index = 0;
@@ -73,15 +73,15 @@ public class AstralList extends AstralComponent {
                 //draw the background
                 s.setColor(backColor);
                 s.fillRect(0, 0, getWidth(), getHeight());
+                //draw over the selected
+                s.setColor(selectColor);
+                s.fillRect(0, (index - scrollPosition) * getFont().getSize(), getWidth() - 10, getFont().getSize());
                 //draw the text
                 s.setFont(getFont());
                 s.setColor(fontColor);
                 for (int a = scrollPosition; a < listContents.size(); a++) {
                     s.drawString(listContents.get(a).toString(), 1, ((a + 1) - scrollPosition) * getFont().getSize());
-                }
-                //draw over the selected
-                s.setColor(selectColor);
-                s.drawRect(0, (index - scrollPosition) * getFont().getSize(), getWidth() - 10, getFont().getSize());
+                } 
                 //draw indicator that there is more or less to the list
                 int displayableLines = getHeight() / getFont().getSize();
                 //draw scroll bar

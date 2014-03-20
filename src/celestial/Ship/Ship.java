@@ -598,7 +598,7 @@ public class Ship extends Celestial {
     public String toString() {
         String ret = "";
         {
-            ret = "(" + getType().getValue("type") + ") - " + getName() + ", " /*+ faction*/;
+            ret = "(" + getType().getValue("type") + ") - " + getName() + ", " + faction.getName();
         }
         return ret;
     }
