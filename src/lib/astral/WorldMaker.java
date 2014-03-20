@@ -34,7 +34,7 @@ public class WorldMaker {
 
     public WorldMaker() {
         //generate universe
-        String out = generate(1, 7, 80, 100, 100, 64000, 256000, 500, 5000, 0, 0.25f, 0.25f);
+        String out = generate(1, 7, 80, 100, 100, 64000, 256000, 500, 5000, 0, 0.40f, 0.40f);
         //save
         AstralIO tmp = new AstralIO();
         tmp.writeFile("new-UNIVERSE.txt", out);
@@ -103,8 +103,8 @@ public class WorldMaker {
                     y = 0;
                     z = rnd.nextInt(size / 4) - size / 8;
                     int r = rnd.nextInt(2 * maxPlanetSize);
-                    if (r < maxPlanetSize) {
-                        r = maxPlanetSize;
+                    if (r < minPlanetSize) {
+                        r = minPlanetSize;
                     }
                     int seed = rnd.nextInt();
                     thisSystem +=
