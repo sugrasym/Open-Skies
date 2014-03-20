@@ -21,6 +21,7 @@ package universe;
 import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import engine.ResourceCache;
+import entity.Entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import lib.astral.Parser;
@@ -36,6 +37,8 @@ public class Universe implements Serializable {
     private ArrayList<SolarSystem> systems = new ArrayList<>();
     protected Ship playerShip;
     AssetManager assets;
+    //player property
+    private ArrayList<Entity> playerProperty = new ArrayList<>();
     
     public Universe(AssetManager assets) {
         this.assets = assets;
@@ -100,5 +103,9 @@ public class Universe implements Serializable {
     
     public static ResourceCache getCache() {
         return cache;
+    }
+    
+    public ArrayList<Entity> getPlayerProperty() {
+        return playerProperty;
     }
 }

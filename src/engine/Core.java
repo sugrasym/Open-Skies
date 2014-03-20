@@ -45,6 +45,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jmeplanet.PlanetAppState;
+import lib.Faction;
 import lib.astral.AstralIO;
 import lib.astral.AstralIO.Everything;
 import lib.astral.Parser;
@@ -143,7 +144,7 @@ public class Core {
         ArrayList<Term> types = ships.getTermsOfType("Ship");
         for (int a = 0; a < types.size(); a++) {
             if (types.get(a).getValue("type").equals(shipName)) {
-                ship = new Ship(universe, types.get(a));
+                ship = new Ship(universe, types.get(a),Faction.PLAYER);
                 break;
             }
         }
@@ -295,8 +296,12 @@ public class Core {
                     hud.toggleSensorWindow();
                 }
                 if (name.equals("KEY_3")) {
-                    //toggle overview window
+                    //toggle cargo window
                     hud.toggleCargoWindow();
+                }
+                if (name.equals("KEY_4")) {
+                    //toggle property window
+                    hud.togglePropertyWindow();
                 }
             }
             //fire

@@ -38,7 +38,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jmeplanet.PlanetAppState;
+import lib.Faction;
 import lib.astral.Parser.Term;
+import universe.SolarSystem;
 import universe.Universe;
 
 /**
@@ -46,12 +48,12 @@ import universe.Universe;
  * @author nwiehoff
  */
 public class Ship extends Celestial {
-    
+
     public static final double STOP_LOW_VEL_BOUND = 1;
     public static final float STOP_CAUTION = 0.25f;
-    
+
     public enum EngineMode {
-        
+
         NORMAL,
         NEWTON
     }
@@ -80,11 +82,16 @@ public class Ship extends Celestial {
     private boolean allStop = false;
     //central node
     transient Node center;
+    //faction
+    protected Faction faction;
     //docking
     protected boolean docked = false;
     //sensor
     private float sensor;
     private Ship target;
+    //behavior targets
+    protected Celestial flyToTarget;
+    protected Station homeBase;
     //physics stats
     private float thrust; //engine force
     private float torque; //turning force
@@ -94,15 +101,16 @@ public class Ship extends Celestial {
     protected ArrayList<Hardpoint> hardpoints = new ArrayList();
     //money
     protected long cash = 0;
-    
-    public Ship(Universe universe, Term type) {
+
+    public Ship(Universe universe, Term type, String faction) {
         super(Float.parseFloat(type.getValue("mass")), universe);
         this.type = type;
         //init stats
         initStats();
         initNav();
+        initFaction(faction);
     }
-    
+
     private void initStats() {
         setThrust(Float.parseFloat(getType().getValue("thrust")));
         torque = Float.parseFloat(getType().getValue("torque"));
@@ -114,14 +122,18 @@ public class Ship extends Celestial {
         setCargo(Float.parseFloat(getType().getValue("cargo")));
         installHardpoints(getType());
     }
-    
+
     private void initNav() {
         core = new Node();
         nav = new Node();
         nav.move(Vector3f.UNIT_Z);
         core.attachChild(nav);
     }
-    
+
+    private void initFaction(String name) {
+        faction = new Faction(name);
+    }
+
     public void construct(AssetManager assets) {
         //Get name
         String name = getType().getValue("type");
@@ -134,13 +146,13 @@ public class Ship extends Celestial {
         //construct hardpoints
         constructHardpoints(assets);
     }
-    
+
     public void deconstruct() {
         spatial = null;
         mat = null;
         physics = null;
     }
-    
+
     protected void constructPhysics() {
         //setup physics
         CollisionShape hullShape = CollisionShapeFactory.createDynamicMeshShape(spatial);
@@ -153,7 +165,7 @@ public class Ship extends Celestial {
         nameControl.setParent(this);
         center.addControl(nameControl);
     }
-    
+
     protected void constructMaterial(AssetManager assets, String name) {
         //load texture
         mat = new Material(assets, "Common/MatDefs/Light/Lighting.j3md");
@@ -165,7 +177,7 @@ public class Ship extends Celestial {
         //store
         center.attachChild(spatial);
     }
-    
+
     protected void constructHardpoints(AssetManager assets) {
         for (int a = 0; a < hardpoints.size(); a++) {
             //initialize node
@@ -176,7 +188,7 @@ public class Ship extends Celestial {
             center.attachChild(hardpoints.get(a).getNode());
         }
     }
-    
+
     public Vector3f getRotationAxis() {
         if (nav == null || core == null) {
             initNav();
@@ -198,6 +210,7 @@ public class Ship extends Celestial {
      */
     protected void alive() {
         super.alive();
+        aliveAlways();
         //update center
         updateCenter();
         //check health
@@ -211,11 +224,11 @@ public class Ship extends Celestial {
         updateTorque();
         updateHardpoints();
     }
-    
+
     protected void dying() {
         setState(State.DEAD);
     }
-    
+
     protected void dead() {
         try {
             throw new Exception("Not yet implemented");
@@ -223,14 +236,29 @@ public class Ship extends Celestial {
             Logger.getLogger(Ship.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    protected void aliveAlways() {
+        /*
+         * Contains methods to be called no matter if the ship is in system or
+         * out of system
+         */
+        //sync standings
+        if (faction.getName().equals(Faction.PLAYER)) {
+            if (currentSystem.getUniverse() != null) {
+                faction = currentSystem.getUniverse().getPlayerShip().getFaction();
+                //messages = getUniverse().getPlayerShip().getMessages();
+                //alternateString = true;
+            }
+        }
+    }
+
     protected void updateCenter() {
         if (center == null) {
             center = new Node();
         }
         center.setLocalTranslation(physics.getPhysicsLocation());
     }
-    
+
     protected void updateHealth() {
         //recharge shield
         if (shield < maxShield) {
@@ -244,7 +272,7 @@ public class Ship extends Celestial {
             setState(State.DYING);
         }
     }
-    
+
     protected void updateThrottle() {
         /*
          * Checks to see if the throttle on the ship is up. If it is, then use
@@ -279,7 +307,7 @@ public class Ship extends Celestial {
             }
         }
     }
-    
+
     protected void updateTorque() {
         /*
          * Uses the pitch, yaw, and roll targets to rotate the
@@ -304,7 +332,7 @@ public class Ship extends Celestial {
         }
         roll(roll);
     }
-    
+
     protected void updateAllStop() {
         //get linear velocity
         Vector3f lVol = physics.getLinearVelocity();
@@ -343,7 +371,7 @@ public class Ship extends Celestial {
             allStop = false;
         }
     }
-    
+
     protected void updateHardpoints() {
         //update hard points
         for (int a = 0; a < hardpoints.size(); a++) {
@@ -358,12 +386,12 @@ public class Ship extends Celestial {
     protected void oosAlive() {
         super.oosAlive();
     }
-    
+
     @Override
     protected void oosDying() {
         super.oosDying();
     }
-    
+
     @Override
     protected void oosDead() {
         super.oosDead();
@@ -382,7 +410,7 @@ public class Ship extends Celestial {
             hull += shield;
         }
     }
-    
+
     public void applyDamage(float shieldDmg, float hullDmg) {
         /*
          * Some weapons will be better against shields than hull. This
@@ -400,30 +428,30 @@ public class Ship extends Celestial {
     public void roll(float percent) {
         applyTorque(torque * percent, physics.getPhysicsRotation().mult(Vector3f.UNIT_Z));
     }
-    
+
     public void yaw(float percent) {
         applyTorque(torque * percent, physics.getPhysicsRotation().mult(Vector3f.UNIT_Y));
     }
-    
+
     public void pitch(float percent) {
         applyTorque(torque * percent, physics.getPhysicsRotation().mult(Vector3f.UNIT_X));
     }
-    
+
     public void applyTorque(float force, Vector3f axis) {
         if (sufficientFuel(force)) {
             physics.applyTorque(axis.mult(force));
             useFuel(force);
         }
     }
-    
+
     public void fireRearThrusters(float percent) {
         applyThrust(-getThrust() * percent);
     }
-    
+
     public void fireForwardThrusters(float percent) {
         applyThrust(getThrust() * percent);
     }
-    
+
     public void applyThrust(float force) {
         if (engine != EngineMode.NEWTON) {
             if (sufficientFuel(force)) {
@@ -439,7 +467,7 @@ public class Ship extends Celestial {
      */
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         node.attachChild(center);
-        physics.getPhysicsSpace().add(center);        
+        physics.getPhysicsSpace().add(center);
         this.physics.setLinearVelocity(getVelocity().clone());
         this.physics.setPhysicsLocation(getLocation().clone());
         this.physics.setPhysicsRotation(getRotation().clone());
@@ -466,99 +494,99 @@ public class Ship extends Celestial {
     public float getThrust() {
         return thrust;
     }
-    
+
     public void setThrust(float thrust) {
         this.thrust = thrust;
     }
-    
+
     public float getShield() {
         return shield;
     }
-    
+
     public void setShield(float shield) {
         this.shield = shield;
     }
-    
+
     public float getHull() {
         return hull;
     }
-    
+
     public void setHull(float hull) {
         this.hull = hull;
     }
-    
+
     public float getMaxShield() {
         return maxShield;
     }
-    
+
     public void setMaxShield(float maxShield) {
         this.maxShield = maxShield;
     }
-    
+
     public float getMaxHull() {
         return maxHull;
     }
-    
+
     public void setMaxHull(float maxHull) {
         this.maxHull = maxHull;
     }
-    
+
     public float getFuel() {
         return fuel;
     }
-    
+
     public void setFuel(float fuel) {
         this.fuel = fuel;
     }
-    
+
     public float getMaxFuel() {
         return maxFuel;
     }
-    
+
     public void setMaxFuel(float maxFuel) {
         this.maxFuel = maxFuel;
     }
-    
+
     public float getSensor() {
         return sensor;
     }
-    
+
     public void setSensor(float sensor) {
         this.sensor = sensor;
     }
-    
+
     public float getThrottle() {
         return throttle;
     }
-    
+
     public void setThrottle(float throttle) {
         this.throttle = throttle;
     }
-    
+
     public void setPitch(float pitch) {
         this.pitch = pitch;
     }
-    
+
     public void setYaw(float yaw) {
         this.yaw = yaw;
     }
-    
+
     public void setRoll(float roll) {
         this.roll = roll;
     }
-    
+
     public float getShieldRecharge() {
         return shieldRecharge;
     }
-    
+
     public void setShieldRecharge(float shieldRecharge) {
         this.shieldRecharge = shieldRecharge;
     }
-    
+
     public Ship getTarget() {
         return target;
     }
-    
+
     public void setTarget(Ship target) {
         this.target = target;
     }
@@ -574,31 +602,31 @@ public class Ship extends Celestial {
         }
         return ret;
     }
-    
+
     public Term getType() {
         return type;
     }
-    
+
     public EngineMode getEngine() {
         return engine;
     }
-    
+
     public void setEngine(EngineMode engine) {
         this.engine = engine;
     }
-    
+
     private void useFuel(float force) {
         fuel -= Math.abs(force * burnMultiplier) * tpf;
     }
-    
+
     private boolean sufficientFuel(float force) {
         return fuel - Math.abs(force * burnMultiplier) * tpf >= 0;
     }
-    
+
     public boolean isAllStop() {
         return allStop;
     }
-    
+
     public void setAllStop(boolean allStop) {
         this.allStop = allStop;
     }
@@ -609,15 +637,15 @@ public class Ship extends Celestial {
     public double getCargo() {
         return cargo;
     }
-    
+
     public void setCargo(double cargo) {
         this.cargo = cargo;
     }
-    
+
     public ArrayList<Item> getCargoBay() {
         return cargoBay;
     }
-    
+
     public boolean addToCargoBay(Item item) {
         if (item != null) {
             /*
@@ -647,7 +675,7 @@ public class Ship extends Celestial {
         }
         return true;
     }
-    
+
     public void removeFromCargoBay(Item item) {
         if (item.getQuantity() > 1) {
             item.setQuantity(item.getQuantity() - 1);
@@ -655,7 +683,7 @@ public class Ship extends Celestial {
             cargoBay.remove(item);
         }
     }
-    
+
     public int getNumInCargoBay(Item item) {
         int count = 0;
         if (item != null) {
@@ -675,7 +703,7 @@ public class Ship extends Celestial {
         }
         return count;
     }
-    
+
     public double getBayUsed() {
         double cmass = 0;
         for (int a = 0; a < cargoBay.size(); a++) {
@@ -683,11 +711,11 @@ public class Ship extends Celestial {
         }
         return cmass;
     }
-    
+
     public boolean hasInCargo(Item item) {
         return cargoBay.contains(item);
     }
-    
+
     public boolean hasInCargo(String item) {
         for (int a = 0; a < cargoBay.size(); a++) {
             if (cargoBay.get(a).getName().equals(item)) {
@@ -696,7 +724,7 @@ public class Ship extends Celestial {
         }
         return false;
     }
-    
+
     public boolean hasGroupInCargo(String group) {
         for (int a = 0; a < cargoBay.size(); a++) {
             if (cargoBay.get(a).getGroup().equals(group)) {
@@ -705,7 +733,7 @@ public class Ship extends Celestial {
         }
         return false;
     }
-    
+
     public void addInitialCargo(String cargo) {
         if (cargo != null) {
             String[] stuff = cargo.split("/");
@@ -729,7 +757,7 @@ public class Ship extends Celestial {
     public boolean isDocked() {
         return docked;
     }
-    
+
     public void setDocked(boolean docked) {
         this.docked = docked;
     }
@@ -740,7 +768,7 @@ public class Ship extends Celestial {
     public long getCash() {
         return cash;
     }
-    
+
     public void setCash(long cash) {
         this.cash = cash;
     }
@@ -789,7 +817,7 @@ public class Ship extends Celestial {
             }
         }
     }
-    
+
     public void unfit(Equipment equipment) {
         try {
             for (int a = 0; a < hardpoints.size(); a++) {
@@ -806,7 +834,7 @@ public class Ship extends Celestial {
             Logger.getLogger(Ship.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void fireActiveTurrets(Entity target) {
         for (int a = 0; a < hardpoints.size(); a++) {
             if (hardpoints.get(a).getType().equals(Item.TYPE_TURRET) || hardpoints.get(a).getType().equals(Item.TYPE_BATTERY)) {
@@ -814,7 +842,7 @@ public class Ship extends Celestial {
             }
         }
     }
-    
+
     public void fireActiveGuns(Entity target) {
         for (int a = 0; a < hardpoints.size(); a++) {
             if (hardpoints.get(a).getType().equals(Item.TYPE_CANNON) || hardpoints.get(a).getType().equals(Item.TYPE_MISSILE)) {
@@ -822,12 +850,12 @@ public class Ship extends Celestial {
             }
         }
     }
-    
+
     public void fireActiveModules() {
         fireActiveTurrets(target);
         fireActiveGuns(target);
     }
-    
+
     public double getNearWeaponRange() {
         /*
          * Returns the range of the closest range onlined weapon.
@@ -844,8 +872,82 @@ public class Ship extends Celestial {
         }
         return range;
     }
-    
+
     public ArrayList<Hardpoint> getHardpoints() {
         return hardpoints;
+    }
+
+    /*
+     * Faction standings checks
+     */
+    public int getStandingsToMe(Faction test) {
+        return (int) faction.getStanding(test.getName());
+    }
+
+    public int getStandingsToMe(Ship ship) {
+        if (ship.getFaction().getName().equals(Faction.PLAYER)) {
+            return (int) ship.getFaction().getStanding(getFaction().getName());
+        } else {
+            return (int) faction.getStanding(ship.getFaction().getName());
+        }
+    }
+
+    public Faction getFaction() {
+        return faction;
+    }
+
+    public void setFaction(Faction faction) {
+        this.faction = faction;
+    }
+
+    /*
+     * Autopilot commands
+     */
+    public void cmdAbortDock() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void cmdDock(Station pick) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void cmdFightTarget(Ship pick) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setFlyToTarget(Celestial pick) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Celestial getFlyToTarget() {
+        return flyToTarget;
+    }
+
+    public void cmdFlyToCelestial(Celestial flyToTarget, Double range) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void cmdFollowShip(Ship ship, Double range) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void cmdJump(SolarSystem pick) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Station getHomeBase() {
+        return homeBase;
+    }
+
+    public void setHomeBase(Station homeBase) {
+        this.homeBase = homeBase;
+    }
+
+    public void cmdUndock() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void clearHomeBase() {
+        homeBase = null;
     }
 }

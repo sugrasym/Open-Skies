@@ -1,0 +1,55 @@
+##########################################
+#   hostile <= -3 < neutral < 3 < hostile
+#
+#   So -3 or lower is hostile
+#       3 or higher is friendly
+#
+##########################################
+#Make sure world percents add up to 100% at most.
+
+########Neutral###########
+[Faction]
+name=Neutral
+var_isEmpire=false
+var_worldPercent=0
+Neutral=0
+Entities=-10
+Player=0
+Red Sky=0
+Skybus Interstellar=0
+Prism Exhuming=0
+Leap Frog Logistics=0
+Gunpower=0
+Ageiran Federation=0
+The Archers=0
+ITC=0
+Caina Conglemerate=0
+Wolves=0
+Knights of Orin=0
+Orin Federation=0
+Tengus=0
+[/Faction]
+
+########Anarchy###########
+
+[Faction]
+name=Entities
+var_isEmpire=false
+var_hosts=Ageiran Federation/Orin Federation/Caina Conglemerate/ITC/Neutral
+var_description=Extreme caution advised.
+var_worldPercent=0
+Neutral=-10
+Player=-10
+Entities=10
+[/Faction]
+
+########The Player########
+
+[Faction]
+name=Player
+var_isEmpire=false
+var_worldPercent=0
+Neutral=0
+Player=10
+Entities=-10
+[/Faction]

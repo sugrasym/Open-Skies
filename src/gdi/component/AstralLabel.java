@@ -41,6 +41,10 @@ public class AstralLabel extends AstralComponent {
     public AstralLabel(int width, int height) {
         super(width, height);
     }
+    
+    public AstralLabel() {
+        
+    }
 
     @Override
     public void render(Graphics f) {

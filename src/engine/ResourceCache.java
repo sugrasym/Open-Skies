@@ -39,7 +39,7 @@ public class ResourceCache {
     private Parser shipCache = new Parser("SHIP.txt");
     private Parser itemCache = new Parser("ITEM.txt");
     private Parser weaponCache = new Parser("WEAPONS.txt");
-    //private Parser factionCache = new Parser("FACTIONS.txt");
+    private Parser factionCache = new Parser("FACTIONS.txt");
     private Parser stationCache = new Parser("STATION.txt");
     //private Parser explosionCache = new Parser("EXPLOSIONS.txt");
     //private Parser processCache = new Parser("PROCESSES.txt");
@@ -78,9 +78,9 @@ public class ResourceCache {
         return weaponCache;
     }
 
-    /*public Parser getFactionCache() {
+    public Parser getFactionCache() {
         return factionCache;
-    }*/
+    }
 
     public Parser getStationCache() {
         return stationCache;

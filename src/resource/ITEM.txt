@@ -37,6 +37,49 @@ description=Devtest weapon
 ################################################################################
 
 ################################################################################
+#Ships
+################################################################################
+
+[Item]
+name=Sparrow
+type=ship
+volume=2500
+mass=100
+HP=100
+minPrice=32000
+maxPrice=64000
+store=25
+group=fighter
+description=The Sparrow is an older fighter design that is currently used as a police craft. For a light fighter it is well rounded, although many would criticize it as being generalized to a fault.
+[/Item]
+
+[Item]
+name=Crow
+type=ship
+volume=2500
+mass=150
+HP=100
+minPrice=175000
+maxPrice=196000
+store=12
+group=fighter
+description=The Crow is the main fighter craft used by the Ageiran Federation. Like all Ageiran fighters it is well rounded and not specialized in any way, which makes it a good platform for general purpose patrol duty.
+[/Item]
+
+[Item]
+name=Raven
+type=ship
+volume=2500
+mass=200
+HP=100
+minPrice=625000
+maxPrice=875000
+store=6
+group=fighter
+description=The addition of a 3rd turret gives the Raven significantly improved firepower over the Sparrow and Crow, but like those ships it is heavily generalized. However, like all heavy fighters, this is a very dangerous craft.
+[/Item]
+
+################################################################################
 #Special
 ################################################################################
 

@@ -15,6 +15,7 @@ system=System 2
 x=25100
 y=0
 z=-25000
+faction=Neutral
 [/Station]
 
 [Ship]
@@ -24,6 +25,7 @@ system=System 2
 x=25000
 y=0
 z=-25100
+faction=Entities
 [/Ship]
 
 [System]

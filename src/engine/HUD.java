@@ -27,6 +27,7 @@ import gdi.EquipmentWindow;
 import gdi.FuelWindow;
 import gdi.HealthWindow;
 import gdi.OverviewWindow;
+import gdi.PropertyWindow;
 import gdi.component.AstralWindow;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class HUD {
     OverviewWindow overview;
     EquipmentWindow equipment;
     CargoWindow cargoWindow;
+    PropertyWindow propertyWindow;
     //display
     private int width;
     private int height;
@@ -93,6 +95,11 @@ public class HUD {
         cargoWindow.setX((width / 2) - cargoWindow.getWidth() / 2);
         cargoWindow.setY((height / 2) - cargoWindow.getHeight() / 2);
         windows.add(cargoWindow);
+        //property window
+        propertyWindow = new PropertyWindow(assets);
+        propertyWindow.setX((width / 2) - propertyWindow.getWidth() / 2);
+        propertyWindow.setY((height / 2) - propertyWindow.getHeight() / 2);
+        windows.add(propertyWindow);
     }
 
     public void add() {
@@ -115,6 +122,7 @@ public class HUD {
             overview.updateOverview(getUniverse().getPlayerShip());
             equipment.update(getUniverse().getPlayerShip());
             cargoWindow.update(getUniverse().getPlayerShip());
+            propertyWindow.update(getUniverse().getPlayerShip());
             //periodic update on other windows
             for (int a = 0; a < windows.size(); a++) {
                 windows.get(a).periodicUpdate();
@@ -218,8 +226,12 @@ public class HUD {
     public void toggleEquipmentWindow() {
         equipment.setVisible(!equipment.isVisible());
     }
-    
+
     public void toggleCargoWindow() {
         cargoWindow.setVisible(!cargoWindow.isVisible());
+    }
+    
+    public void togglePropertyWindow() {
+        propertyWindow.setVisible(!propertyWindow.isVisible());
     }
 }

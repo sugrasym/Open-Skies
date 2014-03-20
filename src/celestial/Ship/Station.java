@@ -32,8 +32,8 @@ import universe.Universe;
  * @author nwiehoff
  */
 public class Station extends Ship {
-    public Station(Universe universe, Term type) {
-        super(universe, type);
+    public Station(Universe universe, Term type, String faction) {
+        super(universe, type, faction);
     }
     
     protected void alive() {

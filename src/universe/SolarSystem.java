@@ -1,17 +1,17 @@
 /*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*
  * Solar systems are a collection of planets and other celestials in a convenient
@@ -59,6 +59,9 @@ public class SolarSystem implements Entity, Serializable {
     //engine resources
     private Parser info;
     private Term thisSystem;
+    //lists
+    private final ArrayList<Entity> stationList = new ArrayList<>();
+    private final ArrayList<Entity> shipList = new ArrayList<>();
 
     public SolarSystem(Universe universe, Term thisSystem, Parser parse) {
         name = thisSystem.getValue("name");
@@ -126,7 +129,7 @@ public class SolarSystem implements Entity, Serializable {
             }
         }
     }
-    
+
     private Station makeStation(Term shipTerm) {
         Station station = null;
         {
@@ -145,8 +148,9 @@ public class SolarSystem implements Entity, Serializable {
             float sx = Float.parseFloat(shipTerm.getValue("x"));
             float sy = Float.parseFloat(shipTerm.getValue("y"));
             float sz = Float.parseFloat(shipTerm.getValue("z"));
+            String faction = shipTerm.getValue("faction");
             //create ship
-            station = new Station(universe, hull);
+            station = new Station(universe, hull, faction);
             //position ship
             station.setLocation(new Vector3f(sx, sy, sz));
             station.setCurrentSystem(this);
@@ -174,14 +178,15 @@ public class SolarSystem implements Entity, Serializable {
             float sy = Float.parseFloat(shipTerm.getValue("y"));
             float sz = Float.parseFloat(shipTerm.getValue("z"));
             String cargo = shipTerm.getValue("cargo");
+            String faction = shipTerm.getValue("faction");
             //create ship
-            ship = new Ship(universe, hull);
+            ship = new Ship(universe, hull, faction);
             //position ship
             ship.setLocation(new Vector3f(sx, sy, sz));
             ship.setCurrentSystem(this);
             ship.setName(sName);
             //store cargo
-            if(cargo != null) {
+            if (cargo != null) {
                 ship.addInitialCargo(cargo);
             }
         }
@@ -243,7 +248,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return star;
     }
-    
+
     private Field makeField(AssetManager assets, Term fieldTerm) {
         Field field = null;
         {
@@ -270,7 +275,7 @@ public class SolarSystem implements Entity, Serializable {
                 }
             }
             //make planet and store
-            field = new Field(universe, pName,fin, seed, new Vector3f(px,py,pz), new Vector3f(l, w, h));
+            field = new Field(universe, pName, fin, seed, new Vector3f(px, py, pz), new Vector3f(l, w, h));
             field.setLocation(new Vector3f(px, py, pz));
         }
         return field;
@@ -324,6 +329,14 @@ public class SolarSystem implements Entity, Serializable {
 
     public void putEntityInSystem(Entity entity) {
         celestials.add(entity);
+        //check to see if this is player property
+        if (universe.getPlayerProperty().contains(entity)) {
+            //already in list
+        } else {
+            if (entity instanceof Ship) {
+                universe.getPlayerProperty().add(entity);
+            }
+        }
     }
 
     public void pullEntityFromSystem(Entity entity) {
@@ -340,7 +353,7 @@ public class SolarSystem implements Entity, Serializable {
             }
         }
     }
-    
+
     @Override
     public void oosPeriodicUpdate(float tpf) {
         for (int a = 0; a < celestials.size(); a++) {
@@ -378,7 +391,7 @@ public class SolarSystem implements Entity, Serializable {
         ArrayList<Term> boxes = sky.getTermsOfType("Skybox");
         for (int a = 0; a < boxes.size(); a++) {
             if (boxes.get(a).getValue("name").equals(thisSystem.getValue("sky"))) {
-                skybox = Utility.createSkyBox(assets, "Textures/Skybox/"+boxes.get(a).getValue("asset"), true);
+                skybox = Utility.createSkyBox(assets, "Textures/Skybox/" + boxes.get(a).getValue("asset"), true);
                 break;
             }
         }
@@ -436,8 +449,16 @@ public class SolarSystem implements Entity, Serializable {
     public Vector3f getPhysicsLocation() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     public Universe getUniverse() {
         return universe;
+    }
+
+    public ArrayList<Entity> getStationList() {
+        return stationList;
+    }
+
+    public ArrayList<Entity> getShipList() {
+        return shipList;
     }
 }
