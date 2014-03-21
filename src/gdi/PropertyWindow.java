@@ -84,13 +84,14 @@ public class PropertyWindow extends AstralWindow {
     AstralList inputList = new AstralList(this);
     protected Ship ship;
     //remote operation
-    //TradeWindow trader = new TradeWindow();
+    TradeWindow trader;
     CargoWindow cargo;
     protected Ship tmp;
 
     public PropertyWindow(AssetManager assets) {
         super(assets, 500, 400);
         cargo = new CargoWindow(assets, 460, 360);
+        trader = new TradeWindow(assets, 460, 360);
         generate();
     }
 
@@ -143,6 +144,12 @@ public class PropertyWindow extends AstralWindow {
         cargo.setWidth(460);
         cargo.setHeight(360);
         cargo.setFlat(true);
+        //setup private trader window
+        trader.setX(20);
+        trader.setY(20);
+        trader.setWidth(460);
+        trader.setHeight(360);
+        trader.setFlat(true);
         //pack
         addComponent(propertyList);
         addComponent(infoList);
@@ -150,7 +157,7 @@ public class PropertyWindow extends AstralWindow {
         //do last
         addComponent(inputList);
         addComponent(input);
-        //addComponent(trader);
+        addComponent(trader);
         addComponent(cargo);
     }
 
@@ -331,11 +338,11 @@ public class PropertyWindow extends AstralWindow {
                 mode = Mode.NONE;
             }
         } else if (mode == Mode.WAITING_FOR_TRADE) {
-            /*if (!visible) {
-             mode = Mode.NONE;
-             } else {
-             trader.update(tmp);
-             }*/
+            if (!visible) {
+                mode = Mode.NONE;
+            } else {
+                trader.update(tmp);
+            }
         } else if (mode == Mode.WAITING_FOR_CARGO) {
             if (!visible) {
                 mode = Mode.NONE;
@@ -722,24 +729,14 @@ public class PropertyWindow extends AstralWindow {
 
     @Override
     public void handleMouseReleasedEvent(String me, Vector3f mouseLoc) {
-        if(cargo.isVisible()) {
-            //make sure nothing else has focus so only cargo window gets it
+        if (cargo.isVisible() || trader.isVisible()) {
+            //make sure nothing else has focus so only the child gets it
             propertyList.setFocused(false);
             infoList.setFocused(false);
             optionList.setFocused(false);
             inputList.setFocused(false);
         }
         super.handleMouseReleasedEvent(me, mouseLoc);
-        /*if (trader.isVisible()) {
-         //coordinate transform (windows expect to be the root of the tree)
-         trader.setX(x + 20);
-         trader.setY(y + 20);
-         //handle as normal
-         trader.handleMouseClickedEvent(me);
-         //coordinate transform (put it back before anyone notices it moved)
-         trader.setX(20);
-         trader.setY(20);
-         } else*/
         if (optionList.isFocused()) {
             String command = (String) optionList.getItemAtIndex(optionList.getIndex());
             parseCommand(command);
@@ -773,9 +770,9 @@ public class PropertyWindow extends AstralWindow {
             } else if (command.equals(CMD_UNDOCK)) {
                 selected.cmdUndock();
             } else if (command.equals(CMD_TRADEWITH)) {
-                /*mode = Mode.WAITING_FOR_TRADE;
-                 trader.setVisible(true);
-                 tmp = selected;*/
+                mode = Mode.WAITING_FOR_TRADE;
+                trader.setVisible(true);
+                tmp = selected;
             } else if (command.equals(CMD_DOCK)) {
                 /*ArrayList<Object> choice = new ArrayList<>();
                  choice.add("--Select Station To Dock At--");

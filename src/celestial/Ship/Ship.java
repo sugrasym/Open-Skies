@@ -18,6 +18,7 @@
  */
 package celestial.Ship;
 
+import cargo.DockingPort;
 import cargo.Equipment;
 import cargo.Hardpoint;
 import cargo.Item;
@@ -86,6 +87,7 @@ public class Ship extends Celestial {
     protected Faction faction;
     //docking
     protected boolean docked = false;
+    private DockingPort port;
     //sensor
     private float sensor;
     private Ship target;
@@ -760,6 +762,10 @@ public class Ship extends Celestial {
 
     public void setDocked(boolean docked) {
         this.docked = docked;
+    }
+    
+    public DockingPort getPort() {
+        return port;
     }
 
     /*
