@@ -20,17 +20,21 @@ package cargo;
 
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
+import com.jme3.asset.AssetManager;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
+import com.jme3.scene.shape.Box;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author nwiehoff
  */
 public class DockingPort implements Serializable {
+
     protected String type;
     protected int size;
     protected Ship docked;
@@ -45,8 +49,40 @@ public class DockingPort implements Serializable {
         this.host = host;
         this.loc = loc;
     }
-    
+
     public Station getParent() {
         return host;
+    }
+
+    public void periodicUpdate(double tpf) {
+        //
+    }
+
+    public boolean isEmpty() {
+        return (docked == null);
+    }
+
+    public Node getNode() {
+        return node;
+    }
+
+    public void setNode(Node node) {
+        this.node = node;
+    }
+
+    public void initNode() {
+        node = new Node();
+        node.move(loc);
+    }
+
+    public void showDebugHardpoint(AssetManager assets) {
+        Box point = new Box(size,size,size);
+        Geometry blue = new Geometry("DebugHardpoint", point);
+        blue.setLocalTranslation(Vector3f.ZERO);
+        Material mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
+        mat.setColor("Color", ColorRGBA.Blue);
+        blue.setMaterial(mat);
+        //add to node
+        node.attachChild(blue);
     }
 }

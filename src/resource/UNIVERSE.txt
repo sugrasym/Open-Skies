@@ -20,8 +20,8 @@ faction=Neutral
 [/Station]
 
 [Ship]
-name=Test Raven
-ship=Raven
+name=Test Sparrow
+ship=Sparrow
 system=System 2
 x=25000
 y=0

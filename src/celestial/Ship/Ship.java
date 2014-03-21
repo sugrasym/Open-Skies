@@ -52,7 +52,6 @@ public class Ship extends Celestial {
 
     public static final double STOP_LOW_VEL_BOUND = 1;
     public static final float STOP_CAUTION = 0.25f;
-
     public enum EngineMode {
 
         NORMAL,
@@ -99,8 +98,8 @@ public class Ship extends Celestial {
     private float torque; //turning force
     //cargo
     protected double cargo;
-    protected ArrayList<Item> cargoBay = new ArrayList();
-    protected ArrayList<Hardpoint> hardpoints = new ArrayList();
+    protected ArrayList<Item> cargoBay = new ArrayList<>();
+    protected ArrayList<Hardpoint> hardpoints = new ArrayList<>();
     //money
     protected long cash = 0;
 

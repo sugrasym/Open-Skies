@@ -21,11 +21,7 @@ package celestial.Ship;
 import cargo.DockingPort;
 import cargo.Item;
 import com.jme3.asset.AssetManager;
-import com.jme3.bullet.collision.shapes.CollisionShape;
-import com.jme3.bullet.control.RigidBodyControl;
-import com.jme3.bullet.util.CollisionShapeFactory;
-import com.jme3.material.Material;
-import com.jme3.renderer.queue.RenderQueue;
+import com.jme3.math.Vector3f;
 import java.util.ArrayList;
 import java.util.Random;
 import lib.astral.Parser.Term;
@@ -41,16 +37,42 @@ public class Station extends Ship {
     protected ArrayList<Item> stationSelling = new ArrayList<>();
     protected ArrayList<Item> stationBuying = new ArrayList<>();
     //docking
-    private ArrayList<DockingPort> ports = new ArrayList<>();
+    protected ArrayList<DockingPort> ports = new ArrayList<>();
 
     public Station(Universe universe, Term type, String faction) {
         super(universe, type, faction);
+        installDockingPorts(getType());
     }
 
+    @Override
+    public void construct(AssetManager assets) {
+        super.construct(assets);
+        constructDockingPorts(assets);
+    }
+
+    protected void constructDockingPorts(AssetManager assets) {
+        for (int a = 0; a < ports.size(); a++) {
+            //initialize node
+            ports.get(a).initNode();
+            //debug
+            ports.get(a).showDebugHardpoint(assets);
+            //store node with spatial
+            center.attachChild(ports.get(a).getNode());
+        }
+    }
+
+    @Override
     protected void alive() {
         //update parent
         super.alive();
         //update station stuff
+    }
+
+    @Override
+    protected void aliveAlways() {
+        super.aliveAlways();
+        //update docking ports
+        updateDockingPorts();
     }
 
     /*
@@ -62,6 +84,31 @@ public class Station extends Ship {
 
     public DockingPort requestDockingPort(Ship client) {
         return null;
+    }
+
+    private void updateDockingPorts() {
+        for (int a = 0; a < ports.size(); a++) {
+            ports.get(a).periodicUpdate(tpf);
+        }
+    }
+
+    private void installDockingPorts(Term relevant) throws NumberFormatException {
+        /*
+         * Equips the station with docking ports
+         */
+        String complex = relevant.getValue("port");
+        if (complex != null) {
+            String[] arr = complex.split("/");
+            for (int a = 0; a < arr.length; a++) {
+                String[] re = arr[a].split(",");
+                String hType = re[0];
+                int hSize = Integer.parseInt(re[1]);
+                float hx = Float.parseFloat(re[2]);
+                float hy = Float.parseFloat(re[3]);
+                float hz = Float.parseFloat(re[4]);
+                ports.add(new DockingPort(this, hType, hSize, new Vector3f(hx, hy, hz)));
+            }
+        }
     }
 
     /*
