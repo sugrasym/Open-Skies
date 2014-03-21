@@ -73,6 +73,7 @@ public class DockingPort implements Serializable {
     public void initNode() {
         node = new Node();
         node.move(loc);
+        System.out.println(loc);
     }
 
     public void showDebugHardpoint(AssetManager assets) {

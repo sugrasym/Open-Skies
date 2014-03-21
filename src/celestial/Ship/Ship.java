@@ -135,6 +135,7 @@ public class Ship extends Celestial {
         faction = new Faction(name);
     }
 
+    @Override
     public void construct(AssetManager assets) {
         //Get name
         String name = getType().getValue("type");
@@ -148,6 +149,7 @@ public class Ship extends Celestial {
         constructHardpoints(assets);
     }
 
+    @Override
     public void deconstruct() {
         spatial = null;
         mat = null;
