@@ -47,7 +47,7 @@ import lib.astral.Parser.Term;
 public class SolarSystem implements Entity, Serializable {
     //this system
 
-    Spatial skybox;
+    transient Spatial skybox;
     protected String name;
     float x;
     float y;

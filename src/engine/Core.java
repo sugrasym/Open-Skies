@@ -505,6 +505,13 @@ public class Core {
                 universe.setPlayerShip(null);
                 universe = null;
             }
+            //clear nodes
+            rootNode.detachAllChildren();
+            //clear physics
+            bulletAppState.getPhysicsSpace().destroy();
+            bulletAppState.getPhysicsSpace().create();
+            bulletAppState.getPhysicsSpace().setGravity(Vector3f.ZERO);
+            initPhysicsListeners();
             //get everything
             Everything everything;
             FileInputStream fis = new FileInputStream(gameName + ".hab");

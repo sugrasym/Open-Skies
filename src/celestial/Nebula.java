@@ -47,7 +47,7 @@ public class Nebula extends Celestial {
     Random rnd = new Random();
     private Term type;
     private ColorRGBA color = ColorRGBA.Black;
-    NebulaEmitter emitter;
+    private transient NebulaEmitter emitter;
     Vector3f volume;
 
     public Nebula(Universe universe, String name, Term type, ColorRGBA color, Vector3f volume) {

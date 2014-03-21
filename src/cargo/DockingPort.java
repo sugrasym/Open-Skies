@@ -76,7 +76,6 @@ public class DockingPort implements Serializable {
                         client.clearForces();
                         client.setPhysicsLocation(nLoc);
                     }
-                    System.out.println(dist);
                 }
             } else {
                 //keep client synced in bay
@@ -113,7 +112,7 @@ public class DockingPort implements Serializable {
     public void initNode() {
         node = new Node();
         node.move(loc);
-        System.out.println(loc);
+        //System.out.println(loc);
     }
 
     public void showDebugHardpoint(AssetManager assets) {

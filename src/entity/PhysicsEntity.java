@@ -1,17 +1,17 @@
 /*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*
  * Represents a physics entity.
@@ -45,10 +45,11 @@ import jmeplanet.PlanetAppState;
  */
 public class PhysicsEntity implements Entity, Serializable {
     //name
+
     private String name = "";
     //texture and geometry crap
-    protected Material mat;
-    protected Spatial spatial;
+    protected transient Material mat;
+    protected transient Spatial spatial;
     //entity crap
     private State state = State.ALIVE;
     /*
@@ -58,9 +59,9 @@ public class PhysicsEntity implements Entity, Serializable {
      */
     Vector3f location = new Vector3f(0, 0, 0);
     Quaternion rotation = Quaternion.ZERO;
-    private Vector3f velocity = new Vector3f(0,0,0);
+    private Vector3f velocity = new Vector3f(0, 0, 0);
     //physics crap
-    protected RigidBodyControl physics;
+    protected transient RigidBodyControl physics;
     private float mass = 0;
     protected PhysicsNameControl nameControl = new PhysicsNameControl();
 
@@ -71,10 +72,12 @@ public class PhysicsEntity implements Entity, Serializable {
     /*
      * Implementations of entity
      */
+    @Override
     public void periodicUpdate(float tpf) {
-        
+
     }
-    
+
+    @Override
     public void oosPeriodicUpdate(float tpf) {
         //called only when the player is not in the same system
     }
@@ -107,7 +110,7 @@ public class PhysicsEntity implements Entity, Serializable {
      */
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         node.attachChild(spatial);
-        physics.getPhysicsSpace().add(spatial);        
+        physics.getPhysicsSpace().add(spatial);
         this.physics.setLinearVelocity(getVelocity().clone());
         this.physics.setPhysicsLocation(location.clone());
         this.physics.setPhysicsRotation(rotation.clone());
@@ -120,11 +123,10 @@ public class PhysicsEntity implements Entity, Serializable {
         node.detachChild(spatial);
         physics.getPhysicsSpace().remove(spatial);
     }
-    
+
     /*
      *More state information
      */
-
     public State getState() {
         return state;
     }
@@ -148,7 +150,7 @@ public class PhysicsEntity implements Entity, Serializable {
     public void setRotation(Quaternion rot) {
         rotation = rot.clone();
     }
-      
+
     @Override
     public String getName() {
         return name;
@@ -169,23 +171,23 @@ public class PhysicsEntity implements Entity, Serializable {
     public void setMass(float mass) {
         this.mass = mass;
     }
-    
+
     public void applyCentralForce(Vector3f force) {
         physics.applyCentralForce(force);
     }
-    
+
     public void applyForce(Vector3f force, Vector3f location) {
         physics.applyForce(force, location);
     }
-    
+
     public void applyTorque(Vector3f torque) {
         physics.applyTorque(torque);
     }
-    
+
     public void clearForces() {
         physics.clearForces();
     }
-    
+
     /*
      * For getting physics info
      */
@@ -218,30 +220,30 @@ public class PhysicsEntity implements Entity, Serializable {
 
     public Vector3f getVelocity() {
         return velocity;
-}
+    }
 
     public void setVelocity(Vector3f velocity) {
         this.velocity = velocity;
     }
-    
+
     /*
      * Control for dereferencing physics objects from an event name
      */
     public class PhysicsNameControl implements Serializable, Control {
+
         private Object parent;
-        
+
         public Object getParent() {
             return parent;
         }
-        
+
         public void setParent(Object object) {
             this.parent = object;
         }
-        
+
         /*
          * Cruft
          */
-
         @Override
         public Control cloneForSpatial(Spatial spatial) {
             return null;

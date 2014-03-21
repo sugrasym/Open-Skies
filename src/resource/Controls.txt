@@ -28,6 +28,11 @@ User Interface
 UP ARROW - Scroll List Up
 DOWN ARROW - Scroll List Down
 
+Loading And Saving
+--------------------------------------------------------------------------------
+Quick Load - Pause
+Quick Save - Insert
+
 Overview Window (when focused)
 --------------------------------------------------------------------------------
 

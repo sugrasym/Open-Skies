@@ -22,11 +22,9 @@ import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
-import com.jme3.bullet.collision.shapes.SphereCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
-import com.jme3.material.RenderState;
 import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
@@ -63,12 +61,12 @@ public class Field extends Celestial implements Serializable {
     private int rockScale = 1;
     private int diversity = 1;
     //stores the position and rotation of each member of the block
-    private Block[] patterns;
-    private ArrayList<Block> zones = new ArrayList<>();
+    private transient Block[] patterns;
+    private transient ArrayList<Block> zones;
     private int step = 0;
     //node for attatching blocks
-    private Node node;
-    private BulletAppState bulletAppState;
+    private transient Node node;
+    private transient BulletAppState bulletAppState;
 
     public Field(Universe universe, String name, Term field, int seed, Vector3f location, Vector3f bounds) {
         super(Float.POSITIVE_INFINITY, universe);
@@ -83,13 +81,14 @@ public class Field extends Celestial implements Serializable {
         diversity = Integer.parseInt(field.getValue("diversity"));
         count = Integer.parseInt(field.getValue("count"));
         type = field;
-        generatePatterns();
     }
 
     public void construct(AssetManager assets) {
         /*
          * Make asteroid dummies
          */
+        zones = new ArrayList<>();
+        generatePatterns();
         generateAsteroids(assets);
     }
 

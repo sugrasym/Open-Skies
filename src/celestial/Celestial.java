@@ -73,6 +73,7 @@ public class Celestial extends PhysicsEntity implements Serializable {
 
     @Override
     public void periodicUpdate(float tpf) {
+        super.periodicUpdate(tpf);
         this.tpf = tpf;
         if (getState() == State.ALIVE) {
             alive();
@@ -87,6 +88,7 @@ public class Celestial extends PhysicsEntity implements Serializable {
 
     @Override
     public void oosPeriodicUpdate(float tpf) {
+        super.oosPeriodicUpdate(tpf);
         this.tpf = tpf;
         if (getState() == State.ALIVE) {
             oosAlive();

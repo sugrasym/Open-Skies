@@ -52,6 +52,7 @@ public class Ship extends Celestial {
 
     public static final double STOP_LOW_VEL_BOUND = 1;
     public static final float STOP_CAUTION = 0.25f;
+
     public enum EngineMode {
 
         NORMAL,
@@ -226,6 +227,7 @@ public class Ship extends Celestial {
         }
         updateTorque();
         updateHardpoints();
+        syncPhysics();
     }
 
     protected void dying() {
@@ -764,7 +766,7 @@ public class Ship extends Celestial {
     public void setDocked(boolean docked) {
         this.docked = docked;
     }
-    
+
     public DockingPort getPort() {
         return port;
     }
@@ -958,17 +960,27 @@ public class Ship extends Celestial {
     public void clearHomeBase() {
         homeBase = null;
     }
-    
+
     /*
      * Syncing physics for docking
      */
-    
     public void setPhysicsLocation(Vector3f loc) {
         physics.setPhysicsLocation(loc);
     }
-    
+
     public void nullVelocity() {
         physics.setLinearVelocity(Vector3f.ZERO);
         physics.setAngularVelocity(Vector3f.ZERO);
+    }
+
+    /*
+     * Syncing physics for saving
+     */
+    public void syncPhysics() {
+        if (physics != null) {
+            setLocation(physics.getPhysicsLocation());
+            setRotation(physics.getPhysicsRotation());
+            setVelocity(physics.getLinearVelocity());
+        }
     }
 }

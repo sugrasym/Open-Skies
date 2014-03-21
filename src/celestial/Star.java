@@ -43,7 +43,7 @@ import universe.Universe;
  */
 public class Star extends Planet {
     
-    PointLight light;
+    transient PointLight light;
     transient ParticleEmitter emitter;
     private int seed;
     Random rnd;

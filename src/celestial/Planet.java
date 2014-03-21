@@ -51,10 +51,10 @@ import universe.Universe;
  */
 public class Planet extends Celestial {
 
-    private Texture2D tex;
-    jmeplanet.Planet fractalPlanet;
-    jmeplanet.Planet atmosphereShell;
-    protected RigidBodyControl atmospherePhysics;
+    private transient Texture2D tex;
+    transient jmeplanet.Planet fractalPlanet;
+    transient jmeplanet.Planet atmosphereShell;
+    protected transient RigidBodyControl atmospherePhysics;
     private Term type;
     private int seed = 0;
     protected float radius;
