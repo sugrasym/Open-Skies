@@ -23,16 +23,9 @@ import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
-import com.jme3.input.RawInputListener;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
-import com.jme3.input.event.JoyAxisEvent;
-import com.jme3.input.event.JoyButtonEvent;
-import com.jme3.input.event.KeyInputEvent;
-import com.jme3.input.event.MouseButtonEvent;
-import com.jme3.input.event.MouseMotionEvent;
-import com.jme3.input.event.TouchEvent;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
@@ -145,6 +138,7 @@ public class Core {
         for (int a = 0; a < types.size(); a++) {
             if (types.get(a).getValue("type").equals(shipName)) {
                 ship = new Ship(universe, types.get(a),Faction.PLAYER);
+                ship.setName("Your "+shipName);
                 break;
             }
         }
@@ -152,8 +146,10 @@ public class Core {
         float x = Float.parseFloat(game.getValue("x"));
         float y = Float.parseFloat(game.getValue("y"));
         float z = Float.parseFloat(game.getValue("z"));
+        long cash = Long.parseLong(game.getValue("cash"));
         ship.setLocation(new Vector3f(x, y, z));
         ship.setCurrentSystem(start);
+        ship.setCash(cash);
         start.putEntityInSystem(ship);
         //store initial cargo
         String cargo = game.getValue("cargo");

@@ -5,6 +5,7 @@ system=System 2
 x=25000
 y=0
 z=-25000
+cash=50000
 cargo=Ka Ka Ka~2
 [/NewGame]
 
