@@ -21,6 +21,9 @@ package celestial.Ship;
 import cargo.DockingPort;
 import cargo.Item;
 import com.jme3.asset.AssetManager;
+import com.jme3.bullet.collision.shapes.CollisionShape;
+import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
@@ -50,6 +53,20 @@ public class Station extends Ship {
     public void construct(AssetManager assets) {
         super.construct(assets);
         constructDockingPorts(assets);
+    }
+    
+    @Override
+    protected void constructPhysics() {
+        //setup physics
+        CollisionShape meshShape = CollisionShapeFactory.createMeshShape(spatial);
+        physics = new RigidBodyControl(meshShape, getMass());
+        center.addControl(physics);
+        physics.setSleepingThresholds(0, 0);
+        physics.setAngularDamping(0.99f); //I do NOT want to deal with this at 0
+        center.setName(this.getClass().getName());
+        //store physics name control
+        nameControl.setParent(this);
+        center.addControl(nameControl);
     }
 
     protected void constructDockingPorts(AssetManager assets) {
