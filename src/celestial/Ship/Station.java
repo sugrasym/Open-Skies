@@ -54,7 +54,7 @@ public class Station extends Ship {
         super.construct(assets);
         constructDockingPorts(assets);
     }
-    
+
     @Override
     protected void constructPhysics() {
         //setup physics
@@ -84,14 +84,22 @@ public class Station extends Ship {
     protected void alive() {
         //update parent
         super.alive();
-        //update station stuff
+        //update docking ports
+        updateDockingPorts();
     }
 
     @Override
     protected void aliveAlways() {
         super.aliveAlways();
+    }
+
+    /*
+     * OOS Updates
+     */
+    @Override
+    protected void oosAlive() {
         //update docking ports
-        updateDockingPorts();
+        oosUpdateDockingPorts();
     }
 
     /*
@@ -102,12 +110,43 @@ public class Station extends Ship {
     }
 
     public DockingPort requestDockingPort(Ship client) {
+        if (canDock(client)) {
+            for (int a = 0; a < ports.size(); a++) {
+                if (ports.get(a).isEmpty()) {
+                    if (client.getStandingsToMe(this) > -2) {
+                        ports.get(a).setClient(client);
+                        return ports.get(a);
+                    }
+                } else {
+                    //unavailable
+                }
+            }
+        }
         return null;
+    }
+
+    public boolean canDock(Ship ship) {
+        for (int a = 0; a < ports.size(); a++) {
+            if (ports.get(a).isEmpty()) {
+                if (ship.getStandingsToMe(this) > -2) {
+                    return true;
+                }
+            } else {
+                //unavailable
+            }
+        }
+        return false;
     }
 
     private void updateDockingPorts() {
         for (int a = 0; a < ports.size(); a++) {
             ports.get(a).periodicUpdate(tpf);
+        }
+    }
+
+    private void oosUpdateDockingPorts() {
+        for (int a = 0; a < ports.size(); a++) {
+            ports.get(a).oosPeriodicUpdate(tpf);
         }
     }
 

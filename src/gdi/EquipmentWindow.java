@@ -1,17 +1,17 @@
 /*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*
  * Window for displaying the status of a ship's equipment.
@@ -20,6 +20,7 @@ package gdi;
 
 import cargo.Hardpoint;
 import celestial.Ship.Ship;
+import celestial.Ship.Station;
 import com.jme3.asset.AssetManager;
 import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
@@ -42,16 +43,16 @@ import java.util.ArrayList;
  */
 public class EquipmentWindow extends AstralWindow {
 
-    AstralList weaponList = new AstralList(this,1,1);
-    AstralList targetList = new AstralList(this,1,1);
+    AstralList weaponList = new AstralList(this, 1, 1);
+    AstralList targetList = new AstralList(this, 1, 1);
     OverviewCanvas overview = new OverviewCanvas();
-    AstralLabel targetName = new AstralLabel(1,1);
-    AstralLabel targetType = new AstralLabel(1,1);
-    AstralLabel targetFaction = new AstralLabel(1,1);
-    AstralLabel targetDistance = new AstralLabel(1,1);
-    AstralLabel dockInfo = new AstralLabel(1,1);
-    AstralBar targetShield = new AstralBar(1,1);
-    AstralBar targetHull = new AstralBar(1,1);
+    AstralLabel targetName = new AstralLabel(1, 1);
+    AstralLabel targetType = new AstralLabel(1, 1);
+    AstralLabel targetFaction = new AstralLabel(1, 1);
+    AstralLabel targetDistance = new AstralLabel(1, 1);
+    AstralLabel dockInfo = new AstralLabel(1, 1);
+    AstralBar targetShield = new AstralBar(1, 1);
+    AstralBar targetHull = new AstralBar(1, 1);
     Font targetFont = new Font("Monospaced", Font.PLAIN, 10);
     private Ship ship;
 
@@ -72,11 +73,11 @@ public class EquipmentWindow extends AstralWindow {
         for (int a = 0; a < celestials.size(); a++) {
             if (celestials.get(a) instanceof Ship) {
                 /*if (!(celestials.get(a) instanceof Projectile)) {*/
-                    Ship tmp = (Ship) celestials.get(a);
-                    if (ship.getPhysicsLocation().distance(tmp.getPhysicsLocation()) 
-                            < ship.getSensor() && ship != tmp) {
-                        targetList.addToList(tmp);
-                    }
+                Ship tmp = (Ship) celestials.get(a);
+                if (ship.getPhysicsLocation().distance(tmp.getPhysicsLocation())
+                        < ship.getSensor() && ship != tmp) {
+                    targetList.addToList(tmp);
+                }
                 /*}*/
             }
         }
@@ -85,26 +86,26 @@ public class EquipmentWindow extends AstralWindow {
         if (tmp != null) {
             targetName.setText(tmp.getName());
             targetType.setText(tmp.getType().getValue("type"));
-            //targetFaction.setText("[" + ship.getStandingsToMe(tmp) + "] " + tmp.getFaction());
+            targetFaction.setText("[" + ship.getStandingsToMe(tmp) + "] " + tmp.getFaction().getName());
             targetDistance.setText((int) ship.getPhysicsLocation().distance(ship.getTarget().getPhysicsLocation()) + "");
-            /*if (tmp instanceof Station) {
+            if (tmp instanceof Station) {
                 Station st = (Station) tmp;
                 if (ship.isDocked()) {
-                    dockInfo.setText("Press D To Launch");
+                    dockInfo.setText("Press F1 To Launch");
                 } else {
                     if (ship.getPort() != null) {
                         dockInfo.setText("Request Accepted");
                     } else {
                         if (st.canDock(ship)) {
-                            dockInfo.setText("Press D For Docking");
+                            dockInfo.setText("Press F1 For Docking");
                         } else {
                             dockInfo.setText("Docking Denied");
                         }
                     }
-                }*\/
+                }
             } else {
                 dockInfo.setText("");
-            }*/
+            }
             targetShield.setPercentage(ship.getTarget().getShield() / ship.getTarget().getMaxShield());
             targetHull.setPercentage(ship.getTarget().getHull() / ship.getTarget().getMaxHull());
         } else {
@@ -140,7 +141,7 @@ public class EquipmentWindow extends AstralWindow {
         targetName.setY((getHeight() / 2) + 1);
         targetName.setFont(targetFont);
         targetName.setWidth(getWidth() / 2);
-        targetName.setHeight(targetFont.getSize()+1);
+        targetName.setHeight(targetFont.getSize() + 1);
         targetName.setVisible(true);
         //setup the target type label
         targetType.setName("type");
@@ -149,7 +150,7 @@ public class EquipmentWindow extends AstralWindow {
         targetType.setY((getHeight() / 2) + 1 + targetFont.getSize());
         targetType.setFont(targetFont);
         targetType.setWidth(getWidth() / 2);
-        targetType.setHeight(targetFont.getSize()+1);
+        targetType.setHeight(targetFont.getSize() + 1);
         targetType.setVisible(true);
         //setup the target faction label
         targetFaction.setName("faction");
@@ -158,7 +159,7 @@ public class EquipmentWindow extends AstralWindow {
         targetFaction.setY((getHeight() / 2) + 1 + 2 * targetFont.getSize());
         targetFaction.setFont(targetFont);
         targetFaction.setWidth(getWidth() / 2);
-        targetFaction.setHeight(targetFont.getSize()+1);
+        targetFaction.setHeight(targetFont.getSize() + 1);
         targetFaction.setVisible(true);
         //setup the target distance
         targetDistance.setName("distance");
@@ -167,7 +168,7 @@ public class EquipmentWindow extends AstralWindow {
         targetDistance.setY((getHeight() / 2) + 1 + 3 * targetFont.getSize());
         targetDistance.setFont(targetFont);
         targetDistance.setWidth(getWidth() / 2);
-        targetDistance.setHeight(targetFont.getSize()+1);
+        targetDistance.setHeight(targetFont.getSize() + 1);
         targetDistance.setVisible(true);
         //setup the target distance
         dockInfo.setName("dock");
@@ -176,14 +177,14 @@ public class EquipmentWindow extends AstralWindow {
         dockInfo.setY((getHeight() / 2) + 1 + 5 * targetFont.getSize());
         dockInfo.setFont(targetFont);
         dockInfo.setWidth(getWidth() / 2);
-        dockInfo.setHeight((targetFont.getSize()+1)*2);
+        dockInfo.setHeight((targetFont.getSize() + 1) * 2);
         dockInfo.setVisible(true);
         //setup the shield bar
         targetShield.setX(0);
         targetShield.setName("shield");
         targetShield.setY(getHeight() - 2 * targetFont.getSize());
         targetShield.setWidth(getWidth() / 2);
-        targetShield.setHeight(targetFont.getSize()+1);
+        targetShield.setHeight(targetFont.getSize() + 1);
         targetShield.setBarColor(Color.GREEN);
         targetShield.setVisible(true);
         //setup the hull
@@ -191,7 +192,7 @@ public class EquipmentWindow extends AstralWindow {
         targetHull.setName("shield");
         targetHull.setY(getHeight() - 1 * targetFont.getSize());
         targetHull.setWidth(getWidth() / 2);
-        targetHull.setHeight(targetFont.getSize()+1);
+        targetHull.setHeight(targetFont.getSize() + 1);
         targetHull.setBarColor(Color.RED);
         targetHull.setVisible(true);
         //setup the overview canvas
@@ -219,7 +220,7 @@ public class EquipmentWindow extends AstralWindow {
         Font radarFont = new Font("Monospaced", Font.PLAIN, 9);
 
         public OverviewCanvas() {
-            super(1,1);
+            super(1, 1);
         }
 
         @Override
@@ -307,7 +308,7 @@ public class EquipmentWindow extends AstralWindow {
         //get the module and toggle its enabled status
         if (weaponList.isFocused()) {
             /*Hardpoint tmp = (Hardpoint) weaponList.getItemAtIndex(weaponList.getIndex());
-            tmp.setEnabled(!tmp.isEnabled());*/
+             tmp.setEnabled(!tmp.isEnabled());*/
         }
         if (targetList.isFocused()) {
             ship.setTarget((Ship) targetList.getItemAtIndex(targetList.getIndex()));

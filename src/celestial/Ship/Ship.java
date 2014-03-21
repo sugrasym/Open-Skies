@@ -915,7 +915,8 @@ public class Ship extends Celestial {
     }
 
     public void cmdDock(Station pick) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TODO: Make this a real behavior
+        port = pick.requestDockingPort(this);
     }
 
     public void cmdFightTarget(Ship pick) {
@@ -956,5 +957,18 @@ public class Ship extends Celestial {
 
     public void clearHomeBase() {
         homeBase = null;
+    }
+    
+    /*
+     * Syncing physics for docking
+     */
+    
+    public void setPhysicsLocation(Vector3f loc) {
+        physics.setPhysicsLocation(loc);
+    }
+    
+    public void nullVelocity() {
+        physics.setLinearVelocity(Vector3f.ZERO);
+        physics.setAngularVelocity(Vector3f.ZERO);
     }
 }

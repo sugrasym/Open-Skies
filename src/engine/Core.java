@@ -19,6 +19,7 @@
 package engine;
 
 import celestial.Ship.Ship;
+import celestial.Ship.Station;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.input.InputManager;
@@ -51,9 +52,9 @@ import universe.Universe;
  * @author Nathan Wiehoff
  */
 public class Core {
-    
+
     public enum GameState {
-        
+
         PAUSED,
         IN_SPACE,
     }
@@ -79,7 +80,7 @@ public class Core {
     AppSettings settings;
     AssetManager assets;
     InputManager input;
-    
+
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState, AssetManager assets, PlanetAppState planetAppState, InputManager input, AppSettings settings) {
         this.rootNode = rootNode;
         this.guiNode = guiNode;
@@ -91,7 +92,7 @@ public class Core {
         //initialize
         init();
     }
-    
+
     private void init() {
         initKeys();
         initMouse();
@@ -101,18 +102,18 @@ public class Core {
         initHud();
         //bulletAppState.getPhysicsSpace().enableDebug(assets);
     }
-    
+
     private void initHud() {
         hud = new HUD(guiNode, universe, settings.getWidth(),
                 settings.getHeight(), assets);
         hud.add();
     }
-    
+
     private void initPhysicsListeners() {
         CollisionListener listener = new CollisionListener();
         bulletAppState.getPhysicsSpace().addCollisionListener(listener);
     }
-    
+
     private void newGame(String name) {
         //get the game from the universe
         Parser parse = new Parser("UNIVERSE.txt");
@@ -137,8 +138,8 @@ public class Core {
         ArrayList<Term> types = ships.getTermsOfType("Ship");
         for (int a = 0; a < types.size(); a++) {
             if (types.get(a).getValue("type").equals(shipName)) {
-                ship = new Ship(universe, types.get(a),Faction.PLAYER);
-                ship.setName("Your "+shipName);
+                ship = new Ship(universe, types.get(a), Faction.PLAYER);
+                ship.setName("Your " + shipName);
                 break;
             }
         }
@@ -167,7 +168,7 @@ public class Core {
         //TODO: init code
 
     }
-    
+
     private void initMouse() {
         //mouse buttons
         input.addMapping("MOUSE_LClick", new MouseButtonTrigger(0));
@@ -178,7 +179,7 @@ public class Core {
             "MOUSE_RClick",
             "MOUSE_CClick"});
     }
-    
+
     private void initKeys() {
         //Number keys
         input.addMapping("KEY_0", new KeyTrigger(KeyInput.KEY_0));
@@ -242,6 +243,8 @@ public class Core {
         //page keys
         input.addMapping("KEY_PGUP", new KeyTrigger(KeyInput.KEY_PGUP));
         input.addMapping("KEY_PGDN", new KeyTrigger(KeyInput.KEY_PGDN));
+        //function keys
+        input.addMapping("KEY_F1", new KeyTrigger(KeyInput.KEY_F1));
         //add
         input.addListener(actionListener, new String[]{
             "KEY_0", "KEY_1", "KEY_2", "KEY_3", "KEY_4", "KEY_5", "KEY_6",
@@ -253,7 +256,8 @@ public class Core {
             "KEY_Q", "KEY_E", "KEY_UP", "KEY_DOWN", "KEY_BACKSPACE",
             "Normal", "Cruise",
             "Newton", "QuickSave", "QuickLoad",
-            "KEY_END", "KEY_HOME", "KEY_PGUP", "KEY_PGDN"});
+            "KEY_END", "KEY_HOME", "KEY_PGUP", "KEY_PGDN",
+            "KEY_F1"});
     }
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {
@@ -277,9 +281,9 @@ public class Core {
                     load("Quick");
                 }
             }
-            
+
         }
-        
+
         private void handleInSpaceKeys(String name, boolean keyPressed) {
             //these keys show and hide GDI elements
             if (keyPressed) {
@@ -300,69 +304,86 @@ public class Core {
                     hud.togglePropertyWindow();
                 }
             }
-            //fire
-            if (name.equals("KEY_SPACE")) {
-                universe.getPlayerShip().fireActiveModules();
-            }
-            //all stop
-            if (name.equals("KEY_HOME")) {
-                universe.getPlayerShip().setAllStop(keyPressed);
-            }
-            //handle nav actions
-            if (name.equals("KEY_Q")) {
-                if (keyPressed) {
-                    universe.getPlayerShip().setRoll(1);
-                } else {
-                    universe.getPlayerShip().setRoll(0);
+            if (!universe.getPlayerShip().isDocked()) {
+                //docking
+                if (name.equals("KEY_F1")) {
+                    if (keyPressed) {
+                        if (universe.getPlayerShip().getTarget() instanceof Station) {
+                            universe.getPlayerShip().cmdDock((Station) universe.getPlayerShip().getTarget());
+                        }
+                    }
                 }
-            }
-            if (name.equals("KEY_E")) {
-                if (keyPressed) {
-                    universe.getPlayerShip().setRoll(-1);
-                } else {
-                    universe.getPlayerShip().setRoll(0);
+                //fire
+                if (name.equals("KEY_SPACE")) {
+                    universe.getPlayerShip().fireActiveModules();
                 }
-            }
-            if (name.equals("KEY_W")) {
-                if (keyPressed) {
-                    universe.getPlayerShip().setThrottle(1);
-                } else {
-                    universe.getPlayerShip().setThrottle(0);
+                //all stop
+                if (name.equals("KEY_HOME")) {
+                    universe.getPlayerShip().setAllStop(keyPressed);
                 }
-            }
-            if (name.equals("KEY_S")) {
-                if (keyPressed) {
-                    universe.getPlayerShip().setThrottle(-1);
-                } else {
-                    universe.getPlayerShip().setThrottle(0);
+                //handle nav actions
+                if (name.equals("KEY_Q")) {
+                    if (keyPressed) {
+                        universe.getPlayerShip().setRoll(1);
+                    } else {
+                        universe.getPlayerShip().setRoll(0);
+                    }
                 }
-            }
-            if (name.equals("KEY_A")) {
-                if (keyPressed) {
-                    universe.getPlayerShip().setYaw(1);
-                } else {
-                    universe.getPlayerShip().setYaw(0);
+                if (name.equals("KEY_E")) {
+                    if (keyPressed) {
+                        universe.getPlayerShip().setRoll(-1);
+                    } else {
+                        universe.getPlayerShip().setRoll(0);
+                    }
                 }
-            }
-            if (name.equals("KEY_D")) {
-                if (keyPressed) {
-                    universe.getPlayerShip().setYaw(-1);
-                } else {
-                    universe.getPlayerShip().setYaw(0);
+                if (name.equals("KEY_W")) {
+                    if (keyPressed) {
+                        universe.getPlayerShip().setThrottle(1);
+                    } else {
+                        universe.getPlayerShip().setThrottle(0);
+                    }
                 }
-            }
-            if (name.equals("KEY_UP")) {
-                if (keyPressed) {
-                    universe.getPlayerShip().setPitch(-1);
-                } else {
-                    universe.getPlayerShip().setPitch(0);
+                if (name.equals("KEY_S")) {
+                    if (keyPressed) {
+                        universe.getPlayerShip().setThrottle(-1);
+                    } else {
+                        universe.getPlayerShip().setThrottle(0);
+                    }
                 }
-            }
-            if (name.equals("KEY_DOWN")) {
-                if (keyPressed) {
-                    universe.getPlayerShip().setPitch(1);
-                } else {
-                    universe.getPlayerShip().setPitch(0);
+                if (name.equals("KEY_A")) {
+                    if (keyPressed) {
+                        universe.getPlayerShip().setYaw(1);
+                    } else {
+                        universe.getPlayerShip().setYaw(0);
+                    }
+                }
+                if (name.equals("KEY_D")) {
+                    if (keyPressed) {
+                        universe.getPlayerShip().setYaw(-1);
+                    } else {
+                        universe.getPlayerShip().setYaw(0);
+                    }
+                }
+                if (name.equals("KEY_UP")) {
+                    if (keyPressed) {
+                        universe.getPlayerShip().setPitch(-1);
+                    } else {
+                        universe.getPlayerShip().setPitch(0);
+                    }
+                }
+                if (name.equals("KEY_DOWN")) {
+                    if (keyPressed) {
+                        universe.getPlayerShip().setPitch(1);
+                    } else {
+                        universe.getPlayerShip().setPitch(0);
+                    }
+                }
+            } else {
+                //undock
+                if (name.equals("KEY_F1")) {
+                    if (keyPressed) {
+                        universe.getPlayerShip().cmdUndock();
+                    }
                 }
             }
         }
@@ -413,16 +434,16 @@ public class Core {
     public final void addSystem(SolarSystem system) {
         addEntity(system);
     }
-    
+
     public final void removeSystem(SolarSystem system) {
         removeEntity(system);
     }
-    
+
     public final void addEntity(Entity entity) {
         entity.construct(assets);
         entity.attach(rootNode, bulletAppState, planetAppState);
     }
-    
+
     public final void removeEntity(Entity entity) {
         entity.detach(rootNode, bulletAppState, planetAppState);
         entity.deconstruct();
@@ -458,7 +479,7 @@ public class Core {
             hud.periodicUpdate(tpf);
         }
     }
-    
+
     public void render(RenderManager rm) {
         //render hud
         hud.render(assets);
@@ -475,7 +496,7 @@ public class Core {
             Logger.getLogger(Core.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void load(String gameName) {
         try {
             //unload universe

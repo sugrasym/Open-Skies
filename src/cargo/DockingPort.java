@@ -26,7 +26,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
-import com.jme3.scene.shape.Box;
+import com.jme3.scene.shape.Sphere;
 import java.io.Serializable;
 
 /**
@@ -35,9 +35,10 @@ import java.io.Serializable;
  */
 public class DockingPort implements Serializable {
 
+    public static final int DOCK_SPEED_LIMIT = 10;
     protected String type;
     protected int size;
-    protected Ship docked;
+    protected Ship client;
     protected Station host;
     //relative position in x,y,z from the origin
     protected Vector3f loc;
@@ -55,11 +56,42 @@ public class DockingPort implements Serializable {
     }
 
     public void periodicUpdate(double tpf) {
-        //
+        /*
+         * This periodic update method is for in-system use only and therefore
+         * uses the physics system.
+         */
+        if (client != null) {
+            if (!client.isDocked()) {
+                //make sure client is in the same solar system
+                if (client.getCurrentSystem() == host.getCurrentSystem()) {
+                    //get client position
+                    Vector3f cLoc = client.getPhysicsLocation();
+                    //get node position
+                    Vector3f nLoc = node.getWorldTranslation();
+                    //find distance between these points
+                    float dist = cLoc.distance(nLoc);
+                    if (dist < size && client.getLinearVelocity().length() < DOCK_SPEED_LIMIT) {
+                        //dock the ship
+                        client.setDocked(true);
+                        client.clearForces();
+                        client.setPhysicsLocation(nLoc);
+                    }
+                    System.out.println(dist);
+                }
+            } else {
+                //keep client synced in bay
+                client.setPhysicsLocation(node.getWorldTranslation());
+                client.nullVelocity();
+            }
+        }
+    }
+
+    public void oosPeriodicUpdate(double tpf) {
+        //TODO
     }
 
     public boolean isEmpty() {
-        return (docked == null);
+        return (client == null);
     }
 
     public Node getNode() {
@@ -70,6 +102,14 @@ public class DockingPort implements Serializable {
         this.node = node;
     }
 
+    public void setClient(Ship client) {
+        this.client = client;
+    }
+
+    public Ship getClient() {
+        return client;
+    }
+
     public void initNode() {
         node = new Node();
         node.move(loc);
@@ -77,8 +117,8 @@ public class DockingPort implements Serializable {
     }
 
     public void showDebugHardpoint(AssetManager assets) {
-        Box point = new Box(size,size,size);
-        Geometry blue = new Geometry("DebugHardpoint", point);
+        Sphere point = new Sphere(size, size, size);
+        Geometry blue = new Geometry("DebugDockingPort", point);
         blue.setLocalTranslation(Vector3f.ZERO);
         Material mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setColor("Color", ColorRGBA.Blue);
