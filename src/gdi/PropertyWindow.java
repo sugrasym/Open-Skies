@@ -90,7 +90,7 @@ public class PropertyWindow extends AstralWindow {
 
     public PropertyWindow(AssetManager assets) {
         super(assets, 500, 400);
-        cargo = new CargoWindow(assets);
+        cargo = new CargoWindow(assets, 460, 360);
         generate();
     }
 
@@ -140,8 +140,9 @@ public class PropertyWindow extends AstralWindow {
         //setup private cargo window
         cargo.setX(20);
         cargo.setY(20);
-        cargo.setWidth(width - 40);
-        cargo.setHeight(height - 40);
+        cargo.setWidth(460);
+        cargo.setHeight(360);
+        cargo.setFlat(true);
         //pack
         addComponent(propertyList);
         addComponent(infoList);
@@ -721,6 +722,14 @@ public class PropertyWindow extends AstralWindow {
 
     @Override
     public void handleMouseReleasedEvent(String me, Vector3f mouseLoc) {
+        if(cargo.isVisible()) {
+            //make sure nothing else has focus so only cargo window gets it
+            propertyList.setFocused(false);
+            infoList.setFocused(false);
+            optionList.setFocused(false);
+            inputList.setFocused(false);
+        }
+        super.handleMouseReleasedEvent(me, mouseLoc);
         /*if (trader.isVisible()) {
          //coordinate transform (windows expect to be the root of the tree)
          trader.setX(x + 20);
@@ -730,18 +739,10 @@ public class PropertyWindow extends AstralWindow {
          //coordinate transform (put it back before anyone notices it moved)
          trader.setX(20);
          trader.setY(20);
-         } else*/ if (cargo.isVisible()) {
-            cargo.setX(x + 20);
-            cargo.setY(y + 20);
-            cargo.handleMouseReleasedEvent(me, mouseLoc);
-            cargo.setX(20);
-            cargo.setY(20);
-        } else {
-            super.handleMouseReleasedEvent(me, mouseLoc);
-            if (optionList.isFocused()) {
-                String command = (String) optionList.getItemAtIndex(optionList.getIndex());
-                parseCommand(command);
-            }
+         } else*/
+        if (optionList.isFocused()) {
+            String command = (String) optionList.getItemAtIndex(optionList.getIndex());
+            parseCommand(command);
         }
     }
 

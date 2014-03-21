@@ -53,6 +53,7 @@ public class AstralWindow extends AstralComponent {
     Material mat_background;
     Texture2D myTex;
     AWTLoader awtLoader;
+    protected boolean flat = false;
 
     public AstralWindow(AssetManager assets, int width, int height) {
         super(width, height);
@@ -120,15 +121,19 @@ public class AstralWindow extends AstralComponent {
                     s.setColor(getFocusColor());
                     s.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
                 }
-                //flip
-                AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
-                tx.translate(0, -buffer.getHeight(null));
-                AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-                buffer = op.filter(buffer, null);
-                //push frame to quad
-                myTex.setImage(awtLoader.load(buffer, false));
-                mat_background.setTexture("ColorMap", myTex);
-                geo_background.setMaterial(mat_background);
+                if (!flat) {
+                    //flip
+                    AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
+                    tx.translate(0, -buffer.getHeight(null));
+                    AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+                    buffer = op.filter(buffer, null);
+                    //push frame to quad
+                    myTex.setImage(awtLoader.load(buffer, false));
+                    mat_background.setTexture("ColorMap", myTex);
+                    geo_background.setMaterial(mat_background);
+                } else {
+                    f.drawImage(buffer, x, y, null);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -160,14 +165,27 @@ public class AstralWindow extends AstralComponent {
     @Override
     public void handleMousePressedEvent(String me, Vector3f mouseLoc) {
         if (visible) {
-            Vector3f adjLoc = new Vector3f(mouseLoc.x - x, (int) (mouseLoc.y - (mouseLoc.z - getHeight()) + y), 0);
-            Rectangle mRect = new Rectangle((int) adjLoc.x, (int) adjLoc.y, 1, 1);
-            for (int a = 0; a < components.size(); a++) {
-                if (components.get(a).intersects(mRect)) {
-                    components.get(a).setFocused(true);
-                    components.get(a).handleMousePressedEvent(me, adjLoc);
-                } else {
-                    components.get(a).setFocused(false);
+            if (flat) {
+                Vector3f adjLoc = new Vector3f(mouseLoc.x - x, mouseLoc.y - y, 0);
+                Rectangle mRect = new Rectangle((int) adjLoc.x, (int) adjLoc.y, 1, 1);
+                for (int a = 0; a < components.size(); a++) {
+                    if (components.get(a).intersects(mRect)) {
+                        components.get(a).setFocused(true);
+                        components.get(a).handleMousePressedEvent(me, adjLoc);
+                    } else {
+                        components.get(a).setFocused(false);
+                    }
+                }
+            } else {
+                Vector3f adjLoc = new Vector3f(mouseLoc.x - x, (int) (mouseLoc.y - (mouseLoc.z - getHeight()) + y), 0);
+                Rectangle mRect = new Rectangle((int) adjLoc.x, (int) adjLoc.y, 1, 1);
+                for (int a = 0; a < components.size(); a++) {
+                    if (components.get(a).intersects(mRect)) {
+                        components.get(a).setFocused(true);
+                        components.get(a).handleMousePressedEvent(me, adjLoc);
+                    } else {
+                        components.get(a).setFocused(false);
+                    }
                 }
             }
         }
@@ -175,11 +193,20 @@ public class AstralWindow extends AstralComponent {
 
     @Override
     public void handleMouseReleasedEvent(String me, Vector3f mouseLoc) {
-        Vector3f adjLoc = new Vector3f(mouseLoc.x - x, (int) (mouseLoc.y - (mouseLoc.z - getHeight()) + y), 0);
         if (visible) {
-            for (int a = 0; a < components.size(); a++) {
-                if (components.get(a).isFocused()) {
-                    components.get(a).handleMouseReleasedEvent(me, adjLoc);
+            if (flat) {
+                Vector3f adjLoc = new Vector3f(mouseLoc.x - x, mouseLoc.y - y, 0);
+                for (int a = 0; a < components.size(); a++) {
+                    if (components.get(a).isFocused()) {
+                        components.get(a).handleMouseReleasedEvent(me, adjLoc);
+                    }
+                }
+            } else {
+                Vector3f adjLoc = new Vector3f(mouseLoc.x - x, (int) (mouseLoc.y - (mouseLoc.z - getHeight()) + y), 0);
+                for (int a = 0; a < components.size(); a++) {
+                    if (components.get(a).isFocused()) {
+                        components.get(a).handleMouseReleasedEvent(me, adjLoc);
+                    }
                 }
             }
         }
@@ -204,5 +231,13 @@ public class AstralWindow extends AstralComponent {
 
     public void setOrder(int order) {
         this.order = order;
+    }
+
+    public boolean isFlat() {
+        return flat;
+    }
+
+    public void setFlat(boolean flat) {
+        this.flat = flat;
     }
 }

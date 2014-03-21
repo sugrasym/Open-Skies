@@ -53,6 +53,11 @@ public class CargoWindow extends AstralWindow {
         super(assets, 500, 400);
         generate();
     }
+    
+    public CargoWindow(AssetManager assets, int width, int height) {
+        super(assets, width, height);
+        generate();
+    }
 
     private void generate() {
         backColor = windowGrey;
