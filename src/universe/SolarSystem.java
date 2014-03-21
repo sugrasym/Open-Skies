@@ -37,6 +37,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import jmeplanet.PlanetAppState;
 import jmeplanet.Utility;
+import lib.Faction;
 import lib.astral.Parser;
 import lib.astral.Parser.Term;
 
@@ -85,7 +86,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < field.size(); a++) {
             if (field.get(a).getValue("system").equals(getName())) {
                 //this star needs to be created and stored
-                getCelestials().add(makeField(assets, field.get(a)));
+                putEntityInSystem(makeField(assets, field.get(a)));
             }
         }
         //nebula
@@ -93,7 +94,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < nebula.size(); a++) {
             if (nebula.get(a).getValue("system").equals(getName())) {
                 //this star needs to be created and stored
-                getCelestials().add(makeNebula(assets, nebula.get(a)));
+                putEntityInSystem(makeNebula(assets, nebula.get(a)));
             }
         }
         //star
@@ -101,7 +102,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < stars.size(); a++) {
             if (stars.get(a).getValue("system").equals(getName())) {
                 //this star needs to be created and stored
-                getCelestials().add(makeStar(assets, stars.get(a)));
+                putEntityInSystem(makeStar(assets, stars.get(a)));
             }
         }
         //planet
@@ -109,7 +110,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < planets.size(); a++) {
             if (planets.get(a).getValue("system").equals(getName())) {
                 //this planet needs to be created and stored
-                getCelestials().add(makePlanet(assets, planets.get(a)));
+                putEntityInSystem(makePlanet(assets, planets.get(a)));
             }
         }
         //station
@@ -117,7 +118,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < stations.size(); a++) {
             if (stations.get(a).getValue("system").equals(getName())) {
                 //this ship needs to be created and stored
-                getCelestials().add(makeStation(stations.get(a)));
+                putEntityInSystem(makeStation(stations.get(a)));
             }
         }
         //ship
@@ -125,7 +126,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < ships.size(); a++) {
             if (ships.get(a).getValue("system").equals(getName())) {
                 //this ship needs to be created and stored
-                getCelestials().add(makeShip(ships.get(a)));
+                putEntityInSystem(makeShip(ships.get(a)));
             }
         }
     }
@@ -334,7 +335,10 @@ public class SolarSystem implements Entity, Serializable {
             //already in list
         } else {
             if (entity instanceof Ship) {
-                universe.getPlayerProperty().add(entity);
+                Ship property = (Ship) entity;
+                if (property.getFaction().getName().equals(Faction.PLAYER)) {
+                    universe.getPlayerProperty().add(entity);
+                }
             }
         }
     }
