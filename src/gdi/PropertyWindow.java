@@ -490,24 +490,24 @@ public class PropertyWindow extends AstralWindow {
             if (isStation) {
                 //fill info on process status
                 Station test = (Station) selected;
-                /*for (int a = 0; a < test.getProcesses().size(); a++) {
-                 infoList.addToList("Job:          " + test.getProcesses().get(a));
-                 }
-                 //fill info on resource and product quantities
-                 infoList.addToList(" ");
-                 for (int a = 0; a < test.getStationBuying().size(); a++) {
-                 int q = test.getStationBuying().get(a).getQuantity();
-                 int m = test.getStationBuying().get(a).getStore();
-                 String n = test.getStationBuying().get(a).getName();
-                 infoList.addToList("Resource:     " + n + " [" + q + " / " + m + "]");
-                 }
-                 infoList.addToList(" ");
-                 for (int a = 0; a < test.getStationSelling().size(); a++) {
-                 int q = test.getStationSelling().get(a).getQuantity();
-                 int m = test.getStationSelling().get(a).getStore();
-                 String n = test.getStationSelling().get(a).getName();
-                 infoList.addToList("Product:      " + n + " [" + q + " / " + m + "]");
-                 }*/
+                for (int a = 0; a < test.getJobs().size(); a++) {
+                    infoList.addToList("Job:          " + test.getJobs().get(a));
+                }
+                //fill info on resource and product quantities
+                infoList.addToList(" ");
+                for (int a = 0; a < test.getStationBuying().size(); a++) {
+                    int q = test.getStationBuying().get(a).getQuantity();
+                    int m = test.getStationBuying().get(a).getStore();
+                    String n = test.getStationBuying().get(a).getName();
+                    infoList.addToList("Resource:     " + n + " [" + q + " / " + m + "]");
+                }
+                infoList.addToList(" ");
+                for (int a = 0; a < test.getStationSelling().size(); a++) {
+                    int q = test.getStationSelling().get(a).getQuantity();
+                    int m = test.getStationSelling().get(a).getStore();
+                    String n = test.getStationSelling().get(a).getName();
+                    infoList.addToList("Product:      " + n + " [" + q + " / " + m + "]");
+                }
                 infoList.addToList(" ");
             }
             /*
