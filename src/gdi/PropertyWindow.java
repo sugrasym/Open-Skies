@@ -809,19 +809,19 @@ public class PropertyWindow extends AstralWindow {
             } else if (command.equals(CMD_DESTRUCT)) {
                 selected.setState(State.DYING);
             } else if (command.equals(CMD_FLYTO)) {
-                /*ArrayList<Object> choice = new ArrayList<>();
-                 choice.add("--Select Target To Fly To--");
-                 choice.add(" ");
-                 ArrayList<Entity> jhp = selected.getCurrentSystem().getJumpholeList();
-                 for (int a = 0; a < jhp.size(); a++) {
-                 choice.add(jhp.get(a));
-                 }
-                 if (jhp.size() > 0) {
-                 showInputList(choice);
-                 mode = Mode.WAITING_FOR_CELESTIAL;
-                 } else {
-                 mode = Mode.NONE;
-                 }*/
+                ArrayList<Object> choice = new ArrayList<>();
+                choice.add("--Select Target To Fly To--");
+                choice.add(" ");
+                ArrayList<Entity> cel = selected.getCurrentSystem().getCelestials();
+                for (int a = 0; a < cel.size(); a++) {
+                    choice.add(cel.get(a));
+                }
+                if (cel.size() > 0) {
+                    showInputList(choice);
+                    mode = Mode.WAITING_FOR_CELESTIAL;
+                } else {
+                    mode = Mode.NONE;
+                }
             } else if (command.equals(CMD_FOLLOW)) {
                 /*ArrayList<Object> choice = new ArrayList<>();
                  choice.add("--Select Target To Follow--");

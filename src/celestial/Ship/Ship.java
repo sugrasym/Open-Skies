@@ -31,6 +31,7 @@ import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
 import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Node;
@@ -89,6 +90,8 @@ public class Ship extends Celestial {
         FOLLOW, //follow a target at a range
     }
     public static final double STOP_LOW_VEL_BOUND = 2;
+    public static final double ANGLE_TOLERANCE = (FastMath.TWO_PI * 0.01f)/FastMath.TWO_PI;
+    public static final double ROLL_LOCK = FastMath.PI / 32;
     public static final float STOP_CAUTION = 0.25f;
 
     public enum EngineMode {
@@ -331,7 +334,7 @@ public class Ship extends Celestial {
                             /*
                              * moveToPosition() detects when the ship has stopped
                              * moving and corrects itself by turning off the autopilot.
-                             * 
+                             *
                              * Since we aren't here yet, we need to re-issue the command
                              * to fine tune our approach to the target.
                              */
@@ -344,16 +347,58 @@ public class Ship extends Celestial {
             }
         }
     }
-    
+
     private void moveToPosition(Vector3f end) {
         /*
          * Maintains compatibility with most flight methods.
          */
         moveToPositionWithHold(end, getFlightHold());
     }
-    
+
     private void moveToPositionWithHold(Vector3f end, float hold) {
-        
+        Vector3f a = getPhysicsLocation().normalize();
+        Vector3f b = end.normalize();
+        //safety
+        boolean canAccel = false;
+        //see if we are there
+        float dist = end.distance(getPhysicsLocation());
+        if (dist < hold && hold != Float.POSITIVE_INFINITY) {
+            autopilotAllStop();
+        } else {
+            //make sure roll is zero
+            float[] rawAngles = getPhysicsRotation().toAngles(null);
+            float lRoll = rawAngles[2];
+            if (Math.abs(lRoll) > ANGLE_TOLERANCE) {
+                //roll to zero
+                roll = -lRoll;
+            } else {
+                //stop rolling
+                roll = 0;
+                //match yaw
+                float lYaw = rawAngles[1];
+                if (Math.abs(lYaw) > ANGLE_TOLERANCE) {
+                    yaw = -lYaw;
+                } else {
+                    //stop yawing
+                    yaw = 0;
+                    //match pitch
+                    float lPitch = rawAngles[0];
+                    if (Math.abs(lPitch) > ANGLE_TOLERANCE) {
+                        pitch = -lPitch;
+                    } else {
+                        //stop pitching
+                        pitch = 0;
+                        //lets fly
+                        canAccel = true;
+                    }
+                }
+
+            }
+            //acceleration
+            if(canAccel) {
+                System.out.println("reached!");
+            }
+        }
     }
 
     /*
@@ -1106,7 +1151,7 @@ public class Ship extends Celestial {
     }
 
     public void setFlyToTarget(Celestial pick) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        flyToTarget = pick;
     }
 
     public Celestial getFlyToTarget() {
@@ -1179,12 +1224,11 @@ public class Ship extends Celestial {
     public void setRange(float range) {
         this.range = range;
     }
-    
+
     /*
      * Methods to determine "holds" which are AI limits on velocity based
      * on the acceleration of the craft and what the craft is doing
      */
-    
     protected float getFlightHold() {
         return 3 * getAcceleration();
     }
@@ -1192,19 +1236,18 @@ public class Ship extends Celestial {
     protected float getFollowHold() {
         return Float.POSITIVE_INFINITY;
     }
-    
+
     /*
      * Methods to determine physics values
      */
-    
     public float magnitude(float dx, float dy) {
         return (float) Math.sqrt((dx * dx) + (dy * dy));
     }
-    
+
     public float getAcceleration() {
         return thrust / getMass();
     }
-    
+
     public float getAngularAcceleration() {
         return torque / getMass();
     }
