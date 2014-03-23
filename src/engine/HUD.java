@@ -28,6 +28,7 @@ import gdi.FuelWindow;
 import gdi.HealthWindow;
 import gdi.OverviewWindow;
 import gdi.PropertyWindow;
+import gdi.TradeWindow;
 import gdi.component.AstralWindow;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -52,6 +53,7 @@ public class HUD {
     EquipmentWindow equipment;
     CargoWindow cargoWindow;
     PropertyWindow propertyWindow;
+    TradeWindow tradeWindow;
     //display
     private int width;
     private int height;
@@ -100,6 +102,11 @@ public class HUD {
         propertyWindow.setX((width / 2) - propertyWindow.getWidth() / 2);
         propertyWindow.setY((height / 2) - propertyWindow.getHeight() / 2);
         windows.add(propertyWindow);
+        //trade window
+        tradeWindow = new TradeWindow(assets);
+        tradeWindow.setX((width / 2) - tradeWindow.getWidth() / 2);
+        tradeWindow.setY((height / 2) - tradeWindow.getHeight() / 2);
+        windows.add(tradeWindow);
     }
 
     public void add() {
@@ -123,6 +130,7 @@ public class HUD {
             equipment.update(getUniverse().getPlayerShip());
             cargoWindow.update(getUniverse().getPlayerShip());
             propertyWindow.update(getUniverse().getPlayerShip());
+            tradeWindow.update(getUniverse().getPlayerShip());
             //periodic update on other windows
             for (int a = 0; a < windows.size(); a++) {
                 windows.get(a).periodicUpdate();
@@ -233,5 +241,9 @@ public class HUD {
     
     public void togglePropertyWindow() {
         propertyWindow.setVisible(!propertyWindow.isVisible());
+    }
+    
+    public void toggleTradeWindow() {
+        tradeWindow.setVisible(!tradeWindow.isVisible());
     }
 }

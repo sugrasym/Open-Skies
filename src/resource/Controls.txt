@@ -24,6 +24,7 @@ User Interface
 2 - Toggle Overview Window
 3 - Toggle Cargo Window
 4 - Toggle Property Window
+5 - Toggle Trade Window (must be docked)
 
 UP ARROW - Scroll List Up
 DOWN ARROW - Scroll List Down

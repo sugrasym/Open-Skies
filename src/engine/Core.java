@@ -379,6 +379,13 @@ public class Core {
                     }
                 }
             } else {
+                //docked only windows
+                if (keyPressed) {
+                    if (name.equals("KEY_5")) {
+                        //toggle trade window
+                        hud.toggleTradeWindow();
+                    }
+                }
                 //undock
                 if (name.equals("KEY_F1")) {
                     if (keyPressed) {
