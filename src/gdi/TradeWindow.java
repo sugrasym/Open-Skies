@@ -284,15 +284,15 @@ public class TradeWindow extends AstralWindow {
         if (command != null) {
             if (command.equals("Sell")) {
                 //get item
-                /*int index = lastFocus.getIndex();
-                 Item selected = (Item) lastFocus.getItemAtIndex(index);
-                 docked.sell(ship, selected, 1);*/
+                int index = lastFocus.getIndex();
+                Item selected = (Item) lastFocus.getItemAtIndex(index);
+                docked.sell(ship, selected, 1);
                 showInput();
                 action = Behavior.WAITING_TO_SELL;
             } else if (command.equals("Buy")) {
-                /*int index = lastFocus.getIndex();
-                 Item selected = (Item) lastFocus.getItemAtIndex(index);
-                 docked.buy(ship, selected, 1);*/
+                int index = lastFocus.getIndex();
+                Item selected = (Item) lastFocus.getItemAtIndex(index);
+                docked.buy(ship, selected, 1);
                 showInput();
                 action = Behavior.WAITING_TO_BUY;
             }

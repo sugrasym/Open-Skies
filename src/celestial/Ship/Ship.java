@@ -917,8 +917,10 @@ public class Ship extends Celestial {
     }
 
     public void cmdDock(Station pick) {
-        //TODO: Make this a real behavior
-        port = pick.requestDockingPort(this);
+        if (!docked) {
+            //TODO: Make this a real behavior
+            port = pick.requestDockingPort(this);
+        }
     }
 
     public void cmdFightTarget(Ship pick) {
@@ -954,7 +956,11 @@ public class Ship extends Celestial {
     }
 
     public void cmdUndock() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TODO: Make this a real behavior
+        if (port != null && docked) {
+            port.release();
+            port = null;
+        }
     }
 
     public void clearHomeBase() {

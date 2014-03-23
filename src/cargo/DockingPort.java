@@ -115,6 +115,14 @@ public class DockingPort implements Serializable {
         //System.out.println(loc);
     }
 
+    public void release() {
+        //releases the docked ship
+        if (client != null) {
+            client.setDocked(false);
+            client = null;
+        }
+    }
+
     public void showDebugHardpoint(AssetManager assets) {
         Sphere point = new Sphere(size, size, size);
         Geometry blue = new Geometry("DebugDockingPort", point);
