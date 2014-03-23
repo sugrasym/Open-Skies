@@ -381,7 +381,6 @@ public class Ship extends Celestial {
                 float lYaw = (FastMath.atan2(dz, dx) + FastMath.TWO_PI) % FastMath.TWO_PI;
                 float cYaw = (rawAngles[1] + FastMath.PI) % FastMath.TWO_PI;
                 System.out.println("need:" + lYaw + " have: " + cYaw + " diff " + (lYaw - cYaw));
-                System.out.println(a + " " + FastMath.atan2(dz, dx));
                 if (!inTolerance(cYaw, lYaw, ANGLE_TOLERANCE)) {
                     if (cYaw < lYaw) {
                         yaw = 1;
@@ -389,24 +388,24 @@ public class Ship extends Celestial {
                         yaw = -1;
                     }
                 } else {
-                    System.out.println("match");
                     //stop yawing
                     yaw = 0;
-                    /*//stop yawing
-                     yaw = 0;
-                     //match pitch
-                     float lPhi = (FastMath.atan2(dy, dz) + FastMath.PI) % FastMath.TWO_PI;
-                     float cPhi = ((rawAngles[0] + FastMath.PI) + FastMath.PI / 2) % FastMath.TWO_PI;*/
-                    /*//match pitch
-                     float lPitch = rawAngles[0];
-                     if (Math.abs(lPitch) > ANGLE_TOLERANCE) {
-                     pitch = -lPitch;
-                     } else {
-                     //stop pitching
-                     pitch = 0;
-                     //lets fly
-                     canAccel = true;
-                     }*/
+                    //pitch to face target
+                    float lPitch = (FastMath.atan2(dy, dz) + FastMath.TWO_PI) % FastMath.TWO_PI;
+                    float cPitch = (rawAngles[0] + FastMath.PI) % FastMath.TWO_PI;
+                    //System.out.println("need:" + lPitch + " have: " + cPitch + " diff " + (lPitch - cPitch));
+                    if (!inTolerance(cPitch, lPitch, ANGLE_TOLERANCE)) {
+                        /*if (cPitch < lPitch) {
+                            pitch = 1;
+                        } else {
+                            pitch = -1;
+                        }*/
+                    } else {
+                        //woohoo
+                        pitch = 0;
+                        canAccel = true;
+                        System.out.println("aligned");
+                    }
                 }
 
             }
