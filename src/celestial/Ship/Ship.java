@@ -134,6 +134,7 @@ public class Ship extends Celestial {
     //behavior targets
     protected Celestial flyToTarget;
     protected Station homeBase;
+    private float range;
     //physics stats
     private float thrust; //engine force
     private float torque; //turning force
@@ -250,6 +251,24 @@ public class Ship extends Celestial {
     }
 
     /*
+     * Methods for autopilot in-system
+     */
+    private void autopilot() {
+        if (autopilot == Autopilot.NONE) {
+        } else if (autopilot == Autopilot.FLY_TO_CELESTIAL) {
+            autopilotFlyToCelestial();
+        }
+    }
+
+    private void autopilotFlyToCelestial() {
+        if (flyToTarget == null) {
+            //abort
+            cmdAbort();
+        } else {
+        }
+    }
+
+    /*
      * Methods for behaviors in-system
      */
     private void behave() {
@@ -260,6 +279,19 @@ public class Ship extends Celestial {
     }
 
     protected void behaviorTest() {
+    }
+
+    /*
+     * Methods for autopilot out of system
+     */
+    private void oosAutopilot() {
+        if (autopilot == Autopilot.NONE) {
+        } else if (autopilot == Autopilot.FLY_TO_CELESTIAL) {
+            oosAutopilotFlyToCelestial();
+        }
+    }
+
+    private void oosAutopilotFlyToCelestial() {
     }
 
     /*
@@ -319,6 +351,8 @@ public class Ship extends Celestial {
         updateHealth();
         //update behaviors
         behave();
+        //update autopilot
+        autopilot();
         //check throttle
         if (!allStop) {
             updateThrottle();
@@ -464,6 +498,7 @@ public class Ship extends Celestial {
         aliveAlways();
         updateHealth();
         oosBehave();
+        oosAutopilot();
     }
 
     @Override
@@ -985,6 +1020,9 @@ public class Ship extends Celestial {
 
     /*
      * Autopilot commands
+     * NOTE: These functions need to remain safe to call whether the ship is
+     * in or out of the player's system. This means no access to physics, spatials,
+     * or nodes.
      */
     public Autopilot getAutopilot() {
         return autopilot;
@@ -1000,6 +1038,10 @@ public class Ship extends Celestial {
 
     public void setBehavior(Behavior behavior) {
         this.behavior = behavior;
+    }
+
+    public void cmdAbort() {
+        setAutopilot(Autopilot.NONE);
     }
 
     public void cmdAbortDock() {
@@ -1025,11 +1067,12 @@ public class Ship extends Celestial {
         return flyToTarget;
     }
 
-    public void cmdFlyToCelestial(Celestial flyToTarget, Double range) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void cmdFlyToCelestial(Celestial flyToTarget, float range) {
+        setAutopilot(Autopilot.FLY_TO_CELESTIAL);
+        setRange(range);
     }
 
-    public void cmdFollowShip(Ship ship, Double range) {
+    public void cmdFollowShip(Ship ship, float range) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -1078,5 +1121,16 @@ public class Ship extends Celestial {
             setRotation(physics.getPhysicsRotation());
             setVelocity(physics.getLinearVelocity());
         }
+    }
+
+    /*
+     * Range controls for autopilot functions
+     */
+    public float getRange() {
+        return range;
+    }
+
+    public void setRange(float range) {
+        this.range = range;
     }
 }

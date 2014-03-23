@@ -294,7 +294,7 @@ public class PropertyWindow extends AstralWindow {
                 if (input.canReturn()) {
                     //get input
                     String nm = input.getText();
-                    Double range = Double.parseDouble(nm);
+                    Float range = Float.parseFloat(nm);
                     //start command
                     selected.cmdFlyToCelestial(selected.getFlyToTarget(), range);
                     //normal mode
@@ -326,7 +326,7 @@ public class PropertyWindow extends AstralWindow {
                 if (input.canReturn()) {
                     //get input
                     String nm = input.getText();
-                    Double range = Double.parseDouble(nm);
+                    Float range = Float.parseFloat(nm);
                     //start command
                     selected.cmdFollowShip((Ship) selected.getFlyToTarget(), range);
                     //normal mode
