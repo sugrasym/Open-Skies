@@ -90,7 +90,7 @@ public class Ship extends Celestial {
         FOLLOW, //follow a target at a range
     }
     public static final double STOP_LOW_VEL_BOUND = 2;
-    public static final double ANGLE_TOLERANCE = (FastMath.TWO_PI * 0.01f)/FastMath.TWO_PI;
+    public static final float ANGLE_TOLERANCE = 0.01f;
     public static final double ROLL_LOCK = FastMath.PI / 32;
     public static final float STOP_CAUTION = 0.25f;
 
@@ -356,8 +356,8 @@ public class Ship extends Celestial {
     }
 
     private void moveToPositionWithHold(Vector3f end, float hold) {
-        Vector3f a = getPhysicsLocation().normalize();
-        Vector3f b = end.normalize();
+        Vector3f a = getPhysicsLocation().clone();
+        Vector3f b = end.clone();
         //safety
         boolean canAccel = false;
         //see if we are there
@@ -368,34 +368,50 @@ public class Ship extends Celestial {
             //make sure roll is zero
             float[] rawAngles = getPhysicsRotation().toAngles(null);
             float lRoll = rawAngles[2];
-            if (Math.abs(lRoll) > ANGLE_TOLERANCE) {
+            if (Math.abs(lRoll) > ANGLE_TOLERANCE * FastMath.PI / 2) {
                 //roll to zero
                 roll = -lRoll;
             } else {
                 //stop rolling
                 roll = 0;
-                //match yaw
-                float lYaw = rawAngles[1];
-                if (Math.abs(lYaw) > ANGLE_TOLERANCE) {
-                    yaw = -lYaw;
+                //yaw to face target
+                float dx = b.getX() - a.getX();
+                float dy = b.getY() - a.getY();
+                float dz = b.getZ() - a.getZ();
+                float lYaw = (FastMath.atan2(dz, dx) + FastMath.TWO_PI) % FastMath.TWO_PI;
+                float cYaw = (rawAngles[1] + FastMath.PI) % FastMath.TWO_PI;
+                System.out.println("need:" + lYaw + " have: " + cYaw + " diff " + (lYaw - cYaw));
+                System.out.println(a + " " + FastMath.atan2(dz, dx));
+                if (!inTolerance(cYaw, lYaw, ANGLE_TOLERANCE)) {
+                    if (cYaw < lYaw) {
+                        yaw = 1;
+                    } else {
+                        yaw = -1;
+                    }
                 } else {
+                    System.out.println("match");
                     //stop yawing
                     yaw = 0;
-                    //match pitch
-                    float lPitch = rawAngles[0];
-                    if (Math.abs(lPitch) > ANGLE_TOLERANCE) {
-                        pitch = -lPitch;
-                    } else {
-                        //stop pitching
-                        pitch = 0;
-                        //lets fly
-                        canAccel = true;
-                    }
+                    /*//stop yawing
+                     yaw = 0;
+                     //match pitch
+                     float lPhi = (FastMath.atan2(dy, dz) + FastMath.PI) % FastMath.TWO_PI;
+                     float cPhi = ((rawAngles[0] + FastMath.PI) + FastMath.PI / 2) % FastMath.TWO_PI;*/
+                    /*//match pitch
+                     float lPitch = rawAngles[0];
+                     if (Math.abs(lPitch) > ANGLE_TOLERANCE) {
+                     pitch = -lPitch;
+                     } else {
+                     //stop pitching
+                     pitch = 0;
+                     //lets fly
+                     canAccel = true;
+                     }*/
                 }
 
             }
             //acceleration
-            if(canAccel) {
+            if (canAccel) {
                 System.out.println("reached!");
             }
         }
@@ -1250,5 +1266,9 @@ public class Ship extends Celestial {
 
     public float getAngularAcceleration() {
         return torque / getMass();
+    }
+
+    public boolean inTolerance(float n1, float n2, float tolerance) {
+        return (n1 >= n2 * (1 - tolerance) && n1 <= n2 * (1 + tolerance));
     }
 }
