@@ -439,8 +439,8 @@ public class PropertyWindow extends AstralWindow {
                 infoList.addToList("--Basic--");
                 infoList.addToList(" ");
                 infoList.addToList("Credits:      " + selected.getCash());
-                //infoList.addToList("Behavior:     " + selected.getBehavior());
-                //infoList.addToList("Autopilot:    " + selected.getAutopilot());
+                infoList.addToList("Behavior:     " + selected.getBehavior());
+                infoList.addToList("Autopilot:    " + selected.getAutopilot());
                 /*
                  * Specifics
                  */

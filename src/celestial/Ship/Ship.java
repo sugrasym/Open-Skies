@@ -50,6 +50,43 @@ import universe.Universe;
  */
 public class Ship extends Celestial {
 
+    /*
+     * Behaviors are over-arching goals and motivations such as hunting down
+     * hostiles or trading. The behave() method will keep track of any
+     * variables it needs and call autopilot functions as needed to realize
+     * these goals.
+     */
+    public enum Behavior {
+
+        NONE,
+        TEST,
+        PATROL,
+        SECTOR_TRADE,
+        UNIVERSE_TRADE, //requires a jump drive
+        SUPPLY_HOMEBASE, //requires a jump drive
+        REPRESENT_HOMEBASE, //requires a jump drive
+    }
+
+    /*
+     * Autopilot functions are slices of behavior that are useful as part of
+     * a big picture.
+     */
+    public enum Autopilot {
+
+        NONE, //nothing
+        WAIT, //waiting
+        WAITED, //done waiting
+        DOCK_STAGE1, //get permission, go to the alignment vector
+        DOCK_STAGE2, //fly into docking area
+        DOCK_STAGE3, //fly into docking port
+        UNDOCK_STAGE1, //fly into docking area
+        UNDOCK_STAGE2, //align to alignment vector
+        UNDOCK_STAGE3, //accelerate and release
+        FLY_TO_CELESTIAL, //fly to a celestial
+        ATTACK_TARGET, //attack current target
+        ALL_STOP, //slow down until velocity is 0
+        FOLLOW, //follow a target at a range
+    }
     public static final double STOP_LOW_VEL_BOUND = 1;
     public static final float STOP_CAUTION = 0.25f;
 
@@ -91,6 +128,9 @@ public class Ship extends Celestial {
     //sensor
     private float sensor;
     private Ship target;
+    //behavior and autopilot
+    protected Autopilot autopilot = Autopilot.NONE;
+    protected Behavior behavior = Behavior.NONE;
     //behavior targets
     protected Celestial flyToTarget;
     protected Station homeBase;
@@ -210,6 +250,64 @@ public class Ship extends Celestial {
     }
 
     /*
+     * Methods for behaviors in-system
+     */
+    private void behave() {
+        if (behavior == Behavior.NONE) {
+        } else if (behavior == Behavior.TEST) {
+            behaviorTest();
+        }
+    }
+
+    protected void behaviorTest() {
+    }
+
+    /*
+     * Methods for behaviors out of system
+     */
+    private void oosBehave() {
+        if (behavior == Behavior.NONE) {
+        } else if (behavior == Behavior.TEST) {
+            oosBehaviorTest();
+        }
+    }
+
+    protected void oosBehaviorTest() {
+    }
+
+    /*
+     * Methods that can be used no matter what system it is in
+     */
+    protected void aliveAlways() {
+        /*
+         * Contains methods to be called no matter if the ship is in system or
+         * out of system
+         */
+        //sync standings
+        if (faction.getName().equals(Faction.PLAYER)) {
+            if (currentSystem.getUniverse() != null) {
+                faction = currentSystem.getUniverse().getPlayerShip().getFaction();
+                //messages = getUniverse().getPlayerShip().getMessages();
+                //alternateString = true;
+            }
+        }
+    }
+
+    protected void updateHealth() {
+        //recharge shield
+        if (shield < maxShield) {
+            shield += (shieldRecharge * tpf);
+        }
+        //bounds check
+        if (shield < 0) {
+            shield = 0;
+        }
+        if (hull <= 0) {
+            setState(State.DYING);
+        }
+    }
+
+    /*
      * Methods for in-system updating. It primarily uses the physics system.
      */
     protected void alive() {
@@ -219,6 +317,8 @@ public class Ship extends Celestial {
         updateCenter();
         //check health
         updateHealth();
+        //update behaviors
+        behave();
         //check throttle
         if (!allStop) {
             updateThrottle();
@@ -242,40 +342,11 @@ public class Ship extends Celestial {
         }
     }
 
-    protected void aliveAlways() {
-        /*
-         * Contains methods to be called no matter if the ship is in system or
-         * out of system
-         */
-        //sync standings
-        if (faction.getName().equals(Faction.PLAYER)) {
-            if (currentSystem.getUniverse() != null) {
-                faction = currentSystem.getUniverse().getPlayerShip().getFaction();
-                //messages = getUniverse().getPlayerShip().getMessages();
-                //alternateString = true;
-            }
-        }
-    }
-
     protected void updateCenter() {
         if (center == null) {
             center = new Node();
         }
         center.setLocalTranslation(physics.getPhysicsLocation());
-    }
-
-    protected void updateHealth() {
-        //recharge shield
-        if (shield < maxShield) {
-            shield += (shieldRecharge * tpf);
-        }
-        //bounds check
-        if (shield < 0) {
-            shield = 0;
-        }
-        if (hull <= 0) {
-            setState(State.DYING);
-        }
     }
 
     protected void updateThrottle() {
@@ -390,6 +461,9 @@ public class Ship extends Celestial {
     @Override
     protected void oosAlive() {
         super.oosAlive();
+        aliveAlways();
+        updateHealth();
+        oosBehave();
     }
 
     @Override
@@ -912,6 +986,22 @@ public class Ship extends Celestial {
     /*
      * Autopilot commands
      */
+    public Autopilot getAutopilot() {
+        return autopilot;
+    }
+
+    public void setAutopilot(Autopilot autopilot) {
+        this.autopilot = autopilot;
+    }
+
+    public Behavior getBehavior() {
+        return behavior;
+    }
+
+    public void setBehavior(Behavior behavior) {
+        this.behavior = behavior;
+    }
+
     public void cmdAbortDock() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
