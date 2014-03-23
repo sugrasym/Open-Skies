@@ -319,7 +319,7 @@ public class Core {
                 }
                 //all stop
                 if (name.equals("KEY_HOME")) {
-                    universe.getPlayerShip().setAllStop(keyPressed);
+                    universe.getPlayerShip().cmdAllStop();
                 }
                 //handle nav actions
                 if (name.equals("KEY_Q")) {

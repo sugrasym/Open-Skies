@@ -30,6 +30,7 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
+import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Node;
@@ -87,7 +88,7 @@ public class Ship extends Celestial {
         ALL_STOP, //slow down until velocity is 0
         FOLLOW, //follow a target at a range
     }
-    public static final double STOP_LOW_VEL_BOUND = 1;
+    public static final double STOP_LOW_VEL_BOUND = 2;
     public static final float STOP_CAUTION = 0.25f;
 
     public enum EngineMode {
@@ -117,7 +118,6 @@ public class Ship extends Celestial {
     private float pitch = 0;
     private float yaw = 0;
     private float roll = 0;
-    private boolean allStop = false;
     //central node
     transient Node center;
     //faction
@@ -257,6 +257,47 @@ public class Ship extends Celestial {
         if (autopilot == Autopilot.NONE) {
         } else if (autopilot == Autopilot.FLY_TO_CELESTIAL) {
             autopilotFlyToCelestial();
+        } else if (autopilot == Autopilot.ALL_STOP) {
+            autopilotAllStop();
+        }
+    }
+
+    protected void autopilotAllStop() {
+        //get linear velocity
+        Vector3f lVol = physics.getLinearVelocity();
+        if (lVol.length() > STOP_LOW_VEL_BOUND) {
+            //apply counter force
+            if (Math.abs(lVol.getX()) > STOP_LOW_VEL_BOUND) {
+                float correction = -Math.signum(lVol.getX()) * thrust * STOP_CAUTION;
+                if (sufficientFuel(correction)) {
+                    physics.applyCentralForce(Vector3f.UNIT_X.mult(correction));
+                    useFuel(correction);
+                }
+            } else {
+                physics.setLinearVelocity(new Vector3f(0, lVol.getY(), lVol.getZ()));
+            }
+            if (Math.abs(lVol.getY()) > STOP_LOW_VEL_BOUND) {
+                float correction = -Math.signum(lVol.getY()) * thrust * STOP_CAUTION;
+                if (sufficientFuel(correction)) {
+                    physics.applyCentralForce(Vector3f.UNIT_Y.mult(correction));
+                    useFuel(correction);
+                }
+            } else {
+                physics.setLinearVelocity(new Vector3f(lVol.getX(), 0, lVol.getZ()));
+            }
+            if (Math.abs(lVol.getZ()) > STOP_LOW_VEL_BOUND) {
+                float correction = -Math.signum(lVol.getZ()) * thrust * STOP_CAUTION;
+                if (sufficientFuel(correction)) {
+                    physics.applyCentralForce(Vector3f.UNIT_Z.mult(correction));
+                    useFuel(correction);
+                }
+            } else {
+                physics.setLinearVelocity(new Vector3f(lVol.getX(), lVol.getY(), 0));
+            }
+        } else {
+            physics.setLinearVelocity(Vector3f.ZERO);
+            //we're done
+            setAutopilot(Autopilot.NONE);
         }
     }
 
@@ -265,7 +306,54 @@ public class Ship extends Celestial {
             //abort
             cmdAbort();
         } else {
+            if (flyToTarget.getCurrentSystem() != getCurrentSystem()) {
+                cmdAbort();
+            } else {
+                if (flyToTarget.getState() != State.ALIVE) {
+                    cmdAbort();
+                } else {
+                    float dist = flyToTarget.getPhysicsLocation().distance(getPhysicsLocation());
+                    if (dist < range) {
+                        //stop the ship, we're there
+                        cmdAllStop();
+                    } else {
+                        //determine correct hold to use
+                        float hold = 0;
+                        if (dist <= getFlightHold()) {
+                            hold = dist;
+                        } else {
+                            hold = getFlightHold();
+                        }
+                        //move to position
+                        moveToPositionWithHold(flyToTarget.getPhysicsLocation(), hold);
+                        //detect if autopilot kicked off
+                        if (autopilot == Autopilot.NONE) {
+                            /*
+                             * moveToPosition() detects when the ship has stopped
+                             * moving and corrects itself by turning off the autopilot.
+                             * 
+                             * Since we aren't here yet, we need to re-issue the command
+                             * to fine tune our approach to the target.
+                             */
+                            cmdFlyToCelestial(flyToTarget, range);
+                        } else {
+                            //do nothing, we are still on autopilot
+                        }
+                    }
+                }
+            }
         }
+    }
+    
+    private void moveToPosition(Vector3f end) {
+        /*
+         * Maintains compatibility with most flight methods.
+         */
+        moveToPositionWithHold(end, getFlightHold());
+    }
+    
+    private void moveToPositionWithHold(Vector3f end, float hold) {
+        
     }
 
     /*
@@ -288,7 +376,12 @@ public class Ship extends Celestial {
         if (autopilot == Autopilot.NONE) {
         } else if (autopilot == Autopilot.FLY_TO_CELESTIAL) {
             oosAutopilotFlyToCelestial();
+        } else if (autopilot == Autopilot.ALL_STOP) {
+            oosAutopilotAllStop();
         }
+    }
+
+    private void oosAutopilotAllStop() {
     }
 
     private void oosAutopilotFlyToCelestial() {
@@ -354,11 +447,7 @@ public class Ship extends Celestial {
         //update autopilot
         autopilot();
         //check throttle
-        if (!allStop) {
-            updateThrottle();
-        } else {
-            updateAllStop();
-        }
+        updateThrottle();
         updateTorque();
         updateHardpoints();
         syncPhysics();
@@ -441,45 +530,6 @@ public class Ship extends Celestial {
             roll = 1;
         }
         roll(roll);
-    }
-
-    protected void updateAllStop() {
-        //get linear velocity
-        Vector3f lVol = physics.getLinearVelocity();
-        if (lVol.length() > STOP_LOW_VEL_BOUND) {
-            //apply counter force
-            if (Math.abs(lVol.getX()) > STOP_LOW_VEL_BOUND) {
-                float correction = -Math.signum(lVol.getX()) * thrust * STOP_CAUTION;
-                if (sufficientFuel(correction)) {
-                    physics.applyCentralForce(Vector3f.UNIT_X.mult(correction));
-                    useFuel(correction);
-                }
-            } else {
-                physics.setLinearVelocity(new Vector3f(0, lVol.getY(), lVol.getZ()));
-            }
-            if (Math.abs(lVol.getY()) > STOP_LOW_VEL_BOUND) {
-                float correction = -Math.signum(lVol.getY()) * thrust * STOP_CAUTION;
-                if (sufficientFuel(correction)) {
-                    physics.applyCentralForce(Vector3f.UNIT_Y.mult(correction));
-                    useFuel(correction);
-                }
-            } else {
-                physics.setLinearVelocity(new Vector3f(lVol.getX(), 0, lVol.getY()));
-            }
-            if (Math.abs(lVol.getZ()) > STOP_LOW_VEL_BOUND) {
-                float correction = -Math.signum(lVol.getZ()) * thrust * STOP_CAUTION;
-                if (sufficientFuel(correction)) {
-                    physics.applyCentralForce(Vector3f.UNIT_Z.mult(correction));
-                    useFuel(correction);
-                }
-            } else {
-                physics.setLinearVelocity(new Vector3f(lVol.getX(), lVol.getY(), 0));
-            }
-        } else {
-            physics.setLinearVelocity(Vector3f.ZERO);
-            //we're done
-            allStop = false;
-        }
     }
 
     protected void updateHardpoints() {
@@ -735,14 +785,6 @@ public class Ship extends Celestial {
 
     private boolean sufficientFuel(float force) {
         return fuel - Math.abs(force * burnMultiplier) * tpf >= 0;
-    }
-
-    public boolean isAllStop() {
-        return allStop;
-    }
-
-    public void setAllStop(boolean allStop) {
-        this.allStop = allStop;
     }
 
     /*
@@ -1044,6 +1086,10 @@ public class Ship extends Celestial {
         setAutopilot(Autopilot.NONE);
     }
 
+    public void cmdAllStop() {
+        setAutopilot(Autopilot.ALL_STOP);
+    }
+
     public void cmdAbortDock() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -1132,5 +1178,34 @@ public class Ship extends Celestial {
 
     public void setRange(float range) {
         this.range = range;
+    }
+    
+    /*
+     * Methods to determine "holds" which are AI limits on velocity based
+     * on the acceleration of the craft and what the craft is doing
+     */
+    
+    protected float getFlightHold() {
+        return 3 * getAcceleration();
+    }
+
+    protected float getFollowHold() {
+        return Float.POSITIVE_INFINITY;
+    }
+    
+    /*
+     * Methods to determine physics values
+     */
+    
+    public float magnitude(float dx, float dy) {
+        return (float) Math.sqrt((dx * dx) + (dy * dy));
+    }
+    
+    public float getAcceleration() {
+        return thrust / getMass();
+    }
+    
+    public float getAngularAcceleration() {
+        return torque / getMass();
     }
 }
