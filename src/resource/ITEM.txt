@@ -94,3 +94,443 @@ maxPrice=0
 store=1000
 description=Empty space.
 [/Item]
+
+################################################################################
+#Legacy (High Albedo) Items
+################################################################################
+
+########Sov Stuff######
+
+[Item]
+name=System Transfer Paperwork
+type=commodity
+volume=0
+mass=0
+HP=100
+minPrice=150000000
+maxPrice=250000000
+store=5
+group=sovtransfer
+description=A team of elite paper pushers and lawyers uses legal trickery to transfer ownership of a system to you. You must have built at least 4 stations in said system to initiate the transfer, and you will incur a massive standings hit to the original owner. If all of your stations in the system are destroyed, you lose ownership of the system and it returns to a different owner. Neutral space cannot be claimed this way due to a lack of laws to exploit.
+[/Item]
+
+########Repair Kits########
+
+[Item]
+name=Repair Paste
+type=commodity
+volume=1
+mass=1
+HP=200
+minPrice=1250
+maxPrice=3750
+store=25
+group=repairkit
+description=A tube of paste with a plastic applicator intended to repair damage to the hull of a ship. The label states that exposure to vacuum conditions voids warranty.
+[/Item]
+
+[Item]
+name=Capital Repair Paste
+type=commodity
+volume=100
+mass=100
+HP=25000
+minPrice=60000
+maxPrice=270000
+store=12
+group=repairkit
+description=A really big vat of paste with an impressively large plastic applicator designed to repair the hull of capital ships. The label states that the manufacturer is not liable for injuries caused by swimming in the vat of paste.
+[/Item]
+
+########Software###########
+
+[Item]
+name=Salvage Software
+type=commodity
+volume=0
+mass=0
+HP=10
+minPrice=64000
+maxPrice=512000
+store=8
+group=salvagesoftware
+description=This shady looking software is capable of connecting to the computers onboard abandoned vessels and asserting control over them. After much debate over the legal status of salvage software, it has been agreed that the ownership and use of the software is legal even if the actions leading to its use are not. The sale of this software, however, is not meaning that only shady organizations trade in it.
+[/Item]
+
+########Commodities########
+[Item]
+name=Standard Energy Unit
+type=commodity
+volume=1
+mass=0.5
+HP=100
+minPrice=5
+maxPrice=15
+store=1000
+group=powercell
+description=A standardized energy unit produced by a power plant and moved to a more needed location. /br/ /br/ Energy units are stored in the cargo bay as a suspended static electric field which remains confined in the region it is placed by the compartmentalization of the cargo bay.
+[/Item]
+
+[Item]
+name=Meat On A Stick
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=5
+maxPrice=10
+store=500
+group=food
+description=It's meat and it's on a stick.
+[/Item]
+
+[Item]
+name=Ageiran MRE
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=20
+maxPrice=25
+store=250
+group=food
+description=Originally a military product, the Ageiran MRE formula is now widely distributed to people of all occupations.
+[/Item]
+
+[Item]
+name=Mixed Foods
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=20
+maxPrice=25
+store=600
+group=food
+description=Various food stuffs containing fruits, meats, and vegetables grown in vertically integrated space farms.
+[/Item]
+
+[Item]
+name=Cainan Produce
+type=commodity
+volume=3
+mass=1
+HP=100
+minPrice=22
+maxPrice=35
+store=450
+group=food
+description=Produce grown on Cainan settlements for use in preparation of meal packs.
+[/Item]
+
+[Item]
+name=Livestock
+type=commodity
+volume=4
+mass=1
+HP=100
+minPrice=1
+maxPrice=4
+store=500
+group=food
+description=Live animals raised on ranches to be sent for conversion into food products.
+[/Item]
+
+[Item]
+name=Ageiran Whole Foods
+type=commodity
+volume=5
+mass=1
+HP=100
+minPrice=150
+maxPrice=250
+store=250
+group=food
+description=Raw ingredients for use in the preparation of Ageiran meals. Contains assorted food stuffs.
+[/Item]
+
+[Item]
+name=Cainan Lunchbox
+type=commodity
+volume=2
+mass=1
+HP=100
+minPrice=55
+maxPrice=70
+store=275
+group=food
+description=Cainan 'Lunch Boxes' are nearly complete meals that are frozen. They are cooked in a microwave oven for 2-5 minutes and then served.
+[/Item]
+
+[Item]
+name=Mineral Ore
+type=commodity
+volume=6
+mass=2
+HP=100
+minPrice=55
+maxPrice=85
+store=500
+group=ore
+description=Raw ore extracted from a planet side mining operation.
+[/Item]
+
+[Item]
+name=Asteroid Ore
+type=commodity
+volume=2
+mass=5
+HP=100
+minPrice=80
+maxPrice=150
+store=750
+group=ore
+description=Raw ore extracted from a space based mining operation.
+[/Item]
+
+[Item]
+name=Atmospheric Gases
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=2
+maxPrice=4
+store=500
+group=ore
+description=These gases were extracted from the atmosphere of a planet. Many industrial processes take advantage of them.
+[/Item]
+
+[Item]
+name=Mass Block
+type=commodity
+volume=2
+mass=4
+HP=100
+minPrice=152
+maxPrice=200
+store=350
+group=alloy
+description=ITC Ore Converters are capable of converting both planet derived and space derived ore into a standardized block that is used for more advanced manufacturing processes.
+[/Item]
+
+[Item]
+name=Alloy Bar
+type=commodity
+volume=2
+mass=1
+HP=100
+minPrice=120
+maxPrice=175
+store=120
+group=alloy
+description=Alloy bars are bars of refined metal that can be used for more sophisticated manufacturing processes such as space craft construction.
+[/Item]
+
+[Item]
+name=ITC Warheads
+type=commodity
+volume=2
+mass=1
+HP=100
+minPrice=115
+maxPrice=245
+store=140
+group=alloy
+description=Locked warheads for use in the assembly of ITC missiles which are known for their high cost and extreme lethality.
+[/Item]
+
+[Item]
+name=Plank Tubes
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=68
+maxPrice=260
+store=120
+group=alloy
+description=Derived from vacuum tube technology, plank tubes manipulate the quantum level fluctuations that drive quantum computers.
+[/Item]
+
+[Item]
+name=Nanoweave Textiles
+type=commodity
+volume=5
+mass=1
+HP=100
+minPrice=230
+maxPrice=712
+store=100
+group=alloy
+description=Fabricated at the molecular level, these textiles are both extemely thin and have a high tensile strength while retaining all their flexibility.
+[/Item]
+
+[Item]
+name=Hull Plating
+type=commodity
+volume=1
+mass=2
+HP=100
+minPrice=310
+maxPrice=450
+store=200
+group=alloy
+description=Hull plates are highly refined alloy sheets that can be converted into the hulls of space craft and stations.
+[/Item]
+
+[Item]
+name=FPGAs
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=105
+maxPrice=160
+store=120
+group=alloy
+description=Field-Programmable-Gate-Arrays are used in rapid prototyping of computer circuitry. Once programmed, they can be flashed into a permanent configuration for release.
+[/Item]
+
+[Item]
+name=Assembly Modules
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=250
+maxPrice=410
+store=220
+group=alloy
+description=Cainan 'assembly modules' are self-assembly machines that can convert into another component. This conversion process allows them to become the components of many high-tech devices, although the process is irreversible.
+[/Item]
+
+[Item]
+name=Hydrocarbon
+type=ore
+volume=8
+mass=3
+HP=100
+minPrice=1
+maxPrice=10
+group=ore
+store=1000
+description=Since the dawn of man hydrocarbons have been burned in low tech reactors to generate energy. They have a much higher energy density than solar energy, but a lower energy density than nuclear fusion. One hydrocarbon unit can easily produce ten energy units, however hydrocarbon supplies are harder to locate than the extremely abundant solar energy.  /br/ /br/ Some stations are capable of using hydrocarbons to generate their power, and Ageiran Customs Offices will do the conversion as well so that the resulting energy can be sold at a profit to small scale traders.
+[/Item]
+
+[Item]
+name=Industrial Waste
+type=commodity
+volume=1
+mass=0.5
+HP=100
+minPrice=0
+maxPrice=5
+group=ore
+store=1000
+description=When something is burned, built, or processed there are often toxic industrial wastes produced. These wastes are often reusable with the right equipment, creating a cottage industry of moving waste to refinement plants. When in doubt, however, waste is often just ejected. /br/ /br/ Industrial waste is a rare commodity in that it is often given away for free by factories so that a trader will take it off their hands so manufacturing can continue.
+[/Item]
+
+[Item]
+name=Consumer Goods
+type=commodity
+volume=1
+mass=2
+HP=100
+minPrice=300
+maxPrice=950
+group=product
+store=60
+description=Consumer goods are household items that are relatively easy to produce. Small personal fabrication devices are ubiquitous and capable of converting a sufficient quantity of input materials into a desired good. This process is so lightweight that it often doesn't require any additional energy beyond what all stations can generate internally, making consumer goods manufacturing an attractive option for light stations such as customs offices. 
+[/Item]
+
+[Item]
+name=Jumpdrive
+type=commodity
+volume=125
+mass=20
+HP=100
+minPrice=836000
+maxPrice=2192000
+group=jumpdrive
+store=10
+description=This device takes advantage of recent discoveries made from studying the natural jumphole phenomena native to this region of space. It manipulates quantum scale holes in the universe, which occur due to vacuum fluctuations but normally close immediately, with a virtual particle field that enlarges them, then a graviton pulse that folds them into the correct shape to bridge distant points in space. It can only lock onto systems who's jump coordinates have been hashed, a process which takes many years to compute, but once computed is readily available for use by travelers.  /br/ /br/ This device was invented by the ITC to make travel easier, however your milage may vary. Initiating a jump consumes a very large amount of fuel for smaller craft, although capital sized power plants won't even bat an eye. The longer the jump, the more fuel is consumed. There are also serious safety concerns, since the exit point in the target system is random, of colliding with or even emerging inside of ships and stations. Jumping is also known to disrupt shield harmonics, and may (rarely) even cause damage to the craft itself, leading to only limited use.
+[/Item]
+
+[Item]
+name=Pirated Software
+type=commodity
+volume=0
+mass=0
+HP=100
+minPrice=5
+maxPrice=1000
+group=product
+store=500
+description=Lots and lots of cracked copies of commercial software. Due to network monitoring transmission of this product is impossible, therefore those who run it in bulk are heavily rewarded.
+[/Item]
+
+[Item]
+name=Human Organs
+type=commodity
+volume=5
+mass=2
+HP=100
+minPrice=25000
+maxPrice=500000
+group=product
+store=500
+description=Human organs, probably 'recovered' by the Wolves. The transfer of human organs is strictly prohibited except for government licensed distributors of humanely procured organs.
+[/Item]
+
+[Item]
+name=Slaves
+type=commodity
+volume=4
+mass=12
+HP=100
+minPrice=1600
+maxPrice=32000
+group=product
+store=500
+description=The Tengus are known to engage in human trafficking, getting victims for diverse sources and backgrounds. Those who fail to satisfy their side of the deal end up as slaves.
+[/Item]
+
+[Item]
+name=Astronaut
+type=commodity
+volume=4
+mass=12
+HP=100
+minPrice=800
+maxPrice=1500
+group=product
+store=500
+description=The pilot of a starfighter or transport, ejected from their ship.
+[/Item]
+
+[Item]
+name=Heavy Water
+type=commodity
+volume=8
+mass=16
+HP=100
+minPrice=25
+maxPrice=45
+store=1000
+group=commodity
+description=Refined deuterium for use in a nuclear fusion reactor. Heavy water can be derived from planetary sources such as sea water, however the most economical sources are interstellar ices.
+[/Item]
+
+[Item]
+name=Rich Ice
+type=commodity
+volume=16
+mass=8
+HP=100
+minPrice=3
+maxPrice=8
+store=1000
+group=commodity
+description=Interstellar ices collected for refinement into an energy source. This ice is rich in deuterium.
+[/Item]

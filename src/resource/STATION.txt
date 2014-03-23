@@ -10,4 +10,5 @@ mass=0
 sensor=5000
 cargo=125000000
 port=basic,10,0,0,70
+job=AgeiranCustomsGases/AgeiranCustomsOre/HydrocarbonBurn
 [/Station]

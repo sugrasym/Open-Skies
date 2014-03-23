@@ -20,6 +20,7 @@ package celestial.Ship;
 
 import cargo.DockingPort;
 import cargo.Item;
+import cargo.Job;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
@@ -41,10 +42,13 @@ public class Station extends Ship {
     protected ArrayList<Item> stationBuying = new ArrayList<>();
     //docking
     protected ArrayList<DockingPort> ports = new ArrayList<>();
+    //manufacturing
+    protected ArrayList<Job> jobs = new ArrayList<>();
 
     public Station(Universe universe, Term type, String faction) {
         super(universe, type, faction);
         installDockingPorts(getType());
+        installJobs(getType());
     }
 
     @Override
@@ -89,6 +93,7 @@ public class Station extends Ship {
     @Override
     protected void aliveAlways() {
         super.aliveAlways();
+        updateJobs();
     }
 
     /*
@@ -341,6 +346,38 @@ public class Station extends Ship {
             for (int a = 0; a < stationBuying.size(); a++) {
                 stationBuying.get(a).setQuantity(rnd.nextInt(stationBuying.get(a).getStore()));
             }
+        }
+    }
+
+    /*
+     * Manufacturing processes
+     */
+    protected void installJobs(Term relevant) throws NumberFormatException {
+        //generates the processes that were linked to this station
+        String raw = relevant.getValue("job");
+        if (raw != null) {
+            String[] arr = raw.split("/");
+            for (int a = 0; a < arr.length; a++) {
+                Job p = new Job(this, arr[a], stationSelling, stationBuying);
+                if (p != null) {
+                    jobs.add(p);
+                }
+            }
+        }
+    }
+
+    public ArrayList<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setProcesses(ArrayList<Job> jobs) {
+        this.jobs = jobs;
+    }
+
+    protected void updateJobs() {
+        //check processes
+        for (int a = 0; a < jobs.size(); a++) {
+            jobs.get(a).periodicUpdate(tpf);
         }
     }
 }

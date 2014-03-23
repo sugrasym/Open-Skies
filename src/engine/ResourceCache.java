@@ -42,7 +42,7 @@ public class ResourceCache {
     private Parser factionCache = new Parser("FACTIONS.txt");
     private Parser stationCache = new Parser("STATION.txt");
     //private Parser explosionCache = new Parser("EXPLOSIONS.txt");
-    //private Parser processCache = new Parser("PROCESSES.txt");
+    private Parser processCache = new Parser("PROCESSES.txt");
     private Parser skyCache = new Parser("SKY.txt");
     //private Parser loadoutCache = new Parser("LOADOUTS.txt");
     //private Parser conversationCache = new Parser("CONVERSATIONS.txt");
@@ -88,11 +88,11 @@ public class ResourceCache {
 
     /*public Parser getExplosionCache() {
         return explosionCache;
-    }
+    }*/
 
     public Parser getProcessCache() {
         return processCache;
-    }*/
+    }
 
     public Parser getSkyCache() {
         return skyCache;
