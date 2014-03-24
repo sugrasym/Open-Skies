@@ -365,53 +365,23 @@ public class Ship extends Celestial {
         if (dist < hold && hold != Float.POSITIVE_INFINITY) {
             autopilotAllStop();
         } else {
-            //make sure roll is zero
-            float[] rawAngles = getPhysicsRotation().toAngles(null);
-            float lRoll = rawAngles[2];
-            if (Math.abs(lRoll) > ANGLE_TOLERANCE * FastMath.PI / 2) {
-                //roll to zero
-                roll = -lRoll;
+            Vector3f dat = getSteeringData(b, Vector3f.UNIT_Y);
+            System.out.println(dat);
+            //put controls in correct positions to face target
+            if (Math.abs(dat.x) < Math.PI * (1 - ANGLE_TOLERANCE)) {
+                pitch = -(dat.x);
             } else {
-                //stop rolling
-                roll = 0;
-                //yaw to face target
-                float dx = b.getX() - a.getX();
-                float dy = b.getY() - a.getY();
-                float dz = b.getZ() - a.getZ();
-                float lYaw = (FastMath.atan2(dz, dx) + FastMath.TWO_PI) % FastMath.TWO_PI;
-                float cYaw = (rawAngles[1] + FastMath.PI) % FastMath.TWO_PI;
-                System.out.println("need:" + lYaw + " have: " + cYaw + " diff " + (lYaw - cYaw));
-                if (!inTolerance(cYaw, lYaw, ANGLE_TOLERANCE)) {
-                    if (cYaw < lYaw) {
-                        yaw = 1;
-                    } else {
-                        yaw = -1;
-                    }
-                } else {
-                    //stop yawing
-                    yaw = 0;
-                    //pitch to face target
-                    float lPitch = (FastMath.atan2(dy, dz) + FastMath.TWO_PI) % FastMath.TWO_PI;
-                    float cPitch = (rawAngles[0] + FastMath.PI) % FastMath.TWO_PI;
-                    //System.out.println("need:" + lPitch + " have: " + cPitch + " diff " + (lPitch - cPitch));
-                    if (!inTolerance(cPitch, lPitch, ANGLE_TOLERANCE)) {
-                        /*if (cPitch < lPitch) {
-                            pitch = 1;
-                        } else {
-                            pitch = -1;
-                        }*/
-                    } else {
-                        //woohoo
-                        pitch = 0;
-                        canAccel = true;
-                        System.out.println("aligned");
-                    }
-                }
-
+                pitch = 0;
             }
-            //acceleration
-            if (canAccel) {
-                System.out.println("reached!");
+            if (Math.abs(dat.y) < Math.PI * (1 - ANGLE_TOLERANCE)) {
+                yaw = -(dat.y);
+            } else {
+                yaw = 0;
+            }
+            if (Math.abs(dat.z) < Math.PI * (1 - ANGLE_TOLERANCE)) {
+                roll = -(dat.z);
+            } else {
+                roll = 0;
             }
         }
     }
@@ -1269,5 +1239,41 @@ public class Ship extends Celestial {
 
     public boolean inTolerance(float n1, float n2, float tolerance) {
         return (n1 >= n2 * (1 - tolerance) && n1 <= n2 * (1 + tolerance));
+    }
+
+    private Vector3f getSteeringData(Vector3f worldPosition, Vector3f up) {
+        // RETREIVE LOCAL DIRECTION TO TARGET POSITION
+        Vector3f steeringPosition = new Vector3f();
+        getSpatial().getWorldRotation().inverse().multLocal(steeringPosition.set(worldPosition).subtractLocal(getSpatial().getWorldTranslation()));
+
+        // RETREIVE LOCAL UP VECTOR DIRECTION
+        Vector3f upPosition = new Vector3f(up);
+        getSpatial().getWorldRotation().inverse().multLocal(upPosition);
+
+        // CREATE 2D-VECTORS TO COMPARE
+        Vector3f elevatorPos = new Vector3f(steeringPosition).normalizeLocal();
+        elevatorPos.x = 0;
+        Vector3f rudderPos = new Vector3f(steeringPosition).normalizeLocal();
+        rudderPos.y = 0;
+        Vector3f aileronPos = new Vector3f(upPosition).normalizeLocal();
+        aileronPos.z = 0;
+
+        // CALCULATE ANGLES BETWEEN VECTORS AND INVERT STEERING DIRECTION IF NEEDED
+        Vector3f steeringData = new Vector3f();
+        steeringData.x = Vector3f.UNIT_Z.angleBetween(elevatorPos);
+        if (elevatorPos.y > 0) {
+            steeringData.x *= -1;
+        }
+        steeringData.y = Vector3f.UNIT_Z.angleBetween(rudderPos);
+        if (rudderPos.x < 0) {
+            steeringData.y *= -1;
+        }
+        steeringData.z = Vector3f.UNIT_Y.angleBetween(aileronPos);
+        if (aileronPos.x > 0) {
+            steeringData.z *= -1;
+        }
+
+        // RETURN THE DATA
+        return steeringData;
     }
 }
