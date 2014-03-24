@@ -90,7 +90,7 @@ public class Ship extends Celestial {
         FOLLOW, //follow a target at a range
     }
     public static final double STOP_LOW_VEL_BOUND = 2;
-    public static final float ANGLE_TOLERANCE = 0.01f;
+    public static final float ANGLE_TOLERANCE = 0.05f;
     public static final double ROLL_LOCK = FastMath.PI / 32;
     public static final float STOP_CAUTION = 0.25f;
 
@@ -356,7 +356,6 @@ public class Ship extends Celestial {
     }
 
     private void moveToPositionWithHold(Vector3f end, float hold) {
-        Vector3f a = getPhysicsLocation().clone();
         Vector3f b = end.clone();
         //safety
         boolean canAccel = false;
@@ -366,20 +365,20 @@ public class Ship extends Celestial {
             autopilotAllStop();
         } else {
             Vector3f dat = getSteeringData(b, Vector3f.UNIT_Y);
-            System.out.println(dat);
+            //System.out.println(dat);
             //put controls in correct positions to face target
-            if (Math.abs(dat.x) < Math.PI * (1 - ANGLE_TOLERANCE)) {
+            if (Math.abs(dat.x) < FastMath.PI * (1 - ANGLE_TOLERANCE)) {
                 pitch = -(dat.x);
             } else {
                 pitch = 0;
             }
-            if (Math.abs(dat.y) < Math.PI * (1 - ANGLE_TOLERANCE)) {
+            if (Math.abs(dat.y) < FastMath.PI * (1 - ANGLE_TOLERANCE)) {
                 yaw = -(dat.y);
             } else {
                 yaw = 0;
             }
-            if (Math.abs(dat.z) < Math.PI * (1 - ANGLE_TOLERANCE)) {
-                roll = -(dat.z);
+            if (Math.abs(dat.z) > FastMath.PI * ANGLE_TOLERANCE) {
+                roll = (dat.z);
             } else {
                 roll = 0;
             }
