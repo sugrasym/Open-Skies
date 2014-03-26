@@ -92,7 +92,7 @@ public class Ship extends Celestial {
     public static final double STOP_LOW_VEL_BOUND = 2;
     public static final float ANGLE_TOLERANCE = 0.05f;
     public static final double ROLL_LOCK = FastMath.PI / 32;
-    public static final float STOP_CAUTION = 0.25f;
+    public static final float STOP_CAUTION = 1.0f;
 
     public enum EngineMode {
 
@@ -266,6 +266,12 @@ public class Ship extends Celestial {
     }
 
     protected void autopilotAllStop() {
+        //kill rotation
+        pitch = 0;
+        yaw = 0;
+        roll = 0;
+        //stop throttle
+        throttle = 0;
         //get linear velocity
         Vector3f lVol = physics.getLinearVelocity();
         if (lVol.length() > STOP_LOW_VEL_BOUND) {
@@ -323,6 +329,7 @@ public class Ship extends Celestial {
                         //determine correct hold to use
                         float hold = 0;
                         if (dist <= getFlightHold()) {
+                            System.out.println(dist);
                             hold = dist;
                         } else {
                             hold = getFlightHold();
@@ -358,29 +365,52 @@ public class Ship extends Celestial {
     private void moveToPositionWithHold(Vector3f end, float hold) {
         Vector3f b = end.clone();
         //safety
-        boolean canAccel = false;
+        boolean canAccel = true;
         //see if we are there
         float dist = end.distance(getPhysicsLocation());
+        System.out.println(hold);
         if (dist < hold && hold != Float.POSITIVE_INFINITY) {
             autopilotAllStop();
         } else {
+            //get steering to face target
             Vector3f dat = getSteeringData(b, Vector3f.UNIT_Y);
-            //System.out.println(dat);
-            //put controls in correct positions to face target
-            if (Math.abs(dat.x) < FastMath.PI * (1 - ANGLE_TOLERANCE)) {
-                pitch = -(dat.x);
+            //make sure we aren't getting further from the target
+            Vector3f dPos = physics.getPhysicsLocation().add(physics.getLinearVelocity());
+            float stepDistance = dPos.distance(b);
+            float distance = physics.getPhysicsLocation().distance(b);
+            if (stepDistance > distance) {
+                //we are moving further away, all stop
+                autopilotAllStop();
             } else {
-                pitch = 0;
-            }
-            if (Math.abs(dat.y) < FastMath.PI * (1 - ANGLE_TOLERANCE)) {
-                yaw = -(dat.y);
-            } else {
-                yaw = 0;
-            }
-            if (Math.abs(dat.z) > FastMath.PI * ANGLE_TOLERANCE) {
-                roll = (dat.z);
-            } else {
-                roll = 0;
+                //put controls in correct positions to face target
+                if (Math.abs(dat.x) < FastMath.PI * (1 - ANGLE_TOLERANCE)) {
+                    pitch = -(dat.x);
+                    canAccel = false;
+                } else {
+                    pitch = 0;
+                }
+                if (Math.abs(dat.y) < FastMath.PI * (1 - ANGLE_TOLERANCE)) {
+                    yaw = -(dat.y);
+                    canAccel = false;
+                } else {
+                    yaw = 0;
+                }
+                if (Math.abs(dat.z) > FastMath.PI * ANGLE_TOLERANCE) {
+                    roll = (dat.z);
+                    //canAccel = false;
+                } else {
+                    roll = 0;
+                }
+                if (canAccel) {
+                    if (physics.getLinearVelocity().length() < hold) {
+                        throttle = 1;
+                    } else {
+                        throttle = 0;
+                    }
+                } else {
+                    throttle = 0;
+                    //do nothing
+                }
             }
         }
     }
