@@ -103,7 +103,7 @@ public class Planet extends Celestial {
         //split based on planet group
         if (group.equals("rock")) {
             //determine height scale
-            float heightScale = (sRand.nextFloat()*0.02f)+0.01f; //1% to 3%
+            float heightScale = (sRand.nextFloat() * 0.02f) + 0.01f; //1% to 3%
             if (palette.equals("Earth")) {
                 // Add planet
                 FractalDataSource planetDataSource = new FractalDataSource(seed);
@@ -293,5 +293,10 @@ public class Planet extends Celestial {
 
     public void setSeed(int seed) {
         this.seed = seed;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

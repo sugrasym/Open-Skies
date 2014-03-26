@@ -812,7 +812,12 @@ public class PropertyWindow extends AstralWindow {
                 ArrayList<Object> choice = new ArrayList<>();
                 choice.add("--Select Target To Fly To--");
                 choice.add(" ");
-                ArrayList<Entity> cel = selected.getCurrentSystem().getCelestials();
+                ArrayList<Entity> cel = new ArrayList<>();
+                //add planets
+                for (int a = 0; a < selected.getCurrentSystem().getPlanetList().size(); a++) {
+                    cel.add(selected.getCurrentSystem().getPlanetList().get(a));
+                }
+                //move to choices
                 for (int a = 0; a < cel.size(); a++) {
                     choice.add(cel.get(a));
                 }
@@ -837,7 +842,7 @@ public class PropertyWindow extends AstralWindow {
                  mode = Mode.NONE;
                  }*/
             } else if (command.equals(CMD_ALLSTOP)) {
-                //selected.cmdAllStop();
+                selected.cmdAllStop();
             } else if (command.equals(CMD_JUMP)) {
                 /*ArrayList<Object> choice = new ArrayList<>();
                  choice.add("--Select Target System--");

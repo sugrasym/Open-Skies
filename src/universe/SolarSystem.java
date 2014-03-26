@@ -19,6 +19,7 @@
  */
 package universe;
 
+import celestial.Celestial;
 import celestial.Field;
 import celestial.Nebula;
 import celestial.Planet;
@@ -63,6 +64,7 @@ public class SolarSystem implements Entity, Serializable {
     //lists
     private final ArrayList<Entity> stationList = new ArrayList<>();
     private final ArrayList<Entity> shipList = new ArrayList<>();
+    private final ArrayList<Entity> planetList = new ArrayList<>();
 
     public SolarSystem(Universe universe, Term thisSystem, Parser parse) {
         name = thisSystem.getValue("name");
@@ -330,6 +332,10 @@ public class SolarSystem implements Entity, Serializable {
 
     public void putEntityInSystem(Entity entity) {
         celestials.add(entity);
+        if (entity instanceof Celestial) {
+            Celestial tmp = (Celestial) entity;
+            tmp.setCurrentSystem(this);
+        }
         //check to see if this is player property
         if (universe.getPlayerProperty().contains(entity)) {
             //already in list
@@ -340,18 +346,30 @@ public class SolarSystem implements Entity, Serializable {
                     universe.getPlayerProperty().add(entity);
                 }
             }
-            /*
-             * Check to see what lists to add it to
-             */
-            if(entity instanceof Station) {
-                stationList.add(entity);
-            }
+        }
+        /*
+         * Check to see what lists to add it to
+         */
+        if (entity instanceof Station) {
+            stationList.add(entity);
+        } else if (entity instanceof Ship) {
+            shipList.add(entity);
+        } else if (entity instanceof Planet) {
+            planetList.add(entity);
         }
     }
 
     public void pullEntityFromSystem(Entity entity) {
+        if (entity instanceof Celestial) {
+            Celestial tmp = (Celestial) entity;
+            tmp.setCurrentSystem(null);
+        }
+        //remove from lists
         celestials.remove(entity);
         stationList.remove(entity);
+        shipList.remove(entity);
+        planetList.remove(entity);
+        universe.getPlayerProperty().remove(entity);
     }
 
     @Override
@@ -471,5 +489,9 @@ public class SolarSystem implements Entity, Serializable {
 
     public ArrayList<Entity> getShipList() {
         return shipList;
+    }
+
+    public ArrayList<Entity> getPlanetList() {
+        return planetList;
     }
 }

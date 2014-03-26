@@ -24,6 +24,7 @@ import cargo.Hardpoint;
 import cargo.Item;
 import cargo.Weapon;
 import celestial.Celestial;
+import celestial.Planet;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
@@ -1319,6 +1320,12 @@ public class Ship extends Celestial {
 
     public void cmdFlyToCelestial(Celestial flyToTarget, float range) {
         setAutopilot(Autopilot.FLY_TO_CELESTIAL);
+        if (flyToTarget instanceof Planet) {
+            //add radius to range for safety
+            Planet tmp = (Planet) flyToTarget;
+            range += tmp.getRadius();
+        }
+        //store range
         setRange(range);
     }
 
