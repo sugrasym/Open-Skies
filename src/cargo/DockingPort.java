@@ -66,7 +66,9 @@ public class DockingPort implements Serializable {
         if (client != null) {
             if (!client.isDocked()) {
                 //make sure client is in the same solar system
-                if (client.getCurrentSystem() == host.getCurrentSystem()) {
+                if (client.getAutopilot() == Ship.Autopilot.UNDOCK) {
+                    //don't interfere with undocking process
+                } else if (client.getCurrentSystem() == host.getCurrentSystem()) {
                     //get client position
                     Vector3f cLoc = client.getPhysicsLocation();
                     //get node position
@@ -103,11 +105,11 @@ public class DockingPort implements Serializable {
     public void setNode(Node node) {
         this.node = node;
     }
-    
+
     public Node getAlign() {
         return alignNode;
     }
-    
+
     public void setAlign(Node align) {
         this.alignNode = align;
     }
@@ -119,7 +121,7 @@ public class DockingPort implements Serializable {
     public Ship getClient() {
         return client;
     }
-    
+
     public int getSize() {
         return size;
     }

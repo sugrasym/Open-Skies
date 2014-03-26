@@ -76,7 +76,7 @@ public class Station extends Ship {
             //initialize node
             ports.get(a).initNode();
             //debug
-            ports.get(a).showDebugHardpoint(assets);
+            //ports.get(a).showDebugHardpoint(assets);
             //store node with spatial
             center.attachChild(ports.get(a).getNode());
             center.attachChild(ports.get(a).getAlign());

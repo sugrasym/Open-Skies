@@ -79,9 +79,7 @@ public class Ship extends Celestial {
         WAITED, //done waiting
         DOCK_STAGE1, //get permission, go to the alignment vector
         DOCK_STAGE2, //fly into docking port
-        UNDOCK_STAGE1, //fly into docking area
-        UNDOCK_STAGE2, //align to alignment vector
-        UNDOCK_STAGE3, //accelerate and release
+        UNDOCK, //fly out of docking port
         FLY_TO_CELESTIAL, //fly to a celestial
         ATTACK_TARGET, //attack current target
         ALL_STOP, //slow down until velocity is 0
@@ -264,6 +262,22 @@ public class Ship extends Celestial {
             autopilotDockStageOne();
         } else if (autopilot == Autopilot.DOCK_STAGE2) {
             autopilotDockStageTwo();
+        } else if (autopilot == Autopilot.UNDOCK) {
+            autopilotUndock();
+        }
+    }
+
+    private void autopilotUndock() {
+        //get the docking align
+        Vector3f align = port.getAlign().getWorldTranslation();
+        //fly towards it
+        moveToPositionWithHold(align, Float.POSITIVE_INFINITY);
+        //abort when hold is reached
+        if (physics.getLinearVelocity().length() >= getFlightHold()) {
+            //all done
+            port.release();
+            port = null;
+            cmdAllStop();
         }
     }
 
@@ -538,6 +552,8 @@ public class Ship extends Celestial {
             oosAutopilotDockStageOne();
         } else if (autopilot == Autopilot.DOCK_STAGE2) {
             oosAutopilotDockStageTwo();
+        } else if (autopilot == Autopilot.UNDOCK) {
+            oosAutopilotUndock();
         }
     }
 
@@ -551,6 +567,9 @@ public class Ship extends Celestial {
     }
 
     private void oosAutopilotDockStageTwo() {
+    }
+
+    private void oosAutopilotUndock() {
     }
 
     /*
@@ -583,9 +602,11 @@ public class Ship extends Celestial {
             }
         }
         //check docking updates
-        if(docked) {
-            //no autopilot
-            setAutopilot(Autopilot.NONE);
+        if (docked) {
+            //no autopilot unless undocking
+            if (autopilot != Autopilot.UNDOCK) {
+                setAutopilot(Autopilot.NONE);
+            }
             //refuel
             fuel = maxFuel;
             //charge shields
@@ -1316,10 +1337,9 @@ public class Ship extends Celestial {
     }
 
     public void cmdUndock() {
-        //TODO: Make this a real behavior
-        if (port != null && docked) {
-            port.release();
-            port = null;
+        if (docked) {
+            setDocked(false);
+            setAutopilot(Autopilot.UNDOCK);
         }
     }
 
