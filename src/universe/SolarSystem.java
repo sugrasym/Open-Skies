@@ -340,11 +340,18 @@ public class SolarSystem implements Entity, Serializable {
                     universe.getPlayerProperty().add(entity);
                 }
             }
+            /*
+             * Check to see what lists to add it to
+             */
+            if(entity instanceof Station) {
+                stationList.add(entity);
+            }
         }
     }
 
     public void pullEntityFromSystem(Entity entity) {
         celestials.remove(entity);
+        stationList.remove(entity);
     }
 
     @Override

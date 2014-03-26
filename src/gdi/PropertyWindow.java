@@ -23,6 +23,8 @@ import cargo.Hardpoint;
 import cargo.Item;
 import celestial.Celestial;
 import celestial.Ship.Ship;
+import celestial.Ship.Ship.Autopilot;
+import celestial.Ship.Ship.Behavior;
 import celestial.Ship.Station;
 import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
@@ -513,18 +515,16 @@ public class PropertyWindow extends AstralWindow {
             /*
              * More autopilot info
              */
-            /*if (selected.getAutopilot() == Autopilot.FLY_TO_CELESTIAL) {
-             infoList.addToList("Waypoint:     " + selected.getFlyToTarget().getName());
-             }
-             if (selected.getPort() != null) {
-             if (selected.getAutopilot() == Autopilot.DOCK_STAGE1) {
-             infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
-             } else if (selected.getAutopilot() == Autopilot.DOCK_STAGE2) {
-             infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
-             } else if (selected.getAutopilot() == Autopilot.DOCK_STAGE3) {
-             infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
-             }
-             }*/
+            if (selected.getAutopilot() == Autopilot.FLY_TO_CELESTIAL) {
+                infoList.addToList("Waypoint:     " + selected.getFlyToTarget().getName());
+            }
+            if (selected.getPort() != null) {
+                if (selected.getAutopilot() == Autopilot.DOCK_STAGE1) {
+                    infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
+                } else if (selected.getAutopilot() == Autopilot.DOCK_STAGE2) {
+                    infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
+                }
+            }
             /*
              * More behavior info
              */
@@ -751,10 +751,10 @@ public class PropertyWindow extends AstralWindow {
                  * Switch to another ship.
                  */ ship.getCurrentSystem().getUniverse().setPlayerShip(selected);
             } else if (command.equals(CMD_NONE)) {
-                /*//abort current behavior
-                 selected.setBehavior(Behavior.NONE);
-                 selected.setAutopilot(Autopilot.NONE);
-                 selected.cmdAbortDock();*/
+                //abort current behavior
+                selected.setBehavior(Behavior.NONE);
+                selected.setAutopilot(Autopilot.NONE);
+                selected.cmdAbortDock();
             } else if (command.equals(CMD_TRADE)) {
                 //selected.setBehavior(Behavior.SECTOR_TRADE);
             } else if (command.equals(CMD_UTRADE)) {
@@ -774,19 +774,19 @@ public class PropertyWindow extends AstralWindow {
                 trader.setVisible(true);
                 tmp = selected;
             } else if (command.equals(CMD_DOCK)) {
-                /*ArrayList<Object> choice = new ArrayList<>();
-                 choice.add("--Select Station To Dock At--");
-                 choice.add(" ");
-                 ArrayList<Station> st = selected.getFriendlyStationsInSystem();
-                 for (int a = 0; a < st.size(); a++) {
-                 choice.add(st.get(a));
-                 }
-                 if (st.size() > 0) {
-                 showInputList(choice);
-                 mode = Mode.WAITING_FOR_STATION;
-                 } else {
-                 mode = Mode.NONE;
-                 }*/
+                ArrayList<Object> choice = new ArrayList<>();
+                choice.add("--Select Station To Dock At--");
+                choice.add(" ");
+                ArrayList<Station> st = selected.getDockableStationsInSystem();
+                for (int a = 0; a < st.size(); a++) {
+                    choice.add(st.get(a));
+                }
+                if (st.size() > 0) {
+                    showInputList(choice);
+                    mode = Mode.WAITING_FOR_STATION;
+                } else {
+                    mode = Mode.NONE;
+                }
             } else if (command.equals(CMD_REMOTECARGO)) {
                 mode = Mode.WAITING_FOR_CARGO;
                 cargo.setVisible(true);

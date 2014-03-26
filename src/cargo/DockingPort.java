@@ -27,6 +27,8 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Sphere;
+import entity.Entity;
+import entity.Entity.State;
 import java.io.Serializable;
 
 /**
@@ -64,28 +66,33 @@ public class DockingPort implements Serializable {
          * uses the physics system.
          */
         if (client != null) {
-            if (!client.isDocked()) {
-                //make sure client is in the same solar system
-                if (client.getAutopilot() == Ship.Autopilot.UNDOCK) {
-                    //don't interfere with undocking process
-                } else if (client.getCurrentSystem() == host.getCurrentSystem()) {
-                    //get client position
-                    Vector3f cLoc = client.getPhysicsLocation();
-                    //get node position
-                    Vector3f nLoc = node.getWorldTranslation();
-                    //find distance between these points
-                    float dist = cLoc.distance(nLoc);
-                    if (dist < size && client.getLinearVelocity().length() < DOCK_SPEED_LIMIT) {
-                        //dock the ship
-                        client.setDocked(true);
-                        client.clearForces();
-                        client.setPhysicsLocation(nLoc);
+            if (client.getState() == State.ALIVE) {
+                if (!client.isDocked()) {
+                    //make sure client is in the same solar system
+                    if (client.getAutopilot() == Ship.Autopilot.UNDOCK) {
+                        //don't interfere with undocking process
+                    } else if (client.getCurrentSystem() == host.getCurrentSystem()) {
+                        //get client position
+                        Vector3f cLoc = client.getPhysicsLocation();
+                        //get node position
+                        Vector3f nLoc = node.getWorldTranslation();
+                        //find distance between these points
+                        float dist = cLoc.distance(nLoc);
+                        if (dist < size && client.getLinearVelocity().length() < DOCK_SPEED_LIMIT) {
+                            //dock the ship
+                            client.setDocked(true);
+                            client.clearForces();
+                            client.setPhysicsLocation(nLoc);
+                        }
                     }
+                } else {
+                    //keep client synced in bay
+                    client.setPhysicsLocation(node.getWorldTranslation());
+                    client.nullVelocity();
                 }
             } else {
-                //keep client synced in bay
-                client.setPhysicsLocation(node.getWorldTranslation());
-                client.nullVelocity();
+                //dead ships don't dock
+                client = null;
             }
         }
     }

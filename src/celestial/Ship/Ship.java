@@ -1288,8 +1288,10 @@ public class Ship extends Celestial {
 
     public void cmdAbortDock() {
         cmdAbort();
-        port.release();
-        port = null;
+        if (port != null) {
+            port.release();
+            port = null;
+        }
     }
 
     public void cmdDock(Station pick) {
@@ -1446,5 +1448,28 @@ public class Ship extends Celestial {
 
         // RETURN THE DATA
         return steeringData;
+    }
+
+    /*
+     * Used to find groups of objects
+     */
+    public ArrayList<Station> getDockableStationsInSystem() {
+        return getDockableStationsInSystem(currentSystem);
+    }
+
+    public ArrayList<Station> getDockableStationsInSystem(SolarSystem system) {
+        ArrayList<Station> list = new ArrayList<>();
+        {
+            ArrayList<Entity> stations = system.getStationList();
+            if (stations.size() > 0) {
+                for (int a = 0; a < stations.size(); a++) {
+                    Station test = (Station) stations.get(a);
+                    if (test.canDock(this)) {
+                        list.add(test);
+                    }
+                }
+            }
+        }
+        return list;
     }
 }
