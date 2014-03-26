@@ -31,7 +31,6 @@ import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
 import com.jme3.math.FastMath;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Node;
@@ -79,8 +78,7 @@ public class Ship extends Celestial {
         WAIT, //waiting
         WAITED, //done waiting
         DOCK_STAGE1, //get permission, go to the alignment vector
-        DOCK_STAGE2, //fly into docking area
-        DOCK_STAGE3, //fly into docking port
+        DOCK_STAGE2, //fly into docking port
         UNDOCK_STAGE1, //fly into docking area
         UNDOCK_STAGE2, //align to alignment vector
         UNDOCK_STAGE3, //accelerate and release
@@ -90,7 +88,7 @@ public class Ship extends Celestial {
         FOLLOW, //follow a target at a range
     }
     public static final double STOP_LOW_VEL_BOUND = 2;
-    public static final float ANGLE_TOLERANCE = 0.05f;
+    public static final float ANGLE_TOLERANCE = 0.02f;
     public static final double ROLL_LOCK = FastMath.PI / 32;
     public static final float STOP_CAUTION = 1.0f;
 
@@ -262,6 +260,107 @@ public class Ship extends Celestial {
             autopilotFlyToCelestial();
         } else if (autopilot == Autopilot.ALL_STOP) {
             autopilotAllStop();
+        } else if (autopilot == Autopilot.DOCK_STAGE1) {
+            autopilotDockStageOne();
+        } else if (autopilot == Autopilot.DOCK_STAGE2) {
+            autopilotDockStageTwo();
+        }
+    }
+
+    private void autopilotDockStageOne() {
+        //make sure we have a flyToTarget
+        if (flyToTarget != null) {
+            //make sure it is a station
+            if (flyToTarget instanceof Station && flyToTarget.getState() == State.ALIVE) {
+                //make sure we can actually dock there
+                Station tmp = (Station) flyToTarget;
+                if (tmp.getCurrentSystem() == currentSystem) {
+                    if (port == null) {
+                        //get the docking port to use
+                        port = tmp.requestDockingPort(this);
+                    } else {
+                        //get the docking align
+                        Vector3f align = port.getAlign().getWorldTranslation();
+                        //fly to it
+                        float distance = align.distance(physics.getPhysicsLocation());
+                        float velocity = physics.getLinearVelocity().length();
+                        if (distance < port.getSize() / 2) {
+                            autopilotAllStop();
+                            if (velocity == 0 || autopilot == Autopilot.NONE) {
+                                //next stage
+                                setAutopilot(Autopilot.DOCK_STAGE2);
+                            }
+                        } else {
+                            //determine correct hold to use
+                            float hold = 0;
+                            if (distance <= getFlightHold()) {
+                                hold = distance;
+                            } else {
+                                hold = getFlightHold();
+                            }
+                            //move to position
+                            moveToPositionWithHold(align, hold);
+                            //detect if autopilot kicked off
+                            if (autopilot == Autopilot.NONE) {
+                                /*
+                                 * moveToPosition() detects when the ship has stopped
+                                 * moving and corrects itself by turning off the autopilot.
+                                 */
+                                setAutopilot(Autopilot.DOCK_STAGE1);
+                            } else {
+                                //do nothing, we are still on autopilot
+                            }
+                        }
+                    }
+                } else {
+                    cmdAbortDock();
+                }
+            } else {
+                cmdAbortDock();
+            }
+        } else {
+            cmdAbortDock();
+        }
+    }
+
+    private void autopilotDockStageTwo() {
+        //make sure we have a flyToTarget
+        if (flyToTarget != null) {
+            //make sure it is a station
+            if (flyToTarget instanceof Station && flyToTarget.getState() == State.ALIVE) {
+                //make sure we can actually dock there
+                Station tmp = (Station) flyToTarget;
+                if (tmp.getCurrentSystem() == currentSystem) {
+                    if (port == null) {
+                        //abort because this is stage 2
+                        cmdAbortDock();
+                    } else {
+                        //get the docking port
+                        Vector3f dock = port.getNode().getWorldTranslation();
+                        //get the hold
+                        float hold = DockingPort.DOCK_SPEED_LIMIT / 2;
+                        //fly to it
+                        moveToPositionWithHold(dock, hold);
+                        //detect if autopilot kicked off
+                        if (autopilot == Autopilot.NONE) {
+                            setAutopilot(Autopilot.DOCK_STAGE2);
+                        } else {
+                            if (physics.getLinearVelocity().length() > 0) {
+                                //stop rotation
+                                pitch = 0;
+                                yaw = 0;
+                                roll = 0;
+                            }
+                        }
+                    }
+                } else {
+                    cmdAbortDock();
+                }
+            } else {
+                cmdAbortDock();
+            }
+        } else {
+            cmdAbortDock();
         }
     }
 
@@ -329,7 +428,6 @@ public class Ship extends Celestial {
                         //determine correct hold to use
                         float hold = 0;
                         if (dist <= getFlightHold()) {
-                            System.out.println(dist);
                             hold = dist;
                         } else {
                             hold = getFlightHold();
@@ -368,7 +466,6 @@ public class Ship extends Celestial {
         boolean canAccel = true;
         //see if we are there
         float dist = end.distance(getPhysicsLocation());
-        System.out.println(hold);
         if (dist < hold && hold != Float.POSITIVE_INFINITY) {
             autopilotAllStop();
         } else {
@@ -437,6 +534,10 @@ public class Ship extends Celestial {
             oosAutopilotFlyToCelestial();
         } else if (autopilot == Autopilot.ALL_STOP) {
             oosAutopilotAllStop();
+        } else if (autopilot == Autopilot.DOCK_STAGE1) {
+            oosAutopilotDockStageOne();
+        } else if (autopilot == Autopilot.DOCK_STAGE2) {
+            oosAutopilotDockStageTwo();
         }
     }
 
@@ -444,6 +545,12 @@ public class Ship extends Celestial {
     }
 
     private void oosAutopilotFlyToCelestial() {
+    }
+
+    private void oosAutopilotDockStageOne() {
+    }
+
+    private void oosAutopilotDockStageTwo() {
     }
 
     /*
@@ -474,6 +581,15 @@ public class Ship extends Celestial {
                 //messages = getUniverse().getPlayerShip().getMessages();
                 //alternateString = true;
             }
+        }
+        //check docking updates
+        if(docked) {
+            //no autopilot
+            setAutopilot(Autopilot.NONE);
+            //refuel
+            fuel = maxFuel;
+            //charge shields
+            shield = maxShield;
         }
     }
 
@@ -1150,13 +1266,19 @@ public class Ship extends Celestial {
     }
 
     public void cmdAbortDock() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        cmdAbort();
+        port.release();
+        port = null;
     }
 
     public void cmdDock(Station pick) {
         if (!docked) {
             //TODO: Make this a real behavior
             port = pick.requestDockingPort(this);
+            if (port != null) {
+                flyToTarget = pick;
+                setAutopilot(Autopilot.DOCK_STAGE1);
+            }
         }
     }
 

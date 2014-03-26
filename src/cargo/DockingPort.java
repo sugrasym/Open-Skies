@@ -119,6 +119,10 @@ public class DockingPort implements Serializable {
     public Ship getClient() {
         return client;
     }
+    
+    public int getSize() {
+        return size;
+    }
 
     public void initNode() {
         node = new Node();
