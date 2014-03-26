@@ -79,6 +79,7 @@ public class Station extends Ship {
             ports.get(a).showDebugHardpoint(assets);
             //store node with spatial
             center.attachChild(ports.get(a).getNode());
+            center.attachChild(ports.get(a).getAlign());
         }
     }
 
@@ -167,7 +168,10 @@ public class Station extends Ship {
                 float hx = Float.parseFloat(re[2]);
                 float hy = Float.parseFloat(re[3]);
                 float hz = Float.parseFloat(re[4]);
-                ports.add(new DockingPort(this, hType, hSize, new Vector3f(hx, hy, hz)));
+                float ax = Float.parseFloat(re[5]);
+                float ay = Float.parseFloat(re[6]);
+                float az = Float.parseFloat(re[7]);
+                ports.add(new DockingPort(this, hType, hSize, new Vector3f(hx, hy, hz), new Vector3f(ax, ay, az)));
             }
         }
     }

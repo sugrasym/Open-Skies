@@ -42,13 +42,16 @@ public class DockingPort implements Serializable {
     protected Station host;
     //relative position in x,y,z from the origin
     protected Vector3f loc;
+    protected Vector3f align;
     protected transient Node node;
+    protected transient Node alignNode;
 
-    public DockingPort(Station host, String type, int size, Vector3f loc) {
+    public DockingPort(Station host, String type, int size, Vector3f loc, Vector3f align) {
         this.type = type;
         this.size = size;
         this.host = host;
         this.loc = loc;
+        this.align = align;
     }
 
     public Station getParent() {
@@ -100,6 +103,14 @@ public class DockingPort implements Serializable {
     public void setNode(Node node) {
         this.node = node;
     }
+    
+    public Node getAlign() {
+        return alignNode;
+    }
+    
+    public void setAlign(Node align) {
+        this.alignNode = align;
+    }
 
     public void setClient(Ship client) {
         this.client = client;
@@ -112,6 +123,8 @@ public class DockingPort implements Serializable {
     public void initNode() {
         node = new Node();
         node.move(loc);
+        alignNode = new Node();
+        alignNode.move(align);
         //System.out.println(loc);
     }
 
@@ -124,13 +137,27 @@ public class DockingPort implements Serializable {
     }
 
     public void showDebugHardpoint(AssetManager assets) {
-        Sphere point = new Sphere(size, size, size);
-        Geometry blue = new Geometry("DebugDockingPort", point);
-        blue.setLocalTranslation(Vector3f.ZERO);
-        Material mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.Blue);
-        blue.setMaterial(mat);
-        //add to node
-        node.attachChild(blue);
+        //show docking node
+        {
+            Sphere point = new Sphere(size, size, size);
+            Geometry blue = new Geometry("DebugDockingPort", point);
+            blue.setLocalTranslation(Vector3f.ZERO);
+            Material mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
+            mat.setColor("Color", ColorRGBA.Blue);
+            blue.setMaterial(mat);
+            //add to node
+            node.attachChild(blue);
+        }
+        //show align node
+        {
+            Sphere point = new Sphere(size, size, size);
+            Geometry blue = new Geometry("DebugDockingAlign", point);
+            blue.setLocalTranslation(Vector3f.ZERO);
+            Material mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
+            mat.setColor("Color", ColorRGBA.Magenta);
+            blue.setMaterial(mat);
+            //add to node
+            alignNode.attachChild(blue);
+        }
     }
 }
