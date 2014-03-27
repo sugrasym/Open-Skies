@@ -34,28 +34,33 @@ import com.jme3.scene.shape.Box;
  * @author nwiehoff
  */
 public class Nozzle extends Hardpoint {
-
+    
     transient ParticleEmitter emitter;
-
+    
     public Nozzle(Ship host, String type, int size, Vector3f loc) {
         super(host, type, size, loc);
     }
-
+    
     @Override
     public void periodicUpdate(double tpf) {
         if (emitter != null) {
-            emitter.getParticleInfluencer().setInitialVelocity(host.getLinearVelocity());
+            //emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_Z.mult(-host.getLinearVelocity().length())/*.mult((float) tpf)*/);
+            emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_Z.mult((float)Math.sqrt(host.getAcceleration())));
         }
     }
-
+    
     public void start() {
-        
+        if (emitter != null) {
+            emitter.setParticlesPerSec(50);
+        }
     }
-
+    
     public void stop() {
-        
+        if (emitter != null) {
+            emitter.setParticlesPerSec(0);
+        }
     }
-
+    
     @Override
     public void showDebugHardpoint(AssetManager assets) {
         Box point = new Box(0.1f, 0.1f, 0.1f);
@@ -67,28 +72,30 @@ public class Nozzle extends Hardpoint {
         //add to node
         node.attachChild(red);
     }
-
+    
     @Override
     public void construct(AssetManager assets) {
-        emitter = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, 100);
+        emitter = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, 50);
         Material trailMat = new Material(assets, "Common/MatDefs/Misc/Particle.j3md");
-        trailMat.setTexture("Texture", assets.loadTexture("Effects/Trail/flame.png"));
+        trailMat.setTexture("Texture", assets.loadTexture("Effects/Trail/point.png"));
         emitter.setMaterial(trailMat);
-        emitter.setImagesX(2);
-        emitter.setImagesY(2); // 2x2
-        emitter.setEndColor(new ColorRGBA(1f, 0f, 0f, 1f));   // red
-        emitter.setStartColor(new ColorRGBA(1f, 1f, 0f, 0.5f)); // yellow
-        emitter.setStartSize(size);
-        emitter.setEndSize(0f);
+        emitter.setImagesX(1);
+        emitter.setImagesY(1); // 21x1
+        emitter.setStartColor(new ColorRGBA(1f, 1f, 1f, 0.5f));   // white
+        emitter.setEndColor(new ColorRGBA(1f, 0f, 0f, 0.1f)); // red
+        emitter.setStartSize((float)size / 2);
+        emitter.setEndSize(0);
         emitter.setGravity(0f, 0f, 0f);
-        emitter.setLowLife(0.5f);
-        emitter.setHighLife(1.5f);
-        emitter.getParticleInfluencer().setVelocityVariation(0.01f);
-        emitter.setInWorldSpace(true);
+        emitter.setLowLife(0.45f);
+        emitter.setHighLife(0.5f);
+        emitter.getParticleInfluencer().setVelocityVariation(0.05f);
+        emitter.setInWorldSpace(false);
+        emitter.setSelectRandomImage(true);
         node.attachChild(emitter);
         emitter.setEnabled(true);
+        
     }
-
+    
     public void deconstruct() {
         emitter = null;
         node = null;
