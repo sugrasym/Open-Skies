@@ -181,8 +181,8 @@ public class Ship extends Celestial {
     public void construct(AssetManager assets) {
         //Get name
         String name = getType().getValue("type");
-        //load model
-        spatial = assets.loadModel("Models/" + name + "/Model.blend");
+        //load spatial
+        loadSpatial(assets, name);
         //construct model and physics
         center = new Node();
         constructMaterial(assets, name);
@@ -196,6 +196,16 @@ public class Ship extends Celestial {
         spatial = null;
         mat = null;
         physics = null;
+    }
+
+    protected void loadSpatial(AssetManager assets, String name) {
+        //load model
+        try {
+            spatial = assets.loadModel("Models/" + name + "/Model.blend");
+        } catch (Exception e) {
+            System.out.println("Error: Model for ship " + name + " not found! Using placeholder.");
+            spatial = assets.loadModel("Models/UnknownShip/Model.blend");
+        }
     }
 
     protected void constructPhysics() {

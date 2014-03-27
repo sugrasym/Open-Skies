@@ -56,6 +56,17 @@ public class Station extends Ship {
         super.construct(assets);
         constructDockingPorts(assets);
     }
+    
+    @Override
+    protected void loadSpatial(AssetManager assets, String name) {
+        //load model
+        try {
+            spatial = assets.loadModel("Models/" + name + "/Model.blend");
+        } catch (Exception e) {
+            System.out.println("Error: Model for station " + name + " not found! Using placeholder.");
+            spatial = assets.loadModel("Models/UnknownStation/Model.blend");
+        }
+    }
 
     @Override
     protected void constructPhysics() {
