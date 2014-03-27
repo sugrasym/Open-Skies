@@ -2,31 +2,31 @@
 name=Default
 ship=Sparrow
 system=System 7
-x=25000
+x=166850
 y=0
-z=-25000
+z=-109635
 cash=50000
 cargo=Ka Ka Ka~2
 [/NewGame]
 
 [Station]
-name=Test Station
+name=Customs Office
 station=Basic Outpost
-system=System 2
-x=25100
+system=System 7
+x=166944
 y=0
-z=-25000
+z=-109635
 faction=Neutral
 [/Station]
 
 [Ship]
 name=Test Sparrow
 ship=Sparrow
-system=System 2
-x=25000
+system=System 7
+x=166844
 y=0
-z=-25100
-faction=Entities
+z=-109635
+faction=Player
 [/Ship]
 
 [System]

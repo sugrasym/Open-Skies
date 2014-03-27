@@ -121,7 +121,7 @@ public class PlanetAppState extends AbstractAppState implements Control {
         farBloom.setExposurePower(3.30f);
         farBloom.setExposureCutOff(0.1f);
         farBloom.setBloomIntensity(1.45f);
-        farFilter.addFilter(farBloom);
+        //farFilter.addFilter(farBloom);
 
         if (sun != null) {
 
