@@ -165,7 +165,7 @@ public class PropertyWindow extends AstralWindow {
 
     @Override
     public void setVisible(boolean visible) {
-        //trader.setVisible(false);
+        trader.setVisible(false);
         cargo.setVisible(false);
         super.setVisible(visible);
         mode = Mode.NONE;
