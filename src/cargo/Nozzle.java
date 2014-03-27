@@ -51,13 +51,13 @@ public class Nozzle extends Hardpoint {
             if (host.getThrottle() != 0) {
                 if (host.getThrottle() > 0) {
                     if (type.equals("rear")) {
-                        emitter.setParticlesPerSec(50);
+                        emitter.setParticlesPerSec(100);
                     } else {
                         emitter.setParticlesPerSec(0);
                     }
                 } else {
                     if (type.equals("forward")) {
-                        emitter.setParticlesPerSec(50);
+                        emitter.setParticlesPerSec(100);
                     } else {
                         emitter.setParticlesPerSec(0);
                     }
@@ -84,7 +84,7 @@ public class Nozzle extends Hardpoint {
 
     @Override
     public void construct(AssetManager assets) {
-        emitter = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, 50);
+        emitter = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, 100);
         Material trailMat = new Material(assets, "Common/MatDefs/Misc/Particle.j3md");
         trailMat.setTexture("Texture", assets.loadTexture("Effects/Trail/point.png"));
         emitter.setMaterial(trailMat);
@@ -93,8 +93,8 @@ public class Nozzle extends Hardpoint {
         emitter.setStartSize((float) size / 2);
         emitter.setEndSize(0);
         emitter.setGravity(0f, 0f, 0f);
-        emitter.setLowLife(0.45f);
-        emitter.setHighLife(0.5f);
+        emitter.setLowLife(0.9f);
+        emitter.setHighLife(1f);
         emitter.getParticleInfluencer().setVelocityVariation(0.05f);
         emitter.setInWorldSpace(false);
         emitter.setSelectRandomImage(true);
