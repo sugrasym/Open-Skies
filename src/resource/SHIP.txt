@@ -16,7 +16,7 @@ sensor=2500
 cargo=75
 hardpoint=cannon,10,-1.5,0,0/cannon,10,1.5,0,0
 #nozzles
-nozzle=rear,1,0,0,1.75
+nozzle=rear,1,0,0,1.75/forward,1,1.2,0,-1/forward,1,-1.2,0,-1
 nozzleStartColor=1,1,1,0.5
 nozzleEndColor=1,0,0,0.1
 [/Ship]

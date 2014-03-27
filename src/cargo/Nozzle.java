@@ -49,7 +49,7 @@ public class Nozzle extends Hardpoint {
     public void periodicUpdate(double tpf) {
         if (emitter != null) {
             //emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_Z.mult(-host.getLinearVelocity().length())/*.mult((float) tpf)*/);
-            emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_Z.mult((float) Math.sqrt(host.getAcceleration())));
+            emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_Z.mult((float) Math.sqrt(host.getAcceleration())*host.getThrottle()));
         }
     }
 
