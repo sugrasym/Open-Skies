@@ -242,7 +242,7 @@ public class Ship extends Celestial {
             //initialize node
             hardpoints.get(a).initNode();
             //debug
-            hardpoints.get(a).showDebugHardpoint(assets);
+            //hardpoints.get(a).showDebugHardpoint(assets);
             //construct
             hardpoints.get(a).construct(assets);
             //store node with spatial
@@ -255,7 +255,7 @@ public class Ship extends Celestial {
             //initialize node
             nozzles.get(a).initNode();
             //debug
-            nozzles.get(a).showDebugHardpoint(assets);
+            //nozzles.get(a).showDebugHardpoint(assets);
             //construct
             nozzles.get(a).construct(assets);
             //store node with spatial
