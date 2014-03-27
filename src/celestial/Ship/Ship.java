@@ -1198,6 +1198,8 @@ public class Ship extends Celestial {
     protected void installNozzles(Term relevant) throws NumberFormatException {
         String complex = relevant.getValue("nozzle");
         if (complex != null) {
+            String rawStart = relevant.getValue("nozzleStartColor");
+            String rawEnd = relevant.getValue("nozzleEndColor");
             String[] arr = complex.split("/");
             for (int a = 0; a < arr.length; a++) {
                 String[] re = arr[a].split(",");
@@ -1206,7 +1208,7 @@ public class Ship extends Celestial {
                 float hx = Float.parseFloat(re[2]);
                 float hy = Float.parseFloat(re[3]);
                 float hz = Float.parseFloat(re[4]);
-                nozzles.add(new Nozzle(this, hType, hSize, new Vector3f(hx, hy, hz)));
+                nozzles.add(new Nozzle(this, hType, hSize, new Vector3f(hx, hy, hz), rawStart, rawEnd));
             }
         }
     }

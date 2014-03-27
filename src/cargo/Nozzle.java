@@ -34,33 +34,37 @@ import com.jme3.scene.shape.Box;
  * @author nwiehoff
  */
 public class Nozzle extends Hardpoint {
-    
+
     transient ParticleEmitter emitter;
-    
-    public Nozzle(Ship host, String type, int size, Vector3f loc) {
+    private String rawStart;
+    private String rawEnd;
+
+    public Nozzle(Ship host, String type, int size, Vector3f loc, String rawStart, String rawEnd) {
         super(host, type, size, loc);
+        this.rawEnd = rawEnd;
+        this.rawStart = rawStart;
     }
-    
+
     @Override
     public void periodicUpdate(double tpf) {
         if (emitter != null) {
             //emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_Z.mult(-host.getLinearVelocity().length())/*.mult((float) tpf)*/);
-            emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_Z.mult((float)Math.sqrt(host.getAcceleration())));
+            emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_Z.mult((float) Math.sqrt(host.getAcceleration())));
         }
     }
-    
+
     public void start() {
         if (emitter != null) {
             emitter.setParticlesPerSec(50);
         }
     }
-    
+
     public void stop() {
         if (emitter != null) {
             emitter.setParticlesPerSec(0);
         }
     }
-    
+
     @Override
     public void showDebugHardpoint(AssetManager assets) {
         Box point = new Box(0.1f, 0.1f, 0.1f);
@@ -72,7 +76,7 @@ public class Nozzle extends Hardpoint {
         //add to node
         node.attachChild(red);
     }
-    
+
     @Override
     public void construct(AssetManager assets) {
         emitter = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, 50);
@@ -80,10 +84,8 @@ public class Nozzle extends Hardpoint {
         trailMat.setTexture("Texture", assets.loadTexture("Effects/Trail/point.png"));
         emitter.setMaterial(trailMat);
         emitter.setImagesX(1);
-        emitter.setImagesY(1); // 21x1
-        emitter.setStartColor(new ColorRGBA(1f, 1f, 1f, 0.5f));   // white
-        emitter.setEndColor(new ColorRGBA(1f, 0f, 0f, 0.1f)); // red
-        emitter.setStartSize((float)size / 2);
+        emitter.setImagesY(1); // 1x1
+        emitter.setStartSize((float) size / 2);
         emitter.setEndSize(0);
         emitter.setGravity(0f, 0f, 0f);
         emitter.setLowLife(0.45f);
@@ -93,10 +95,30 @@ public class Nozzle extends Hardpoint {
         emitter.setSelectRandomImage(true);
         node.attachChild(emitter);
         emitter.setEnabled(true);
-        
+        //setup start color
+        {
+            String[] arr = rawStart.split(",");
+            float r = Float.parseFloat(arr[0]);
+            float g = Float.parseFloat(arr[1]);
+            float b = Float.parseFloat(arr[2]);
+            float a = Float.parseFloat(arr[3]);
+            ColorRGBA col = new ColorRGBA(r, g, b, a);
+            emitter.setStartColor(col);
+        }
+        //setup end color
+        {
+            String[] arr = rawEnd.split(",");
+            float r = Float.parseFloat(arr[0]);
+            float g = Float.parseFloat(arr[1]);
+            float b = Float.parseFloat(arr[2]);
+            float a = Float.parseFloat(arr[3]);
+            ColorRGBA col = new ColorRGBA(r, g, b, a);
+            emitter.setEndColor(col);
+        }
     }
-    
-    public void deconstruct() {
+
+    @Override
+    public void deconstruct(AssetManager assets) {
         emitter = null;
         node = null;
     }
