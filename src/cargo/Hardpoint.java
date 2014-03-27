@@ -153,4 +153,12 @@ public class Hardpoint implements Serializable {
         //add to node
         node.attachChild(red);
     }
+    
+    public void construct(AssetManager assets) {
+        //TODO
+    }
+    
+    public void deconstruct(AssetManager assets) {
+        //TODO
+    }
 }
