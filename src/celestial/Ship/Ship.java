@@ -711,15 +711,8 @@ public class Ship extends Celestial {
         }
         if (throttle > 0) {
             fireRearThrusters(throttle);
-            showRearThrusters();
-            stopForwardThrusters();
         } else if (throttle < 0) {
             fireForwardThrusters(Math.abs(throttle));
-            showForwardThrusters();
-            stopRearThrusters();
-        } else {
-            stopRearThrusters();
-            stopForwardThrusters();
         }
         /*
          * Without fuel you won't have any inertial engines so it makes sense
@@ -1539,40 +1532,5 @@ public class Ship extends Celestial {
             }
         }
         return list;
-    }
-
-    /*
-     * Effects for showing thrusters firing
-     */
-    private void showRearThrusters() {
-        for (int a = 0; a < nozzles.size(); a++) {
-            if (nozzles.get(a).getType().equals("rear")) {
-                nozzles.get(a).start();
-            }
-        }
-    }
-
-    private void stopRearThrusters() {
-        for (int a = 0; a < nozzles.size(); a++) {
-            if (nozzles.get(a).getType().equals("rear")) {
-                nozzles.get(a).stop();
-            }
-        }
-    }
-
-    private void showForwardThrusters() {
-        for (int a = 0; a < nozzles.size(); a++) {
-            if (nozzles.get(a).getType().equals("forward")) {
-                nozzles.get(a).start();
-            }
-        }
-    }
-
-    private void stopForwardThrusters() {
-        for (int a = 0; a < nozzles.size(); a++) {
-            if (nozzles.get(a).getType().equals("forward")) {
-                nozzles.get(a).stop();
-            }
-        }
     }
 }

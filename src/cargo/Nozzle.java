@@ -48,20 +48,25 @@ public class Nozzle extends Hardpoint {
     @Override
     public void periodicUpdate(double tpf) {
         if (emitter != null) {
+            if (host.getThrottle() != 0) {
+                if (host.getThrottle() > 0) {
+                    if (type.equals("rear")) {
+                        emitter.setParticlesPerSec(50);
+                    } else {
+                        emitter.setParticlesPerSec(0);
+                    }
+                } else {
+                    if (type.equals("forward")) {
+                        emitter.setParticlesPerSec(50);
+                    } else {
+                        emitter.setParticlesPerSec(0);
+                    }
+                }
+            } else {
+                emitter.setParticlesPerSec(0);
+            }
             //emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_Z.mult(-host.getLinearVelocity().length())/*.mult((float) tpf)*/);
-            emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_Z.mult((float) Math.sqrt(host.getAcceleration())*host.getThrottle()));
-        }
-    }
-
-    public void start() {
-        if (emitter != null) {
-            emitter.setParticlesPerSec(50);
-        }
-    }
-
-    public void stop() {
-        if (emitter != null) {
-            emitter.setParticlesPerSec(0);
+            emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_Z.mult((float) Math.sqrt(host.getAcceleration()) * host.getThrottle()));
         }
     }
 
