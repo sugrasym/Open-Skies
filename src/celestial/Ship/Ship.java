@@ -303,11 +303,9 @@ public class Ship extends Celestial {
         //fly towards it
         moveToPositionWithHold(align, Float.POSITIVE_INFINITY);
         //abort when hold is reached
-        if (physics.getLinearVelocity().length() >= getFlightHold()) {
+        if (physics.getLinearVelocity().length() >= DockingPort.DOCK_SPEED_LIMIT) {
             //all done
-            port.release();
-            port = null;
-            cmdAllStop();
+            cmdAbortDock();
         }
     }
 
@@ -1324,10 +1322,18 @@ public class Ship extends Celestial {
 
     public void cmdAbort() {
         setAutopilot(Autopilot.NONE);
+        if (port != null) {
+            port.release();
+            port = null;
+        }
     }
 
     public void cmdAllStop() {
         setAutopilot(Autopilot.ALL_STOP);
+        if (port != null) {
+            port.release();
+            port = null;
+        }
     }
 
     public void cmdAbortDock() {
