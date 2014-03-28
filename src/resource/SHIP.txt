@@ -5,7 +5,7 @@
 type=Sparrow
 #physics
 mass=1
-thrust=75
+thrust=97
 torque=9
 #stats
 shield=10571
@@ -24,7 +24,7 @@ nozzleEndColor=1,0,0,0.1
 #Medium Fighters
 [Ship]
 type=Crow
-thrust=93
+thrust=120
 torque=6.7
 shield=14028
 shieldRecharge=213
@@ -43,7 +43,7 @@ nozzleEndColor=1,0,0,0.1
 #Heavy Fighters
 [Ship]
 type=Raven
-thrust=99
+thrust=128
 torque=4.1
 shield=17000
 shieldRecharge=248

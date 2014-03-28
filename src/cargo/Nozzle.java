@@ -48,7 +48,7 @@ public class Nozzle extends Hardpoint {
     @Override
     public void periodicUpdate(double tpf) {
         if (emitter != null) {
-            if (host.getThrottle() != 0) {
+            if (host.getThrottle() != 0 && host.getFuel() > host.getThrust()) {
                 if (host.getThrottle() > 0) {
                     if (type.equals("rear")) {
                         emitter.setParticlesPerSec(100);

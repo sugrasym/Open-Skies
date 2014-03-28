@@ -1,6 +1,6 @@
 [NewGame]
 name=Default
-ship=Crow
+ship=Sparrow
 system=Kappa 0ET2-HY5D
 x=16685
 y=0

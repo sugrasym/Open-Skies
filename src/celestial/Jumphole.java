@@ -19,6 +19,7 @@
  */
 package celestial;
 
+import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.SphereCollisionShape;
@@ -32,6 +33,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Sphere;
 import entity.Entity;
+import java.util.ArrayList;
 import java.util.Random;
 import jmeplanet.PlanetAppState;
 import lib.astral.Parser;
@@ -43,7 +45,7 @@ import universe.Universe;
  * @author nwiehoff
  */
 public class Jumphole extends Planet {
-
+    
     transient ParticleEmitter emitter;
     private int seed;
     //colors
@@ -52,11 +54,11 @@ public class Jumphole extends Planet {
     //hole stuff
     private Jumphole outGate;
     protected String out = "n/n";
-
+    
     public Jumphole(Universe universe, String name) {
-        super(universe, name, null, 10);
+        super(universe, name, null, 15);
     }
-
+    
     @Override
     public void construct(AssetManager assets) {
         //create geometry
@@ -74,8 +76,10 @@ public class Jumphole extends Planet {
         setupCoreParticle(assets);
         //add physics to mesh
         spatial.addControl(physics);
+        nameControl.setParent(this);
+        spatial.addControl(nameControl);
     }
-
+    
     private void setupCoreParticle(AssetManager assets) {
         //create the emitter
         emitter = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, 120);
@@ -99,45 +103,51 @@ public class Jumphole extends Planet {
         emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_XYZ);
         emitter.setParticlesPerSec(2);
     }
-
+    
     @Override
     public void deconstruct() {
         super.deconstruct();
     }
-
+    
     @Override
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         //node.attachChild(spatial);
         physics.getPhysicsSpace().add(spatial);
         node.attachChild(emitter);
     }
-
+    
     @Override
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         //node.detachChild(spatial);
         physics.getPhysicsSpace().remove(spatial);
         node.detachChild(emitter);
     }
-
+    
+    @Override
     protected void alive() {
         super.alive();
         if (emitter != null) {
             emitter.setLocalTranslation(getLocation());
         }
-        //guarantee link
-        if (outGate == null) {
-            createLink(out);
-        }
+        aliveAlways();
     }
-
+    
+    @Override
+    protected void oosAlive() {
+        super.oosAlive();
+        aliveAlways();
+    }
+    
+    @Override
     public int getSeed() {
         return seed;
     }
-
+    
+    @Override
     public void setSeed(int seed) {
         this.seed = seed;
     }
-
+    
     public void createLink(String out) {
         /*
          * Locates this gate's partner in the target solar system.
@@ -161,12 +171,47 @@ public class Jumphole extends Planet {
             }
         }
     }
-
+    
     public void linkWithPartner(Jumphole gate) {
         outGate = gate;
     }
     
     public void setOut(String out) {
         this.out = out;
+    }
+    
+    private void jumpShip(Ship ship) {
+        SolarSystem start = ship.getCurrentSystem();
+        SolarSystem end = outGate.getCurrentSystem();
+        //pull from old system
+        start.pullEntityFromSystem(ship);
+        //store location
+        Vector3f diff = getLocation().subtract(ship.getLocation());
+        ship.setLocation(outGate.getLocation().add(diff.mult(2)));
+        //complete transfer
+        end.putEntityInSystem(ship);
+        
+    }
+    
+    private void checkForJumpers() {
+        //check for any ships to jump
+        ArrayList<Entity> near = getCurrentSystem().getShipList();
+        for (int a = 0; a < near.size(); a++) {
+            Ship tmp = (Ship) near.get(a);
+            float dist = tmp.getLocation().distance(getLocation());
+            if (dist <= 1.5f * radius) {
+                //jump
+                jumpShip(tmp);
+            }
+        }
+    }
+    
+    private void aliveAlways() {
+        //guarantee link
+        if (outGate == null) {
+            createLink(out);
+        }
+        //see if anything can jump through
+        checkForJumpers();
     }
 }
