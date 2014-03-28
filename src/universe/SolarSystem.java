@@ -21,6 +21,7 @@ package universe;
 
 import celestial.Celestial;
 import celestial.Field;
+import celestial.Jumphole;
 import celestial.Nebula;
 import celestial.Planet;
 import celestial.Ship.Ship;
@@ -66,6 +67,7 @@ public class SolarSystem implements Entity, Serializable {
     private final ArrayList<Entity> stationList = new ArrayList<>();
     private final ArrayList<Entity> shipList = new ArrayList<>();
     private final ArrayList<Entity> planetList = new ArrayList<>();
+    private final ArrayList<Entity> jumpholeList = new ArrayList<>();
 
     public SolarSystem(Universe universe, Term thisSystem, Parser parse) {
         name = thisSystem.getValue("name");
@@ -134,6 +136,14 @@ public class SolarSystem implements Entity, Serializable {
             if (ships.get(a).getValue("system").equals(getName())) {
                 //this ship needs to be created and stored
                 putEntityInSystem(makeShip(ships.get(a)));
+            }
+        }
+        //jumphole
+        ArrayList<Term> jumpholes = info.getTermsOfType("Jumphole");
+        for (int a = 0; a < jumpholes.size(); a++) {
+            if (jumpholes.get(a).getValue("system").equals(getName())) {
+                //this planet needs to be created and stored
+                putEntityInSystem(makeJumphole(assets, jumpholes.get(a)));
             }
         }
     }
@@ -256,6 +266,23 @@ public class SolarSystem implements Entity, Serializable {
         }
         return star;
     }
+    
+    private Jumphole makeJumphole(AssetManager assets, Term jumpholeTerm) {
+        Jumphole jumphole = null;
+        {
+            //extract terms
+            String pName = jumpholeTerm.getValue("name");
+            String out = jumpholeTerm.getValue("out");
+            float px = Float.parseFloat(jumpholeTerm.getValue("x"));
+            float py = Float.parseFloat(jumpholeTerm.getValue("y"));
+            float pz = Float.parseFloat(jumpholeTerm.getValue("z"));
+            //make planet and store
+            jumphole = new Jumphole(universe, pName);
+            jumphole.setOut(out);
+            jumphole.setLocation(new Vector3f(px, py, pz));
+        }
+        return jumphole;
+    }
 
     private Field makeField(AssetManager assets, Term fieldTerm) {
         Field field = null;
@@ -359,7 +386,10 @@ public class SolarSystem implements Entity, Serializable {
             stationList.add(entity);
         } else if (entity instanceof Ship) {
             shipList.add(entity);
-        } else if (entity instanceof Planet) {
+        } else if(entity instanceof Jumphole) {
+            jumpholeList.add(entity);
+        } 
+        else if (entity instanceof Planet) {
             planetList.add(entity);
         }
     }
@@ -374,6 +404,7 @@ public class SolarSystem implements Entity, Serializable {
         stationList.remove(entity);
         shipList.remove(entity);
         planetList.remove(entity);
+        jumpholeList.remove(entity);
         universe.getPlayerProperty().remove(entity);
     }
 
@@ -515,6 +546,10 @@ public class SolarSystem implements Entity, Serializable {
 
     public ArrayList<Entity> getPlanetList() {
         return planetList;
+    }
+    
+    public ArrayList<Entity> getJumpholeList() {
+        return jumpholeList;
     }
 
     public boolean hasGraphics() {

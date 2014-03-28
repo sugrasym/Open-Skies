@@ -813,6 +813,10 @@ public class PropertyWindow extends AstralWindow {
                 choice.add("--Select Target To Fly To--");
                 choice.add(" ");
                 ArrayList<Entity> cel = new ArrayList<>();
+                //add jumpholes
+                for (int a = 0; a < selected.getCurrentSystem().getJumpholeList().size(); a++) {
+                    cel.add(selected.getCurrentSystem().getJumpholeList().get(a));
+                }
                 //add planets
                 for (int a = 0; a < selected.getCurrentSystem().getPlanetList().size(); a++) {
                     cel.add(selected.getCurrentSystem().getPlanetList().get(a));
