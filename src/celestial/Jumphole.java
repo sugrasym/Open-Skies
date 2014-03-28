@@ -47,8 +47,8 @@ public class Jumphole extends Planet {
     transient ParticleEmitter emitter;
     private int seed;
     //colors
-    public static final ColorRGBA START_COLOR = new ColorRGBA(0, 0, 1, 1);
-    public static final ColorRGBA END_COLOR = new ColorRGBA(1, 0, 0, 0.5f);
+    public static final ColorRGBA START_COLOR = new ColorRGBA(1, 1, 1, 1);
+    public static final ColorRGBA END_COLOR = new ColorRGBA(0, 0, 1, 0.5f);
     //hole stuff
     private Jumphole outGate;
     protected String out = "n/n";

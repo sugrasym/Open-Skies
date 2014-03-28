@@ -1,8 +1,8 @@
 [System]
 name=Kappa 0ET2-HY5D
-x=-56
-y=59
-z=-78
+x=644
+y=359
+z=-578
 sky=Brown 0
 [/System]
 
@@ -34,7 +34,7 @@ seed=1094768554
 [Planet]
 name='Bailey 15'
 system=Kappa 0ET2-HY5D
-texture=Barren
+texture=BandedGas
 x=82888
 y=0
 z=-91123
@@ -56,7 +56,7 @@ seed=837321402
 [Planet]
 name='Woods 14'
 system=Kappa 0ET2-HY5D
-texture=BandedGas
+texture=Terran
 x=-80075
 y=0
 z=6769
@@ -67,7 +67,7 @@ seed=-1946744522
 [Planet]
 name='Gibson 1'
 system=Kappa 0ET2-HY5D
-texture=Barren
+texture=BandedGas
 x=16289
 y=0
 z=97252
@@ -76,12 +76,12 @@ seed=825303937
 [/Planet]
 
 [Jumphole]
-name=Beta QF2-2V3S Jumphole
+name=Iota QYHH-OK Jumphole
 x=55567
 y=0
 z=-13113
 system=Kappa 0ET2-HY5D
-out=Beta QF2-2V3S/Kappa 0ET2-HY5D Jumphole
+out=Iota QYHH-OK/Kappa 0ET2-HY5D Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -89,17 +89,17 @@ name=Kappa 0ET2-HY5D Jumphole
 x=-105669
 y=0
 z=61449
-system=Beta QF2-2V3S
-out=Kappa 0ET2-HY5D/Beta QF2-2V3S Jumphole
+system=Iota QYHH-OK
+out=Kappa 0ET2-HY5D/Iota QYHH-OK Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Tau 9-UA Jumphole
+name=Omicron Q3-4V6 Jumphole
 x=43757
 y=0
 z=-105808
 system=Kappa 0ET2-HY5D
-out=Tau 9-UA/Kappa 0ET2-HY5D Jumphole
+out=Omicron Q3-4V6/Kappa 0ET2-HY5D Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -107,17 +107,17 @@ name=Kappa 0ET2-HY5D Jumphole
 x=7622
 y=0
 z=111940
-system=Tau 9-UA
-out=Kappa 0ET2-HY5D/Tau 9-UA Jumphole
+system=Omicron Q3-4V6
+out=Kappa 0ET2-HY5D/Omicron Q3-4V6 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Gamma YWKE-ELG5 Jumphole
+name=Nu 3V-P Jumphole
 x=-57646
 y=0
 z=-117451
 system=Kappa 0ET2-HY5D
-out=Gamma YWKE-ELG5/Kappa 0ET2-HY5D Jumphole
+out=Nu 3V-P/Kappa 0ET2-HY5D Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -125,15 +125,15 @@ name=Kappa 0ET2-HY5D Jumphole
 x=24818
 y=0
 z=13234
-system=Gamma YWKE-ELG5
-out=Kappa 0ET2-HY5D/Gamma YWKE-ELG5 Jumphole
+system=Nu 3V-P
+out=Kappa 0ET2-HY5D/Nu 3V-P Jumphole
 [/Jumphole]
 
 [System]
 name=Gamma TJJ8-6
-x=-70
-y=90
-z=94
+x=-570
+y=190
+z=-6
 sky=Brown 1
 [/System]
 
@@ -151,7 +151,7 @@ seed=-1287883392
 [Planet]
 name='Evans 24'
 system=Gamma TJJ8-6
-texture=BandedGas
+texture=Terran
 x=-19140
 y=0
 z=-40502
@@ -162,7 +162,7 @@ seed=1136614621
 [Planet]
 name='Rodriguez 19'
 system=Gamma TJJ8-6
-texture=BandedGas
+texture=Barren
 x=-61409
 y=0
 z=61650
@@ -184,7 +184,7 @@ seed=1699960922
 [Planet]
 name='Cook 22'
 system=Gamma TJJ8-6
-texture=BandedGas
+texture=Chthonian
 x=-33494
 y=0
 z=42650
@@ -195,7 +195,7 @@ seed=-1589381063
 [Planet]
 name='Wilson 24'
 system=Gamma TJJ8-6
-texture=BandedGas
+texture=Barren
 x=-9729
 y=0
 z=-17860
@@ -215,12 +215,12 @@ seed=-188433869
 [/Planet]
 
 [Jumphole]
-name=Iota QYHH-OK Jumphole
+name=Pi 3ZJ-H94 Jumphole
 x=46050
 y=0
 z=49773
 system=Gamma TJJ8-6
-out=Iota QYHH-OK/Gamma TJJ8-6 Jumphole
+out=Pi 3ZJ-H94/Gamma TJJ8-6 Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -228,17 +228,17 @@ name=Gamma TJJ8-6 Jumphole
 x=-52413
 y=0
 z=61730
-system=Iota QYHH-OK
-out=Gamma TJJ8-6/Iota QYHH-OK Jumphole
+system=Pi 3ZJ-H94
+out=Gamma TJJ8-6/Pi 3ZJ-H94 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Psi CNK-LTW Jumphole
+name=Lambda W-UIJX Jumphole
 x=-55755
 y=0
 z=54178
 system=Gamma TJJ8-6
-out=Psi CNK-LTW/Gamma TJJ8-6 Jumphole
+out=Lambda W-UIJX/Gamma TJJ8-6 Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -246,17 +246,17 @@ name=Gamma TJJ8-6 Jumphole
 x=38554
 y=0
 z=27202
-system=Psi CNK-LTW
-out=Gamma TJJ8-6/Psi CNK-LTW Jumphole
+system=Lambda W-UIJX
+out=Gamma TJJ8-6/Lambda W-UIJX Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Omega COH-3 Jumphole
+name=Phi MP9T-C Jumphole
 x=-16380
 y=0
 z=17192
 system=Gamma TJJ8-6
-out=Omega COH-3/Gamma TJJ8-6 Jumphole
+out=Phi MP9T-C/Gamma TJJ8-6 Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -264,17 +264,17 @@ name=Gamma TJJ8-6 Jumphole
 x=24344
 y=0
 z=11172
-system=Omega COH-3
-out=Gamma TJJ8-6/Omega COH-3 Jumphole
+system=Phi MP9T-C
+out=Gamma TJJ8-6/Phi MP9T-C Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Phi MP9T-C Jumphole
+name=Mu M-NGW5 Jumphole
 x=-27472
 y=0
 z=14405
 system=Gamma TJJ8-6
-out=Phi MP9T-C/Gamma TJJ8-6 Jumphole
+out=Mu M-NGW5/Gamma TJJ8-6 Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -282,15 +282,15 @@ name=Gamma TJJ8-6 Jumphole
 x=-54642
 y=0
 z=-55963
-system=Phi MP9T-C
-out=Gamma TJJ8-6/Phi MP9T-C Jumphole
+system=Mu M-NGW5
+out=Gamma TJJ8-6/Mu M-NGW5 Jumphole
 [/Jumphole]
 
 [System]
 name=Rho 6-Q6O
-x=49
-y=-47
-z=-54
+x=349
+y=853
+z=446
 sky=Blue 0
 [/System]
 
@@ -344,7 +344,7 @@ seed=-1293374891
 [Planet]
 name='Harrison 12'
 system=Rho 6-Q6O
-texture=BandedGas
+texture=Barren
 x=47796
 y=0
 z=43498
@@ -353,12 +353,12 @@ seed=1798021458
 [/Planet]
 
 [Jumphole]
-name=Omega Q7B2-0C Jumphole
+name=Tau 0Z5U-0 Jumphole
 x=-19584
 y=0
 z=28423
 system=Rho 6-Q6O
-out=Omega Q7B2-0C/Rho 6-Q6O Jumphole
+out=Tau 0Z5U-0/Rho 6-Q6O Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -366,15 +366,15 @@ name=Rho 6-Q6O Jumphole
 x=70715
 y=0
 z=-78559
-system=Omega Q7B2-0C
-out=Rho 6-Q6O/Omega Q7B2-0C Jumphole
+system=Tau 0Z5U-0
+out=Rho 6-Q6O/Tau 0Z5U-0 Jumphole
 [/Jumphole]
 
 [System]
 name=Epsilon DL-8XN
-x=70
-y=10
-z=64
+x=-630
+y=-290
+z=164
 sky=Dark
 [/System]
 
@@ -392,7 +392,7 @@ seed=805186341
 [Planet]
 name='Irene 1'
 system=Epsilon DL-8XN
-texture=Terran
+texture=Chthonian
 x=-8586
 y=0
 z=-182173
@@ -401,12 +401,12 @@ seed=-1007648597
 [/Planet]
 
 [Jumphole]
-name=Xi E-S Jumphole
+name=Omicron 0PI-2 Jumphole
 x=159887
 y=0
 z=3613
 system=Epsilon DL-8XN
-out=Xi E-S/Epsilon DL-8XN Jumphole
+out=Omicron 0PI-2/Epsilon DL-8XN Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -414,17 +414,17 @@ name=Epsilon DL-8XN Jumphole
 x=2924
 y=0
 z=-58985
-system=Xi E-S
-out=Epsilon DL-8XN/Xi E-S Jumphole
+system=Omicron 0PI-2
+out=Epsilon DL-8XN/Omicron 0PI-2 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Tau F-PYG Jumphole
+name=Sigma 0Q-8 Jumphole
 x=-88926
 y=0
 z=130640
 system=Epsilon DL-8XN
-out=Tau F-PYG/Epsilon DL-8XN Jumphole
+out=Sigma 0Q-8/Epsilon DL-8XN Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -432,17 +432,17 @@ name=Epsilon DL-8XN Jumphole
 x=71334
 y=0
 z=-94075
-system=Tau F-PYG
-out=Epsilon DL-8XN/Tau F-PYG Jumphole
+system=Sigma 0Q-8
+out=Epsilon DL-8XN/Sigma 0Q-8 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Upsilon N3U-41 Jumphole
+name=Mu M-NGW5 Jumphole
 x=-149321
 y=0
 z=-136717
 system=Epsilon DL-8XN
-out=Upsilon N3U-41/Epsilon DL-8XN Jumphole
+out=Mu M-NGW5/Epsilon DL-8XN Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -450,17 +450,17 @@ name=Epsilon DL-8XN Jumphole
 x=-42462
 y=0
 z=-92685
-system=Upsilon N3U-41
-out=Epsilon DL-8XN/Upsilon N3U-41 Jumphole
+system=Mu M-NGW5
+out=Epsilon DL-8XN/Mu M-NGW5 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Mu O7-ZWL Jumphole
+name=Rho TH-WH0 Jumphole
 x=-2316
 y=0
 z=182848
 system=Epsilon DL-8XN
-out=Mu O7-ZWL/Epsilon DL-8XN Jumphole
+out=Rho TH-WH0/Epsilon DL-8XN Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -468,15 +468,15 @@ name=Epsilon DL-8XN Jumphole
 x=179104
 y=0
 z=110222
-system=Mu O7-ZWL
-out=Epsilon DL-8XN/Mu O7-ZWL Jumphole
+system=Rho TH-WH0
+out=Epsilon DL-8XN/Rho TH-WH0 Jumphole
 [/Jumphole]
 
 [System]
 name=Tau QAP-K3
-x=67
-y=-6
-z=-10
+x=-33
+y=494
+z=-710
 sky=Black 0
 [/System]
 
@@ -507,7 +507,7 @@ seed=-92555336
 [Planet]
 name='Zach 19'
 system=Tau QAP-K3
-texture=Barren
+texture=Terran
 x=-59377
 y=0
 z=-73539
@@ -516,12 +516,12 @@ seed=1928735926
 [/Planet]
 
 [Jumphole]
-name=Epsilon BGG3-F Jumphole
+name=Xi V-21J Jumphole
 x=169918
 y=0
 z=91542
 system=Tau QAP-K3
-out=Epsilon BGG3-F/Tau QAP-K3 Jumphole
+out=Xi V-21J/Tau QAP-K3 Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -529,17 +529,17 @@ name=Tau QAP-K3 Jumphole
 x=103323
 y=0
 z=-80768
-system=Epsilon BGG3-F
-out=Tau QAP-K3/Epsilon BGG3-F Jumphole
+system=Xi V-21J
+out=Tau QAP-K3/Xi V-21J Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Mu O7-ZWL Jumphole
+name=Alpha 6L-XGXG Jumphole
 x=94213
 y=0
 z=-12486
 system=Tau QAP-K3
-out=Mu O7-ZWL/Tau QAP-K3 Jumphole
+out=Alpha 6L-XGXG/Tau QAP-K3 Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -547,17 +547,17 @@ name=Tau QAP-K3 Jumphole
 x=-18068
 y=0
 z=-80158
-system=Mu O7-ZWL
-out=Tau QAP-K3/Mu O7-ZWL Jumphole
+system=Alpha 6L-XGXG
+out=Tau QAP-K3/Alpha 6L-XGXG Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Eta J2T-30MX Jumphole
+name=Phi PTY-XDDL Jumphole
 x=-137229
 y=0
 z=69864
 system=Tau QAP-K3
-out=Eta J2T-30MX/Tau QAP-K3 Jumphole
+out=Phi PTY-XDDL/Tau QAP-K3 Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -565,17 +565,17 @@ name=Tau QAP-K3 Jumphole
 x=103873
 y=0
 z=20372
-system=Eta J2T-30MX
-out=Tau QAP-K3/Eta J2T-30MX Jumphole
+system=Phi PTY-XDDL
+out=Tau QAP-K3/Phi PTY-XDDL Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Mu MY-Q9LO Jumphole
+name=Xi E-S Jumphole
 x=72841
 y=0
 z=126626
 system=Tau QAP-K3
-out=Mu MY-Q9LO/Tau QAP-K3 Jumphole
+out=Xi E-S/Tau QAP-K3 Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -583,15 +583,15 @@ name=Tau QAP-K3 Jumphole
 x=-32529
 y=0
 z=144327
-system=Mu MY-Q9LO
-out=Tau QAP-K3/Mu MY-Q9LO Jumphole
+system=Xi E-S
+out=Tau QAP-K3/Xi E-S Jumphole
 [/Jumphole]
 
 [System]
 name=Upsilon 8J-Z
-x=-72
-y=12
-z=-87
+x=-972
+y=912
+z=213
 sky=Brown 1
 [/System]
 
@@ -622,7 +622,7 @@ seed=-1618230102
 [Planet]
 name='Mitchel 22'
 system=Upsilon 8J-Z
-texture=BandedGas
+texture=Terran
 x=-19925
 y=0
 z=526
@@ -631,12 +631,12 @@ seed=2086629810
 [/Planet]
 
 [Jumphole]
-name=Delta VT8R-6LDM Jumphole
+name=Xi S-0U0W Jumphole
 x=-44156
 y=0
 z=90695
 system=Upsilon 8J-Z
-out=Delta VT8R-6LDM/Upsilon 8J-Z Jumphole
+out=Xi S-0U0W/Upsilon 8J-Z Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -644,17 +644,17 @@ name=Upsilon 8J-Z Jumphole
 x=-90092
 y=0
 z=111762
-system=Delta VT8R-6LDM
-out=Upsilon 8J-Z/Delta VT8R-6LDM Jumphole
+system=Xi S-0U0W
+out=Upsilon 8J-Z/Xi S-0U0W Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Tau 9-UA Jumphole
+name=Beta 9-R71 Jumphole
 x=150682
 y=0
 z=153796
 system=Upsilon 8J-Z
-out=Tau 9-UA/Upsilon 8J-Z Jumphole
+out=Beta 9-R71/Upsilon 8J-Z Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -662,15 +662,15 @@ name=Upsilon 8J-Z Jumphole
 x=-84102
 y=0
 z=-49552
-system=Tau 9-UA
-out=Upsilon 8J-Z/Tau 9-UA Jumphole
+system=Beta 9-R71
+out=Upsilon 8J-Z/Beta 9-R71 Jumphole
 [/Jumphole]
 
 [System]
 name=Iota I-B
-x=61
-y=44
-z=-75
+x=-639
+y=-656
+z=-575
 sky=Blue 0
 [/System]
 
@@ -723,7 +723,7 @@ seed=1372976718
 [Planet]
 name='Ben 12'
 system=Iota I-B
-texture=BandedGas
+texture=Barren
 x=-71973
 y=0
 z=-63764
@@ -732,12 +732,12 @@ seed=220056217
 [/Planet]
 
 [Jumphole]
-name=Iota URU-MEU0 Jumphole
+name=Psi POFH-B Jumphole
 x=-74601
 y=0
 z=-27955
 system=Iota I-B
-out=Iota URU-MEU0/Iota I-B Jumphole
+out=Psi POFH-B/Iota I-B Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -745,17 +745,17 @@ name=Iota I-B Jumphole
 x=44792
 y=0
 z=-26283
-system=Iota URU-MEU0
-out=Iota I-B/Iota URU-MEU0 Jumphole
+system=Psi POFH-B
+out=Iota I-B/Psi POFH-B Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Eta MTK-6D Jumphole
+name=Tau 9-UA Jumphole
 x=42464
 y=0
 z=35054
 system=Iota I-B
-out=Eta MTK-6D/Iota I-B Jumphole
+out=Tau 9-UA/Iota I-B Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -763,17 +763,17 @@ name=Iota I-B Jumphole
 x=-4012
 y=0
 z=8948
-system=Eta MTK-6D
-out=Iota I-B/Eta MTK-6D Jumphole
+system=Tau 9-UA
+out=Iota I-B/Tau 9-UA Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Iota 2J1-RH5I Jumphole
+name=Mu M-NGW5 Jumphole
 x=-67280
 y=0
 z=28948
 system=Iota I-B
-out=Iota 2J1-RH5I/Iota I-B Jumphole
+out=Mu M-NGW5/Iota I-B Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -781,17 +781,17 @@ name=Iota I-B Jumphole
 x=-54940
 y=0
 z=36310
-system=Iota 2J1-RH5I
-out=Iota I-B/Iota 2J1-RH5I Jumphole
+system=Mu M-NGW5
+out=Iota I-B/Mu M-NGW5 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Psi SBZ-8DHQ Jumphole
+name=Gamma YE-8S Jumphole
 x=12688
 y=0
 z=80336
 system=Iota I-B
-out=Psi SBZ-8DHQ/Iota I-B Jumphole
+out=Gamma YE-8S/Iota I-B Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -799,15 +799,15 @@ name=Iota I-B Jumphole
 x=-69256
 y=0
 z=-49457
-system=Psi SBZ-8DHQ
-out=Iota I-B/Psi SBZ-8DHQ Jumphole
+system=Gamma YE-8S
+out=Iota I-B/Gamma YE-8S Jumphole
 [/Jumphole]
 
 [System]
 name=Pi LNSR-U9G
-x=-46
-y=-100
-z=-66
+x=254
+y=0
+z=434
 sky=Black 1
 [/System]
 
@@ -852,7 +852,7 @@ seed=1838034058
 [Planet]
 name='Bell 20'
 system=Pi LNSR-U9G
-texture=BandedGas
+texture=Chthonian
 x=127025
 y=0
 z=68147
@@ -863,7 +863,7 @@ seed=809032602
 [Planet]
 name='Tiberius 7'
 system=Pi LNSR-U9G
-texture=Barren
+texture=WetMartian
 x=77339
 y=0
 z=6098
@@ -872,12 +872,12 @@ seed=-1931526451
 [/Planet]
 
 [Jumphole]
-name=Chi Q4IN-D Jumphole
+name=Epsilon MF-NN6 Jumphole
 x=-85228
 y=0
 z=-7478
 system=Pi LNSR-U9G
-out=Chi Q4IN-D/Pi LNSR-U9G Jumphole
+out=Epsilon MF-NN6/Pi LNSR-U9G Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -885,15 +885,15 @@ name=Pi LNSR-U9G Jumphole
 x=-118124
 y=0
 z=10675
-system=Chi Q4IN-D
-out=Pi LNSR-U9G/Chi Q4IN-D Jumphole
+system=Epsilon MF-NN6
+out=Pi LNSR-U9G/Epsilon MF-NN6 Jumphole
 [/Jumphole]
 
 [System]
 name=Rho TH-WH0
-x=6
-y=-72
-z=92
+x=-894
+y=-372
+z=392
 sky=Dark
 [/System]
 
@@ -925,7 +925,7 @@ seed=-1916911973
 [Planet]
 name='Robert 3'
 system=Rho TH-WH0
-texture=BandedGas
+texture=Barren
 x=-12504
 y=0
 z=57870
@@ -947,7 +947,7 @@ seed=-149553540
 [Planet]
 name='Fay 16'
 system=Rho TH-WH0
-texture=BandedGas
+texture=Chthonian
 x=-120182
 y=0
 z=115132
@@ -956,12 +956,12 @@ seed=1566636195
 [/Planet]
 
 [Jumphole]
-name=Omega 7-8BLJ Jumphole
+name=Sigma 0Q-8 Jumphole
 x=-12760
 y=0
 z=29029
 system=Rho TH-WH0
-out=Omega 7-8BLJ/Rho TH-WH0 Jumphole
+out=Sigma 0Q-8/Rho TH-WH0 Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -969,17 +969,17 @@ name=Rho TH-WH0 Jumphole
 x=-124618
 y=0
 z=68216
-system=Omega 7-8BLJ
-out=Rho TH-WH0/Omega 7-8BLJ Jumphole
+system=Sigma 0Q-8
+out=Rho TH-WH0/Sigma 0Q-8 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Phi PTY-XDDL Jumphole
+name=Omicron 0PI-2 Jumphole
 x=-76370
 y=0
 z=-53692
 system=Rho TH-WH0
-out=Phi PTY-XDDL/Rho TH-WH0 Jumphole
+out=Omicron 0PI-2/Rho TH-WH0 Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -987,219 +987,230 @@ name=Rho TH-WH0 Jumphole
 x=-37128
 y=0
 z=114879
-system=Phi PTY-XDDL
-out=Rho TH-WH0/Phi PTY-XDDL Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Xi V-21J Jumphole
-x=83615
-y=0
-z=-76330
-system=Rho TH-WH0
-out=Xi V-21J/Rho TH-WH0 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Rho TH-WH0 Jumphole
-x=-94230
-y=0
-z=38778
-system=Xi V-21J
-out=Rho TH-WH0/Xi V-21J Jumphole
+system=Omicron 0PI-2
+out=Rho TH-WH0/Omicron 0PI-2 Jumphole
 [/Jumphole]
 
 [System]
 name=Iota 2J1-RH5I
-x=14
-y=20
-z=-47
-sky=Green 0
+x=-286
+y=920
+z=253
+sky=Orange 1
 [/System]
 
 [Star]
 name=Iota 2J1-RH5I
 system=Iota 2J1-RH5I
 texture=White
-x=7168
+x=-3491
 y=0
-z=-2702
-r=6248
-seed=-1502885434
-[/Star]
-
-[Planet]
-name='Leslie 15'
-system=Iota 2J1-RH5I
-texture=Barren
-x=-87504
-y=0
-z=50178
-r=2012
-seed=-1453402695
-[/Planet]
-
-[Planet]
-name='Dunn 21'
-system=Iota 2J1-RH5I
-texture=Martian
-x=62707
-y=0
-z=-94018
-r=3895
-seed=1429880238
-[/Planet]
-
-[Jumphole]
-name=Eta MTK-6D Jumphole
-x=121053
-y=0
-z=-8045
-system=Iota 2J1-RH5I
-out=Eta MTK-6D/Iota 2J1-RH5I Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Iota 2J1-RH5I Jumphole
-x=-115561
-y=0
-z=19468
-system=Eta MTK-6D
-out=Iota 2J1-RH5I/Eta MTK-6D Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Rho EXKH-XF Jumphole
-x=-56296
-y=0
-z=-86662
-system=Iota 2J1-RH5I
-out=Rho EXKH-XF/Iota 2J1-RH5I Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Iota 2J1-RH5I Jumphole
-x=-43973
-y=0
-z=-96947
-system=Rho EXKH-XF
-out=Iota 2J1-RH5I/Rho EXKH-XF Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Rho WW-Y95C Jumphole
-x=7705
-y=0
-z=-80485
-system=Iota 2J1-RH5I
-out=Rho WW-Y95C/Iota 2J1-RH5I Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Iota 2J1-RH5I Jumphole
-x=56968
-y=0
-z=675
-system=Rho WW-Y95C
-out=Iota 2J1-RH5I/Rho WW-Y95C Jumphole
-[/Jumphole]
-
-[System]
-name=Lambda W-UIJX
-x=65
-y=-77
-z=56
-sky=Brown 1
-[/System]
-
-[Star]
-name=Lambda W-UIJX
-system=Lambda W-UIJX
-texture=White
-x=309
-y=0
-z=-9620
-r=7265
-seed=-1270974089
+z=-651
+r=634
+seed=1355712776
 [/Star]
 
 [Nebula]
-name=Lambda W-UIJX Cloud
-system=Lambda W-UIJX
+name=Iota 2J1-RH5I Cloud
+system=Iota 2J1-RH5I
 type=debris
-color=0.0014401686,0.002248001,0.0060325814,1
+color=0.016713666,0.013001643,0.011660386,1
 x=0
 y=0
 z=0
-l=332808
+l=192000
 w=32000
-h=332808
-seed=747689214
+h=192000
+seed=-679600510
 [/Nebula]
 
 [Planet]
-name='Otho 2'
-system=Lambda W-UIJX
-texture=Chthonian
-x=44362
+name='Katia 4'
+system=Iota 2J1-RH5I
+texture=BandedGas
+x=46951
 y=0
-z=67495
-r=4505
-seed=116907841
+z=-30988
+r=2106
+seed=-1921391541
 [/Planet]
+
+[Planet]
+name='Wallace 9'
+system=Iota 2J1-RH5I
+texture=BandedGas
+x=5901
+y=0
+z=40895
+r=1007
+seed=2040376240
+[/Planet]
+
+[Planet]
+name='Hernandez 23'
+system=Iota 2J1-RH5I
+texture=BandedGas
+x=27117
+y=0
+z=7546
+r=1424
+seed=1124637598
+[/Planet]
+
+[Planet]
+name='Rivera 16'
+system=Iota 2J1-RH5I
+texture=BandedGas
+x=-63022
+y=0
+z=-60421
+r=4806
+seed=1427677872
+[/Planet]
+
+[Jumphole]
+name=Alpha V-2Z Jumphole
+x=1265
+y=0
+z=-3397
+system=Iota 2J1-RH5I
+out=Alpha V-2Z/Iota 2J1-RH5I Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Iota 2J1-RH5I Jumphole
+x=36134
+y=0
+z=1050
+system=Alpha V-2Z
+out=Iota 2J1-RH5I/Alpha V-2Z Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Theta RA-JS5I Jumphole
+x=-50983
+y=0
+z=33282
+system=Iota 2J1-RH5I
+out=Theta RA-JS5I/Iota 2J1-RH5I Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Iota 2J1-RH5I Jumphole
+x=-436
+y=0
+z=20607
+system=Theta RA-JS5I
+out=Iota 2J1-RH5I/Theta RA-JS5I Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Xi S-0U0W Jumphole
+x=534
+y=0
+z=4706
+system=Iota 2J1-RH5I
+out=Xi S-0U0W/Iota 2J1-RH5I Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Iota 2J1-RH5I Jumphole
+x=-37687
+y=0
+z=-34984
+system=Xi S-0U0W
+out=Iota 2J1-RH5I/Xi S-0U0W Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Chi ZKAC-5P Jumphole
+x=-34383
+y=0
+z=25720
+system=Iota 2J1-RH5I
+out=Chi ZKAC-5P/Iota 2J1-RH5I Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Iota 2J1-RH5I Jumphole
+x=21920
+y=0
+z=19746
+system=Chi ZKAC-5P
+out=Iota 2J1-RH5I/Chi ZKAC-5P Jumphole
+[/Jumphole]
+
+[System]
+name=Lambda W-UIJX
+x=-635
+y=423
+z=356
+sky=Dark
+[/System]
+
+[Star]
+name=Lambda W-UIJX
+system=Lambda W-UIJX
+texture=White
+x=-9611
+y=0
+z=11766
+r=500
+seed=-1967486235
+[/Star]
 
 [Planet]
 name='Jackie 2'
 system=Lambda W-UIJX
-texture=Barren
-x=-29529
+texture=BandedGas
+x=-54680
 y=0
-z=88909
+z=-98110
 r=4837
 seed=1112928615
 [/Planet]
 
 [Jumphole]
-name=Omicron CV6M-V Jumphole
-x=19164
+name=Pi 3ZJ-H94 Jumphole
+x=-48477
 y=0
-z=-1574
+z=23549
 system=Lambda W-UIJX
-out=Omicron CV6M-V/Lambda W-UIJX Jumphole
+out=Pi 3ZJ-H94/Lambda W-UIJX Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Lambda W-UIJX Jumphole
-x=43514
+x=-99139
 y=0
-z=-67729
-system=Omicron CV6M-V
-out=Lambda W-UIJX/Omicron CV6M-V Jumphole
+z=-97080
+system=Pi 3ZJ-H94
+out=Lambda W-UIJX/Pi 3ZJ-H94 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Phi PTY-XDDL Jumphole
-x=50367
+name=Theta RA-JS5I Jumphole
+x=-24764
 y=0
-z=-89228
+z=-4325
 system=Lambda W-UIJX
-out=Phi PTY-XDDL/Lambda W-UIJX Jumphole
+out=Theta RA-JS5I/Lambda W-UIJX Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Lambda W-UIJX Jumphole
-x=2209
+x=105424
 y=0
-z=-45548
-system=Phi PTY-XDDL
-out=Lambda W-UIJX/Phi PTY-XDDL Jumphole
+z=-49391
+system=Theta RA-JS5I
+out=Lambda W-UIJX/Theta RA-JS5I Jumphole
 [/Jumphole]
 
 [System]
 name=Omicron R-XRJX
-x=61
-y=-95
-z=-77
+x=561
+y=-195
+z=-977
 sky=Black 1
 [/System]
 
@@ -1241,7 +1252,7 @@ seed=257611747
 [Planet]
 name='Jordon 11'
 system=Omicron R-XRJX
-texture=Martian
+texture=BandedGas
 x=-148192
 y=0
 z=31544
@@ -1252,7 +1263,7 @@ seed=1194121583
 [Planet]
 name='Iolana 19'
 system=Omicron R-XRJX
-texture=BandedGas
+texture=Barren
 x=-138967
 y=0
 z=153234
@@ -1263,7 +1274,7 @@ seed=-1346229419
 [Planet]
 name='Terrez 10'
 system=Omicron R-XRJX
-texture=BandedGas
+texture=Barren
 x=152341
 y=0
 z=174461
@@ -1272,12 +1283,12 @@ seed=-1123495571
 [/Planet]
 
 [Jumphole]
-name=Gamma YE-8S Jumphole
+name=Delta 01J-H7R Jumphole
 x=143567
 y=0
 z=5902
 system=Omicron R-XRJX
-out=Gamma YE-8S/Omicron R-XRJX Jumphole
+out=Delta 01J-H7R/Omicron R-XRJX Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1285,17 +1296,17 @@ name=Omicron R-XRJX Jumphole
 x=145594
 y=0
 z=-29678
-system=Gamma YE-8S
-out=Omicron R-XRJX/Gamma YE-8S Jumphole
+system=Delta 01J-H7R
+out=Omicron R-XRJX/Delta 01J-H7R Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Alpha 6L-XGXG Jumphole
+name=Upsilon 5-G Jumphole
 x=-13185
 y=0
 z=-37719
 system=Omicron R-XRJX
-out=Alpha 6L-XGXG/Omicron R-XRJX Jumphole
+out=Upsilon 5-G/Omicron R-XRJX Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1303,17 +1314,17 @@ name=Omicron R-XRJX Jumphole
 x=34509
 y=0
 z=-9465
-system=Alpha 6L-XGXG
-out=Omicron R-XRJX/Alpha 6L-XGXG Jumphole
+system=Upsilon 5-G
+out=Omicron R-XRJX/Upsilon 5-G Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Sigma U-7 Jumphole
+name=Upsilon N3U-41 Jumphole
 x=-21157
 y=0
 z=50167
 system=Omicron R-XRJX
-out=Sigma U-7/Omicron R-XRJX Jumphole
+out=Upsilon N3U-41/Omicron R-XRJX Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1321,15 +1332,15 @@ name=Omicron R-XRJX Jumphole
 x=145039
 y=0
 z=-38259
-system=Sigma U-7
-out=Omicron R-XRJX/Sigma U-7 Jumphole
+system=Upsilon N3U-41
+out=Omicron R-XRJX/Upsilon N3U-41 Jumphole
 [/Jumphole]
 
 [System]
 name=Pi 8-X5X
-x=-29
-y=54
-z=-15
+x=871
+y=354
+z=85
 sky=Black 1
 [/System]
 
@@ -1347,7 +1358,7 @@ seed=1811240039
 [Planet]
 name='Lopez 7'
 system=Pi 8-X5X
-texture=BandedGas
+texture=Barren
 x=48465
 y=0
 z=-127980
@@ -1358,7 +1369,7 @@ seed=671623388
 [Planet]
 name='Dixon 21'
 system=Pi 8-X5X
-texture=WetMartian
+texture=BandedGas
 x=-127349
 y=0
 z=97244
@@ -1369,7 +1380,7 @@ seed=1115671747
 [Planet]
 name='Murray 1'
 system=Pi 8-X5X
-texture=Barren
+texture=BandedGas
 x=45078
 y=0
 z=34559
@@ -1380,7 +1391,7 @@ seed=-2060754879
 [Planet]
 name='Rivera 10'
 system=Pi 8-X5X
-texture=Terran
+texture=Barren
 x=9113
 y=0
 z=140300
@@ -1391,7 +1402,7 @@ seed=1290974975
 [Planet]
 name='Juliet 7'
 system=Pi 8-X5X
-texture=Barren
+texture=BandedGas
 x=54365
 y=0
 z=99276
@@ -1402,7 +1413,7 @@ seed=847234218
 [Planet]
 name='Newton 2'
 system=Pi 8-X5X
-texture=BandedGas
+texture=Terran
 x=-8200
 y=0
 z=65410
@@ -1411,12 +1422,12 @@ seed=821631348
 [/Planet]
 
 [Jumphole]
-name=Chi O7OB-I6L Jumphole
+name=Psi LD3G-DDD Jumphole
 x=98047
 y=0
 z=156971
 system=Pi 8-X5X
-out=Chi O7OB-I6L/Pi 8-X5X Jumphole
+out=Psi LD3G-DDD/Pi 8-X5X Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1424,17 +1435,17 @@ name=Pi 8-X5X Jumphole
 x=112925
 y=0
 z=-75481
-system=Chi O7OB-I6L
-out=Pi 8-X5X/Chi O7OB-I6L Jumphole
+system=Psi LD3G-DDD
+out=Pi 8-X5X/Psi LD3G-DDD Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Alpha V-2Z Jumphole
+name=Nu 3V-P Jumphole
 x=60420
 y=0
 z=-155611
 system=Pi 8-X5X
-out=Alpha V-2Z/Pi 8-X5X Jumphole
+out=Nu 3V-P/Pi 8-X5X Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1442,17 +1453,17 @@ name=Pi 8-X5X Jumphole
 x=158891
 y=0
 z=-96075
-system=Alpha V-2Z
-out=Pi 8-X5X/Alpha V-2Z Jumphole
+system=Nu 3V-P
+out=Pi 8-X5X/Nu 3V-P Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Omicron 0PI-2 Jumphole
+name=Beta C-Y Jumphole
 x=132096
 y=0
 z=-171783
 system=Pi 8-X5X
-out=Omicron 0PI-2/Pi 8-X5X Jumphole
+out=Beta C-Y/Pi 8-X5X Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1460,15 +1471,15 @@ name=Pi 8-X5X Jumphole
 x=-47705
 y=0
 z=-70809
-system=Omicron 0PI-2
-out=Pi 8-X5X/Omicron 0PI-2 Jumphole
+system=Beta C-Y
+out=Pi 8-X5X/Beta C-Y Jumphole
 [/Jumphole]
 
 [System]
 name=Rho E5-I
-x=7
-y=56
-z=74
+x=307
+y=-644
+z=974
 sky=Blue 0
 [/System]
 
@@ -1513,7 +1524,7 @@ seed=1815763369
 [Planet]
 name='Cole 12'
 system=Rho E5-I
-texture=BandedGas
+texture=Barren
 x=9878
 y=0
 z=-97043
@@ -1524,7 +1535,7 @@ seed=1022210117
 [Planet]
 name='Woods 10'
 system=Rho E5-I
-texture=Terran
+texture=BandedGas
 x=19497
 y=0
 z=13324
@@ -1544,12 +1555,12 @@ seed=180530094
 [/Planet]
 
 [Jumphole]
-name=Omega JOB-ERU Jumphole
+name=Psi CNK-LTW Jumphole
 x=68458
 y=0
 z=76396
 system=Rho E5-I
-out=Omega JOB-ERU/Rho E5-I Jumphole
+out=Psi CNK-LTW/Rho E5-I Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1557,17 +1568,17 @@ name=Rho E5-I Jumphole
 x=-111457
 y=0
 z=-87916
-system=Omega JOB-ERU
-out=Rho E5-I/Omega JOB-ERU Jumphole
+system=Psi CNK-LTW
+out=Rho E5-I/Psi CNK-LTW Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Tau 0Z5U-0 Jumphole
+name=Iota ZX-O Jumphole
 x=-49020
 y=0
 z=-39985
 system=Rho E5-I
-out=Tau 0Z5U-0/Rho E5-I Jumphole
+out=Iota ZX-O/Rho E5-I Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1575,17 +1586,17 @@ name=Rho E5-I Jumphole
 x=119027
 y=0
 z=-91721
-system=Tau 0Z5U-0
-out=Rho E5-I/Tau 0Z5U-0 Jumphole
+system=Iota ZX-O
+out=Rho E5-I/Iota ZX-O Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Alpha V-2Z Jumphole
+name=Psi SBZ-8DHQ Jumphole
 x=37109
 y=0
 z=-37739
 system=Rho E5-I
-out=Alpha V-2Z/Rho E5-I Jumphole
+out=Psi SBZ-8DHQ/Rho E5-I Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1593,17 +1604,17 @@ name=Rho E5-I Jumphole
 x=-10747
 y=0
 z=62626
-system=Alpha V-2Z
-out=Rho E5-I/Alpha V-2Z Jumphole
+system=Psi SBZ-8DHQ
+out=Rho E5-I/Psi SBZ-8DHQ Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Epsilon DL-8XN Jumphole
+name=Omega COH-3 Jumphole
 x=81071
 y=0
 z=95935
 system=Rho E5-I
-out=Epsilon DL-8XN/Rho E5-I Jumphole
+out=Omega COH-3/Rho E5-I Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1611,15 +1622,15 @@ name=Rho E5-I Jumphole
 x=78136
 y=0
 z=-85587
-system=Epsilon DL-8XN
-out=Rho E5-I/Epsilon DL-8XN Jumphole
+system=Omega COH-3
+out=Rho E5-I/Omega COH-3 Jumphole
 [/Jumphole]
 
 [System]
 name=Xi 0B7W-KIS
-x=36
-y=-89
-z=-21
+x=-464
+y=-589
+z=479
 sky=Black 0
 [/System]
 
@@ -1637,7 +1648,7 @@ seed=1010447263
 [Planet]
 name='Dixon 12'
 system=Xi 0B7W-KIS
-texture=Martian
+texture=BandedGas
 x=-13181
 y=0
 z=124562
@@ -1648,7 +1659,7 @@ seed=11807727
 [Planet]
 name='Sanders 15'
 system=Xi 0B7W-KIS
-texture=BandedGas
+texture=Chthonian
 x=-95998
 y=0
 z=-149513
@@ -1659,7 +1670,7 @@ seed=-1637545481
 [Planet]
 name='Arlene 16'
 system=Xi 0B7W-KIS
-texture=Barren
+texture=Chthonian
 x=110282
 y=0
 z=27667
@@ -1668,12 +1679,12 @@ seed=843020166
 [/Planet]
 
 [Jumphole]
-name=Alpha HWH-1K Jumphole
+name=Psi YJ-7N2F Jumphole
 x=-125818
 y=0
 z=68394
 system=Xi 0B7W-KIS
-out=Alpha HWH-1K/Xi 0B7W-KIS Jumphole
+out=Psi YJ-7N2F/Xi 0B7W-KIS Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1681,17 +1692,17 @@ name=Xi 0B7W-KIS Jumphole
 x=76164
 y=0
 z=-97707
-system=Alpha HWH-1K
-out=Xi 0B7W-KIS/Alpha HWH-1K Jumphole
+system=Psi YJ-7N2F
+out=Xi 0B7W-KIS/Psi YJ-7N2F Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Delta 67-VNVD Jumphole
+name=Epsilon M6-V Jumphole
 x=-109864
 y=0
 z=165917
 system=Xi 0B7W-KIS
-out=Delta 67-VNVD/Xi 0B7W-KIS Jumphole
+out=Epsilon M6-V/Xi 0B7W-KIS Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1699,17 +1710,17 @@ name=Xi 0B7W-KIS Jumphole
 x=149182
 y=0
 z=143490
-system=Delta 67-VNVD
-out=Xi 0B7W-KIS/Delta 67-VNVD Jumphole
+system=Epsilon M6-V
+out=Xi 0B7W-KIS/Epsilon M6-V Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Sigma U-7 Jumphole
+name=Epsilon DL-8XN Jumphole
 x=54411
 y=0
 z=28841
 system=Xi 0B7W-KIS
-out=Sigma U-7/Xi 0B7W-KIS Jumphole
+out=Epsilon DL-8XN/Xi 0B7W-KIS Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1717,15 +1728,15 @@ name=Xi 0B7W-KIS Jumphole
 x=112571
 y=0
 z=160093
-system=Sigma U-7
-out=Xi 0B7W-KIS/Sigma U-7 Jumphole
+system=Epsilon DL-8XN
+out=Xi 0B7W-KIS/Epsilon DL-8XN Jumphole
 [/Jumphole]
 
 [System]
 name=Psi LD3G-DDD
-x=-82
-y=88
-z=-76
+x=618
+y=588
+z=24
 sky=Black 0
 [/System]
 
@@ -1757,7 +1768,7 @@ seed=1995965592
 [Planet]
 name='Bell 12'
 system=Psi LD3G-DDD
-texture=Martian
+texture=Barren
 x=-13360
 y=0
 z=-33695
@@ -1766,12 +1777,12 @@ seed=1493967435
 [/Planet]
 
 [Jumphole]
-name=Beta 9-R71 Jumphole
+name=Omega NJG-XX Jumphole
 x=68928
 y=0
 z=-1802
 system=Psi LD3G-DDD
-out=Beta 9-R71/Psi LD3G-DDD Jumphole
+out=Omega NJG-XX/Psi LD3G-DDD Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1779,17 +1790,17 @@ name=Psi LD3G-DDD Jumphole
 x=-68229
 y=0
 z=45336
-system=Beta 9-R71
-out=Psi LD3G-DDD/Beta 9-R71 Jumphole
+system=Omega NJG-XX
+out=Psi LD3G-DDD/Omega NJG-XX Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Kappa 0ET2-HY5D Jumphole
+name=Nu 3V-P Jumphole
 x=4094
 y=0
 z=16253
 system=Psi LD3G-DDD
-out=Kappa 0ET2-HY5D/Psi LD3G-DDD Jumphole
+out=Nu 3V-P/Psi LD3G-DDD Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -1797,160 +1808,99 @@ name=Psi LD3G-DDD Jumphole
 x=65591
 y=0
 z=46926
-system=Kappa 0ET2-HY5D
-out=Psi LD3G-DDD/Kappa 0ET2-HY5D Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Beta QF2-2V3S Jumphole
-x=12381
-y=0
-z=67394
-system=Psi LD3G-DDD
-out=Beta QF2-2V3S/Psi LD3G-DDD Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Psi LD3G-DDD Jumphole
-x=3450
-y=0
-z=24979
-system=Beta QF2-2V3S
-out=Psi LD3G-DDD/Beta QF2-2V3S Jumphole
+system=Nu 3V-P
+out=Psi LD3G-DDD/Nu 3V-P Jumphole
 [/Jumphole]
 
 [System]
 name=Pi C7-O
-x=-15
-y=95
-z=-87
-sky=Dark
+x=885
+y=-605
+z=613
+sky=Brown 1
 [/System]
 
 [Star]
 name=Pi C7-O
 system=Pi C7-O
 texture=White
-x=935
+x=-8043
 y=0
-z=-17707
-r=2804
-seed=-1298549816
+z=-5046
+r=5396
+seed=791868753
 [/Star]
 
 [Nebula]
 name=Pi C7-O Cloud
 system=Pi C7-O
-type=debris
-color=0.015021682,0.0074009253,0.014072579,1
+type=shockwave
+color=0.00841881,0.013953155,0.0073717977,1
 x=0
 y=0
 z=0
-l=598368
+l=203943
 w=32000
-h=598368
-seed=1335805651
+h=203943
+seed=2001382050
 [/Nebula]
 
 [Planet]
-name='Chelsey 24'
+name='Silas 14'
 system=Pi C7-O
 texture=BandedGas
-x=-79563
+x=-61686
 y=0
-z=80549
-r=500
-seed=292798464
+z=65410
+r=1417
+seed=8853777
 [/Planet]
 
 [Planet]
-name='Murray 23'
+name='Cambel 14'
 system=Pi C7-O
 texture=BandedGas
-x=-116794
+x=31245
 y=0
-z=17490
-r=2396
-seed=1525480041
+z=29875
+r=4756
+seed=-1560186744
+[/Planet]
+
+[Planet]
+name='Morgan 19'
+system=Pi C7-O
+texture=BandedGas
+x=55519
+y=0
+z=66098
+r=2203
+seed=-794584004
 [/Planet]
 
 [Jumphole]
-name=Beta 9-R71 Jumphole
-x=152840
+name=Omega COH-3 Jumphole
+x=-53401
 y=0
-z=185287
+z=-12252
 system=Pi C7-O
-out=Beta 9-R71/Pi C7-O Jumphole
+out=Omega COH-3/Pi C7-O Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Pi C7-O Jumphole
-x=-87093
+x=58137
 y=0
-z=112881
-system=Beta 9-R71
-out=Pi C7-O/Beta 9-R71 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Kappa 0ET2-HY5D Jumphole
-x=-82274
-y=0
-z=27441
-system=Pi C7-O
-out=Kappa 0ET2-HY5D/Pi C7-O Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Pi C7-O Jumphole
-x=13283
-y=0
-z=86016
-system=Kappa 0ET2-HY5D
-out=Pi C7-O/Kappa 0ET2-HY5D Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Beta QF2-2V3S Jumphole
-x=177144
-y=0
-z=72932
-system=Pi C7-O
-out=Beta QF2-2V3S/Pi C7-O Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Pi C7-O Jumphole
-x=48690
-y=0
-z=-92331
-system=Beta QF2-2V3S
-out=Pi C7-O/Beta QF2-2V3S Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Psi SBZ-8DHQ Jumphole
-x=-127630
-y=0
-z=-20423
-system=Pi C7-O
-out=Psi SBZ-8DHQ/Pi C7-O Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Pi C7-O Jumphole
-x=-39892
-y=0
-z=80175
-system=Psi SBZ-8DHQ
-out=Pi C7-O/Psi SBZ-8DHQ Jumphole
+z=-10694
+system=Omega COH-3
+out=Pi C7-O/Omega COH-3 Jumphole
 [/Jumphole]
 
 [System]
 name=Beta 9-R71
-x=-54
-y=95
-z=-96
+x=-954
+y=995
+z=404
 sky=Black 0
 [/System]
 
@@ -1981,9 +1931,9 @@ seed=2016501823
 
 [System]
 name=Omega Q7B2-0C
-x=49
-y=-52
-z=-62
+x=-851
+y=848
+z=-362
 sky=Orange 1
 [/System]
 
@@ -2024,12 +1974,12 @@ seed=962623657
 [/Planet]
 
 [Jumphole]
-name=Beta C-Y Jumphole
+name=Epsilon BGG3-F Jumphole
 x=-183918
 y=0
 z=67866
 system=Omega Q7B2-0C
-out=Beta C-Y/Omega Q7B2-0C Jumphole
+out=Epsilon BGG3-F/Omega Q7B2-0C Jumphole
 [/Jumphole]
 
 [Jumphole]
@@ -2037,497 +1987,530 @@ name=Omega Q7B2-0C Jumphole
 x=47894
 y=0
 z=158437
-system=Beta C-Y
-out=Omega Q7B2-0C/Beta C-Y Jumphole
+system=Epsilon BGG3-F
+out=Omega Q7B2-0C/Epsilon BGG3-F Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Upsilon 8J-Z Jumphole
+x=197884
+y=0
+z=112679
+system=Omega Q7B2-0C
+out=Upsilon 8J-Z/Omega Q7B2-0C Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Omega Q7B2-0C Jumphole
+x=54606
+y=0
+z=10426
+system=Upsilon 8J-Z
+out=Omega Q7B2-0C/Upsilon 8J-Z Jumphole
 [/Jumphole]
 
 [System]
 name=Sigma U-7
-x=35
-y=-85
-z=-62
-sky=Blue 0
+x=935
+y=-385
+z=-562
+sky=Dark
 [/System]
 
 [Star]
 name=Sigma U-7
 system=Sigma U-7
 texture=White
-x=644
+x=3505
 y=0
-z=-3973
-r=7836
-seed=-1182406931
+z=-2380
+r=2548
+seed=685018144
 [/Star]
 
 [Nebula]
 name=Sigma U-7 Cloud
 system=Sigma U-7
-type=debris
-color=0.015201349,0.003189864,2.8066634E-4,1
+type=shockwave
+color=0.005377295,0.0013526666,0.015947947,1
 x=0
 y=0
 z=0
-l=247728
+l=192000
 w=32000
-h=247728
-seed=-1448366946
+h=192000
+seed=80812171
 [/Nebula]
 
-[Field]
-name=Sigma U-7 Field
-system=Sigma U-7
-type=Dark Asteroid Field
-x=0
-y=0
-z=0
-l=247728
-w=32000
-h=247728
-seed=-870171552
-[/Field]
-
 [Planet]
-name='Stucker 22'
+name='Oliwa 14'
 system=Sigma U-7
-texture=Terran
-x=-78508
+texture=Barren
+x=27711
 y=0
-z=18162
-r=2711
-seed=-1918607846
+z=-53692
+r=4045
+seed=-2065874428
 [/Planet]
 
 [Planet]
-name='White 16'
+name='Woods 12'
+system=Sigma U-7
+texture=Chthonian
+x=-2834
+y=0
+z=25913
+r=2833
+seed=1677519230
+[/Planet]
+
+[Planet]
+name='Kelly 2'
 system=Sigma U-7
 texture=BandedGas
-x=-82399
+x=-51727
 y=0
-z=35183
-r=2166
-seed=791974727
-[/Planet]
-
-[Planet]
-name='Baker 7'
-system=Sigma U-7
-texture=Chthonian
-x=-55156
-y=0
-z=-78104
-r=500
-seed=1754853026
-[/Planet]
-
-[Planet]
-name='Turner 24'
-system=Sigma U-7
-texture=Chthonian
-x=68816
-y=0
-z=63890
-r=1186
-seed=-1750700364
+z=-44132
+r=2595
+seed=715777713
 [/Planet]
 
 [Jumphole]
-name=Alpha 6L-XGXG Jumphole
-x=-22776
+name=Xi EP-M Jumphole
+x=6181
 y=0
-z=48266
+z=61692
 system=Sigma U-7
-out=Alpha 6L-XGXG/Sigma U-7 Jumphole
+out=Xi EP-M/Sigma U-7 Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Sigma U-7 Jumphole
-x=-21171
+x=2380
 y=0
-z=45884
-system=Alpha 6L-XGXG
-out=Sigma U-7/Alpha 6L-XGXG Jumphole
+z=33689
+system=Xi EP-M
+out=Sigma U-7/Xi EP-M Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Omega Q7B2-0C Jumphole
-x=6538
+name=Iota URU-MEU0 Jumphole
+x=7098
 y=0
-z=35121
+z=35311
 system=Sigma U-7
-out=Omega Q7B2-0C/Sigma U-7 Jumphole
+out=Iota URU-MEU0/Sigma U-7 Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Sigma U-7 Jumphole
-x=6525
+x=36955
 y=0
-z=43196
-system=Omega Q7B2-0C
-out=Sigma U-7/Omega Q7B2-0C Jumphole
+z=-40747
+system=Iota URU-MEU0
+out=Sigma U-7/Iota URU-MEU0 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Upsilon 5-G Jumphole
+x=-31706
+y=0
+z=-23146
+system=Sigma U-7
+out=Upsilon 5-G/Sigma U-7 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Sigma U-7 Jumphole
+x=-63254
+y=0
+z=-30105
+system=Upsilon 5-G
+out=Sigma U-7/Upsilon 5-G Jumphole
 [/Jumphole]
 
 [System]
 name=Alpha HWH-1K
-x=43
-y=-82
-z=0
-sky=Blue 0
+x=943
+y=-982
+z=100
+sky=Brown 1
 [/System]
 
 [Star]
 name=Alpha HWH-1K
 system=Alpha HWH-1K
 texture=White
-x=-4722
+x=-68
 y=0
-z=-7132
-r=8554
-seed=-199672771
+z=-14133
+r=3466
+seed=610374272
 [/Star]
 
 [Planet]
-name='Wright 11'
+name='Huni 14'
 system=Alpha HWH-1K
-texture=Martian
-x=67217
+texture=Terran
+x=82330
 y=0
-z=85447
-r=1680
-seed=1778281778
+z=-70024
+r=4980
+seed=-1858797067
 [/Planet]
 
 [Planet]
-name='Diaz 19'
+name='Harrison 10'
 system=Alpha HWH-1K
 texture=BandedGas
-x=-53941
+x=-115271
 y=0
-z=-132612
-r=782
-seed=119134065
+z=-25305
+r=2817
+seed=-143106159
+[/Planet]
+
+[Planet]
+name='Flores 10'
+system=Alpha HWH-1K
+texture=Chthonian
+x=-21204
+y=0
+z=-114156
+r=777
+seed=833968436
+[/Planet]
+
+[Planet]
+name='Cole 20'
+system=Alpha HWH-1K
+texture=BandedGas
+x=-18718
+y=0
+z=111401
+r=4379
+seed=-485241916
+[/Planet]
+
+[Planet]
+name='Willams 5'
+system=Alpha HWH-1K
+texture=BandedGas
+x=54011
+y=0
+z=103744
+r=500
+seed=300359595
 [/Planet]
 
 [Jumphole]
-name=Delta 67-VNVD Jumphole
-x=13760
+name=Omicron B-G Jumphole
+x=67710
 y=0
-z=-34763
+z=21192
 system=Alpha HWH-1K
-out=Delta 67-VNVD/Alpha HWH-1K Jumphole
+out=Omicron B-G/Alpha HWH-1K Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Alpha HWH-1K Jumphole
-x=-52704
+x=-3989
 y=0
-z=397
-system=Delta 67-VNVD
-out=Alpha HWH-1K/Delta 67-VNVD Jumphole
+z=11657
+system=Omicron B-G
+out=Alpha HWH-1K/Omicron B-G Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Tau F-PYG Jumphole
+x=-23445
+y=0
+z=54601
+system=Alpha HWH-1K
+out=Tau F-PYG/Alpha HWH-1K Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Alpha HWH-1K Jumphole
+x=-110128
+y=0
+z=26720
+system=Tau F-PYG
+out=Alpha HWH-1K/Tau F-PYG Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Beta QF2-2V3S Jumphole
+x=-63534
+y=0
+z=-102907
+system=Alpha HWH-1K
+out=Beta QF2-2V3S/Alpha HWH-1K Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Alpha HWH-1K Jumphole
+x=101739
+y=0
+z=-123365
+system=Beta QF2-2V3S
+out=Alpha HWH-1K/Beta QF2-2V3S Jumphole
 [/Jumphole]
 
 [System]
 name=Nu 3V-P
-x=-57
-y=32
-z=-33
-sky=Brown 1
+x=843
+y=532
+z=-333
+sky=Black 1
 [/System]
 
 [Star]
 name=Nu 3V-P
 system=Nu 3V-P
 texture=White
-x=-4044
+x=8125
 y=0
-z=-5921
-r=2154
-seed=-376079605
+z=-2948
+r=8406
+seed=226487428
 [/Star]
 
 [Nebula]
 name=Nu 3V-P Cloud
 system=Nu 3V-P
 type=debris
-color=0.011353631,0.012714655,0.008887402,1
+color=0.008633423,0.011508813,0.008856008,1
 x=0
 y=0
 z=0
-l=192000
+l=587703
 w=32000
-h=192000
-seed=-80460936
+h=587703
+seed=192093799
 [/Nebula]
 
-[Field]
-name=Nu 3V-P Field
-system=Nu 3V-P
-type=Dark Asteroid Field
-x=0
-y=0
-z=0
-l=192000
-w=32000
-h=192000
-seed=-644204967
-[/Field]
-
 [Planet]
-name='Bennet 23'
+name='Cook 20'
 system=Nu 3V-P
-texture=BandedGas
-x=-43799
+texture=Barren
+x=90840
 y=0
-z=-33163
-r=4412
-seed=1545794529
+z=59046
+r=500
+seed=-71328338
 [/Planet]
 
 [Planet]
-name='Hernandez 24'
+name='Powell 10'
 system=Nu 3V-P
-texture=BandedGas
-x=15279
+texture=Terran
+x=-144358
 y=0
-z=11785
-r=1639
-seed=-1790377197
+z=-174204
+r=3729
+seed=-1506810260
 [/Planet]
 
-[Jumphole]
-name=Omega NJG-XX Jumphole
-x=2539
-y=0
-z=-35045
+[Planet]
+name='Murray 7'
 system=Nu 3V-P
-out=Omega NJG-XX/Nu 3V-P Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Nu 3V-P Jumphole
-x=48729
+texture=Barren
+x=38228
 y=0
-z=-9199
-system=Omega NJG-XX
-out=Nu 3V-P/Omega NJG-XX Jumphole
-[/Jumphole]
+z=59953
+r=1773
+seed=-335960387
+[/Planet]
 
-[Jumphole]
-name=Chi O7OB-I6L Jumphole
-x=-16289
-y=0
-z=40798
+[Planet]
+name='Adam 18'
 system=Nu 3V-P
-out=Chi O7OB-I6L/Nu 3V-P Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Nu 3V-P Jumphole
-x=-57303
+texture=Martian
+x=139278
 y=0
-z=47454
-system=Chi O7OB-I6L
-out=Nu 3V-P/Chi O7OB-I6L Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Pi 8-X5X Jumphole
-x=-8917
-y=0
-z=-336
-system=Nu 3V-P
-out=Pi 8-X5X/Nu 3V-P Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Nu 3V-P Jumphole
-x=-27227
-y=0
-z=-16336
-system=Pi 8-X5X
-out=Nu 3V-P/Pi 8-X5X Jumphole
-[/Jumphole]
+z=36273
+r=3429
+seed=-194776934
+[/Planet]
 
 [System]
 name=Delta VT8R-6LDM
-x=-84
-y=23
-z=-88
-sky=Brown 1
+x=-784
+y=523
+z=812
+sky=Black 1
 [/System]
 
 [Star]
 name=Delta VT8R-6LDM
 system=Delta VT8R-6LDM
 texture=White
-x=2043
+x=-14773
 y=0
-z=-4198
-r=8372
-seed=-774390438
+z=6466
+r=713
+seed=542983681
 [/Star]
 
-[Nebula]
-name=Delta VT8R-6LDM Cloud
+[Planet]
+name='Russel 21'
 system=Delta VT8R-6LDM
-type=shockwave
-color=0.007859571,0.0042279675,0.010463464,1
-x=0
+texture=Martian
+x=-18277
 y=0
-z=0
-l=201837
-w=32000
-h=201837
-seed=743770821
-[/Nebula]
-
-[Field]
-name=Delta VT8R-6LDM Field
-system=Delta VT8R-6LDM
-type=Dark Asteroid Field
-x=0
-y=0
-z=0
-l=201837
-w=32000
-h=201837
-seed=-1924111070
-[/Field]
+z=18040
+r=1446
+seed=-1195910412
+[/Planet]
 
 [Jumphole]
-name=Tau 9-UA Jumphole
-x=24675
+name=Chi Q4IN-D Jumphole
+x=-50916
 y=0
-z=57054
+z=-32346
 system=Delta VT8R-6LDM
-out=Tau 9-UA/Delta VT8R-6LDM Jumphole
+out=Chi Q4IN-D/Delta VT8R-6LDM Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Delta VT8R-6LDM Jumphole
-x=25342
+x=117067
 y=0
-z=-42711
-system=Tau 9-UA
-out=Delta VT8R-6LDM/Tau 9-UA Jumphole
+z=-95910
+system=Chi Q4IN-D
+out=Delta VT8R-6LDM/Chi Q4IN-D Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Beta QF2-2V3S Jumphole
-x=36748
+name=Chi O7OB-I6L Jumphole
+x=40739
 y=0
-z=48631
+z=119567
 system=Delta VT8R-6LDM
-out=Beta QF2-2V3S/Delta VT8R-6LDM Jumphole
+out=Chi O7OB-I6L/Delta VT8R-6LDM Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Delta VT8R-6LDM Jumphole
-x=-47297
+x=97153
 y=0
-z=-29627
-system=Beta QF2-2V3S
-out=Delta VT8R-6LDM/Beta QF2-2V3S Jumphole
+z=-58448
+system=Chi O7OB-I6L
+out=Delta VT8R-6LDM/Chi O7OB-I6L Jumphole
 [/Jumphole]
 
 [System]
 name=Omicron B-G
-x=77
-y=93
-z=56
-sky=Green 0
+x=977
+y=-807
+z=356
+sky=Brown 1
 [/System]
 
 [Star]
 name=Omicron B-G
 system=Omicron B-G
 texture=White
-x=-3784
+x=-20979
 y=0
-z=-5762
-r=9111
-seed=789656482
+z=8331
+r=8241
+seed=900646613
 [/Star]
 
 [Nebula]
 name=Omicron B-G Cloud
 system=Omicron B-G
 type=flame
-color=7.74771E-4,0.013121042,0.011280427,1
+color=0.013121042,0.011280427,0.012040623,1
 x=0
 y=0
 z=0
-l=192000
+l=706170
 w=32000
-h=192000
-seed=-1709262880
+h=706170
+seed=-1737804889
 [/Nebula]
 
-[Planet]
-name='Porter 18'
+[Field]
+name=Omicron B-G Field
 system=Omicron B-G
-texture=Chthonian
-x=42434
+type=Dark Asteroid Field
+x=0
 y=0
-z=60589
-r=2518
-seed=-675831262
+z=0
+l=706170
+w=32000
+h=706170
+seed=842162922
+[/Field]
+
+[Planet]
+name='Sarah 8'
+system=Omicron B-G
+texture=BandedGas
+x=-178642
+y=0
+z=-178603
+r=585
+seed=-1642882792
 [/Planet]
 
-[Jumphole]
-name=Mu M-NGW5 Jumphole
-x=26690
-y=0
-z=-14372
+[Planet]
+name='Tim 11'
 system=Omicron B-G
-out=Mu M-NGW5/Omicron B-G Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Omicron B-G Jumphole
-x=9774
+texture=BandedGas
+x=-10030
 y=0
-z=-39676
-system=Mu M-NGW5
-out=Omicron B-G/Mu M-NGW5 Jumphole
-[/Jumphole]
+z=-100400
+r=3628
+seed=-706062259
+[/Planet]
 
-[Jumphole]
-name=Omega JOB-ERU Jumphole
-x=59589
-y=0
-z=12791
+[Planet]
+name='Bennet 14'
 system=Omicron B-G
-out=Omega JOB-ERU/Omicron B-G Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Omicron B-G Jumphole
-x=-38416
+texture=Barren
+x=120921
 y=0
-z=-56129
-system=Omega JOB-ERU
-out=Omicron B-G/Omega JOB-ERU Jumphole
-[/Jumphole]
+z=161768
+r=3689
+seed=607795169
+[/Planet]
 
 [System]
 name=Sigma 0Q-8
-x=-67
-y=46
-z=22
-sky=Brown 0
+x=-767
+y=-254
+z=322
+sky=Black 0
 [/System]
 
 [Star]
 name=Sigma 0Q-8
 system=Sigma 0Q-8
 texture=White
-x=3539
+x=26836
 y=0
-z=5187
-r=6756
-seed=-255615875
+z=1358
+r=7723
+seed=-1042122298
 [/Star]
+
+[Nebula]
+name=Sigma 0Q-8 Cloud
+system=Sigma 0Q-8
+type=flame
+color=0.0039455043,0.019097036,0.012491027,1
+x=0
+y=0
+z=0
+l=658617
+w=32000
+h=658617
+seed=-1885293839
+[/Nebula]
 
 [Field]
 name=Sigma 0Q-8 Field
@@ -2536,521 +2519,492 @@ type=Dark Asteroid Field
 x=0
 y=0
 z=0
-l=192000
+l=658617
 w=32000
-h=192000
-seed=402859235
+h=658617
+seed=-1258987723
 [/Field]
-
-[Planet]
-name='Silas 1'
-system=Sigma 0Q-8
-texture=BandedGas
-x=40052
-y=0
-z=-26214
-r=1832
-seed=972926231
-[/Planet]
 
 [Planet]
 name='Lewis 8'
 system=Sigma 0Q-8
-texture=Barren
-x=56459
+texture=Chthonian
+x=144840
 y=0
-z=-17549
+z=198428
 r=2581
 seed=-896274865
 [/Planet]
 
-[Jumphole]
-name=Omega COH-3 Jumphole
-x=3735
-y=0
-z=-24357
+[Planet]
+name='Skip 23'
 system=Sigma 0Q-8
-out=Omega COH-3/Sigma 0Q-8 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Sigma 0Q-8 Jumphole
-x=11440
+texture=Terran
+x=-125655
 y=0
-z=1548
-system=Omega COH-3
-out=Sigma 0Q-8/Omega COH-3 Jumphole
-[/Jumphole]
+z=17304
+r=873
+seed=-1598955914
+[/Planet]
 
-[Jumphole]
-name=Psi CNK-LTW Jumphole
-x=26248
-y=0
-z=5133
+[Planet]
+name='Hunt 20'
 system=Sigma 0Q-8
-out=Psi CNK-LTW/Sigma 0Q-8 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Sigma 0Q-8 Jumphole
-x=-56393
+texture=Chthonian
+x=-211417
 y=0
-z=21913
-system=Psi CNK-LTW
-out=Sigma 0Q-8/Psi CNK-LTW Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Phi MP9T-C Jumphole
-x=-15095
-y=0
-z=-19507
-system=Sigma 0Q-8
-out=Phi MP9T-C/Sigma 0Q-8 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Sigma 0Q-8 Jumphole
-x=-30276
-y=0
-z=-12854
-system=Phi MP9T-C
-out=Sigma 0Q-8/Phi MP9T-C Jumphole
-[/Jumphole]
+z=-98406
+r=4607
+seed=657283096
+[/Planet]
 
 [Jumphole]
 name=Omicron 0PI-2 Jumphole
-x=-10429
+x=-112768
 y=0
-z=51790
+z=188090
 system=Sigma 0Q-8
 out=Omicron 0PI-2/Sigma 0Q-8 Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Sigma 0Q-8 Jumphole
-x=-9441
+x=-210523
 y=0
-z=4436
+z=-203041
 system=Omicron 0PI-2
 out=Sigma 0Q-8/Omicron 0PI-2 Jumphole
 [/Jumphole]
 
 [System]
 name=Psi B98-K
-x=36
-y=-14
-z=13
-sky=Black 0
+x=-464
+y=686
+z=913
+sky=Blue 0
 [/System]
 
 [Star]
 name=Psi B98-K
 system=Psi B98-K
 texture=White
-x=-754
+x=-15348
 y=0
-z=14107
-r=5676
-seed=834967309
+z=14085
+r=6741
+seed=-1994644420
 [/Star]
 
-[Field]
-name=Psi B98-K Field
+[Planet]
+name='Maria 24'
 system=Psi B98-K
-type=Dark Asteroid Field
-x=0
+texture=BandedGas
+x=41364
 y=0
-z=0
-l=467271
-w=32000
-h=467271
+z=-172908
+r=2702
 seed=1641224462
-[/Field]
-
-[Planet]
-name='Davis 10'
-system=Psi B98-K
-texture=Martian
-x=126665
-y=0
-z=-1270
-r=1586
-seed=2038668226
-[/Planet]
-
-[Planet]
-name='Smith 3'
-system=Psi B98-K
-texture=BandedGas
-x=-139966
-y=0
-z=-7539
-r=1461
-seed=-845553783
-[/Planet]
-
-[Planet]
-name='Bryan 17'
-system=Psi B98-K
-texture=BandedGas
-x=-53320
-y=0
-z=-56211
-r=3129
-seed=-939638401
-[/Planet]
-
-[Planet]
-name='Aka 5'
-system=Psi B98-K
-texture=Barren
-x=21328
-y=0
-z=47641
-r=1804
-seed=351475070
-[/Planet]
-
-[Planet]
-name='Wale 15'
-system=Psi B98-K
-texture=BandedGas
-x=-17527
-y=0
-z=-89280
-r=4275
-seed=-1863245334
 [/Planet]
 
 [Jumphole]
-name=Psi YJ-7N2F Jumphole
-x=67376
+name=Omega JOB-ERU Jumphole
+x=147515
 y=0
-z=-101648
+z=176090
 system=Psi B98-K
-out=Psi YJ-7N2F/Psi B98-K Jumphole
+out=Omega JOB-ERU/Psi B98-K Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Psi B98-K Jumphole
-x=-54535
+x=-74371
 y=0
-z=91062
-system=Psi YJ-7N2F
-out=Psi B98-K/Psi YJ-7N2F Jumphole
+z=-40516
+system=Omega JOB-ERU
+out=Psi B98-K/Omega JOB-ERU Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Theta Z-Z Jumphole
+x=-111299
+y=0
+z=116575
+system=Psi B98-K
+out=Theta Z-Z/Psi B98-K Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Psi B98-K Jumphole
+x=-43257
+y=0
+z=147619
+system=Theta Z-Z
+out=Psi B98-K/Theta Z-Z Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Delta VT8R-6LDM Jumphole
+x=154435
+y=0
+z=-36173
+system=Psi B98-K
+out=Delta VT8R-6LDM/Psi B98-K Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Psi B98-K Jumphole
+x=-78912
+y=0
+z=-16783
+system=Delta VT8R-6LDM
+out=Psi B98-K/Delta VT8R-6LDM Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Chi Q4IN-D Jumphole
+x=179110
+y=0
+z=-117148
+system=Psi B98-K
+out=Chi Q4IN-D/Psi B98-K Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Psi B98-K Jumphole
+x=174627
+y=0
+z=65129
+system=Chi Q4IN-D
+out=Psi B98-K/Chi Q4IN-D Jumphole
 [/Jumphole]
 
 [System]
 name=Phi PTY-XDDL
-x=47
-y=-53
-z=82
-sky=Dark
-[/System]
-
-[Star]
-name=Phi PTY-XDDL
-system=Phi PTY-XDDL
-texture=White
-x=-3090
-y=0
-z=-19332
-r=6202
-seed=371278844
-[/Star]
-
-[Planet]
-name='Cole 20'
-system=Phi PTY-XDDL
-texture=BandedGas
-x=112250
-y=0
-z=116086
-r=500
-seed=-1162849492
-[/Planet]
-
-[Jumphole]
-name=Upsilon N3U-41 Jumphole
-x=89122
-y=0
-z=4112
-system=Phi PTY-XDDL
-out=Upsilon N3U-41/Phi PTY-XDDL Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Phi PTY-XDDL Jumphole
-x=-29357
-y=0
-z=188923
-system=Upsilon N3U-41
-out=Phi PTY-XDDL/Upsilon N3U-41 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Omicron CV6M-V Jumphole
-x=138862
-y=0
-z=-142990
-system=Phi PTY-XDDL
-out=Omicron CV6M-V/Phi PTY-XDDL Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Phi PTY-XDDL Jumphole
-x=10515
-y=0
-z=-60669
-system=Omicron CV6M-V
-out=Phi PTY-XDDL/Omicron CV6M-V Jumphole
-[/Jumphole]
-
-[System]
-name=Epsilon BGG3-F
-x=57
-y=-26
-z=0
+x=-53
+y=647
+z=-218
 sky=Green 0
 [/System]
 
 [Star]
-name=Epsilon BGG3-F
-system=Epsilon BGG3-F
+name=Phi PTY-XDDL
+system=Phi PTY-XDDL
 texture=White
-x=-2539
+x=-1368
 y=0
-z=-615
-r=2433
-seed=-1190934817
+z=-1871
+r=716
+seed=806381755
 [/Star]
 
-[Field]
-name=Epsilon BGG3-F Field
-system=Epsilon BGG3-F
-type=Dark Asteroid Field
+[Nebula]
+name=Phi PTY-XDDL Cloud
+system=Phi PTY-XDDL
+type=shockwave
+color=0.0016366828,0.01685472,0.004057772,1
 x=0
 y=0
 z=0
 l=192000
 w=32000
 h=192000
-seed=-142695171
-[/Field]
+seed=590823609
+[/Nebula]
 
 [Planet]
-name='Miguel 6'
-system=Epsilon BGG3-F
-texture=BandedGas
-x=63993
+name='Reed 6'
+system=Phi PTY-XDDL
+texture=Martian
+x=21275
 y=0
-z=12235
-r=3914
-seed=2018482818
+z=-62901
+r=1341
+seed=-296863666
 [/Planet]
 
 [Planet]
-name='Thomas 12'
-system=Epsilon BGG3-F
+name='Phillips 4'
+system=Phi PTY-XDDL
 texture=BandedGas
-x=9040
+x=-1234
 y=0
-z=-59424
-r=2310
-seed=308289932
+z=-61850
+r=1788
+seed=1576030567
 [/Planet]
 
 [Planet]
-name='Allen 21'
-system=Epsilon BGG3-F
+name='Miguel 15'
+system=Phi PTY-XDDL
 texture=BandedGas
-x=21782
+x=-32961
 y=0
-z=-56456
-r=500
-seed=1265136788
+z=54758
+r=4763
+seed=-122755026
 [/Planet]
 
 [Planet]
-name='Tim 15'
-system=Epsilon BGG3-F
+name='Washington 22'
+system=Phi PTY-XDDL
 texture=BandedGas
-x=62632
+x=57697
 y=0
-z=-61758
-r=798
-seed=-406441389
+z=-41959
+r=1657
+seed=1050917
 [/Planet]
 
 [Jumphole]
-name=Mu O7-ZWL Jumphole
-x=27673
+name=Chi ZKAC-5P Jumphole
+x=-28732
 y=0
-z=12719
+z=-13385
+system=Phi PTY-XDDL
+out=Chi ZKAC-5P/Phi PTY-XDDL Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Phi PTY-XDDL Jumphole
+x=15633
+y=0
+z=-47240
+system=Chi ZKAC-5P
+out=Phi PTY-XDDL/Chi ZKAC-5P Jumphole
+[/Jumphole]
+
+[System]
+name=Epsilon BGG3-F
+x=-443
+y=874
+z=-500
+sky=Brown 1
+[/System]
+
+[Star]
+name=Epsilon BGG3-F
 system=Epsilon BGG3-F
-out=Mu O7-ZWL/Epsilon BGG3-F Jumphole
+texture=White
+x=1710
+y=0
+z=-2539
+r=7385
+seed=1972904866
+[/Star]
+
+[Planet]
+name='Huni 23'
+system=Epsilon BGG3-F
+texture=Martian
+x=33076
+y=0
+z=44099
+r=3394
+seed=-42546421
+[/Planet]
+
+[Jumphole]
+name=Chi ZKAC-5P Jumphole
+x=-25699
+y=0
+z=1422
+system=Epsilon BGG3-F
+out=Chi ZKAC-5P/Epsilon BGG3-F Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Epsilon BGG3-F Jumphole
-x=-13522
+x=37177
 y=0
-z=14497
-system=Mu O7-ZWL
-out=Epsilon BGG3-F/Mu O7-ZWL Jumphole
+z=-23201
+system=Chi ZKAC-5P
+out=Epsilon BGG3-F/Chi ZKAC-5P Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Phi PTY-XDDL Jumphole
+x=-49920
+y=0
+z=-36139
+system=Epsilon BGG3-F
+out=Phi PTY-XDDL/Epsilon BGG3-F Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Epsilon BGG3-F Jumphole
+x=38417
+y=0
+z=-59903
+system=Phi PTY-XDDL
+out=Epsilon BGG3-F/Phi PTY-XDDL Jumphole
 [/Jumphole]
 
 [System]
 name=Omega JOB-ERU
-x=18
-y=73
-z=61
-sky=Blue 0
+x=-282
+y=573
+z=961
+sky=Black 1
 [/System]
 
 [Star]
 name=Omega JOB-ERU
 system=Omega JOB-ERU
 texture=White
-x=-2823
+x=19158
 y=0
-z=799
-r=2080
-seed=1647671723
+z=-4751
+r=979
+seed=-731549067
 [/Star]
 
 [Nebula]
 name=Omega JOB-ERU Cloud
 system=Omega JOB-ERU
-type=shockwave
-color=0.01291212,7.5063587E-4,0.009016527,1
+type=smoketrail
+color=0.015909819,0.016629696,0.0166267,1
 x=0
 y=0
 z=0
-l=192000
+l=565143
 w=32000
-h=192000
-seed=1198182211
+h=565143
+seed=1724834039
 [/Nebula]
 
 [Planet]
-name='Nadine 10'
+name='Dunn 21'
 system=Omega JOB-ERU
-texture=Chthonian
-x=30257
+texture=BandedGas
+x=-92391
 y=0
-z=58528
-r=1840
-seed=273491869
+z=-88233
+r=2498
+seed=-1193850782
 [/Planet]
 
-[Jumphole]
-name=Tau 0Z5U-0 Jumphole
-x=50406
-y=0
-z=-17004
+[Planet]
+name='Christelle 21'
 system=Omega JOB-ERU
-out=Tau 0Z5U-0/Omega JOB-ERU Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Omega JOB-ERU Jumphole
-x=1924
+texture=Martian
+x=99600
 y=0
-z=-57793
-system=Tau 0Z5U-0
-out=Omega JOB-ERU/Tau 0Z5U-0 Jumphole
-[/Jumphole]
+z=186159
+r=4942
+seed=1560983446
+[/Planet]
 
-[System]
-name=Eta MTK-6D
-x=41
-y=42
-z=-52
-sky=Blue 0
-[/System]
-
-[Star]
-name=Eta MTK-6D
-system=Eta MTK-6D
-texture=White
-x=-14513
+[Planet]
+name='Phillips 9'
+system=Omega JOB-ERU
+texture=BandedGas
+x=-120682
 y=0
-z=-16354
-r=3359
-seed=1636436224
-[/Star]
-
-[Field]
-name=Eta MTK-6D Field
-system=Eta MTK-6D
-type=Dark Asteroid Field
-x=0
-y=0
-z=0
-l=611169
-w=32000
-h=611169
-seed=880190025
-[/Field]
+z=-151385
+r=4245
+seed=1466031860
+[/Planet]
 
 [Planet]
 name='Green 13'
-system=Eta MTK-6D
-texture=Martian
-x=82712
+system=Omega JOB-ERU
+texture=BandedGas
+x=-20158
 y=0
-z=82477
+z=-12557
 r=828
 seed=-1315404661
 [/Planet]
 
-[Planet]
-name='Michael 14'
+[System]
+name=Eta MTK-6D
+x=541
+y=142
+z=848
+sky=Brown 0
+[/System]
+
+[Star]
+name=Eta MTK-6D
 system=Eta MTK-6D
-texture=BandedGas
-x=83567
+texture=White
+x=-10193
 y=0
-z=-29309
-r=3600
-seed=40068509
-[/Planet]
+z=-10328
+r=7614
+seed=2027827201
+[/Star]
 
 [Planet]
-name='Turner 9'
+name='Turner 11'
 system=Eta MTK-6D
-texture=BandedGas
-x=-97125
+texture=Chthonian
+x=21449
 y=0
-z=-173676
-r=2137
-seed=-1264817886
+z=172853
+r=4592
+seed=-1773293022
 [/Planet]
 
 [Jumphole]
-name=Iota URU-MEU0 Jumphole
-x=191491
+name=Rho EXKH-XF Jumphole
+x=153505
 y=0
-z=-38721
+z=126038
 system=Eta MTK-6D
-out=Iota URU-MEU0/Eta MTK-6D Jumphole
+out=Rho EXKH-XF/Eta MTK-6D Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Eta MTK-6D Jumphole
-x=-48807
+x=-157853
 y=0
-z=36983
-system=Iota URU-MEU0
-out=Eta MTK-6D/Iota URU-MEU0 Jumphole
+z=-41793
+system=Rho EXKH-XF
+out=Eta MTK-6D/Rho EXKH-XF Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Eta J2T-30MX Jumphole
+x=-34875
+y=0
+z=-21475
+system=Eta MTK-6D
+out=Eta J2T-30MX/Eta MTK-6D Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Eta MTK-6D Jumphole
+x=-453
+y=0
+z=5397
+system=Eta J2T-30MX
+out=Eta MTK-6D/Eta J2T-30MX Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Epsilon MF-NN6 Jumphole
+x=38915
+y=0
+z=72953
+system=Eta MTK-6D
+out=Epsilon MF-NN6/Eta MTK-6D Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Eta MTK-6D Jumphole
+x=-45410
+y=0
+z=32941
+system=Epsilon MF-NN6
+out=Eta MTK-6D/Epsilon MF-NN6 Jumphole
 [/Jumphole]
 
 [System]
 name=Omicron 0PI-2
-x=-63
-y=71
-z=-22
+x=-763
+y=-229
+z=278
 sky=Blue 0
 [/System]
 
@@ -3058,196 +3012,161 @@ sky=Blue 0
 name=Omicron 0PI-2
 system=Omicron 0PI-2
 texture=White
-x=6155
+x=14822
 y=0
-z=1407
-r=5632
-seed=-817546791
+z=8193
+r=2163
+seed=-2035370519
 [/Star]
 
-[Field]
-name=Omicron 0PI-2 Field
-system=Omicron 0PI-2
-type=Dark Asteroid Field
-x=0
-y=0
-z=0
-l=486939
-w=32000
-h=486939
-seed=-1348864864
-[/Field]
-
 [Planet]
-name='Ramos 18'
+name='Martin 7'
 system=Omicron 0PI-2
 texture=BandedGas
-x=-62405
+x=-116059
 y=0
-z=-49455
-r=3309
-seed=94384327
+z=85550
+r=500
+seed=1330394683
 [/Planet]
 
 [Planet]
-name='Young 1'
+name='Hernandez 7'
 system=Omicron 0PI-2
 texture=Martian
-x=-123646
+x=71492
 y=0
-z=-148721
-r=4051
-seed=648956492
+z=4639
+r=2309
+seed=-1572020548
 [/Planet]
-
-[Planet]
-name='Iolana 12'
-system=Omicron 0PI-2
-texture=BandedGas
-x=154243
-y=0
-z=-11728
-r=4414
-seed=1012929833
-[/Planet]
-
-[Planet]
-name='Baker 21'
-system=Omicron 0PI-2
-texture=BandedGas
-x=156842
-y=0
-z=28841
-r=1320
-seed=925294713
-[/Planet]
-
-[Jumphole]
-name=Epsilon MF-NN6 Jumphole
-x=-17555
-y=0
-z=154054
-system=Omicron 0PI-2
-out=Epsilon MF-NN6/Omicron 0PI-2 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Omicron 0PI-2 Jumphole
-x=82403
-y=0
-z=-2303
-system=Epsilon MF-NN6
-out=Omicron 0PI-2/Epsilon MF-NN6 Jumphole
-[/Jumphole]
 
 [System]
 name=Psi POFH-B
-x=-79
-y=-98
-z=-53
-sky=Brown 1
+x=-779
+y=-598
+z=-753
+sky=Blue 0
 [/System]
 
 [Star]
 name=Psi POFH-B
 system=Psi POFH-B
 texture=White
-x=8224
+x=-411
 y=0
-z=-4918
-r=4643
-seed=-67117315
+z=-2224
+r=1320
+seed=1460117812
 [/Star]
 
 [Planet]
-name='Cody 5'
+name='Maka 21'
 system=Psi POFH-B
-texture=Barren
-x=-50652
+texture=Chthonian
+x=-18242
 y=0
-z=46612
-r=3001
-seed=1931602020
+z=-51357
+r=4990
+seed=-1650052109
 [/Planet]
 
 [Planet]
-name='Henderman 10'
+name='Bruce 10'
 system=Psi POFH-B
-texture=Barren
-x=-66396
+texture=BandedGas
+x=17692
 y=0
-z=-56208
-r=500
-seed=429417868
+z=43385
+r=1010
+seed=1672895707
 [/Planet]
 
 [Jumphole]
-name=Chi Q4IN-D Jumphole
-x=-9395
+name=Tau 9-UA Jumphole
+x=38397
 y=0
-z=21298
+z=30001
 system=Psi POFH-B
-out=Chi Q4IN-D/Psi POFH-B Jumphole
+out=Tau 9-UA/Psi POFH-B Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Psi POFH-B Jumphole
-x=-64303
+x=23763
 y=0
-z=-20636
-system=Chi Q4IN-D
-out=Psi POFH-B/Chi Q4IN-D Jumphole
+z=45850
+system=Tau 9-UA
+out=Psi POFH-B/Tau 9-UA Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Pi LNSR-U9G Jumphole
-x=62148
+name=Phi MP9T-C Jumphole
+x=35993
 y=0
-z=56798
+z=-4821
 system=Psi POFH-B
-out=Pi LNSR-U9G/Psi POFH-B Jumphole
+out=Phi MP9T-C/Psi POFH-B Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Psi POFH-B Jumphole
-x=-2282
+x=-11066
 y=0
-z=-11907
-system=Pi LNSR-U9G
-out=Psi POFH-B/Pi LNSR-U9G Jumphole
+z=-57003
+system=Phi MP9T-C
+out=Psi POFH-B/Phi MP9T-C Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Mu M-NGW5 Jumphole
+x=-53687
+y=0
+z=-60785
+system=Psi POFH-B
+out=Mu M-NGW5/Psi POFH-B Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Psi POFH-B Jumphole
+x=24235
+y=0
+z=-3690
+system=Mu M-NGW5
+out=Psi POFH-B/Mu M-NGW5 Jumphole
 [/Jumphole]
 
 [System]
 name=Phi MP9T-C
-x=-78
-y=17
-z=58
-sky=Green 0
+x=-578
+y=117
+z=-442
+sky=Black 1
 [/System]
 
 [Star]
 name=Phi MP9T-C
 system=Phi MP9T-C
 texture=White
-x=-627
+x=-939
 y=0
-z=7384
-r=5793
-seed=241716845
+z=-4735
+r=2889
+seed=1211060845
 [/Star]
 
 [Nebula]
 name=Phi MP9T-C Cloud
 system=Phi MP9T-C
-type=debris
-color=0.013814432,0.015188905,1.6166568E-4,1
+type=flame
+color=0.0065917373,0.008471676,0.013566459,1
 x=0
 y=0
 z=0
 l=192000
 w=32000
 h=192000
-seed=-1535232434
+seed=-644735709
 [/Nebula]
 
 [Field]
@@ -3260,144 +3179,163 @@ z=0
 l=192000
 w=32000
 h=192000
-seed=-603044088
+seed=1470773274
 [/Field]
 
 [Planet]
-name='Terrez 1'
+name='Rose 17'
 system=Phi MP9T-C
-texture=Chthonian
-x=7467
+texture=BandedGas
+x=38117
 y=0
-z=-40777
-r=2657
-seed=-1874027392
+z=11497
+r=782
+seed=-188327706
 [/Planet]
 
 [Planet]
-name='Cambel 23'
+name='Dolly 3'
 system=Phi MP9T-C
-texture=BandedGas
-x=37983
+texture=Barren
+x=-40777
 y=0
-z=34746
-r=4352
-seed=-650588956
+z=56657
+r=1606
+seed=1930638935
+[/Planet]
+
+[Planet]
+name='Lucio 23'
+system=Phi MP9T-C
+texture=Terran
+x=40059
+y=0
+z=11365
+r=4279
+seed=-1004711596
+[/Planet]
+
+[Planet]
+name='Lala 24'
+system=Phi MP9T-C
+texture=Martian
+x=8554
+y=0
+z=24539
+r=3340
+seed=1600162238
 [/Planet]
 
 [Jumphole]
-name=Psi CNK-LTW Jumphole
-x=16045
+name=Mu M-NGW5 Jumphole
+x=55966
 y=0
-z=33144
+z=41826
 system=Phi MP9T-C
-out=Psi CNK-LTW/Phi MP9T-C Jumphole
+out=Mu M-NGW5/Phi MP9T-C Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Phi MP9T-C Jumphole
-x=44502
+x=45170
 y=0
-z=18878
-system=Psi CNK-LTW
-out=Phi MP9T-C/Psi CNK-LTW Jumphole
+z=37983
+system=Mu M-NGW5
+out=Phi MP9T-C/Mu M-NGW5 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Omega COH-3 Jumphole
-x=-51553
+name=Tau QAP-K3 Jumphole
+x=34746
 y=0
-z=3032
+z=-4648
 system=Phi MP9T-C
-out=Omega COH-3/Phi MP9T-C Jumphole
+out=Tau QAP-K3/Phi MP9T-C Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Phi MP9T-C Jumphole
-x=-61131
+x=37730
 y=0
-z=18816
-system=Omega COH-3
-out=Phi MP9T-C/Omega COH-3 Jumphole
+z=16045
+system=Tau QAP-K3
+out=Phi MP9T-C/Tau QAP-K3 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Epsilon DL-8XN Jumphole
+x=33144
+y=0
+z=44502
+system=Phi MP9T-C
+out=Epsilon DL-8XN/Phi MP9T-C Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Phi MP9T-C Jumphole
+x=18878
+y=0
+z=-51553
+system=Epsilon DL-8XN
+out=Phi MP9T-C/Epsilon DL-8XN Jumphole
 [/Jumphole]
 
 [System]
 name=Epsilon M6-V
-x=-98
-y=-60
-z=-80
-sky=Orange 1
+x=-398
+y=-960
+z=220
+sky=Blue 1
 [/System]
 
 [Star]
 name=Epsilon M6-V
 system=Epsilon M6-V
 texture=White
-x=-15352
+x=7710
 y=0
-z=-6127
-r=8973
-seed=516222838
+z=-8155
+r=9357
+seed=-1122025131
 [/Star]
 
-[Field]
-name=Epsilon M6-V Field
+[Nebula]
+name=Epsilon M6-V Cloud
 system=Epsilon M6-V
-type=Dark Asteroid Field
+type=flame
+color=0.0024038493,0.015875757,0.0071340753,1
 x=0
 y=0
 z=0
-l=591231
+l=201096
 w=32000
-h=591231
-seed=-1984500830
-[/Field]
-
-[Planet]
-name='Moke 8'
-system=Epsilon M6-V
-texture=Barren
-x=165915
-y=0
-z=-72736
-r=3375
-seed=-128817268
-[/Planet]
-
-[Planet]
-name='Arlene 15'
-system=Epsilon M6-V
-texture=Barren
-x=-178486
-y=0
-z=183140
-r=553
-seed=-1499942741
-[/Planet]
+h=201096
+seed=-1453773141
+[/Nebula]
 
 [Jumphole]
-name=Chi Q4IN-D Jumphole
-x=83965
+name=Mu O7-ZWL Jumphole
+x=27798
 y=0
-z=-134614
+z=18929
 system=Epsilon M6-V
-out=Chi Q4IN-D/Epsilon M6-V Jumphole
+out=Mu O7-ZWL/Epsilon M6-V Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Epsilon M6-V Jumphole
-x=-97517
+x=9520
 y=0
-z=-163019
-system=Chi Q4IN-D
-out=Epsilon M6-V/Chi Q4IN-D Jumphole
+z=-66418
+system=Mu O7-ZWL
+out=Epsilon M6-V/Mu O7-ZWL Jumphole
 [/Jumphole]
 
 [System]
 name=Upsilon N3U-41
-x=51
-y=-18
-z=86
+x=351
+y=-318
+z=-614
 sky=Black 0
 [/System]
 
@@ -3453,7 +3391,7 @@ seed=-363812049
 [Planet]
 name='Jack 10'
 system=Upsilon N3U-41
-texture=BandedGas
+texture=Barren
 x=-64600
 y=0
 z=-123187
@@ -3461,619 +3399,572 @@ r=1702
 seed=-1851602811
 [/Planet]
 
+[Jumphole]
+name=Delta 67-VNVD Jumphole
+x=-84869
+y=0
+z=-22677
+system=Upsilon N3U-41
+out=Delta 67-VNVD/Upsilon N3U-41 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Upsilon N3U-41 Jumphole
+x=-103177
+y=0
+z=64627
+system=Delta 67-VNVD
+out=Upsilon N3U-41/Delta 67-VNVD Jumphole
+[/Jumphole]
+
 [System]
 name=Alpha 6L-XGXG
-x=34
-y=-85
-z=-64
-sky=Brown 1
+x=-66
+y=815
+z=-964
+sky=Black 1
 [/System]
 
 [Star]
 name=Alpha 6L-XGXG
 system=Alpha 6L-XGXG
 texture=White
-x=1455
+x=-6797
 y=0
-z=-198
-r=3469
-seed=1322742801
+z=13014
+r=4572
+seed=-681827494
 [/Star]
 
-[Field]
-name=Alpha 6L-XGXG Field
+[Nebula]
+name=Alpha 6L-XGXG Cloud
 system=Alpha 6L-XGXG
-type=Dark Asteroid Field
+type=shockwave
+color=0.014448787,0.0013061928,0.015459478,1
 x=0
 y=0
 z=0
-l=192000
+l=551406
 w=32000
-h=192000
-seed=-681827494
-[/Field]
+h=551406
+seed=-726824995
+[/Nebula]
 
 [Planet]
-name='Torvald 9'
+name='Farraday 12'
 system=Alpha 6L-XGXG
 texture=BandedGas
-x=-62790
+x=-45262
 y=0
-z=8231
-r=664
-seed=-726824995
+z=175549
+r=2967
+seed=-1811817291
 [/Planet]
 
 [Planet]
-name='Yung 18'
+name='Hicks 18'
 system=Alpha 6L-XGXG
-texture=Terran
-x=1127
+texture=BandedGas
+x=-11360
 y=0
-z=-47033
-r=4883
-seed=-1802335096
+z=-175963
+r=4174
+seed=-1614278994
 [/Planet]
 
 [Planet]
-name='Linsey 13'
+name='Smith 7'
 system=Alpha 6L-XGXG
-texture=Terran
-x=-11293
+texture=BandedGas
+x=-70392
 y=0
-z=-47826
-r=1268
-seed=-1090585948
+z=166952
+r=1285
+seed=-1062439422
 [/Planet]
 
 [Planet]
-name='Beryl 9'
+name='Hamilton 13'
 system=Alpha 6L-XGXG
-texture=Barren
-x=57662
+texture=BandedGas
+x=-72809
 y=0
-z=-48715
-r=2416
-seed=-1764889747
+z=111168
+r=2594
+seed=1332776637
 [/Planet]
 
 [Jumphole]
-name=Omega Q7B2-0C Jumphole
-x=-2756
+name=Xi V-21J Jumphole
+x=-16045
 y=0
-z=-35237
+z=37623
 system=Alpha 6L-XGXG
-out=Omega Q7B2-0C/Alpha 6L-XGXG Jumphole
+out=Xi V-21J/Alpha 6L-XGXG Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Alpha 6L-XGXG Jumphole
-x=-43682
+x=57689
 y=0
-z=38393
-system=Omega Q7B2-0C
-out=Alpha 6L-XGXG/Omega Q7B2-0C Jumphole
+z=-57168
+system=Xi V-21J
+out=Alpha 6L-XGXG/Xi V-21J Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Xi E-S Jumphole
+x=-51963
+y=0
+z=24657
+system=Alpha 6L-XGXG
+out=Xi E-S/Alpha 6L-XGXG Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Alpha 6L-XGXG Jumphole
+x=-105332
+y=0
+z=-99954
+system=Xi E-S
+out=Alpha 6L-XGXG/Xi E-S Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Epsilon BGG3-F Jumphole
+x=676
+y=0
+z=-117131
+system=Alpha 6L-XGXG
+out=Epsilon BGG3-F/Alpha 6L-XGXG Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Alpha 6L-XGXG Jumphole
+x=-151602
+y=0
+z=-65137
+system=Epsilon BGG3-F
+out=Alpha 6L-XGXG/Epsilon BGG3-F Jumphole
 [/Jumphole]
 
 [System]
 name=Delta 01J-H7R
-x=-69
-y=-53
-z=-55
-sky=Blue 0
+x=631
+y=-153
+z=-955
+sky=Black 1
 [/System]
 
 [Star]
 name=Delta 01J-H7R
 system=Delta 01J-H7R
 texture=White
-x=-22752
+x=12826
 y=0
-z=-375
-r=5607
-seed=543571980
+z=-24370
+r=8129
+seed=-91356938
 [/Star]
 
 [Nebula]
 name=Delta 01J-H7R Cloud
 system=Delta 01J-H7R
-type=flame
-color=0.01514322,0.004389808,0.017848834,1
+type=debris
+color=0.0027043724,0.018459896,0.008685411,1
 x=0
 y=0
 z=0
-l=550794
+l=767454
 w=32000
-h=550794
-seed=1362473766
+h=767454
+seed=-1483756542
 [/Nebula]
 
-[Field]
-name=Delta 01J-H7R Field
-system=Delta 01J-H7R
-type=Dark Asteroid Field
-x=0
-y=0
-z=0
-l=550794
-w=32000
-h=550794
-seed=-949047660
-[/Field]
-
 [Planet]
-name='Keoni 6'
+name='Florence 7'
 system=Delta 01J-H7R
 texture=BandedGas
-x=-105480
+x=-202289
 y=0
-z=153599
-r=4828
-seed=-91356938
+z=51406
+r=716
+seed=-1963038257
 [/Planet]
 
 [Jumphole]
-name=Chi Q4IN-D Jumphole
-x=94707
+name=Upsilon 5-G Jumphole
+x=99205
 y=0
-z=162687
+z=-216827
 system=Delta 01J-H7R
-out=Chi Q4IN-D/Delta 01J-H7R Jumphole
+out=Upsilon 5-G/Delta 01J-H7R Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Delta 01J-H7R Jumphole
-x=-171094
+x=-102505
 y=0
-z=-107864
-system=Chi Q4IN-D
-out=Delta 01J-H7R/Chi Q4IN-D Jumphole
+z=147416
+system=Upsilon 5-G
+out=Delta 01J-H7R/Upsilon 5-G Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Epsilon M6-V Jumphole
-x=71928
+name=Omicron Q3-4V6 Jumphole
+x=9564
 y=0
-z=-25584
+z=-5668
 system=Delta 01J-H7R
-out=Epsilon M6-V/Delta 01J-H7R Jumphole
+out=Omicron Q3-4V6/Delta 01J-H7R Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Delta 01J-H7R Jumphole
-x=33888
+x=79834
 y=0
-z=-76822
-system=Epsilon M6-V
-out=Delta 01J-H7R/Epsilon M6-V Jumphole
+z=123178
+system=Omicron Q3-4V6
+out=Delta 01J-H7R/Omicron Q3-4V6 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Xi S-0U0W Jumphole
-x=-66379
+name=Upsilon N3U-41 Jumphole
+x=140660
 y=0
-z=-134653
+z=231429
 system=Delta 01J-H7R
-out=Xi S-0U0W/Delta 01J-H7R Jumphole
+out=Upsilon N3U-41/Delta 01J-H7R Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Delta 01J-H7R Jumphole
-x=85366
+x=-219183
 y=0
-z=-87782
-system=Xi S-0U0W
-out=Delta 01J-H7R/Xi S-0U0W Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Psi POFH-B Jumphole
-x=127715
-y=0
-z=167725
-system=Delta 01J-H7R
-out=Psi POFH-B/Delta 01J-H7R Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Delta 01J-H7R Jumphole
-x=-138683
-y=0
-z=-16477
-system=Psi POFH-B
-out=Delta 01J-H7R/Psi POFH-B Jumphole
+z=253654
+system=Upsilon N3U-41
+out=Delta 01J-H7R/Upsilon N3U-41 Jumphole
 [/Jumphole]
 
 [System]
 name=Epsilon VQ-WVYP
-x=10
-y=-39
-z=-29
-sky=Black 0
+x=910
+y=-339
+z=471
+sky=Blue 0
 [/System]
 
 [Star]
 name=Epsilon VQ-WVYP
 system=Epsilon VQ-WVYP
 texture=White
-x=3177
+x=-1786
 y=0
-z=9938
-r=4626
-seed=-1777766953
+z=9385
+r=3520
+seed=-217202350
 [/Star]
 
-[Field]
-name=Epsilon VQ-WVYP Field
+[Nebula]
+name=Epsilon VQ-WVYP Cloud
 system=Epsilon VQ-WVYP
-type=Dark Asteroid Field
+type=debris
+color=0.005325973,0.0031370998,0.014794864,1
 x=0
 y=0
 z=0
-l=495738
+l=329277
 w=32000
-h=495738
-seed=-462665880
-[/Field]
+h=329277
+seed=-794438353
+[/Nebula]
 
 [Planet]
-name='Lino 9'
-system=Epsilon VQ-WVYP
-texture=Chthonian
-x=-72335
-y=0
-z=-44290
-r=3647
-seed=506116841
-[/Planet]
-
-[Planet]
-name='Turner 7'
-system=Epsilon VQ-WVYP
-texture=Barren
-x=145206
-y=0
-z=-42096
-r=4475
-seed=-2132364261
-[/Planet]
-
-[Planet]
-name='Leslie 18'
+name='Joe 7'
 system=Epsilon VQ-WVYP
 texture=BandedGas
-x=-158555
+x=-18542
 y=0
-z=-156172
-r=2782
-seed=-1393551936
-[/Planet]
-
-[Planet]
-name='Huko 2'
-system=Epsilon VQ-WVYP
-texture=BandedGas
-x=36401
-y=0
-z=150734
-r=2485
-seed=1073765067
+z=-11676
+r=2593
+seed=-1999960727
 [/Planet]
 
 [Jumphole]
-name=Omicron Q3-4V6 Jumphole
-x=150568
+name=Beta QF2-2V3S Jumphole
+x=-88560
 y=0
-z=110622
+z=86209
 system=Epsilon VQ-WVYP
-out=Omicron Q3-4V6/Epsilon VQ-WVYP Jumphole
+out=Beta QF2-2V3S/Epsilon VQ-WVYP Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Epsilon VQ-WVYP Jumphole
-x=-110286
+x=-87765
 y=0
-z=-82056
-system=Omicron Q3-4V6
-out=Epsilon VQ-WVYP/Omicron Q3-4V6 Jumphole
+z=-7362
+system=Beta QF2-2V3S
+out=Epsilon VQ-WVYP/Beta QF2-2V3S Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Omega COH-3 Jumphole
+x=40359
+y=0
+z=-64240
+system=Epsilon VQ-WVYP
+out=Omega COH-3/Epsilon VQ-WVYP Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Epsilon VQ-WVYP Jumphole
+x=-89877
+y=0
+z=51264
+system=Omega COH-3
+out=Epsilon VQ-WVYP/Omega COH-3 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Pi C7-O Jumphole
+x=38958
+y=0
+z=16621
+system=Epsilon VQ-WVYP
+out=Pi C7-O/Epsilon VQ-WVYP Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Epsilon VQ-WVYP Jumphole
+x=81246
+y=0
+z=7310
+system=Pi C7-O
+out=Epsilon VQ-WVYP/Pi C7-O Jumphole
 [/Jumphole]
 
 [System]
 name=Psi YJ-7N2F
-x=22
-y=-26
-z=28
-sky=Blue 1
+x=-478
+y=-726
+z=328
+sky=Dark
 [/System]
 
 [Star]
 name=Psi YJ-7N2F
 system=Psi YJ-7N2F
 texture=White
-x=-4348
+x=-11188
 y=0
-z=4252
-r=7410
-seed=-1642647489
+z=4274
+r=1131
+seed=614395216
+[/Star]
+
+[Planet]
+name='Mills 17'
+system=Psi YJ-7N2F
+texture=BandedGas
+x=-33959
+y=0
+z=129105
+r=699
+seed=-400504097
+[/Planet]
+
+[Planet]
+name='Edward 9'
+system=Psi YJ-7N2F
+texture=BandedGas
+x=47970
+y=0
+z=40961
+r=3788
+seed=1380832255
+[/Planet]
+
+[Planet]
+name='Ophellia 5'
+system=Psi YJ-7N2F
+texture=BandedGas
+x=-1587
+y=0
+z=-107095
+r=3327
+seed=-1839865447
+[/Planet]
+
+[Planet]
+name='James 14'
+system=Psi YJ-7N2F
+texture=Terran
+x=153253
+y=0
+z=-54856
+r=1150
+seed=-2006531252
+[/Planet]
+
+[Jumphole]
+name=Epsilon M6-V Jumphole
+x=131366
+y=0
+z=84339
+system=Psi YJ-7N2F
+out=Epsilon M6-V/Psi YJ-7N2F Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Psi YJ-7N2F Jumphole
+x=71328
+y=0
+z=141072
+system=Epsilon M6-V
+out=Psi YJ-7N2F/Epsilon M6-V Jumphole
+[/Jumphole]
+
+[System]
+name=Xi S-0U0W
+x=-773
+y=886
+z=232
+sky=Green 0
+[/System]
+
+[Star]
+name=Xi S-0U0W
+system=Xi S-0U0W
+texture=White
+x=-14764
+y=0
+z=4502
+r=3599
+seed=435257938
 [/Star]
 
 [Nebula]
-name=Psi YJ-7N2F Cloud
-system=Psi YJ-7N2F
+name=Xi S-0U0W Cloud
+system=Xi S-0U0W
 type=shockwave
-color=0.007628746,0.018135006,0.007855245,1
+color=0.011454419,0.0025135493,0.0050929547,1
 x=0
 y=0
 z=0
-l=253038
+l=545238
 w=32000
-h=253038
-seed=456926870
+h=545238
+seed=1411367889
 [/Nebula]
 
 [Planet]
-name='Price 18'
-system=Psi YJ-7N2F
-texture=Barren
-x=75201
-y=0
-z=-33766
-r=1751
-seed=823372472
-[/Planet]
-
-[Planet]
-name='Harvey 21'
-system=Psi YJ-7N2F
+name='Reed 12'
+system=Xi S-0U0W
 texture=BandedGas
-x=34449
+x=-156547
 y=0
-z=81105
-r=500
-seed=-808695089
+z=176595
+r=2827
+seed=-1827594122
 [/Planet]
-
-[Planet]
-name='Anne 18'
-system=Psi YJ-7N2F
-texture=Chthonian
-x=57720
-y=0
-z=-6204
-r=3744
-seed=-239379442
-[/Planet]
-
-[Planet]
-name='Barnes 23'
-system=Psi YJ-7N2F
-texture=Barren
-x=51277
-y=0
-z=-1767
-r=2034
-seed=741227492
-[/Planet]
-
-[Jumphole]
-name=Xi V-21J Jumphole
-x=8977
-y=0
-z=-68057
-system=Psi YJ-7N2F
-out=Xi V-21J/Psi YJ-7N2F Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Psi YJ-7N2F Jumphole
-x=67545
-y=0
-z=-23817
-system=Xi V-21J
-out=Psi YJ-7N2F/Xi V-21J Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Pi 3ZJ-H94 Jumphole
-x=59961
-y=0
-z=67492
-system=Psi YJ-7N2F
-out=Pi 3ZJ-H94/Psi YJ-7N2F Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Psi YJ-7N2F Jumphole
-x=36823
-y=0
-z=-39038
-system=Pi 3ZJ-H94
-out=Psi YJ-7N2F/Pi 3ZJ-H94 Jumphole
-[/Jumphole]
 
 [System]
-name=Xi S-0U0W
-x=-73
-y=-14
-z=-68
-sky=Brown 0
+name=Chi Q4IN-D
+x=-765
+y=422
+z=824
+sky=Green 0
 [/System]
 
 [Star]
-name=Xi S-0U0W
-system=Xi S-0U0W
+name=Chi Q4IN-D
+system=Chi Q4IN-D
 texture=White
-x=1311
+x=-21333
 y=0
-z=-453
-r=3048
-seed=-1827594122
+z=-11687
+r=5357
+seed=1660241205
 [/Star]
 
-[Planet]
-name='Martin 2'
-system=Xi S-0U0W
-texture=BandedGas
-x=-61092
+[Nebula]
+name=Chi Q4IN-D Cloud
+system=Chi Q4IN-D
+type=shockwave
+color=0.018416408,0.018329376,0.005190785,1
+x=0
 y=0
-z=-38643
-r=602
-seed=-203941792
-[/Planet]
-
-[Planet]
-name='Omeka 16'
-system=Xi S-0U0W
-texture=Martian
-x=-24409
-y=0
-z=-18099
-r=4982
-seed=1114712758
-[/Planet]
+z=0
+l=738366
+w=32000
+h=738366
+seed=2070351183
+[/Nebula]
 
 [Planet]
 name='Young 2'
-system=Xi S-0U0W
-texture=Barren
-x=52250
+system=Chi Q4IN-D
+texture=BandedGas
+x=210808
 y=0
-z=-12537
+z=-149707
 r=2614
 seed=-373154152
 [/Planet]
 
 [Planet]
 name='Dixon 6'
-system=Xi S-0U0W
+system=Chi Q4IN-D
 texture=Chthonian
-x=28216
+x=-143274
 y=0
-z=44758
+z=79928
 r=3869
 seed=1932395163
 [/Planet]
 
-[Planet]
-name='Jones 19'
-system=Xi S-0U0W
-texture=Martian
-x=-34824
-y=0
-z=32734
-r=3024
-seed=-2057099449
-[/Planet]
-
-[Planet]
-name='Khufu 12'
-system=Xi S-0U0W
-texture=BandedGas
-x=9474
-y=0
-z=31502
-r=1581
-seed=1610475929
-[/Planet]
-
 [Jumphole]
-name=Upsilon 8J-Z Jumphole
-x=53878
+name=Chi O7OB-I6L Jumphole
+x=-41670
 y=0
-z=-46677
-system=Xi S-0U0W
-out=Upsilon 8J-Z/Xi S-0U0W Jumphole
+z=10528
+system=Chi Q4IN-D
+out=Chi O7OB-I6L/Chi Q4IN-D Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Xi S-0U0W Jumphole
-x=-57277
+name=Chi Q4IN-D Jumphole
+x=4140
 y=0
-z=-6975
-system=Upsilon 8J-Z
-out=Xi S-0U0W/Upsilon 8J-Z Jumphole
+z=-182811
+system=Chi O7OB-I6L
+out=Chi Q4IN-D/Chi O7OB-I6L Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Delta VT8R-6LDM Jumphole
-x=-26640
+name=Theta Z-Z Jumphole
+x=-226062
 y=0
-z=607
-system=Xi S-0U0W
-out=Delta VT8R-6LDM/Xi S-0U0W Jumphole
+z=-209376
+system=Chi Q4IN-D
+out=Theta Z-Z/Chi Q4IN-D Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Xi S-0U0W Jumphole
-x=51773
+name=Chi Q4IN-D Jumphole
+x=211174
 y=0
-z=16017
-system=Delta VT8R-6LDM
-out=Xi S-0U0W/Delta VT8R-6LDM Jumphole
+z=-163053
+system=Theta Z-Z
+out=Chi Q4IN-D/Theta Z-Z Jumphole
 [/Jumphole]
-
-[System]
-name=Chi Q4IN-D
-x=-65
-y=-78
-z=-76
-sky=Brown 0
-[/System]
-
-[Star]
-name=Chi Q4IN-D
-system=Chi Q4IN-D
-texture=White
-x=9083
-y=0
-z=26428
-r=835
-seed=-2024084076
-[/Star]
-
-[Nebula]
-name=Chi Q4IN-D Cloud
-system=Chi Q4IN-D
-type=debris
-color=0.009201267,0.018371407,0.01574451,1
-x=0
-y=0
-z=0
-l=659607
-w=32000
-h=659607
-seed=334112822
-[/Nebula]
-
-[Field]
-name=Chi Q4IN-D Field
-system=Chi Q4IN-D
-type=Dark Asteroid Field
-x=0
-y=0
-z=0
-l=659607
-w=32000
-h=659607
-seed=1036973850
-[/Field]
-
-[Planet]
-name='Jackie 11'
-system=Chi Q4IN-D
-texture=Barren
-x=-114794
-y=0
-z=-186286
-r=500
-seed=-982719158
-[/Planet]
 
 [System]
 name=Upsilon 5-G
-x=77
-y=-44
-z=28
+x=977
+y=-144
+z=-872
 sky=Orange 1
 [/System]
 
@@ -4081,547 +3972,467 @@ sky=Orange 1
 name=Upsilon 5-G
 system=Upsilon 5-G
 texture=White
-x=-646
+x=-14190
 y=0
-z=-6038
-r=6855
-seed=1932788949
+z=-6075
+r=1502
+seed=-1862954134
 [/Star]
+
+[Field]
+name=Upsilon 5-G Field
+system=Upsilon 5-G
+type=Dark Asteroid Field
+x=0
+y=0
+z=0
+l=606621
+w=32000
+h=606621
+seed=293645446
+[/Field]
+
+[Planet]
+name='Diaz 14'
+system=Upsilon 5-G
+texture=Barren
+x=11620
+y=0
+z=70000
+r=4834
+seed=-951167558
+[/Planet]
+
+[Planet]
+name='Gibson 3'
+system=Upsilon 5-G
+texture=Terran
+x=197408
+y=0
+z=85573
+r=3806
+seed=1613144866
+[/Planet]
+
+[Planet]
+name='Hunter 10'
+system=Upsilon 5-G
+texture=Barren
+x=188077
+y=0
+z=-89799
+r=1498
+seed=-135070910
+[/Planet]
+
+[Planet]
+name='Walker 18'
+system=Upsilon 5-G
+texture=Barren
+x=-151428
+y=0
+z=-40137
+r=4367
+seed=-1003077157
+[/Planet]
+
+[Planet]
+name='Lewis 3'
+system=Upsilon 5-G
+texture=Chthonian
+x=137696
+y=0
+z=-74024
+r=500
+seed=1932788949
+[/Planet]
 
 [Planet]
 name='Garcia 7'
 system=Upsilon 5-G
-texture=BandedGas
-x=-42145
+texture=Terran
+x=24210
 y=0
-z=25870
+z=10051
 r=2884
 seed=-521790279
 [/Planet]
 
-[Planet]
-name='Hawking 4'
-system=Upsilon 5-G
-texture=Barren
-x=-62548
-y=0
-z=-40568
-r=3992
-seed=-1412047563
-[/Planet]
-
-[Planet]
-name='Walker 16'
-system=Upsilon 5-G
-texture=Terran
-x=-10816
-y=0
-z=-61964
-r=3378
-seed=-860170852
-[/Planet]
-
 [Jumphole]
-name=Mu O7-ZWL Jumphole
-x=-33317
+name=Omicron Q3-4V6 Jumphole
+x=7186
 y=0
-z=15114
+z=-118340
 system=Upsilon 5-G
-out=Mu O7-ZWL/Upsilon 5-G Jumphole
+out=Omicron Q3-4V6/Upsilon 5-G Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Upsilon 5-G Jumphole
-x=103
+x=66622
 y=0
-z=31312
-system=Mu O7-ZWL
-out=Upsilon 5-G/Mu O7-ZWL Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Mu MY-Q9LO Jumphole
-x=-34647
-y=0
-z=-27948
-system=Upsilon 5-G
-out=Mu MY-Q9LO/Upsilon 5-G Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Upsilon 5-G Jumphole
-x=-1061
-y=0
-z=51221
-system=Mu MY-Q9LO
-out=Upsilon 5-G/Mu MY-Q9LO Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Xi E-S Jumphole
-x=-30937
-y=0
-z=12034
-system=Upsilon 5-G
-out=Xi E-S/Upsilon 5-G Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Upsilon 5-G Jumphole
-x=-16821
-y=0
-z=-55269
-system=Xi E-S
-out=Upsilon 5-G/Xi E-S Jumphole
+z=-73837
+system=Omicron Q3-4V6
+out=Upsilon 5-G/Omicron Q3-4V6 Jumphole
 [/Jumphole]
 
 [System]
 name=Pi 3ZJ-H94
-x=-16
-y=-20
-z=23
-sky=Green 0
+x=-716
+y=280
+z=323
+sky=Brown 0
 [/System]
 
 [Star]
 name=Pi 3ZJ-H94
 system=Pi 3ZJ-H94
 texture=White
-x=20242
+x=-715
 y=0
-z=25445
-r=8320
-seed=-1269768247
+z=455
+r=4935
+seed=1717141129
 [/Star]
 
-[Nebula]
-name=Pi 3ZJ-H94 Cloud
+[Field]
+name=Pi 3ZJ-H94 Field
 system=Pi 3ZJ-H94
-type=flame
-color=0.019013785,0.014931505,0.017891452,1
-x=0
-y=0
-z=0
-l=638550
-w=32000
-h=638550
-seed=-534383361
-[/Nebula]
-
-[Planet]
-name='Angelica 23'
-system=Pi 3ZJ-H94
-texture=BandedGas
-x=-198480
-y=0
-z=208259
-r=1349
-seed=186369198
-[/Planet]
-
-[Planet]
-name='Murphey 19'
-system=Pi 3ZJ-H94
-texture=Terran
-x=-44895
-y=0
-z=-58199
-r=4433
-seed=1844489042
-[/Planet]
-
-[Planet]
-name='Diaz 22'
-system=Pi 3ZJ-H94
-texture=Terran
-x=-129401
-y=0
-z=-18713
-r=4139
-seed=647440928
-[/Planet]
-
-[Planet]
-name='Fay 19'
-system=Pi 3ZJ-H94
-texture=Barren
-x=-35111
-y=0
-z=-62336
-r=3962
-seed=-1100042512
-[/Planet]
-
-[Planet]
-name='Dougel 3'
-system=Pi 3ZJ-H94
-texture=BandedGas
-x=-64978
-y=0
-z=-80121
-r=1137
-seed=1276788350
-[/Planet]
-
-[Planet]
-name='Arlene 14'
-system=Pi 3ZJ-H94
-texture=BandedGas
-x=-18582
-y=0
-z=-79252
-r=1793
-seed=-2120291093
-[/Planet]
-
-[Jumphole]
-name=Theta RA-JS5I Jumphole
-x=-65793
-y=0
-z=-150817
-system=Pi 3ZJ-H94
-out=Theta RA-JS5I/Pi 3ZJ-H94 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Pi 3ZJ-H94 Jumphole
-x=-170213
-y=0
-z=197423
-system=Theta RA-JS5I
-out=Pi 3ZJ-H94/Theta RA-JS5I Jumphole
-[/Jumphole]
-
-[System]
-name=Epsilon MF-NN6
-x=-97
-y=86
-z=-18
-sky=Black 0
-[/System]
-
-[Star]
-name=Epsilon MF-NN6
-system=Epsilon MF-NN6
-texture=White
-x=4729
-y=0
-z=16818
-r=2320
-seed=572986617
-[/Star]
-
-[Planet]
-name='Brynt 22'
-system=Epsilon MF-NN6
-texture=BandedGas
-x=-88492
-y=0
-z=1785
-r=2393
-seed=-300551488
-[/Planet]
-
-[Jumphole]
-name=Gamma OHV-K1TM Jumphole
-x=35453
-y=0
-z=-117445
-system=Epsilon MF-NN6
-out=Gamma OHV-K1TM/Epsilon MF-NN6 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Epsilon MF-NN6 Jumphole
-x=68983
-y=0
-z=31819
-system=Gamma OHV-K1TM
-out=Epsilon MF-NN6/Gamma OHV-K1TM Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Psi LD3G-DDD Jumphole
-x=57452
-y=0
-z=8275
-system=Epsilon MF-NN6
-out=Psi LD3G-DDD/Epsilon MF-NN6 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Epsilon MF-NN6 Jumphole
-x=-71592
-y=0
-z=-115782
-system=Psi LD3G-DDD
-out=Epsilon MF-NN6/Psi LD3G-DDD Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Sigma 0Q-8 Jumphole
-x=-21055
-y=0
-z=-10471
-system=Epsilon MF-NN6
-out=Sigma 0Q-8/Epsilon MF-NN6 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Epsilon MF-NN6 Jumphole
-x=-104435
-y=0
-z=-105580
-system=Sigma 0Q-8
-out=Epsilon MF-NN6/Sigma 0Q-8 Jumphole
-[/Jumphole]
-
-[System]
-name=Alpha V-2Z
-x=-11
-y=65
-z=4
-sky=Black 0
-[/System]
-
-[Star]
-name=Alpha V-2Z
-system=Alpha V-2Z
-texture=White
-x=1187
-y=0
-z=4256
-r=500
-seed=-935467995
-[/Star]
-
-[Planet]
-name='Bret 8'
-system=Alpha V-2Z
-texture=BandedGas
-x=39995
-y=0
-z=56293
-r=4107
-seed=-1582160594
-[/Planet]
-
-[Planet]
-name='Cox 5'
-system=Alpha V-2Z
-texture=BandedGas
-x=55266
-y=0
-z=59079
-r=2812
-seed=-885776812
-[/Planet]
-
-[Planet]
-name='Lee 24'
-system=Alpha V-2Z
-texture=BandedGas
-x=17912
-y=0
-z=6963
-r=2296
-seed=-1281033258
-[/Planet]
-
-[Planet]
-name='Yao 13'
-system=Alpha V-2Z
-texture=Chthonian
-x=-46838
-y=0
-z=33261
-r=563
-seed=445007543
-[/Planet]
-
-[Jumphole]
-name=Chi O7OB-I6L Jumphole
-x=-23167
-y=0
-z=6960
-system=Alpha V-2Z
-out=Chi O7OB-I6L/Alpha V-2Z Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Alpha V-2Z Jumphole
-x=63656
-y=0
-z=49823
-system=Chi O7OB-I6L
-out=Alpha V-2Z/Chi O7OB-I6L Jumphole
-[/Jumphole]
-
-[System]
-name=Iota QYHH-OK
-x=-90
-y=66
-z=70
-sky=Brown 1
-[/System]
-
-[Star]
-name=Iota QYHH-OK
-system=Iota QYHH-OK
-texture=White
-x=-23822
-y=0
-z=-8014
-r=8633
-seed=638535848
-[/Star]
-
-[Nebula]
-name=Iota QYHH-OK Cloud
-system=Iota QYHH-OK
-type=debris
-color=0.01567771,0.001035583,0.010703784,1
-x=0
-y=0
-z=0
-l=668622
-w=32000
-h=668622
-seed=559617064
-[/Nebula]
-
-[Planet]
-name='Thomas 21'
-system=Iota QYHH-OK
-texture=BandedGas
-x=-175147
-y=0
-z=-79520
-r=500
-seed=-682477411
-[/Planet]
-
-[Jumphole]
-name=Psi CNK-LTW Jumphole
-x=-202376
-y=0
-z=147660
-system=Iota QYHH-OK
-out=Psi CNK-LTW/Iota QYHH-OK Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Iota QYHH-OK Jumphole
-x=200252
-y=0
-z=50320
-system=Psi CNK-LTW
-out=Iota QYHH-OK/Psi CNK-LTW Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Omega COH-3 Jumphole
-x=115979
-y=0
-z=-4300
-system=Iota QYHH-OK
-out=Omega COH-3/Iota QYHH-OK Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Iota QYHH-OK Jumphole
-x=182843
-y=0
-z=-91747
-system=Omega COH-3
-out=Iota QYHH-OK/Omega COH-3 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Phi MP9T-C Jumphole
-x=-65186
-y=0
-z=-25322
-system=Iota QYHH-OK
-out=Phi MP9T-C/Iota QYHH-OK Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Iota QYHH-OK Jumphole
-x=141027
-y=0
-z=-99685
-system=Phi MP9T-C
-out=Iota QYHH-OK/Phi MP9T-C Jumphole
-[/Jumphole]
-
-[System]
-name=Omega COH-3
-x=-72
-y=48
-z=31
-sky=Blue 0
-[/System]
-
-[Star]
-name=Omega COH-3
-system=Omega COH-3
-texture=White
-x=-7877
-y=0
-z=-5369
-r=1850
-seed=-2131621923
-[/Star]
-
-[Nebula]
-name=Omega COH-3 Cloud
-system=Omega COH-3
-type=flame
-color=0.010908939,0.017649507,0.012235019,1
+type=Dark Asteroid Field
 x=0
 y=0
 z=0
 l=192000
 w=32000
 h=192000
-seed=518507188
+seed=428306757
+[/Field]
+
+[Jumphole]
+name=Chi O7OB-I6L Jumphole
+x=5183
+y=0
+z=57938
+system=Pi 3ZJ-H94
+out=Chi O7OB-I6L/Pi 3ZJ-H94 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Pi 3ZJ-H94 Jumphole
+x=-23982
+y=0
+z=25658
+system=Chi O7OB-I6L
+out=Pi 3ZJ-H94/Chi O7OB-I6L Jumphole
+[/Jumphole]
+
+[System]
+name=Epsilon MF-NN6
+x=203
+y=186
+z=682
+sky=Dark
+[/System]
+
+[Star]
+name=Epsilon MF-NN6
+system=Epsilon MF-NN6
+texture=White
+x=6281
+y=0
+z=4532
+r=500
+seed=-441208672
+[/Star]
+
+[Nebula]
+name=Epsilon MF-NN6 Cloud
+system=Epsilon MF-NN6
+type=debris
+color=0.019704688,0.016753554,0.0030258393,1
+x=0
+y=0
+z=0
+l=225546
+w=32000
+h=225546
+seed=-120479227
 [/Nebula]
 
 [Planet]
-name='Dick 15'
-system=Omega COH-3
-texture=Barren
-x=-61087
+name='Hayes 8'
+system=Epsilon MF-NN6
+texture=Chthonian
+x=64362
 y=0
-z=-35575
-r=4537
-seed=375322949
+z=12866
+r=2374
+seed=-161993578
+[/Planet]
+
+[Planet]
+name='Britt 9'
+system=Epsilon MF-NN6
+texture=BandedGas
+x=65648
+y=0
+z=64780
+r=3808
+seed=-534383361
+[/Planet]
+
+[Planet]
+name='Myers 12'
+system=Epsilon MF-NN6
+texture=Barren
+x=-55381
+y=0
+z=45599
+r=1549
+seed=798641941
+[/Planet]
+
+[Planet]
+name='Evans 15'
+system=Epsilon MF-NN6
+texture=Terran
+x=71777
+y=0
+z=32559
+r=1441
+seed=880683510
+[/Planet]
+
+[Planet]
+name='Coleman 18'
+system=Epsilon MF-NN6
+texture=BandedGas
+x=-68825
+y=0
+z=-61827
+r=3325
+seed=-102506798
+[/Planet]
+
+[System]
+name=Alpha V-2Z
+x=-111
+y=565
+z=304
+sky=Blue 0
+[/System]
+
+[Star]
+name=Alpha V-2Z
+system=Alpha V-2Z
+texture=White
+x=2039
+y=0
+z=-1486
+r=8962
+seed=253297567
+[/Star]
+
+[Nebula]
+name=Alpha V-2Z Cloud
+system=Alpha V-2Z
+type=smoketrail
+color=0.016279422,0.0059455084,0.012264009,1
+x=0
+y=0
+z=0
+l=192000
+w=32000
+h=192000
+seed=1494472458
+[/Nebula]
+
+[Field]
+name=Alpha V-2Z Field
+system=Alpha V-2Z
+type=Dark Asteroid Field
+x=0
+y=0
+z=0
+l=192000
+w=32000
+h=192000
+seed=-403521345
+[/Field]
+
+[Jumphole]
+name=Omega NJG-XX Jumphole
+x=38173
+y=0
+z=-47270
+system=Alpha V-2Z
+out=Omega NJG-XX/Alpha V-2Z Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Alpha V-2Z Jumphole
+x=2593
+y=0
+z=23329
+system=Omega NJG-XX
+out=Alpha V-2Z/Omega NJG-XX Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Theta RA-JS5I Jumphole
+x=58634
+y=0
+z=-61743
+system=Alpha V-2Z
+out=Theta RA-JS5I/Alpha V-2Z Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Alpha V-2Z Jumphole
+x=40320
+y=0
+z=-34692
+system=Theta RA-JS5I
+out=Alpha V-2Z/Theta RA-JS5I Jumphole
+[/Jumphole]
+
+[System]
+name=Iota QYHH-OK
+x=610
+y=566
+z=-830
+sky=Orange 1
+[/System]
+
+[Star]
+name=Iota QYHH-OK
+system=Iota QYHH-OK
+texture=White
+x=3475
+y=0
+z=-3551
+r=5693
+seed=1936128061
+[/Star]
+
+[Planet]
+name='Alvin 8'
+system=Iota QYHH-OK
+texture=Barren
+x=-71445
+y=0
+z=6836
+r=2465
+seed=-1050272190
 [/Planet]
 
 [Jumphole]
-name=Psi CNK-LTW Jumphole
-x=-5410
+name=Omicron Q3-4V6 Jumphole
+x=54562
 y=0
-z=-3572
+z=-46043
+system=Iota QYHH-OK
+out=Omicron Q3-4V6/Iota QYHH-OK Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Iota QYHH-OK Jumphole
+x=-59299
+y=0
+z=-56979
+system=Omicron Q3-4V6
+out=Iota QYHH-OK/Omicron Q3-4V6 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Xi E-S Jumphole
+x=-65360
+y=0
+z=-27631
+system=Iota QYHH-OK
+out=Xi E-S/Iota QYHH-OK Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Iota QYHH-OK Jumphole
+x=38789
+y=0
+z=-10239
+system=Xi E-S
+out=Iota QYHH-OK/Xi E-S Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Xi V-21J Jumphole
+x=-48027
+y=0
+z=49474
+system=Iota QYHH-OK
+out=Xi V-21J/Iota QYHH-OK Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Iota QYHH-OK Jumphole
+x=-21444
+y=0
+z=-9388
+system=Xi V-21J
+out=Iota QYHH-OK/Xi V-21J Jumphole
+[/Jumphole]
+
+[System]
+name=Omega COH-3
+x=828
+y=-452
+z=731
+sky=Brown 1
+[/System]
+
+[Star]
+name=Omega COH-3
 system=Omega COH-3
-out=Psi CNK-LTW/Omega COH-3 Jumphole
+texture=White
+x=-3261
+y=0
+z=1574
+r=6727
+seed=-810195590
+[/Star]
+
+[Planet]
+name='Martinez 19'
+system=Omega COH-3
+texture=Barren
+x=-44758
+y=0
+z=55266
+r=2079
+seed=1871946285
+[/Planet]
+
+[Jumphole]
+name=Gamma YWKE-ELG5 Jumphole
+x=-23641
+y=0
+z=915
+system=Omega COH-3
+out=Gamma YWKE-ELG5/Omega COH-3 Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Omega COH-3 Jumphole
-x=60046
+x=-48673
 y=0
-z=-62992
-system=Psi CNK-LTW
-out=Omega COH-3/Psi CNK-LTW Jumphole
+z=-32170
+system=Gamma YWKE-ELG5
+out=Omega COH-3/Gamma YWKE-ELG5 Jumphole
 [/Jumphole]
 
 [System]
 name=Rho EXKH-XF
-x=18
-y=4
-z=-13
+x=718
+y=304
+z=887
 sky=Brown 0
 [/System]
 
@@ -4629,11 +4440,11 @@ sky=Brown 0
 name=Rho EXKH-XF
 system=Rho EXKH-XF
 texture=White
-x=9686
+x=-12905
 y=0
-z=-2430
-r=4593
-seed=-1838745296
+z=1196
+r=500
+seed=-181249527
 [/Star]
 
 [Field]
@@ -4643,807 +4454,716 @@ type=Dark Asteroid Field
 x=0
 y=0
 z=0
-l=315795
+l=453057
 w=32000
-h=315795
-seed=-1252769557
+h=453057
+seed=1353666522
 [/Field]
 
 [Planet]
-name='Mason 17'
+name='Jim 9'
 system=Rho EXKH-XF
 texture=Barren
-x=99169
+x=103501
 y=0
-z=96650
-r=500
-seed=-25600063
+z=88415
+r=3377
+seed=-503891649
+[/Planet]
+
+[Planet]
+name='Gordon 2'
+system=Rho EXKH-XF
+texture=BandedGas
+x=125881
+y=0
+z=-27589
+r=4962
+seed=777528184
+[/Planet]
+
+[Planet]
+name='Wale 9'
+system=Rho EXKH-XF
+texture=Barren
+x=-66709
+y=0
+z=117731
+r=1357
+seed=-62529615
 [/Planet]
 
 [Jumphole]
-name=Psi B98-K Jumphole
-x=1702
+name=Eta J2T-30MX Jumphole
+x=37792
 y=0
-z=-69934
+z=-12513
 system=Rho EXKH-XF
-out=Psi B98-K/Rho EXKH-XF Jumphole
+out=Eta J2T-30MX/Rho EXKH-XF Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Rho EXKH-XF Jumphole
-x=5343
+x=9365
 y=0
-z=-85997
-system=Psi B98-K
-out=Rho EXKH-XF/Psi B98-K Jumphole
+z=89090
+system=Eta J2T-30MX
+out=Rho EXKH-XF/Eta J2T-30MX Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Epsilon VQ-WVYP Jumphole
-x=47201
+name=Beta C-Y Jumphole
+x=-44631
 y=0
-z=-45454
+z=-26475
 system=Rho EXKH-XF
-out=Epsilon VQ-WVYP/Rho EXKH-XF Jumphole
+out=Beta C-Y/Rho EXKH-XF Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Rho EXKH-XF Jumphole
-x=-90796
+x=40423
 y=0
-z=54511
-system=Epsilon VQ-WVYP
-out=Rho EXKH-XF/Epsilon VQ-WVYP Jumphole
+z=-42865
+system=Beta C-Y
+out=Rho EXKH-XF/Beta C-Y Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Tau QAP-K3 Jumphole
-x=-91888
+name=Epsilon MF-NN6 Jumphole
+x=-129630
 y=0
-z=95684
+z=-751
 system=Rho EXKH-XF
-out=Tau QAP-K3/Rho EXKH-XF Jumphole
+out=Epsilon MF-NN6/Rho EXKH-XF Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Rho EXKH-XF Jumphole
-x=-2297
+x=-94068
 y=0
-z=-49937
-system=Tau QAP-K3
-out=Rho EXKH-XF/Tau QAP-K3 Jumphole
+z=91754
+system=Epsilon MF-NN6
+out=Rho EXKH-XF/Epsilon MF-NN6 Jumphole
 [/Jumphole]
 
 [System]
 name=Theta Z-Z
-x=-17
-y=31
-z=-77
-sky=Brown 0
+x=-517
+y=331
+z=823
+sky=Green 0
 [/System]
 
 [Star]
 name=Theta Z-Z
 system=Theta Z-Z
 texture=White
-x=-702
+x=7003
 y=0
-z=-7576
-r=7494
-seed=1830009888
+z=-11715
+r=8809
+seed=-1720847140
 [/Star]
 
+[Field]
+name=Theta Z-Z Field
+system=Theta Z-Z
+type=Dark Asteroid Field
+x=0
+y=0
+z=0
+l=295152
+w=32000
+h=295152
+seed=-2131621923
+[/Field]
+
 [Planet]
-name='Ramirez 9'
+name='Ema 23'
 system=Theta Z-Z
 texture=BandedGas
-x=-61159
+x=-45874
 y=0
-z=-78714
-r=3857
-seed=1358928813
+z=-93851
+r=720
+seed=518507188
 [/Planet]
 
-[Jumphole]
-name=Rho WW-Y95C Jumphole
-x=-75044
-y=0
-z=-84458
+[Planet]
+name='Gibson 2'
 system=Theta Z-Z
-out=Rho WW-Y95C/Theta Z-Z Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Theta Z-Z Jumphole
-x=-84246
+texture=BandedGas
+x=95545
 y=0
-z=38765
-system=Rho WW-Y95C
-out=Theta Z-Z/Rho WW-Y95C Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Gamma YWKE-ELG5 Jumphole
-x=-69030
-y=0
-z=-73610
-system=Theta Z-Z
-out=Gamma YWKE-ELG5/Theta Z-Z Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Theta Z-Z Jumphole
-x=44778
-y=0
-z=22371
-system=Gamma YWKE-ELG5
-out=Theta Z-Z/Gamma YWKE-ELG5 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Beta QF2-2V3S Jumphole
-x=71127
-y=0
-z=-48948
-system=Theta Z-Z
-out=Beta QF2-2V3S/Theta Z-Z Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Theta Z-Z Jumphole
-x=-2374
-y=0
-z=69480
-system=Beta QF2-2V3S
-out=Theta Z-Z/Beta QF2-2V3S Jumphole
-[/Jumphole]
+z=-47687
+r=4531
+seed=-230449470
+[/Planet]
 
 [System]
 name=Xi EP-M
-x=94
-y=-48
-z=73
-sky=Brown 1
+x=594
+y=-548
+z=-627
+sky=Black 1
 [/System]
 
 [Star]
 name=Xi EP-M
 system=Xi EP-M
 texture=White
-x=21132
+x=11486
 y=0
-z=10421
-r=7944
-seed=-249169960
+z=-10978
+r=9743
+seed=-1919060496
 [/Star]
 
 [Planet]
-name='Edwards 6'
+name='Galba 20'
 system=Xi EP-M
-texture=BandedGas
-x=92966
+texture=Barren
+x=176319
 y=0
-z=-160216
-r=4548
-seed=1421536729
+z=-88175
+r=1232
+seed=-1551171077
 [/Planet]
 
 [Planet]
-name='Allison 19'
+name='Rose 23'
 system=Xi EP-M
 texture=BandedGas
-x=-169289
+x=-38657
 y=0
-z=21902
+z=54935
 r=500
-seed=-60108719
+seed=-82296983
 [/Planet]
 
 [Planet]
-name='Black 15'
+name='Ford 19'
 system=Xi EP-M
-texture=Martian
-x=213895
+texture=Barren
+x=43804
 y=0
-z=-240548
-r=1325
-seed=1489643073
+z=-88779
+r=3179
+seed=-1365623937
 [/Planet]
 
 [Planet]
-name='Cathy 13'
+name='Butler 17'
 system=Xi EP-M
-texture=Chthonian
-x=183151
+texture=BandedGas
+x=-51953
 y=0
-z=16322
-r=515
-seed=1948859133
+z=15433
+r=2494
+seed=-802997499
 [/Planet]
 
 [Jumphole]
-name=Xi E-S Jumphole
-x=-119717
+name=Iota URU-MEU0 Jumphole
+x=-1941
 y=0
-z=-120993
+z=-73918
 system=Xi EP-M
-out=Xi E-S/Xi EP-M Jumphole
+out=Iota URU-MEU0/Xi EP-M Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Xi EP-M Jumphole
-x=213359
+x=-7241
 y=0
-z=-176380
-system=Xi E-S
-out=Xi EP-M/Xi E-S Jumphole
+z=-94791
+system=Iota URU-MEU0
+out=Xi EP-M/Iota URU-MEU0 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Lambda W-UIJX Jumphole
-x=-76770
+name=Upsilon N3U-41 Jumphole
+x=179380
 y=0
-z=241579
+z=124868
 system=Xi EP-M
-out=Lambda W-UIJX/Xi EP-M Jumphole
+out=Upsilon N3U-41/Xi EP-M Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Xi EP-M Jumphole
-x=164854
+x=169376
 y=0
-z=-237471
-system=Lambda W-UIJX
-out=Xi EP-M/Lambda W-UIJX Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Omicron CV6M-V Jumphole
-x=-201846
-y=0
-z=197362
-system=Xi EP-M
-out=Omicron CV6M-V/Xi EP-M Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Xi EP-M Jumphole
-x=77004
-y=0
-z=-12346
-system=Omicron CV6M-V
-out=Xi EP-M/Omicron CV6M-V Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Phi PTY-XDDL Jumphole
-x=86442
-y=0
-z=-247378
-system=Xi EP-M
-out=Phi PTY-XDDL/Xi EP-M Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Xi EP-M Jumphole
-x=-9802
-y=0
-z=-42065
-system=Phi PTY-XDDL
-out=Xi EP-M/Phi PTY-XDDL Jumphole
+z=181466
+system=Upsilon N3U-41
+out=Xi EP-M/Upsilon N3U-41 Jumphole
 [/Jumphole]
 
 [System]
 name=Omega 7-8BLJ
-x=13
-y=-33
-z=83
-sky=Orange 1
+x=513
+y=-333
+z=183
+sky=Black 0
 [/System]
 
 [Star]
 name=Omega 7-8BLJ
 system=Omega 7-8BLJ
 texture=White
-x=18182
+x=-10123
 y=0
-z=-16251
-r=2569
-seed=-426857051
+z=7766
+r=8990
+seed=1658549221
 [/Star]
 
 [Nebula]
 name=Omega 7-8BLJ Cloud
 system=Omega 7-8BLJ
-type=debris
-color=0.016145159,0.0012174094,0.01536786,1
+type=smoketrail
+color=0.0017619288,0.018228881,0.004070765,1
 x=0
 y=0
 z=0
-l=708963
+l=261171
 w=32000
-h=708963
-seed=1632814218
+h=261171
+seed=-2052777154
 [/Nebula]
 
 [Planet]
-name='Harvey 12'
+name='Maka 3'
+system=Omega 7-8BLJ
+texture=Barren
+x=76506
+y=0
+z=-69309
+r=3668
+seed=-1894592948
+[/Planet]
+
+[Planet]
+name='Hughes 21'
 system=Omega 7-8BLJ
 texture=Martian
-x=-115643
+x=60992
 y=0
-z=215896
-r=500
-seed=-1747525895
-[/Planet]
-
-[Planet]
-name='Bailey 2'
-system=Omega 7-8BLJ
-texture=BandedGas
-x=144715
-y=0
-z=-139692
-r=3727
-seed=-546390091
-[/Planet]
-
-[Planet]
-name='Phillips 10'
-system=Omega 7-8BLJ
-texture=Terran
-x=-129005
-y=0
-z=123251
-r=500
-seed=-188667466
+z=3793
+r=3364
+seed=-1264473891
 [/Planet]
 
 [Jumphole]
-name=Phi PTY-XDDL Jumphole
-x=-179066
+name=Mu MY-Q9LO Jumphole
+x=54037
 y=0
-z=133152
+z=5717
 system=Omega 7-8BLJ
-out=Phi PTY-XDDL/Omega 7-8BLJ Jumphole
+out=Mu MY-Q9LO/Omega 7-8BLJ Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Omega 7-8BLJ Jumphole
-x=113397
+x=-24381
 y=0
-z=-213613
-system=Phi PTY-XDDL
-out=Omega 7-8BLJ/Phi PTY-XDDL Jumphole
+z=48351
+system=Mu MY-Q9LO
+out=Omega 7-8BLJ/Mu MY-Q9LO Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Rho WW-Y95C Jumphole
+x=-77619
+y=0
+z=44046
+system=Omega 7-8BLJ
+out=Rho WW-Y95C/Omega 7-8BLJ Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Omega 7-8BLJ Jumphole
+x=-58123
+y=0
+z=4936
+system=Rho WW-Y95C
+out=Omega 7-8BLJ/Rho WW-Y95C Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Beta QF2-2V3S Jumphole
+x=-30247
+y=0
+z=82587
+system=Omega 7-8BLJ
+out=Beta QF2-2V3S/Omega 7-8BLJ Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Omega 7-8BLJ Jumphole
+x=60068
+y=0
+z=76009
+system=Beta QF2-2V3S
+out=Omega 7-8BLJ/Beta QF2-2V3S Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Gamma OHV-K1TM Jumphole
+x=-16399
+y=0
+z=76667
+system=Omega 7-8BLJ
+out=Gamma OHV-K1TM/Omega 7-8BLJ Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Omega 7-8BLJ Jumphole
+x=48901
+y=0
+z=78240
+system=Gamma OHV-K1TM
+out=Omega 7-8BLJ/Gamma OHV-K1TM Jumphole
 [/Jumphole]
 
 [System]
 name=Sigma 5GF-LSZ4
-x=-78
-y=-69
-z=88
-sky=Orange 1
+x=-978
+y=-769
+z=988
+sky=Blue 1
 [/System]
 
 [Star]
 name=Sigma 5GF-LSZ4
 system=Sigma 5GF-LSZ4
 texture=White
-x=-4619
+x=8394
 y=0
-z=251
-r=4669
-seed=-1967322852
+z=15328
+r=8992
+seed=1948859133
 [/Star]
 
-[Planet]
-name='Silas 20'
+[Field]
+name=Sigma 5GF-LSZ4 Field
 system=Sigma 5GF-LSZ4
-texture=BandedGas
-x=-42561
+type=Dark Asteroid Field
+x=0
 y=0
-z=17984
-r=3592
-seed=-2018724373
-[/Planet]
+z=0
+l=681318
+w=32000
+h=681318
+seed=-695087066
+[/Field]
 
 [Planet]
-name='Oscar 7'
+name='Cooper 7'
 system=Sigma 5GF-LSZ4
-texture=BandedGas
-x=-44177
+texture=Martian
+x=113642
 y=0
-z=-3070
-r=1866
-seed=328798282
-[/Planet]
-
-[Planet]
-name='Khaba 2'
-system=Sigma 5GF-LSZ4
-texture=BandedGas
-x=51270
-y=0
-z=-52112
-r=1570
-seed=1313421770
-[/Planet]
-
-[Planet]
-name='Huni 11'
-system=Sigma 5GF-LSZ4
-texture=BandedGas
-x=56785
-y=0
-z=8432
-r=954
-seed=497707930
-[/Planet]
-
-[Planet]
-name='Phillips 11'
-system=Sigma 5GF-LSZ4
-texture=BandedGas
-x=-17083
-y=0
-z=-42420
-r=500
-seed=-503986413
-[/Planet]
-
-[Planet]
-name='Mark 13'
-system=Sigma 5GF-LSZ4
-texture=Terran
-x=40642
-y=0
-z=-63761
-r=3795
-seed=-846219731
+z=89625
+r=4776
+seed=-1746981510
 [/Planet]
 
 [Jumphole]
-name=Chi ZKAC-5P Jumphole
-x=-18300
+name=Rho TH-WH0 Jumphole
+x=188220
 y=0
-z=16115
+z=7946
 system=Sigma 5GF-LSZ4
-out=Chi ZKAC-5P/Sigma 5GF-LSZ4 Jumphole
+out=Rho TH-WH0/Sigma 5GF-LSZ4 Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Sigma 5GF-LSZ4 Jumphole
-x=52275
+x=144578
 y=0
-z=46083
-system=Chi ZKAC-5P
-out=Sigma 5GF-LSZ4/Chi ZKAC-5P Jumphole
+z=12302
+system=Rho TH-WH0
+out=Sigma 5GF-LSZ4/Rho TH-WH0 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Xi 0B7W-KIS Jumphole
+x=100730
+y=0
+z=-216257
+system=Sigma 5GF-LSZ4
+out=Xi 0B7W-KIS/Sigma 5GF-LSZ4 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Sigma 5GF-LSZ4 Jumphole
+x=69963
+y=0
+z=42569
+system=Xi 0B7W-KIS
+out=Sigma 5GF-LSZ4/Xi 0B7W-KIS Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Psi YJ-7N2F Jumphole
+x=-121555
+y=0
+z=112364
+system=Sigma 5GF-LSZ4
+out=Psi YJ-7N2F/Sigma 5GF-LSZ4 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Sigma 5GF-LSZ4 Jumphole
+x=57039
+y=0
+z=-85529
+system=Psi YJ-7N2F
+out=Sigma 5GF-LSZ4/Psi YJ-7N2F Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Sigma 0Q-8 Jumphole
+x=-206680
+y=0
+z=68576
+system=Sigma 5GF-LSZ4
+out=Sigma 0Q-8/Sigma 5GF-LSZ4 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Sigma 5GF-LSZ4 Jumphole
+x=-122288
+y=0
+z=73119
+system=Sigma 0Q-8
+out=Sigma 5GF-LSZ4/Sigma 0Q-8 Jumphole
 [/Jumphole]
 
 [System]
 name=Omicron Q3-4V6
-x=22
-y=-60
-z=5
-sky=Black 1
+x=522
+y=240
+z=-895
+sky=Blue 0
 [/System]
 
 [Star]
 name=Omicron Q3-4V6
 system=Omicron Q3-4V6
 texture=White
-x=-1138
+x=6392
 y=0
-z=6512
-r=9823
-seed=1148614834
+z=-11282
+r=7500
+seed=-217873429
 [/Star]
 
-[Nebula]
-name=Omicron Q3-4V6 Cloud
-system=Omicron Q3-4V6
-type=shockwave
-color=0.010938022,0.011836819,0.010611291,1
-x=0
-y=0
-z=0
-l=693171
-w=32000
-h=693171
-seed=-1540148170
-[/Nebula]
-
 [Planet]
-name='Black 24'
+name='Dan 1'
 system=Omicron Q3-4V6
-texture=Chthonian
-x=25596
-y=0
-z=154746
-r=4655
-seed=-1842794519
-[/Planet]
-
-[Jumphole]
-name=Delta 67-VNVD Jumphole
-x=133643
-y=0
-z=-161133
-system=Omicron Q3-4V6
-out=Delta 67-VNVD/Omicron Q3-4V6 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Omicron Q3-4V6 Jumphole
-x=-132591
-y=0
-z=-95410
-system=Delta 67-VNVD
-out=Omicron Q3-4V6/Delta 67-VNVD Jumphole
-[/Jumphole]
-
-[System]
-name=Gamma YE-8S
-x=79
-y=-96
-z=-59
-sky=Black 1
-[/System]
-
-[Star]
-name=Gamma YE-8S
-system=Gamma YE-8S
-texture=White
-x=-3751
-y=0
-z=-7987
-r=8879
-seed=-1638014937
-[/Star]
-
-[Field]
-name=Gamma YE-8S Field
-system=Gamma YE-8S
-type=Dark Asteroid Field
-x=0
-y=0
-z=0
-l=192000
-w=32000
-h=192000
-seed=663595094
-[/Field]
-
-[Planet]
-name='Wright 11'
-system=Gamma YE-8S
 texture=BandedGas
-x=-51423
+x=-109568
 y=0
-z=-41608
-r=2393
-seed=-169512015
+z=-33404
+r=3602
+seed=-1995976483
 [/Planet]
 
-[Jumphole]
-name=Sigma U-7 Jumphole
-x=-45740
-y=0
-z=-7836
-system=Gamma YE-8S
-out=Sigma U-7/Gamma YE-8S Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Gamma YE-8S Jumphole
-x=29883
-y=0
-z=668
-system=Sigma U-7
-out=Gamma YE-8S/Sigma U-7 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Alpha 6L-XGXG Jumphole
-x=-16867
-y=0
-z=-44854
-system=Gamma YE-8S
-out=Alpha 6L-XGXG/Gamma YE-8S Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Gamma YE-8S Jumphole
-x=54828
-y=0
-z=29036
-system=Alpha 6L-XGXG
-out=Gamma YE-8S/Alpha 6L-XGXG Jumphole
-[/Jumphole]
-
 [System]
-name=Upsilon EQEG-2QMZ
-x=77
-y=92
-z=-16
+name=Gamma YE-8S
+x=-221
+y=-596
+z=41
 sky=Brown 1
 [/System]
 
 [Star]
-name=Upsilon EQEG-2QMZ
-system=Upsilon EQEG-2QMZ
+name=Gamma YE-8S
+system=Gamma YE-8S
 texture=White
-x=5113
+x=-7079
 y=0
-z=7416
-r=4112
-seed=-112676112
+z=-6650
+r=9911
+seed=-188667466
 [/Star]
 
 [Planet]
-name='Cunningham 24'
-system=Upsilon EQEG-2QMZ
-texture=BandedGas
-x=193602
+name='Thomas 20'
+system=Gamma YE-8S
+texture=Martian
+x=69479
 y=0
-z=-223772
-r=2637
-seed=155056177
+z=16459
+r=2577
+seed=1605137648
 [/Planet]
 
 [Jumphole]
-name=Mu M-NGW5 Jumphole
-x=102735
+name=Omicron CV6M-V Jumphole
+x=-49608
 y=0
-z=240731
-system=Upsilon EQEG-2QMZ
-out=Mu M-NGW5/Upsilon EQEG-2QMZ Jumphole
+z=-67443
+system=Gamma YE-8S
+out=Omicron CV6M-V/Gamma YE-8S Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Upsilon EQEG-2QMZ Jumphole
-x=-42441
+name=Gamma YE-8S Jumphole
+x=-51094
 y=0
-z=61829
-system=Mu M-NGW5
-out=Upsilon EQEG-2QMZ/Mu M-NGW5 Jumphole
+z=-66144
+system=Omicron CV6M-V
+out=Gamma YE-8S/Omicron CV6M-V Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Psi SBZ-8DHQ Jumphole
-x=-145895
+name=Mu O7-ZWL Jumphole
+x=61301
 y=0
-z=176624
-system=Upsilon EQEG-2QMZ
-out=Psi SBZ-8DHQ/Upsilon EQEG-2QMZ Jumphole
+z=-4987
+system=Gamma YE-8S
+out=Mu O7-ZWL/Gamma YE-8S Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Upsilon EQEG-2QMZ Jumphole
-x=-170703
+name=Gamma YE-8S Jumphole
+x=8055
 y=0
-z=229849
-system=Psi SBZ-8DHQ
-out=Upsilon EQEG-2QMZ/Psi SBZ-8DHQ Jumphole
+z=59786
+system=Mu O7-ZWL
+out=Gamma YE-8S/Mu O7-ZWL Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Eta MTK-6D Jumphole
-x=-86427
+name=Psi YJ-7N2F Jumphole
+x=37885
 y=0
-z=93102
-system=Upsilon EQEG-2QMZ
-out=Eta MTK-6D/Upsilon EQEG-2QMZ Jumphole
+z=-40318
+system=Gamma YE-8S
+out=Psi YJ-7N2F/Gamma YE-8S Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Upsilon EQEG-2QMZ Jumphole
-x=581
+name=Gamma YE-8S Jumphole
+x=-85712
 y=0
-z=38452
-system=Eta MTK-6D
-out=Upsilon EQEG-2QMZ/Eta MTK-6D Jumphole
+z=5878
+system=Psi YJ-7N2F
+out=Gamma YE-8S/Psi YJ-7N2F Jumphole
 [/Jumphole]
 
 [System]
-name=Xi V-21J
-x=4
-y=-46
-z=43
-sky=Orange 1
+name=Upsilon EQEG-2QMZ
+x=977
+y=-408
+z=-116
+sky=Blue 1
 [/System]
 
 [Star]
-name=Xi V-21J
-system=Xi V-21J
+name=Upsilon EQEG-2QMZ
+system=Upsilon EQEG-2QMZ
 texture=White
-x=-975
+x=-4625
 y=0
-z=3095
-r=1599
-seed=-755976488
+z=569
+r=500
+seed=1313421770
 [/Star]
 
-[Field]
-name=Xi V-21J Field
-system=Xi V-21J
-type=Dark Asteroid Field
+[Nebula]
+name=Upsilon EQEG-2QMZ Cloud
+system=Upsilon EQEG-2QMZ
+type=smoketrail
+color=0.008774516,0.0014942134,0.0013084674,1
 x=0
 y=0
 z=0
 l=192000
 w=32000
 h=192000
-seed=881627738
-[/Field]
+seed=-1747043995
+[/Nebula]
 
 [Planet]
-name='Mitchel 21'
-system=Xi V-21J
-texture=Martian
-x=-38117
+name='Kathleen 3'
+system=Upsilon EQEG-2QMZ
+texture=BandedGas
+x=-40446
 y=0
-z=30210
+z=39824
 r=500
-seed=2055280522
+seed=-1100955701
 [/Planet]
 
 [Planet]
-name='Xu 22'
-system=Xi V-21J
-texture=Chthonian
-x=-28998
-y=0
-z=45803
-r=4204
-seed=-122520788
-[/Planet]
-
-[Planet]
-name='Ele 20'
-system=Xi V-21J
+name='Khufu 13'
+system=Upsilon EQEG-2QMZ
 texture=BandedGas
-x=9729
+x=12860
 y=0
-z=54151
-r=2165
-seed=1597071000
+z=47982
+r=3782
+seed=-441755194
 [/Planet]
 
 [Planet]
-name='Parker 1'
-system=Xi V-21J
+name='West 12'
+system=Upsilon EQEG-2QMZ
 texture=BandedGas
-x=36650
+x=16115
 y=0
-z=28150
-r=4057
-seed=1866940676
+z=52275
+r=1083
+seed=600923401
 [/Planet]
 
 [Jumphole]
-name=Tau CC4W-C Jumphole
-x=-887
+name=Gamma OHV-K1TM Jumphole
+x=56615
 y=0
-z=11289
-system=Xi V-21J
-out=Tau CC4W-C/Xi V-21J Jumphole
+z=-25553
+system=Upsilon EQEG-2QMZ
+out=Gamma OHV-K1TM/Upsilon EQEG-2QMZ Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Xi V-21J Jumphole
-x=-58846
+name=Upsilon EQEG-2QMZ Jumphole
+x=-31264
 y=0
-z=-50895
-system=Tau CC4W-C
-out=Xi V-21J/Tau CC4W-C Jumphole
+z=-25118
+system=Gamma OHV-K1TM
+out=Upsilon EQEG-2QMZ/Gamma OHV-K1TM Jumphole
 [/Jumphole]
 
 [System]
+name=Xi V-21J
+x=104
+y=654
+z=-857
+sky=Blue 0
+[/System]
+
+[Star]
+name=Xi V-21J
+system=Xi V-21J
+texture=White
+x=-752
+y=0
+z=5767
+r=8951
+seed=-2016209732
+[/Star]
+
+[System]
 name=Eta J2T-30MX
-x=52
-y=-39
-z=-22
+x=752
+y=61
+z=678
 sky=Blue 1
 [/System]
 
@@ -5451,313 +5171,375 @@ sky=Blue 1
 name=Eta J2T-30MX
 system=Eta J2T-30MX
 texture=White
-x=-14109
+x=3578
 y=0
-z=-258
-r=4541
-seed=-1877885983
+z=1904
+r=6046
+seed=-1550529073
 [/Star]
 
-[Nebula]
-name=Eta J2T-30MX Cloud
+[Field]
+name=Eta J2T-30MX Field
 system=Eta J2T-30MX
-type=smoketrail
-color=0.011886273,0.005885805,0.00923229,1
+type=Dark Asteroid Field
 x=0
 y=0
 z=0
-l=367026
+l=738456
 w=32000
-h=367026
-seed=1692382941
-[/Nebula]
+h=738456
+seed=-1638014937
+[/Field]
 
 [Planet]
-name='Moke 24'
+name='Sanchez 20'
 system=Eta J2T-30MX
 texture=BandedGas
-x=70081
+x=-98070
 y=0
-z=103927
-r=863
-seed=1808758003
+z=88641
+r=4600
+seed=1899166486
 [/Planet]
 
-[Jumphole]
-name=Epsilon BGG3-F Jumphole
-x=77099
-y=0
-z=-77494
+[Planet]
+name='Nicole 7'
 system=Eta J2T-30MX
-out=Epsilon BGG3-F/Eta J2T-30MX Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Eta J2T-30MX Jumphole
-x=-109240
+texture=Martian
+x=-53987
 y=0
-z=67074
-system=Epsilon BGG3-F
-out=Eta J2T-30MX/Epsilon BGG3-F Jumphole
-[/Jumphole]
+z=-29646
+r=1096
+seed=-1240182766
+[/Planet]
+
+[Planet]
+name='Yu 9'
+system=Eta J2T-30MX
+texture=Martian
+x=-184404
+y=0
+z=-67636
+r=1883
+seed=-1326933780
+[/Planet]
+
+[Planet]
+name='Rogers 19'
+system=Eta J2T-30MX
+texture=Martian
+x=236869
+y=0
+z=-69435
+r=1480
+seed=152250072
+[/Planet]
 
 [System]
 name=Gamma YWKE-ELG5
-x=-30
-y=34
-z=-84
-sky=Blue 0
+x=870
+y=-266
+z=816
+sky=Green 0
 [/System]
 
 [Star]
 name=Gamma YWKE-ELG5
 system=Gamma YWKE-ELG5
 texture=White
-x=-125
+x=1455
 y=0
-z=127
-r=7055
-seed=-203238697
+z=-1202
+r=2884
+seed=554450342
 [/Star]
 
 [Nebula]
 name=Gamma YWKE-ELG5 Cloud
 system=Gamma YWKE-ELG5
-type=smoketrail
-color=0.019321913,0.008999234,0.004711355,1
+type=flame
+color=0.0020969938,7.2203635E-4,0.01374071,1
 x=0
 y=0
 z=0
 l=192000
 w=32000
 h=192000
-seed=-511111095
+seed=251348854
 [/Nebula]
 
 [Planet]
-name='Harvey 2'
+name='Holmes 23'
 system=Gamma YWKE-ELG5
-texture=BandedGas
-x=-50597
+texture=Martian
+x=-14315
 y=0
-z=-17056
-r=3428
-seed=-1729844678
+z=30340
+r=500
+seed=642066557
 [/Planet]
 
 [Jumphole]
-name=Rho WW-Y95C Jumphole
-x=-18586
+name=Epsilon VQ-WVYP Jumphole
+x=-34667
 y=0
-z=-34225
+z=-46866
 system=Gamma YWKE-ELG5
-out=Rho WW-Y95C/Gamma YWKE-ELG5 Jumphole
+out=Epsilon VQ-WVYP/Gamma YWKE-ELG5 Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Gamma YWKE-ELG5 Jumphole
-x=10700
+x=-40899
 y=0
-z=-64000
-system=Rho WW-Y95C
-out=Gamma YWKE-ELG5/Rho WW-Y95C Jumphole
+z=-16797
+system=Epsilon VQ-WVYP
+out=Gamma YWKE-ELG5/Epsilon VQ-WVYP Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Beta QF2-2V3S Jumphole
-x=-38296
+name=Eta J2T-30MX Jumphole
+x=50563
 y=0
-z=-11244
+z=45470
 system=Gamma YWKE-ELG5
-out=Beta QF2-2V3S/Gamma YWKE-ELG5 Jumphole
+out=Eta J2T-30MX/Gamma YWKE-ELG5 Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Gamma YWKE-ELG5 Jumphole
-x=21509
+x=7025
 y=0
-z=47607
-system=Beta QF2-2V3S
-out=Gamma YWKE-ELG5/Beta QF2-2V3S Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Tau 9-UA Jumphole
-x=-48007
-y=0
-z=-42077
-system=Gamma YWKE-ELG5
-out=Tau 9-UA/Gamma YWKE-ELG5 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Gamma YWKE-ELG5 Jumphole
-x=60883
-y=0
-z=-44733
-system=Tau 9-UA
-out=Gamma YWKE-ELG5/Tau 9-UA Jumphole
+z=-4905
+system=Eta J2T-30MX
+out=Gamma YWKE-ELG5/Eta J2T-30MX Jumphole
 [/Jumphole]
 
 [System]
 name=Mu O7-ZWL
-x=67
-y=-22
-z=16
-sky=Brown 1
+x=-433
+y=-922
+z=116
+sky=Brown 0
 [/System]
 
 [Star]
 name=Mu O7-ZWL
 system=Mu O7-ZWL
 texture=White
-x=-4170
+x=-4895
 y=0
-z=7571
-r=5057
-seed=650203272
+z=-15560
+r=3869
+seed=-627372361
 [/Star]
 
+[Field]
+name=Mu O7-ZWL Field
+system=Mu O7-ZWL
+type=Dark Asteroid Field
+x=0
+y=0
+z=0
+l=514797
+w=32000
+h=514797
+seed=1106864951
+[/Field]
+
 [Planet]
-name='Hawkins 1'
+name='Stucker 11'
+system=Mu O7-ZWL
+texture=Barren
+x=-41528
+y=0
+z=65310
+r=3254
+seed=-1878831477
+[/Planet]
+
+[Planet]
+name='Don 13'
 system=Mu O7-ZWL
 texture=BandedGas
-x=-91911
+x=136150
 y=0
-z=-14009
-r=2215
-seed=1976545301
+z=-133570
+r=3535
+seed=-1597852590
 [/Planet]
 
 [Planet]
-name='Keoni 9'
+name='Katia 19'
 system=Mu O7-ZWL
-texture=Barren
-x=152024
+texture=Martian
+x=111194
 y=0
-z=-121806
+z=91904
 r=500
-seed=436462792
+seed=955969332
 [/Planet]
 
 [Planet]
-name='Hanna 16'
+name='Crawford 6'
 system=Mu O7-ZWL
-texture=Barren
-x=7544
+texture=Terran
+x=-36955
 y=0
-z=-75875
+z=67472
 r=500
-seed=2077605439
+seed=-1197807838
 [/Planet]
-
-[Planet]
-name='Freeman 6'
-system=Mu O7-ZWL
-texture=Chthonian
-x=-84454
-y=0
-z=151523
-r=1974
-seed=-1268460100
-[/Planet]
-
-[Jumphole]
-name=Mu MY-Q9LO Jumphole
-x=-90671
-y=0
-z=82715
-system=Mu O7-ZWL
-out=Mu MY-Q9LO/Mu O7-ZWL Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Mu O7-ZWL Jumphole
-x=137649
-y=0
-z=-29569
-system=Mu MY-Q9LO
-out=Mu O7-ZWL/Mu MY-Q9LO Jumphole
-[/Jumphole]
 
 [System]
 name=Tau 0Z5U-0
-x=21
-y=67
-z=43
-sky=Green 0
+x=321
+y=767
+z=943
+sky=Blue 1
 [/System]
 
 [Star]
 name=Tau 0Z5U-0
 system=Tau 0Z5U-0
 texture=White
-x=2482
+x=-6178
 y=0
-z=3543
-r=9969
-seed=1451809939
+z=-14957
+r=9154
+seed=1845530210
 [/Star]
 
 [Nebula]
 name=Tau 0Z5U-0 Cloud
 system=Tau 0Z5U-0
-type=shockwave
-color=3.015673E-4,0.0064560985,0.013682065,1
+type=flame
+color=0.003060062,0.017271873,0.010510921,1
 x=0
 y=0
 z=0
-l=192000
+l=660450
 w=32000
-h=192000
-seed=-213918733
+h=660450
+seed=2144509082
 [/Nebula]
 
-[Field]
-name=Tau 0Z5U-0 Field
+[Planet]
+name='Woods 24'
 system=Tau 0Z5U-0
-type=Dark Asteroid Field
-x=0
+texture=Terran
+x=188679
 y=0
-z=0
-l=192000
-w=32000
-h=192000
-seed=-26040312
-[/Field]
+z=-6909
+r=2980
+seed=1692382941
+[/Planet]
+
+[Planet]
+name='Bailey 12'
+system=Tau 0Z5U-0
+texture=Barren
+x=-219409
+y=0
+z=19113
+r=2409
+seed=-2110533065
+[/Planet]
+
+[Planet]
+name='Martin 15'
+system=Tau 0Z5U-0
+texture=Martian
+x=-155137
+y=0
+z=111734
+r=2875
+seed=2099317647
+[/Planet]
+
+[Planet]
+name='Grant 20'
+system=Tau 0Z5U-0
+texture=Barren
+x=201157
+y=0
+z=47116
+r=2987
+seed=-454427538
+[/Planet]
+
+[Jumphole]
+name=Rho EXKH-XF Jumphole
+x=-217857
+y=0
+z=166819
+system=Tau 0Z5U-0
+out=Rho EXKH-XF/Tau 0Z5U-0 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Tau 0Z5U-0 Jumphole
+x=-186282
+y=0
+z=181694
+system=Rho EXKH-XF
+out=Tau 0Z5U-0/Rho EXKH-XF Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Omega JOB-ERU Jumphole
+x=31587
+y=0
+z=192500
+system=Tau 0Z5U-0
+out=Omega JOB-ERU/Tau 0Z5U-0 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Tau 0Z5U-0 Jumphole
+x=187559
+y=0
+z=108853
+system=Omega JOB-ERU
+out=Tau 0Z5U-0/Omega JOB-ERU Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Epsilon MF-NN6 Jumphole
+x=-89006
+y=0
+z=-91622
+system=Tau 0Z5U-0
+out=Epsilon MF-NN6/Tau 0Z5U-0 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Tau 0Z5U-0 Jumphole
+x=146663
+y=0
+z=-66550
+system=Epsilon MF-NN6
+out=Tau 0Z5U-0/Epsilon MF-NN6 Jumphole
+[/Jumphole]
 
 [System]
 name=Iota ZX-O
-x=-20
-y=-84
-z=-56
-sky=Black 1
+x=80
+y=-184
+z=844
+sky=Orange 1
 [/System]
 
 [Star]
 name=Iota ZX-O
 system=Iota ZX-O
 texture=White
-x=1359
+x=28718
 y=0
-z=-6733
-r=7716
-seed=702583321
+z=28424
+r=6957
+seed=-745055911
 [/Star]
-
-[Nebula]
-name=Iota ZX-O Cloud
-system=Iota ZX-O
-type=shockwave
-color=0.01860858,4.965508E-4,0.018362256,1
-x=0
-y=0
-z=0
-l=192000
-w=32000
-h=192000
-seed=1670322116
-[/Nebula]
 
 [Field]
 name=Iota ZX-O Field
@@ -5766,112 +5548,94 @@ type=Dark Asteroid Field
 x=0
 y=0
 z=0
-l=192000
+l=705606
 w=32000
-h=192000
-seed=588606549
+h=705606
+seed=-1277751295
 [/Field]
 
 [Planet]
-name='Harris 9'
+name='Kelly 16'
 system=Iota ZX-O
-texture=BandedGas
-x=60317
+texture=Barren
+x=-12779
 y=0
-z=57545
-r=2194
-seed=1263196898
+z=-53355
+r=4335
+seed=940075847
 [/Planet]
 
 [Jumphole]
-name=Pi LNSR-U9G Jumphole
-x=-20459
+name=Epsilon MF-NN6 Jumphole
+x=-17592
 y=0
-z=44906
+z=82794
+system=Iota ZX-O
+out=Epsilon MF-NN6/Iota ZX-O Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Iota ZX-O Jumphole
+x=-64586
+y=0
+z=-213837
+system=Epsilon MF-NN6
+out=Iota ZX-O/Epsilon MF-NN6 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Pi LNSR-U9G Jumphole
+x=-182730
+y=0
+z=41249
 system=Iota ZX-O
 out=Pi LNSR-U9G/Iota ZX-O Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Iota ZX-O Jumphole
-x=40615
+x=205460
 y=0
-z=4451
+z=-90308
 system=Pi LNSR-U9G
 out=Iota ZX-O/Pi LNSR-U9G Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Chi Q4IN-D Jumphole
-x=14261
+name=Eta MTK-6D Jumphole
+x=-116661
 y=0
-z=-2053
+z=-8266
 system=Iota ZX-O
-out=Chi Q4IN-D/Iota ZX-O Jumphole
+out=Eta MTK-6D/Iota ZX-O Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Iota ZX-O Jumphole
-x=-14565
+x=50002
 y=0
-z=11295
-system=Chi Q4IN-D
-out=Iota ZX-O/Chi Q4IN-D Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Alpha 6L-XGXG Jumphole
-x=-48061
-y=0
-z=32549
-system=Iota ZX-O
-out=Alpha 6L-XGXG/Iota ZX-O Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Iota ZX-O Jumphole
-x=1206
-y=0
-z=-56156
-system=Alpha 6L-XGXG
-out=Iota ZX-O/Alpha 6L-XGXG Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Sigma U-7 Jumphole
-x=-14875
-y=0
-z=53787
-system=Iota ZX-O
-out=Sigma U-7/Iota ZX-O Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Iota ZX-O Jumphole
-x=-2567
-y=0
-z=10352
-system=Sigma U-7
-out=Iota ZX-O/Sigma U-7 Jumphole
+z=-218324
+system=Eta MTK-6D
+out=Iota ZX-O/Eta MTK-6D Jumphole
 [/Jumphole]
 
 [System]
 name=Beta C-Y
-x=48
-y=-22
-z=-55
-sky=Dark
+x=948
+y=478
+z=645
+sky=Blue 0
 [/System]
 
 [Star]
 name=Beta C-Y
 system=Beta C-Y
 texture=White
-x=-13352
+x=4312
 y=0
-z=12746
-r=9559
-seed=-696125460
+z=3479
+r=1161
+seed=138506128
 [/Star]
 
 [Field]
@@ -5881,109 +5645,132 @@ type=Dark Asteroid Field
 x=0
 y=0
 z=0
-l=490188
+l=337950
 w=32000
-h=490188
-seed=444072575
+h=337950
+seed=-1137509878
 [/Field]
 
 [Planet]
-name='Ophellia 20'
+name='Hanna 16'
+system=Beta C-Y
+texture=Chthonian
+x=-40231
+y=0
+z=-14640
+r=500
+seed=2077605439
+[/Planet]
+
+[Planet]
+name='Freeman 6'
 system=Beta C-Y
 texture=BandedGas
-x=-137730
+x=-86139
 y=0
-z=-32743
-r=2038
-seed=1982346969
+z=49828
+r=1974
+seed=-1268460100
+[/Planet]
+
+[Planet]
+name='Nicole 3'
+system=Beta C-Y
+texture=BandedGas
+x=14918
+y=0
+z=33292
+r=4093
+seed=-647848283
+[/Planet]
+
+[Planet]
+name='Rose 2'
+system=Beta C-Y
+texture=Terran
+x=10730
+y=0
+z=50052
+r=3329
+seed=150865669
+[/Planet]
+
+[Planet]
+name='Sullivan 7'
+system=Beta C-Y
+texture=Martian
+x=3946
+y=0
+z=-91696
+r=2920
+seed=-26040312
+[/Planet]
+
+[Planet]
+name='Yao 9'
+system=Beta C-Y
+texture=BandedGas
+x=-14071
+y=0
+z=-94414
+r=1731
+seed=-1440905597
 [/Planet]
 
 [Jumphole]
-name=Rho 6-Q6O Jumphole
-x=-2860
-y=0
-z=-15415
-system=Beta C-Y
-out=Rho 6-Q6O/Beta C-Y Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Beta C-Y Jumphole
-x=69210
-y=0
-z=58840
-system=Rho 6-Q6O
-out=Beta C-Y/Rho 6-Q6O Jumphole
-[/Jumphole]
-
-[Jumphole]
 name=Eta J2T-30MX Jumphole
-x=114970
+x=68047
 y=0
-z=-70076
+z=-41091
 system=Beta C-Y
 out=Eta J2T-30MX/Beta C-Y Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Beta C-Y Jumphole
-x=-93180
+x=-71483
 y=0
-z=126326
+z=70466
 system=Eta J2T-30MX
 out=Beta C-Y/Eta J2T-30MX Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Epsilon VQ-WVYP Jumphole
-x=-34070
+name=Eta MTK-6D Jumphole
+x=-63690
 y=0
-z=42894
+z=55274
 system=Beta C-Y
-out=Epsilon VQ-WVYP/Beta C-Y Jumphole
+out=Eta MTK-6D/Beta C-Y Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Beta C-Y Jumphole
-x=-113441
+x=-37102
 y=0
-z=8129
-system=Epsilon VQ-WVYP
-out=Beta C-Y/Epsilon VQ-WVYP Jumphole
+z=8014
+system=Eta MTK-6D
+out=Beta C-Y/Eta MTK-6D Jumphole
 [/Jumphole]
 
 [System]
 name=Theta RA-JS5I
-x=-17
-y=-33
-z=3
-sky=Black 1
+x=-517
+y=667
+z=503
+sky=Green 0
 [/System]
 
 [Star]
 name=Theta RA-JS5I
 system=Theta RA-JS5I
 texture=White
-x=-7951
+x=434
 y=0
-z=-19151
-r=3611
-seed=1257459247
+z=558
+r=3274
+seed=-1686661856
 [/Star]
-
-[Nebula]
-name=Theta RA-JS5I Cloud
-system=Theta RA-JS5I
-type=flame
-color=0.0018345249,0.0037996925,0.019463181,1
-x=0
-y=0
-z=0
-l=625227
-w=32000
-h=625227
-seed=246629957
-[/Nebula]
 
 [Field]
 name=Theta RA-JS5I Field
@@ -5992,401 +5779,438 @@ type=Dark Asteroid Field
 x=0
 y=0
 z=0
-l=625227
+l=206427
 w=32000
-h=625227
-seed=-512905078
+h=206427
+seed=-704150682
 [/Field]
 
 [Planet]
-name='Otis 19'
-system=Theta RA-JS5I
-texture=Barren
-x=-172681
-y=0
-z=-197533
-r=500
-seed=-872464522
-[/Planet]
-
-[Planet]
-name='Khaba 8'
-system=Theta RA-JS5I
-texture=Terran
-x=183800
-y=0
-z=-162214
-r=3386
-seed=603690872
-[/Planet]
-
-[Planet]
-name='Scott 6'
-system=Theta RA-JS5I
-texture=BandedGas
-x=-129702
-y=0
-z=152500
-r=3795
-seed=1178791308
-[/Planet]
-
-[Planet]
-name='Mark 19'
-system=Theta RA-JS5I
-texture=BandedGas
-x=-84059
-y=0
-z=54607
-r=3317
-seed=1461603191
-[/Planet]
-
-[Planet]
-name='Browns 22'
+name='Frank 21'
 system=Theta RA-JS5I
 texture=Chthonian
-x=9146
+x=15261
 y=0
-z=12678
-r=1956
-seed=-371969296
+z=25766
+r=3449
+seed=-869151870
 [/Planet]
+
+[Planet]
+name='David 11'
+system=Theta RA-JS5I
+texture=Barren
+x=68149
+y=0
+z=-55168
+r=1556
+seed=968336598
+[/Planet]
+
+[Planet]
+name='Carletta 19'
+system=Theta RA-JS5I
+texture=BandedGas
+x=1337
+y=0
+z=39784
+r=2451
+seed=1213271082
+[/Planet]
+
+[Planet]
+name='Britt 12'
+system=Theta RA-JS5I
+texture=Barren
+x=34372
+y=0
+z=-41471
+r=1844
+seed=128287878
+[/Planet]
+
+[Jumphole]
+name=Psi B98-K Jumphole
+x=16954
+y=0
+z=20824
+system=Theta RA-JS5I
+out=Psi B98-K/Theta RA-JS5I Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Theta RA-JS5I Jumphole
+x=7715
+y=0
+z=18117
+system=Psi B98-K
+out=Theta RA-JS5I/Psi B98-K Jumphole
+[/Jumphole]
 
 [System]
 name=Rho WW-Y95C
-x=-9
-y=20
-z=-83
-sky=Brown 1
+x=491
+y=-480
+z=17
+sky=Blue 1
 [/System]
 
 [Star]
 name=Rho WW-Y95C
 system=Rho WW-Y95C
 texture=White
-x=1831
+x=-592
 y=0
-z=-3809
-r=3892
-seed=-612329712
+z=-4441
+r=918
+seed=1907508216
+[/Star]
+
+[Nebula]
+name=Rho WW-Y95C Cloud
+system=Rho WW-Y95C
+type=flame
+color=0.0020678735,0.0011490905,0.018392926,1
+x=0
+y=0
+z=0
+l=192000
+w=32000
+h=192000
+seed=-449976043
+[/Nebula]
+
+[Field]
+name=Rho WW-Y95C Field
+system=Rho WW-Y95C
+type=Dark Asteroid Field
+x=0
+y=0
+z=0
+l=192000
+w=32000
+h=192000
+seed=1982346969
+[/Field]
+
+[Planet]
+name='Cooper 7'
+system=Rho WW-Y95C
+texture=BandedGas
+x=5862
+y=0
+z=-60572
+r=1174
+seed=1161061146
+[/Planet]
+
+[Planet]
+name='Simpson 3'
+system=Rho WW-Y95C
+texture=BandedGas
+x=4147
+y=0
+z=-31411
+r=4409
+seed=-819448587
+[/Planet]
+
+[Planet]
+name='Ray 13'
+system=Rho WW-Y95C
+texture=Martian
+x=57623
+y=0
+z=-28630
+r=1884
+seed=1118907223
+[/Planet]
+
+[Planet]
+name='Lewis 18'
+system=Rho WW-Y95C
+texture=WetMartian
+x=-17785
+y=0
+z=23109
+r=2810
+seed=1153145140
+[/Planet]
+
+[Jumphole]
+name=Mu MY-Q9LO Jumphole
+x=-29297
+y=0
+z=7130
+system=Rho WW-Y95C
+out=Mu MY-Q9LO/Rho WW-Y95C Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Rho WW-Y95C Jumphole
+x=35149
+y=0
+z=-44613
+system=Mu MY-Q9LO
+out=Rho WW-Y95C/Mu MY-Q9LO Jumphole
+[/Jumphole]
+
+[System]
+name=Gamma OHV-K1TM
+x=806
+y=-203
+z=-132
+sky=Blue 0
+[/System]
+
+[Star]
+name=Gamma OHV-K1TM
+system=Gamma OHV-K1TM
+texture=White
+x=-6536
+y=0
+z=2893
+r=7615
+seed=-130602842
+[/Star]
+
+[Nebula]
+name=Gamma OHV-K1TM Cloud
+system=Gamma OHV-K1TM
+type=shockwave
+color=0.009716876,0.0013769913,0.0122630885,1
+x=0
+y=0
+z=0
+l=589752
+w=32000
+h=589752
+seed=1960507883
+[/Nebula]
+
+[Planet]
+name='Ross 20'
+system=Gamma OHV-K1TM
+texture=BandedGas
+x=181046
+y=0
+z=-38550
+r=4117
+seed=1989360662
+[/Planet]
+
+[Planet]
+name='Robinson 11'
+system=Gamma OHV-K1TM
+texture=Barren
+x=41859
+y=0
+z=38445
+r=1134
+seed=1302758297
+[/Planet]
+
+[Jumphole]
+name=Mu MY-Q9LO Jumphole
+x=91921
+y=0
+z=-137125
+system=Gamma OHV-K1TM
+out=Mu MY-Q9LO/Gamma OHV-K1TM Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Gamma OHV-K1TM Jumphole
+x=184988
+y=0
+z=56397
+system=Mu MY-Q9LO
+out=Gamma OHV-K1TM/Mu MY-Q9LO Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Beta QF2-2V3S Jumphole
+x=196179
+y=0
+z=79712
+system=Gamma OHV-K1TM
+out=Beta QF2-2V3S/Gamma OHV-K1TM Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Gamma OHV-K1TM Jumphole
+x=-181924
+y=0
+z=-11126
+system=Beta QF2-2V3S
+out=Gamma OHV-K1TM/Beta QF2-2V3S Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Rho WW-Y95C Jumphole
+x=-113510
+y=0
+z=-24900
+system=Gamma OHV-K1TM
+out=Rho WW-Y95C/Gamma OHV-K1TM Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Gamma OHV-K1TM Jumphole
+x=-83536
+y=0
+z=-162680
+system=Rho WW-Y95C
+out=Gamma OHV-K1TM/Rho WW-Y95C Jumphole
+[/Jumphole]
+
+[System]
+name=Omega NJG-XX
+x=238
+y=525
+z=68
+sky=Brown 1
+[/System]
+
+[Star]
+name=Omega NJG-XX
+system=Omega NJG-XX
+texture=White
+x=-10262
+y=0
+z=-9765
+r=8536
+seed=449202593
 [/Star]
 
 [Planet]
-name='Peter 4'
-system=Rho WW-Y95C
-texture=Barren
-x=37418
-y=0
-z=-74652
-r=2673
-seed=449202593
-[/Planet]
-
-[Planet]
-name='Upana 9'
-system=Rho WW-Y95C
-texture=Terran
-x=49898
-y=0
-z=-57265
-r=4619
-seed=502388047
-[/Planet]
-
-[Planet]
 name='Harrison 23'
-system=Rho WW-Y95C
-texture=Barren
-x=86557
+system=Omega NJG-XX
+texture=BandedGas
+x=77224
 y=0
-z=-54380
+z=100915
 r=3826
 seed=558425909
 [/Planet]
 
 [Planet]
 name='Grant 7'
-system=Rho WW-Y95C
-texture=Chthonian
-x=45924
+system=Omega NJG-XX
+texture=BandedGas
+x=-59289
 y=0
-z=68767
+z=-79508
 r=4951
 seed=-808777104
 [/Planet]
 
-[Planet]
-name='Khufu 12'
-system=Rho WW-Y95C
-texture=BandedGas
-x=-46438
-y=0
-z=32022
-r=4066
-seed=501605536
-[/Planet]
-
 [Jumphole]
-name=Tau 9-UA Jumphole
-x=73742
+name=Phi PTY-XDDL Jumphole
+x=5069
 y=0
-z=37980
-system=Rho WW-Y95C
-out=Tau 9-UA/Rho WW-Y95C Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Rho WW-Y95C Jumphole
-x=9803
-y=0
-z=-84278
-system=Tau 9-UA
-out=Rho WW-Y95C/Tau 9-UA Jumphole
-[/Jumphole]
-
-[System]
-name=Gamma OHV-K1TM
-x=-94
-y=97
-z=-32
-sky=Green 0
-[/System]
-
-[Star]
-name=Gamma OHV-K1TM
-system=Gamma OHV-K1TM
-texture=White
-x=-2084
-y=0
-z=6448
-r=9626
-seed=2047008113
-[/Star]
-
-[Nebula]
-name=Gamma OHV-K1TM Cloud
-system=Gamma OHV-K1TM
-type=flame
-color=0.0074666357,0.012445437,0.008711428,1
-x=0
-y=0
-z=0
-l=192000
-w=32000
-h=192000
-seed=-62940521
-[/Nebula]
-
-[Jumphole]
-name=Omicron 0PI-2 Jumphole
-x=-8618
-y=0
-z=-15544
-system=Gamma OHV-K1TM
-out=Omicron 0PI-2/Gamma OHV-K1TM Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Gamma OHV-K1TM Jumphole
-x=5850
-y=0
-z=-50527
-system=Omicron 0PI-2
-out=Gamma OHV-K1TM/Omicron 0PI-2 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Psi LD3G-DDD Jumphole
-x=-47533
-y=0
-z=-31855
-system=Gamma OHV-K1TM
-out=Psi LD3G-DDD/Gamma OHV-K1TM Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Gamma OHV-K1TM Jumphole
-x=-44282
-y=0
-z=-36080
-system=Psi LD3G-DDD
-out=Gamma OHV-K1TM/Psi LD3G-DDD Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Kappa 0ET2-HY5D Jumphole
-x=-36428
-y=0
-z=-18335
-system=Gamma OHV-K1TM
-out=Kappa 0ET2-HY5D/Gamma OHV-K1TM Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Gamma OHV-K1TM Jumphole
-x=-29291
-y=0
-z=53023
-system=Kappa 0ET2-HY5D
-out=Gamma OHV-K1TM/Kappa 0ET2-HY5D Jumphole
-[/Jumphole]
-
-[System]
-name=Omega NJG-XX
-x=-62
-y=25
-z=-32
-sky=Green 0
-[/System]
-
-[Star]
-name=Omega NJG-XX
+z=-50601
 system=Omega NJG-XX
-texture=White
-x=5465
-y=0
-z=-13388
-r=8982
-seed=1267687676
-[/Star]
-
-[Planet]
-name='Javier 11'
-system=Omega NJG-XX
-texture=BandedGas
-x=-103301
-y=0
-z=4118
-r=3409
-seed=-134151371
-[/Planet]
-
-[Jumphole]
-name=Chi O7OB-I6L Jumphole
-x=52470
-y=0
-z=32939
-system=Omega NJG-XX
-out=Chi O7OB-I6L/Omega NJG-XX Jumphole
+out=Phi PTY-XDDL/Omega NJG-XX Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Omega NJG-XX Jumphole
-x=-110519
+x=-101158
 y=0
-z=76620
-system=Chi O7OB-I6L
-out=Omega NJG-XX/Chi O7OB-I6L Jumphole
+z=-91211
+system=Phi PTY-XDDL
+out=Omega NJG-XX/Phi PTY-XDDL Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=Omicron 0PI-2 Jumphole
-x=57813
+name=Rho 6-Q6O Jumphole
+x=68575
 y=0
-z=-4860
+z=101092
 system=Omega NJG-XX
-out=Omicron 0PI-2/Omega NJG-XX Jumphole
+out=Rho 6-Q6O/Omega NJG-XX Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Omega NJG-XX Jumphole
-x=-76135
+x=-83519
 y=0
-z=-48961
-system=Omicron 0PI-2
-out=Omega NJG-XX/Omicron 0PI-2 Jumphole
+z=-2148
+system=Rho 6-Q6O
+out=Omega NJG-XX/Rho 6-Q6O Jumphole
 [/Jumphole]
 
 [System]
 name=Chi O7OB-I6L
-x=-22
-y=32
-z=-25
-sky=Orange 1
+x=-922
+y=332
+z=675
+sky=Blue 1
 [/System]
 
 [Star]
 name=Chi O7OB-I6L
 system=Chi O7OB-I6L
 texture=White
-x=17562
+x=8631
 y=0
-z=-23722
-r=3590
-seed=-1109264824
+z=871
+r=3950
+seed=-1622329873
 [/Star]
 
-[Nebula]
-name=Chi O7OB-I6L Cloud
+[Planet]
+name='Ross 1'
 system=Chi O7OB-I6L
-type=flame
-color=1.2258173E-4,0.0023596704,0.0104385745,1
-x=0
+texture=Chthonian
+x=42602
 y=0
-z=0
-l=577320
-w=32000
-h=577320
-seed=1182458890
-[/Nebula]
-
-[Field]
-name=Chi O7OB-I6L Field
-system=Chi O7OB-I6L
-type=Dark Asteroid Field
-x=0
-y=0
-z=0
-l=577320
-w=32000
-h=577320
-seed=-232851650
-[/Field]
+z=1263
+r=3884
+seed=470560208
+[/Planet]
 
 [Planet]
-name='Reys 18'
+name='Dick 19'
+system=Chi O7OB-I6L
+texture=WetMartian
+x=-74217
+y=0
+z=75605
+r=4497
+seed=745402338
+[/Planet]
+
+[Planet]
+name='Perez 23'
 system=Chi O7OB-I6L
 texture=BandedGas
-x=191388
+x=-76463
 y=0
-z=-126131
-r=2125
-seed=-2039083596
+z=93891
+r=3145
+seed=937611700
 [/Planet]
 
 [System]
 name=Psi SBZ-8DHQ
-x=29
-y=93
-z=-45
-sky=Blue 0
+x=329
+y=-807
+z=455
+sky=Green 0
 [/System]
 
 [Star]
 name=Psi SBZ-8DHQ
 system=Psi SBZ-8DHQ
 texture=White
-x=-180
+x=-5291
 y=0
-z=-1167
-r=8969
-seed=845041072
+z=-2977
+r=8854
+seed=334108023
 [/Star]
-
-[Nebula]
-name=Psi SBZ-8DHQ Cloud
-system=Psi SBZ-8DHQ
-type=flame
-color=0.004104333,0.0073162448,0.010478093,1
-x=0
-y=0
-z=0
-l=192000
-w=32000
-h=192000
-seed=-1240974589
-[/Nebula]
 
 [Field]
 name=Psi SBZ-8DHQ Field
@@ -6398,404 +6222,525 @@ z=0
 l=192000
 w=32000
 h=192000
-seed=568906799
+seed=2078537965
 [/Field]
 
 [Planet]
-name='Shary 10'
+name='Wells 24'
 system=Psi SBZ-8DHQ
 texture=BandedGas
-x=53033
+x=34581
 y=0
-z=53933
-r=500
-seed=1427886052
+z=-63025
+r=3567
+seed=1351552880
 [/Planet]
 
 [Jumphole]
-name=Eta MTK-6D Jumphole
-x=-10820
+name=Psi CNK-LTW Jumphole
+x=-58150
 y=0
-z=-546
+z=3268
 system=Psi SBZ-8DHQ
-out=Eta MTK-6D/Psi SBZ-8DHQ Jumphole
+out=Psi CNK-LTW/Psi SBZ-8DHQ Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Psi SBZ-8DHQ Jumphole
-x=-52251
+x=2629
 y=0
-z=58450
-system=Eta MTK-6D
-out=Psi SBZ-8DHQ/Eta MTK-6D Jumphole
+z=4125
+system=Psi CNK-LTW
+out=Psi SBZ-8DHQ/Psi CNK-LTW Jumphole
 [/Jumphole]
 
 [System]
 name=Xi E-S
-x=75
-y=-16
-z=54
-sky=Orange 1
+x=375
+y=884
+z=-846
+sky=Dark
 [/System]
 
 [Star]
 name=Xi E-S
 system=Xi E-S
 texture=White
-x=2067
+x=7124
 y=0
-z=3133
-r=3561
-seed=994947972
+z=2300
+r=833
+seed=714777939
 [/Star]
 
-[Field]
-name=Xi E-S Field
+[Nebula]
+name=Xi E-S Cloud
 system=Xi E-S
-type=Dark Asteroid Field
+type=flame
+color=5.2859186E-4,0.004104333,0.0073162448,1
 x=0
 y=0
 z=0
-l=224355
+l=290694
 w=32000
-h=224355
-seed=-1156805408
-[/Field]
+h=290694
+seed=-2044813603
+[/Nebula]
 
 [Planet]
-name='Darwin 16'
+name='Grant 4'
 system=Xi E-S
-texture=Barren
-x=36748
+texture=Chthonian
+x=-95029
 y=0
-z=21360
-r=790
-seed=-935428620
+z=90888
+r=3026
+seed=1433354120
 [/Planet]
+
+[Jumphole]
+name=Xi V-21J Jumphole
+x=75803
+y=0
+z=-23196
+system=Xi E-S
+out=Xi V-21J/Xi E-S Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Xi E-S Jumphole
+x=28761
+y=0
+z=84542
+system=Xi V-21J
+out=Xi E-S/Xi V-21J Jumphole
+[/Jumphole]
 
 [System]
 name=Tau 9-UA
-x=-61
-y=37
-z=-93
-sky=Blue 1
+x=-161
+y=-863
+z=-993
+sky=Brown 0
 [/System]
 
 [Star]
 name=Tau 9-UA
 system=Tau 9-UA
 texture=White
-x=-1079
+x=-17360
 y=0
-z=-6664
-r=7143
-seed=1667835062
+z=5252
+r=2886
+seed=-945481281
+[/Star]
+
+[Planet]
+name='Olana 10'
+system=Tau 9-UA
+texture=BandedGas
+x=-31714
+y=0
+z=84509
+r=4031
+seed=1036257838
+[/Planet]
+
+[Planet]
+name='Washington 14'
+system=Tau 9-UA
+texture=BandedGas
+x=-149670
+y=0
+z=-179501
+r=3788
+seed=1946881581
+[/Planet]
+
+[Jumphole]
+name=Delta 67-VNVD Jumphole
+x=153755
+y=0
+z=-62154
+system=Tau 9-UA
+out=Delta 67-VNVD/Tau 9-UA Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Tau 9-UA Jumphole
+x=-81435
+y=0
+z=135361
+system=Delta 67-VNVD
+out=Tau 9-UA/Delta 67-VNVD Jumphole
+[/Jumphole]
+
+[System]
+name=Mu MY-Q9LO
+x=592
+y=-333
+z=101
+sky=Brown 1
+[/System]
+
+[Star]
+name=Mu MY-Q9LO
+system=Mu MY-Q9LO
+texture=White
+x=5924
+y=0
+z=4843
+r=8994
+seed=1516368732
 [/Star]
 
 [Field]
-name=Tau 9-UA Field
-system=Tau 9-UA
+name=Mu MY-Q9LO Field
+system=Mu MY-Q9LO
 type=Dark Asteroid Field
+x=0
+y=0
+z=0
+l=379284
+w=32000
+h=379284
+seed=1158228061
+[/Field]
+
+[Planet]
+name='Miguel 11'
+system=Mu MY-Q9LO
+texture=BandedGas
+x=-67541
+y=0
+z=-114124
+r=3267
+seed=950011514
+[/Planet]
+
+[Planet]
+name='Ramos 4'
+system=Mu MY-Q9LO
+texture=Chthonian
+x=123123
+y=0
+z=-11348
+r=1471
+seed=-1943084785
+[/Planet]
+
+[Planet]
+name='Perry 16'
+system=Mu MY-Q9LO
+texture=Barren
+x=96416
+y=0
+z=-69899
+r=4154
+seed=2023070238
+[/Planet]
+
+[System]
+name=Delta 67-VNVD
+x=132
+y=-175
+z=-700
+sky=Blue 1
+[/System]
+
+[Star]
+name=Delta 67-VNVD
+system=Delta 67-VNVD
+texture=White
+x=-4433
+y=0
+z=7083
+r=922
+seed=440570371
+[/Star]
+
+[Nebula]
+name=Delta 67-VNVD Cloud
+system=Delta 67-VNVD
+type=flame
+color=0.010246349,0.018012548,0.016497979,1
 x=0
 y=0
 z=0
 l=192000
 w=32000
 h=192000
-seed=1305222912
-[/Field]
-
-[Planet]
-name='Bailey 22'
-system=Tau 9-UA
-texture=BandedGas
-x=-58584
-y=0
-z=-42733
-r=4487
-seed=-163182481
-[/Planet]
-
-[Jumphole]
-name=Beta QF2-2V3S Jumphole
-x=2007
-y=0
-z=47413
-system=Tau 9-UA
-out=Beta QF2-2V3S/Tau 9-UA Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Tau 9-UA Jumphole
-x=15119
-y=0
-z=48156
-system=Beta QF2-2V3S
-out=Tau 9-UA/Beta QF2-2V3S Jumphole
-[/Jumphole]
-
-[System]
-name=Mu MY-Q9LO
-x=92
-y=-33
-z=1
-sky=Orange 1
-[/System]
-
-[Star]
-name=Mu MY-Q9LO
-system=Mu MY-Q9LO
-texture=White
-x=-15966
-y=0
-z=-15025
-r=7729
-seed=-644144161
-[/Star]
-
-[Planet]
-name='Tracy 16'
-system=Mu MY-Q9LO
-texture=BandedGas
-x=-202840
-y=0
-z=207089
-r=2251
-seed=-752053170
-[/Planet]
-
-[Jumphole]
-name=Epsilon BGG3-F Jumphole
-x=116447
-y=0
-z=177068
-system=Mu MY-Q9LO
-out=Epsilon BGG3-F/Mu MY-Q9LO Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Mu MY-Q9LO Jumphole
-x=137425
-y=0
-z=216185
-system=Epsilon BGG3-F
-out=Mu MY-Q9LO/Epsilon BGG3-F Jumphole
-[/Jumphole]
-
-[System]
-name=Delta 67-VNVD
-x=32
-y=-75
-z=0
-sky=Blue 1
-[/System]
-
-[Star]
-name=Delta 67-VNVD
-system=Delta 67-VNVD
-texture=White
-x=14407
-y=0
-z=3969
-r=2916
-seed=821521594
-[/Star]
-
-[Nebula]
-name=Delta 67-VNVD Cloud
-system=Delta 67-VNVD
-type=debris
-color=0.011397452,0.007356403,0.009195863,1
-x=0
-y=0
-z=0
-l=669837
-w=32000
-h=669837
-seed=109100043
+seed=1427374594
 [/Nebula]
 
 [Planet]
-name='Hamilton 1'
+name='Long 6'
 system=Delta 67-VNVD
 texture=BandedGas
-x=-117554
+x=31279
 y=0
-z=154470
-r=2442
-seed=-560566339
+z=8396
+r=4377
+seed=1840011688
 [/Planet]
 
 [Planet]
-name='Ellis 1'
+name='Cambel 21'
 system=Delta 67-VNVD
-texture=Terran
-x=-115413
+texture=WetMartian
+x=-37377
 y=0
-z=-119166
-r=500
-seed=-1134630117
+z=48244
+r=2757
+seed=71532274
 [/Planet]
+
+[Jumphole]
+name=Omicron R-XRJX Jumphole
+x=-41979
+y=0
+z=-41167
+system=Delta 67-VNVD
+out=Omicron R-XRJX/Delta 67-VNVD Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Delta 67-VNVD Jumphole
+x=50817
+y=0
+z=-36295
+system=Omicron R-XRJX
+out=Delta 67-VNVD/Omicron R-XRJX Jumphole
+[/Jumphole]
+
+[System]
+name=Tau CC4W-C
+x=92
+y=-561
+z=326
+sky=Black 0
+[/System]
+
+[Star]
+name=Tau CC4W-C
+system=Tau CC4W-C
+texture=White
+x=18516
+y=0
+z=-1983
+r=4453
+seed=1971784885
+[/Star]
+
+[Nebula]
+name=Tau CC4W-C Cloud
+system=Tau CC4W-C
+type=smoketrail
+color=0.015242241,0.009500783,0.014716467,1
+x=0
+y=0
+z=0
+l=513762
+w=32000
+h=513762
+seed=702204909
+[/Nebula]
 
 [Planet]
 name='Ele 15'
-system=Delta 67-VNVD
-texture=Barren
-x=82426
+system=Tau CC4W-C
+texture=BandedGas
+x=-102697
 y=0
-z=-38744
+z=-6471
 r=500
 seed=6435284
 [/Planet]
 
 [Planet]
 name='Bell 15'
-system=Delta 67-VNVD
-texture=BandedGas
-x=-143761
+system=Tau CC4W-C
+texture=Terran
+x=170012
 y=0
-z=92588
+z=-32253
 r=560
 seed=-684984053
 [/Planet]
 
-[System]
-name=Tau CC4W-C
-x=-8
-y=-61
-z=26
-sky=Orange 1
-[/System]
-
-[Star]
-name=Tau CC4W-C
-system=Tau CC4W-C
-texture=White
-x=6773
-y=0
-z=2303
-r=8478
-seed=1889445491
-[/Star]
-
-[Nebula]
-name=Tau CC4W-C Cloud
-system=Tau CC4W-C
-type=debris
-color=0.0018699169,0.010816277,0.0030514277,1
-x=0
-y=0
-z=0
-l=192000
-w=32000
-h=192000
-seed=425939615
-[/Nebula]
-
-[Field]
-name=Tau CC4W-C Field
-system=Tau CC4W-C
-type=Dark Asteroid Field
-x=0
-y=0
-z=0
-l=192000
-w=32000
-h=192000
-seed=-1336174865
-[/Field]
-
 [Planet]
-name='Juan 21'
+name='Randy 24'
 system=Tau CC4W-C
 texture=BandedGas
-x=-49049
+x=-40067
 y=0
-z=-24958
-r=592
-seed=-610123697
+z=-69072
+r=2745
+seed=25053546
 [/Planet]
 
 [Planet]
-name='Stucker 21'
+name='Iopa 8'
 system=Tau CC4W-C
 texture=BandedGas
-x=-44888
+x=101085
 y=0
-z=-37462
-r=1983
-seed=-1317310625
+z=-28492
+r=991
+seed=655289247
 [/Planet]
 
 [Planet]
-name='West 2'
+name='Hernandez 19'
 system=Tau CC4W-C
-texture=BandedGas
-x=-59470
+texture=Chthonian
+x=90482
 y=0
-z=-62615
-r=543
-seed=-322300788
+z=-99987
+r=1951
+seed=1440081113
 [/Planet]
 
 [Jumphole]
-name=Omicron Q3-4V6 Jumphole
-x=-60630
+name=Omicron CV6M-V Jumphole
+x=-40610
 y=0
-z=-41835
+z=38233
 system=Tau CC4W-C
-out=Omicron Q3-4V6/Tau CC4W-C Jumphole
+out=Omicron CV6M-V/Tau CC4W-C Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=Tau CC4W-C Jumphole
-x=2147
+x=-87601
 y=0
-z=6454
-system=Omicron Q3-4V6
-out=Tau CC4W-C/Omicron Q3-4V6 Jumphole
+z=-169459
+system=Omicron CV6M-V
+out=Tau CC4W-C/Omicron CV6M-V Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Psi SBZ-8DHQ Jumphole
+x=-58166
+y=0
+z=-77486
+system=Tau CC4W-C
+out=Psi SBZ-8DHQ/Tau CC4W-C Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Tau CC4W-C Jumphole
+x=79148
+y=0
+z=87865
+system=Psi SBZ-8DHQ
+out=Tau CC4W-C/Psi SBZ-8DHQ Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Gamma YE-8S Jumphole
+x=26570
+y=0
+z=8206
+system=Tau CC4W-C
+out=Gamma YE-8S/Tau CC4W-C Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Tau CC4W-C Jumphole
+x=-47034
+y=0
+z=35298
+system=Gamma YE-8S
+out=Tau CC4W-C/Gamma YE-8S Jumphole
 [/Jumphole]
 
 [System]
 name=Chi ZKAC-5P
-x=-76
-y=-52
-z=80
-sky=Orange 1
+x=-176
+y=848
+z=-220
+sky=Brown 1
 [/System]
 
 [Star]
 name=Chi ZKAC-5P
 system=Chi ZKAC-5P
 texture=White
-x=-5534
+x=-17912
 y=0
-z=-19945
-r=2856
-seed=1771405796
+z=21413
+r=4714
+seed=2106481063
 [/Star]
 
 [Nebula]
 name=Chi ZKAC-5P Cloud
 system=Chi ZKAC-5P
-type=flame
-color=0.003907398,0.010150742,0.01090358,1
+type=debris
+color=0.0012984097,0.014083762,0.012265976,1
 x=0
 y=0
 z=0
-l=657969
+l=526326
 w=32000
-h=657969
-seed=-1289419363
+h=526326
+seed=-839579460
 [/Nebula]
+
+[Field]
+name=Chi ZKAC-5P Field
+system=Chi ZKAC-5P
+type=Dark Asteroid Field
+x=0
+y=0
+z=0
+l=526326
+w=32000
+h=526326
+seed=-738960925
+[/Field]
+
+[Planet]
+name='Galba 18'
+system=Chi ZKAC-5P
+texture=BandedGas
+x=49784
+y=0
+z=-146257
+r=1147
+seed=1959398842
+[/Planet]
+
+[Planet]
+name='Miguel 6'
+system=Chi ZKAC-5P
+texture=Barren
+x=-139514
+y=0
+z=61054
+r=2898
+seed=1351493602
+[/Planet]
+
+[Planet]
+name='Farraday 9'
+system=Chi ZKAC-5P
+texture=BandedGas
+x=113236
+y=0
+z=-95867
+r=4082
+seed=-1953441238
+[/Planet]
 
 [Planet]
 name='Dean 20'
 system=Chi ZKAC-5P
-texture=BandedGas
-x=5106
+texture=Chthonian
+x=170675
 y=0
-z=97904
+z=82723
 r=577
 seed=858592760
 [/Planet]
@@ -6804,97 +6749,62 @@ seed=858592760
 name='Wale 8'
 system=Chi ZKAC-5P
 texture=Barren
-x=-148022
+x=162589
 y=0
-z=-137341
+z=150780
 r=3983
 seed=-1889416940
 [/Planet]
 
-[Planet]
-name='Flores 15'
-system=Chi ZKAC-5P
-texture=BandedGas
-x=30595
-y=0
-z=-108810
-r=692
-seed=-410548695
-[/Planet]
-
 [System]
 name=Beta QF2-2V3S
-x=-55
-y=52
-z=-80
-sky=Dark
+x=845
+y=-448
+z=220
+sky=Orange 1
 [/System]
 
 [Star]
 name=Beta QF2-2V3S
 system=Beta QF2-2V3S
 texture=White
-x=-22581
+x=11391
 y=0
-z=-18576
-r=4285
-seed=373222152
+z=-11181
+r=5949
+seed=-1603125912
 [/Star]
 
 [Nebula]
 name=Beta QF2-2V3S Cloud
 system=Beta QF2-2V3S
-type=smoketrail
-color=0.016253088,0.0011635363,0.011021886,1
+type=debris
+color=0.0034267688,0.004401363,0.01092857,1
 x=0
 y=0
 z=0
-l=706578
+l=301053
 w=32000
-h=706578
-seed=-1107555141
+h=301053
+seed=472482872
 [/Nebula]
 
-[Field]
-name=Beta QF2-2V3S Field
-system=Beta QF2-2V3S
-type=Dark Asteroid Field
-x=0
-y=0
-z=0
-l=706578
-w=32000
-h=706578
-seed=496040256
-[/Field]
-
 [Planet]
-name='Knight 14'
-system=Beta QF2-2V3S
-texture=Barren
-x=-3342
-y=0
-z=-69149
-r=1179
-seed=-2049534267
-[/Planet]
-
-[Planet]
-name='Parker 17'
+name='Cambel 3'
 system=Beta QF2-2V3S
 texture=BandedGas
-x=14966
+x=31846
 y=0
-z=153059
-r=2822
-seed=849988156
+z=26360
+r=1036
+seed=-1928035226
 [/Planet]
 
 [System]
 name=Omicron CV6M-V
-x=65
-y=-83
-z=74
+x=-35
+y=-783
+z=174
 sky=Green 0
 [/System]
 
@@ -6902,287 +6812,366 @@ sky=Green 0
 name=Omicron CV6M-V
 system=Omicron CV6M-V
 texture=White
-x=-20539
+x=-1846
 y=0
-z=-9902
-r=2297
-seed=-2019961899
+z=4491
+r=6514
+seed=-97429608
 [/Star]
 
-[Field]
-name=Omicron CV6M-V Field
-system=Omicron CV6M-V
-type=Dark Asteroid Field
-x=0
-y=0
-z=0
-l=657327
-w=32000
-h=657327
-seed=1666106851
-[/Field]
-
 [Planet]
-name='Coleman 23'
+name='Wright 6'
 system=Omicron CV6M-V
-texture=Barren
-x=43529
+texture=BandedGas
+x=-44688
 y=0
-z=123664
-r=2146
-seed=1733700448
+z=-76519
+r=3276
+seed=-1818616999
 [/Planet]
 
 [Planet]
-name='Washington 10'
+name='Price 1'
 system=Omicron CV6M-V
-texture=Terran
-x=-36505
+texture=Martian
+x=44612
 y=0
-z=-41584
-r=4679
-seed=1035342792
+z=-81849
+r=1711
+seed=620001058
 [/Planet]
 
 [System]
 name=Mu M-NGW5
-x=87
-y=87
-z=2
-sky=Blue 0
+x=-413
+y=-213
+z=-98
+sky=Dark
 [/System]
 
 [Star]
 name=Mu M-NGW5
 system=Mu M-NGW5
 texture=White
-x=3951
+x=26127
 y=0
-z=-1554
-r=3358
-seed=-481044403
+z=-2748
+r=5046
+seed=1360829104
 [/Star]
 
+[Field]
+name=Mu M-NGW5 Field
+system=Mu M-NGW5
+type=Dark Asteroid Field
+x=0
+y=0
+z=0
+l=670473
+w=32000
+h=670473
+seed=171574293
+[/Field]
+
 [Planet]
-name='Rina 18'
+name='Moore 2'
 system=Mu M-NGW5
 texture=BandedGas
-x=31482
+x=-193802
 y=0
-z=210432
-r=3833
-seed=-1370039841
+z=-52094
+r=4566
+seed=1733079181
 [/Planet]
+
+[Planet]
+name='Harris 18'
+system=Mu M-NGW5
+texture=Terran
+x=109439
+y=0
+z=-87257
+r=1332
+seed=-1530554848
+[/Planet]
+
+[Planet]
+name='Khafre 15'
+system=Mu M-NGW5
+texture=BandedGas
+x=80278
+y=0
+z=162114
+r=4157
+seed=840477538
+[/Planet]
+
+[Planet]
+name='Myers 20'
+system=Mu M-NGW5
+texture=Chthonian
+x=110755
+y=0
+z=-110553
+r=3048
+seed=-1324553780
+[/Planet]
+
+[Jumphole]
+name=Gamma YE-8S Jumphole
+x=-94816
+y=0
+z=-201342
+system=Mu M-NGW5
+out=Gamma YE-8S/Mu M-NGW5 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Mu M-NGW5 Jumphole
+x=172553
+y=0
+z=209335
+system=Gamma YE-8S
+out=Mu M-NGW5/Gamma YE-8S Jumphole
+[/Jumphole]
 
 [System]
 name=Iota URU-MEU0
-x=46
-y=28
-z=-90
+x=746
+y=-672
+z=-390
+sky=Green 0
+[/System]
+
+[Star]
+name=Iota URU-MEU0
+system=Iota URU-MEU0
+texture=White
+x=16918
+y=0
+z=-7984
+r=7659
+seed=-1676533741
+[/Star]
+
+[Field]
+name=Iota URU-MEU0 Field
+system=Iota URU-MEU0
+type=Dark Asteroid Field
+x=0
+y=0
+z=0
+l=466974
+w=32000
+h=466974
+seed=-598220234
+[/Field]
+
+[Planet]
+name='Luke 6'
+system=Iota URU-MEU0
+texture=BandedGas
+x=150823
+y=0
+z=63685
+r=500
+seed=-1880697464
+[/Planet]
+
+[Planet]
+name='Jordan 7'
+system=Iota URU-MEU0
+texture=Chthonian
+x=38799
+y=0
+z=74701
+r=500
+seed=1706826233
+[/Planet]
+
+[Planet]
+name='Cambel 7'
+system=Iota URU-MEU0
+texture=BandedGas
+x=-93134
+y=0
+z=-68826
+r=500
+seed=-741130347
+[/Planet]
+
+[Planet]
+name='Gibson 15'
+system=Iota URU-MEU0
+texture=BandedGas
+x=-61889
+y=0
+z=-68210
+r=4443
+seed=-1292605640
+[/Planet]
+
+[Planet]
+name='Otho 6'
+system=Iota URU-MEU0
+texture=BandedGas
+x=-46428
+y=0
+z=-154117
+r=4098
+seed=-1480748074
+[/Planet]
+
+[Jumphole]
+name=Tau F-PYG Jumphole
+x=-34492
+y=0
+z=-79924
+system=Iota URU-MEU0
+out=Tau F-PYG/Iota URU-MEU0 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Iota URU-MEU0 Jumphole
+x=127458
+y=0
+z=25147
+system=Tau F-PYG
+out=Iota URU-MEU0/Tau F-PYG Jumphole
+[/Jumphole]
+
+[System]
+name=Tau F-PYG
+x=587
+y=-869
+z=-62
 sky=Black 1
 [/System]
 
 [Star]
-name=Iota URU-MEU0
-system=Iota URU-MEU0
-texture=White
-x=26938
-y=0
-z=-12414
-r=8679
-seed=-992406929
-[/Star]
-
-[Planet]
-name='Wallace 7'
-system=Iota URU-MEU0
-texture=Barren
-x=207254
-y=0
-z=-52632
-r=3796
-seed=-553596733
-[/Planet]
-
-[Planet]
-name='Grant 20'
-system=Iota URU-MEU0
-texture=BandedGas
-x=-163598
-y=0
-z=61266
-r=2664
-seed=1342734310
-[/Planet]
-
-[Planet]
-name='Cambel 20'
-system=Iota URU-MEU0
-texture=Barren
-x=-123896
-y=0
-z=70145
-r=4723
-seed=-845333002
-[/Planet]
-
-[System]
-name=Tau F-PYG
-x=87
-y=31
-z=38
-sky=Green 0
-[/System]
-
-[Star]
 name=Tau F-PYG
 system=Tau F-PYG
 texture=White
-x=7926
+x=-1112
 y=0
-z=-3490
-r=5006
-seed=411106538
+z=3474
+r=3789
+seed=-1586996053
 [/Star]
-
-[Planet]
-name='Kathleen 23'
-system=Tau F-PYG
-texture=Barren
-x=90273
-y=0
-z=36186
-r=4208
-seed=2046918137
-[/Planet]
-
-[Planet]
-name='Knight 3'
-system=Tau F-PYG
-texture=BandedGas
-x=-17694
-y=0
-z=93475
-r=869
-seed=-170136
-[/Planet]
-
-[Planet]
-name='Bailey 3'
-system=Tau F-PYG
-texture=BandedGas
-x=4682
-y=0
-z=-66060
-r=680
-seed=590198736
-[/Planet]
-
-[Jumphole]
-name=Xi E-S Jumphole
-x=-59777
-y=0
-z=-40861
-system=Tau F-PYG
-out=Xi E-S/Tau F-PYG Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=Tau F-PYG Jumphole
-x=-69026
-y=0
-z=-80084
-system=Xi E-S
-out=Tau F-PYG/Xi E-S Jumphole
-[/Jumphole]
-
-[System]
-name=Psi CNK-LTW
-x=-87
-y=36
-z=55
-sky=Blue 1
-[/System]
-
-[Star]
-name=Psi CNK-LTW
-system=Psi CNK-LTW
-texture=White
-x=4652
-y=0
-z=-1987
-r=3758
-seed=-1476032096
-[/Star]
-
-[Nebula]
-name=Psi CNK-LTW Cloud
-system=Psi CNK-LTW
-type=smoketrail
-color=3.7316562E-4,0.011691893,0.0024141513,1
-x=0
-y=0
-z=0
-l=193980
-w=32000
-h=193980
-seed=-818254559
-[/Nebula]
 
 [Field]
-name=Psi CNK-LTW Field
-system=Psi CNK-LTW
+name=Tau F-PYG Field
+system=Tau F-PYG
 type=Dark Asteroid Field
 x=0
 y=0
 z=0
-l=193980
+l=192000
 w=32000
-h=193980
-seed=1007970083
+h=192000
+seed=515042369
 [/Field]
 
 [Planet]
-name='Mendel 14'
-system=Psi CNK-LTW
+name='Maria 14'
+system=Tau F-PYG
 texture=BandedGas
-x=-8455
+x=47552
 y=0
-z=-28222
-r=2975
-seed=1809889981
+z=-46448
+r=1368
+seed=80136839
 [/Planet]
 
-[Planet]
-name='Anne 11'
+[System]
+name=Psi CNK-LTW
+x=613
+y=-664
+z=555
+sky=Orange 1
+[/System]
+
+[Star]
+name=Psi CNK-LTW
 system=Psi CNK-LTW
-texture=WetMartian
-x=-29581
+texture=White
+x=-11053
 y=0
-z=-25475
-r=4468
-seed=-1204131089
-[/Planet]
+z=6517
+r=7677
+seed=-1729618224
+[/Star]
 
 [Planet]
-name='Garcia 17'
+name='Ben 14'
 system=Psi CNK-LTW
-texture=BandedGas
-x=25661
+texture=Chthonian
+x=8800
 y=0
-z=40094
-r=2004
-seed=215498479
+z=151066
+r=4465
+seed=-42742105
 [/Planet]
 
 [Planet]
-name='Thomas 23'
+name='Moke 18'
 system=Psi CNK-LTW
 texture=Martian
-x=-30294
+x=-105280
 y=0
-z=-5936
-r=791
-seed=2071173037
+z=31950
+r=4474
+seed=1613053323
 [/Planet]
+
+[Planet]
+name='Evans 8'
+system=Psi CNK-LTW
+texture=BandedGas
+x=69405
+y=0
+z=-114775
+r=4764
+seed=1599064370
+[/Planet]
+
+[Planet]
+name='Alfonso 23'
+system=Psi CNK-LTW
+texture=Martian
+x=-5749
+y=0
+z=-165860
+r=500
+seed=-1026444632
+[/Planet]
+
+[Planet]
+name='Viola 12'
+system=Psi CNK-LTW
+texture=BandedGas
+x=-120864
+y=0
+z=83179
+r=620
+seed=-138038068
+[/Planet]
+
+[Jumphole]
+name=Pi C7-O Jumphole
+x=-175764
+y=0
+z=-160161
+system=Psi CNK-LTW
+out=Pi C7-O/Psi CNK-LTW Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=Psi CNK-LTW Jumphole
+x=99286
+y=0
+z=45634
+system=Pi C7-O
+out=Psi CNK-LTW/Pi C7-O Jumphole
+[/Jumphole]
 
