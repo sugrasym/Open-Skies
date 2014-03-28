@@ -1,17 +1,17 @@
 /*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*
  * Parses game world data from files. It is up to individual classes how to
@@ -31,7 +31,7 @@ import java.util.ArrayList;
 public class Parser implements Serializable {
 
     String text;
-    private ArrayList<Term> terms = new ArrayList<>();
+    private final ArrayList<Term> terms = new ArrayList<>();
 
     public Parser(String file) {
         //read the text
@@ -92,8 +92,13 @@ public class Parser implements Serializable {
             for (int a = 1; a < arr.length; a++) {
                 try {
                     String[] tmp = arr[a].split("=");
-                    Param param = new Param(tmp[0], tmp[1]);
-                    term.addParam(param);
+                    if (tmp.length > 1) {
+                        Param param = new Param(tmp[0], tmp[1]);
+                        term.addParam(param);
+                    } else {
+                        Param param = new Param("unknown" + a, tmp[0]);
+                        term.addParam(param);
+                    }
                 } catch (Exception e) {
                 }
             }
@@ -114,7 +119,7 @@ public class Parser implements Serializable {
          */
         ArrayList<Term> tmp = new ArrayList<>();
         for (int a = 0; a < terms.size(); a++) {
-            if (terms.get(a).getName().matches(type)) {
+            if (terms.get(a).getName().equals(type)) {
                 tmp.add(terms.get(a));
             }
         }
@@ -129,7 +134,7 @@ public class Parser implements Serializable {
          * Stores a term, which is a collection of params with a name.
          */
 
-        private ArrayList<Param> params = new ArrayList<>();
+        private final ArrayList<Param> params = new ArrayList<>();
         private final String name;
 
         public Term(String name) {
@@ -158,7 +163,7 @@ public class Parser implements Serializable {
 
         public void setValue(String paramName, String value) {
             for (int a = 0; a < params.size(); a++) {
-                if (params.get(a).getName().matches(paramName)) {
+                if (params.get(a).getName().equals(paramName)) {
                     params.get(a).setValue(value);
                 }
             }
@@ -170,7 +175,7 @@ public class Parser implements Serializable {
         public String getValue(String paramName) {
             if (params != null && paramName != null) {
                 for (int a = 0; a < params.size(); a++) {
-                    if (params.get(a).getName().matches(paramName)) {
+                    if (params.get(a).getName().equals(paramName)) {
                         return params.get(a).getValue();
                     }
                 }
