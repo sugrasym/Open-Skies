@@ -34,9 +34,7 @@ import com.jme3.scene.Node;
 import com.jme3.scene.shape.Sphere;
 import entity.Entity;
 import java.util.ArrayList;
-import java.util.Random;
 import jmeplanet.PlanetAppState;
-import lib.astral.Parser;
 import universe.SolarSystem;
 import universe.Universe;
 
@@ -49,7 +47,7 @@ public class Jumphole extends Planet {
     transient ParticleEmitter emitter;
     private int seed;
     //colors
-    public static final ColorRGBA START_COLOR = new ColorRGBA(1, 1, 1, 1);
+    public static final ColorRGBA START_COLOR = new ColorRGBA(1, 1, 0.5f, 1);
     public static final ColorRGBA END_COLOR = new ColorRGBA(0, 0, 1, 0.5f);
     //hole stuff
     private Jumphole outGate;
