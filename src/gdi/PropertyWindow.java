@@ -710,7 +710,7 @@ public class PropertyWindow extends AstralWindow {
                     optionList.addToList(CMD_FLYTO);
                     optionList.addToList(CMD_FOLLOW);
                     optionList.addToList(CMD_ALLSTOP);
-                    if (ship.hasGroupInCargo("jumpdrive")) {
+                    if (selected.hasGroupInCargo("jumpdrive")) {
                         optionList.addToList(" ");
                         optionList.addToList(CMD_JUMP);
                     }
@@ -844,21 +844,22 @@ public class PropertyWindow extends AstralWindow {
             } else if (command.equals(CMD_ALLSTOP)) {
                 selected.cmdAllStop();
             } else if (command.equals(CMD_JUMP)) {
-                /*ArrayList<Object> choice = new ArrayList<>();
-                 choice.add("--Select Target System--");
-                 choice.add(" ");
-                 ArrayList<SolarSystem> sh = ship.getUniverse().getDiscoveredSpace();
-                 for (int a = 0; a < sh.size(); a++) {
-                 if (ship.canJump(sh.get(a))) {
-                 choice.add(sh.get(a));
-                 }
-                 }
-                 if (sh.size() > 0) {
-                 showInputList(choice);
-                 mode = Mode.WAITING_FOR_JUMP;
-                 } else {
-                 mode = Mode.NONE;
-                 }*/
+                ArrayList<Object> choice = new ArrayList<>();
+                choice.add("--Select Target System--");
+                choice.add("TODO: Restrict to discovered space");
+                choice.add(" ");
+                ArrayList<SolarSystem> sh = ship.getCurrentSystem().getUniverse().getSystems();
+                for (int a = 0; a < sh.size(); a++) {
+                    if (ship.canJump(sh.get(a))) {
+                        choice.add(sh.get(a));
+                    }
+                }
+                if (sh.size() > 0) {
+                    showInputList(choice);
+                    mode = Mode.WAITING_FOR_JUMP;
+                } else {
+                    mode = Mode.NONE;
+                }
             } else if (command.equals(CMD_CLEARHOME)) {
                 selected.clearHomeBase();
             } else if (command.equals(CMD_SETHOME)) {

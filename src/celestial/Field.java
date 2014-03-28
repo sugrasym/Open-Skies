@@ -94,9 +94,12 @@ public class Field extends Celestial implements Serializable {
 
     public void deconstruct() {
         super.deconstruct();
-        for (int a = 0; a < patterns.length; a++) {
-            patterns[a].deconstructBlock();
+        if (patterns != null) {
+            for (int a = 0; a < patterns.length; a++) {
+                patterns[a].deconstructBlock();
+            }
         }
+        patterns = null;
         asteroid = null;
         asteroidMat = null;
     }

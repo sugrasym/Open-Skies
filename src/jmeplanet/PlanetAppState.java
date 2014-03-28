@@ -282,7 +282,9 @@ public class PlanetAppState extends AbstractAppState implements Control {
 
     public void freeCamera() {
         if (cameraShip != null) {
-            cameraShip.getSpatial().removeControl(this);
+            if (cameraShip.getSpatial() != null) {
+                cameraShip.getSpatial().removeControl(this);
+            }
         }
         cameraShip = null;
         astralCamera = null;

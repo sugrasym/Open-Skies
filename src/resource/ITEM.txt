@@ -434,7 +434,7 @@ description=When something is burned, built, or processed there are often toxic 
 [Item]
 name=Jumpdrive
 type=commodity
-volume=125
+volume=120
 mass=20
 HP=100
 minPrice=836000

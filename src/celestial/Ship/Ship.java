@@ -39,6 +39,7 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import entity.Entity;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jmeplanet.PlanetAppState;
@@ -89,8 +90,11 @@ public class Ship extends Celestial {
     }
     public static final double STOP_LOW_VEL_BOUND = 2;
     public static final float ANGLE_TOLERANCE = 0.02f;
-    public static final double ROLL_LOCK = FastMath.PI / 32;
+    public static final float ROLL_LOCK = FastMath.PI / 32;
     public static final float STOP_CAUTION = 1.0f;
+    public static final float MAX_JUMP_SHIELD_DAMAGE = 0.45f;
+    public static final float JUMP_SAFETY_FUEL = 0.25f;
+    public static final float TRADER_JD_SAFETY_FUEL = 0.40f;
 
     public enum EngineMode {
 
@@ -1383,7 +1387,28 @@ public class Ship extends Celestial {
     }
 
     public void cmdJump(SolarSystem pick) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (canJump(pick)) {
+            Random rnd = new Random();
+            //drop jump effect
+            dropJumpEffect();
+            //determine fuel cost
+            double fuelCost = getJumpFuelCost(pick);
+            //deduct fuel
+            fuel -= fuelCost;
+            //pull from old system
+            currentSystem.pullEntityFromSystem(this);
+            //apply negative effects
+            float dmg = rnd.nextFloat() * MAX_JUMP_SHIELD_DAMAGE * maxShield;
+            applyDamage(dmg);
+            //randomize location
+            float x = rnd.nextInt(12000 * 2) - 12000;
+            float z = rnd.nextInt(12000 * 2) - 12000;
+            setLocation(new Vector3f(x, 0, z));
+            //put in new system
+            pick.putEntityInSystem(this);
+            //drop the jump effect
+            dropJumpEffect();
+        }
     }
 
     public Station getHomeBase() {
@@ -1551,5 +1576,39 @@ public class Ship extends Celestial {
             }
         }
         return list;
+    }
+
+    /*
+     * Jump drive
+     */
+    public boolean canJump(SolarSystem destination) {
+        double safety;
+        if (behavior == Behavior.UNIVERSE_TRADE) {
+            safety = TRADER_JD_SAFETY_FUEL;
+        } else {
+            safety = JUMP_SAFETY_FUEL;
+        }
+        //make sure we have a jump drive group device
+        if (hasGroupInCargo("jumpdrive")) {
+            //fuel cost is linear
+            if (fuel - getJumpFuelCost(destination) >= safety * maxFuel) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public double getJumpFuelCost(SolarSystem destination) {
+        //calculate distance between current system and destination
+        Vector3f cLoc = currentSystem.getLocation();
+        Vector3f dLoc = currentSystem.getLocation();
+        double dist = cLoc.distance(dLoc);
+        //fuel cost is linear
+        double fuelCost = dist * 50;
+        return fuelCost;
+    }
+
+    protected void dropJumpEffect() {
+        //TODO
     }
 }

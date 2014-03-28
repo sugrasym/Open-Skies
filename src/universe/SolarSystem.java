@@ -61,6 +61,7 @@ public class SolarSystem implements Entity, Serializable {
     //engine resources
     private Parser info;
     private Term thisSystem;
+    private boolean hasGraphics = true;
     //lists
     private final ArrayList<Entity> stationList = new ArrayList<>();
     private final ArrayList<Entity> shipList = new ArrayList<>();
@@ -374,6 +375,7 @@ public class SolarSystem implements Entity, Serializable {
 
     @Override
     public void periodicUpdate(float tpf) {
+        checkPlayerPresence();
         for (int a = 0; a < celestials.size(); a++) {
             celestials.get(a).periodicUpdate(tpf);
             if (celestials.get(a).getState() == Entity.State.DEAD) {
@@ -385,11 +387,24 @@ public class SolarSystem implements Entity, Serializable {
 
     @Override
     public void oosPeriodicUpdate(float tpf) {
+        checkPlayerPresence();
         for (int a = 0; a < celestials.size(); a++) {
             celestials.get(a).oosPeriodicUpdate(tpf);
             if (celestials.get(a).getState() == Entity.State.DEAD) {
                 //remove the entity
                 celestials.remove(a);
+            }
+        }
+    }
+
+    private void checkPlayerPresence() {
+        if (celestials.contains(universe.getPlayerShip())) {
+            hasGraphics = true;
+        } else {
+            if (hasGraphics) {
+                deconstruct();
+                System.out.println("System " + getName() + " disposed graphics.");
+                hasGraphics = false;
             }
         }
     }
@@ -429,6 +444,9 @@ public class SolarSystem implements Entity, Serializable {
     @Override
     public void deconstruct() {
         skybox = null;
+        for (int a = 0; a < celestials.size(); a++) {
+            celestials.get(a).deconstruct();
+        }
     }
 
     @Override
@@ -493,5 +511,18 @@ public class SolarSystem implements Entity, Serializable {
 
     public ArrayList<Entity> getPlanetList() {
         return planetList;
+    }
+
+    public boolean hasGraphics() {
+        return hasGraphics;
+    }
+    
+    public void forceGraphics() {
+        hasGraphics = true;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

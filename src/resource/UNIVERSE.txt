@@ -1,12 +1,12 @@
 [NewGame]
 name=Default
-ship=Sparrow
+ship=Crow
 system=System 7
 x=166850
 y=0
 z=-109635
 cash=50000
-cargo=Ka Ka Ka~2
+cargo=Jumpdrive~1
 [/NewGame]
 
 [Station]

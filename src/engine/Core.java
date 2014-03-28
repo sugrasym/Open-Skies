@@ -472,14 +472,22 @@ public class Core {
          * In-game updating
          */
         if (state == GameState.IN_SPACE) {
-            //update player system
-            universe.getPlayerShip().getCurrentSystem().periodicUpdate(tpf);
-            //update everything else
             for (int a = 0; a < universe.getSystems().size(); a++) {
                 if (universe.getSystems().get(a) != universe.getPlayerShip().getCurrentSystem()) {
                     universe.getSystems().get(a).oosPeriodicUpdate(tpf);
                 } else {
-                    //this is the system the player is in
+                    //make sure there is no transition to be done
+                    if (universe.getPlayerShip().getCurrentSystem().hasGraphics()) {
+                        //update
+                        universe.getPlayerShip().getCurrentSystem().periodicUpdate(tpf);
+                    } else {
+                        //transition to the new system
+                        resetScene();
+                        addSystem(universe.getPlayerShip().getCurrentSystem());
+                        resetCamera();
+                        //make sure the new system is flagged for graphics
+                        universe.getPlayerShip().getCurrentSystem().forceGraphics();
+                    }
                 }
             }
             //update HUD
@@ -512,13 +520,7 @@ public class Core {
                 universe.setPlayerShip(null);
                 universe = null;
             }
-            //clear nodes
-            rootNode.detachAllChildren();
-            //clear physics
-            bulletAppState.getPhysicsSpace().destroy();
-            bulletAppState.getPhysicsSpace().create();
-            bulletAppState.getPhysicsSpace().setGravity(Vector3f.ZERO);
-            initPhysicsListeners();
+            resetScene();
             //get everything
             Everything everything;
             FileInputStream fis = new FileInputStream(gameName + ".hab");
@@ -528,9 +530,8 @@ public class Core {
             universe = everything.getUniverse();
             //enter the player's system
             addSystem(universe.getPlayerShip().getCurrentSystem());
-            //restore camera
-            planetAppState.freeCamera();
-            planetAppState.setCameraShip(universe.getPlayerShip());
+            //reset camera
+            resetCamera();
             //restore HUD
             if (hud != null) {
                 hud.setUniverse(universe);
@@ -540,5 +541,24 @@ public class Core {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void resetScene() {
+        //clear nodes
+        rootNode.detachAllChildren();
+        //clear lights
+        rootNode.getLocalLightList().clear();
+        rootNode.getWorldLightList().clear();
+        //clear physics
+        bulletAppState.getPhysicsSpace().destroy();
+        bulletAppState.getPhysicsSpace().create();
+        bulletAppState.getPhysicsSpace().setGravity(Vector3f.ZERO);
+        initPhysicsListeners();
+    }
+
+    private void resetCamera() {
+        //restore camera
+        planetAppState.freeCamera();
+        planetAppState.setCameraShip(universe.getPlayerShip());
     }
 }
