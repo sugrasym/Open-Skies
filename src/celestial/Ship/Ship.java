@@ -1401,8 +1401,8 @@ public class Ship extends Celestial {
             float dmg = rnd.nextFloat() * MAX_JUMP_SHIELD_DAMAGE * maxShield;
             applyDamage(dmg);
             //randomize location
-            float x = rnd.nextInt(12000 * 2) - 12000;
-            float z = rnd.nextInt(12000 * 2) - 12000;
+            float x = rnd.nextInt(24000 * 2) - 24000;
+            float z = rnd.nextInt(24000 * 2) - 24000;
             setLocation(new Vector3f(x, 0, z));
             //put in new system
             pick.putEntityInSystem(this);
@@ -1601,10 +1601,11 @@ public class Ship extends Celestial {
     public double getJumpFuelCost(SolarSystem destination) {
         //calculate distance between current system and destination
         Vector3f cLoc = currentSystem.getLocation();
-        Vector3f dLoc = currentSystem.getLocation();
+        Vector3f dLoc = destination.getLocation();
         double dist = cLoc.distance(dLoc);
         //fuel cost is linear
         double fuelCost = dist * 50;
+        System.out.println("cost:: "+fuelCost);
         return fuelCost;
     }
 
