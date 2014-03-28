@@ -1605,7 +1605,6 @@ public class Ship extends Celestial {
         double dist = cLoc.distance(dLoc);
         //fuel cost is linear
         double fuelCost = dist * 50;
-        System.out.println("cost:: "+fuelCost);
         return fuelCost;
     }
 
