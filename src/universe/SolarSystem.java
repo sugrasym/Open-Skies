@@ -68,6 +68,8 @@ public class SolarSystem implements Entity, Serializable {
     private final ArrayList<Entity> shipList = new ArrayList<>();
     private final ArrayList<Entity> planetList = new ArrayList<>();
     private final ArrayList<Entity> jumpholeList = new ArrayList<>();
+    //sov
+    private String owner = "Neutral";
 
     public SolarSystem(Universe universe, Term thisSystem, Parser parse) {
         name = thisSystem.getValue("name");
@@ -563,5 +565,13 @@ public class SolarSystem implements Entity, Serializable {
     @Override
     public String toString() {
         return name;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

@@ -28,6 +28,7 @@ import gdi.FuelWindow;
 import gdi.HealthWindow;
 import gdi.OverviewWindow;
 import gdi.PropertyWindow;
+import gdi.StarMapWindow;
 import gdi.TradeWindow;
 import gdi.component.AstralWindow;
 import java.awt.Rectangle;
@@ -54,10 +55,11 @@ public class HUD {
     CargoWindow cargoWindow;
     PropertyWindow propertyWindow;
     TradeWindow tradeWindow;
+    StarMapWindow starMapWindow;
     //display
     private int width;
     private int height;
-
+    
     public HUD(Node guiNode, Universe universe, int width, int height, AssetManager assets) {
         this.guiNode = guiNode;
         this.universe = universe;
@@ -66,7 +68,7 @@ public class HUD {
         this.height = height;
         init();
     }
-
+    
     private void init() {
         //health window
         health = new HealthWindow(assets);
@@ -107,20 +109,25 @@ public class HUD {
         tradeWindow.setX((width / 2) - tradeWindow.getWidth() / 2);
         tradeWindow.setY((height / 2) - tradeWindow.getHeight() / 2);
         windows.add(tradeWindow);
+        //star map window
+        starMapWindow = new StarMapWindow(assets);
+        starMapWindow.setX((width / 2) - starMapWindow.getWidth() / 2);
+        starMapWindow.setY((height / 2) - starMapWindow.getHeight() / 2);
+        windows.add(starMapWindow);
     }
-
+    
     public void add() {
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).add(guiNode);
         }
     }
-
+    
     public void remove() {
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).remove(guiNode);
         }
     }
-
+    
     public void periodicUpdate(float tpf) {
         try {
             //special update on simple windows
@@ -131,6 +138,7 @@ public class HUD {
             cargoWindow.update(getUniverse().getPlayerShip());
             propertyWindow.update(getUniverse().getPlayerShip());
             tradeWindow.update(getUniverse().getPlayerShip());
+            starMapWindow.updateMap(getUniverse());
             //periodic update on other windows
             for (int a = 0; a < windows.size(); a++) {
                 windows.get(a).periodicUpdate();
@@ -139,13 +147,13 @@ public class HUD {
             e.printStackTrace();
         }
     }
-
+    
     public void render(AssetManager assets) {
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).render(null);
         }
     }
-
+    
     public void handleMouseAction(GameState state, String name, boolean mousePressed, Vector3f mouseLoc) {
         //check focus changes
         checkFocusChanges((int) mouseLoc.x, (int) mouseLoc.y);
@@ -162,7 +170,7 @@ public class HUD {
             }
         }
     }
-
+    
     public boolean handleKeyAction(GameState state, String name, boolean keyPressed) {
         for (int a = 0; a < windows.size(); a++) {
             if (windows.get(a).isFocused() && windows.get(a).isVisible()) {
@@ -218,23 +226,23 @@ public class HUD {
             windows.addAll(Arrays.asList(arr));
         }
     }
-
+    
     public Universe getUniverse() {
         return universe;
     }
-
+    
     public void setUniverse(Universe universe) {
         this.universe = universe;
     }
-
+    
     public void toggleSensorWindow() {
         overview.setVisible(!overview.isVisible());
     }
-
+    
     public void toggleEquipmentWindow() {
         equipment.setVisible(!equipment.isVisible());
     }
-
+    
     public void toggleCargoWindow() {
         cargoWindow.setVisible(!cargoWindow.isVisible());
     }
@@ -245,5 +253,9 @@ public class HUD {
     
     public void toggleTradeWindow() {
         tradeWindow.setVisible(!tradeWindow.isVisible());
+    }
+    
+    public void toggleStarMapWindow() {
+        starMapWindow.setVisible(!starMapWindow.isVisible());
     }
 }

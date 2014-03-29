@@ -229,6 +229,8 @@ public class Core {
         //arrow keys
         input.addMapping("KEY_UP", new KeyTrigger(KeyInput.KEY_UP));
         input.addMapping("KEY_DOWN", new KeyTrigger(KeyInput.KEY_DOWN));
+        input.addMapping("KEY_LEFT", new KeyTrigger(KeyInput.KEY_LEFT));
+        input.addMapping("KEY_RIGHT", new KeyTrigger(KeyInput.KEY_RIGHT));
         //function keys dedicated to engine control
         input.addMapping("Normal", new KeyTrigger(KeyInput.KEY_F1));
         input.addMapping("Cruise", new KeyTrigger(KeyInput.KEY_F2));
@@ -253,10 +255,9 @@ public class Core {
             "KEY_K", "KEY_L", "KEY_M", "KEY_N", "KEY_O", "KEY_P", "KEY_R",
             "KEY_T", "KEY_U", "KEY_V", "KEY_X", "KEY_Y", "KEY_Z",
             "KEY_W", "KEY_A", "KEY_S", "KEY_D", "KEY_SPACE", "KEY_RETURN",
-            "KEY_Q", "KEY_E", "KEY_UP", "KEY_DOWN", "KEY_BACKSPACE",
-            "Normal", "Cruise",
-            "Newton", "QuickSave", "QuickLoad",
-            "KEY_END", "KEY_HOME", "KEY_PGUP", "KEY_PGDN",
+            "KEY_Q", "KEY_E", "KEY_UP", "KEY_DOWN", "KEY_LEFT", "KEY_RIGHT",
+            "KEY_BACKSPACE", "Normal", "Cruise", "Newton", "QuickSave",
+            "QuickLoad", "KEY_END", "KEY_HOME", "KEY_PGUP", "KEY_PGDN",
             "KEY_F1"});
     }
     private ActionListener actionListener = new ActionListener() {
@@ -302,6 +303,10 @@ public class Core {
                 if (name.equals("KEY_4")) {
                     //toggle property window
                     hud.togglePropertyWindow();
+                }
+                if (name.equals("KEY_5")) {
+                    //toggle property window
+                    hud.toggleStarMapWindow();
                 }
             }
             if (!universe.getPlayerShip().isDocked()) {
@@ -381,7 +386,7 @@ public class Core {
             } else {
                 //docked only windows
                 if (keyPressed) {
-                    if (name.equals("KEY_5")) {
+                    if (name.equals("KEY_6")) {
                         //toggle trade window
                         hud.toggleTradeWindow();
                     }

@@ -212,4 +212,12 @@ public class Jumphole extends Planet {
         //see if anything can jump through
         checkForJumpers();
     }
+    
+    public String getOut() {
+        return out;
+    }
+    
+    public Jumphole getOutGate() {
+        return outGate;
+    }
 }
