@@ -78,8 +78,8 @@ public class SolarSystem implements Entity, Serializable {
         this.thisSystem = thisSystem;
         //store location
         x = Float.parseFloat(thisSystem.getValue("x"));
-        y = Float.parseFloat(thisSystem.getValue("x"));
-        z = Float.parseFloat(thisSystem.getValue("x"));
+        y = Float.parseFloat(thisSystem.getValue("y"));
+        z = Float.parseFloat(thisSystem.getValue("z"));
     }
 
     public final void initSystem(AssetManager assets) {
