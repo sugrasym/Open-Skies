@@ -108,4 +108,12 @@ public class Universe implements Serializable {
     public ArrayList<Entity> getPlayerProperty() {
         return playerProperty;
     }
+
+    public AssetManager getAssets() {
+        return assets;
+    }
+    
+    public void setAssets(AssetManager assets) {
+        this.assets = assets;
+    }
 }

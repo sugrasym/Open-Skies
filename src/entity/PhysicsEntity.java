@@ -82,6 +82,7 @@ public class PhysicsEntity implements Entity, Serializable {
         //called only when the player is not in the same system
     }
 
+    @Override
     public void construct(AssetManager assets) {
         //create the mesh and material
         Box b = new Box(Vector3f.ZERO, 1, 1, 1);
@@ -97,6 +98,7 @@ public class PhysicsEntity implements Entity, Serializable {
         spatial.addControl(physics);
     }
 
+    @Override
     public void deconstruct() {
         //TODO
     }
@@ -108,6 +110,7 @@ public class PhysicsEntity implements Entity, Serializable {
      * For out of system calls the object just needs to be alive or dying and in
      * the entity list the game engine updates.
      */
+    @Override
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         node.attachChild(spatial);
         physics.getPhysicsSpace().add(spatial);
@@ -116,6 +119,7 @@ public class PhysicsEntity implements Entity, Serializable {
         this.physics.setPhysicsRotation(rotation.clone());
     }
 
+    @Override
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         setVelocity(this.physics.getLinearVelocity().clone());
         location = this.physics.getPhysicsLocation().clone();
@@ -127,26 +131,32 @@ public class PhysicsEntity implements Entity, Serializable {
     /*
      *More state information
      */
+    @Override
     public State getState() {
         return state;
     }
 
+    @Override
     public void setState(State state) {
         this.state = state;
     }
 
+    @Override
     public Vector3f getLocation() {
         return location.clone();
     }
 
+    @Override
     public void setLocation(Vector3f loc) {
         location = loc.clone();
     }
 
+    @Override
     public Quaternion getRotation() {
         return rotation.clone();
     }
 
+    @Override
     public void setRotation(Quaternion rot) {
         rotation = rot.clone();
     }
@@ -195,6 +205,7 @@ public class PhysicsEntity implements Entity, Serializable {
         return physics.getPhysicsRotation();
     }
 
+    @Override
     public Vector3f getPhysicsLocation() {
         if (physics != null) {
             return physics.getPhysicsLocation();

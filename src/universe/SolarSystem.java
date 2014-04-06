@@ -63,6 +63,9 @@ public class SolarSystem implements Entity, Serializable {
     private Parser info;
     private Term thisSystem;
     private boolean hasGraphics = true;
+    private transient Node rootNode;
+    private transient BulletAppState physics;
+    private transient PlanetAppState planetAppState;
     //lists
     private final ArrayList<Entity> stationList = new ArrayList<>();
     private final ArrayList<Entity> shipList = new ArrayList<>();
@@ -268,7 +271,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return star;
     }
-    
+
     private Jumphole makeJumphole(AssetManager assets, Term jumpholeTerm) {
         Jumphole jumphole = null;
         {
@@ -369,6 +372,16 @@ public class SolarSystem implements Entity, Serializable {
         if (entity instanceof Celestial) {
             Celestial tmp = (Celestial) entity;
             tmp.setCurrentSystem(this);
+            /*
+             * If this is the system the player is in then graphics need to be
+             * constructed and added to the scene.
+             */
+            if (universe.getPlayerShip() != null) {
+                if (this == universe.getPlayerShip().getCurrentSystem()) {
+                    tmp.construct(universe);
+                    tmp.attach(rootNode, physics, planetAppState);
+                }
+            }
         }
         //check to see if this is player property
         if (universe.getPlayerProperty().contains(entity)) {
@@ -388,10 +401,9 @@ public class SolarSystem implements Entity, Serializable {
             stationList.add(entity);
         } else if (entity instanceof Ship) {
             shipList.add(entity);
-        } else if(entity instanceof Jumphole) {
+        } else if (entity instanceof Jumphole) {
             jumpholeList.add(entity);
-        } 
-        else if (entity instanceof Planet) {
+        } else if (entity instanceof Planet) {
             planetList.add(entity);
         }
     }
@@ -400,6 +412,16 @@ public class SolarSystem implements Entity, Serializable {
         if (entity instanceof Celestial) {
             Celestial tmp = (Celestial) entity;
             tmp.setCurrentSystem(null);
+            if (universe.getPlayerShip() != null) {
+                /*
+                 * If this entity is in the same system as the player, we need
+                 * to remove it from the scene.
+                 */
+                if (this == universe.getPlayerShip().getCurrentSystem()) {
+                    tmp.detach(rootNode, physics, planetAppState);
+                }
+                tmp.deconstruct();
+            }
         }
         //remove from lists
         celestials.remove(entity);
@@ -492,6 +514,10 @@ public class SolarSystem implements Entity, Serializable {
             celestials.get(a).attach(node, physics, planetAppState);
         }
         node.attachChild(skybox);
+        //store references to add future objects
+        this.physics = physics;
+        this.planetAppState = planetAppState;
+        rootNode = node;
     }
 
     @Override
@@ -549,7 +575,7 @@ public class SolarSystem implements Entity, Serializable {
     public ArrayList<Entity> getPlanetList() {
         return planetList;
     }
-    
+
     public ArrayList<Entity> getJumpholeList() {
         return jumpholeList;
     }
@@ -557,7 +583,7 @@ public class SolarSystem implements Entity, Serializable {
     public boolean hasGraphics() {
         return hasGraphics;
     }
-    
+
     public void forceGraphics() {
         hasGraphics = true;
     }

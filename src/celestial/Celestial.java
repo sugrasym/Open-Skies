@@ -100,4 +100,8 @@ public class Celestial extends PhysicsEntity implements Serializable {
             throw new UnsupportedOperationException("Error: " + getName() + " is in an undefined state.");
         }
     }
+
+    public void construct(Universe universe) {
+        construct(universe.getAssets());
+    }
 }

@@ -541,6 +541,8 @@ public class Core {
             if (hud != null) {
                 hud.setUniverse(universe);
             }
+            //restore assets
+            universe.setAssets(assets);
             //go
             state = GameState.IN_SPACE;
         } catch (Exception e) {
