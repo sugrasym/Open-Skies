@@ -4,14 +4,14 @@
 name=Ka Ka Ka
 type=cannon
 #shell info
-shieldDamage=35
-hullDamage=40
+shieldDamage=750
+hullDamage=400
 range=500
-speed=100
+speed=300
 mass=0
 refire=0.35
 #graphics info
-size=1
+size=0.5
 startColor=0,1,0,1
 endColor=0,0,1,0.1
 pVel=1,2,1

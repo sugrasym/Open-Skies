@@ -19,6 +19,7 @@
  */
 package celestial;
 
+import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.bullet.collision.shapes.SphereCollisionShape;
@@ -28,8 +29,6 @@ import com.jme3.effect.ParticleMesh;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
-import com.jme3.scene.Geometry;
-import com.jme3.scene.shape.Box;
 import universe.Universe;
 
 /**
@@ -58,6 +57,8 @@ public class Projectile extends Celestial {
     private Vector3f pVel;
     //lifetime counter
     private float diff = 0;
+    //who fired?
+    private Ship host;
 
     public Projectile(Universe universe, String name) {
         super(0.00000000001f, universe); //mass cannot be 0 or it is a static spatial in bullet physics
@@ -91,6 +92,7 @@ public class Projectile extends Celestial {
         //setup start color
         emitter.setStartColor(startColor);
         emitter.setEndColor(endColor);
+        emitter.emitAllParticles();
         //store as spatial
         spatial = emitter;
     }
@@ -100,15 +102,15 @@ public class Projectile extends Celestial {
         SphereCollisionShape sphereShape = new SphereCollisionShape(size);
         //setup dynamic physics
         physics = new RigidBodyControl(sphereShape, getMass());
-        //projectiles don't actually collide with things
-        physics.setCollisionGroup(PhysicsCollisionObject.COLLISION_GROUP_NONE);
-        physics.setCollideWithGroups(PhysicsCollisionObject.COLLISION_GROUP_NONE);
         //keep it from going to sleep
         physics.setSleepingThresholds(0, 0);
         physics.setLinearDamping(0);
         physics.setAngularDamping(0);
+        //store name
+        nameControl.setParent(this);
         //add physics to mesh
         spatial.addControl(physics);
+        spatial.addControl(nameControl);
     }
 
     /*
@@ -251,5 +253,13 @@ public class Projectile extends Celestial {
 
     public void setpVel(Vector3f pVel) {
         this.pVel = pVel;
+    }
+
+    public Ship getHost() {
+        return host;
+    }
+
+    public void setHost(Ship host) {
+        this.host = host;
     }
 }

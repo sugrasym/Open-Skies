@@ -172,6 +172,8 @@ public class Weapon extends Equipment {
             pro.setLocation(loc);
             pro.setRotation(rot);
             pro.setVelocity(vel);
+            //store host
+            pro.setHost(host);
             //put projectile in system
             host.getCurrentSystem().putEntityInSystem(pro);
         }

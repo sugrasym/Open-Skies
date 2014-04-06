@@ -1,17 +1,17 @@
 /*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*
  * Listens for and handles collisions between spatials. Contains all custom
@@ -20,9 +20,11 @@
 package engine;
 
 import celestial.Planet;
+import celestial.Projectile;
 import celestial.Ship.Ship;
 import com.jme3.bullet.collision.PhysicsCollisionEvent;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
+import entity.Entity;
 import entity.PhysicsEntity.PhysicsNameControl;
 
 /**
@@ -51,7 +53,27 @@ public class CollisionListener implements PhysicsCollisionListener {
                 if (objA.getParent() instanceof Ship) {
                     handlePlanetCollision((Ship) objA.getParent());
                 }
+            } else if (objA.getParent() instanceof Projectile) {
+                if (objB.getParent() instanceof Ship) {
+                    handleProjectileCollision((Ship) objB.getParent(), (Projectile) objA.getParent());
+                }
+            } else if (objB.getParent() instanceof Projectile) {
+                if (objA.getParent() instanceof Ship) {
+                    handleProjectileCollision((Ship) objA.getParent(), (Projectile) objB.getParent());
+                }
             }
+        }
+    }
+
+    private void handleProjectileCollision(Ship a, Projectile pro) {
+        if (a != pro.getHost()) {
+            //get damage
+            float shieldDamage = pro.getShieldDamage();
+            float hullDamage = pro.getHullDamage();
+            //apply damage
+            a.applyDamage(shieldDamage, hullDamage);
+            //remove projectile
+            pro.setState(Entity.State.DYING);
         }
     }
 
