@@ -31,7 +31,7 @@ import lib.astral.Parser;
  * @author Nathan Wiehoff
  */
 public class Weapon extends Equipment {
-    
+
     int width;
     int height;
     //weapon properties
@@ -49,12 +49,12 @@ public class Weapon extends Equipment {
     private float variation = 0.75f;
     private String texture = "Effects/Trail/point.png";
     private float emitterRate = 10;
-    
+
     public Weapon(String name) {
         super(name);
         init();
     }
-    
+
     private void init() {
         //get weapon stuff now
         Parser parse = new Parser("WEAPONS.txt");
@@ -78,11 +78,50 @@ public class Weapon extends Equipment {
             setRange(Float.parseFloat(relevant.getValue("range")));
             setSpeed(Float.parseFloat(relevant.getValue("speed")));
             setCoolDown(Float.parseFloat(relevant.getValue("refire")));
+            setSize(Float.parseFloat(relevant.getValue("size")));
+            {
+                //start color
+                String rawStart = relevant.getValue("startColor");
+                String[] arr = rawStart.split(",");
+                float r = Float.parseFloat(arr[0]);
+                float g = Float.parseFloat(arr[1]);
+                float b = Float.parseFloat(arr[2]);
+                float a = Float.parseFloat(arr[3]);
+                ColorRGBA col = new ColorRGBA(r, g, b, a);
+                startColor = col;
+            }
+            {
+                //end color
+                String rawStart = relevant.getValue("endColor");
+                String[] arr = rawStart.split(",");
+                float r = Float.parseFloat(arr[0]);
+                float g = Float.parseFloat(arr[1]);
+                float b = Float.parseFloat(arr[2]);
+                float a = Float.parseFloat(arr[3]);
+                ColorRGBA col = new ColorRGBA(r, g, b, a);
+                endColor = col;
+            }
+            {
+                //pVel : The velocity of the particles in their local space
+                String rawVel = relevant.getValue("pVel");
+                String[] arr = rawVel.split(",");
+                float x = Float.parseFloat(arr[0]);
+                float y = Float.parseFloat(arr[1]);
+                float z = Float.parseFloat(arr[2]);
+                Vector3f v = new Vector3f(x, y, z);
+                pVel = v;
+            }
+            setHighLife(Float.parseFloat(relevant.getValue("highLife")));
+            setLowLife(Float.parseFloat(relevant.getValue("lowLife")));
+            setNumParticles(Integer.parseInt(relevant.getValue("numParticles")));
+            setVariation(Float.parseFloat(relevant.getValue("variation")));
+            setTexture(relevant.getValue("texture"));
+            setEmitterRate(Float.parseFloat(relevant.getValue("emitterRate")));
         } else {
             System.out.println("Error: The item " + getName() + " does not exist in WEAPONS.txt");
         }
     }
-    
+
     @Override
     public void activate(Entity target) {
         if (getCoolDown() <= getActivationTimer() && enabled) {
@@ -95,7 +134,7 @@ public class Weapon extends Equipment {
             }
         }
     }
-    
+
     private void fire(Entity target) {
         /*
          * This is the one called in system. It uses the physics system and is
@@ -137,34 +176,114 @@ public class Weapon extends Equipment {
             host.getCurrentSystem().putEntityInSystem(pro);
         }
     }
-    
+
     private void oosFire(Entity target) {
         if (enabled) {
             //TODO: DEAL DAMAGE TO TARGET DIRECTLY
         }
     }
-    
+
     public float getShieldDamage() {
         return shieldDamage;
     }
-    
+
     public void setShieldDamage(float shieldDamage) {
         this.shieldDamage = shieldDamage;
     }
-    
+
     public float getHullDamage() {
         return hullDamage;
     }
-    
+
     public void setHullDamage(float hullDamage) {
         this.hullDamage = hullDamage;
     }
-    
+
     public float getSpeed() {
         return speed;
     }
-    
+
     public void setSpeed(float speed) {
         this.speed = speed;
+    }
+
+    public float getSize() {
+        return size;
+    }
+
+    public void setSize(float size) {
+        this.size = size;
+    }
+
+    public ColorRGBA getStartColor() {
+        return startColor;
+    }
+
+    public void setStartColor(ColorRGBA startColor) {
+        this.startColor = startColor;
+    }
+
+    public ColorRGBA getEndColor() {
+        return endColor;
+    }
+
+    public void setEndColor(ColorRGBA endColor) {
+        this.endColor = endColor;
+    }
+
+    public Vector3f getpVel() {
+        return pVel;
+    }
+
+    public void setpVel(Vector3f pVel) {
+        this.pVel = pVel;
+    }
+
+    public float getHighLife() {
+        return highLife;
+    }
+
+    public void setHighLife(float highLife) {
+        this.highLife = highLife;
+    }
+
+    public float getLowLife() {
+        return lowLife;
+    }
+
+    public void setLowLife(float lowLife) {
+        this.lowLife = lowLife;
+    }
+
+    public int getNumParticles() {
+        return numParticles;
+    }
+
+    public void setNumParticles(int numParticles) {
+        this.numParticles = numParticles;
+    }
+
+    public float getVariation() {
+        return variation;
+    }
+
+    public void setVariation(float variation) {
+        this.variation = variation;
+    }
+
+    public String getTexture() {
+        return texture;
+    }
+
+    public void setTexture(String texture) {
+        this.texture = texture;
+    }
+
+    public float getEmitterRate() {
+        return emitterRate;
+    }
+
+    public void setEmitterRate(float emitterRate) {
+        this.emitterRate = emitterRate;
     }
 }

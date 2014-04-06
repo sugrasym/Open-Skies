@@ -10,4 +10,15 @@ range=500
 speed=100
 mass=0
 refire=0.35
+#graphics info
+size=1
+startColor=0,1,0,1
+endColor=0,0,1,0.1
+pVel=1,2,1
+highLife=1
+lowLife=0.1
+numParticles=10
+variation=0.5
+texture=Effects/Trail/point.png
+emitterRate=10
 [/Weapon]
