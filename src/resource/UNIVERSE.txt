@@ -6,7 +6,7 @@ x=16685
 y=0
 z=-10960
 cash=50000
-cargo=Jumpdrive~1
+cargo=Ka Ka Ka~2
 [/NewGame]
 
 [Station]
