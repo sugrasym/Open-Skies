@@ -19,10 +19,16 @@
  */
 package celestial;
 
+import com.jme3.asset.AssetManager;
+import com.jme3.bullet.collision.PhysicsCollisionObject;
+import com.jme3.bullet.collision.shapes.SphereCollisionShape;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.effect.ParticleEmitter;
-import com.jme3.math.Quaternion;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
-import lib.astral.Parser.Term;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.shape.Box;
 import universe.Universe;
 
 /**
@@ -46,6 +52,35 @@ public class Projectile extends Celestial {
         setName(name);
     }
 
+    @Override
+    public void construct(AssetManager assets) {
+        constructProjectile(assets);
+        constructPhysics();
+    }
+
+    private void constructProjectile(AssetManager assets) {
+        //create the mesh and material
+        Box b = new Box(Vector3f.ZERO, 1, 1, 1);
+        spatial = new Geometry("Box", b);
+        mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
+        mat.setColor("Color", ColorRGBA.Blue);
+        spatial.setMaterial(mat);
+    }
+
+    private void constructPhysics() {
+        //initializes the physics as a sphere
+        SphereCollisionShape sphereShape = new SphereCollisionShape(1.0f);
+        //setup dynamic physics
+        physics = new RigidBodyControl(sphereShape, getMass());
+        //projectiles don't actually collide with things
+        physics.setCollisionGroup(PhysicsCollisionObject.COLLISION_GROUP_NONE);
+        physics.setCollideWithGroups(PhysicsCollisionObject.COLLISION_GROUP_NONE);
+        //keep it from going to sleep
+        physics.setSleepingThresholds(0, 0);
+        //add physics to mesh
+        spatial.addControl(physics);
+    }
+
     /*
      * OOS, weapons always hit and no projectile is generated. This means that
      * the only one we have to worry about is alive().
@@ -55,7 +90,7 @@ public class Projectile extends Celestial {
         //increment lifespan
         diff += getVelocity().length() * tpf;
         //has the projectile exceeded its max range?
-        if (diff >= range) {
+        if (diff >= range) {     
             //yep
             setState(State.DYING);
         } else {
