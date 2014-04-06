@@ -6,8 +6,8 @@ type=cannon
 #shell info
 shieldDamage=35
 hullDamage=40
-range=50
-speed=10
-mass=5
+range=500
+speed=100
+mass=0
 refire=0.35
 [/Weapon]

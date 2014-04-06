@@ -103,8 +103,9 @@ public class Weapon extends Equipment {
             Vector3f loc = getSocket().getNode().getWorldTranslation();
             Quaternion rot = getSocket().getNode().getWorldRotation();
             //interpolate velocity
-            Vector3f vel = Vector3f.UNIT_Z.mult(speed);
+            Vector3f vel = Vector3f.UNIT_Z.mult(-(speed));
             rot.multLocal(vel);
+            vel = vel.add(host.getLinearVelocity());
             //store physics
             pro.setLocation(loc);
             pro.setRotation(rot);

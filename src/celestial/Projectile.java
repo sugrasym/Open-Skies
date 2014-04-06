@@ -48,7 +48,7 @@ public class Projectile extends Celestial {
     private float diff = 0;
 
     public Projectile(Universe universe, String name) {
-        super(0, universe);
+        super(0.00000000001f, universe); //mass cannot be 0 or it is a static spatial in bullet physics
         setName(name);
     }
 
@@ -77,6 +77,8 @@ public class Projectile extends Celestial {
         physics.setCollideWithGroups(PhysicsCollisionObject.COLLISION_GROUP_NONE);
         //keep it from going to sleep
         physics.setSleepingThresholds(0, 0);
+        physics.setLinearDamping(0);
+        physics.setAngularDamping(0);
         //add physics to mesh
         spatial.addControl(physics);
     }
