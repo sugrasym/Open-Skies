@@ -19,6 +19,7 @@
 package cargo;
 
 import celestial.Projectile;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import entity.Entity;
@@ -37,6 +38,17 @@ public class Weapon extends Equipment {
     private float shieldDamage;
     private float hullDamage;
     private float speed;
+    //weapon graphics
+    private float size = 1;
+    private ColorRGBA startColor = ColorRGBA.Red;
+    private ColorRGBA endColor = ColorRGBA.Blue;
+    private Vector3f pVel = Vector3f.UNIT_XYZ;
+    private float highLife = 1;
+    private float lowLife = 0.1f;
+    private int numParticles = 10;
+    private float variation = 0.75f;
+    private String texture = "Effects/Trail/point.png";
+    private float emitterRate = 10;
     
     public Weapon(String name) {
         super(name);
@@ -99,6 +111,17 @@ public class Weapon extends Equipment {
             pro.setHullDamage(hullDamage);
             pro.setSpeed(speed);
             pro.setRange(range);
+            //store graphics
+            pro.setSize(size);
+            pro.setHighLife(highLife);
+            pro.setLowLife(lowLife);
+            pro.setNumParticles(numParticles);
+            pro.setVariation(variation);
+            pro.setTexture(texture);
+            pro.setEmitterRate(emitterRate);
+            pro.setStartColor(startColor);
+            pro.setEndColor(endColor);
+            pro.setpVel(pVel);
             //determine world location and rotation
             Vector3f loc = getSocket().getNode().getWorldTranslation();
             Quaternion rot = getSocket().getNode().getWorldRotation();

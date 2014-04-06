@@ -24,6 +24,7 @@ import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.bullet.collision.shapes.SphereCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.effect.ParticleEmitter;
+import com.jme3.effect.ParticleMesh;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
@@ -44,6 +45,17 @@ public class Projectile extends Celestial {
     private float hullDamage;
     private float speed;
     private float range;
+    //graphics
+    private float size;
+    private ColorRGBA startColor;
+    private ColorRGBA endColor;
+    private float highLife;
+    private float lowLife;
+    private int numParticles;
+    private float variation;
+    private String texture;
+    private float emitterRate;
+    private Vector3f pVel;
     //lifetime counter
     private float diff = 0;
 
@@ -59,17 +71,33 @@ public class Projectile extends Celestial {
     }
 
     private void constructProjectile(AssetManager assets) {
-        //create the mesh and material
-        Box b = new Box(Vector3f.ZERO, 1, 1, 1);
-        spatial = new Geometry("Box", b);
-        mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.Blue);
-        spatial.setMaterial(mat);
+        emitter = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, numParticles);
+        Material trailMat = new Material(assets, "Common/MatDefs/Misc/Particle.j3md");
+        trailMat.setTexture("Texture", assets.loadTexture(texture));
+        emitter.setMaterial(trailMat);
+        emitter.setImagesX(1);
+        emitter.setImagesY(1); // 1x1
+        emitter.setStartSize(size);
+        emitter.setEndSize(0);
+        emitter.setGravity(0f, 0f, 0f);
+        emitter.setLowLife(highLife);
+        emitter.setHighLife(lowLife);
+        emitter.getParticleInfluencer().setVelocityVariation(variation);
+        emitter.getParticleInfluencer().setInitialVelocity(pVel);
+        emitter.setInWorldSpace(false);
+        emitter.setSelectRandomImage(true);
+        emitter.setEnabled(true);
+        emitter.setParticlesPerSec(emitterRate);
+        //setup start color
+        emitter.setStartColor(startColor);
+        emitter.setEndColor(endColor);
+        //store as spatial
+        spatial = emitter;
     }
 
     private void constructPhysics() {
         //initializes the physics as a sphere
-        SphereCollisionShape sphereShape = new SphereCollisionShape(1.0f);
+        SphereCollisionShape sphereShape = new SphereCollisionShape(size);
         //setup dynamic physics
         physics = new RigidBodyControl(sphereShape, getMass());
         //projectiles don't actually collide with things
@@ -135,5 +163,93 @@ public class Projectile extends Celestial {
 
     public void setRange(float range) {
         this.range = range;
+    }
+
+    public ColorRGBA getStartColor() {
+        return startColor;
+    }
+
+    public void setStartColor(ColorRGBA startColor) {
+        this.startColor = startColor;
+    }
+
+    public ColorRGBA getEndColor() {
+        return endColor;
+    }
+
+    public void setEndColor(ColorRGBA endColor) {
+        this.endColor = endColor;
+    }
+
+    public float getHighLife() {
+        return highLife;
+    }
+
+    public void setHighLife(float highLife) {
+        this.highLife = highLife;
+    }
+
+    public float getLowLife() {
+        return lowLife;
+    }
+
+    public void setLowLife(float lowLife) {
+        this.lowLife = lowLife;
+    }
+
+    public int getNumParticles() {
+        return numParticles;
+    }
+
+    public void setNumParticles(int numParticles) {
+        this.numParticles = numParticles;
+    }
+
+    public float getVariation() {
+        return variation;
+    }
+
+    public void setVariation(float variation) {
+        this.variation = variation;
+    }
+
+    public String getTexture() {
+        return texture;
+    }
+
+    public void setTexture(String texture) {
+        this.texture = texture;
+    }
+
+    public float getDiff() {
+        return diff;
+    }
+
+    public void setDiff(float diff) {
+        this.diff = diff;
+    }
+
+    public float getSize() {
+        return size;
+    }
+
+    public void setSize(float size) {
+        this.size = size;
+    }
+
+    public float getEmitterRate() {
+        return emitterRate;
+    }
+
+    public void setEmitterRate(float emitterRate) {
+        this.emitterRate = emitterRate;
+    }
+
+    public Vector3f getpVel() {
+        return pVel;
+    }
+
+    public void setpVel(Vector3f pVel) {
+        this.pVel = pVel;
     }
 }
