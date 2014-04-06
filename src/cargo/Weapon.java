@@ -30,19 +30,19 @@ import lib.astral.Parser;
  * @author Nathan Wiehoff
  */
 public class Weapon extends Equipment {
-
+    
     int width;
     int height;
     //weapon properties
     private float shieldDamage;
     private float hullDamage;
     private float speed;
-
+    
     public Weapon(String name) {
         super(name);
         init();
     }
-
+    
     private void init() {
         //get weapon stuff now
         Parser parse = new Parser("WEAPONS.txt");
@@ -70,7 +70,7 @@ public class Weapon extends Equipment {
             System.out.println("Error: The item " + getName() + " does not exist in WEAPONS.txt");
         }
     }
-
+    
     @Override
     public void activate(Entity target) {
         if (getCoolDown() <= getActivationTimer() && enabled) {
@@ -83,7 +83,7 @@ public class Weapon extends Equipment {
             }
         }
     }
-
+    
     private void fire(Entity target) {
         /*
          * This is the one called in system. It uses the physics system and is
@@ -98,44 +98,48 @@ public class Weapon extends Equipment {
             pro.setShieldDamage(shieldDamage);
             pro.setHullDamage(hullDamage);
             pro.setSpeed(speed);
-            pro.setRange(speed);
+            pro.setRange(range);
             //determine world location and rotation
             Vector3f loc = getSocket().getNode().getWorldTranslation();
             Quaternion rot = getSocket().getNode().getWorldRotation();
             //interpolate velocity
-            
+            Vector3f vel = Vector3f.UNIT_Z.mult(speed);
+            rot.multLocal(vel);
             //store physics
             pro.setLocation(loc);
             pro.setRotation(rot);
+            pro.setVelocity(vel);
+            //put projectile in system
+            host.getCurrentSystem().putEntityInSystem(pro);
         }
     }
-
+    
     private void oosFire(Entity target) {
         if (enabled) {
             //TODO: DEAL DAMAGE TO TARGET DIRECTLY
         }
     }
-
+    
     public float getShieldDamage() {
         return shieldDamage;
     }
-
+    
     public void setShieldDamage(float shieldDamage) {
         this.shieldDamage = shieldDamage;
     }
-
+    
     public float getHullDamage() {
         return hullDamage;
     }
-
+    
     public void setHullDamage(float hullDamage) {
         this.hullDamage = hullDamage;
     }
-
+    
     public float getSpeed() {
         return speed;
     }
-
+    
     public void setSpeed(float speed) {
         this.speed = speed;
     }

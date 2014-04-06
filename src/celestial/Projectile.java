@@ -44,23 +44,6 @@ public class Projectile extends Celestial {
     public Projectile(Universe universe, String name) {
         super(0, universe);
         setName(name);
-        //initStats(type);
-        deploy();
-    }
-
-    /*private void initStats(Term type) {
-        //store damage
-        shieldDamage = Float.parseFloat(type.getValue("shieldDamage"));
-        hullDamage = Float.parseFloat(type.getValue("hullDamage"));
-        //store lifetime
-        speed = Float.parseFloat(type.getValue("speed"));
-        range = Float.parseFloat(type.getValue("range"));
-    }*/
-
-    /*
-     * This method is called to actually deploy the projectile into the scene
-     */
-    private void deploy() {
     }
 
     /*

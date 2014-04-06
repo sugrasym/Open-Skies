@@ -34,7 +34,7 @@ public class Equipment extends Item implements Serializable {
     protected double coolDown;
     protected Ship host;
     protected Hardpoint socket;
-    protected double range;
+    protected float range;
 
     public Equipment(String name) {
         super(name);
@@ -113,11 +113,11 @@ public class Equipment extends Item implements Serializable {
         this.enabled = enabled;
     }
 
-    public double getRange() {
+    public float getRange() {
         return range;
     }
 
-    public void setRange(double range) {
+    public void setRange(float range) {
         this.range = range;
     }
 
