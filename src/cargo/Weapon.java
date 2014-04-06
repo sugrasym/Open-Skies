@@ -162,7 +162,7 @@ public class Weapon extends Equipment {
             pro.setEndColor(endColor);
             pro.setpVel(pVel);
             //determine world location and rotation
-            Vector3f loc = getSocket().getNode().getWorldTranslation();
+            Vector3f loc = getSocket().getNode().getWorldTranslation().add(host.getLinearVelocity().mult(tpf));
             Quaternion rot = getSocket().getNode().getWorldRotation();
             //interpolate velocity
             Vector3f vel = Vector3f.UNIT_Z.mult(-(speed));

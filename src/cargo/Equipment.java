@@ -35,6 +35,7 @@ public class Equipment extends Item implements Serializable {
     protected Ship host;
     protected Hardpoint socket;
     protected float range;
+    protected float tpf;
 
     public Equipment(String name) {
         super(name);
@@ -46,6 +47,7 @@ public class Equipment extends Item implements Serializable {
         if (getActivationTimer() <= getCoolDown()) {
             setActivationTimer(getActivationTimer() + tpf);
         }
+        this.tpf = (float) tpf;
     }
 
     public void activate(Entity target) {

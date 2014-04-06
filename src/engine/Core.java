@@ -320,7 +320,7 @@ public class Core {
                 }
                 //fire
                 if (name.equals("KEY_SPACE")) {
-                    universe.getPlayerShip().fireActiveModules();
+                    universe.getPlayerShip().setFiring(keyPressed);
                 }
                 //all stop
                 if (name.equals("KEY_HOME")) {

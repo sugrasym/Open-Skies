@@ -123,6 +123,8 @@ public class Ship extends Celestial {
     private float pitch = 0;
     private float yaw = 0;
     private float roll = 0;
+    //weapons
+    private boolean firing = false;
     //central node
     transient Node center;
     //faction
@@ -246,7 +248,7 @@ public class Ship extends Celestial {
             //initialize node
             hardpoints.get(a).initNode();
             //debug
-            hardpoints.get(a).showDebugHardpoint(assets);
+            //hardpoints.get(a).showDebugHardpoint(assets);
             //construct
             hardpoints.get(a).construct(assets);
             //store node with spatial
@@ -632,6 +634,11 @@ public class Ship extends Celestial {
             fuel = maxFuel;
             //charge shields
             shield = maxShield;
+        } else {
+            //fire weapons if needed
+            if (firing) {
+                fireActiveModules();
+            }
         }
     }
 
@@ -1610,5 +1617,16 @@ public class Ship extends Celestial {
 
     protected void dropJumpEffect() {
         //TODO
+    }
+
+    /*
+     * For automatically firing shots
+     */
+    public boolean isFiring() {
+        return firing;
+    }
+
+    public void setFiring(boolean firing) {
+        this.firing = firing;
     }
 }
