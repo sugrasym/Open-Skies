@@ -2,7 +2,7 @@
 name=Default
 ship=Sparrow
 system=Kappa 0ET2-HY5D
-x=16685
+x=167800
 y=0
 z=-10960
 cash=50000
