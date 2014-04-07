@@ -31,6 +31,94 @@ faction=Player
 install=Ka Ka Ka/Ka Ka Ka
 [/Ship]
 
+[Ship]
+name=Combat Drone
+ship=Sparrow
+system=Kappa 0ET2-HY5D
+x=166744
+y=100
+z=-10963
+faction=Player
+install=Ka Ka Ka/Ka Ka Ka
+[/Ship]
+
+[Ship]
+name=Combat Drone
+ship=Sparrow
+system=Kappa 0ET2-HY5D
+x=166644
+y=-100
+z=-10963
+faction=Player
+install=Ka Ka Ka/Ka Ka Ka
+[/Ship]
+
+[Ship]
+name=Combat Drone
+ship=Sparrow
+system=Kappa 0ET2-HY5D
+x=166544
+y=200
+z=-10963
+faction=Player
+install=Ka Ka Ka/Ka Ka Ka
+[/Ship]
+
+[Ship]
+name=Combat Drone
+ship=Sparrow
+system=Kappa 0ET2-HY5D
+x=166444
+y=-200
+z=-10963
+faction=Player
+install=Ka Ka Ka/Ka Ka Ka
+[/Ship]
+
+[Ship]
+name=Combat Drone
+ship=Sparrow
+system=Kappa 0ET2-HY5D
+x=166344
+y=300
+z=-10963
+faction=Player
+install=Ka Ka Ka/Ka Ka Ka
+[/Ship]
+
+[Ship]
+name=Combat Drone
+ship=Sparrow
+system=Kappa 0ET2-HY5D
+x=166244
+y=-300
+z=-10963
+faction=Player
+install=Ka Ka Ka/Ka Ka Ka
+[/Ship]
+
+[Ship]
+name=Combat Drone
+ship=Sparrow
+system=Kappa 0ET2-HY5D
+x=166144
+y=400
+z=-10963
+faction=Player
+install=Ka Ka Ka/Ka Ka Ka
+[/Ship]
+
+[Ship]
+name=Combat Drone
+ship=Sparrow
+system=Kappa 0ET2-HY5D
+x=166044
+y=-400
+z=-10963
+faction=Player
+install=Ka Ka Ka/Ka Ka Ka
+[/Ship]
+
 [System]
 name=Kappa 0ET2-HY5D
 x=644

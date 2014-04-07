@@ -137,7 +137,7 @@ public class Ship extends Celestial {
     private Ship target;
     //behavior and autopilot
     protected Autopilot autopilot = Autopilot.NONE;
-    protected Behavior behavior = Behavior.NONE;
+    protected Behavior behavior = Behavior.TEST;
     //behavior targets
     protected Celestial flyToTarget;
     protected Station homeBase;
@@ -651,6 +651,13 @@ public class Ship extends Celestial {
     }
 
     protected void behaviorTest() {
+        if (autopilot == Autopilot.NONE) {
+            //target nearest ship
+            targetNearestShip();
+            cmdFightTarget(target);
+        } else {
+            //fighting!
+        }
     }
 
     /*
@@ -1697,6 +1704,41 @@ public class Ship extends Celestial {
         } else {
             return false;
         }
+    }
+
+    public void targetNearestShip() {
+        //get a list of all nearby ships
+        ArrayList<Entity> nearby = getCurrentSystem().getShipList();
+        ArrayList<Ship> ships = new ArrayList<>();
+        for (int a = 0; a < nearby.size(); a++) {
+            if (nearby.get(a) instanceof Ship) {
+                Ship tmp = (Ship) nearby.get(a);
+                if (tmp != this) {
+                    //make sure it is alive
+                    if (tmp.getState() == State.ALIVE) {
+                        //make sure it is in range
+                        if (tmp.getLocation().distance(getLocation()) < getSensor()) {
+                            ships.add(tmp);
+                        }
+                    }
+                }
+            }
+        }
+        //target the nearest one
+        Ship closest = null;
+        for (int a = 0; a < ships.size(); a++) {
+            if (closest == null) {
+                closest = ships.get(a);
+            } else {
+                double distClosest = closest.getLocation().distance(getLocation());
+                double distTest = ships.get(a).getLocation().distance(getLocation());
+                if (distTest < distClosest) {
+                    closest = ships.get(a);
+                }
+            }
+        }
+        //store
+        target = closest;
     }
 
     public ArrayList<Ship> getShipsInSensorRange() {
