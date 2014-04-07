@@ -19,6 +19,7 @@
  */
 package celestial;
 
+import cargo.Hardpoint;
 import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.PhysicsCollisionObject;
@@ -59,6 +60,7 @@ public class Projectile extends Celestial {
     private float diff = 0;
     //who fired?
     private Ship host;
+    private Hardpoint origin;
 
     public Projectile(Universe universe, String name) {
         super(0.00000000001f, universe); //mass cannot be 0 or it is a static spatial in bullet physics
@@ -106,6 +108,9 @@ public class Projectile extends Celestial {
         physics.setSleepingThresholds(0, 0);
         physics.setLinearDamping(0);
         physics.setAngularDamping(0);
+        //start without collission
+        physics.setCollisionGroup(PhysicsCollisionObject.COLLISION_GROUP_NONE);
+        physics.setCollideWithGroups(PhysicsCollisionObject.COLLISION_GROUP_NONE);
         //store name
         nameControl.setParent(this);
         //add physics to mesh
@@ -119,10 +124,21 @@ public class Projectile extends Celestial {
      */
     @Override
     protected void alive() {
+        //check distance from origin
+        double oDist = origin.getNode().getWorldTranslation().distance(getLocation());
+        if (oDist < 1) {
+            //so it can't hit the ship firing it
+            physics.setCollisionGroup(PhysicsCollisionObject.COLLISION_GROUP_NONE);
+            physics.setCollideWithGroups(PhysicsCollisionObject.COLLISION_GROUP_NONE);
+        } else {
+            //so it can hit everything
+            physics.setCollisionGroup(PhysicsCollisionObject.COLLISION_GROUP_01);
+            physics.setCollideWithGroups(PhysicsCollisionObject.COLLISION_GROUP_01);
+        }
         //increment lifespan
         diff += getVelocity().length() * tpf;
         //has the projectile exceeded its max range?
-        if (diff >= range) {     
+        if (diff >= range) {
             //yep
             setState(State.DYING);
         } else {
@@ -261,5 +277,13 @@ public class Projectile extends Celestial {
 
     public void setHost(Ship host) {
         this.host = host;
+    }
+
+    public Hardpoint getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(Hardpoint origin) {
+        this.origin = origin;
     }
 }

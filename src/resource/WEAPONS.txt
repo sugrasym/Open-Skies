@@ -11,10 +11,10 @@ speed=300
 mass=0
 refire=0.35
 #graphics info
-size=0.1
+size=0.5
 startColor=0,1,0,1
 endColor=0,0,1,0.1
-pVel=1,2,1
+pVel=1,4,1
 highLife=1
 lowLife=0.1
 numParticles=10

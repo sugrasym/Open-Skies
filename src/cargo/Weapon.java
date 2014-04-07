@@ -174,6 +174,7 @@ public class Weapon extends Equipment {
             pro.setVelocity(vel);
             //store host
             pro.setHost(host);
+            pro.setOrigin(socket);
             //put projectile in system
             host.getCurrentSystem().putEntityInSystem(pro);
         }
