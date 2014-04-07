@@ -337,7 +337,7 @@ public class Ship extends Celestial {
                         double minRange = getNearWeaponRange();
                         //rotate to face target
                         Vector3f steering = getSteeringData(target.getPhysicsLocation(), Vector3f.UNIT_Y);
-                        boolean aligned = pointNoseAtVector(steering, NAV_ANGLE_TOLERANCE);
+                        boolean aligned = finePointNoseAtVector(steering, NAV_ANGLE_TOLERANCE);
                         //keep at range
                         if (aligned) {
                             if (distance < (minRange / 3)) {
@@ -362,9 +362,13 @@ public class Ship extends Celestial {
                                 Vector3f dv2 = target.getLocation().add(target.getLinearVelocity().mult((float) tpf));
                                 float d2 = dv1.subtract(dv2).length();
                                 dP = d2 - d1;
-                                if (dP + (getAcceleration() * 2) > 0) {
+                                if (dP + (getAcceleration()) > 0) {
                                     throttle = 1;
+                                } else {
+                                    throttle = 0;
                                 }
+                            } else {
+                                throttle = 0;
                             }
                             if (distance < minRange) {
                                 fireActiveGuns(target);
@@ -1633,6 +1637,31 @@ public class Ship extends Celestial {
 
         // RETURN THE DATA
         return steeringData;
+    }
+
+    private boolean finePointNoseAtVector(Vector3f dat, float tolerance) {
+        boolean canAccel = true;
+        //put controls in correct positions to face target
+        if (Math.abs(dat.x) < FastMath.PI * (1 - tolerance)) {
+            pitch = -(dat.x);
+            canAccel = false;
+        } else {
+            pitch = -(dat.x) / 50.0f;
+        }
+        if (Math.abs(dat.y) < FastMath.PI * (1 - tolerance)) {
+            yaw = -(dat.y);
+            canAccel = false;
+        } else {
+            yaw = -(dat.y) / 50.0f;
+        }
+        if (Math.abs(dat.z) > FastMath.PI * tolerance) {
+            roll = (dat.z);
+            //canAccel = false;
+        } else {
+            //roll = (dat.z) / 100.0f;
+            roll = 0;
+        }
+        return canAccel;
     }
 
     private boolean pointNoseAtVector(Vector3f dat, float tolerance) {
