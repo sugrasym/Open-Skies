@@ -323,7 +323,12 @@ public class Ship extends Celestial {
             autopilotDockStageTwo();
         } else if (autopilot == Autopilot.UNDOCK) {
             autopilotUndock();
+        } else if (autopilot == Autopilot.ATTACK_TARGET) {
+            autopilotFightTarget();
         }
+    }
+
+    private void autopilotFightTarget() {
     }
 
     private void autopilotUndock() {
@@ -600,7 +605,12 @@ public class Ship extends Celestial {
             oosAutopilotDockStageTwo();
         } else if (autopilot == Autopilot.UNDOCK) {
             oosAutopilotUndock();
+        } else if (autopilot == Autopilot.ATTACK_TARGET) {
+            oosAutopilotFightTarget();
         }
+    }
+
+    private void oosAutopilotFightTarget() {
     }
 
     private void oosAutopilotAllStop() {
@@ -1390,7 +1400,8 @@ public class Ship extends Celestial {
     }
 
     public void cmdFightTarget(Ship pick) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        target = pick;
+        setAutopilot(Autopilot.ATTACK_TARGET);
     }
 
     public void setFlyToTarget(Celestial pick) {
@@ -1588,6 +1599,31 @@ public class Ship extends Celestial {
     /*
      * Used to find groups of objects
      */
+    public ArrayList<Ship> getShipsInSensorRange() {
+        ArrayList<Ship> ret = new ArrayList<>();
+        {
+            //get ship list
+            ArrayList<Entity> ships = currentSystem.getShipList();
+            for (int a = 0; a < ships.size(); a++) {
+                Ship tmp = (Ship) ships.get(a);
+                if (tmp != this) {
+                    if (tmp.getLocation().distance(getLocation()) < sensor) {
+                        ret.add(tmp);
+                    }
+                }
+            }
+            //get station list
+            ArrayList<Entity> stations = currentSystem.getStationList();
+            for (int a = 0; a < stations.size(); a++) {
+                Station tmp = (Station) stations.get(a);
+                if (tmp.getLocation().distance(getLocation()) < sensor) {
+                    ret.add(tmp);
+                }
+            }
+        }
+        return ret;
+    }
+
     public ArrayList<Station> getDockableStationsInSystem() {
         return getDockableStationsInSystem(currentSystem);
     }

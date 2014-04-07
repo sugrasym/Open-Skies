@@ -792,20 +792,20 @@ public class PropertyWindow extends AstralWindow {
                 cargo.setVisible(true);
                 tmp = selected;
             } else if (command.equals(CMD_ATTACK)) {
-                /*mode = Mode.WAITING_FOR_ATTACK;
-                 ArrayList<Object> choice = new ArrayList<>();
-                 choice.add("--Select Target To Attack--");
-                 choice.add(" ");
-                 ArrayList<Ship> sh = selected.getShipsInSensorRange();
-                 for (int a = 0; a < sh.size(); a++) {
-                 choice.add(sh.get(a));
-                 }
-                 if (sh.size() > 0) {
-                 showInputList(choice);
-                 mode = Mode.WAITING_FOR_ATTACK;
-                 } else {
-                 mode = Mode.NONE;
-                 }*/
+                mode = Mode.WAITING_FOR_ATTACK;
+                ArrayList<Object> choice = new ArrayList<>();
+                choice.add("--Select Target To Attack--");
+                choice.add(" ");
+                ArrayList<Ship> sh = selected.getShipsInSensorRange();
+                for (int a = 0; a < sh.size(); a++) {
+                    choice.add(sh.get(a));
+                }
+                if (sh.size() > 0) {
+                    showInputList(choice);
+                    mode = Mode.WAITING_FOR_ATTACK;
+                } else {
+                    mode = Mode.NONE;
+                }
             } else if (command.equals(CMD_DESTRUCT)) {
                 selected.setState(State.DYING);
             } else if (command.equals(CMD_FLYTO)) {
