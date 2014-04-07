@@ -329,6 +329,57 @@ public class Ship extends Celestial {
     }
 
     private void autopilotFightTarget() {
+        if (target != null) {
+            if (target.getState() == State.ALIVE) {
+                if (target.getCurrentSystem() == getCurrentSystem()) {
+                    if (inSensorRange(target)) {
+                        double distance = target.getLocation().distance(getLocation());
+                        double minRange = getNearWeaponRange();
+                        //rotate to face target
+                        Vector3f steering = getSteeringData(target.getPhysicsLocation(), Vector3f.UNIT_Y);
+                        boolean aligned = pointNoseAtVector(steering);
+                        //keep at range
+                        if (distance < (minRange / 3)) {
+                            /*
+                             * The enemy is getting too close to the ship, so fire the reverse
+                             * thrusters.
+                             */
+                            throttle = -1;
+                        } else if (distance > (minRange / 2) && distance < (2 * minRange / 3)) {
+                            /*
+                             * The enemy is getting too far away from the ship, fire the forward
+                             * thrusters.
+                             */
+                            throttle = 1;
+                        } else if (distance > (minRange)) {
+                            /*
+                             * The enemy is out of weapons minRange and needs to be approached
+                             */
+                            float dP = 0;
+                            float d1 = getLocation().subtract(target.getLocation()).length();
+                            Vector3f dv1 = getLocation().add(getLinearVelocity().mult((float) tpf));
+                            Vector3f dv2 = target.getLocation().add(target.getLinearVelocity().mult((float) tpf));
+                            float d2 = dv1.subtract(dv2).length();
+                            dP = d2 - d1;
+                            if (dP + (getAcceleration() * 2) > 0) {
+                                throttle = 1;
+                            }
+                        }
+                        if (distance < minRange) {
+                            fireActiveModules();
+                        }
+                    } else {
+                        cmdAbort();
+                    }
+                } else {
+                    cmdAbort();
+                }
+            } else {
+                cmdAbort();
+            }
+        } else {
+            cmdAbort();
+        }
     }
 
     private void autopilotUndock() {
@@ -1599,6 +1650,14 @@ public class Ship extends Celestial {
     /*
      * Used to find groups of objects
      */
+    public boolean inSensorRange(Celestial celestial) {
+        if (celestial.getLocation().distance(getLocation()) <= sensor) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public ArrayList<Ship> getShipsInSensorRange() {
         ArrayList<Ship> ret = new ArrayList<>();
         {
