@@ -88,7 +88,7 @@ public class Ship extends Celestial {
         ALL_STOP, //slow down until velocity is 0
         FOLLOW, //follow a target at a range
     }
-    public static final double STOP_LOW_VEL_BOUND = 0.5;
+    public static final float STOP_LOW_VEL_BOUND = 1.0f;
     public static final float NAV_ANGLE_TOLERANCE = 0.02f;
     public static final float ROLL_LOCK = FastMath.PI / 32;
     public static final float STOP_CAUTION = 1.0f;
@@ -339,34 +339,39 @@ public class Ship extends Celestial {
                         Vector3f steering = getSteeringData(target.getPhysicsLocation(), Vector3f.UNIT_Y);
                         boolean aligned = pointNoseAtVector(steering, NAV_ANGLE_TOLERANCE);
                         //keep at range
-                        if (distance < (minRange / 3)) {
-                            /*
-                             * The enemy is getting too close to the ship, so fire the reverse
-                             * thrusters.
-                             */
-                            throttle = -1;
-                        } else if (distance > (minRange / 2) && distance < (2 * minRange / 3)) {
-                            /*
-                             * The enemy is getting too far away from the ship, fire the forward
-                             * thrusters.
-                             */
-                            throttle = 1;
-                        } else if (distance > (minRange)) {
-                            /*
-                             * The enemy is out of weapons minRange and needs to be approached
-                             */
-                            float dP = 0;
-                            float d1 = getLocation().subtract(target.getLocation()).length();
-                            Vector3f dv1 = getLocation().add(getLinearVelocity().mult((float) tpf));
-                            Vector3f dv2 = target.getLocation().add(target.getLinearVelocity().mult((float) tpf));
-                            float d2 = dv1.subtract(dv2).length();
-                            dP = d2 - d1;
-                            if (dP + (getAcceleration() * 2) > 0) {
+                        if (aligned) {
+                            if (distance < (minRange / 3)) {
+                                /*
+                                 * The enemy is getting too close to the ship, so fire the reverse
+                                 * thrusters.
+                                 */
+                                throttle = -1;
+                            } else if (distance > (minRange / 2) && distance < (2 * minRange / 3)) {
+                                /*
+                                 * The enemy is getting too far away from the ship, fire the forward
+                                 * thrusters.
+                                 */
                                 throttle = 1;
+                            } else if (distance > (minRange)) {
+                                /*
+                                 * The enemy is out of weapons minRange and needs to be approached
+                                 */
+                                float dP = 0;
+                                float d1 = getLocation().subtract(target.getLocation()).length();
+                                Vector3f dv1 = getLocation().add(getLinearVelocity().mult((float) tpf));
+                                Vector3f dv2 = target.getLocation().add(target.getLinearVelocity().mult((float) tpf));
+                                float d2 = dv1.subtract(dv2).length();
+                                dP = d2 - d1;
+                                if (dP + (getAcceleration() * 2) > 0) {
+                                    throttle = 1;
+                                }
+                            }
+                            if (distance < minRange) {
+                                fireActiveGuns(target);
                             }
                         }
                         if (distance < minRange) {
-                            fireActiveModules();
+                            fireActiveTurrets(target);
                         }
                     } else {
                         cmdAbort();
@@ -516,7 +521,8 @@ public class Ship extends Celestial {
                     useFuel(correction);
                 }
             } else {
-                physics.setLinearVelocity(new Vector3f(0, lVol.getY(), lVol.getZ()));
+                lVol = new Vector3f(0, lVol.getY(), lVol.getZ());
+                physics.setLinearVelocity(lVol);
             }
             if (Math.abs(lVol.getY()) > STOP_LOW_VEL_BOUND) {
                 float correction = -Math.signum(lVol.getY()) * thrust * STOP_CAUTION;
@@ -525,7 +531,8 @@ public class Ship extends Celestial {
                     useFuel(correction);
                 }
             } else {
-                physics.setLinearVelocity(new Vector3f(lVol.getX(), 0, lVol.getZ()));
+                lVol = new Vector3f(lVol.getX(), 0, lVol.getZ());
+                physics.setLinearVelocity(lVol);
             }
             if (Math.abs(lVol.getZ()) > STOP_LOW_VEL_BOUND) {
                 float correction = -Math.signum(lVol.getZ()) * thrust * STOP_CAUTION;
@@ -534,7 +541,8 @@ public class Ship extends Celestial {
                     useFuel(correction);
                 }
             } else {
-                physics.setLinearVelocity(new Vector3f(lVol.getX(), lVol.getY(), 0));
+                lVol = new Vector3f(lVol.getX(), lVol.getY(), 0);
+                physics.setLinearVelocity(lVol);
             }
         } else {
             physics.setLinearVelocity(Vector3f.ZERO);
@@ -1421,6 +1429,10 @@ public class Ship extends Celestial {
             port.release();
             port = null;
         }
+        throttle = 0;
+        pitch = 0;
+        yaw = 0;
+        roll = 0;
     }
 
     public void cmdAllStop() {
