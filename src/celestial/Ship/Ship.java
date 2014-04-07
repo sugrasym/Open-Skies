@@ -139,7 +139,7 @@ public class Ship extends Celestial {
     private Ship target;
     //behavior and autopilot
     protected Autopilot autopilot = Autopilot.NONE;
-    protected Behavior behavior = Behavior.TEST;
+    protected Behavior behavior = Behavior.NONE;
     //behavior targets
     protected Celestial flyToTarget;
     protected Station homeBase;
