@@ -89,7 +89,7 @@ public class Ship extends Celestial {
         FOLLOW, //follow a target at a range
     }
     public static final double STOP_LOW_VEL_BOUND = 0.5;
-    public static final float ANGLE_TOLERANCE = 0.02f;
+    public static final float NAV_ANGLE_TOLERANCE = 0.02f;
     public static final float ROLL_LOCK = FastMath.PI / 32;
     public static final float STOP_CAUTION = 1.0f;
     public static final float MAX_JUMP_SHIELD_DAMAGE = 0.45f;
@@ -337,7 +337,7 @@ public class Ship extends Celestial {
                         double minRange = getNearWeaponRange();
                         //rotate to face target
                         Vector3f steering = getSteeringData(target.getPhysicsLocation(), Vector3f.UNIT_Y);
-                        boolean aligned = pointNoseAtVector(steering);
+                        boolean aligned = pointNoseAtVector(steering, NAV_ANGLE_TOLERANCE);
                         //keep at range
                         if (distance < (minRange / 3)) {
                             /*
@@ -503,7 +503,7 @@ public class Ship extends Celestial {
         if (lVol.length() > getAcceleration()) {
             //use reverse thrusters
             Vector3f thrustTarget = getSteeringData(getPhysicsLocation().add(lVol), Vector3f.UNIT_Y);
-            boolean safe = pointNoseAtVector(thrustTarget);
+            boolean safe = pointNoseAtVector(thrustTarget, NAV_ANGLE_TOLERANCE);
             if (safe) {
                 throttle = -1;
             }
@@ -613,7 +613,7 @@ public class Ship extends Celestial {
                 //we are moving further away, all stop
                 autopilotAllStop();
             } else {
-                canAccel = pointNoseAtVector(dat);
+                canAccel = pointNoseAtVector(dat, NAV_ANGLE_TOLERANCE);
                 if (canAccel) {
                     if (physics.getLinearVelocity().length() < hold) {
                         throttle = 1;
@@ -1623,22 +1623,22 @@ public class Ship extends Celestial {
         return steeringData;
     }
 
-    private boolean pointNoseAtVector(Vector3f dat) {
+    private boolean pointNoseAtVector(Vector3f dat, float tolerance) {
         boolean canAccel = true;
         //put controls in correct positions to face target
-        if (Math.abs(dat.x) < FastMath.PI * (1 - ANGLE_TOLERANCE)) {
+        if (Math.abs(dat.x) < FastMath.PI * (1 - tolerance)) {
             pitch = -(dat.x);
             canAccel = false;
         } else {
             pitch = 0;
         }
-        if (Math.abs(dat.y) < FastMath.PI * (1 - ANGLE_TOLERANCE)) {
+        if (Math.abs(dat.y) < FastMath.PI * (1 - tolerance)) {
             yaw = -(dat.y);
             canAccel = false;
         } else {
             yaw = 0;
         }
-        if (Math.abs(dat.z) > FastMath.PI * ANGLE_TOLERANCE) {
+        if (Math.abs(dat.z) > FastMath.PI * tolerance) {
             roll = (dat.z);
             //canAccel = false;
         } else {

@@ -10,15 +10,15 @@ cargo=Consumer Goods~2
 install=Ka Ka Ka/Ka Ka Ka
 [/NewGame]
 
-[Station]
-name=Customs Office
-station=Basic Outpost
-system=Kappa 0ET2-HY5D
-x=166944
-y=0
-z=-10963
-faction=Neutral
-[/Station]
+#[Station]
+#name=Customs Office
+#station=Basic Outpost
+#system=Kappa 0ET2-HY5D
+#x=166944
+#y=0
+#z=-10963
+#faction=Neutral
+#[/Station]
 
 [Ship]
 name=Test Sparrow
