@@ -90,6 +90,7 @@ public class Ship extends Celestial {
     }
     public static final float STOP_LOW_VEL_BOUND = 1.0f;
     public static final float NAV_ANGLE_TOLERANCE = 0.02f;
+    public static final float COM_ANGLE_TOLERANCE = 0.008f;
     public static final float ROLL_LOCK = FastMath.PI / 32;
     public static final float STOP_CAUTION = 1.0f;
     public static final float MAX_JUMP_SHIELD_DAMAGE = 0.45f;
@@ -336,8 +337,9 @@ public class Ship extends Celestial {
                         double distance = target.getLocation().distance(getLocation());
                         double minRange = getNearWeaponRange();
                         //rotate to face target
-                        Vector3f steering = getSteeringData(target.getPhysicsLocation(), Vector3f.UNIT_Y);
-                        boolean aligned = finePointNoseAtVector(steering, NAV_ANGLE_TOLERANCE);
+                        Vector3f solution = target.getLocation();
+                        Vector3f steering = getSteeringData(solution, Vector3f.UNIT_Y);
+                        boolean aligned = finePointNoseAtVector(steering, COM_ANGLE_TOLERANCE);
                         //keep at range
                         if (aligned) {
                             if (distance < (minRange / 3)) {

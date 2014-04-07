@@ -124,7 +124,7 @@ name=Kappa 0ET2-HY5D
 x=644
 y=359
 z=-578
-sky=Brown 0
+sky=Orange 1
 [/System]
 
 [Star]
