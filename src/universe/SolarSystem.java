@@ -215,7 +215,7 @@ public class SolarSystem implements Entity, Serializable {
             }
             //store initial equipment
             if (install != null) {
-                ship.addInitialEquipment(cargo);
+                ship.addInitialEquipment(install);
             }
         }
         return ship;

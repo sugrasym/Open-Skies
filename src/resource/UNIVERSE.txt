@@ -28,6 +28,7 @@ x=166844
 y=0
 z=-10963
 faction=Player
+install=Ka Ka Ka/Ka Ka Ka
 [/Ship]
 
 [System]
