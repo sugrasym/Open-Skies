@@ -155,6 +155,9 @@ public class Core {
         //store initial cargo
         String cargo = game.getValue("cargo");
         ship.addInitialCargo(cargo);
+        //store initial equipment
+        String install = game.getValue("install");
+        ship.addInitialEquipment(install);
         //setup start system
         addSystem(start);
 

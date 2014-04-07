@@ -88,7 +88,7 @@ public class Ship extends Celestial {
         ALL_STOP, //slow down until velocity is 0
         FOLLOW, //follow a target at a range
     }
-    public static final double STOP_LOW_VEL_BOUND = 2;
+    public static final double STOP_LOW_VEL_BOUND = 0.5;
     public static final float ANGLE_TOLERANCE = 0.02f;
     public static final float ROLL_LOCK = FastMath.PI / 32;
     public static final float STOP_CAUTION = 1.0f;
@@ -180,6 +180,29 @@ public class Ship extends Celestial {
         nav = new Node();
         nav.move(Vector3f.UNIT_Z);
         core.attachChild(nav);
+    }
+
+    public void addInitialEquipment(String equip) {
+        /*
+         * Equips the ship with equipment from the starting loadout
+         */
+        //equip player from install keyword
+        String[] arr = equip.split("/");
+        for (int a = 0; a < arr.length; a++) {
+            Item test = new Item(arr[a]);
+            /*
+             * Cannons and launchers are both in the weapon class
+             */
+            try {
+                if (test.getType().equals("cannon") || test.getType().equals("missile")
+                        || test.getType().equals("battery") || test.getType().equals("turret")) {
+                    Weapon wep = new Weapon(arr[a]);
+                    fit(wep);
+                }
+            } catch (Exception e) {
+                //e.printStackTrace();
+            }
+        }
     }
 
     private void initFaction(String name) {

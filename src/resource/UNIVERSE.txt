@@ -6,7 +6,8 @@ x=167800
 y=0
 z=-10960
 cash=50000
-cargo=Ka Ka Ka~2
+cargo=Consumer Goods~2
+install=Ka Ka Ka/Ka Ka Ka
 [/NewGame]
 
 [Station]
