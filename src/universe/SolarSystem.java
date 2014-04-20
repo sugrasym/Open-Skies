@@ -73,7 +73,7 @@ public class SolarSystem implements Entity, Serializable {
     private final ArrayList<Entity> jumpholeList = new ArrayList<>();
     //sov
     private String owner = "Neutral";
-    
+
     public SolarSystem(Universe universe, Term thisSystem, Parser parse) {
         name = thisSystem.getValue("name");
         this.universe = universe;
@@ -84,7 +84,7 @@ public class SolarSystem implements Entity, Serializable {
         y = Float.parseFloat(thisSystem.getValue("y"));
         z = Float.parseFloat(thisSystem.getValue("z"));
     }
-    
+
     public final void initSystem(AssetManager assets) {
         /*
          * Adds all member objects. Member objects are any object that is
@@ -152,7 +152,7 @@ public class SolarSystem implements Entity, Serializable {
             }
         }
     }
-    
+
     private Station makeStation(Term shipTerm) {
         Station station = null;
         {
@@ -181,7 +181,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return station;
     }
-    
+
     private Ship makeShip(Term shipTerm) {
         Ship ship = null;
         {
@@ -220,7 +220,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return ship;
     }
-    
+
     private Planet makePlanet(AssetManager assets, Term planetTerm) {
         Planet planet = null;
         {
@@ -249,7 +249,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return planet;
     }
-    
+
     private Star makeStar(AssetManager assets, Term starTerm) {
         Star star = null;
         {
@@ -276,7 +276,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return star;
     }
-    
+
     private Jumphole makeJumphole(AssetManager assets, Term jumpholeTerm) {
         Jumphole jumphole = null;
         {
@@ -293,7 +293,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return jumphole;
     }
-    
+
     private Field makeField(AssetManager assets, Term fieldTerm) {
         Field field = null;
         {
@@ -325,7 +325,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return field;
     }
-    
+
     private Nebula makeNebula(AssetManager assets, Term nebulaTerm) {
         Nebula nebula = null;
         {
@@ -363,15 +363,15 @@ public class SolarSystem implements Entity, Serializable {
         }
         return nebula;
     }
-    
+
     public ArrayList<Entity> getCelestials() {
         return celestials;
     }
-    
+
     public void setCelestials(ArrayList<Entity> celestials) {
         this.celestials = celestials;
     }
-    
+
     public void putEntityInSystem(Entity entity) {
         celestials.add(entity);
         if (entity instanceof Celestial) {
@@ -384,7 +384,11 @@ public class SolarSystem implements Entity, Serializable {
             if (universe.getPlayerShip() != null) {
                 if (this == universe.getPlayerShip().getCurrentSystem()) {
                     tmp.construct(universe);
-                    tmp.attach(rootNode, physics, planetAppState);
+                    if (hasGraphics) {
+                        tmp.attach(rootNode, physics, planetAppState);
+                    } else {
+                        //do not add to scene, system does not have graphics yet
+                    }
                 }
             }
         }
@@ -412,7 +416,7 @@ public class SolarSystem implements Entity, Serializable {
             planetList.add(entity);
         }
     }
-    
+
     public void pullEntityFromSystem(Entity entity) {
         if (entity instanceof Celestial) {
             Celestial tmp = (Celestial) entity;
@@ -436,7 +440,7 @@ public class SolarSystem implements Entity, Serializable {
         jumpholeList.remove(entity);
         universe.getPlayerProperty().remove(entity);
     }
-    
+
     @Override
     public void periodicUpdate(float tpf) {
         checkPlayerPresence();
@@ -448,7 +452,7 @@ public class SolarSystem implements Entity, Serializable {
             }
         }
     }
-    
+
     @Override
     public void oosPeriodicUpdate(float tpf) {
         checkPlayerPresence();
@@ -460,7 +464,7 @@ public class SolarSystem implements Entity, Serializable {
             }
         }
     }
-    
+
     private void checkPlayerPresence() {
         if (celestials.contains(universe.getPlayerShip())) {
             hasGraphics = true;
@@ -472,22 +476,22 @@ public class SolarSystem implements Entity, Serializable {
             }
         }
     }
-    
+
     @Override
     public State getState() {
         return State.ALIVE;
     }
-    
+
     @Override
     public String getName() {
         return name;
     }
-    
+
     @Override
     public void setName(String name) {
         this.name = name;
     }
-    
+
     @Override
     public void construct(AssetManager assets) {
         //construct children
@@ -504,7 +508,7 @@ public class SolarSystem implements Entity, Serializable {
             }
         }
     }
-    
+
     @Override
     public void deconstruct() {
         skybox = null;
@@ -512,19 +516,19 @@ public class SolarSystem implements Entity, Serializable {
             celestials.get(a).deconstruct();
         }
     }
-    
+
     @Override
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
-        for (int a = 0; a < celestials.size(); a++) {
-            celestials.get(a).attach(node, physics, planetAppState);
-        }
-        node.attachChild(skybox);
         //store references to add future objects
         this.physics = physics;
         this.planetAppState = planetAppState;
         rootNode = node;
+        for (int a = 0; a < celestials.size(); a++) {
+            celestials.get(a).attach(node, physics, planetAppState);
+        }
+        node.attachChild(skybox);
     }
-    
+
     @Override
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         for (int a = 0; a < celestials.size(); a++) {
@@ -532,76 +536,76 @@ public class SolarSystem implements Entity, Serializable {
         }
         node.detachChild(skybox);
     }
-    
+
     @Override
     public void setState(State state) {
         //do nothing
     }
-    
+
     @Override
     public Vector3f getLocation() {
         return new Vector3f(x, y, z);
     }
-    
+
     @Override
     public void setLocation(Vector3f loc) {
         x = loc.x;
         y = loc.y;
         z = loc.z;
     }
-    
+
     @Override
     public Quaternion getRotation() {
         return Quaternion.ZERO;
     }
-    
+
     @Override
     public void setRotation(Quaternion rot) {
         //do nothing
     }
-    
+
     @Override
     public Vector3f getPhysicsLocation() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     public Universe getUniverse() {
         return universe;
     }
-    
+
     public ArrayList<Entity> getStationList() {
         return stationList;
     }
-    
+
     public ArrayList<Entity> getShipList() {
         return shipList;
     }
-    
+
     public ArrayList<Entity> getPlanetList() {
         return planetList;
     }
-    
+
     public ArrayList<Entity> getJumpholeList() {
         return jumpholeList;
     }
-    
+
     public boolean hasGraphics() {
         return hasGraphics;
     }
-    
+
     public void forceGraphics() {
         hasGraphics = true;
     }
-    
+
     @Override
     public String toString() {
         return name;
     }
-    
+
     public String getOwner() {
         return owner;
     }
-    
+
     public void setOwner(String owner) {
         this.owner = owner;
     }
