@@ -806,9 +806,8 @@ public class Ship extends Celestial {
                          * acceleration we will assume the ship is rotated
                          * to face the object.
                          */
-                        Vector3f p2 = end.normalize();
-                        Vector3f p1 = getLocation().normalize();
-                        Vector3f rot = p2.subtract(p1);
+                        Vector3f dif = end.subtract(getLocation());
+                        Vector3f rot = dif.normalize();
                         Vector3f del = rot.mult(a);
                         //apply the acceleration for this tick
                         setVelocity(getVelocity().add(del));
@@ -1014,9 +1013,6 @@ public class Ship extends Celestial {
         //update position
         Vector3f dP = getVelocity().mult((float) tpf);
         setLocation(getLocation().add(dP));
-        if (getVelocity().length() > 0) {
-            System.out.println(tpf);
-        }
     }
 
     @Override
