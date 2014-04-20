@@ -1,7 +1,7 @@
 [NewGame]
 name=Default
 ship=Sparrow
-system=Kappa 0ET2-HY5D
+system=Iota QYHH-OK
 x=167800
 y=0
 z=-10960
@@ -24,7 +24,7 @@ faction=Neutral
 name=Test Sparrow
 ship=Sparrow
 system=Kappa 0ET2-HY5D
-x=166844
+x=196844
 y=0
 z=-10963
 faction=Player

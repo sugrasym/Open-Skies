@@ -517,6 +517,10 @@ public class PropertyWindow extends AstralWindow {
              */
             if (selected.getAutopilot() == Autopilot.FLY_TO_CELESTIAL) {
                 infoList.addToList("Waypoint:     " + selected.getFlyToTarget().getName());
+                float dist = selected.getLocation().distance(selected.getFlyToTarget().getLocation());
+                float eta = dist / (selected.getVelocity().subtract(selected.getFlyToTarget().getVelocity())).length();
+                infoList.addToList("Distance:     " + roundTwoDecimal(dist));
+                infoList.addToList("ETA:          " + roundTwoDecimal(eta) + "s  " + selected.getVelocity().length());
             }
             if (selected.getPort() != null) {
                 if (selected.getAutopilot() == Autopilot.DOCK_STAGE1) {
@@ -586,7 +590,7 @@ public class PropertyWindow extends AstralWindow {
             DecimalFormat twoDForm = new DecimalFormat("#.##");
             return Double.parseDouble(twoDForm.format(d));
         } catch (Exception e) {
-            System.out.println("Not a Number");
+            //System.out.println("Not a Number");
             return 0;
         }
     }

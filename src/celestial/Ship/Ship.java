@@ -692,26 +692,26 @@ public class Ship extends Celestial {
          * OOS objects do not have rotation and behave as points.
          */
         float v = getVelocity().length();
-        if(v > OOS_VEL_LOWBOUND) {
+        if (v > OOS_VEL_LOWBOUND) {
             //calculate acceleration in this tick
-            float a = getAcceleration() * (float)tpf;
+            float a = getAcceleration() * (float) tpf;
             //check for sufficient fuel for accelerating in this tick
-            if(sufficientFuel(a)) {
+            if (sufficientFuel(getThrust())) {
                 //the assumption is that we are rotated the same as the velocity
                 Vector3f rot = getVelocity().normalize();
                 Vector3f del = rot.mult(-a);
                 //apply the acceleration for this tick
                 setVelocity(getVelocity().add(del));
                 //use fuel
-                useFuel(del.length());
+                useFuel(getThrust());
             } else {
                 /*
                  * This is less than ideal. There is not enough fuel to finish
                  * the stop. This means the ship is adrift.
-                 * 
+                 *
                  * Player ships are set adrift, NPC ships are removed.
                  */
-                if(faction.getName().equals(Faction.PLAYER)) {
+                if (faction.getName().equals(Faction.PLAYER)) {
                     setAutopilot(Autopilot.NONE);
                 } else {
                     setState(State.DYING);
@@ -740,6 +740,28 @@ public class Ship extends Celestial {
                         //stop the ship, we're there
                         cmdAllStop();
                     } else {
+                        //determine correct hold to use
+                        float hold = 0;
+                        if (dist <= getFlightHold()) {
+                            hold = dist;
+                        } else {
+                            hold = getFlightHold();
+                        }
+                        //move to position
+                        oosMoveToPositionWithHold(flyToTarget.getLocation(), hold);
+                        //detect if autopilot kicked off
+                        if (autopilot == Autopilot.NONE) {
+                            /*
+                             * moveToPosition() detects when the ship has stopped
+                             * moving and corrects itself by turning off the autopilot.
+                             *
+                             * Since we aren't here yet, we need to re-issue the command
+                             * to fine tune our approach to the target.
+                             */
+                            cmdFlyToCelestial(flyToTarget, range);
+                        } else {
+                            //do nothing, we are still on autopilot
+                        }
                     }
                 }
             }
@@ -753,6 +775,51 @@ public class Ship extends Celestial {
     }
 
     private void oosAutopilotUndock() {
+    }
+
+    private void oosMoveToPosition(Vector3f end) {
+        oosMoveToPositionWithHold(end, getFlightHold());
+    }
+
+    private void oosMoveToPositionWithHold(Vector3f end, float hold) {
+        Vector3f b = end.clone();
+        //see if we are there
+        float dist = end.distance(getLocation());
+        if (dist < hold && hold != Float.POSITIVE_INFINITY) {
+            autopilotAllStop();
+        } else {
+            //make sure we aren't getting further from the target
+            Vector3f dPos = getLocation().add(getVelocity());
+            float stepDistance = dPos.distance(b);
+            float distance = getLocation().distance(b);
+            if (stepDistance > distance) {
+                //we are moving further away, all stop
+                oosAutopilotAllStop();
+            } else {
+                if (getVelocity().length() < hold) {
+                    //calculate acceleration in this tick
+                    float a = getAcceleration() * (float) tpf;
+                    //check for sufficient fuel for accelerating in this tick
+                    if (sufficientFuel(getThrust())) {
+                        /*
+                         * OOS, objects do not have a real rotation. For the
+                         * acceleration we will assume the ship is rotated
+                         * to face the object.
+                         */
+                        Vector3f p2 = end.normalize();
+                        Vector3f p1 = getLocation().normalize();
+                        Vector3f rot = p2.subtract(p1);
+                        Vector3f del = rot.mult(a);
+                        //apply the acceleration for this tick
+                        setVelocity(getVelocity().add(del));
+                        //use fuel
+                        useFuel(getThrust());
+                    }
+                } else {
+                    //do nothing
+                }
+            }
+        }
     }
 
     /*
@@ -846,8 +913,11 @@ public class Ship extends Celestial {
     protected void dead() {
         try {
             throw new Exception("Not yet implemented");
+
+
         } catch (Exception ex) {
-            Logger.getLogger(Ship.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Ship.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -941,6 +1011,12 @@ public class Ship extends Celestial {
         updateHealth();
         oosBehave();
         oosAutopilot();
+        //update position
+        Vector3f dP = getVelocity().mult((float) tpf);
+        setLocation(getLocation().add(dP));
+        if (getVelocity().length() > 0) {
+            System.out.println(tpf);
+        }
     }
 
     @Override
