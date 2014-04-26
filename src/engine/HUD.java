@@ -30,6 +30,7 @@ import gdi.OverviewWindow;
 import gdi.PropertyWindow;
 import gdi.StarMapWindow;
 import gdi.TradeWindow;
+import gdi.component.AstralMarker;
 import gdi.component.AstralWindow;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -56,6 +57,8 @@ public class HUD {
     PropertyWindow propertyWindow;
     TradeWindow tradeWindow;
     StarMapWindow starMapWindow;
+    //IFF Manager
+    IFFManager iffManager = new IFFManager();
     //display
     private int width;
     private int height;
@@ -128,7 +131,7 @@ public class HUD {
         }
     }
     
-    public void periodicUpdate(float tpf) {
+    public void periodicUpdate(float tpf, AstralCamera camera) {
         try {
             //special update on simple windows
             health.updateHealth(getUniverse().getPlayerShip());
@@ -143,15 +146,20 @@ public class HUD {
             for (int a = 0; a < windows.size(); a++) {
                 windows.get(a).periodicUpdate();
             }
+            //update iffs
+            iffManager.periodicUpdate(tpf);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
     public void render(AssetManager assets) {
+        //update windows
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).render(null);
         }
+        //update iff
+        iffManager.render(assets);
     }
     
     public void handleMouseAction(GameState state, String name, boolean mousePressed, Vector3f mouseLoc) {
@@ -257,5 +265,35 @@ public class HUD {
     
     public void toggleStarMapWindow() {
         starMapWindow.setVisible(!starMapWindow.isVisible());
+    }
+
+    /*
+     * This segment is for managing the IFF icons that ships have.
+     * 
+     * It takes advantage of the existing windowing system using transparent
+     * windows and GDI elements to display the status of an object.
+     */
+    private class IFFManager {
+        
+        ArrayList<AstralMarker> markers = new ArrayList<>();
+        
+        public IFFManager() {
+        }
+        
+        public void periodicUpdate(float tpf) {
+            for (int a = 0; a < markers.size(); a++) {
+                if (markers.get(a).isRelevant()) {
+                    markers.get(a).periodicUpdate();
+                } else {
+                    markers.remove(markers.get(a));
+                }
+            }
+        }
+        
+        public void render(AssetManager assets) {
+            for (int a = 0; a < markers.size(); a++) {
+                markers.get(a).render(null);
+            }
+        }
     }
 }

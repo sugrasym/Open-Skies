@@ -499,7 +499,7 @@ public class Core {
                 }
             }
             //update HUD
-            hud.periodicUpdate(tpf);
+            hud.periodicUpdate(tpf, getCamera());
         }
     }
 
@@ -570,5 +570,9 @@ public class Core {
         //restore camera
         planetAppState.freeCamera();
         planetAppState.setCameraShip(universe.getPlayerShip());
+    }
+
+    public AstralCamera getCamera() {
+        return planetAppState.getAstralCamera();
     }
 }

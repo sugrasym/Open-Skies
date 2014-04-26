@@ -314,4 +314,12 @@ public class PlanetAppState extends AbstractAppState implements Control {
     public void read(JmeImporter im) throws IOException {
         //
     }
+
+    public AstralCamera getAstralCamera() {
+        return astralCamera;
+    }
+
+    public void setAstralCamera(AstralCamera astralCamera) {
+        this.astralCamera = astralCamera;
+    }
 }

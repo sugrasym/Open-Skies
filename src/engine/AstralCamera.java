@@ -87,6 +87,11 @@ public class AstralCamera {
         this.spatial = target.getSpatial();
         setupNode();
     }
+    
+    public Vector3f getScreenCoordinates(Vector3f position)
+    {
+        return cam.getScreenCoordinates(position);
+    }
 
     private void setupNode() {
         camNode.move(0, 4, 15);
