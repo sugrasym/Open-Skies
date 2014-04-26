@@ -64,6 +64,8 @@ public class Main extends SimpleApplication {
         setDisplayStatView(false);
         flyCam.setMoveSpeed(40000);
         flyCam.setEnabled(false);
+        //prevent application from pausing when out of focus (I hate how X3TC does that!)
+        setPauseOnLostFocus(false);
     }
 
     @Override

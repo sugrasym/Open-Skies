@@ -24,9 +24,9 @@ faction=Neutral
 name=Test Sparrow
 ship=Sparrow
 system=Kappa 0ET2-HY5D
-x=196844
+x=53567
 y=0
-z=-10963
+z=-11113
 faction=Player
 install=Ka Ka Ka/Ka Ka Ka
 [/Ship]

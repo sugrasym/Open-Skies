@@ -1225,8 +1225,14 @@ public class Ship extends Celestial {
     @Override
     public String toString() {
         String ret = "";
-        {
+        if (!faction.getName().equals(Faction.PLAYER)) {
             ret = "(" + getType().getValue("type") + ") - " + getName() + ", " + faction.getName();
+        } else {
+            if (this.getCurrentSystem().getUniverse().getPlayerShip().getCurrentSystem() == getCurrentSystem()) {
+                ret = "(" + getType().getValue("type") + ") - " + getName();
+            } else {
+                ret = "(" + getType().getValue("type") + ") - " + getName() + ", " + getCurrentSystem().getName();
+            }
         }
         return ret;
     }
