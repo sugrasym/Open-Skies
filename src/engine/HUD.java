@@ -207,6 +207,9 @@ public class HUD {
                 windows.get(a).setFocused(true);
                 windows.get(a).setOrder(0);
                 foundOne = true;
+                //pull and push
+                windows.get(a).remove(guiNode);
+                windows.get(a).add(guiNode);
             } else {
                 windows.get(a).setFocused(false);
                 windows.get(a).setOrder(windows.get(a).getOrder() - 1);
