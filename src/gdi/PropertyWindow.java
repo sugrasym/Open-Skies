@@ -520,7 +520,7 @@ public class PropertyWindow extends AstralWindow {
                 float dist = selected.getLocation().distance(selected.getFlyToTarget().getLocation());
                 float eta = dist / (selected.getVelocity().subtract(selected.getFlyToTarget().getVelocity())).length();
                 infoList.addToList("Distance:     " + roundTwoDecimal(dist));
-                infoList.addToList("ETA:          " + roundTwoDecimal(eta) + "s  " + selected.getVelocity().length());
+                infoList.addToList("ETA:          " + roundTwoDecimal(eta) + "s");
             }
             if (selected.getPort() != null) {
                 if (selected.getAutopilot() == Autopilot.DOCK_STAGE1) {

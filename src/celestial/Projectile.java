@@ -61,6 +61,7 @@ public class Projectile extends Celestial {
     //who fired?
     private Ship host;
     private Hardpoint origin;
+    private boolean initialDistanceCheck = true;
 
     public Projectile(Universe universe, String name) {
         super(0.00000000001f, universe); //mass cannot be 0 or it is a static spatial in bullet physics
@@ -126,11 +127,13 @@ public class Projectile extends Celestial {
     protected void alive() {
         //check distance from origin
         double oDist = origin.getNode().getWorldTranslation().distance(getLocation());
-        if (oDist < 1) {
+        if (oDist < 1 && initialDistanceCheck) {
             //so it can't hit the ship firing it
             physics.setCollisionGroup(PhysicsCollisionObject.COLLISION_GROUP_NONE);
             physics.setCollideWithGroups(PhysicsCollisionObject.COLLISION_GROUP_NONE);
         } else {
+            //disable further testing
+            initialDistanceCheck = false;
             //so it can hit everything
             physics.setCollisionGroup(PhysicsCollisionObject.COLLISION_GROUP_01);
             physics.setCollideWithGroups(PhysicsCollisionObject.COLLISION_GROUP_01);
