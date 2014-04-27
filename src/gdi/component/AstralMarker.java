@@ -26,6 +26,7 @@ import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
 import engine.AstralCamera;
 import entity.Entity;
+import entity.Entity.State;
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -81,7 +82,16 @@ public class AstralMarker extends AstralWindow {
          * This method determines whether or not this control is still applicable
          * or if it should be removed from the GUI.
          */
-        //TODO
+        //make sure we have a target
+        if (target != null) {
+            //make sure the entity is alive
+            if (target.getState() != State.ALIVE) {
+                relevant = false;
+            }
+            //make sure it is in the current system as the player
+        } else {
+            relevant = false;
+        }
     }
 
     private void lockToTarget() {
@@ -121,7 +131,7 @@ public class AstralMarker extends AstralWindow {
                 //render marker
                 if (target instanceof Celestial) {
                     if (target instanceof Ship) {
-
+                        //draw marker
                         gfx.setStroke(new BasicStroke(3));
                         Ship tmp = (Ship) target;
                         Ship player = tmp.getCurrentSystem().getUniverse().getPlayerShip();
@@ -131,6 +141,18 @@ public class AstralMarker extends AstralWindow {
                             gfx.setColor(Color.WHITE);
                         }
                         gfx.drawOval(5, 5, width - 10, height - 10);
+                        //draw health bars
+                        if (tmp == player.getTarget()) {
+                            //I only want health bars for player's target
+                            float shieldPercent = tmp.getShield() / tmp.getMaxShield();
+                            float hullPercent = tmp.getHull() / tmp.getMaxHull();
+                            //draw hull
+                            gfx.setColor(Color.RED);
+                            gfx.fillRect(0, 0, (int) (width * hullPercent), 3);
+                            //draw shield
+                            gfx.setColor(Color.GREEN);
+                            gfx.fillRect(0, 0, (int) (width * shieldPercent), 3);
+                        }
                     }
                 } else {
                     gfx.setStroke(new BasicStroke(3));
