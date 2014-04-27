@@ -21,12 +21,17 @@
 package gdi.component;
 
 import celestial.Celestial;
+import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
 import engine.AstralCamera;
 import entity.Entity;
+import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 /**
  *
@@ -106,8 +111,32 @@ public class AstralMarker extends AstralWindow {
         @Override
         public void render(Graphics f) {
             if (isVisible()) {
-                f.setColor(Color.PINK);
-                f.drawRect(0, 0, width - 1, height - 1);
+                //setup graphics
+                Graphics2D gfx = (Graphics2D) f;
+                gfx.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                //redo backdrop
+                gfx.setComposite(AlphaComposite.Clear);
+                gfx.fillRect(0, 0, width, height);
+                gfx.setComposite(AlphaComposite.Src);
+                //render marker
+                if (target instanceof Celestial) {
+                    if (target instanceof Ship) {
+
+                        gfx.setStroke(new BasicStroke(3));
+                        Ship tmp = (Ship) target;
+                        Ship player = tmp.getCurrentSystem().getUniverse().getPlayerShip();
+                        if (tmp == player.getTarget()) {
+                            gfx.setColor(Color.YELLOW);
+                        } else {
+                            gfx.setColor(Color.WHITE);
+                        }
+                        gfx.drawOval(5, 5, width - 10, height - 10);
+                    }
+                } else {
+                    gfx.setStroke(new BasicStroke(3));
+                    gfx.setColor(Color.WHITE);
+                    gfx.drawRect(0, 0, width - 1, height - 1);
+                }
             }
         }
     }
