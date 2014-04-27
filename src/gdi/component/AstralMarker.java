@@ -33,17 +33,19 @@ import java.awt.Graphics;
  * @author nwiehoff
  */
 public class AstralMarker extends AstralWindow {
+
     private Entity target;
     private MarkerCanvas canvas;
     private AstralCamera camera;
     private boolean relevant = true;
+
     public AstralMarker(AssetManager assets, AstralCamera camera, Entity target, int width, int height) {
         super(assets, width, height, true);
         this.target = target;
         this.camera = camera;
         init();
     }
-    
+
     private void init() {
         //setup canvas
         canvas = new MarkerCanvas();
@@ -57,16 +59,18 @@ public class AstralMarker extends AstralWindow {
         //save colors
         setBackColor(transparent);
     }
-    
+
     @Override
     public void periodicUpdate() {
         super.periodicUpdate();
         //determine if IFF is relevant
         determineRelevance();
-        //lock to position of celestial
-        lockToTarget();
+        if (visible) {
+            //lock to position of celestial
+            lockToTarget();
+        }
     }
-    
+
     private void determineRelevance() {
         /*
          * This method determines whether or not this control is still applicable
@@ -74,7 +78,7 @@ public class AstralMarker extends AstralWindow {
          */
         //TODO
     }
-    
+
     private void lockToTarget() {
         //get target position
         Vector3f tLoc = target.getLocation();
@@ -84,7 +88,7 @@ public class AstralMarker extends AstralWindow {
         setX((int) sLoc.x - width / 2);
         setY((int) sLoc.y - height / 2);
     }
-    
+
     public boolean isRelevant() {
         return relevant;
     }
@@ -96,14 +100,14 @@ public class AstralMarker extends AstralWindow {
     public void setTarget(Entity target) {
         this.target = target;
     }
-    
-    private class MarkerCanvas extends AstralComponent
-    {
+
+    private class MarkerCanvas extends AstralComponent {
+
         @Override
         public void render(Graphics f) {
-            if(isVisible()) {
+            if (isVisible()) {
                 f.setColor(Color.PINK);
-                f.drawRect(0, 0, width-1, height-1);
+                f.drawRect(0, 0, width - 1, height - 1);
             }
         }
     }

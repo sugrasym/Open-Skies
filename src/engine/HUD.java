@@ -63,6 +63,7 @@ public class HUD {
     StarMapWindow starMapWindow;
     //IFF Manager
     IFFManager iffManager = new IFFManager();
+    private boolean resetWindowFlag;
     //display
     private int width;
     private int height;
@@ -124,25 +125,31 @@ public class HUD {
     }
 
     public void add() {
+        //add markers
+        iffManager.add();
         //add windows
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).add(guiNode);
         }
-        //add markers
-        iffManager.add();
     }
 
     public void remove() {
+        //remove markers
+        iffManager.remove();
         //remove windows
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).remove(guiNode);
         }
-        //remove markers
-        iffManager.remove();
     }
 
     public void periodicUpdate(float tpf, AstralCamera camera) {
         try {
+            //resets windows if a new marker or window was added
+            if (resetWindowFlag) {
+                remove();
+                add();
+                resetWindowFlag = false;
+            }
             //store camera
             this.camera = camera;
             //special update on simple windows
@@ -288,11 +295,10 @@ public class HUD {
      * It takes advantage of the existing windowing system using transparent
      * windows and GDI elements to display the status of an object.
      */
-    
     public void clearMarkers() {
         iffManager.markers.clear();
     }
-    
+
     private class IFFManager {
 
         ArrayList<AstralMarker> markers = new ArrayList<>();
@@ -322,9 +328,10 @@ public class HUD {
                         markers.add(m);
                         m.setVisible(true);
                         m.add(guiNode);
-                        System.out.println("Added marker for " + ships.get(a));
                     }
                 }
+                //reset windowing
+                resetWindowFlag = true;
             }
             /*
              * Update existing markers
