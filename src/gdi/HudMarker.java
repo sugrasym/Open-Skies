@@ -18,7 +18,7 @@
  * the status of this celestial and track its position on the HUD. It is used to
  * create IFF displays.
  */
-package gdi.component;
+package gdi;
 
 import celestial.Celestial;
 import celestial.Ship.Ship;
@@ -27,6 +27,8 @@ import com.jme3.math.Vector3f;
 import engine.AstralCamera;
 import entity.Entity;
 import entity.Entity.State;
+import gdi.component.AstralComponent;
+import gdi.component.AstralWindow;
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -38,14 +40,14 @@ import java.awt.RenderingHints;
  *
  * @author nwiehoff
  */
-public class AstralMarker extends AstralWindow {
+public class HudMarker extends AstralWindow {
 
     private Entity target;
     private MarkerCanvas canvas;
     private AstralCamera camera;
     private boolean relevant = true;
 
-    public AstralMarker(AssetManager assets, AstralCamera camera, Entity target, int width, int height) {
+    public HudMarker(AssetManager assets, AstralCamera camera, Entity target, int width, int height) {
         super(assets, width, height, true);
         this.target = target;
         this.camera = camera;

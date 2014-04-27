@@ -31,7 +31,7 @@ import gdi.OverviewWindow;
 import gdi.PropertyWindow;
 import gdi.StarMapWindow;
 import gdi.TradeWindow;
-import gdi.component.AstralMarker;
+import gdi.HudMarker;
 import gdi.component.AstralWindow;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -301,7 +301,7 @@ public class HUD {
 
     private class IFFManager {
 
-        ArrayList<AstralMarker> markers = new ArrayList<>();
+        ArrayList<HudMarker> markers = new ArrayList<>();
 
         public IFFManager() {
         }
@@ -324,7 +324,7 @@ public class HUD {
                 for (int a = 0; a < ships.size(); a++) {
                     //make sure it isn't the player ship
                     if (ships.get(a) != universe.getPlayerShip()) {
-                        AstralMarker m = new AstralMarker(assets, camera, ships.get(a), 50, 50);
+                        HudMarker m = new HudMarker(assets, camera, ships.get(a), 50, 50);
                         markers.add(m);
                         m.setVisible(true);
                         m.add(guiNode);
