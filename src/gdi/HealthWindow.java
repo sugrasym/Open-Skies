@@ -34,7 +34,7 @@ public class HealthWindow extends AstralWindow {
     AstralBar hullBar = new AstralBar(140, 10);
 
     public HealthWindow(AssetManager assets) {
-        super(assets, 300, 10);
+        super(assets, 300, 10, false);
         create();
     }
 

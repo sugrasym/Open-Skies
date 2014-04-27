@@ -48,7 +48,7 @@ public class StarMapWindow extends AstralWindow {
     private final Point2D.Double offset = new Point2D.Double(0, 0);
 
     public StarMapWindow(AssetManager assets) {
-        super(assets, 500, 400);
+        super(assets, 500, 400, false);
         generate();
     }
 

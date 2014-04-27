@@ -20,12 +20,15 @@ package gdi.component;
 
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
+import com.jme3.material.RenderState;
 import com.jme3.math.Vector3f;
+import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Quad;
 import com.jme3.texture.Texture2D;
 import com.jme3.texture.plugins.AWTLoader;
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -54,10 +57,12 @@ public class AstralWindow extends AstralComponent {
     Texture2D myTex;
     AWTLoader awtLoader;
     protected boolean flat = false;
+    private final boolean alpha;
 
-    public AstralWindow(AssetManager assets, int width, int height) {
+    public AstralWindow(AssetManager assets, int width, int height, boolean alpha) {
         super(width, height);
         this.assets = assets;
+        this.alpha = alpha;
         createQuad();
         render(null);
     }
@@ -68,10 +73,16 @@ public class AstralWindow extends AstralComponent {
         mat_background = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
         myTex = new Texture2D();
         awtLoader = new AWTLoader();
-        buffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+        if (alpha) {
+            buffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+        } else {
+            buffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+        }
         myTex.setImage(awtLoader.load(buffer, false));
         mat_background.setTexture("ColorMap", myTex);
         geo_background.setMaterial(mat_background);
+        mat_background.getAdditionalRenderState().setAlphaTest(true);
+        mat_background.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
     }
 
     public void addComponent(AstralComponent component) {

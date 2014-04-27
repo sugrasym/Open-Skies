@@ -57,7 +57,7 @@ public class EquipmentWindow extends AstralWindow {
     private Ship ship;
 
     public EquipmentWindow(AssetManager assets) {
-        super(assets, 300, 300);
+        super(assets, 300, 300, false);
         generate();
     }
 

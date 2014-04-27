@@ -554,6 +554,10 @@ public class Core {
     }
 
     private void resetScene() {
+        //undo hud
+        hud.remove();
+        //clear markers
+        hud.clearMarkers();
         //clear nodes
         rootNode.detachAllChildren();
         //clear lights
@@ -564,6 +568,8 @@ public class Core {
         bulletAppState.getPhysicsSpace().create();
         bulletAppState.getPhysicsSpace().setGravity(Vector3f.ZERO);
         initPhysicsListeners();
+        //add hud
+        hud.add();
     }
 
     private void resetCamera() {

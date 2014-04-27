@@ -53,7 +53,7 @@ public class OverviewWindow extends AstralWindow {
     protected Color planetGrey = new Color(15, 15, 15, 200);
 
     public OverviewWindow(AssetManager assets) {
-        super(assets, 300, 300);
+        super(assets, 300, 300, false);
         generate();
     }
 

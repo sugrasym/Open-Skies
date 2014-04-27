@@ -22,6 +22,7 @@ import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import engine.Core.GameState;
+import entity.Entity;
 import gdi.CargoWindow;
 import gdi.EquipmentWindow;
 import gdi.FuelWindow;
@@ -35,6 +36,7 @@ import gdi.component.AstralWindow;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Arrays;
+import universe.SolarSystem;
 import universe.Universe;
 
 /**
@@ -47,6 +49,8 @@ public class HUD {
     private Node guiNode;
     private Universe universe;
     private AssetManager assets;
+    //camera
+    AstralCamera camera;
     //windows
     ArrayList<AstralWindow> windows = new ArrayList<>();
     HealthWindow health;
@@ -62,7 +66,7 @@ public class HUD {
     //display
     private int width;
     private int height;
-    
+
     public HUD(Node guiNode, Universe universe, int width, int height, AssetManager assets) {
         this.guiNode = guiNode;
         this.universe = universe;
@@ -71,7 +75,7 @@ public class HUD {
         this.height = height;
         init();
     }
-    
+
     private void init() {
         //health window
         health = new HealthWindow(assets);
@@ -118,21 +122,29 @@ public class HUD {
         starMapWindow.setY((height / 2) - starMapWindow.getHeight() / 2);
         windows.add(starMapWindow);
     }
-    
+
     public void add() {
+        //add windows
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).add(guiNode);
         }
+        //add markers
+        iffManager.add();
     }
-    
+
     public void remove() {
+        //remove windows
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).remove(guiNode);
         }
+        //remove markers
+        iffManager.remove();
     }
-    
+
     public void periodicUpdate(float tpf, AstralCamera camera) {
         try {
+            //store camera
+            this.camera = camera;
             //special update on simple windows
             health.updateHealth(getUniverse().getPlayerShip());
             fuel.updateFuel(getUniverse().getPlayerShip());
@@ -152,7 +164,7 @@ public class HUD {
             e.printStackTrace();
         }
     }
-    
+
     public void render(AssetManager assets) {
         //update windows
         for (int a = 0; a < windows.size(); a++) {
@@ -161,7 +173,7 @@ public class HUD {
         //update iff
         iffManager.render(assets);
     }
-    
+
     public void handleMouseAction(GameState state, String name, boolean mousePressed, Vector3f mouseLoc) {
         //check focus changes
         checkFocusChanges((int) mouseLoc.x, (int) mouseLoc.y);
@@ -178,7 +190,7 @@ public class HUD {
             }
         }
     }
-    
+
     public boolean handleKeyAction(GameState state, String name, boolean keyPressed) {
         for (int a = 0; a < windows.size(); a++) {
             if (windows.get(a).isFocused() && windows.get(a).isVisible()) {
@@ -237,35 +249,35 @@ public class HUD {
             windows.addAll(Arrays.asList(arr));
         }
     }
-    
+
     public Universe getUniverse() {
         return universe;
     }
-    
+
     public void setUniverse(Universe universe) {
         this.universe = universe;
     }
-    
+
     public void toggleSensorWindow() {
         overview.setVisible(!overview.isVisible());
     }
-    
+
     public void toggleEquipmentWindow() {
         equipment.setVisible(!equipment.isVisible());
     }
-    
+
     public void toggleCargoWindow() {
         cargoWindow.setVisible(!cargoWindow.isVisible());
     }
-    
+
     public void togglePropertyWindow() {
         propertyWindow.setVisible(!propertyWindow.isVisible());
     }
-    
+
     public void toggleTradeWindow() {
         tradeWindow.setVisible(!tradeWindow.isVisible());
     }
-    
+
     public void toggleStarMapWindow() {
         starMapWindow.setVisible(!starMapWindow.isVisible());
     }
@@ -276,26 +288,72 @@ public class HUD {
      * It takes advantage of the existing windowing system using transparent
      * windows and GDI elements to display the status of an object.
      */
+    
+    public void clearMarkers() {
+        iffManager.markers.clear();
+    }
+    
     private class IFFManager {
-        
+
         ArrayList<AstralMarker> markers = new ArrayList<>();
-        
+
         public IFFManager() {
         }
-        
+
         public void periodicUpdate(float tpf) {
+            /*
+             * Determine if any new ship markers need to be added
+             */
+            //get the player's system
+            SolarSystem system = universe.getPlayerShip().getCurrentSystem();
+            //get a list of ships in that system
+            ArrayList<Entity> ships = new ArrayList(system.getShipList());
+            //remove anything from this list we already have markers for
+            for (int a = 0; a < markers.size(); a++) {
+                ships.remove(markers.get(a).getTarget());
+            }
+            //is there anything new to add?
+            if (ships.size() > 0) {
+                //add it
+                for (int a = 0; a < ships.size(); a++) {
+                    //make sure it isn't the player ship
+                    if (ships.get(a) != universe.getPlayerShip()) {
+                        AstralMarker m = new AstralMarker(assets, camera, ships.get(a), 50, 50);
+                        markers.add(m);
+                        m.setVisible(true);
+                        m.add(guiNode);
+                        System.out.println("Added marker for " + ships.get(a));
+                    }
+                }
+            }
+            /*
+             * Update existing markers
+             */
             for (int a = 0; a < markers.size(); a++) {
                 if (markers.get(a).isRelevant()) {
                     markers.get(a).periodicUpdate();
                 } else {
+                    markers.get(a).remove(guiNode);
                     markers.remove(markers.get(a));
                 }
             }
         }
-        
+
         public void render(AssetManager assets) {
             for (int a = 0; a < markers.size(); a++) {
                 markers.get(a).render(null);
+            }
+        }
+
+        public void add() {
+            for (int a = 0; a < markers.size(); a++) {
+                markers.get(a).add(guiNode);
+            }
+        }
+
+        public void remove() {
+            for (int a = 0; a < markers.size(); a++) {
+                markers.get(a).remove(guiNode);
             }
         }
     }

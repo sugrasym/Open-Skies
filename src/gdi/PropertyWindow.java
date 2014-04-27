@@ -91,7 +91,7 @@ public class PropertyWindow extends AstralWindow {
     protected Ship tmp;
 
     public PropertyWindow(AssetManager assets) {
-        super(assets, 500, 400);
+        super(assets, 500, 400, false);
         cargo = new CargoWindow(assets, 460, 360);
         trader = new TradeWindow(assets, 460, 360);
         generate();

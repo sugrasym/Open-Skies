@@ -31,7 +31,7 @@ import java.awt.Color;
 public class FuelWindow extends AstralWindow {
     AstralBar fuelBar = new AstralBar(300, 10);
     public FuelWindow(AssetManager assets) {
-        super(assets, 300, 10);
+        super(assets, 300, 10, false);
         create();
     }
     

@@ -1,10 +1,10 @@
 [NewGame]
 name=Default
 ship=Sparrow
-system=Iota QYHH-OK
-x=167800
+system=Kappa 0ET2-HY5D
+x=166944
 y=0
-z=-10960
+z=-9963
 cash=50000
 cargo=Consumer Goods~2
 install=Ka Ka Ka/Ka Ka Ka
@@ -24,9 +24,9 @@ faction=Neutral
 name=Test Sparrow
 ship=Sparrow
 system=Kappa 0ET2-HY5D
-x=53567
+x=167944
 y=0
-z=-11113
+z=-10963
 faction=Player
 install=Ka Ka Ka/Ka Ka Ka
 [/Ship]
@@ -100,11 +100,11 @@ seed=-1946744522
 [Planet]
 name='Gibson 1'
 system=Kappa 0ET2-HY5D
-texture=BandedGas
+texture=Terran
 x=16289
 y=0
 z=97252
-r=2895
+r=4895
 seed=825303937
 [/Planet]
 

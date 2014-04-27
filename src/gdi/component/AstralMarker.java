@@ -24,6 +24,7 @@ import celestial.Celestial;
 import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
 import engine.AstralCamera;
+import entity.Entity;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -32,12 +33,12 @@ import java.awt.Graphics;
  * @author nwiehoff
  */
 public class AstralMarker extends AstralWindow {
-    private Celestial target;
+    private Entity target;
     private MarkerCanvas canvas;
     private AstralCamera camera;
     private boolean relevant = true;
-    public AstralMarker(AssetManager assets, AstralCamera camera, Celestial target, int width, int height) {
-        super(assets, width, height);
+    public AstralMarker(AssetManager assets, AstralCamera camera, Entity target, int width, int height) {
+        super(assets, width, height, true);
         this.target = target;
         this.camera = camera;
         init();
@@ -46,8 +47,15 @@ public class AstralMarker extends AstralWindow {
     private void init() {
         //setup canvas
         canvas = new MarkerCanvas();
+        canvas.setVisible(true);
+        canvas.setX(0);
+        canvas.setY(0);
+        canvas.setWidth(width);
+        canvas.setHeight(height);
         //store canvas
         addComponent(canvas);
+        //save colors
+        setBackColor(transparent);
     }
     
     @Override
@@ -73,12 +81,20 @@ public class AstralMarker extends AstralWindow {
         //get target screen position
         Vector3f sLoc = camera.getScreenCoordinates(tLoc);
         //update position
-        setX((int) sLoc.x);
-        setY((int) sLoc.y);
+        setX((int) sLoc.x - width / 2);
+        setY((int) sLoc.y - height / 2);
     }
     
     public boolean isRelevant() {
         return relevant;
+    }
+
+    public Entity getTarget() {
+        return target;
+    }
+
+    public void setTarget(Entity target) {
+        this.target = target;
     }
     
     private class MarkerCanvas extends AstralComponent
@@ -86,8 +102,8 @@ public class AstralMarker extends AstralWindow {
         @Override
         public void render(Graphics f) {
             if(isVisible()) {
-                f.setColor(Color.RED);
-                f.fillRect(0, 0, width, height);
+                f.setColor(Color.PINK);
+                f.drawRect(0, 0, width-1, height-1);
             }
         }
     }

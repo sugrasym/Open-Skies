@@ -61,12 +61,12 @@ public class TradeWindow extends AstralWindow {
     private Behavior action = Behavior.NONE;
 
     public TradeWindow(AssetManager assets) {
-        super(assets, 500, 400);
+        super(assets, 500, 400, false);
         generate();
     }
 
     public TradeWindow(AssetManager assets, int width, int height) {
-        super(assets, width, height);
+        super(assets, width, height, false);
         generate();
     }
 

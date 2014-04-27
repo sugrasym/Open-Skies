@@ -41,7 +41,7 @@ public class AstralComponent {
     //colors
     protected Color windowGrey = new Color(25, 25, 25);
     protected Color amber = new Color(255, 126, 0);
-    protected Color transparent = new Color(0, 0, 0, 1);
+    protected Color transparent = new Color(0, 0, 0, 0);
     protected Color focusColor = Color.PINK;
 
     public AstralComponent(int width, int height) {
