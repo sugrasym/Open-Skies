@@ -74,10 +74,8 @@ public class HudMarker extends AstralWindow {
         super.periodicUpdate();
         //determine if IFF is relevant
         determineRelevance();
-        if (visible) {
-            //lock to position of celestial
-            lockToTarget();
-        }
+        //lock to position of celestial
+        lockToTarget();
     }
 
     private void determineRelevance() {
@@ -117,10 +115,18 @@ public class HudMarker extends AstralWindow {
         //make sure target is in sensor range
         Ship test = camera.getTarget().getCurrentSystem().getUniverse().getPlayerShip();
         if (test.getLocation().distance(tLoc) <= test.getSensor()) {
-            setVisible(true);
-            //update position
-            setX((int) sLoc.x - width / 2);
-            setY((int) sLoc.y - height / 2);
+            //calculate dot product between camera angle and camera-relative target position
+            Vector3f pos = tLoc.subtract(camera.getLocation());
+            float dot = camera.getDirection().dot(pos);
+            //make sure that the camera is behind the target
+            if (dot > 0) {
+                setVisible(true);
+                //update position
+                setX((int) sLoc.x - width / 2);
+                setY((int) sLoc.y - height / 2);
+            } else {
+                setVisible(false);
+            }
         } else {
             //hide the marker
             setVisible(false);

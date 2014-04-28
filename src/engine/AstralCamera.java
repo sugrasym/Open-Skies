@@ -92,6 +92,14 @@ public class AstralCamera {
     {
         return cam.getScreenCoordinates(position);
     }
+    
+    public Vector3f getLocation() {
+        return cam.getLocation();
+    }
+    
+    public Vector3f getDirection() {
+        return cam.getDirection();
+    }
 
     private void setupNode() {
         camNode.move(0, 4, 15);

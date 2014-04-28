@@ -318,6 +318,15 @@ public class HUD {
             for (int a = 0; a < markers.size(); a++) {
                 ships.remove(markers.get(a).getTarget());
             }
+            //remove anything not in sensor range
+            for (int a = 0; a < ships.size(); a++) {
+                float dist = ships.get(a).getLocation().distance(universe.getPlayerShip().getLocation());
+                if (dist <= universe.getPlayerShip().getSensor()) {
+                    //safe
+                } else {
+                    ships.remove(ships.get(a));
+                }
+            }
             //is there anything new to add?
             if (ships.size() > 0) {
                 //add it
