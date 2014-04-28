@@ -40,6 +40,8 @@ public class Faction implements Serializable {
 
     public static final int PERMA_RED = -10;
     public static final int PERMA_GREEN = 10;
+    public static final int HOSTILE_STANDING = -2;
+    public static final int FRIENDLY_STANDING = 2;
     private final String name;
     private String description = "No Information Found";
     //sov and distribution

@@ -35,6 +35,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import lib.Faction;
 
 /**
  *
@@ -90,6 +91,18 @@ public class HudMarker extends AstralWindow {
             if (target.getState() != State.ALIVE) {
                 relevant = false;
             }
+            //if it is a celestial there are more tests to do
+            Ship test = camera.getTarget().getCurrentSystem().getUniverse().getPlayerShip();
+            if (target instanceof Ship) {
+                Ship ship = (Ship) target;
+                Vector3f tLoc = ship.getLocation();
+                if (test.getLocation().distance(tLoc) > test.getSensor()) {
+                    relevant = false;
+                }
+                if (test.getCurrentSystem() != ship.getCurrentSystem()) {
+                    relevant = false;
+                }
+            }
             //make sure it is in the current system as the player
         } else {
             relevant = false;
@@ -101,9 +114,17 @@ public class HudMarker extends AstralWindow {
         Vector3f tLoc = target.getLocation();
         //get target screen position
         Vector3f sLoc = camera.getScreenCoordinates(tLoc);
-        //update position
-        setX((int) sLoc.x - width / 2);
-        setY((int) sLoc.y - height / 2);
+        //make sure target is in sensor range
+        Ship test = camera.getTarget().getCurrentSystem().getUniverse().getPlayerShip();
+        if (test.getLocation().distance(tLoc) <= test.getSensor()) {
+            setVisible(true);
+            //update position
+            setX((int) sLoc.x - width / 2);
+            setY((int) sLoc.y - height / 2);
+        } else {
+            //hide the marker
+            setVisible(false);
+        }
     }
 
     public boolean isRelevant() {
@@ -137,8 +158,15 @@ public class HudMarker extends AstralWindow {
                         gfx.setStroke(new BasicStroke(3));
                         Ship tmp = (Ship) target;
                         Ship player = tmp.getCurrentSystem().getUniverse().getPlayerShip();
+                        float standing = player.getStandingsToMe(tmp);
                         if (tmp == player.getTarget()) {
                             gfx.setColor(Color.YELLOW);
+                        } else if (tmp.getFaction().getName().equals(Faction.PLAYER)) {
+                            gfx.setColor(Color.MAGENTA);
+                        } else if (standing <= Faction.HOSTILE_STANDING) {
+                            gfx.setColor(Color.RED);
+                        } else if (standing >= Faction.FRIENDLY_STANDING) {
+                            gfx.setColor(Color.GREEN);
                         } else {
                             gfx.setColor(Color.WHITE);
                         }
