@@ -847,7 +847,6 @@ public class Ship extends Celestial {
             if (currentSystem.getUniverse() != null) {
                 faction = currentSystem.getUniverse().getPlayerShip().getFaction();
                 //messages = getUniverse().getPlayerShip().getMessages();
-                //alternateString = true;
             }
         }
         //check docking updates
@@ -864,6 +863,20 @@ public class Ship extends Celestial {
             //fire weapons if needed
             if (firing) {
                 fireActiveModules();
+            }
+        }
+        //update targeting
+        updateTarget();
+    }
+    
+    protected void updateTarget() {
+        if(target != null) {
+            if(target.getState() != State.ALIVE) {
+                target = null;
+            } else if(target.getCurrentSystem() != getCurrentSystem()) {
+                target = null;
+            } else if(target.getLocation().distance(getLocation()) > getSensor()) {
+                target = null;
             }
         }
     }
