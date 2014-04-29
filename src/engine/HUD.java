@@ -32,6 +32,7 @@ import gdi.PropertyWindow;
 import gdi.StarMapWindow;
 import gdi.TradeWindow;
 import gdi.HudMarker;
+import gdi.SightMarker;
 import gdi.component.AstralWindow;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -61,6 +62,7 @@ public class HUD {
     PropertyWindow propertyWindow;
     TradeWindow tradeWindow;
     StarMapWindow starMapWindow;
+    SightMarker sightMarker;
     //IFF Manager
     IFFManager iffManager = new IFFManager();
     private boolean resetWindowFlag;
@@ -122,6 +124,9 @@ public class HUD {
         starMapWindow.setX((width / 2) - starMapWindow.getWidth() / 2);
         starMapWindow.setY((height / 2) - starMapWindow.getHeight() / 2);
         windows.add(starMapWindow);
+        //sight marker
+        sightMarker = new SightMarker(assets, universe.getPlayerShip(), camera, 25, 25);
+        windows.add(sightMarker);
     }
 
     public void add() {
@@ -161,6 +166,7 @@ public class HUD {
             propertyWindow.update(getUniverse().getPlayerShip());
             tradeWindow.update(getUniverse().getPlayerShip());
             starMapWindow.updateMap(getUniverse());
+            sightMarker.update(universe.getPlayerShip(), camera);
             //periodic update on other windows
             for (int a = 0; a < windows.size(); a++) {
                 windows.get(a).periodicUpdate();
