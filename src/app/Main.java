@@ -1,18 +1,17 @@
 /*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
-
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 package app;
 
 import com.jme3.app.SimpleApplication;
@@ -29,6 +28,7 @@ import jmeplanet.PlanetAppState;
  */
 public class Main extends SimpleApplication {
     //fpp
+
     FilterPostProcessor fpp;
     PlanetAppState planetAppState;
     //engine
@@ -37,6 +37,17 @@ public class Main extends SimpleApplication {
 
     public static void main(String[] args) {
         Main app = new Main();
+        //set properties
+        System.setProperty("sun.java2d.transaccel", "True");
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+            System.setProperty("sun.java2d.d3d", "True");
+            System.out.println("Running on " + System.getProperty("os.name") + " using DirectX");
+        } else {
+            System.setProperty("sun.java2d.opengl", "True");
+            System.out.println("Running on " + System.getProperty("os.name") + " using OpenGL");
+        }
+        System.setProperty("sun.java2d.ddforcevram", "True");
+        //start
         app.start();
     }
 
@@ -56,8 +67,8 @@ public class Main extends SimpleApplication {
         //setup post processing
         fpp = new FilterPostProcessor(assetManager);
         /*bloom.setDownSamplingFactor(4.0f);
-        bloom.setBloomIntensity(2.0f);
-        bloom.setBlurScale(1.0f);*/
+         bloom.setBloomIntensity(2.0f);
+         bloom.setBlurScale(1.0f);*/
         viewPort.addProcessor(fpp);
         //remove cruft
         setDisplayFps(false);
@@ -71,10 +82,12 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleUpdate(float tpf) {
         core.periodicUpdate(tpf);
+        rootNode.updateGeometricState();
     }
 
     @Override
     public void simpleRender(RenderManager rm) {
-        core.render(rm);
+        core.render(null);
+        guiNode.updateGeometricState();
     }
 }
