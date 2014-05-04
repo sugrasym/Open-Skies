@@ -126,12 +126,7 @@ public class Projectile extends Celestial {
     @Override
     protected void alive() {
         //check distance from origin
-        double oDist = origin.getNode().getWorldTranslation().distance(getLocation());
-        if (oDist < 1 && initialDistanceCheck) {
-            //so it can't hit the ship firing it
-            physics.setCollisionGroup(PhysicsCollisionObject.COLLISION_GROUP_NONE);
-            physics.setCollideWithGroups(PhysicsCollisionObject.COLLISION_GROUP_NONE);
-        } else {
+        if (diff > 1 && initialDistanceCheck) {
             //disable further testing
             initialDistanceCheck = false;
             //so it can hit everything
