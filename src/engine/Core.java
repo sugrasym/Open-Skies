@@ -80,6 +80,8 @@ public class Core {
     AppSettings settings;
     AssetManager assets;
     InputManager input;
+    //render safety
+    boolean hudRendering = false;
 
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState, AssetManager assets, PlanetAppState planetAppState, InputManager input, AppSettings settings) {
         this.rootNode = rootNode;
@@ -504,8 +506,20 @@ public class Core {
     }
 
     public void render(RenderManager rm) {
-        //render hud
-        hud.render(assets);
+        if (hudRendering) {
+            //wait
+        } else {
+            hudRendering = true;
+            Thread t = new Thread() {
+                public void run() {
+                    //render hud
+                    hud.render(assets);
+                    //dismiss
+                    hudRendering = false;
+                }
+            };
+            t.start();
+        }
     }
 
     /*

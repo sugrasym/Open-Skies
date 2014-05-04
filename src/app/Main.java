@@ -87,7 +87,7 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleRender(RenderManager rm) {
-        core.render(null);
+        core.render(rm);
         guiNode.updateGeometricState();
     }
 }
