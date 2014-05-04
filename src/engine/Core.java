@@ -80,6 +80,7 @@ public class Core {
     AppSettings settings;
     AssetManager assets;
     InputManager input;
+    private float tpf;
     //render safety
     boolean hudRendering = false;
 
@@ -500,9 +501,11 @@ public class Core {
                     }
                 }
             }
-            //update HUD
-            hud.periodicUpdate(tpf, getCamera());
+            //update markers
+            hud.periodicUpdateIFF(tpf, getCamera());
         }
+        //store tpf
+        this.tpf = tpf;
     }
 
     public void render(RenderManager rm) {
@@ -512,14 +515,29 @@ public class Core {
             hudRendering = true;
             Thread t = new Thread() {
                 public void run() {
-                    //render hud
-                    hud.render(assets);
+                    try {
+                        //update HUD
+                        /*
+                         * I really don't like having to update the HUD right
+                         * before rendering, but it is the only way to get it
+                         * to cooperate with this multithreading scheme.
+                         */
+                        hud.periodicUpdate(tpf, getCamera());
+                        //update node
+                        guiNode.updateGeometricState();
+                        //render hud
+                        hud.render(assets);
+                    } catch (Exception e) {
+                        System.out.println("Hud rendering messed up");
+                    }
                     //dismiss
                     hudRendering = false;
                 }
             };
             t.start();
         }
+        //render markers
+        hud.renderIFF(assets);
     }
 
     /*

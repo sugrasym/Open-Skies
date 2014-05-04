@@ -62,7 +62,6 @@ public class HUD {
     PropertyWindow propertyWindow;
     TradeWindow tradeWindow;
     StarMapWindow starMapWindow;
-    SightMarker sightMarker;
     //IFF Manager
     IFFManager iffManager = new IFFManager();
     private boolean resetWindowFlag;
@@ -124,9 +123,6 @@ public class HUD {
         starMapWindow.setX((width / 2) - starMapWindow.getWidth() / 2);
         starMapWindow.setY((height / 2) - starMapWindow.getHeight() / 2);
         windows.add(starMapWindow);
-        //sight marker
-        sightMarker = new SightMarker(assets, universe.getPlayerShip(), camera, 25, 25);
-        windows.add(sightMarker);
     }
 
     public void add() {
@@ -166,16 +162,19 @@ public class HUD {
             propertyWindow.update(getUniverse().getPlayerShip());
             tradeWindow.update(getUniverse().getPlayerShip());
             starMapWindow.updateMap(getUniverse());
-            sightMarker.update(universe.getPlayerShip(), camera);
             //periodic update on other windows
             for (int a = 0; a < windows.size(); a++) {
                 windows.get(a).periodicUpdate();
             }
-            //update iffs
-            iffManager.periodicUpdate(tpf);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void periodicUpdateIFF(float tpf, AstralCamera camera) {
+        this.camera = camera;
+        //update iffs
+        iffManager.periodicUpdate(tpf);
     }
 
     public void render(AssetManager assets) {
@@ -183,6 +182,9 @@ public class HUD {
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).render(null);
         }
+    }
+
+    public void renderIFF(AssetManager assets) {
         //update iff
         iffManager.render(assets);
     }
@@ -308,11 +310,19 @@ public class HUD {
     private class IFFManager {
 
         ArrayList<HudMarker> markers = new ArrayList<>();
+        SightMarker sightMarker;
 
         public IFFManager() {
         }
 
         public void periodicUpdate(float tpf) {
+            if (sightMarker == null) {
+                sightMarker = new SightMarker(assets, universe.getPlayerShip(), camera, 25, 25);
+                sightMarker.add(guiNode);
+            }
+            //update sight marker
+            sightMarker.update(universe.getPlayerShip(), camera);
+            sightMarker.periodicUpdate();
             /*
              * Determine if any new ship markers need to be added
              */
@@ -365,6 +375,8 @@ public class HUD {
             for (int a = 0; a < markers.size(); a++) {
                 markers.get(a).render(null);
             }
+            //render sight marker
+            sightMarker.render(null);
         }
 
         public void add() {

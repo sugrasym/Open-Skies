@@ -82,12 +82,10 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleUpdate(float tpf) {
         core.periodicUpdate(tpf);
-        rootNode.updateGeometricState();
     }
 
     @Override
     public void simpleRender(RenderManager rm) {
         core.render(rm);
-        guiNode.updateGeometricState();
     }
 }
