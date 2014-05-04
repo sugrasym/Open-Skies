@@ -22,13 +22,11 @@ import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.material.RenderState;
 import com.jme3.math.Vector3f;
-import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Quad;
 import com.jme3.texture.Texture2D;
 import com.jme3.texture.plugins.AWTLoader;
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -134,12 +132,12 @@ public class AstralWindow extends AstralComponent {
                 }
                 if (!flat) {
                     //flip
-                    AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
+                    /*AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
                     tx.translate(0, -buffer.getHeight(null));
                     AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-                    buffer = op.filter(buffer, null);
+                    buffer = op.filter(buffer, null);*/
                     //push frame to quad
-                    myTex.setImage(awtLoader.load(buffer, false));
+                    myTex.setImage(awtLoader.load(buffer, true));
                     mat_background.setTexture("ColorMap", myTex);
                     geo_background.setMaterial(mat_background);
                 } else {
