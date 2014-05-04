@@ -145,6 +145,9 @@ public class HUD {
 
     public void periodicUpdate(float tpf, AstralCamera camera) {
         try {
+            this.camera = camera;
+            //update iffs
+            iffManager.periodicUpdate(tpf);
             //resets windows if a new marker or window was added
             if (resetWindowFlag) {
                 remove();
@@ -171,21 +174,12 @@ public class HUD {
         }
     }
 
-    public void periodicUpdateIFF(float tpf, AstralCamera camera) {
-        this.camera = camera;
-        //update iffs
-        iffManager.periodicUpdate(tpf);
-    }
-
     public void render(AssetManager assets) {
         //update windows
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).render(null);
         }
-    }
-
-    public void renderIFF(AssetManager assets) {
-        //update iff
+        //update markers
         iffManager.render(assets);
     }
 

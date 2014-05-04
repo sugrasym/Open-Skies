@@ -501,8 +501,6 @@ public class Core {
                     }
                 }
             }
-            //update markers
-            hud.periodicUpdateIFF(tpf, getCamera());
         }
         //store tpf
         this.tpf = tpf;
@@ -536,8 +534,6 @@ public class Core {
             };
             t.start();
         }
-        //render markers
-        hud.renderIFF(assets);
     }
 
     /*
