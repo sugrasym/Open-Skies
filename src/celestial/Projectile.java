@@ -126,7 +126,7 @@ public class Projectile extends Celestial {
     @Override
     protected void alive() {
         //check distance from origin
-        if (diff > 1 && initialDistanceCheck) {
+        if (diff > 0.25f && initialDistanceCheck) {
             //disable further testing
             initialDistanceCheck = false;
             //so it can hit everything
