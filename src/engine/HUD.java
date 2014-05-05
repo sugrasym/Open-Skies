@@ -183,6 +183,13 @@ public class HUD {
         iffManager.render(assets);
     }
 
+    public void collect() {
+        for (int a = 0; a < windows.size(); a++) {
+            windows.get(a).collect();
+        }
+        iffManager.collect();
+    }
+
     public void handleMouseAction(GameState state, String name, boolean mousePressed, Vector3f mouseLoc) {
         //check focus changes
         checkFocusChanges((int) mouseLoc.x, (int) mouseLoc.y);
@@ -371,6 +378,15 @@ public class HUD {
             }
             //render sight marker
             sightMarker.render(null);
+        }
+
+        public void collect() {
+            for (int a = 0; a < markers.size(); a++) {
+                markers.get(a).collect();
+            }
+            if (sightMarker != null) {
+                sightMarker.collect();
+            }
         }
 
         public void add() {

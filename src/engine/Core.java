@@ -510,10 +510,13 @@ public class Core {
         if (hudRendering) {
             //wait
         } else {
-            hudRendering = true;
+            //collect from the previous render thread
+            hud.collect();
+            //now start another render thread
             Thread t = new Thread() {
                 public void run() {
                     try {
+                        hudRendering = true;
                         //update HUD
                         /*
                          * I really don't like having to update the HUD right

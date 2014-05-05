@@ -94,13 +94,11 @@ public class AstralWindow extends AstralComponent {
     @Override
     public void periodicUpdate() {
         if (visible) {
-            geo_background.setLocalTranslation(x, y, 0);
             for (int a = 0; a < components.size(); a++) {
                 components.get(a).periodicUpdate();
             }
         } else {
-            //move it off the frame
-            geo_background.setLocalTranslation(-1000000000, -1000000000, 0);
+            //
         }
     }
 
@@ -133,13 +131,13 @@ public class AstralWindow extends AstralComponent {
                 if (!flat) {
                     //flip
                     /*AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
-                    tx.translate(0, -buffer.getHeight(null));
-                    AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-                    buffer = op.filter(buffer, null);*/
+                     tx.translate(0, -buffer.getHeight(null));
+                     AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+                     buffer = op.filter(buffer, null);*/
                     //push frame to quad
                     myTex.setImage(awtLoader.load(buffer, true));
                     mat_background.setTexture("ColorMap", myTex);
-                    geo_background.setMaterial(mat_background);
+                    //geo_background.setMaterial(mat_background);
                 } else {
                     f.drawImage(buffer, x, y, null);
                 }
@@ -147,6 +145,18 @@ public class AstralWindow extends AstralComponent {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public final void collect() {
+        //set position
+        if (visible) {
+            geo_background.setLocalTranslation(x, y, 0);
+        } else {
+            //move it off the frame
+            geo_background.setLocalTranslation(-1000000000, -1000000000, 0);
+        }
+        //set texture
+        geo_background.setMaterial(mat_background);
     }
 
     @Override
