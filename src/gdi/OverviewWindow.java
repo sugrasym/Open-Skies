@@ -217,10 +217,12 @@ public class OverviewWindow extends AstralWindow {
             //draw yaw vector
             gfx.setColor(Color.CYAN);
             Vector3f pointer = sensorShip.getRotationAxis();
-            double dTheta = Math.atan2(pointer.z, pointer.x) - FastMath.PI;
-            double dpx = Math.cos(dTheta) * getWidth() / 2;
-            double dpy = Math.sin(dTheta) * getHeight() / 2;
-            gfx.drawLine(getWidth() / 2, (getHeight() / 2), (int) dpx + (getWidth() / 2), (int) dpy + (getHeight() / 2));
+            if (pointer != null) {
+                double dTheta = Math.atan2(pointer.z, pointer.x) - FastMath.PI;
+                double dpx = Math.cos(dTheta) * getWidth() / 2;
+                double dpy = Math.sin(dTheta) * getHeight() / 2;
+                gfx.drawLine(getWidth() / 2, (getHeight() / 2), (int) dpx + (getWidth() / 2), (int) dpy + (getHeight() / 2));
+            }
         }
 
         private void drawDirectionVector(Graphics2D gfx) {

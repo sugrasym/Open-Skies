@@ -62,60 +62,64 @@ public class EquipmentWindow extends AstralWindow {
     }
 
     public void update(Ship ship) {
-        this.ship = ship;
-        //clear list
-        weaponList.clearList();
-        targetList.clearList();
-        for (int a = 0; a < ship.getHardpoints().size(); a++) {
-            weaponList.addToList(ship.getHardpoints().get(a));
-        }
-        ArrayList<Entity> celestials = ship.getCurrentSystem().getCelestials();
-        for (int a = 0; a < celestials.size(); a++) {
-            if (celestials.get(a) instanceof Ship) {
-                /*if (!(celestials.get(a) instanceof Projectile)) {*/
-                Ship tmp = (Ship) celestials.get(a);
-                if (ship.getPhysicsLocation().distance(tmp.getPhysicsLocation())
-                        < ship.getSensor() && ship != tmp) {
-                    targetList.addToList(tmp);
-                }
-                /*}*/
+        if (ship != null) {
+            this.ship = ship;
+            //clear list
+            weaponList.clearList();
+            targetList.clearList();
+            for (int a = 0; a < ship.getHardpoints().size(); a++) {
+                weaponList.addToList(ship.getHardpoints().get(a));
             }
-        }
-        //update targeting components
-        Ship tmp = ship.getTarget();
-        if (tmp != null) {
-            targetName.setText(tmp.getName());
-            targetType.setText(tmp.getType().getValue("type"));
-            targetFaction.setText("[" + ship.getStandingsToMe(tmp) + "] " + tmp.getFaction().getName());
-            targetDistance.setText((int) ship.getPhysicsLocation().distance(ship.getTarget().getPhysicsLocation()) + "");
-            if (tmp instanceof Station) {
-                Station st = (Station) tmp;
-                if (ship.isDocked()) {
-                    dockInfo.setText("Press F1 To Launch");
-                } else {
-                    if (ship.getPort() != null) {
-                        dockInfo.setText("Request Accepted");
+            ArrayList<Entity> celestials = ship.getCurrentSystem().getCelestials();
+            for (int a = 0; a < celestials.size(); a++) {
+                if (celestials.get(a) instanceof Ship) {
+                    /*if (!(celestials.get(a) instanceof Projectile)) {*/
+                    Ship tmp = (Ship) celestials.get(a);
+                    if (ship.getPhysicsLocation().distance(tmp.getPhysicsLocation())
+                            < ship.getSensor() && ship != tmp) {
+                        targetList.addToList(tmp);
+                    }
+                    /*}*/
+                }
+            }
+            //update targeting components
+            Ship tmp = ship.getTarget();
+            if (tmp != null) {
+                targetName.setText(tmp.getName());
+                targetType.setText(tmp.getType().getValue("type"));
+                targetFaction.setText("[" + ship.getStandingsToMe(tmp) + "] " + tmp.getFaction().getName());
+                targetDistance.setText((int) ship.getPhysicsLocation().distance(ship.getTarget().getPhysicsLocation()) + "");
+                if (tmp instanceof Station) {
+                    Station st = (Station) tmp;
+                    if (ship.isDocked()) {
+                        dockInfo.setText("Press F1 To Launch");
                     } else {
-                        if (st.canDock(ship)) {
-                            dockInfo.setText("Press F1 For Docking");
+                        if (ship.getPort() != null) {
+                            dockInfo.setText("Request Accepted");
                         } else {
-                            dockInfo.setText("Docking Denied");
+                            if (st.canDock(ship)) {
+                                dockInfo.setText("Press F1 For Docking");
+                            } else {
+                                dockInfo.setText("Docking Denied");
+                            }
                         }
                     }
+                } else {
+                    dockInfo.setText("");
                 }
+                targetShield.setPercentage(ship.getTarget().getShield() / ship.getTarget().getMaxShield());
+                targetHull.setPercentage(ship.getTarget().getHull() / ship.getTarget().getMaxHull());
             } else {
+                targetName.setText("NO AIM");
+                targetType.setText("");
+                targetFaction.setText("");
+                targetDistance.setText("");
                 dockInfo.setText("");
+                targetShield.setPercentage(0);
+                targetHull.setPercentage(0);
             }
-            targetShield.setPercentage(ship.getTarget().getShield() / ship.getTarget().getMaxShield());
-            targetHull.setPercentage(ship.getTarget().getHull() / ship.getTarget().getMaxHull());
         } else {
-            targetName.setText("NO AIM");
-            targetType.setText("");
-            targetFaction.setText("");
-            targetDistance.setText("");
-            dockInfo.setText("");
-            targetShield.setPercentage(0);
-            targetHull.setPercentage(0);
+            //nothing to use for update
         }
     }
 

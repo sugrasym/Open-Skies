@@ -83,6 +83,7 @@ public class Core {
     private float tpf;
     //render safety
     boolean hudRendering = false;
+    boolean hasFocus = true;
 
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState, AssetManager assets, PlanetAppState planetAppState, InputManager input, AppSettings settings) {
         this.rootNode = rootNode;
@@ -510,32 +511,30 @@ public class Core {
         if (hudRendering) {
             //wait
         } else {
-            //collect from the previous render thread
-            hud.collect();
-            //now start another render thread
-            Thread t = new Thread() {
-                public void run() {
-                    try {
-                        hudRendering = true;
-                        //update HUD
-                        /*
-                         * I really don't like having to update the HUD right
-                         * before rendering, but it is the only way to get it
-                         * to cooperate with this multithreading scheme.
-                         */
-                        hud.periodicUpdate(tpf, getCamera());
-                        //update node
-                        guiNode.updateGeometricState();
-                        //render hud
-                        hud.render(assets);
-                    } catch (Exception e) {
-                        System.out.println("Hud rendering messed up");
+            if (hasFocus) {
+                //collect from the previous render thread
+                hud.collect();
+                //update
+                hud.periodicUpdate(tpf, getCamera());
+                //now start another render thread
+                Thread t = new Thread() {
+                    public void run() {
+                        try {
+                            //flag
+                            hudRendering = true;
+                            //render hud
+                            hud.render(assets);
+                        } catch (Exception e) {
+                            System.out.println("Hud rendering messed up");
+                        }
+                        //dismiss
+                        hudRendering = false;
                     }
-                    //dismiss
-                    hudRendering = false;
-                }
-            };
-            t.start();
+                };
+                t.start();
+            } else {
+                //don't do any gui rendering without focus and do not collect!
+            }
         }
     }
 
@@ -611,5 +610,13 @@ public class Core {
 
     public AstralCamera getCamera() {
         return planetAppState.getAstralCamera();
+    }
+
+    public boolean hasFocus() {
+        return hasFocus;
+    }
+
+    public void setFocus(boolean hasFocus) {
+        this.hasFocus = hasFocus;
     }
 }

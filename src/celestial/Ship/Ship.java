@@ -296,19 +296,23 @@ public class Ship extends Celestial {
     }
 
     public Vector3f getRotationAxis() {
-        if (nav == null || core == null) {
-            initNav();
+        if (physics != null) {
+            if (nav == null || core == null) {
+                initNav();
+            }
+            /*
+             * Returns a vector that represents a position vector being rotated
+             * around the axis of the ship.
+             */
+            Vector3f eul = null;
+            {
+                core.setLocalRotation(getPhysicsRotation().clone());
+                eul = nav.getWorldTranslation().clone();
+            }
+            return eul;
+        } else {
+            return null;
         }
-        /*
-         * Returns a vector that represents a position vector being rotated
-         * around the axis of the ship.
-         */
-        Vector3f eul = null;
-        {
-            core.setLocalRotation(getPhysicsRotation().clone());
-            eul = nav.getWorldTranslation().clone();
-        }
-        return eul;
     }
 
     /*

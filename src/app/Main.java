@@ -88,4 +88,14 @@ public class Main extends SimpleApplication {
     public void simpleRender(RenderManager rm) {
         core.render(rm);
     }
+    
+    @Override
+    public void gainFocus() {
+        core.setFocus(true);
+    }
+    
+    @Override
+    public void loseFocus() {
+        core.setFocus(false);
+    }
 }
