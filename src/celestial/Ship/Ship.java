@@ -769,12 +769,112 @@ public class Ship extends Celestial {
     }
 
     private void oosAutopilotDockStageOne() {
+        //make sure we have a flyToTarget
+        if (flyToTarget != null) {
+            //make sure it is a station
+            if (flyToTarget instanceof Station && flyToTarget.getState() == State.ALIVE) {
+                //make sure we can actually dock there
+                Station tmp = (Station) flyToTarget;
+                if (tmp.getCurrentSystem() == currentSystem) {
+                    if (port == null) {
+                        //get the docking port to use
+                        port = tmp.requestDockingPort(this);
+                    } else {
+                        //get the "docking align"
+                        Vector3f align = port.rawAlignPosition();
+                        //fly to it
+                        float distance = align.distance(getLocation());
+                        float velocity = getVelocity().length();
+                        if (distance < port.getSize() / 2) {
+                            oosAutopilotAllStop();
+                            if (velocity == 0 || autopilot == Autopilot.NONE) {
+                                //next stage
+                                setAutopilot(Autopilot.DOCK_STAGE2);
+                            }
+                        } else {
+                            //determine correct hold to use
+                            float hold = 0;
+                            if (distance <= getFlightHold()) {
+                                hold = distance;
+                            } else {
+                                hold = getFlightHold();
+                            }
+                            //move to position
+                            oosMoveToPositionWithHold(align, hold);
+                            //detect if autopilot kicked off
+                            if (autopilot == Autopilot.NONE) {
+                                /*
+                                 * moveToPosition() detects when the ship has stopped
+                                 * moving and corrects itself by turning off the autopilot.
+                                 */
+                                setAutopilot(Autopilot.DOCK_STAGE1);
+                            } else {
+                                //do nothing, we are still on autopilot
+                            }
+                        }
+                    }
+                } else {
+                    cmdAbortDock();
+                }
+            } else {
+                cmdAbortDock();
+            }
+        } else {
+            cmdAbortDock();
+        }
     }
 
     private void oosAutopilotDockStageTwo() {
+        //make sure we have a flyToTarget
+        if (flyToTarget != null) {
+            //make sure it is a station
+            if (flyToTarget instanceof Station && flyToTarget.getState() == State.ALIVE) {
+                //make sure we can actually dock there
+                Station tmp = (Station) flyToTarget;
+                if (tmp.getCurrentSystem() == currentSystem) {
+                    if (port == null) {
+                        //abort because this is stage 2
+                        cmdAbortDock();
+                    } else {
+                        //get the docking port
+                        Vector3f dock = port.rawPortPosition();
+                        //get the hold
+                        float hold = DockingPort.DOCK_SPEED_LIMIT / 2;
+                        //fly to it
+                        oosMoveToPositionWithHold(dock, hold);
+                        //detect if autopilot kicked off
+                        if (autopilot == Autopilot.NONE) {
+                            setAutopilot(Autopilot.DOCK_STAGE2);
+                        } else {
+                            if (getVelocity().length() > 0) {
+                                //stop rotation
+                                pitch = 0;
+                                yaw = 0;
+                                roll = 0;
+                            }
+                        }
+                    }
+                } else {
+                    cmdAbortDock();
+                }
+            } else {
+                cmdAbortDock();
+            }
+        } else {
+            cmdAbortDock();
+        }
     }
 
     private void oosAutopilotUndock() {
+        //get the docking align
+        Vector3f align = port.rawAlignPosition();
+        //fly towards it
+        oosMoveToPositionWithHold(align, Float.POSITIVE_INFINITY);
+        //abort when hold is reached
+        if (getVelocity().length() >= DockingPort.DOCK_SPEED_LIMIT) {
+            //all done
+            cmdAbortDock();
+        }
     }
 
     private void oosMoveToPosition(Vector3f end) {
@@ -868,14 +968,14 @@ public class Ship extends Celestial {
         //update targeting
         updateTarget();
     }
-    
+
     protected void updateTarget() {
-        if(target != null) {
-            if(target.getState() != State.ALIVE) {
+        if (target != null) {
+            if (target.getState() != State.ALIVE) {
                 target = null;
-            } else if(target.getCurrentSystem() != getCurrentSystem()) {
+            } else if (target.getCurrentSystem() != getCurrentSystem()) {
                 target = null;
-            } else if(target.getLocation().distance(getLocation()) > getSensor()) {
+            } else if (target.getLocation().distance(getLocation()) > getSensor()) {
                 target = null;
             }
         }

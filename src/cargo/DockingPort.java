@@ -98,7 +98,35 @@ public class DockingPort implements Serializable {
     }
 
     public void oosPeriodicUpdate(double tpf) {
-        //TODO
+        if (client != null) {
+            if (client.getState() == State.ALIVE) {
+                if (!client.isDocked()) {
+                    //make sure client is in the same solar system
+                    if (client.getAutopilot() == Ship.Autopilot.UNDOCK) {
+                        //don't interfere with undocking process
+                    } else if (client.getCurrentSystem() == host.getCurrentSystem()) {
+                        //get client position
+                        Vector3f cLoc = client.getLocation();
+                        //get node position
+                        Vector3f nLoc = rawPortPosition();
+                        //find distance between these points
+                        float dist = cLoc.distance(nLoc);
+                        if (dist < size && client.getVelocity().length() < DOCK_SPEED_LIMIT) {
+                            //dock the ship
+                            client.setDocked(true);
+                            client.setLocation(nLoc);
+                        }
+                    }
+                } else {
+                    //keep client synced in bay
+                    client.setLocation(rawPortPosition());
+                    client.setVelocity(Vector3f.ZERO);
+                }
+            } else {
+                //dead ships don't dock
+                client = null;
+            }
+        }
     }
 
     public boolean isEmpty() {
@@ -139,6 +167,14 @@ public class DockingPort implements Serializable {
         alignNode = new Node();
         alignNode.move(align);
         //System.out.println(loc);
+    }
+    
+    public Vector3f rawPortPosition() {
+        return host.getLocation().add(loc);
+    }
+    
+    public Vector3f rawAlignPosition() {
+        return host.getLocation().add(align);
     }
 
     public void release() {

@@ -1,7 +1,7 @@
 [NewGame]
 name=Default
 ship=Sparrow
-system=Kappa 0ET2-HY5D
+system=Gamma TJJ8-6
 x=166944
 y=0
 z=-9963
