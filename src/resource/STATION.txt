@@ -9,6 +9,6 @@ fuel=2500000000000
 mass=0
 sensor=5000
 cargo=125000000
-port=basic,10,0,0,70,0,0,300/basic,10,0,0,-70,0,0,-300
+port=basic,10,75,0,0,300,0,0/basic,10,-55,0,0,-280,0,0
 job=AgeiranCustomsGases/AgeiranCustomsOre/HydrocarbonBurn
 [/Station]
