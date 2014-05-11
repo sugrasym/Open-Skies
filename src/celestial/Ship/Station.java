@@ -218,6 +218,7 @@ public class Station extends Ship {
             //do not do this
             economyExempt = false;
         } else {
+            randomizeInitialGoods(new Random().nextInt());
             String status = relevant.getValue("economyExempt");
             if (status != null) {
                 economyExempt = Boolean.parseBoolean(status);

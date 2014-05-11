@@ -26,31 +26,27 @@ import com.jme3.bounding.BoundingSphere;
 import com.jme3.scene.Node;
 import com.jme3.scene.Geometry;
 import com.jme3.material.Material;
-import com.jme3.material.RenderState.BlendMode;
 import com.jme3.math.FastMath;
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue.Bucket;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.debug.Grid;
-import com.jme3.scene.shape.Quad;
 import com.jme3.scene.shape.Sphere;
 import com.jme3.texture.Image;
 import com.jme3.texture.Texture;
 import com.jme3.texture.TextureCubeMap;
 import java.nio.ByteBuffer;
 import java.util.Random;
-import jmeplanet.HeightDataSource;
-import jmeplanet.Planet;
 
 /**
  * Utility
  *
  */
 public class Utility {
+    private static final float ATMOSPHERE_MULTIPLIER = .045f;
 
     public static Node createGridAxis(AssetManager assetManager, int lines, int spacing) {
         Node grid = new Node("Grid Axis");
@@ -172,7 +168,7 @@ public class Utility {
 
         // create atmosphere
         Material atmosphereMaterial = new Material(assetManager, "JmePlanet/MatDefs/Atmosphere.j3md");
-        float atmosphereRadius = radius + (radius * .025f);
+        float atmosphereRadius = radius + (radius * ATMOSPHERE_MULTIPLIER);
         atmosphereMaterial.setColor("Ambient", new ColorRGBA(0.5f, 0.5f, 1f, 1f));
         atmosphereMaterial.setColor("Diffuse", new ColorRGBA(0.18867780436772762f, 0.4978442963618773f, 0.6616065586417131f, 1.0f));
         atmosphereMaterial.setColor("Specular", new ColorRGBA(0.7f, 0.7f, 1f, 1f));
@@ -226,7 +222,7 @@ public class Utility {
 
         // create atmosphere
         Material atmosphereMaterial = new Material(assetManager, "JmePlanet/MatDefs/Atmosphere.j3md");
-        float atmosphereRadius = radius + (radius * .025f);
+        float atmosphereRadius = radius + (radius * ATMOSPHERE_MULTIPLIER);
         ColorRGBA airColor = createSeededAirColor(seed);
         atmosphereMaterial.setColor("Ambient", airColor);
         atmosphereMaterial.setColor("Diffuse", airColor);
@@ -282,7 +278,7 @@ public class Utility {
         }
         // create atmosphere
         Material atmosphereMaterial = new Material(assetManager, "JmePlanet/MatDefs/Atmosphere.j3md");
-        float atmosphereRadius = radius + (radius * .025f);
+        float atmosphereRadius = radius + (radius * ATMOSPHERE_MULTIPLIER);
         ColorRGBA airColor = createSeededAirColor(seed);
         atmosphereMaterial.setColor("Ambient", airColor);
         atmosphereMaterial.setColor("Diffuse", airColor);
@@ -340,7 +336,7 @@ public class Utility {
         Planet planet = new Planet("Atmosphere Shell", radius, planetMaterial, dataSource, true);
         // create atmosphere
         Material atmosphereMaterial = new Material(assetManager, "JmePlanet/MatDefs/Atmosphere.j3md");
-        float atmosphereRadius = radius + (radius * .025f);
+        float atmosphereRadius = radius + (radius * ATMOSPHERE_MULTIPLIER);
         atmosphereMaterial.setColor("Ambient", color.mult(0.1f));
         atmosphereMaterial.setColor("Diffuse", color);
         atmosphereMaterial.setColor("Specular", new ColorRGBA(0.01f, 0.01f, 0.01f, 0.01f));
