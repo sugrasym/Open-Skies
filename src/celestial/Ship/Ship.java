@@ -62,7 +62,7 @@ public class Ship extends Celestial {
      * these goals.
      */
     public enum Behavior {
-
+        
         NONE,
         TEST,
         PATROL,
@@ -77,7 +77,7 @@ public class Ship extends Celestial {
      * a big picture.
      */
     public enum Autopilot {
-
+        
         NONE, //nothing
         WAIT, //waiting
         WAITED, //done waiting
@@ -98,9 +98,9 @@ public class Ship extends Celestial {
     public static final float JUMP_SAFETY_FUEL = 0.25f;
     public static final float TRADER_JD_SAFETY_FUEL = 0.40f;
     public static final float OOS_VEL_LOWBOUND = 5f;
-
+    
     public enum EngineMode {
-
+        
         NORMAL,
         NEWTON
     }
@@ -155,7 +155,7 @@ public class Ship extends Celestial {
     protected ArrayList<Nozzle> nozzles = new ArrayList<>();
     //money
     protected long cash = 0;
-
+    
     public Ship(Universe universe, Term type, String faction) {
         super(Float.parseFloat(type.getValue("mass")), universe);
         this.type = type;
@@ -163,8 +163,9 @@ public class Ship extends Celestial {
         initStats();
         initNav();
         initFaction(faction);
+        initCash();
     }
-
+    
     private void initStats() {
         setThrust(Float.parseFloat(getType().getValue("thrust")));
         torque = Float.parseFloat(getType().getValue("torque"));
@@ -177,14 +178,14 @@ public class Ship extends Celestial {
         installHardpoints(getType());
         installNozzles(getType());
     }
-
+    
     private void initNav() {
         core = new Node();
         nav = new Node();
         nav.move(Vector3f.UNIT_Z);
         core.attachChild(nav);
     }
-
+    
     public void addInitialEquipment(String equip) {
         /*
          * Equips the ship with equipment from the starting loadout
@@ -207,11 +208,20 @@ public class Ship extends Celestial {
             }
         }
     }
-
+    
     private void initFaction(String name) {
         faction = new Faction(name);
     }
-
+    
+    private void initCash() {
+        if (faction.getName().matches(Faction.PLAYER)) {
+            //do not do this
+        } else {
+            //randomize start cash
+            setCash(new Random().nextInt(10000000));
+        }
+    }
+    
     @Override
     public void construct(AssetManager assets) {
         //Get name
@@ -226,14 +236,14 @@ public class Ship extends Celestial {
         constructHardpoints(assets);
         constructNozzles(assets);
     }
-
+    
     @Override
     public void deconstruct() {
         spatial = null;
         mat = null;
         physics = null;
     }
-
+    
     protected void loadSpatial(AssetManager assets, String name) {
         //load model
         try {
@@ -243,7 +253,7 @@ public class Ship extends Celestial {
             spatial = assets.loadModel("Models/UnknownShip/Model.blend");
         }
     }
-
+    
     protected void constructPhysics() {
         //setup physics
         CollisionShape hullShape = CollisionShapeFactory.createDynamicMeshShape(spatial);
@@ -256,7 +266,7 @@ public class Ship extends Celestial {
         nameControl.setParent(this);
         center.addControl(nameControl);
     }
-
+    
     protected void constructMaterial(AssetManager assets, String name) {
         //load texture
         mat = new Material(assets, "Common/MatDefs/Light/Lighting.j3md");
@@ -268,7 +278,7 @@ public class Ship extends Celestial {
         //store
         center.attachChild(spatial);
     }
-
+    
     protected void constructHardpoints(AssetManager assets) {
         for (int a = 0; a < hardpoints.size(); a++) {
             //initialize node
@@ -281,7 +291,7 @@ public class Ship extends Celestial {
             center.attachChild(hardpoints.get(a).getNode());
         }
     }
-
+    
     protected void constructNozzles(AssetManager assets) {
         for (int a = 0; a < nozzles.size(); a++) {
             //initialize node
@@ -294,7 +304,7 @@ public class Ship extends Celestial {
             center.attachChild(nozzles.get(a).getNode());
         }
     }
-
+    
     public Vector3f getRotationAxis() {
         if (physics != null) {
             if (nav == null || core == null) {
@@ -334,7 +344,7 @@ public class Ship extends Celestial {
             autopilotFightTarget();
         }
     }
-
+    
     private void autopilotFightTarget() {
         if (target != null) {
             if (target.getState() == State.ALIVE) {
@@ -398,7 +408,7 @@ public class Ship extends Celestial {
             cmdAbort();
         }
     }
-
+    
     private void autopilotUndock() {
         //get the docking align
         Vector3f align = port.getAlign().getWorldTranslation();
@@ -410,7 +420,7 @@ public class Ship extends Celestial {
             cmdAbortDock();
         }
     }
-
+    
     private void autopilotDockStageOne() {
         //make sure we have a flyToTarget
         if (flyToTarget != null) {
@@ -466,7 +476,7 @@ public class Ship extends Celestial {
             cmdAbortDock();
         }
     }
-
+    
     private void autopilotDockStageTwo() {
         //make sure we have a flyToTarget
         if (flyToTarget != null) {
@@ -507,7 +517,7 @@ public class Ship extends Celestial {
             cmdAbortDock();
         }
     }
-
+    
     protected void autopilotAllStop() {
         //kill rotation
         pitch = 0;
@@ -562,7 +572,7 @@ public class Ship extends Celestial {
             setAutopilot(Autopilot.NONE);
         }
     }
-
+    
     private void autopilotFlyToCelestial() {
         if (flyToTarget == null) {
             //abort
@@ -606,14 +616,14 @@ public class Ship extends Celestial {
             }
         }
     }
-
+    
     private void moveToPosition(Vector3f end) {
         /*
          * Maintains compatibility with most flight methods.
          */
         moveToPositionWithHold(end, getFlightHold());
     }
-
+    
     private void moveToPositionWithHold(Vector3f end, float hold) {
         Vector3f b = end.clone();
         //safety
@@ -657,7 +667,7 @@ public class Ship extends Celestial {
             behaviorTest();
         }
     }
-
+    
     protected void behaviorTest() {
         if (autopilot == Autopilot.NONE) {
             //target nearest ship
@@ -687,7 +697,7 @@ public class Ship extends Celestial {
             oosAutopilotFightTarget();
         }
     }
-
+    
     private void oosAutopilotFightTarget() {
         if (target != null) {
             if (target.getState() == State.ALIVE) {
@@ -743,7 +753,7 @@ public class Ship extends Celestial {
             cmdAbort();
         }
     }
-
+    
     private void oosAutopilotAllStop() {
         /*
          * OOS objects do not have rotation and behave as points.
@@ -768,7 +778,7 @@ public class Ship extends Celestial {
                  *
                  * Player ships are set adrift, NPC ships are removed.
                  */
-                if (faction.getName().equals(Faction.PLAYER)) {
+                if (isPlayerFaction()) {
                     setAutopilot(Autopilot.NONE);
                 } else {
                     setState(State.DYING);
@@ -780,7 +790,7 @@ public class Ship extends Celestial {
             setAutopilot(Autopilot.NONE);
         }
     }
-
+    
     private void oosAutopilotFlyToCelestial() {
         if (flyToTarget == null) {
             //abort
@@ -824,7 +834,7 @@ public class Ship extends Celestial {
             }
         }
     }
-
+    
     private void oosAutopilotDockStageOne() {
         //make sure we have a flyToTarget
         if (flyToTarget != null) {
@@ -880,7 +890,7 @@ public class Ship extends Celestial {
             cmdAbortDock();
         }
     }
-
+    
     private void oosAutopilotDockStageTwo() {
         //make sure we have a flyToTarget
         if (flyToTarget != null) {
@@ -921,7 +931,7 @@ public class Ship extends Celestial {
             cmdAbortDock();
         }
     }
-
+    
     private void oosAutopilotUndock() {
         //get the docking align
         Vector3f align = port.rawAlignPosition();
@@ -933,11 +943,11 @@ public class Ship extends Celestial {
             cmdAbortDock();
         }
     }
-
+    
     private void oosMoveToPosition(Vector3f end) {
         oosMoveToPositionWithHold(end, getFlightHold());
     }
-
+    
     private void oosMoveToPositionWithHold(Vector3f end, float hold) {
         Vector3f b = end.clone();
         //see if we are there
@@ -966,7 +976,7 @@ public class Ship extends Celestial {
             }
         }
     }
-
+    
     private void oosBurn(Vector3f end, float acceleration) {
         /*
          * OOS, objects do not have a real rotation. For the
@@ -991,7 +1001,7 @@ public class Ship extends Celestial {
             oosBehaviorTest();
         }
     }
-
+    
     protected void oosBehaviorTest() {
     }
 
@@ -1004,7 +1014,7 @@ public class Ship extends Celestial {
          * out of system
          */
         //sync standings
-        if (faction.getName().equals(Faction.PLAYER)) {
+        if (isPlayerFaction()) {
             if (currentSystem.getUniverse() != null) {
                 faction = currentSystem.getUniverse().getPlayerShip().getFaction();
                 //messages = getUniverse().getPlayerShip().getMessages();
@@ -1031,7 +1041,7 @@ public class Ship extends Celestial {
         //update health
         updateHealth();
     }
-
+    
     protected void updateTarget() {
         if (target != null) {
             if (target.getState() != State.ALIVE) {
@@ -1043,7 +1053,7 @@ public class Ship extends Celestial {
             }
         }
     }
-
+    
     protected void updateHealth() {
         //recharge shield
         if (shield < maxShield) {
@@ -1083,23 +1093,23 @@ public class Ship extends Celestial {
         updateNozzles();
         syncPhysics();
     }
-
+    
     protected void dying() {
         dropExplosion();
         setState(State.DEAD);
     }
-
+    
     protected void dead() {
         //nothing to do really
     }
-
+    
     protected void updateCenter() {
         if (center == null) {
             center = new Node();
         }
         center.setLocalTranslation(physics.getPhysicsLocation());
     }
-
+    
     protected void updateThrottle() {
         /*
          * Checks to see if the throttle on the ship is up. If it is, then use
@@ -1134,7 +1144,7 @@ public class Ship extends Celestial {
             }
         }
     }
-
+    
     protected void updateTorque() {
         /*
          * Uses the pitch, yaw, and roll targets to rotate the
@@ -1159,7 +1169,7 @@ public class Ship extends Celestial {
         }
         roll(roll);
     }
-
+    
     protected void updateNozzles() {
         for (int a = 0; a < nozzles.size(); a++) {
             nozzles.get(a).periodicUpdate(tpf);
@@ -1179,13 +1189,13 @@ public class Ship extends Celestial {
         Vector3f dP = getVelocity().mult((float) tpf);
         setLocation(getLocation().add(dP));
     }
-
+    
     @Override
     protected void oosDying() {
         super.oosDying();
         setState(State.DEAD);
     }
-
+    
     @Override
     protected void oosDead() {
         super.oosDead();
@@ -1204,7 +1214,7 @@ public class Ship extends Celestial {
             hull += shield;
         }
     }
-
+    
     public void applyDamage(float shieldDmg, float hullDmg) {
         /*
          * Some weapons will be better against shields than hull. This
@@ -1222,30 +1232,30 @@ public class Ship extends Celestial {
     public void roll(float percent) {
         applyTorque(torque * percent, physics.getPhysicsRotation().mult(Vector3f.UNIT_Z));
     }
-
+    
     public void yaw(float percent) {
         applyTorque(torque * percent, physics.getPhysicsRotation().mult(Vector3f.UNIT_Y));
     }
-
+    
     public void pitch(float percent) {
         applyTorque(torque * percent, physics.getPhysicsRotation().mult(Vector3f.UNIT_X));
     }
-
+    
     public void applyTorque(float force, Vector3f axis) {
         if (sufficientFuel(force)) {
             physics.applyTorque(axis.mult(force));
             useFuel(force);
         }
     }
-
+    
     public void fireRearThrusters(float percent) {
         applyThrust(-getThrust() * percent);
     }
-
+    
     public void fireForwardThrusters(float percent) {
         applyThrust(getThrust() * percent);
     }
-
+    
     public void applyThrust(float force) {
         if (engine != EngineMode.NEWTON) {
             if (sufficientFuel(force)) {
@@ -1266,7 +1276,7 @@ public class Ship extends Celestial {
         this.physics.setPhysicsLocation(getLocation().clone());
         this.physics.setPhysicsRotation(getRotation().clone());
     }
-
+    
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         setVelocity(this.physics.getLinearVelocity().clone());
         setLocation(this.physics.getPhysicsLocation().clone());
@@ -1288,99 +1298,99 @@ public class Ship extends Celestial {
     public float getThrust() {
         return thrust;
     }
-
+    
     public void setThrust(float thrust) {
         this.thrust = thrust;
     }
-
+    
     public float getShield() {
         return shield;
     }
-
+    
     public void setShield(float shield) {
         this.shield = shield;
     }
-
+    
     public float getHull() {
         return hull;
     }
-
+    
     public void setHull(float hull) {
         this.hull = hull;
     }
-
+    
     public float getMaxShield() {
         return maxShield;
     }
-
+    
     public void setMaxShield(float maxShield) {
         this.maxShield = maxShield;
     }
-
+    
     public float getMaxHull() {
         return maxHull;
     }
-
+    
     public void setMaxHull(float maxHull) {
         this.maxHull = maxHull;
     }
-
+    
     public float getFuel() {
         return fuel;
     }
-
+    
     public void setFuel(float fuel) {
         this.fuel = fuel;
     }
-
+    
     public float getMaxFuel() {
         return maxFuel;
     }
-
+    
     public void setMaxFuel(float maxFuel) {
         this.maxFuel = maxFuel;
     }
-
+    
     public float getSensor() {
         return sensor;
     }
-
+    
     public void setSensor(float sensor) {
         this.sensor = sensor;
     }
-
+    
     public float getThrottle() {
         return throttle;
     }
-
+    
     public void setThrottle(float throttle) {
         this.throttle = throttle;
     }
-
+    
     public void setPitch(float pitch) {
         this.pitch = pitch;
     }
-
+    
     public void setYaw(float yaw) {
         this.yaw = yaw;
     }
-
+    
     public void setRoll(float roll) {
         this.roll = roll;
     }
-
+    
     public float getShieldRecharge() {
         return shieldRecharge;
     }
-
+    
     public void setShieldRecharge(float shieldRecharge) {
         this.shieldRecharge = shieldRecharge;
     }
-
+    
     public Ship getTarget() {
         return target;
     }
-
+    
     public void setTarget(Ship target) {
         this.target = target;
     }
@@ -1391,7 +1401,7 @@ public class Ship extends Celestial {
     @Override
     public String toString() {
         String ret = "";
-        if (!faction.getName().equals(Faction.PLAYER)) {
+        if (!isPlayerFaction()) {
             ret = "(" + getType().getValue("type") + ") - " + getName() + ", " + faction.getName();
         } else {
             if (this.getCurrentSystem().getUniverse().getPlayerShip().getCurrentSystem() == getCurrentSystem()) {
@@ -1402,23 +1412,27 @@ public class Ship extends Celestial {
         }
         return ret;
     }
-
+    
+    public boolean isPlayerFaction() {
+        return faction.getName().equals(Faction.PLAYER);
+    }
+    
     public Term getType() {
         return type;
     }
-
+    
     public EngineMode getEngine() {
         return engine;
     }
-
+    
     public void setEngine(EngineMode engine) {
         this.engine = engine;
     }
-
+    
     private void useFuel(float force) {
         fuel -= Math.abs(force * burnMultiplier) * tpf;
     }
-
+    
     private boolean sufficientFuel(float force) {
         return fuel - Math.abs(force * burnMultiplier) * tpf >= 0;
     }
@@ -1429,15 +1443,15 @@ public class Ship extends Celestial {
     public double getCargo() {
         return cargo;
     }
-
+    
     public void setCargo(double cargo) {
         this.cargo = cargo;
     }
-
+    
     public ArrayList<Item> getCargoBay() {
         return cargoBay;
     }
-
+    
     public boolean addToCargoBay(Item item) {
         if (item != null) {
             /*
@@ -1467,7 +1481,7 @@ public class Ship extends Celestial {
         }
         return true;
     }
-
+    
     public void removeFromCargoBay(Item item) {
         if (item.getQuantity() > 1) {
             item.setQuantity(item.getQuantity() - 1);
@@ -1475,7 +1489,7 @@ public class Ship extends Celestial {
             cargoBay.remove(item);
         }
     }
-
+    
     public int getNumInCargoBay(Item item) {
         int count = 0;
         if (item != null) {
@@ -1495,7 +1509,7 @@ public class Ship extends Celestial {
         }
         return count;
     }
-
+    
     public double getBayUsed() {
         double cmass = 0;
         for (int a = 0; a < cargoBay.size(); a++) {
@@ -1503,11 +1517,11 @@ public class Ship extends Celestial {
         }
         return cmass;
     }
-
+    
     public boolean hasInCargo(Item item) {
         return cargoBay.contains(item);
     }
-
+    
     public boolean hasInCargo(String item) {
         for (int a = 0; a < cargoBay.size(); a++) {
             if (cargoBay.get(a).getName().equals(item)) {
@@ -1516,7 +1530,7 @@ public class Ship extends Celestial {
         }
         return false;
     }
-
+    
     public boolean hasGroupInCargo(String group) {
         for (int a = 0; a < cargoBay.size(); a++) {
             if (cargoBay.get(a).getGroup().equals(group)) {
@@ -1525,7 +1539,7 @@ public class Ship extends Celestial {
         }
         return false;
     }
-
+    
     public void addInitialCargo(String cargo) {
         if (cargo != null) {
             String[] stuff = cargo.split("/");
@@ -1549,11 +1563,11 @@ public class Ship extends Celestial {
     public boolean isDocked() {
         return docked;
     }
-
+    
     public void setDocked(boolean docked) {
         this.docked = docked;
     }
-
+    
     public DockingPort getPort() {
         return port;
     }
@@ -1564,7 +1578,7 @@ public class Ship extends Celestial {
     public long getCash() {
         return cash;
     }
-
+    
     public void setCash(long cash) {
         this.cash = cash;
     }
@@ -1590,7 +1604,7 @@ public class Ship extends Celestial {
             }
         }
     }
-
+    
     protected void installNozzles(Term relevant) throws NumberFormatException {
         String complex = relevant.getValue("nozzle");
         if (complex != null) {
@@ -1631,7 +1645,7 @@ public class Ship extends Celestial {
             }
         }
     }
-
+    
     public void unfit(Equipment equipment) {
         try {
             for (int a = 0; a < hardpoints.size(); a++) {
@@ -1648,7 +1662,7 @@ public class Ship extends Celestial {
             Logger.getLogger(Ship.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public void fireActiveTurrets(Entity target) {
         for (int a = 0; a < hardpoints.size(); a++) {
             if (hardpoints.get(a).getType().equals(Item.TYPE_TURRET) || hardpoints.get(a).getType().equals(Item.TYPE_BATTERY)) {
@@ -1656,7 +1670,7 @@ public class Ship extends Celestial {
             }
         }
     }
-
+    
     public void fireActiveGuns(Entity target) {
         for (int a = 0; a < hardpoints.size(); a++) {
             if (hardpoints.get(a).getType().equals(Item.TYPE_CANNON) || hardpoints.get(a).getType().equals(Item.TYPE_MISSILE)) {
@@ -1664,12 +1678,12 @@ public class Ship extends Celestial {
             }
         }
     }
-
+    
     public void fireActiveModules() {
         fireActiveTurrets(target);
         fireActiveGuns(target);
     }
-
+    
     public double getNearWeaponRange() {
         /*
          * Returns the range of the closest range onlined weapon.
@@ -1686,7 +1700,7 @@ public class Ship extends Celestial {
         }
         return range;
     }
-
+    
     public ArrayList<Hardpoint> getHardpoints() {
         return hardpoints;
     }
@@ -1697,7 +1711,7 @@ public class Ship extends Celestial {
     public int getStandingsToMe(Faction test) {
         return (int) faction.getStanding(test.getName());
     }
-
+    
     public int getStandingsToMe(Ship ship) {
         if (ship.getFaction().getName().equals(Faction.PLAYER)) {
             return (int) ship.getFaction().getStanding(getFaction().getName());
@@ -1705,11 +1719,11 @@ public class Ship extends Celestial {
             return (int) faction.getStanding(ship.getFaction().getName());
         }
     }
-
+    
     public Faction getFaction() {
         return faction;
     }
-
+    
     public void setFaction(Faction faction) {
         this.faction = faction;
     }
@@ -1723,19 +1737,19 @@ public class Ship extends Celestial {
     public Autopilot getAutopilot() {
         return autopilot;
     }
-
+    
     public void setAutopilot(Autopilot autopilot) {
         this.autopilot = autopilot;
     }
-
+    
     public Behavior getBehavior() {
         return behavior;
     }
-
+    
     public void setBehavior(Behavior behavior) {
         this.behavior = behavior;
     }
-
+    
     public void cmdAbort() {
         setAutopilot(Autopilot.NONE);
         if (port != null) {
@@ -1747,7 +1761,7 @@ public class Ship extends Celestial {
         yaw = 0;
         roll = 0;
     }
-
+    
     public void cmdAllStop() {
         setAutopilot(Autopilot.ALL_STOP);
         if (port != null) {
@@ -1755,7 +1769,7 @@ public class Ship extends Celestial {
             port = null;
         }
     }
-
+    
     public void cmdAbortDock() {
         cmdAbort();
         if (port != null) {
@@ -1763,7 +1777,7 @@ public class Ship extends Celestial {
             port = null;
         }
     }
-
+    
     public void cmdDock(Station pick) {
         if (!docked) {
             //TODO: Make this a real behavior
@@ -1774,20 +1788,20 @@ public class Ship extends Celestial {
             }
         }
     }
-
+    
     public void cmdFightTarget(Ship pick) {
         target = pick;
         setAutopilot(Autopilot.ATTACK_TARGET);
     }
-
+    
     public void setFlyToTarget(Celestial pick) {
         flyToTarget = pick;
     }
-
+    
     public Celestial getFlyToTarget() {
         return flyToTarget;
     }
-
+    
     public void cmdFlyToCelestial(Celestial flyToTarget, float range) {
         setAutopilot(Autopilot.FLY_TO_CELESTIAL);
         if (flyToTarget instanceof Planet) {
@@ -1798,11 +1812,11 @@ public class Ship extends Celestial {
         //store range
         setRange(range);
     }
-
+    
     public void cmdFollowShip(Ship ship, float range) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     public void cmdJump(SolarSystem pick) {
         if (canJump(pick)) {
             Random rnd = new Random();
@@ -1827,22 +1841,22 @@ public class Ship extends Celestial {
             dropJumpEffect();
         }
     }
-
+    
     public Station getHomeBase() {
         return homeBase;
     }
-
+    
     public void setHomeBase(Station homeBase) {
         this.homeBase = homeBase;
     }
-
+    
     public void cmdUndock() {
         if (docked) {
             setDocked(false);
             setAutopilot(Autopilot.UNDOCK);
         }
     }
-
+    
     public void clearHomeBase() {
         homeBase = null;
     }
@@ -1853,7 +1867,7 @@ public class Ship extends Celestial {
     public void setPhysicsLocation(Vector3f loc) {
         physics.setPhysicsLocation(loc);
     }
-
+    
     public void nullVelocity() {
         physics.setLinearVelocity(Vector3f.ZERO);
         physics.setAngularVelocity(Vector3f.ZERO);
@@ -1876,7 +1890,7 @@ public class Ship extends Celestial {
     public float getRange() {
         return range;
     }
-
+    
     public void setRange(float range) {
         this.range = range;
     }
@@ -1888,7 +1902,7 @@ public class Ship extends Celestial {
     protected float getFlightHold() {
         return 3 * getAcceleration();
     }
-
+    
     protected float getFollowHold() {
         return Float.POSITIVE_INFINITY;
     }
@@ -1899,19 +1913,19 @@ public class Ship extends Celestial {
     public float magnitude(float dx, float dy) {
         return (float) Math.sqrt((dx * dx) + (dy * dy));
     }
-
+    
     public float getAcceleration() {
         return thrust / getMass();
     }
-
+    
     public float getAngularAcceleration() {
         return torque / getMass();
     }
-
+    
     public boolean inTolerance(float n1, float n2, float tolerance) {
         return (n1 >= n2 * (1 - tolerance) && n1 <= n2 * (1 + tolerance));
     }
-
+    
     private Vector3f getSteeringData(Vector3f worldPosition, Vector3f up) {
         // RETREIVE LOCAL DIRECTION TO TARGET POSITION
         Vector3f steeringPosition = new Vector3f();
@@ -1947,7 +1961,7 @@ public class Ship extends Celestial {
         // RETURN THE DATA
         return steeringData;
     }
-
+    
     private boolean finePointNoseAtVector(Vector3f dat, float tolerance) {
         boolean canAccel = true;
         //put controls in correct positions to face target
@@ -1972,7 +1986,7 @@ public class Ship extends Celestial {
         }
         return canAccel;
     }
-
+    
     private boolean pointNoseAtVector(Vector3f dat, float tolerance) {
         boolean canAccel = true;
         //put controls in correct positions to face target
@@ -2007,7 +2021,7 @@ public class Ship extends Celestial {
             return false;
         }
     }
-
+    
     public void targetNearestShip() {
         //get a list of all nearby ships
         ArrayList<Entity> nearby = getCurrentSystem().getShipList();
@@ -2042,7 +2056,7 @@ public class Ship extends Celestial {
         //store
         target = closest;
     }
-
+    
     public ArrayList<Ship> getShipsInSensorRange() {
         ArrayList<Ship> ret = new ArrayList<>();
         {
@@ -2067,11 +2081,11 @@ public class Ship extends Celestial {
         }
         return ret;
     }
-
+    
     public ArrayList<Station> getDockableStationsInSystem() {
         return getDockableStationsInSystem(currentSystem);
     }
-
+    
     public ArrayList<Station> getDockableStationsInSystem(SolarSystem system) {
         ArrayList<Station> list = new ArrayList<>();
         {
@@ -2107,7 +2121,7 @@ public class Ship extends Celestial {
         }
         return false;
     }
-
+    
     public double getJumpFuelCost(SolarSystem destination) {
         //calculate distance between current system and destination
         Vector3f cLoc = currentSystem.getLocation();
@@ -2117,7 +2131,7 @@ public class Ship extends Celestial {
         double fuelCost = dist * 50;
         return fuelCost;
     }
-
+    
     protected void dropJumpEffect() {
         //TODO
     }
@@ -2140,7 +2154,7 @@ public class Ship extends Celestial {
     public boolean isFiring() {
         return firing;
     }
-
+    
     public void setFiring(boolean firing) {
         this.firing = firing;
     }

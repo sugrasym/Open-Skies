@@ -32,6 +32,15 @@ product=Standard Energy Unit,80
 resource=
 [/Process]
 
+#Consumer Goods Sink
+
+[Process]
+name=ConsumerGoodsSink
+cycle=512
+product=
+resource=Consumer Goods,25
+[/Process]
+
 #[Process]
 #name=FairMakeHAPC
 #cycle=225

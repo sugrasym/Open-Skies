@@ -28,6 +28,7 @@ import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.math.Vector3f;
 import java.util.ArrayList;
 import java.util.Random;
+import lib.Faction;
 import lib.astral.Parser.Term;
 import universe.Universe;
 
@@ -44,11 +45,13 @@ public class Station extends Ship {
     protected ArrayList<DockingPort> ports = new ArrayList<>();
     //manufacturing
     protected ArrayList<Job> jobs = new ArrayList<>();
+    protected boolean economyExempt = false;
 
     public Station(Universe universe, Term type, String faction) {
         super(universe, type, faction);
         installDockingPorts(getType());
         installJobs(getType());
+        installEconomics(getType());
     }
 
     @Override
@@ -56,7 +59,7 @@ public class Station extends Ship {
         super.construct(assets);
         constructDockingPorts(assets);
     }
-    
+
     @Override
     protected void loadSpatial(AssetManager assets, String name) {
         //load model
@@ -106,6 +109,7 @@ public class Station extends Ship {
     protected void aliveAlways() {
         super.aliveAlways();
         updateJobs();
+        updateEconomics();
     }
 
     /*
@@ -183,6 +187,28 @@ public class Station extends Ship {
                 float ay = Float.parseFloat(re[6]);
                 float az = Float.parseFloat(re[7]);
                 ports.add(new DockingPort(this, hType, hSize, new Vector3f(hx, hy, hz), new Vector3f(ax, ay, az)));
+            }
+        }
+    }
+
+    private void installEconomics(Term relevant) {
+        /*
+         * Determines if the station is economy exempt or not. Exempt stations
+         * do not go out of business and are used for things like customs offices
+         * or ship yards.
+         * 
+         * Player ships will never be exempt.
+         */
+        if (isPlayerFaction()) {
+            //do not do this
+            economyExempt = false;
+        } else {
+            String status = relevant.getValue("economyExempt");
+            if (status != null) {
+                economyExempt = Boolean.parseBoolean(status);
+                System.out.println(getType().getValue("name") + " has an exemption status of " + economyExempt);
+            } else {
+                economyExempt = false;
             }
         }
     }
@@ -367,7 +393,7 @@ public class Station extends Ship {
     /*
      * Manufacturing processes
      */
-    protected void installJobs(Term relevant) throws NumberFormatException {
+    private void installJobs(Term relevant) throws NumberFormatException {
         //generates the processes that were linked to this station
         String raw = relevant.getValue("job");
         if (raw != null) {
@@ -394,5 +420,28 @@ public class Station extends Ship {
         for (int a = 0; a < jobs.size(); a++) {
             jobs.get(a).periodicUpdate(tpf);
         }
+    }
+
+    protected void updateEconomics() {
+        if (isPlayerFaction()) {
+            //don't do anything
+        } else {
+            if (getCash() <= 0) {
+                if (economyExempt) {
+                    setCash(10000000);
+                } else {
+                    //we are out of business :(
+                    setState(State.DYING);
+                }
+            }
+        }
+    }
+
+    public boolean isEconomyExcempt() {
+        return economyExempt;
+    }
+
+    public void setEconomyExcempt(boolean economyExcempt) {
+        this.economyExempt = economyExcempt;
     }
 }
