@@ -1,5 +1,5 @@
 [Station]
-type=Basic Outpost
+type=Customs Office
 thrust=0
 torque=0
 shield=300000

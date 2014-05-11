@@ -1,10 +1,10 @@
 [NewGame]
 name=Default
 ship=Sparrow
-system=Gamma TJJ8-6
+system=Kappa 0ET2-HY5D
 x=166944
 y=0
-z=-9963
+z=-99630
 cash=50000
 cargo=Consumer Goods~2
 install=Ka Ka Ka/Ka Ka Ka
@@ -12,11 +12,11 @@ install=Ka Ka Ka/Ka Ka Ka
 
 [Station]
 name=Customs Office
-station=Basic Outpost
+station=Customs Office
 system=Kappa 0ET2-HY5D
 x=166944
 y=0
-z=-10963
+z=-109630
 faction=Neutral
 [/Station]
 
@@ -26,18 +26,7 @@ ship=Sparrow
 system=Kappa 0ET2-HY5D
 x=167944
 y=0
-z=-10963
-faction=Player
-install=Ka Ka Ka/Ka Ka Ka
-[/Ship]
-
-[Ship]
-name=Drone
-ship=Sparrow
-system=Kappa 0ET2-HY5D
-x=167944
-y=800
-z=-10963
+z=-109630
 faction=Player
 install=Ka Ka Ka/Ka Ka Ka
 [/Ship]
