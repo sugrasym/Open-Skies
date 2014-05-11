@@ -1018,8 +1018,6 @@ public class Ship extends Celestial {
             }
             //refuel
             fuel = maxFuel;
-            //charge shields
-            shield = maxShield;
         } else {
             //fire weapons if needed
             if (firing) {
@@ -1030,6 +1028,8 @@ public class Ship extends Celestial {
         updateTarget();
         //update hardpoints
         updateHardpoints();
+        //update health
+        updateHealth();
     }
 
     protected void updateTarget() {
@@ -1073,8 +1073,6 @@ public class Ship extends Celestial {
         aliveAlways();
         //update center
         updateCenter();
-        //check health
-        updateHealth();
         //update behaviors
         behave();
         //update autopilot
@@ -1092,14 +1090,7 @@ public class Ship extends Celestial {
     }
 
     protected void dead() {
-        try {
-            throw new Exception("Not yet implemented");
-
-
-        } catch (Exception ex) {
-            Logger.getLogger(Ship.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        }
+        //nothing to do really
     }
 
     protected void updateCenter() {
@@ -1182,7 +1173,6 @@ public class Ship extends Celestial {
     protected void oosAlive() {
         super.oosAlive();
         aliveAlways();
-        updateHealth();
         oosBehave();
         oosAutopilot();
         //update position
@@ -1193,6 +1183,7 @@ public class Ship extends Celestial {
     @Override
     protected void oosDying() {
         super.oosDying();
+        setState(State.DEAD);
     }
 
     @Override
