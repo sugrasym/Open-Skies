@@ -32,6 +32,24 @@ product=Standard Energy Unit,80
 resource=
 [/Process]
 
+#Food
+
+[Process]
+name=BoxMeals
+cycle=20
+product=Box Meals,10
+resource=Standard Energy Unit,10
+[/Process]
+
+#Food Sinks
+
+[Process]
+name=BoxMealSink
+cycle=512
+product=
+resource=Box Meals,25
+[/Process]
+
 #Consumer Goods Sink
 
 [Process]

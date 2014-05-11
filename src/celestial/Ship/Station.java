@@ -25,7 +25,9 @@ import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
+import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
+import com.jme3.renderer.queue.RenderQueue;
 import java.util.ArrayList;
 import java.util.Random;
 import lib.Faction;
@@ -64,11 +66,24 @@ public class Station extends Ship {
     protected void loadSpatial(AssetManager assets, String name) {
         //load model
         try {
-            spatial = assets.loadModel("Models/" + name + "/Model.blend");
+            spatial = assets.loadModel("Models/Stations/" + _class + "/Model.blend");
         } catch (Exception e) {
-            System.out.println("Error: Model for station " + name + " not found! Using placeholder.");
-            spatial = assets.loadModel("Models/UnknownStation/Model.blend");
+            System.out.println("Error: Model for station " + _class + " not found! Using placeholder.");
+            spatial = assets.loadModel("Models/Stations/UnknownStation/Model.blend");
         }
+    }
+    
+    @Override
+    protected void constructMaterial(AssetManager assets, String name) {
+        //load texture
+        mat = new Material(assets, "Common/MatDefs/Light/Lighting.j3md");
+        mat.setTexture("DiffuseMap",
+                assets.loadTexture("Models/Stations/" + _class + "/tex.png"));
+        //setup texture
+        spatial.setShadowMode(RenderQueue.ShadowMode.CastAndReceive);
+        spatial.setMaterial(mat);
+        //store
+        center.attachChild(spatial);
     }
 
     @Override

@@ -12,7 +12,7 @@ install=Ka Ka Ka/Ka Ka Ka
 
 [Station]
 name=Test Station
-station=Sunfarm
+station=Industrial Kitchen
 system=Kappa 0ET2-HY5D
 x=166944
 y=0

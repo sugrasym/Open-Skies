@@ -10,8 +10,9 @@ mass=0
 sensor=5000
 cargo=125000000
 port=basic,10,75,0,0,300,0,0/basic,10,-55,0,0,-280,0,0
-job=SeedRepairPaste/SeedCapitalRepairPaste/ConsumerGoodsSink
+job=SeedRepairPaste/SeedCapitalRepairPaste/ConsumerGoodsSink/BoxMealSink
 economyExempt=true
+class=StandardSmallStation
 [/Station]
 
 [Station]
@@ -27,4 +28,21 @@ sensor=5000
 cargo=256000
 port=basic,10,18,0,-10,300,0,-10/basic,10,-18,0,-10,-300,0,-10/basic,10,0,0,-28,0,0,-200
 job=BasicSolar
+class=StandardSmallSolarPlant
+[/Station]
+
+[Station]
+type=Industrial Kitchen
+thrust=0
+torque=0
+shield=137500
+shieldRecharge=1000
+hull=69000
+fuel=2500000000000
+mass=0
+sensor=5000
+cargo=512000
+job=BoxMeals
+port=basic,10,75,0,0,300,0,0/basic,10,-55,0,0,-280,0,0
+class=StandardSmallStation
 [/Station]

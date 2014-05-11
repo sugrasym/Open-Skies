@@ -132,6 +132,19 @@ description=A standardized energy unit produced by a power plant and moved to a 
 [/Item]
 
 [Item]
+name=Box Meals
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=20
+maxPrice=25
+store=250
+group=food
+description=Boxed meals come in a variety of styles and flavours, but all of them share ease of preparation and a very long shelf life.
+[/Item]
+
+[Item]
 name=Jumpdrive
 type=commodity
 volume=120
