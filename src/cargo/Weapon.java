@@ -19,6 +19,7 @@
 package cargo;
 
 import celestial.Projectile;
+import celestial.Ship.Ship;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
@@ -182,7 +183,11 @@ public class Weapon extends Equipment {
 
     private void oosFire(Entity target) {
         if (enabled) {
-            //TODO: DEAL DAMAGE TO TARGET DIRECTLY
+            if (target instanceof Ship) {
+                //directly damage the ship
+                Ship tmp = (Ship) target;
+                tmp.applyDamage(shieldDamage, hullDamage);
+            }
         }
     }
 

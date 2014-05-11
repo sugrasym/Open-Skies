@@ -689,6 +689,59 @@ public class Ship extends Celestial {
     }
 
     private void oosAutopilotFightTarget() {
+        if (target != null) {
+            if (target.getState() == State.ALIVE) {
+                if (target.getCurrentSystem() == getCurrentSystem()) {
+                    if (inSensorRange(target)) {
+                        double distance = target.getLocation().distance(getLocation());
+                        double minRange = getNearWeaponRange();
+                        //keep at range
+                        if (distance < (minRange / 3)) {
+                            /*
+                             * The enemy is getting too close to the ship, so fire the reverse
+                             * thrusters.
+                             */
+                            oosBurn(target.getLocation(), getAcceleration() * -1);
+                        } else if (distance > (minRange / 2) && distance < (2 * minRange / 3)) {
+                            /*
+                             * The enemy is getting too far away from the ship, fire the forward
+                             * thrusters.
+                             */
+                            oosBurn(target.getLocation(), getAcceleration() * 1);
+                        } else if (distance > (minRange)) {
+                            /*
+                             * The enemy is out of weapons minRange and needs to be approached
+                             */
+                            float dP = 0;
+                            float d1 = getLocation().subtract(target.getLocation()).length();
+                            Vector3f dv1 = getLocation().add(getVelocity().mult((float) tpf));
+                            Vector3f dv2 = target.getLocation().add(target.getVelocity().mult((float) tpf));
+                            float d2 = dv1.subtract(dv2).length();
+                            dP = d2 - d1;
+                            if (dP + (getAcceleration()) > 0) {
+                                oosBurn(target.getLocation(), getAcceleration() * 1);
+                            } else {
+                                throttle = 0;
+                            }
+                        } else {
+                            throttle = 0;
+                        }
+                        if (distance < minRange) {
+                            fireActiveGuns(target);
+                            fireActiveTurrets(target);
+                        }
+                    } else {
+                        cmdAbort();
+                    }
+                } else {
+                    cmdAbort();
+                }
+            } else {
+                cmdAbort();
+            }
+        } else {
+            cmdAbort();
+        }
     }
 
     private void oosAutopilotAllStop() {
@@ -905,24 +958,28 @@ public class Ship extends Celestial {
                     float a = getAcceleration() * (float) tpf;
                     //check for sufficient fuel for accelerating in this tick
                     if (sufficientFuel(getThrust())) {
-                        /*
-                         * OOS, objects do not have a real rotation. For the
-                         * acceleration we will assume the ship is rotated
-                         * to face the object.
-                         */
-                        Vector3f dif = end.subtract(getLocation());
-                        Vector3f rot = dif.normalize();
-                        Vector3f del = rot.mult(a);
-                        //apply the acceleration for this tick
-                        setVelocity(getVelocity().add(del));
-                        //use fuel
-                        useFuel(getThrust());
+                        oosBurn(end, a);
                     }
                 } else {
                     //do nothing
                 }
             }
         }
+    }
+
+    private void oosBurn(Vector3f end, float acceleration) {
+        /*
+         * OOS, objects do not have a real rotation. For the
+         * acceleration we will assume the ship is rotated
+         * to face the object.
+         */
+        Vector3f dif = end.subtract(getLocation());
+        Vector3f rot = dif.normalize();
+        Vector3f del = rot.mult(acceleration);
+        //apply the acceleration for this tick
+        setVelocity(getVelocity().add(del));
+        //use fuel
+        useFuel(getThrust());
     }
 
     /*
@@ -971,6 +1028,8 @@ public class Ship extends Celestial {
         }
         //update targeting
         updateTarget();
+        //update hardpoints
+        updateHardpoints();
     }
 
     protected void updateTarget() {
@@ -998,6 +1057,13 @@ public class Ship extends Celestial {
             setState(State.DYING);
         }
     }
+    
+    protected void updateHardpoints() {
+        //update hard points
+        for (int a = 0; a < hardpoints.size(); a++) {
+            hardpoints.get(a).periodicUpdate(tpf);
+        }
+    }
 
     /*
      * Methods for in-system updating. It primarily uses the physics system.
@@ -1016,7 +1082,6 @@ public class Ship extends Celestial {
         //check throttle
         updateThrottle();
         updateTorque();
-        updateHardpoints();
         updateNozzles();
         syncPhysics();
     }
@@ -1102,13 +1167,6 @@ public class Ship extends Celestial {
             roll = 1;
         }
         roll(roll);
-    }
-
-    protected void updateHardpoints() {
-        //update hard points
-        for (int a = 0; a < hardpoints.size(); a++) {
-            hardpoints.get(a).periodicUpdate(tpf);
-        }
     }
 
     protected void updateNozzles() {
