@@ -11,8 +11,8 @@ install=Ka Ka Ka/Ka Ka Ka
 [/NewGame]
 
 [Station]
-name=Customs Office
-station=Customs Office
+name=Test Station
+station=Sunfarm
 system=Kappa 0ET2-HY5D
 x=166944
 y=0
