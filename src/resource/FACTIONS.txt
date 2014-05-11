@@ -13,34 +13,48 @@ name=Neutral
 var_isEmpire=false
 var_worldPercent=0
 Neutral=0
-Entities=-10
 Player=0
-Red Sky=0
-Skybus Interstellar=0
-Prism Exhuming=0
-Leap Frog Logistics=0
-Gunpower=0
-Ageiran Federation=0
-The Archers=0
-ITC=0
-Caina Conglemerate=0
-Wolves=0
-Knights of Orin=0
-Orin Federation=0
-Tengus=0
+Northern Coalition=0
+Southern Coalition=0
+Commonwealth=0
 [/Faction]
 
-########Anarchy###########
+########Coalitions#########
 
 [Faction]
-name=Entities
-var_isEmpire=false
-var_hosts=Ageiran Federation/Orin Federation/Caina Conglemerate/ITC/Neutral
-var_description=Extreme caution advised.
-var_worldPercent=0
-Neutral=-10
-Player=-10
-Entities=10
+name=Northern Coalition
+var_isEmpire=true
+var_description=The Northern Coalition, or NC, was formed at the same time as the Southern Coalition by aggregating smaller nations into a larger one. Due to increasing political tensions, smaller countries banded together to prepare for what most believed was an inevitable war. Now, the NC is one of the two superpowers seeking dominance in the interstellar political landscape. /br/ /br/ The NC employs a senate in which each member nation sends a single representative to the floor to discuss issues and make policy. The government of each member nation is left largely untouched by the senate, and there are a wide variety of governmental structures in the NC. This has lead to signficant criticism due to some member nations being oppressive, however the senate fears losing members more than attempting to standardize civil rights across the coalition.
+var_worldPercent=30
+Neutral=0
+Player=5
+Northern Coalition=10
+Southern Coalition=-5
+Commonwealth=-3
+[/Faction]
+
+[Faction]
+name=Southern Coalition
+var_isEmpire=true
+var_description=The Southern Coalition, or SC, formed around the same time as the Northern Coalition by aggregating smaller nations into a larger one. Due to increasing political tensions, smaller countries banded together to prepare for what most believed was an inevitable war. Now, the SC is one of the two superpowers seeking dominance in the interstellar political landscape. /br/ /br/ The SC structures member states in a hierarchy based on who has been in the coalition the longest, and what contributions each state has made to the larger effort. Representation is based on population, skewing the power distribution towards the top largest members. However, the SC takes the conduct of its members seriously. Member states are required to conform to ethical and civil rights standards or face expulsion. Naturally, these standards of behavior are written by the most powerful members of the SC and enforced on everyone else.
+var_worldPercent=30
+Neutral=0
+Player=-5
+Northern Coalition=-5
+Southern Coalition=10
+Commonwealth=-3
+[/Faction]
+
+[Faction]
+name=Commonwealth
+var_isEmpire=true
+var_description=As the two coalitions formed, there were concerns of a massive interstellar war. Fearing absorbtion by the coalitions, some states formed a commonwealth of nations in which mutual defense and trade was the only goal, and members were free to conduct their affairs as normal. However, the coalitions sought to bring the commonwealth nations onto their side and attempted to ally with them many times. Finally, the coalitions both decided that the commonwealth was an enemy because it refused to take a side. /br/ /br/ The mission statement of the commonwealth was mutual defense and prosperity, and many would say it has backfired. The commonwealth has shed territory as member states take sides, but the remaining members are still working to build the original dream of The Commonwealth even in the face of adversity.
+var_worldPercent=15
+Neutral=0
+Player=0
+Northern Coalition=-3
+Southern Coalition=-3
+Commonwealth=10
 [/Faction]
 
 ########The Player########
@@ -51,5 +65,7 @@ var_isEmpire=false
 var_worldPercent=0
 Neutral=0
 Player=10
-Entities=-10
+Northern Coalition=5
+Southern Coalition=-5
+Commonwealth=0
 [/Faction]
