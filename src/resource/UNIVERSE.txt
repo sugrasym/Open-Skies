@@ -16,7 +16,7 @@ station=Customs Office
 system=Kappa 0ET2-HY5D
 x=166944
 y=0
-z=-109630
+z=-100230
 faction=Neutral
 [/Station]
 
@@ -26,7 +26,7 @@ ship=Sparrow
 system=Kappa 0ET2-HY5D
 x=167944
 y=0
-z=-109630
+z=-99830
 faction=Player
 install=Ka Ka Ka/Ka Ka Ka
 [/Ship]
