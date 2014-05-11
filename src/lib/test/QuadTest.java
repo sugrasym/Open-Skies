@@ -13,7 +13,7 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-package lib;
+package lib.test;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
