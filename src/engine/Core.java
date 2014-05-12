@@ -59,6 +59,7 @@ public class Core {
         IN_SPACE,
     }
     private GameState state = GameState.PAUSED;
+    private static final float DEFAULT_TICK = 0.016666668f;
     //game objects
     /*
      * Although you can chuck any game object into this list, it is best to maintain the hierchy.
@@ -131,6 +132,7 @@ public class Core {
         }
 
         //generate the world
+        resetScene();
         universe = new Universe(assets);
         //determine start system
         String sysName = game.getValue("system");
@@ -584,10 +586,12 @@ public class Core {
     }
 
     private void resetScene() {
-        //undo hud
-        hud.remove();
-        //clear markers
-        hud.clearMarkers();
+        if (hud != null) {
+            //undo hud
+            hud.remove();
+            //clear markers
+            hud.clearMarkers();
+        }
         //clear nodes
         rootNode.detachAllChildren();
         //clear lights
@@ -597,9 +601,12 @@ public class Core {
         bulletAppState.getPhysicsSpace().destroy();
         bulletAppState.getPhysicsSpace().create();
         bulletAppState.getPhysicsSpace().setGravity(Vector3f.ZERO);
+        bulletAppState.getPhysicsSpace().setAccuracy(DEFAULT_TICK / 4);
         initPhysicsListeners();
         //add hud
-        hud.add();
+        if (hud != null) {
+            hud.add();
+        }
     }
 
     private void resetCamera() {

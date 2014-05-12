@@ -78,13 +78,13 @@ public class CollisionListener implements PhysicsCollisionListener {
     }
 
     private void handleShipCollision(Ship a, Ship b, float impulse) {
-        //each ship recieves damage from the other ship
-        float damageA = (float) (100 * b.getMass() * impulse);
-        float damageB = (float) (100 * a.getMass() * impulse);
+        //just use the worst possible thing
+        float damageA = (float) (25 * b.getMass() * impulse);
+        float damageB = (float) (25 * a.getMass() * impulse);
+        float worstCase = Math.max(damageA, damageB);
         //apply damage
-        a.applyDamage(damageA);
-        b.applyDamage(damageB);
-        System.out.println(damageA + " " + damageB);
+        a.applyDamage(worstCase);
+        b.applyDamage(worstCase);
     }
 
     private void handlePlanetCollision(Ship a) {

@@ -102,7 +102,7 @@ public class Projectile extends Celestial {
 
     private void constructPhysics() {
         //initializes the physics as a sphere
-        SphereCollisionShape sphereShape = new SphereCollisionShape(size);
+        SphereCollisionShape sphereShape = new SphereCollisionShape(Math.max(size,0.5f));
         //setup dynamic physics
         physics = new RigidBodyControl(sphereShape, getMass());
         //keep it from going to sleep
