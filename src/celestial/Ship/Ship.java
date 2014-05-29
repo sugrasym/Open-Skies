@@ -146,6 +146,7 @@ public class Ship extends Celestial {
     protected Celestial flyToTarget;
     protected Station homeBase;
     private float range;
+    private boolean scanForContraband = false;
     //physics stats
     private float thrust; //engine force
     private float torque; //turning force
@@ -154,8 +155,12 @@ public class Ship extends Celestial {
     protected ArrayList<Item> cargoBay = new ArrayList<>();
     protected ArrayList<Hardpoint> hardpoints = new ArrayList<>();
     protected ArrayList<Nozzle> nozzles = new ArrayList<>();
+    //loadout
+    private String template = "";
     //money
     protected long cash = 0;
+    //courage
+    private double courage = 1;
 
     public Ship(Universe universe, Term type, String faction) {
         super(Float.parseFloat(type.getValue("mass")), universe);
@@ -2142,6 +2147,7 @@ public class Ship extends Celestial {
      * Explosions!
      */
     protected void dropExplosion() {
+        //TODO: Dynamic explosions from effects file
         Explosion explosion = new Explosion(getCurrentSystem().getUniverse(), 10, getName() + " Explosion");
         explosion.setLocation(getLocation());
         explosion.setRotation(getRotation());
@@ -2159,5 +2165,38 @@ public class Ship extends Celestial {
 
     public void setFiring(boolean firing) {
         this.firing = firing;
+    }
+
+    /*
+     * Courage
+     */
+    public double getCourage() {
+        return courage;
+    }
+
+    public void setCourage(double courage) {
+        this.courage = courage;
+    }
+
+    /*
+     * Contraband
+     */
+    public boolean isScanForContraband() {
+        return scanForContraband;
+    }
+
+    public void setScanForContraband(boolean scanForContraband) {
+        this.scanForContraband = scanForContraband;
+    }
+
+    /*
+     * Loadout
+     */
+    public String getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(String template) {
+        this.template = template;
     }
 }
