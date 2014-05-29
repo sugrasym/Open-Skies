@@ -70,6 +70,7 @@ public class Core {
      * ---- Ship / Station
      */
     Universe universe;
+    God god;
     //nodes
     Node rootNode;
     Node guiNode;
@@ -117,6 +118,11 @@ public class Core {
     private void initPhysicsListeners() {
         CollisionListener listener = new CollisionListener();
         bulletAppState.getPhysicsSpace().addCollisionListener(listener);
+    }
+
+    private void initGod() {
+        god = null;
+        god = new God(universe);
     }
 
     private void newGame(String name) {
@@ -171,7 +177,8 @@ public class Core {
         planetAppState.setCameraShip(ship);
         //setup player shortcut
         universe.setPlayerShip(ship);
-
+        //start god
+        initGod();
         //start game
         state = GameState.IN_SPACE;
         //TODO: init code
@@ -486,6 +493,8 @@ public class Core {
          * In-game updating
          */
         if (state == GameState.IN_SPACE) {
+            boolean godSafe = true;
+            //update systems
             for (int a = 0; a < universe.getSystems().size(); a++) {
                 if (universe.getSystems().get(a) != universe.getPlayerShip().getCurrentSystem()) {
                     universe.getSystems().get(a).oosPeriodicUpdate(tpf);
@@ -501,8 +510,13 @@ public class Core {
                         resetCamera();
                         //make sure the new system is flagged for graphics
                         universe.getPlayerShip().getCurrentSystem().forceGraphics();
+                        godSafe = false;
                     }
                 }
+            }
+            //update god
+            if(godSafe) {
+                god.periodicUpdate();
             }
         }
         //store tpf
@@ -578,6 +592,8 @@ public class Core {
             }
             //restore assets
             universe.setAssets(assets);
+            //restore god
+            initGod();
             //go
             state = GameState.IN_SPACE;
         } catch (Exception e) {

@@ -82,17 +82,11 @@ public class God {
             //store time
             lastFrame = System.nanoTime();
             //update
-            Thread s = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    checkStations();
-                    checkPatrols();
-                    checkTraders();
-                    checkMerchants();
-                    System.out.println("God cycled.");
-                }
-            });
-            s.start();
+            checkStations();
+            checkPatrols();
+            checkTraders();
+            checkMerchants();
+            System.out.println("God cycled.");
         }
     }
 
