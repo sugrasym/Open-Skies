@@ -1,13 +1,16 @@
-##########################################
+################################################################################
 #   hostile <= -3 < neutral < 3 < hostile
 #
 #   So -3 or lower is hostile
 #       3 or higher is friendly
 #
-##########################################
+################################################################################
 #Make sure world percents add up to 100% at most.
 
-########Neutral###########
+################################################################################
+#Neutral
+################################################################################
+
 [Faction]
 name=Neutral
 var_isEmpire=false
@@ -19,7 +22,9 @@ Southern Coalition=0
 Commonwealth=0
 [/Faction]
 
-########Coalitions#########
+################################################################################
+#Coalitions
+################################################################################
 
 [Faction]
 name=Northern Coalition
@@ -57,7 +62,9 @@ Southern Coalition=-3
 Commonwealth=10
 [/Faction]
 
-########The Player########
+################################################################################
+#The Player
+################################################################################
 
 [Faction]
 name=Player
@@ -69,3 +76,50 @@ Northern Coalition=5
 Southern Coalition=-5
 Commonwealth=0
 [/Faction]
+
+################################################################################
+#Loadout lists for each faction
+################################################################################
+
+[Loadout]
+name=Northern Coalition
+patrol0=NC Fleet Sparrow,100
+[/Loadout]
+
+[Loadout]
+name=Southern Coalition
+patrol0=SC Fleet Sparrow,100
+[/Loadout]
+
+[Loadout]
+name=Commonwealth
+patrol0=Commonwealth Sparrow,100
+[/Loadout]
+
+################################################################################
+#Station lists for each faction
+#
+#NOTE: This is the formula used to find
+#the number of a station to drop.
+#
+# n = 1 + (populatedSystems * value)
+#
+################################################################################
+
+[Stations]
+name=Northern Coalition
+station0=Industrial Kitchen,0.5
+station1=Sunfarm,1.0
+[/Stations]
+
+[Stations]
+name=Southern Coalition
+station0=Industrial Kitchen,0.5
+station1=Sunfarm,1.0
+[/Stations]
+
+[Stations]
+name=Commonwealth
+station0=Industrial Kitchen,0.5
+station1=Sunfarm,1.0
+[/Stations]

@@ -1,0 +1,40 @@
+################################################################################
+#Northern Coalition
+################################################################################
+
+[Loadout]
+ship=Sparrow
+name=NC Fleet Sparrow
+install=Ka Ka Ka/Ka Ka Ka
+cargo=Astronaut~1
+minCourage=0.85
+maxCourage=1.00
+[/Loadout]
+
+################################################################################
+#Southern Coalition
+################################################################################
+
+[Loadout]
+ship=Sparrow
+name=SC Fleet Sparrow
+install=Ka Ka Ka/Ka Ka Ka
+cargo=Astronaut~1
+minCourage=0.85
+maxCourage=1.00
+[/Loadout]
+
+
+################################################################################
+#Commonwealth
+################################################################################
+
+[Loadout]
+ship=Sparrow
+name=Commonwealth Sparrow
+install=Ka Ka Ka/Ka Ka Ka
+cargo=Astronaut~1
+minCourage=0.85
+maxCourage=1.00
+[/Loadout]
+
