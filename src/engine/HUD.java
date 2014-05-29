@@ -350,10 +350,13 @@ public class HUD {
                 for (int a = 0; a < ships.size(); a++) {
                     //make sure it isn't the player ship
                     if (ships.get(a) != universe.getPlayerShip()) {
-                        HudMarker m = new HudMarker(assets, camera, ships.get(a), 50, 50);
-                        markers.add(m);
-                        m.setVisible(true);
-                        m.add(guiNode);
+                        float dist = ships.get(a).getLocation().distance(universe.getPlayerShip().getLocation());
+                        if (dist < universe.getPlayerShip().getSensor()) {
+                            HudMarker m = new HudMarker(assets, camera, ships.get(a), 50, 50);
+                            markers.add(m);
+                            m.setVisible(true);
+                            m.add(guiNode);
+                        }
                     }
                 }
                 //reset windowing
