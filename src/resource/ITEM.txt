@@ -54,6 +54,36 @@ description=The Sparrow is an older fighter design that is currently used as a p
 [/Item]
 
 ################################################################################
+#Commodities
+################################################################################
+
+[Item]
+name=Standard Energy Unit
+type=commodity
+volume=1
+mass=0.5
+HP=100
+minPrice=5
+maxPrice=15
+store=1000
+group=powercell
+description=A standardized energy unit produced by a power plant and moved to a more needed location. /br/ /br/ Energy units are stored in the cargo bay as a suspended static electric field which remains confined in the region it is placed by the compartmentalization of the cargo bay.
+[/Item]
+
+[Item]
+name=Box Meals
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=20
+maxPrice=25
+store=250
+group=food
+description=Boxed meals come in a variety of styles and flavours, but all of them share ease of preparation and a very long shelf life.
+[/Item]
+
+################################################################################
 #Special
 ################################################################################
 
@@ -69,9 +99,31 @@ store=1000
 description=Empty space.
 [/Item]
 
-################################################################################
-#Legacy (High Albedo) Items
-################################################################################
+[Item]
+name=Jumpdrive
+type=commodity
+volume=120
+mass=20
+HP=100
+minPrice=836000
+maxPrice=2192000
+group=jumpdrive
+store=10
+description=A novel device capable of taking advantage of vacuum fluctuations to generate a brief fold in the universe that allows a ship carrying it to travel instatly to other systems. A significant amount of fuel is required to use this device, and the exit point is random leading to questions about its safety. /br/ /br/ The origin of this device is a public mystery, with nobody stepping forward to take credit for this invention. Officially, it is a product of Southern Coalition research into new FTL propulsion. However, the exact lab that invented it is not publicly known, inviting conspiracy theories. Some even believe it was reverse engineered from a crashed alien ship from another universe, however this has not been substantiated and it is infinitely more likely that the inventing lab hasn't been declassified. /br/ /br/ The jumpdrive became widely available after it was reverse engineered by several organizations from damaged Southern Coalition ships and has forever altered the trading business.
+[/Item]
+
+[Item]
+name=Astronaut
+type=commodity
+volume=4
+mass=12
+HP=100
+minPrice=800
+maxPrice=1500
+group=product
+store=500
+description=The pilot of a starfighter or transport, ejected from their ship.
+[/Item]
 
 ########Repair Kits########
 
@@ -114,58 +166,4 @@ maxPrice=512000
 store=8
 group=salvagesoftware
 description=This shady looking software is capable of connecting to the computers onboard abandoned vessels and asserting control over them. After much debate over the legal status of salvage software, it has been agreed that the ownership and use of the software is legal even if the actions leading to its use are not. The sale of this software, however, is not meaning that only shady organizations trade in it.
-[/Item]
-
-########Commodities########
-
-[Item]
-name=Standard Energy Unit
-type=commodity
-volume=1
-mass=0.5
-HP=100
-minPrice=5
-maxPrice=15
-store=1000
-group=powercell
-description=A standardized energy unit produced by a power plant and moved to a more needed location. /br/ /br/ Energy units are stored in the cargo bay as a suspended static electric field which remains confined in the region it is placed by the compartmentalization of the cargo bay.
-[/Item]
-
-[Item]
-name=Box Meals
-type=commodity
-volume=1
-mass=1
-HP=100
-minPrice=20
-maxPrice=25
-store=250
-group=food
-description=Boxed meals come in a variety of styles and flavours, but all of them share ease of preparation and a very long shelf life.
-[/Item]
-
-[Item]
-name=Jumpdrive
-type=commodity
-volume=120
-mass=20
-HP=100
-minPrice=836000
-maxPrice=2192000
-group=jumpdrive
-store=10
-description=A novel device capable of taking advantage of vacuum fluctions to generate a brief fold in the universe that allows a ship carrying it to travel instatly to other systems. A significant amount of fuel is required to use this device, and the exit point is random leading to questions about its safety. /br/ /br/ The origin of this device is a public mystery, with nobody stepping forward to take credit for this invention. Officially, it is a product of Southern Coalition research into new FTL propulsion. However, the exact lab that invented it is not publicly known, inviting conspiracy theories. Some even believe it was reverse engineered from a crashed alien ship from another universe, however this has not been substantiated and it is infinitely more likely that the inventing lab hasn't been declassified. /br/ /br/ The jumpdrive became widely available after it was reverse engineered by several organizations from damaged Southern Coalition ships and has forever altered the trading business.
-[/Item]
-
-[Item]
-name=Astronaut
-type=commodity
-volume=4
-mass=12
-HP=100
-minPrice=800
-maxPrice=1500
-group=product
-store=500
-description=The pilot of a starfighter or transport, ejected from their ship.
 [/Item]
