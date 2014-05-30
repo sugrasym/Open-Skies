@@ -35,7 +35,7 @@ seed=1431443855
 [Planet]
 name='Sanchez 3'
 system=Kappa 0ET2-HY5D
-texture=Martian
+texture=BandedGas
 x=64949
 y=0
 z=-42471
@@ -68,7 +68,7 @@ seed=1605431091
 [Planet]
 name='Iopa 10'
 system=Kappa 0ET2-HY5D
-texture=Barren
+texture=BandedGas
 x=25633
 y=0
 z=75511
@@ -133,7 +133,7 @@ out=Kappa 0ET2-HY5D/Nu 3V-P Jumphole
 [Station]
 name=Sunfarm 3
 system=Kappa 0ET2-HY5D
-ship=Sunfarm
+station=Sunfarm
 x=54046
 y=52390
 z=-62385
@@ -143,7 +143,7 @@ faction=Commonwealth
 [Station]
 name=Sunfarm 12
 system=Kappa 0ET2-HY5D
-ship=Sunfarm
+station=Sunfarm
 x=-58873
 y=50855
 z=44365
@@ -173,7 +173,7 @@ seed=-1007648597
 [Planet]
 name='Ramos 1'
 system=Gamma TJJ8-6
-texture=BandedGas
+texture=Martian
 x=-23033
 y=0
 z=95401
@@ -184,7 +184,7 @@ seed=1680034196
 [Planet]
 name='Watson 19'
 system=Gamma TJJ8-6
-texture=Chthonian
+texture=Barren
 x=-65915
 y=0
 z=97464
@@ -206,7 +206,7 @@ seed=1671647376
 [Planet]
 name='Coleman 6'
 system=Gamma TJJ8-6
-texture=BandedGas
+texture=Chthonian
 x=-13988
 y=0
 z=58054
@@ -217,7 +217,7 @@ seed=-1082854714
 [Planet]
 name='Nina 8'
 system=Gamma TJJ8-6
-texture=Martian
+texture=Barren
 x=104378
 y=0
 z=-131621
@@ -300,7 +300,7 @@ out=Gamma TJJ8-6/Mu M-NGW5 Jumphole
 [Station]
 name=Industrial Kitchen 4
 system=Gamma TJJ8-6
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=70984
 y=-56021
 z=-43015
@@ -310,7 +310,7 @@ faction=Northern Coalition
 [Station]
 name=Industrial Kitchen 11
 system=Gamma TJJ8-6
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-42093
 y=57761
 z=78769
@@ -353,7 +353,7 @@ seed=85121397
 [Planet]
 name='Bailey 1'
 system=Rho 6-Q6O
-texture=Barren
+texture=Martian
 x=51467
 y=0
 z=87416
@@ -364,7 +364,7 @@ seed=1950314992
 [Planet]
 name='Wilson 5'
 system=Rho 6-Q6O
-texture=Barren
+texture=BandedGas
 x=128992
 y=0
 z=-70341
@@ -375,7 +375,7 @@ seed=1435678734
 [Planet]
 name='Bradley 19'
 system=Rho 6-Q6O
-texture=Chthonian
+texture=Barren
 x=-81375
 y=0
 z=182730
@@ -455,7 +455,7 @@ seed=237994784
 [Planet]
 name='Carolla 9'
 system=Epsilon DL-8XN
-texture=Barren
+texture=BandedGas
 x=75729
 y=0
 z=-92661
@@ -520,7 +520,7 @@ out=Epsilon DL-8XN/Mu M-NGW5 Jumphole
 [Station]
 name=Industrial Kitchen 5
 system=Epsilon DL-8XN
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-40792
 y=-37763
 z=-31735
@@ -530,7 +530,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 9
 system=Epsilon DL-8XN
-ship=Sunfarm
+station=Sunfarm
 x=-40829
 y=40791
 z=50251
@@ -540,7 +540,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 12
 system=Epsilon DL-8XN
-ship=Sunfarm
+station=Sunfarm
 x=42094
 y=-45583
 z=-32269
@@ -608,7 +608,7 @@ seed=-93189180
 [Planet]
 name='West 23'
 system=Tau QAP-K3
-texture=WetMartian
+texture=Barren
 x=-127674
 y=0
 z=41822
@@ -684,7 +684,7 @@ out=Tau QAP-K3/Phi PTY-XDDL Jumphole
 [Station]
 name=Industrial Kitchen 7
 system=Tau QAP-K3
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-1264
 y=-11290
 z=-19307
@@ -694,7 +694,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 11
 system=Tau QAP-K3
-ship=Sunfarm
+station=Sunfarm
 x=-6842
 y=-14049
 z=-20995
@@ -737,7 +737,7 @@ seed=1429880238
 [Planet]
 name='Daniels 24'
 system=Upsilon 8J-Z
-texture=BandedGas
+texture=Chthonian
 x=-53244
 y=0
 z=8091
@@ -802,7 +802,7 @@ out=Upsilon 8J-Z/Omega Q7B2-0C Jumphole
 [Station]
 name=Industrial Kitchen 3
 system=Upsilon 8J-Z
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-66185
 y=-63113
 z=-54158
@@ -812,7 +812,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 1
 system=Upsilon 8J-Z
-ship=Sunfarm
+station=Sunfarm
 x=-62757
 y=-59112
 z=-58314
@@ -915,7 +915,7 @@ seed=-1450982283
 [Planet]
 name='Lowde 19'
 system=Pi LNSR-U9G
-texture=BandedGas
+texture=Barren
 x=25187
 y=0
 z=25624
@@ -926,7 +926,7 @@ seed=877218984
 [Planet]
 name='Clark 15'
 system=Pi LNSR-U9G
-texture=BandedGas
+texture=Barren
 x=48319
 y=0
 z=-25343
@@ -948,7 +948,7 @@ seed=2145367253
 [Planet]
 name='Brett 20'
 system=Pi LNSR-U9G
-texture=Chthonian
+texture=Barren
 x=32819
 y=0
 z=28777
@@ -959,7 +959,7 @@ seed=1509862802
 [Planet]
 name='Terrez 10'
 system=Pi LNSR-U9G
-texture=Chthonian
+texture=Terran
 x=4005
 y=0
 z=-55491
@@ -1006,7 +1006,7 @@ out=Pi LNSR-U9G/Iota ZX-O Jumphole
 [Station]
 name=Sunfarm 8
 system=Pi LNSR-U9G
-ship=Sunfarm
+station=Sunfarm
 x=-34777
 y=30493
 z=-26904
@@ -1016,7 +1016,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 9
 system=Pi LNSR-U9G
-ship=Sunfarm
+station=Sunfarm
 x=25160
 y=-25628
 z=-25350
@@ -1070,7 +1070,7 @@ seed=-296556454
 [Planet]
 name='Russel 6'
 system=Rho TH-WH0
-texture=Terran
+texture=BandedGas
 x=208854
 y=0
 z=204417
@@ -1092,7 +1092,7 @@ seed=805795232
 [Planet]
 name='Barry 4'
 system=Rho TH-WH0
-texture=BandedGas
+texture=Martian
 x=179640
 y=0
 z=-25030
@@ -1103,7 +1103,7 @@ seed=574499072
 [Planet]
 name='Dougel 21'
 system=Rho TH-WH0
-texture=BandedGas
+texture=Chthonian
 x=-66934
 y=0
 z=24152
@@ -1114,7 +1114,7 @@ seed=1217652649
 [Planet]
 name='Gonzales 9'
 system=Rho TH-WH0
-texture=Terran
+texture=BandedGas
 x=-132600
 y=0
 z=-140745
@@ -1143,7 +1143,7 @@ out=Rho TH-WH0/Sigma 0Q-8 Jumphole
 [Station]
 name=Industrial Kitchen 8
 system=Rho TH-WH0
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-72898
 y=73642
 z=48615
@@ -1200,7 +1200,7 @@ seed=-808635395
 [Planet]
 name='Hawkins 14'
 system=Iota 2J1-RH5I
-texture=Martian
+texture=BandedGas
 x=-108352
 y=0
 z=81607
@@ -1211,7 +1211,7 @@ seed=685192574
 [Planet]
 name='Yung 16'
 system=Iota 2J1-RH5I
-texture=Barren
+texture=BandedGas
 x=-69156
 y=0
 z=-17486
@@ -1240,7 +1240,7 @@ out=Iota 2J1-RH5I/Alpha V-2Z Jumphole
 [Station]
 name=Sunfarm 7
 system=Iota 2J1-RH5I
-ship=Sunfarm
+station=Sunfarm
 x=89048
 y=-66147
 z=87402
@@ -1305,7 +1305,7 @@ seed=1846266945
 [Planet]
 name='Wells 17'
 system=Lambda W-UIJX
-texture=BandedGas
+texture=Terran
 x=59491
 y=0
 z=29240
@@ -1370,7 +1370,7 @@ out=Lambda W-UIJX/Chi O7OB-I6L Jumphole
 [Station]
 name=Sunfarm 21
 system=Lambda W-UIJX
-ship=Sunfarm
+station=Sunfarm
 x=7558
 y=10525
 z=16761
@@ -1456,7 +1456,7 @@ out=Omicron R-XRJX/Delta 01J-H7R Jumphole
 [Station]
 name=Industrial Kitchen 9
 system=Omicron R-XRJX
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-71083
 y=-78084
 z=-69962
@@ -1466,7 +1466,7 @@ faction=Northern Coalition
 [Station]
 name=Industrial Kitchen 13
 system=Omicron R-XRJX
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-69356
 y=85204
 z=-69756
@@ -1476,7 +1476,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 2
 system=Omicron R-XRJX
-ship=Sunfarm
+station=Sunfarm
 x=94203
 y=83857
 z=100188
@@ -1486,7 +1486,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 3
 system=Omicron R-XRJX
-ship=Sunfarm
+station=Sunfarm
 x=-67032
 y=-84098
 z=100824
@@ -1548,7 +1548,7 @@ out=Pi 8-X5X/Psi LD3G-DDD Jumphole
 [Station]
 name=Sunfarm 10
 system=Pi 8-X5X
-ship=Sunfarm
+station=Sunfarm
 x=60029
 y=57537
 z=56522
@@ -1605,7 +1605,7 @@ seed=590594532
 [Planet]
 name='Cindy 3'
 system=Rho E5-I
-texture=Martian
+texture=BandedGas
 x=-16213
 y=0
 z=220891
@@ -1755,7 +1755,7 @@ out=Xi 0B7W-KIS/Epsilon DL-8XN Jumphole
 [Station]
 name=Sunfarm 4
 system=Xi 0B7W-KIS
-ship=Sunfarm
+station=Sunfarm
 x=85394
 y=68661
 z=66111
@@ -1785,7 +1785,7 @@ seed=-143106159
 [Planet]
 name='Flores 10'
 system=Psi LD3G-DDD
-texture=Barren
+texture=BandedGas
 x=-165470
 y=0
 z=88084
@@ -1796,7 +1796,7 @@ seed=833968436
 [Planet]
 name='Cole 20'
 system=Psi LD3G-DDD
-texture=Martian
+texture=BandedGas
 x=-35922
 y=0
 z=81757
@@ -1807,7 +1807,7 @@ seed=-485241916
 [Planet]
 name='Willams 5'
 system=Psi LD3G-DDD
-texture=Barren
+texture=Chthonian
 x=129631
 y=0
 z=38242
@@ -1818,7 +1818,7 @@ seed=300359595
 [Planet]
 name='Daniels 21'
 system=Psi LD3G-DDD
-texture=BandedGas
+texture=WetMartian
 x=59380
 y=0
 z=174967
@@ -1865,7 +1865,7 @@ out=Psi LD3G-DDD/Nu 3V-P Jumphole
 [Station]
 name=Sunfarm 4
 system=Psi LD3G-DDD
-ship=Sunfarm
+station=Sunfarm
 x=45340
 y=18780
 z=2488
@@ -1917,7 +1917,7 @@ seed=-1794463725
 [Planet]
 name='Wells 10'
 system=Pi C7-O
-texture=BandedGas
+texture=Barren
 x=-48982
 y=0
 z=-106667
@@ -1928,7 +1928,7 @@ seed=-808293699
 [Planet]
 name='Coleman 9'
 system=Pi C7-O
-texture=Barren
+texture=WetMartian
 x=-79704
 y=0
 z=57762
@@ -2026,7 +2026,7 @@ seed=790309818
 [Planet]
 name='Newton 9'
 system=Beta 9-R71
-texture=WetMartian
+texture=Barren
 x=-74397
 y=0
 z=-30083
@@ -2037,7 +2037,7 @@ seed=-980261413
 [Planet]
 name='Crawford 22'
 system=Beta 9-R71
-texture=Martian
+texture=BandedGas
 x=67570
 y=0
 z=-66993
@@ -2128,7 +2128,7 @@ seed=-339173784
 [Planet]
 name='Parker 8'
 system=Omega Q7B2-0C
-texture=BandedGas
+texture=Barren
 x=218887
 y=0
 z=239787
@@ -2139,7 +2139,7 @@ seed=-193910019
 [Planet]
 name='Dick 17'
 system=Omega Q7B2-0C
-texture=BandedGas
+texture=Barren
 x=-60194
 y=0
 z=208886
@@ -2161,7 +2161,7 @@ seed=-1189388447
 [Planet]
 name='Kika 10'
 system=Omega Q7B2-0C
-texture=Barren
+texture=BandedGas
 x=-185922
 y=0
 z=-186989
@@ -2172,7 +2172,7 @@ seed=269703470
 [Planet]
 name='Kelly 16'
 system=Omega Q7B2-0C
-texture=BandedGas
+texture=Martian
 x=-26484
 y=0
 z=-57943
@@ -2219,7 +2219,7 @@ out=Omega Q7B2-0C/Xi S-0U0W Jumphole
 [Station]
 name=Industrial Kitchen 2
 system=Omega Q7B2-0C
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=87357
 y=87815
 z=-50345
@@ -2229,7 +2229,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 21
 system=Omega Q7B2-0C
-ship=Sunfarm
+station=Sunfarm
 x=91405
 y=-82036
 z=-53202
@@ -2259,7 +2259,7 @@ seed=-1745505138
 [Planet]
 name='Ellis 4'
 system=Sigma U-7
-texture=Barren
+texture=BandedGas
 x=51970
 y=0
 z=51804
@@ -2288,7 +2288,7 @@ out=Sigma U-7/Xi EP-M Jumphole
 [Station]
 name=Industrial Kitchen 3
 system=Sigma U-7
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-69065
 y=-60389
 z=53680
@@ -2298,7 +2298,7 @@ faction=Commonwealth
 [Station]
 name=Industrial Kitchen 6
 system=Sigma U-7
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=53589
 y=62198
 z=-64566
@@ -2308,7 +2308,7 @@ faction=Commonwealth
 [Station]
 name=Sunfarm 14
 system=Sigma U-7
-ship=Sunfarm
+station=Sunfarm
 x=48845
 y=57087
 z=54495
@@ -2365,7 +2365,7 @@ seed=-1222531875
 [Planet]
 name='Jacob 8'
 system=Alpha HWH-1K
-texture=BandedGas
+texture=Martian
 x=-96392
 y=0
 z=-7680
@@ -2376,7 +2376,7 @@ seed=1499942916
 [Planet]
 name='Miguel 6'
 system=Alpha HWH-1K
-texture=Terran
+texture=Chthonian
 x=-106245
 y=0
 z=-8615
@@ -2387,7 +2387,7 @@ seed=2018482818
 [Planet]
 name='Thomas 12'
 system=Alpha HWH-1K
-texture=BandedGas
+texture=Chthonian
 x=57378
 y=0
 z=68742
@@ -2398,7 +2398,7 @@ seed=308289932
 [Planet]
 name='Allen 21'
 system=Alpha HWH-1K
-texture=BandedGas
+texture=Chthonian
 x=-58644
 y=0
 z=15058
@@ -2456,7 +2456,7 @@ out=Alpha HWH-1K/Tau F-PYG Jumphole
 [Station]
 name=Industrial Kitchen 5
 system=Alpha HWH-1K
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-50788
 y=-57442
 z=49735
@@ -2466,7 +2466,7 @@ faction=Commonwealth
 [Station]
 name=Sunfarm 10
 system=Alpha HWH-1K
-ship=Sunfarm
+station=Sunfarm
 x=-52470
 y=57062
 z=-54578
@@ -2496,7 +2496,7 @@ seed=646116813
 [Station]
 name=Industrial Kitchen 12
 system=Nu 3V-P
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-62468
 y=63185
 z=-63108
@@ -2506,7 +2506,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 13
 system=Nu 3V-P
-ship=Sunfarm
+station=Sunfarm
 x=65827
 y=-60812
 z=64079
@@ -2516,7 +2516,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 14
 system=Nu 3V-P
-ship=Sunfarm
+station=Sunfarm
 x=66766
 y=-67598
 z=60966
@@ -2546,7 +2546,7 @@ seed=-1248641987
 [Planet]
 name='Ted 21'
 system=Delta VT8R-6LDM
-texture=Chthonian
+texture=Barren
 x=97410
 y=0
 z=-81088
@@ -2640,7 +2640,7 @@ seed=-1598884516
 [Planet]
 name='Nolo 7'
 system=Omicron B-G
-texture=Barren
+texture=Terran
 x=-10451
 y=0
 z=40636
@@ -2651,7 +2651,7 @@ seed=929437552
 [Planet]
 name='Adam 1'
 system=Omicron B-G
-texture=BandedGas
+texture=Barren
 x=-6912
 y=0
 z=-68557
@@ -2662,7 +2662,7 @@ seed=-644583036
 [Planet]
 name='Huko 10'
 system=Omicron B-G
-texture=BandedGas
+texture=Terran
 x=61128
 y=0
 z=40739
@@ -2684,7 +2684,7 @@ seed=768419385
 [Planet]
 name='Dixon 12'
 system=Omicron B-G
-texture=Barren
+texture=BandedGas
 x=-2436
 y=0
 z=32029
@@ -2695,7 +2695,7 @@ seed=369607986
 [Planet]
 name='Kathleen 20'
 system=Omicron B-G
-texture=Martian
+texture=Chthonian
 x=84239
 y=0
 z=-60350
@@ -2706,7 +2706,7 @@ seed=1990734062
 [Station]
 name=Industrial Kitchen 4
 system=Omicron B-G
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-5061
 y=-12422
 z=18903
@@ -2716,7 +2716,7 @@ faction=Commonwealth
 [Station]
 name=Sunfarm 1
 system=Omicron B-G
-ship=Sunfarm
+station=Sunfarm
 x=-13061
 y=11565
 z=-6696
@@ -2726,7 +2726,7 @@ faction=Commonwealth
 [Station]
 name=Sunfarm 2
 system=Omicron B-G
-ship=Sunfarm
+station=Sunfarm
 x=-4943
 y=-6532
 z=15504
@@ -2736,7 +2736,7 @@ faction=Commonwealth
 [Station]
 name=Sunfarm 4
 system=Omicron B-G
-ship=Sunfarm
+station=Sunfarm
 x=8993
 y=14723
 z=-3823
@@ -2746,7 +2746,7 @@ faction=Commonwealth
 [Station]
 name=Sunfarm 7
 system=Omicron B-G
-ship=Sunfarm
+station=Sunfarm
 x=-14223
 y=-14880
 z=18753
@@ -2789,7 +2789,7 @@ seed=1945236195
 [Planet]
 name='Wells 3'
 system=Sigma 0Q-8
-texture=BandedGas
+texture=Chthonian
 x=-48186
 y=0
 z=-52076
@@ -2811,7 +2811,7 @@ seed=1432011461
 [Planet]
 name='Hill 17'
 system=Sigma 0Q-8
-texture=BandedGas
+texture=Martian
 x=-45873
 y=0
 z=-61674
@@ -2844,7 +2844,7 @@ seed=-1515686609
 [Planet]
 name='Woods 16'
 system=Sigma 0Q-8
-texture=BandedGas
+texture=Barren
 x=-223593
 y=0
 z=-56161
@@ -2906,7 +2906,7 @@ seed=654380273
 [Planet]
 name='Caesar 14'
 system=Psi B98-K
-texture=Chthonian
+texture=Martian
 x=89249
 y=0
 z=154657
@@ -2917,7 +2917,7 @@ seed=-1922981273
 [Planet]
 name='Ford 16'
 system=Psi B98-K
-texture=Chthonian
+texture=BandedGas
 x=110078
 y=0
 z=158441
@@ -3033,7 +3033,7 @@ seed=2114669475
 [Planet]
 name='Woods 13'
 system=Phi PTY-XDDL
-texture=Chthonian
+texture=BandedGas
 x=-110006
 y=0
 z=-115147
@@ -3044,7 +3044,7 @@ seed=1880865934
 [Planet]
 name='West 19'
 system=Phi PTY-XDDL
-texture=BandedGas
+texture=Barren
 x=-110719
 y=0
 z=216273
@@ -3055,7 +3055,7 @@ seed=691488348
 [Planet]
 name='James 23'
 system=Phi PTY-XDDL
-texture=BandedGas
+texture=Martian
 x=-33263
 y=0
 z=82610
@@ -3124,7 +3124,7 @@ out=Phi PTY-XDDL/Omega NJG-XX Jumphole
 [Station]
 name=Sunfarm 15
 system=Phi PTY-XDDL
-ship=Sunfarm
+station=Sunfarm
 x=-75427
 y=-77360
 z=75650
@@ -3154,7 +3154,7 @@ seed=556767027
 [Planet]
 name='Ernesto 10'
 system=Epsilon BGG3-F
-texture=BandedGas
+texture=Barren
 x=-28414
 y=0
 z=-21752
@@ -3165,7 +3165,7 @@ seed=-1570486468
 [Planet]
 name='Henderman 16'
 system=Epsilon BGG3-F
-texture=Martian
+texture=Barren
 x=54708
 y=0
 z=22158
@@ -3176,7 +3176,7 @@ seed=-660571778
 [Planet]
 name='Rice 10'
 system=Epsilon BGG3-F
-texture=WetMartian
+texture=Terran
 x=32116
 y=0
 z=11647
@@ -3187,7 +3187,7 @@ seed=1690982894
 [Planet]
 name='Pama 19'
 system=Epsilon BGG3-F
-texture=BandedGas
+texture=Barren
 x=21422
 y=0
 z=-48525
@@ -3216,7 +3216,7 @@ out=Epsilon BGG3-F/Chi ZKAC-5P Jumphole
 [Station]
 name=Industrial Kitchen 5
 system=Epsilon BGG3-F
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-35704
 y=-46040
 z=-35194
@@ -3226,7 +3226,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 12
 system=Epsilon BGG3-F
-ship=Sunfarm
+station=Sunfarm
 x=-38810
 y=43057
 z=43516
@@ -3236,7 +3236,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 17
 system=Epsilon BGG3-F
-ship=Sunfarm
+station=Sunfarm
 x=-35268
 y=43760
 z=-33519
@@ -3246,7 +3246,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 18
 system=Epsilon BGG3-F
-ship=Sunfarm
+station=Sunfarm
 x=44673
 y=36622
 z=-30891
@@ -3290,7 +3290,7 @@ seed=-1008112968
 [Planet]
 name='Barnes 7'
 system=Omega JOB-ERU
-texture=Terran
+texture=BandedGas
 x=40697
 y=0
 z=-37978
@@ -3348,7 +3348,7 @@ out=Omega JOB-ERU/Theta RA-JS5I Jumphole
 [Station]
 name=Sunfarm 25
 system=Omega JOB-ERU
-ship=Sunfarm
+station=Sunfarm
 x=-52301
 y=-53832
 z=55056
@@ -3405,7 +3405,7 @@ seed=-1645792351
 [Planet]
 name='Debby 8'
 system=Eta MTK-6D
-texture=Terran
+texture=BandedGas
 x=126437
 y=0
 z=94874
@@ -3416,7 +3416,7 @@ seed=-595437332
 [Planet]
 name='Washington 19'
 system=Eta MTK-6D
-texture=Barren
+texture=BandedGas
 x=214659
 y=0
 z=62042
@@ -3427,7 +3427,7 @@ seed=-976052068
 [Planet]
 name='Nadine 9'
 system=Eta MTK-6D
-texture=Barren
+texture=BandedGas
 x=187648
 y=0
 z=65127
@@ -3438,7 +3438,7 @@ seed=1694987738
 [Planet]
 name='Cooper 9'
 system=Eta MTK-6D
-texture=BandedGas
+texture=Barren
 x=-200330
 y=0
 z=-109740
@@ -3511,7 +3511,7 @@ seed=1975957206
 [Planet]
 name='Katia 17'
 system=Omicron 0PI-2
-texture=Barren
+texture=Martian
 x=66312
 y=0
 z=29239
@@ -3522,7 +3522,7 @@ seed=1036973850
 [Planet]
 name='Barry 14'
 system=Omicron 0PI-2
-texture=Terran
+texture=Martian
 x=75396
 y=0
 z=46122
@@ -3533,7 +3533,7 @@ seed=1235730946
 [Planet]
 name='Julie 19'
 system=Omicron 0PI-2
-texture=Martian
+texture=BandedGas
 x=29165
 y=0
 z=49770
@@ -3638,7 +3638,7 @@ out=Psi POFH-B/Phi MP9T-C Jumphole
 [Station]
 name=Industrial Kitchen 12
 system=Psi POFH-B
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=31498
 y=-36969
 z=28421
@@ -3668,7 +3668,7 @@ seed=-650334866
 [Planet]
 name='Juliet 10'
 system=Phi MP9T-C
-texture=Barren
+texture=BandedGas
 x=-7840
 y=0
 z=35967
@@ -3733,7 +3733,7 @@ out=Phi MP9T-C/Epsilon DL-8XN Jumphole
 [Station]
 name=Industrial Kitchen 1
 system=Phi MP9T-C
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=30262
 y=-37209
 z=-36055
@@ -3743,7 +3743,7 @@ faction=Northern Coalition
 [Station]
 name=Industrial Kitchen 3
 system=Phi MP9T-C
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=28971
 y=-29313
 z=-34251
@@ -3753,7 +3753,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 10
 system=Phi MP9T-C
-ship=Sunfarm
+station=Sunfarm
 x=34890
 y=-35815
 z=-39888
@@ -3763,7 +3763,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 15
 system=Phi MP9T-C
-ship=Sunfarm
+station=Sunfarm
 x=32365
 y=31951
 z=-37155
@@ -3838,7 +3838,7 @@ out=Epsilon M6-V/Mu O7-ZWL Jumphole
 [Station]
 name=Industrial Kitchen 10
 system=Epsilon M6-V
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-73825
 y=68529
 z=-69152
@@ -3848,7 +3848,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 26
 system=Epsilon M6-V
-ship=Sunfarm
+station=Sunfarm
 x=-77585
 y=-74039
 z=-70858
@@ -3878,7 +3878,7 @@ seed=-935467995
 [Planet]
 name='Bret 8'
 system=Upsilon N3U-41
-texture=BandedGas
+texture=Terran
 x=39995
 y=0
 z=56293
@@ -3889,7 +3889,7 @@ seed=-1582160594
 [Planet]
 name='Cox 5'
 system=Upsilon N3U-41
-texture=Martian
+texture=BandedGas
 x=55266
 y=0
 z=59079
@@ -3900,7 +3900,7 @@ seed=-885776812
 [Planet]
 name='Lee 24'
 system=Upsilon N3U-41
-texture=BandedGas
+texture=Terran
 x=17912
 y=0
 z=6963
@@ -3911,7 +3911,7 @@ seed=-1281033258
 [Planet]
 name='Yao 13'
 system=Upsilon N3U-41
-texture=Chthonian
+texture=Barren
 x=-46838
 y=0
 z=33261
@@ -3958,7 +3958,7 @@ out=Upsilon N3U-41/Xi EP-M Jumphole
 [Station]
 name=Sunfarm 13
 system=Upsilon N3U-41
-ship=Sunfarm
+station=Sunfarm
 x=-11446
 y=-8092
 z=-948
@@ -3968,7 +3968,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 14
 system=Upsilon N3U-41
-ship=Sunfarm
+station=Sunfarm
 x=13719
 y=4265
 z=-4040
@@ -3978,7 +3978,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 17
 system=Upsilon N3U-41
-ship=Sunfarm
+station=Sunfarm
 x=-7755
 y=-13402
 z=-1535
@@ -3988,7 +3988,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 18
 system=Upsilon N3U-41
-ship=Sunfarm
+station=Sunfarm
 x=13993
 y=-5357
 z=-6161
@@ -4031,7 +4031,7 @@ seed=-2131621923
 [Planet]
 name='Ema 23'
 system=Alpha 6L-XGXG
-texture=BandedGas
+texture=Martian
 x=-45874
 y=0
 z=-93851
@@ -4042,7 +4042,7 @@ seed=518507188
 [Planet]
 name='Gibson 2'
 system=Alpha 6L-XGXG
-texture=BandedGas
+texture=Terran
 x=95545
 y=0
 z=-47687
@@ -4071,7 +4071,7 @@ out=Alpha 6L-XGXG/Xi V-21J Jumphole
 [Station]
 name=Industrial Kitchen 7
 system=Alpha 6L-XGXG
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=87218
 y=72624
 z=-83187
@@ -4115,7 +4115,7 @@ seed=-202765306
 [Planet]
 name='Ford 19'
 system=Delta 01J-H7R
-texture=BandedGas
+texture=Barren
 x=-21599
 y=0
 z=-77688
@@ -4126,7 +4126,7 @@ seed=-1365623937
 [Planet]
 name='Butler 17'
 system=Delta 01J-H7R
-texture=Martian
+texture=Barren
 x=7554
 y=0
 z=24710
@@ -4155,7 +4155,7 @@ out=Delta 01J-H7R/Upsilon 5-G Jumphole
 [Station]
 name=Sunfarm 1
 system=Delta 01J-H7R
-ship=Sunfarm
+station=Sunfarm
 x=-13842
 y=17310
 z=-21426
@@ -4198,7 +4198,7 @@ seed=-472994775
 [Planet]
 name='Hughes 21'
 system=Epsilon VQ-WVYP
-texture=BandedGas
+texture=Barren
 x=36506
 y=0
 z=-86491
@@ -4308,7 +4308,7 @@ seed=1276384976
 [Station]
 name=Sunfarm 19
 system=Psi YJ-7N2F
-ship=Sunfarm
+station=Sunfarm
 x=59491
 y=59196
 z=-43231
@@ -4352,7 +4352,7 @@ seed=1632814218
 [Planet]
 name='Harvey 12'
 system=Xi S-0U0W
-texture=BandedGas
+texture=Barren
 x=-115643
 y=0
 z=215896
@@ -4363,7 +4363,7 @@ seed=-1747525895
 [Planet]
 name='Bailey 2'
 system=Xi S-0U0W
-texture=BandedGas
+texture=Chthonian
 x=144715
 y=0
 z=-139692
@@ -4405,7 +4405,7 @@ seed=1309575154
 [Planet]
 name='Martinez 11'
 system=Chi Q4IN-D
-texture=Terran
+texture=WetMartian
 x=-69554
 y=0
 z=-26384
@@ -4416,7 +4416,7 @@ seed=-1909218499
 [Planet]
 name='Jordon 17'
 system=Chi Q4IN-D
-texture=BandedGas
+texture=Chthonian
 x=17504
 y=0
 z=-49611
@@ -4487,7 +4487,7 @@ seed=-18236392
 [Planet]
 name='Dean 3'
 system=Upsilon 5-G
-texture=Barren
+texture=Terran
 x=-155738
 y=0
 z=-51260
@@ -4498,7 +4498,7 @@ seed=-1901249705
 [Planet]
 name='Khaba 2'
 system=Upsilon 5-G
-texture=Barren
+texture=BandedGas
 x=75296
 y=0
 z=157602
@@ -4509,7 +4509,7 @@ seed=-673002402
 [Planet]
 name='Stephen 24'
 system=Upsilon 5-G
-texture=Barren
+texture=BandedGas
 x=-161378
 y=0
 z=-131877
@@ -4531,7 +4531,7 @@ seed=586053180
 [Planet]
 name='Ernesto 9'
 system=Upsilon 5-G
-texture=Terran
+texture=BandedGas
 x=205417
 y=0
 z=170007
@@ -4578,7 +4578,7 @@ out=Upsilon 5-G/Omicron R-XRJX Jumphole
 [Station]
 name=Sunfarm 9
 system=Upsilon 5-G
-ship=Sunfarm
+station=Sunfarm
 x=-63254
 y=41113
 z=-48271
@@ -4588,7 +4588,7 @@ faction=Commonwealth
 [Station]
 name=Sunfarm 13
 system=Upsilon 5-G
-ship=Sunfarm
+station=Sunfarm
 x=17148
 y=44725
 z=24257
@@ -4618,7 +4618,7 @@ seed=1591483766
 [Planet]
 name='Jim 12'
 system=Pi 3ZJ-H94
-texture=Barren
+texture=BandedGas
 x=-57074
 y=0
 z=50074
@@ -4647,7 +4647,7 @@ out=Pi 3ZJ-H94/Chi O7OB-I6L Jumphole
 [Station]
 name=Sunfarm 5
 system=Pi 3ZJ-H94
-ship=Sunfarm
+station=Sunfarm
 x=63167
 y=-67787
 z=-78935
@@ -4677,7 +4677,7 @@ seed=-1193713292
 [Planet]
 name='Matt 20'
 system=Epsilon MF-NN6
-texture=Chthonian
+texture=BandedGas
 x=-162594
 y=0
 z=-163524
@@ -4688,7 +4688,7 @@ seed=-1184721491
 [Planet]
 name='Hall 18'
 system=Epsilon MF-NN6
-texture=Martian
+texture=Chthonian
 x=105169
 y=0
 z=19679
@@ -4710,7 +4710,7 @@ seed=145865301
 [Planet]
 name='Morgan 11'
 system=Epsilon MF-NN6
-texture=Terran
+texture=Barren
 x=146739
 y=0
 z=123514
@@ -4721,7 +4721,7 @@ seed=648436685
 [Planet]
 name='Buster 17'
 system=Epsilon MF-NN6
-texture=Terran
+texture=BandedGas
 x=-121556
 y=0
 z=-51991
@@ -4732,7 +4732,7 @@ seed=-289739434
 [Planet]
 name='Sanders 10'
 system=Epsilon MF-NN6
-texture=Barren
+texture=Chthonian
 x=-42655
 y=0
 z=-106339
@@ -4779,7 +4779,7 @@ out=Epsilon MF-NN6/Iota ZX-O Jumphole
 [Station]
 name=Industrial Kitchen 1
 system=Epsilon MF-NN6
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=26046
 y=26159
 z=-42007
@@ -4789,7 +4789,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 24
 system=Epsilon MF-NN6
-ship=Sunfarm
+station=Sunfarm
 x=-34409
 y=34019
 z=-47001
@@ -4899,7 +4899,7 @@ seed=1976545301
 [Planet]
 name='Keoni 9'
 system=Iota QYHH-OK
-texture=Barren
+texture=Chthonian
 x=152024
 y=0
 z=-121806
@@ -4910,7 +4910,7 @@ seed=436462792
 [Planet]
 name='Hanna 16'
 system=Iota QYHH-OK
-texture=BandedGas
+texture=Barren
 x=7544
 y=0
 z=-75875
@@ -4921,7 +4921,7 @@ seed=2077605439
 [Planet]
 name='Freeman 6'
 system=Iota QYHH-OK
-texture=Terran
+texture=Barren
 x=-84454
 y=0
 z=151523
@@ -5006,7 +5006,7 @@ seed=1351609122
 [Planet]
 name='Thompson 9'
 system=Omega COH-3
-texture=Terran
+texture=Barren
 x=157709
 y=0
 z=225899
@@ -5017,7 +5017,7 @@ seed=-293472406
 [Planet]
 name='Melissa 14'
 system=Omega COH-3
-texture=Martian
+texture=Chthonian
 x=-131824
 y=0
 z=176280
@@ -5104,7 +5104,7 @@ seed=1749702534
 [Planet]
 name='Carletta 19'
 system=Rho EXKH-XF
-texture=BandedGas
+texture=Barren
 x=-117074
 y=0
 z=-3245
@@ -5115,7 +5115,7 @@ seed=1213271082
 [Planet]
 name='Britt 12'
 system=Rho EXKH-XF
-texture=Chthonian
+texture=BandedGas
 x=99689
 y=0
 z=-62694
@@ -5137,7 +5137,7 @@ seed=178748642
 [Planet]
 name='Ophellia 20'
 system=Rho EXKH-XF
-texture=Martian
+texture=BandedGas
 x=84518
 y=0
 z=-92191
@@ -5195,7 +5195,7 @@ out=Rho EXKH-XF/Beta C-Y Jumphole
 [Station]
 name=Industrial Kitchen 4
 system=Rho EXKH-XF
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-81956
 y=-63074
 z=-67629
@@ -5225,7 +5225,7 @@ seed=636745745
 [Planet]
 name='Jack 3'
 system=Theta Z-Z
-texture=BandedGas
+texture=Barren
 x=74703
 y=0
 z=44208
@@ -5247,7 +5247,7 @@ seed=-1661489024
 [Planet]
 name='Ross 20'
 system=Theta Z-Z
-texture=BandedGas
+texture=Barren
 x=-41857
 y=0
 z=-73447
@@ -5269,7 +5269,7 @@ seed=1302758297
 [Planet]
 name='Bradley 12'
 system=Theta Z-Z
-texture=BandedGas
+texture=Terran
 x=82562
 y=0
 z=-56241
@@ -5329,7 +5329,7 @@ seed=558425909
 [Planet]
 name='Grant 7'
 system=Xi EP-M
-texture=BandedGas
+texture=Terran
 x=-59289
 y=0
 z=-79508
@@ -5376,7 +5376,7 @@ out=Xi EP-M/Omicron R-XRJX Jumphole
 [Station]
 name=Sunfarm 20
 system=Xi EP-M
-ship=Sunfarm
+station=Sunfarm
 x=-88176
 y=-69885
 z=62473
@@ -5433,7 +5433,7 @@ seed=745402338
 [Planet]
 name='Dolly 22'
 system=Omega 7-8BLJ
-texture=BandedGas
+texture=Barren
 x=101749
 y=0
 z=-92965
@@ -5444,7 +5444,7 @@ seed=-169672532
 [Planet]
 name='Reynolds 23'
 system=Omega 7-8BLJ
-texture=BandedGas
+texture=WetMartian
 x=33080
 y=0
 z=-37898
@@ -5527,7 +5527,7 @@ out=Omega 7-8BLJ/Gamma OHV-K1TM Jumphole
 [Station]
 name=Industrial Kitchen 8
 system=Omega 7-8BLJ
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-98610
 y=77189
 z=-87177
@@ -5537,7 +5537,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 11
 system=Omega 7-8BLJ
-ship=Sunfarm
+station=Sunfarm
 x=-93076
 y=77288
 z=-84670
@@ -5547,7 +5547,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 16
 system=Omega 7-8BLJ
-ship=Sunfarm
+station=Sunfarm
 x=53081
 y=-76994
 z=-81836
@@ -5557,7 +5557,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 26
 system=Omega 7-8BLJ
-ship=Sunfarm
+station=Sunfarm
 x=-101650
 y=74865
 z=64360
@@ -5587,7 +5587,7 @@ seed=1751944250
 [Planet]
 name='Brynt 10'
 system=Sigma 5GF-LSZ4
-texture=Terran
+texture=Barren
 x=66698
 y=0
 z=192059
@@ -5665,7 +5665,7 @@ seed=-945481281
 [Planet]
 name='Olana 10'
 system=Omicron Q3-4V6
-texture=Terran
+texture=BandedGas
 x=-31714
 y=0
 z=84509
@@ -5676,7 +5676,7 @@ seed=1036257838
 [Planet]
 name='Washington 14'
 system=Omicron Q3-4V6
-texture=BandedGas
+texture=Chthonian
 x=-149670
 y=0
 z=-179501
@@ -5738,7 +5738,7 @@ seed=1158228061
 [Planet]
 name='Miguel 11'
 system=Gamma YE-8S
-texture=Terran
+texture=BandedGas
 x=-67541
 y=0
 z=-114124
@@ -5749,7 +5749,7 @@ seed=950011514
 [Planet]
 name='Ramos 4'
 system=Gamma YE-8S
-texture=BandedGas
+texture=Chthonian
 x=123123
 y=0
 z=-11348
@@ -5760,7 +5760,7 @@ seed=-1943084785
 [Planet]
 name='Perry 16'
 system=Gamma YE-8S
-texture=BandedGas
+texture=Barren
 x=96416
 y=0
 z=-69899
@@ -5838,7 +5838,7 @@ seed=172518754
 [Planet]
 name='Gert 16'
 system=Upsilon EQEG-2QMZ
-texture=Martian
+texture=Barren
 x=-77377
 y=0
 z=-25847
@@ -5849,7 +5849,7 @@ seed=1579775514
 [Planet]
 name='Iopa 15'
 system=Upsilon EQEG-2QMZ
-texture=BandedGas
+texture=Barren
 x=-30062
 y=0
 z=142259
@@ -5907,7 +5907,7 @@ out=Upsilon EQEG-2QMZ/Beta QF2-2V3S Jumphole
 [Station]
 name=Industrial Kitchen 1
 system=Upsilon EQEG-2QMZ
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=-57409
 y=71221
 z=57403
@@ -5917,7 +5917,7 @@ faction=Commonwealth
 [Station]
 name=Industrial Kitchen 2
 system=Upsilon EQEG-2QMZ
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=88666
 y=69439
 z=61154
@@ -5927,7 +5927,7 @@ faction=Commonwealth
 [Station]
 name=Sunfarm 11
 system=Upsilon EQEG-2QMZ
-ship=Sunfarm
+station=Sunfarm
 x=-56597
 y=-76944
 z=-93002
@@ -5993,7 +5993,7 @@ seed=-454402219
 [Planet]
 name='Larua 14'
 system=Xi V-21J
-texture=BandedGas
+texture=Chthonian
 x=93995
 y=0
 z=186001
@@ -6022,7 +6022,7 @@ out=Xi V-21J/Xi E-S Jumphole
 [Station]
 name=Industrial Kitchen 13
 system=Xi V-21J
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=60017
 y=82581
 z=-87790
@@ -6032,7 +6032,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 20
 system=Xi V-21J
-ship=Sunfarm
+station=Sunfarm
 x=-106322
 y=79016
 z=-88234
@@ -6132,7 +6132,7 @@ seed=836003406
 [Planet]
 name='Nolo 3'
 system=Gamma YWKE-ELG5
-texture=BandedGas
+texture=Terran
 x=16077
 y=0
 z=69279
@@ -6143,7 +6143,7 @@ seed=-97429608
 [Planet]
 name='Wright 6'
 system=Gamma YWKE-ELG5
-texture=Barren
+texture=Chthonian
 x=84997
 y=0
 z=-151678
@@ -6165,7 +6165,7 @@ seed=620001058
 [Planet]
 name='Akoni 10'
 system=Gamma YWKE-ELG5
-texture=BandedGas
+texture=Chthonian
 x=142776
 y=0
 z=-163254
@@ -6223,7 +6223,7 @@ seed=1171887002
 [Planet]
 name='Dean 21'
 system=Mu O7-ZWL
-texture=Martian
+texture=Chthonian
 x=-47584
 y=0
 z=67341
@@ -6270,7 +6270,7 @@ out=Mu O7-ZWL/Omicron CV6M-V Jumphole
 [Station]
 name=Sunfarm 6
 system=Mu O7-ZWL
-ship=Sunfarm
+station=Sunfarm
 x=20518
 y=-17535
 z=-23474
@@ -6280,7 +6280,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 7
 system=Mu O7-ZWL
-ship=Sunfarm
+station=Sunfarm
 x=17507
 y=19325
 z=19041
@@ -6290,7 +6290,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 23
 system=Mu O7-ZWL
-ship=Sunfarm
+station=Sunfarm
 x=25274
 y=-20883
 z=-30477
@@ -6300,7 +6300,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 25
 system=Mu O7-ZWL
-ship=Sunfarm
+station=Sunfarm
 x=25134
 y=19989
 z=11859
@@ -6344,7 +6344,7 @@ seed=1809493640
 [Planet]
 name='Gibson 15'
 system=Tau 0Z5U-0
-texture=BandedGas
+texture=Chthonian
 x=-214370
 y=0
 z=-152485
@@ -6355,7 +6355,7 @@ seed=-1292605640
 [Planet]
 name='Otho 6'
 system=Tau 0Z5U-0
-texture=Barren
+texture=Terran
 x=-221621
 y=0
 z=-38720
@@ -6428,7 +6428,7 @@ seed=518435105
 [Station]
 name=Industrial Kitchen 7
 system=Iota ZX-O
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=70160
 y=60805
 z=67664
@@ -6438,7 +6438,7 @@ faction=Southern Coalition
 [Station]
 name=Industrial Kitchen 10
 system=Iota ZX-O
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=67841
 y=70268
 z=65743
@@ -6506,7 +6506,7 @@ seed=480168703
 [Planet]
 name='Turner 5'
 system=Beta C-Y
-texture=BandedGas
+texture=Terran
 x=9403
 y=0
 z=-96160
@@ -6517,7 +6517,7 @@ seed=-1383436362
 [Planet]
 name='Roberts 1'
 system=Beta C-Y
-texture=Martian
+texture=Barren
 x=-43031
 y=0
 z=-18914
@@ -6528,7 +6528,7 @@ seed=2044164639
 [Planet]
 name='Tracy 9'
 system=Beta C-Y
-texture=BandedGas
+texture=Barren
 x=22367
 y=0
 z=102813
@@ -6557,7 +6557,7 @@ out=Beta C-Y/Eta J2T-30MX Jumphole
 [Station]
 name=Industrial Kitchen 2
 system=Beta C-Y
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=72752
 y=-62763
 z=48577
@@ -6567,7 +6567,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 23
 system=Beta C-Y
-ship=Sunfarm
+station=Sunfarm
 x=-45162
 y=64182
 z=45981
@@ -6621,7 +6621,7 @@ seed=-209748389
 [Planet]
 name='Sally 10'
 system=Theta RA-JS5I
-texture=Chthonian
+texture=BandedGas
 x=-107497
 y=0
 z=81397
@@ -6668,7 +6668,7 @@ out=Theta RA-JS5I/Iota 2J1-RH5I Jumphole
 [Station]
 name=Sunfarm 5
 system=Theta RA-JS5I
-ship=Sunfarm
+station=Sunfarm
 x=-92945
 y=-79083
 z=-90718
@@ -6678,7 +6678,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 6
 system=Theta RA-JS5I
-ship=Sunfarm
+station=Sunfarm
 x=-83966
 y=-81560
 z=66771
@@ -6746,7 +6746,7 @@ seed=-1619883346
 [Planet]
 name='Jose 15'
 system=Rho WW-Y95C
-texture=Barren
+texture=Terran
 x=-14700
 y=0
 z=-73607
@@ -6757,7 +6757,7 @@ seed=-509057662
 [Planet]
 name='Holmes 23'
 system=Rho WW-Y95C
-texture=Barren
+texture=Martian
 x=-13381
 y=0
 z=-71168
@@ -6822,7 +6822,7 @@ out=Rho WW-Y95C/Beta QF2-2V3S Jumphole
 [Station]
 name=Industrial Kitchen 6
 system=Rho WW-Y95C
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=75129
 y=78367
 z=91671
@@ -6852,7 +6852,7 @@ seed=-1718950556
 [Planet]
 name='Jack 12'
 system=Gamma OHV-K1TM
-texture=BandedGas
+texture=Chthonian
 x=165941
 y=0
 z=229040
@@ -6863,7 +6863,7 @@ seed=23713397
 [Planet]
 name='Sanchez 20'
 system=Gamma OHV-K1TM
-texture=BandedGas
+texture=Barren
 x=-215073
 y=0
 z=-207569
@@ -6885,7 +6885,7 @@ seed=-1681172323
 [Planet]
 name='Ellis 19'
 system=Gamma OHV-K1TM
-texture=Terran
+texture=Chthonian
 x=-183894
 y=0
 z=217948
@@ -6896,7 +6896,7 @@ seed=-179920471
 [Station]
 name=Industrial Kitchen 9
 system=Gamma OHV-K1TM
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=100169
 y=77111
 z=-76968
@@ -6906,7 +6906,7 @@ faction=Southern Coalition
 [Station]
 name=Industrial Kitchen 11
 system=Gamma OHV-K1TM
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=98764
 y=76686
 z=-83279
@@ -6916,7 +6916,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 3
 system=Gamma OHV-K1TM
-ship=Sunfarm
+station=Sunfarm
 x=-46648
 y=-70141
 z=-83418
@@ -6981,7 +6981,7 @@ seed=-569848465
 [Planet]
 name='Yu 21'
 system=Omega NJG-XX
-texture=Barren
+texture=Chthonian
 x=-35967
 y=0
 z=62319
@@ -6992,7 +6992,7 @@ seed=886842277
 [Station]
 name=Industrial Kitchen 6
 system=Omega NJG-XX
-ship=Industrial Kitchen
+station=Industrial Kitchen
 x=70400
 y=68708
 z=-65684
@@ -7002,7 +7002,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 2
 system=Omega NJG-XX
-ship=Sunfarm
+station=Sunfarm
 x=73788
 y=-62986
 z=60550
@@ -7012,7 +7012,7 @@ faction=Southern Coalition
 [Station]
 name=Sunfarm 19
 system=Omega NJG-XX
-ship=Sunfarm
+station=Sunfarm
 x=79471
 y=72433
 z=68134
@@ -7055,7 +7055,7 @@ seed=1759181331
 [Planet]
 name='Daniels 19'
 system=Chi O7OB-I6L
-texture=BandedGas
+texture=Chthonian
 x=-177056
 y=0
 z=-92809
@@ -7066,7 +7066,7 @@ seed=-1585458227
 [Planet]
 name='Lee 9'
 system=Chi O7OB-I6L
-texture=Chthonian
+texture=Barren
 x=62429
 y=0
 z=-102975
@@ -7077,7 +7077,7 @@ seed=1759477140
 [Planet]
 name='Dolly 5'
 system=Chi O7OB-I6L
-texture=Barren
+texture=Chthonian
 x=86161
 y=0
 z=47699
@@ -7088,7 +7088,7 @@ seed=-1061391339
 [Planet]
 name='Hunt 4'
 system=Chi O7OB-I6L
-texture=Barren
+texture=Terran
 x=44680
 y=0
 z=186858
@@ -7164,7 +7164,7 @@ seed=682040407
 [Planet]
 name='Ian 16'
 system=Psi SBZ-8DHQ
-texture=Martian
+texture=Barren
 x=86900
 y=0
 z=28649
@@ -7175,7 +7175,7 @@ seed=1505549489
 [Planet]
 name='Don 2'
 system=Psi SBZ-8DHQ
-texture=BandedGas
+texture=Barren
 x=-114368
 y=0
 z=-14861
@@ -7291,7 +7291,7 @@ seed=266475286
 [Planet]
 name='Robert 20'
 system=Xi E-S
-texture=Terran
+texture=BandedGas
 x=-99952
 y=0
 z=25810
@@ -7302,7 +7302,7 @@ seed=-1390503345
 [Planet]
 name='Debby 23'
 system=Xi E-S
-texture=Barren
+texture=Martian
 x=67218
 y=0
 z=-196653
@@ -7375,7 +7375,7 @@ out=Tau 9-UA/Iota I-B Jumphole
 [Station]
 name=Sunfarm 8
 system=Tau 9-UA
-ship=Sunfarm
+station=Sunfarm
 x=-65984
 y=-63445
 z=-58559
@@ -7405,7 +7405,7 @@ seed=745030325
 [Planet]
 name='Lino 21'
 system=Mu MY-Q9LO
-texture=Chthonian
+texture=Barren
 x=121621
 y=0
 z=142874
@@ -7427,7 +7427,7 @@ seed=-453885481
 [Planet]
 name='Carter 22'
 system=Mu MY-Q9LO
-texture=BandedGas
+texture=Barren
 x=99590
 y=0
 z=172860
@@ -7438,7 +7438,7 @@ seed=1883557867
 [Planet]
 name='Rodriguez 19'
 system=Mu MY-Q9LO
-texture=Chthonian
+texture=BandedGas
 x=-99822
 y=0
 z=81808
@@ -7460,7 +7460,7 @@ seed=-1241761092
 [Station]
 name=Sunfarm 22
 system=Mu MY-Q9LO
-ship=Sunfarm
+station=Sunfarm
 x=-20399
 y=-16987
 z=-39133
@@ -7503,7 +7503,7 @@ seed=608513962
 [Planet]
 name='Nicole 21'
 system=Delta 67-VNVD
-texture=Barren
+texture=BandedGas
 x=-55826
 y=0
 z=-26042
@@ -7514,7 +7514,7 @@ seed=-805370361
 [Planet]
 name='Rice 7'
 system=Delta 67-VNVD
-texture=Barren
+texture=Terran
 x=19530
 y=0
 z=32040
@@ -7623,7 +7623,7 @@ seed=-2103183976
 [Planet]
 name='Kent 15'
 system=Tau CC4W-C
-texture=Barren
+texture=Chthonian
 x=-55291
 y=0
 z=4474
@@ -7652,7 +7652,7 @@ out=Tau CC4W-C/Omicron CV6M-V Jumphole
 [Station]
 name=Sunfarm 16
 system=Tau CC4W-C
-ship=Sunfarm
+station=Sunfarm
 x=73431
 y=63765
 z=-74267
@@ -7662,7 +7662,7 @@ faction=Northern Coalition
 [Station]
 name=Sunfarm 22
 system=Tau CC4W-C
-ship=Sunfarm
+station=Sunfarm
 x=-59318
 y=72391
 z=-75522
@@ -7786,7 +7786,7 @@ seed=-399658494
 [Planet]
 name='Xao 18'
 system=Beta QF2-2V3S
-texture=BandedGas
+texture=Barren
 x=64478
 y=0
 z=-126968
@@ -7830,7 +7830,7 @@ seed=-1270359734
 [Planet]
 name='Mills 8'
 system=Beta QF2-2V3S
-texture=Martian
+texture=Barren
 x=15554
 y=0
 z=110151
@@ -7841,7 +7841,7 @@ seed=869999984
 [Planet]
 name='Kelly 16'
 system=Beta QF2-2V3S
-texture=Barren
+texture=Chthonian
 x=-106722
 y=0
 z=-182355
@@ -7908,7 +7908,7 @@ out=Omicron CV6M-V/Epsilon M6-V Jumphole
 [Station]
 name=Sunfarm 24
 system=Omicron CV6M-V
-ship=Sunfarm
+station=Sunfarm
 x=80517
 y=-57128
 z=65095
@@ -7938,7 +7938,7 @@ seed=-949486563
 [Planet]
 name='Parker 13'
 system=Mu M-NGW5
-texture=Martian
+texture=Barren
 x=-24228
 y=0
 z=32611
@@ -7960,7 +7960,7 @@ seed=-1506943593
 [Planet]
 name='Maka 14'
 system=Mu M-NGW5
-texture=BandedGas
+texture=Terran
 x=-3793
 y=0
 z=-64000
@@ -8027,7 +8027,7 @@ seed=-911440268
 [Planet]
 name='Ernesto 22'
 system=Iota URU-MEU0
-texture=Martian
+texture=BandedGas
 x=37180
 y=0
 z=-85396
@@ -8038,7 +8038,7 @@ seed=-228884934
 [Planet]
 name='Galba 4'
 system=Iota URU-MEU0
-texture=BandedGas
+texture=Martian
 x=45397
 y=0
 z=100625
@@ -8049,7 +8049,7 @@ seed=-605400303
 [Planet]
 name='Browns 9'
 system=Iota URU-MEU0
-texture=BandedGas
+texture=Martian
 x=-87201
 y=0
 z=72511
@@ -8060,7 +8060,7 @@ seed=-548549082
 [Station]
 name=Sunfarm 6
 system=Iota URU-MEU0
-ship=Sunfarm
+station=Sunfarm
 x=-55301
 y=64320
 z=-72985
@@ -8139,7 +8139,7 @@ out=Tau F-PYG/Mu MY-Q9LO Jumphole
 [Station]
 name=Sunfarm 5
 system=Tau F-PYG
-ship=Sunfarm
+station=Sunfarm
 x=-82369
 y=75196
 z=71821
@@ -8149,7 +8149,7 @@ faction=Commonwealth
 [Station]
 name=Sunfarm 8
 system=Tau F-PYG
-ship=Sunfarm
+station=Sunfarm
 x=78852
 y=80367
 z=72784
@@ -8192,7 +8192,7 @@ seed=1339512760
 [Planet]
 name='Ashley 18'
 system=Psi CNK-LTW
-texture=BandedGas
+texture=Barren
 x=74743
 y=0
 z=-12904
