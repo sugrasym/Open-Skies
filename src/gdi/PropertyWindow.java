@@ -517,14 +517,12 @@ public class PropertyWindow extends AstralWindow {
              */
             if (selected.getAutopilot() == Autopilot.FLY_TO_CELESTIAL) {
                 infoList.addToList("Waypoint:     " + selected.getFlyToTarget().getName());
-                float dist = selected.getLocation().distance(selected.getFlyToTarget().getLocation());
-                float eta = dist / (selected.getVelocity().subtract(selected.getFlyToTarget().getVelocity())).length();
-                infoList.addToList("Distance:     " + roundTwoDecimal(dist));
-                infoList.addToList("ETA:          " + roundTwoDecimal(eta) + "s");
+                appendDistanceAndETA(selected);
             }
             if (selected.getPort() != null) {
                 if (selected.getAutopilot() == Autopilot.DOCK_STAGE1) {
                     infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
+                    appendDistanceAndETA(selected);
                 } else if (selected.getAutopilot() == Autopilot.DOCK_STAGE2) {
                     infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
                 }
@@ -583,6 +581,17 @@ public class PropertyWindow extends AstralWindow {
              }
              }*/
         }
+    }
+
+    /*
+     * Uses the simplistic method if d = rt to determine how long it is going to take to reach the ship's
+     * fly to target and appends that data to the info list.
+     */
+    private void appendDistanceAndETA(Ship selected) {
+        float dist = selected.getLocation().distance(selected.getFlyToTarget().getLocation());
+        float eta = dist / (selected.getVelocity().subtract(selected.getFlyToTarget().getVelocity())).length();
+        infoList.addToList("Distance:     " + roundTwoDecimal(dist));
+        infoList.addToList("ETA:          " + roundTwoDecimal(eta) + "s");
     }
 
     private double roundTwoDecimal(double d) {
