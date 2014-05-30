@@ -505,9 +505,9 @@ public class God {
             //pick a point outside of the planet
             Planet tmp = (Planet) host;
             float r = tmp.getRadius() * 2;
-            float dx = rnd.nextInt(10000) * Math.signum(rnd.nextFloat() - 0.5f);
-            float dy = rnd.nextInt(10000) * Math.signum(rnd.nextFloat() - 0.5f);
-            float dz = rnd.nextInt(10000) * Math.signum(rnd.nextFloat() - 0.5f);
+            float dx = (rnd.nextInt(10000) + r) * Math.signum(rnd.nextFloat() - 0.5f);
+            float dy = (rnd.nextInt(10000) + r) * Math.signum(rnd.nextFloat() - 0.5f);
+            float dz = (rnd.nextInt(10000) + r) * Math.signum(rnd.nextFloat() - 0.5f);
             //store
             x = host.getLocation().getX() + dx;
             y = host.getLocation().getY() + dy;

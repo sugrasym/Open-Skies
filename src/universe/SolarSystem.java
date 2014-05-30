@@ -83,6 +83,11 @@ public class SolarSystem implements Entity, Serializable {
         x = Float.parseFloat(thisSystem.getValue("x"));
         y = Float.parseFloat(thisSystem.getValue("y"));
         z = Float.parseFloat(thisSystem.getValue("z"));
+        //store owner
+        String tmpOwner = thisSystem.getValue("owner");
+        if(owner != null) {
+            owner = tmpOwner;
+        }
     }
 
     public final void initSystem(AssetManager assets) {
