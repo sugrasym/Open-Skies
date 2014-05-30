@@ -192,7 +192,7 @@ public class OverviewWindow extends AstralWindow {
             if (celestial instanceof Ship) {
                 if (celestial instanceof Station) {
                     Station test = (Station) celestial;
-                    if(test.getStandingsToMe((Station) celestial) > Faction.HOSTILE_STANDING) {
+                    if(!test.isHostileToMe(sensorShip)) {
                         //neutral and friendly stations are visible
                         return true;
                     }

@@ -1726,6 +1726,28 @@ public class Ship extends Celestial {
             return (int) faction.getStanding(ship.getFaction().getName());
         }
     }
+    
+    public boolean isHostileToMe(Ship ship) {
+        if(getStandingsToMe(ship) <= Faction.HOSTILE_STANDING) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean isFriendlyToMe(Ship ship) {
+        if(getStandingsToMe(ship) >= Faction.FRIENDLY_STANDING) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean isNeutralToMe(Ship ship) {
+        boolean hostile = isHostileToMe(ship);
+        boolean friendly = isFriendlyToMe(ship);
+        return !hostile && !friendly;
+    }
 
     public Faction getFaction() {
         return faction;
