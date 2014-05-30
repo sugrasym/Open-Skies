@@ -4,7 +4,7 @@ ship=Sparrow
 system=Kappa 0ET2-HY5D
 x=16694
 y=0
-z=-9963
+z=-99630
 cash=50000
 cargo=Consumer Goods~2
 install=Ka Ka Ka/Ka Ka Ka
@@ -16,9 +16,22 @@ station=Industrial Kitchen
 system=Kappa 0ET2-HY5D
 x=16694
 y=0
-z=-10023
+z=-100230
 faction=Neutral
 [/Station]
+
+[Field]
+name=Kappa 0ET2-HY5D Field
+system=Kappa 0ET2-HY5D
+type=Dark Asteroid Field
+x=0
+y=0
+z=0
+l=512000
+w=512000
+h=512000
+seed=85121397
+[/Field]
 
 [Ship]
 name=Test Sparrow
@@ -26,7 +39,29 @@ ship=Sparrow
 system=Kappa 0ET2-HY5D
 x=16794
 y=0
-z=-9983
+z=-99830
+faction=Player
+install=Ka Ka Ka/Ka Ka Ka
+[/Ship]
+
+[Ship]
+name=Test Sparrow 2
+ship=Sparrow
+system=Kappa 0ET2-HY5D
+x=16794
+y=100
+z=-99830
+faction=Player
+install=Ka Ka Ka/Ka Ka Ka
+[/Ship]
+
+[Ship]
+name=Test Sparrow 3
+ship=Sparrow
+system=Kappa 0ET2-HY5D
+x=16794
+y=200
+z=-99830
 faction=Player
 install=Ka Ka Ka/Ka Ka Ka
 [/Ship]
