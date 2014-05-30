@@ -31,6 +31,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import lib.Faction;
 
 /**
  *
@@ -131,7 +132,8 @@ public class OverviewWindow extends AstralWindow {
                 ez -= sensorShip.getPhysicsLocation().getZ();
                 //calculate distance
                 double dist = magnitude(ex, ey, ez);
-                if (dist <= sensorShip.getSensor() || entities.get(a) instanceof Planet) {
+                if (dist <= sensorShip.getSensor() || entities.get(a) instanceof Planet
+                        || isDiscovered(entities.get(a))) {
                     //adjust for size
                     ex /= view;
                     ez /= view;
@@ -187,11 +189,38 @@ public class OverviewWindow extends AstralWindow {
 
         private boolean isDiscovered(Entity celestial) {
             //TODO: Check to see if player has encountered this object before
+            if (celestial instanceof Ship) {
+                if (celestial instanceof Station) {
+                    Station test = (Station) celestial;
+                    if(test.getStandingsToMe((Station) celestial) > Faction.HOSTILE_STANDING) {
+                        //neutral and friendly stations are visible
+                        return true;
+                    }
+                } else {
+                    Ship tmp = (Ship) celestial;
+                    if(tmp.getFaction().getName().equals(Faction.PLAYER)) {
+                        return true;
+                    } else {
+                        //ships that are not player are not discoverable
+                        return false;
+                    }
+                }
+            }
             return true;
         }
 
         protected void drawShipOnRadar(Graphics2D gfx, double ex, double ey, ArrayList<Entity> entities, int a) {
-            gfx.setColor(Color.WHITE);
+            Ship tmp = (Ship) entities.get(a);
+            float standings = sensorShip.getStandingsToMe(tmp);
+            if (standings <= Faction.HOSTILE_STANDING) {
+                gfx.setColor(Color.RED);
+            } else if (standings >= Faction.FRIENDLY_STANDING && standings < Faction.PERMA_GREEN) {
+                gfx.setColor(Color.GREEN);
+            } else if (standings == Faction.PERMA_GREEN) {
+                gfx.setColor(Color.MAGENTA);
+            } else {
+                gfx.setColor(Color.WHITE);
+            }
             gfx.drawRect((int) ex + (getWidth() / 2) - 1, (int) ey + (getHeight() / 2) - 1, 2, 2);
             gfx.setFont(radarFont);
             if (showShipNames) {
@@ -201,7 +230,17 @@ public class OverviewWindow extends AstralWindow {
         }
 
         protected void drawStationOnRadar(Graphics2D gfx, double ex, double ey, ArrayList<Entity> entities, int a) {
-            gfx.setColor(Color.WHITE);
+            Station tmp = (Station) entities.get(a);
+            float standings = sensorShip.getStandingsToMe(tmp);
+            if (standings <= Faction.HOSTILE_STANDING) {
+                gfx.setColor(Color.RED);
+            } else if (standings >= Faction.FRIENDLY_STANDING && standings < Faction.PERMA_GREEN) {
+                gfx.setColor(Color.GREEN);
+            } else if (standings == Faction.PERMA_GREEN) {
+                gfx.setColor(Color.MAGENTA);
+            } else {
+                gfx.setColor(Color.WHITE);
+            }
             gfx.drawRect((int) ex + (getWidth() / 2) - 1, (int) ey + (getHeight() / 2) - 1, 2, 2);
             gfx.setFont(radarFont);
             if (showStationNames) {
@@ -309,9 +348,9 @@ public class OverviewWindow extends AstralWindow {
     private synchronized double magnitude(double dx, double dy) {
         return Math.sqrt((dx * dx) + (dy * dy));
     }
-    
+
     private synchronized double magnitude(double dx, double dy, double dz) {
-        return Math.sqrt((dx * dx) + (dy*dy) + (dz * dz));
+        return Math.sqrt((dx * dx) + (dy * dy) + (dz * dz));
     }
 
     private double roundTwoDecimal(double d) {

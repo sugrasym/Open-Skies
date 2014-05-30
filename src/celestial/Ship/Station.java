@@ -147,7 +147,7 @@ public class Station extends Ship {
         if (canDock(client)) {
             for (int a = 0; a < ports.size(); a++) {
                 if (ports.get(a).isEmpty()) {
-                    if (client.getStandingsToMe(this) > -2) {
+                    if (client.getStandingsToMe(this) > Faction.HOSTILE_STANDING) {
                         ports.get(a).setClient(client);
                         return ports.get(a);
                     }
@@ -162,7 +162,7 @@ public class Station extends Ship {
     public boolean canDock(Ship ship) {
         for (int a = 0; a < ports.size(); a++) {
             if (ports.get(a).isEmpty()) {
-                if (ship.getStandingsToMe(this) > -2) {
+                if (ship.getStandingsToMe(this) > Faction.HOSTILE_STANDING) {
                     return true;
                 }
             } else {
