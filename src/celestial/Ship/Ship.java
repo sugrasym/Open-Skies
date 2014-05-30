@@ -161,6 +161,8 @@ public class Ship extends Celestial {
     protected long cash = 0;
     //courage
     private double courage = 1;
+    //detecting aggro
+    private Ship lastBlow = this;
 
     public Ship(Universe universe, Term type, String faction) {
         super(Float.parseFloat(type.getValue("mass")), universe);
@@ -1071,6 +1073,14 @@ public class Ship extends Celestial {
             shield = 0;
         }
         if (hull <= 0) {
+            System.out.println(getName() + " was destroyed in " + currentSystem.getName() + " by " + getLastBlow().getName());
+            //did the player destroy this ship?
+            if (getLastBlow().getFaction().getName().equals(Faction.PLAYER)) {
+                //adjust the player's standings accordingly
+                if (!faction.getName().equals("Neutral")) {
+                    getCurrentSystem().getUniverse().getPlayerShip().getFaction().derivedModification(faction, -1.0);
+                }
+            }
             setState(State.DYING);
         }
     }
@@ -1726,23 +1736,23 @@ public class Ship extends Celestial {
             return (int) faction.getStanding(ship.getFaction().getName());
         }
     }
-    
+
     public boolean isHostileToMe(Ship ship) {
-        if(getStandingsToMe(ship) <= Faction.HOSTILE_STANDING) {
+        if (getStandingsToMe(ship) <= Faction.HOSTILE_STANDING) {
             return true;
         } else {
             return false;
         }
     }
-    
+
     public boolean isFriendlyToMe(Ship ship) {
-        if(getStandingsToMe(ship) >= Faction.FRIENDLY_STANDING) {
+        if (getStandingsToMe(ship) >= Faction.FRIENDLY_STANDING) {
             return true;
         } else {
             return false;
         }
     }
-    
+
     public boolean isNeutralToMe(Ship ship) {
         boolean hostile = isHostileToMe(ship);
         boolean friendly = isFriendlyToMe(ship);
@@ -2220,5 +2230,16 @@ public class Ship extends Celestial {
 
     public void setTemplate(String template) {
         this.template = template;
+    }
+
+    /*
+     * Detecting Aggro
+     */
+    public Ship getLastBlow() {
+        return lastBlow;
+    }
+
+    public void setLastBlow(Ship lastBlow) {
+        this.lastBlow = lastBlow;
     }
 }

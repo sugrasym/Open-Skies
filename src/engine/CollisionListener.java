@@ -72,6 +72,7 @@ public class CollisionListener implements PhysicsCollisionListener {
             float hullDamage = pro.getHullDamage();
             //apply damage
             a.applyDamage(shieldDamage, hullDamage);
+            a.setLastBlow(pro.getHost());
             //remove projectile
             pro.setState(Entity.State.DYING);
         }

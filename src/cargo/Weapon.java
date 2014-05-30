@@ -187,6 +187,7 @@ public class Weapon extends Equipment {
                 //directly damage the ship
                 Ship tmp = (Ship) target;
                 tmp.applyDamage(shieldDamage, hullDamage);
+                tmp.setLastBlow(host);
             }
         }
     }
