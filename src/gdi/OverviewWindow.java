@@ -123,12 +123,14 @@ public class OverviewWindow extends AstralWindow {
                 //get coordinates
                 Vector3f loc = entities.get(a).getPhysicsLocation();
                 double ex = loc.x;
+                double ey = loc.y;
                 double ez = loc.z;
                 //adjust for player loc
                 ex -= sensorShip.getPhysicsLocation().getX();
+                ey -= sensorShip.getPhysicsLocation().getY();
                 ez -= sensorShip.getPhysicsLocation().getZ();
                 //calculate distance
-                double dist = magnitude(ex, ez);
+                double dist = magnitude(ex, ey, ez);
                 if (dist <= sensorShip.getSensor() || entities.get(a) instanceof Planet) {
                     //adjust for size
                     ex /= view;
@@ -306,6 +308,10 @@ public class OverviewWindow extends AstralWindow {
 
     private synchronized double magnitude(double dx, double dy) {
         return Math.sqrt((dx * dx) + (dy * dy));
+    }
+    
+    private synchronized double magnitude(double dx, double dy, double dz) {
+        return Math.sqrt((dx * dx) + (dy*dy) + (dz * dz));
     }
 
     private double roundTwoDecimal(double d) {
