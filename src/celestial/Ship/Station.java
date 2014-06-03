@@ -349,6 +349,28 @@ public class Station extends Ship {
             }
         }
     }
+    
+    public boolean buysWare(Item ware) {
+        {
+            for (int a = 0; a < stationBuying.size(); a++) {
+                if (stationBuying.get(a).getName().equals(ware.getName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean sellsWare(Item ware) {
+        {
+            for (int a = 0; a < stationSelling.size(); a++) {
+                if (stationSelling.get(a).getName().equals(ware.getName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public int getPrice(Item item) {
         int max = 0;
