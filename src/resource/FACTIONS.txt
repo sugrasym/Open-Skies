@@ -84,16 +84,19 @@ Commonwealth=0
 [Loadout]
 name=Northern Coalition
 patrol0=NC Fleet Sparrow,100
+trader0=NC Trade Sparrow,20
 [/Loadout]
 
 [Loadout]
 name=Southern Coalition
 patrol0=SC Fleet Sparrow,100
+trader0=SC Trade Sparrow,20
 [/Loadout]
 
 [Loadout]
 name=Commonwealth
 patrol0=Commonwealth Sparrow,100
+trader0=Commonwealth Trade Sparrow,20
 [/Loadout]
 
 ################################################################################

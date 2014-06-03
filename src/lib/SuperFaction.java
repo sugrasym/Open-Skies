@@ -39,7 +39,7 @@ public class SuperFaction extends Faction {
     //loadout lists
     private ArrayList<Binling> patrols = new ArrayList<>();
     private final ArrayList<Binling> traders = new ArrayList<>();
-    private final ArrayList<Binling> merchants = new ArrayList<>(); //TODO
+    private final ArrayList<Binling> merchants = new ArrayList<>();
     //station list
     private ArrayList<Binling> stations = new ArrayList<>();
     //music list
@@ -192,7 +192,7 @@ public class SuperFaction extends Faction {
                 int a = 0;
                 String type = "";
                 while ((type = stat.getValue("merchant" + a)) != null) {
-                    //get taxie info
+                    //get merchant info
                     String ty = type.split(",")[0];
                     double spread = Float.parseFloat(type.split(",")[1]);
                     getMerchants().add(new Binling(ty, spread));

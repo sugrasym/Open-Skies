@@ -695,7 +695,10 @@ public class Ship extends Celestial {
     }
 
     /*
-     * Methods for behaviors in-system
+     * Methods for behaviors.
+     * Behaviors are required to be functional either in or out of system and
+     * since they only call autopilot functions they should be independent of
+     * such low level code.
      */
     private void behave() {
         if (behavior == Behavior.NONE) {
@@ -1243,19 +1246,6 @@ public class Ship extends Celestial {
     }
 
     /*
-     * Methods for behaviors out of system
-     */
-    private void oosBehave() {
-        if (behavior == Behavior.NONE) {
-        } else if (behavior == Behavior.TEST) {
-            oosBehaviorTest();
-        }
-    }
-
-    protected void oosBehaviorTest() {
-    }
-
-    /*
      * Methods that can be used no matter what system it is in
      */
     protected void aliveAlways() {
@@ -1292,6 +1282,8 @@ public class Ship extends Celestial {
         updateHardpoints();
         //update health
         updateHealth();
+        //behave
+        behave();
     }
 
     protected void updateTarget() {
@@ -1343,8 +1335,6 @@ public class Ship extends Celestial {
         aliveAlways();
         //update center
         updateCenter();
-        //update behaviors
-        behave();
         //update autopilot
         autopilot();
         //check throttle
@@ -1443,7 +1433,6 @@ public class Ship extends Celestial {
     protected void oosAlive() {
         super.oosAlive();
         aliveAlways();
-        oosBehave();
         oosAutopilot();
         //update position
         Vector3f dP = getVelocity().mult((float) tpf);
