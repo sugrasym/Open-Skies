@@ -20,6 +20,16 @@ z=-100230
 faction=Neutral
 [/Station]
 
+[Station]
+name=Test Station 2
+station=Industrial Kitchen
+system=Kappa 0ET2-HY5D
+x=-16694
+y=0
+z=-100230
+faction=Neutral
+[/Station]
+
 [Field]
 name=Kappa 0ET2-HY5D Field
 system=Kappa 0ET2-HY5D

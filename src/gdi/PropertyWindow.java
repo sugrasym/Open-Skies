@@ -527,26 +527,29 @@ public class PropertyWindow extends AstralWindow {
                     infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
                 }
             }
+            //breaking space
+            infoList.addToList(" ");
             /*
              * More behavior info
-             */
-            /*if (selected.getBehavior() == Behavior.PATROL) {
+             */ /*if (selected.getBehavior() == Behavior.PATROL) {
              //what are we flying to?
              if (selected.getTarget() != null) {
              infoList.addToList("Attacking:    " + selected.getTarget().getName());
              } else {
              infoList.addToList("NO AIM");
              }
-             } else if (selected.getBehavior() == Behavior.SECTOR_TRADE) {
-             Station start = selected.getBuyFromStation();
-             Station end = selected.getSellToStation();
-             Item ware = selected.getWorkingWare();
-             if (start != null && end != null && ware != null) {
-             infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
-             infoList.addToList("From:         " + start.getName());
-             infoList.addToList("To:           " + end.getName());
-             }
-             } else if (selected.getBehavior() == Behavior.UNIVERSE_TRADE) {
+             } else */ if (selected.getBehavior() == Behavior.SECTOR_TRADE) {
+                Station start = selected.getBuyFromStation();
+                Station end = selected.getSellToStation();
+                Item ware = selected.getWorkingWare();
+                if (start != null && end != null && ware != null) {
+                    infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
+                    infoList.addToList("From:         " + start.getName());
+                    infoList.addToList("To:           " + end.getName());
+                } else {
+                    infoList.addToList("No Trades Available");
+                }
+            } /*else if (selected.getBehavior() == Behavior.UNIVERSE_TRADE) {
              Station start = selected.getBuyFromStation();
              Station end = selected.getSellToStation();
              Item ware = selected.getWorkingWare();
@@ -580,6 +583,7 @@ public class PropertyWindow extends AstralWindow {
              infoList.addToList("              " + end.getCurrentSystem());
              }
              }*/
+
         }
     }
 
@@ -769,7 +773,7 @@ public class PropertyWindow extends AstralWindow {
                 selected.setAutopilot(Autopilot.NONE);
                 selected.cmdAbortDock();
             } else if (command.equals(CMD_TRADE)) {
-                //selected.setBehavior(Behavior.SECTOR_TRADE);
+                selected.setBehavior(Behavior.SECTOR_TRADE);
             } else if (command.equals(CMD_UTRADE)) {
                 //selected.setBehavior(Behavior.UNIVERSE_TRADE);
             } else if (command.equals(CMD_PATROL)) {

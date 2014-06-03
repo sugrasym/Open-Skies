@@ -721,11 +721,11 @@ public class Ship extends Celestial {
                  * 5. Drop off the ware.
                  * repeat
                  */
-                if (getNumInCargoBay(workingWare) > 0) {
+                if (getNumInCargoBay(getWorkingWare()) > 0) {
                     /*
                      * There are wares to be sold, this is stage 2.
                      */
-                    cmdDock(sellToStation);
+                    cmdDock(getSellToStation());
                 } else {
                     /*
                      * This is stage 1, find the best deal.
@@ -792,8 +792,8 @@ public class Ship extends Celestial {
                                                 bestWare = ware;
                                                 //store prices
                                                 gain = profit;
-                                                buyFromPrice = pickUpPrice;
-                                                sellToPrice = dropOffPrice;
+                                                setBuyFromPrice(pickUpPrice);
+                                                setSellToPrice(dropOffPrice);
                                             }
                                         } else {
                                             //no point in trading this
@@ -805,11 +805,11 @@ public class Ship extends Celestial {
                             }
                             if (bestWare != null) {
                                 //store start and end
-                                buyFromStation = buyLoc;
-                                sellToStation = sellLoc;
-                                workingWare = bestWare;
+                                setBuyFromStation(buyLoc);
+                                setSellToStation(sellLoc);
+                                setWorkingWare(bestWare);
                                 //start trading
-                                cmdDock(buyFromStation);
+                                cmdDock(getBuyFromStation());
                             } else {
                                 if (isPlayerFaction()) {
                                     dockAtFriendlyStationInSystem();
@@ -851,17 +851,17 @@ public class Ship extends Celestial {
                 fuel = maxFuel;
                 //do buying and selling
                 Station curr = port.getParent();
-                if (curr == buyFromStation) {
+                if (curr == getBuyFromStation()) {
                     //make sure the price is still ok
-                    if ((curr.getPrice(workingWare) <= buyFromPrice) && (sellToStation.getPrice(workingWare) >= sellToPrice)) {
+                    if ((curr.getPrice(getWorkingWare()) <= getBuyFromPrice()) && (getSellToStation().getPrice(getWorkingWare()) >= getSellToPrice())) {
                         //how much of the ware can we carry
-                        int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
+                        int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) getWorkingWare().getVolume());
                         //how much can we carry if we want to follow reserve rules
                         int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
                         //buy as much as we can carry
-                        curr.buy(this, workingWare, q);
-                        System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
-                                + " " + workingWare.getName() + " from " + curr.getName());
+                        curr.buy(this, getWorkingWare(), q);
+                        System.out.println(getName() + " bought " + getNumInCargoBay(getWorkingWare())
+                                + " " + getWorkingWare().getName() + " from " + curr.getName());
                     } else {
                         //abort trading operation
                         abortTrade();
@@ -871,18 +871,18 @@ public class Ship extends Celestial {
                     double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
                     double delt = rnd.nextDouble() * diff;
                     cmdWait(MIN_WAIT_TIME + delt);
-                } else if (curr == sellToStation) {
-                    if (curr.getPrice(workingWare) >= sellToPrice) {
+                } else if (curr == getSellToStation()) {
+                    if (curr.getPrice(getWorkingWare()) >= getSellToPrice()) {
                         //try to dump all our wares at this price
-                        int q = getNumInCargoBay(workingWare);
-                        curr.sell(this, workingWare, q);
-                        System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
-                                + " " + workingWare.getName() + " to " + curr.getName());
+                        int q = getNumInCargoBay(getWorkingWare());
+                        curr.sell(this, getWorkingWare(), q);
+                        System.out.println(getName() + " sold " + (q - getNumInCargoBay(getWorkingWare()))
+                                + " " + getWorkingWare().getName() + " to " + curr.getName());
                     } else {
                         //System.out.println(getName() + " did not sell (Bad sell price)");
                     }
                     //wait
-                    if (getNumInCargoBay(workingWare) == 0) {
+                    if (getNumInCargoBay(getWorkingWare()) == 0) {
                         double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
                         double delt = rnd.nextDouble() * diff;
                         cmdWait(MIN_WAIT_TIME + delt);
@@ -2114,11 +2114,11 @@ public class Ship extends Celestial {
     private void abortTrade() {
         //end trade
         autopilot = Autopilot.NONE;
-        buyFromStation = null;
-        sellToStation = null;
-        workingWare = null;
-        buyFromPrice = 0;
-        sellToPrice = 0;
+        setBuyFromStation(null);
+        setSellToStation(null);
+        setWorkingWare(null);
+        setBuyFromPrice(0);
+        setSellToPrice(0);
     }
 
     public void cmdAbort() {
@@ -2161,6 +2161,7 @@ public class Ship extends Celestial {
     }
 
     public void cmdWait(double duration) {
+        System.out.println("waiting "+duration);
         autopilot = Autopilot.WAIT;
         waitTimerLength = duration;
         waitTimer = 0;
@@ -2645,5 +2646,49 @@ public class Ship extends Celestial {
 
     public void setLastBlow(Ship lastBlow) {
         this.lastBlow = lastBlow;
+    }
+    
+    /*
+     * Sector and Universe Trade
+     */
+    
+    public Station getBuyFromStation() {
+        return buyFromStation;
+    }
+
+    public void setBuyFromStation(Station buyFromStation) {
+        this.buyFromStation = buyFromStation;
+    }
+
+    public int getBuyFromPrice() {
+        return buyFromPrice;
+    }
+
+    public void setBuyFromPrice(int buyFromPrice) {
+        this.buyFromPrice = buyFromPrice;
+    }
+
+    public Station getSellToStation() {
+        return sellToStation;
+    }
+
+    public void setSellToStation(Station sellToStation) {
+        this.sellToStation = sellToStation;
+    }
+
+    public int getSellToPrice() {
+        return sellToPrice;
+    }
+
+    public void setSellToPrice(int sellToPrice) {
+        this.sellToPrice = sellToPrice;
+    }
+
+    public Item getWorkingWare() {
+        return workingWare;
+    }
+
+    public void setWorkingWare(Item workingWare) {
+        this.workingWare = workingWare;
     }
 }
