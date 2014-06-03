@@ -1273,7 +1273,9 @@ public class Ship extends Celestial {
         //check docking updates
         if (docked) {
             //no autopilot unless undocking
-            if (autopilot != Autopilot.UNDOCK) {
+            if (autopilot != Autopilot.UNDOCK && 
+                    autopilot != Autopilot.WAITED &&
+                    autopilot != Autopilot.WAIT) {
                 setAutopilot(Autopilot.NONE);
             }
             //refuel
@@ -2161,7 +2163,6 @@ public class Ship extends Celestial {
     }
 
     public void cmdWait(double duration) {
-        System.out.println("waiting "+duration);
         autopilot = Autopilot.WAIT;
         waitTimerLength = duration;
         waitTimer = 0;
