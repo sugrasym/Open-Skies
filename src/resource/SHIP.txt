@@ -13,9 +13,9 @@ torque=9
 shield=10571
 shieldRecharge=180
 hull=1510
-fuel=25000
+fuel=450000
 sensor=2500
-cargo=75
+cargo=250
 hardpoint=cannon,10,-1.0,0,-1.8/cannon,10,1.0,0,-1.8
 #nozzles
 nozzle=rear,1,0,0,1.75/forward,1,1.2,0,-1/forward,1,-1.2,0,-1

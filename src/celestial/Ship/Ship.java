@@ -706,6 +706,240 @@ public class Ship extends Celestial {
             behaviorTest();
         } else if (behavior == Behavior.SECTOR_TRADE) {
             behaviorSectorTrade();
+        } else if (behavior == Behavior.UNIVERSE_TRADE) {
+            behaviorUniverseTrade();
+        }
+    }
+
+    protected void behaviorUniverseTrade() {
+        /*
+         * Buy low sell high within systems within jump range of each other.
+         */
+        if (!docked) {
+            if (autopilot == Autopilot.NONE && (fuel / maxFuel) > TRADER_REFUEL_PERCENT) {
+                /*
+                 * 1. Get a list of friendly stations to collate wares from
+                 * 2. Build a list of all wares that can be traded in jumpable sectors
+                 * 3. Find the one with the highest profit.
+                 * 4. Fill up on the ware.
+                 * 5. Drop off the ware.
+                 * repeat
+                 */
+                if (getNumInCargoBay(workingWare) > 0) {
+                    /*
+                     * There are wares to be sold, this is stage 2.
+                     */
+                    if (canJump(sellToStation.getCurrentSystem())) {
+                        if (sellToStation.getCurrentSystem() != currentSystem) {
+                            cmdJump(sellToStation.getCurrentSystem());
+                        }
+                        cmdDock(sellToStation);
+                    } else {
+                        abortTrade();
+                        leaveSystem();
+                    }
+                } else {
+                    /*
+                     * This is stage 1, find the best deal.
+                     */
+                    //get a list of friendly stations
+                    ArrayList<Station> friendly = new ArrayList<>();
+                    ArrayList<SolarSystem> zone = new ArrayList<>();
+                    for (int a = 0; a < currentSystem.getUniverse().getSystems().size(); a++) {
+                        if (canJump(currentSystem.getUniverse().getSystems().get(a))) {
+                            ArrayList<Station> tmp = getDockableStationsInSystem(currentSystem.getUniverse().getSystems().get(a));
+                            zone.add(currentSystem.getUniverse().getSystems().get(a));
+                            friendly.addAll(tmp);
+                        }
+                    }
+                    if (friendly.size() > 1) {
+                        //build a list of wares that are being produced
+                        ArrayList<String> produced = new ArrayList<>();
+                        for (int a = 0; a < friendly.size(); a++) {
+                            ArrayList<Item> made = friendly.get(a).getStationSelling();
+                            for (int b = 0; b < made.size(); b++) {
+                                String ware = made.get(b).getName().toString();
+                                if (!produced.contains(ware)) {
+                                    produced.add(ware);
+                                }
+                            }
+                        }
+                        //build a list of wares that are being consumed
+                        ArrayList<String> consumed = new ArrayList<>();
+                        for (int a = 0; a < friendly.size(); a++) {
+                            ArrayList<Item> made = friendly.get(a).getStationBuying();
+                            for (int b = 0; b < made.size(); b++) {
+                                String ware = made.get(b).getName().toString();
+                                if (!consumed.contains(ware)) {
+                                    consumed.add(ware);
+                                }
+                            }
+                        }
+                        //cross reference the lists to find what's the same in both
+                        ArrayList<String> sample = new ArrayList<>();
+                        for (int a = 0; a < consumed.size(); a++) {
+                            for (int b = 0; b < produced.size(); b++) {
+                                if (consumed.get(a).equals(produced.get(b))) {
+                                    sample.add(consumed.get(a));
+                                    break;
+                                }
+                            }
+                        }
+                        //make sure there's a sample
+                        if (sample.size() > 0) {
+                            Station buyLoc = null;
+                            Station sellLoc = null;
+                            Item bestWare = null;
+                            double gain = 0;
+                            for (int a = 0; a < sample.size(); a++) {
+                                Item ware = new Item(sample.get(a));
+                                //get the best stations
+                                Station pickUp = getBestPickup(zone, ware);
+                                Station dropOff = getBestDropOff(zone, ware);
+                                //get prices
+                                if (pickUp != null && dropOff != null) {
+                                    int pickUpPrice = pickUp.getPrice(ware);
+                                    int dropOffPrice = dropOff.getPrice(ware);
+                                    //find profit
+                                    int profit = dropOffPrice - pickUpPrice;
+                                    if (pickUpPrice != -1 && dropOffPrice != -1) {
+                                        if (profit > 0) {
+                                            if (profit > gain) {
+                                                buyLoc = pickUp;
+                                                sellLoc = dropOff;
+                                                bestWare = ware;
+                                                //store prices
+                                                gain = profit;
+                                                buyFromPrice = pickUpPrice;
+                                                sellToPrice = dropOffPrice;
+                                            }
+                                        } else {
+                                            //no point in trading this
+                                        }
+                                    }
+                                } else {
+                                    //something went wrong
+                                }
+                            }
+                            if (bestWare != null) {
+                                //store start and end
+                                buyFromStation = buyLoc;
+                                sellToStation = sellLoc;
+                                workingWare = bestWare;
+                                //start trading
+                                if (canJump(buyFromStation.getCurrentSystem())) {
+                                    if (buyFromStation.getCurrentSystem() != currentSystem) {
+                                        cmdJump(buyFromStation.getCurrentSystem());
+                                    }
+                                    cmdDock(buyFromStation);
+                                } else {
+                                    abortTrade();
+                                    leaveSystem();
+                                }
+                            } else {
+                                /*
+                                 * Universe traders roam the universe
+                                 */
+                                leaveSystem();
+                            }
+                        } else {
+                            //maybe profit awaits us elsewhere
+                            leaveSystem();
+                        }
+                    } else {
+                        //profit definately awaits us elsewhere
+                        leaveSystem();
+                    }
+                }
+            } else {
+                if (autopilot == Autopilot.NONE && (fuel / maxFuel) <= TRADER_REFUEL_PERCENT) {
+                    //dock at the nearest friendly station
+                    Station near = getNearestDockableStationInSystem();
+                    if (near != null) {
+                        cmdDock(near);
+                        System.out.println(getName() + " [UT] is low on fuel and docking at "
+                                + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
+                    } else {
+                        leaveSystem();
+                    }
+                } else {
+                    //wait;
+                }
+            }
+        } else {
+            //setup wait
+            if (autopilot == Autopilot.NONE && port != null) {
+                //restore fuel
+                fuel = maxFuel;
+                //do buying and selling
+                Station curr = port.getParent();
+                if (curr == buyFromStation) {
+                    //make sure the price is still ok
+                    if ((curr.getPrice(workingWare) <= buyFromPrice)
+                            && (sellToStation.getPrice(workingWare) >= sellToPrice)
+                            && canJump(sellToStation.getCurrentSystem())) {
+                        //how much of the ware can we carry
+                        int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
+                        //how much can we carry if we want to follow reserve rules
+                        int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
+                        //buy as much as we can carry
+                        curr.buy(this, workingWare, q);
+                        System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
+                                + " " + workingWare.getName() + " from " + curr.getName());
+                    } else {
+                        //abort trading operation
+                        abortTrade();
+                        System.out.println(getName() + " aborted trading operation.");
+                    }
+                    //wait
+                    double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                    double delt = rnd.nextDouble() * diff;
+                    cmdWait(MIN_WAIT_TIME + delt);
+                } else if (curr == sellToStation) {
+                    if (curr.getPrice(workingWare) >= sellToPrice) {
+                        //try to dump all our wares at this price
+                        int q = getNumInCargoBay(workingWare);
+                        curr.sell(this, workingWare, q);
+                        System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
+                                + " " + workingWare.getName() + " to " + curr.getName());
+                    } else {
+                        //System.out.println(getName() + " did not sell (Bad sell price)");
+                    }
+                    //wait
+                    if (getNumInCargoBay(workingWare) == 0) {
+                        double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                        double delt = rnd.nextDouble() * diff;
+                        cmdWait(MIN_WAIT_TIME + delt);
+                    } else {
+                        //not everything sold yet
+                    }
+                } else {
+                    //wait
+                    double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                    double delt = rnd.nextDouble() * diff;
+                    cmdWait(MIN_WAIT_TIME + delt);
+                }
+            } //finally undock when waiting is over
+            else if (autopilot == Autopilot.WAITED) {
+                if (getNumInCargoBay(workingWare) > 0) {
+                    cmdUndock();
+                    if (currentSystem != sellToStation.getCurrentSystem()) {
+                        /*
+                         * Undocking might use too much fuel to reach our destination
+                         * causing a failed trade run. Just jump right out of the gate.
+                         */
+                        autopilot = Autopilot.NONE;
+                        port = null;
+                    }
+                } else {
+                    cmdUndock();
+                }
+            } else if (port == null) {
+                abortTrade();
+                cmdUndock();
+            } else {
+                //do nothing
+            }
         }
     }
 
@@ -1263,9 +1497,9 @@ public class Ship extends Celestial {
         //check docking updates
         if (docked) {
             //no autopilot unless undocking
-            if (autopilot != Autopilot.UNDOCK && 
-                    autopilot != Autopilot.WAITED &&
-                    autopilot != Autopilot.WAIT) {
+            if (autopilot != Autopilot.UNDOCK
+                    && autopilot != Autopilot.WAITED
+                    && autopilot != Autopilot.WAIT) {
                 setAutopilot(Autopilot.NONE);
             }
             //refuel
@@ -1333,24 +1567,30 @@ public class Ship extends Celestial {
     protected void alive() {
         super.alive();
         aliveAlways();
-        //update center
-        updateCenter();
-        //update autopilot
-        autopilot();
-        //check throttle
-        updateThrottle();
-        updateTorque();
-        updateNozzles();
-        syncPhysics();
+        if (physicsSafe()) {
+            //update center
+            updateCenter();
+            //update autopilot
+            autopilot();
+            //check throttle
+            updateThrottle();
+            updateTorque();
+            updateNozzles();
+            syncPhysics();
+        }
     }
 
     protected void dying() {
-        dropExplosion();
-        setState(State.DEAD);
+        if (physicsSafe()) {
+            dropExplosion();
+            setState(State.DEAD);
+        }
     }
 
     protected void dead() {
-        //nothing to do really
+        if (physicsSafe()) {
+            //nothing to do really
+        }
     }
 
     protected void updateCenter() {
@@ -2196,13 +2436,11 @@ public class Ship extends Celestial {
             fuel -= fuelCost;
             //pull from old system
             currentSystem.pullEntityFromSystem(this);
-            //apply negative effects
-            float dmg = rnd.nextFloat() * MAX_JUMP_SHIELD_DAMAGE * maxShield;
-            applyDamage(dmg);
             //randomize location
-            float x = rnd.nextInt(24000 * 2) - 24000;
-            float z = rnd.nextInt(24000 * 2) - 24000;
-            setLocation(new Vector3f(x, 0, z));
+            float x = rnd.nextInt(60000 * 2) - 60000;
+            float y = rnd.nextInt(60000 * 2) - 60000;
+            float z = rnd.nextInt(60000 * 2) - 60000;
+            setLocation(new Vector3f(x, y, z));
             //put in new system
             pick.putEntityInSystem(this);
             //drop the jump effect
@@ -2250,6 +2488,14 @@ public class Ship extends Celestial {
             setRotation(physics.getPhysicsRotation());
             setVelocity(physics.getLinearVelocity());
         }
+    }
+
+    /*
+     * Safety check to make sure we have physics and we have graphics.
+     * Both are needed for in-system updates to succeed.
+     */
+    private boolean physicsSafe() {
+        return physics != null && currentSystem.hasGraphics();
     }
 
     /*
@@ -2637,11 +2883,10 @@ public class Ship extends Celestial {
     public void setLastBlow(Ship lastBlow) {
         this.lastBlow = lastBlow;
     }
-    
+
     /*
      * Sector and Universe Trade
      */
-    
     public Station getBuyFromStation() {
         return buyFromStation;
     }

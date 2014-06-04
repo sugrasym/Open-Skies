@@ -549,18 +549,18 @@ public class PropertyWindow extends AstralWindow {
                 } else {
                     infoList.addToList("No Trades Available");
                 }
-            } /*else if (selected.getBehavior() == Behavior.UNIVERSE_TRADE) {
-             Station start = selected.getBuyFromStation();
-             Station end = selected.getSellToStation();
-             Item ware = selected.getWorkingWare();
-             if (start != null && end != null && ware != null) {
-             infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
-             infoList.addToList("From:         " + start.getName());
-             infoList.addToList("              " + start.getCurrentSystem());
-             infoList.addToList("To:           " + end.getName());
-             infoList.addToList("              " + end.getCurrentSystem());
-             }
-             } else if (selected.getBehavior() == Behavior.SUPPLY_HOMEBASE) {
+            } else if (selected.getBehavior() == Behavior.UNIVERSE_TRADE) {
+                Station start = selected.getBuyFromStation();
+                Station end = selected.getSellToStation();
+                Item ware = selected.getWorkingWare();
+                if (start != null && end != null && ware != null) {
+                    infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
+                    infoList.addToList("From:         " + start.getName());
+                    infoList.addToList("              " + start.getCurrentSystem());
+                    infoList.addToList("To:           " + end.getName());
+                    infoList.addToList("              " + end.getCurrentSystem());
+                }
+            } /*else if (selected.getBehavior() == Behavior.SUPPLY_HOMEBASE) {
              Station start = selected.getBuyFromStation();
              Station end = selected.getSellToStation();
              Item ware = selected.getWorkingWare();
@@ -676,15 +676,15 @@ public class PropertyWindow extends AstralWindow {
              * Some actions are only possible while both ships are docked in the same
              * station. This is the block for those.
              */
-            /*if (selected.isDocked() && selected.getUniverse().getPlayerShip().isDocked()) {
-             if (selected.getPort() != null) {
-             Station a = selected.getPort().getParent();
-             Station b = selected.getUniverse().getPlayerShip().getPort().getParent();
-             if (a == b) {
-             optionList.addToList(CMD_SWITCH);
-             }
-             }
-             }*/
+            if (selected.isDocked() && selected.getCurrentSystem().getUniverse().getPlayerShip().isDocked()) {
+                if (selected.getPort() != null) {
+                    Station a = selected.getPort().getParent();
+                    Station b = selected.getCurrentSystem().getUniverse().getPlayerShip().getPort().getParent();
+                    if (a == b) {
+                        optionList.addToList(CMD_SWITCH);
+                    }
+                }
+            }
             optionList.addToList(" ");
             /*
              * These activate behaviors on a ship
@@ -775,7 +775,7 @@ public class PropertyWindow extends AstralWindow {
             } else if (command.equals(CMD_TRADE)) {
                 selected.setBehavior(Behavior.SECTOR_TRADE);
             } else if (command.equals(CMD_UTRADE)) {
-                //selected.setBehavior(Behavior.UNIVERSE_TRADE);
+                selected.setBehavior(Behavior.UNIVERSE_TRADE);
             } else if (command.equals(CMD_PATROL)) {
                 //selected.setBehavior(Behavior.PATROL);
             } else if (command.equals(CMD_MOVEFUNDS)) {

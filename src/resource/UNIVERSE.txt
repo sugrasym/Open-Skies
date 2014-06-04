@@ -1,34 +1,14 @@
 [NewGame]
 name=Default
 ship=Sparrow
-system=Iota QYHH-OK
+system=Kappa 0ET2-HY5D
 x=16694
 y=0
 z=-99630
 cash=50000
-cargo=Consumer Goods~2
+cargo=Jumpdrive~1
 install=Ka Ka Ka/Ka Ka Ka
 [/NewGame]
-
-[Station]
-name=Test Station
-station=Industrial Kitchen
-system=Kappa 0ET2-HY5D
-x=16694
-y=0
-z=-100230
-faction=Neutral
-[/Station]
-
-[Station]
-name=Test Station 2
-station=Industrial Kitchen
-system=Kappa 0ET2-HY5D
-x=-16694
-y=0
-z=-100230
-faction=Neutral
-[/Station]
 
 [Field]
 name=Kappa 0ET2-HY5D Field
@@ -51,28 +31,7 @@ x=16794
 y=0
 z=-99830
 faction=Player
-install=Ka Ka Ka/Ka Ka Ka
-[/Ship]
-
-[Ship]
-name=Test Sparrow 2
-ship=Sparrow
-system=Kappa 0ET2-HY5D
-x=16794
-y=100
-z=-99830
-faction=Player
-install=Ka Ka Ka/Ka Ka Ka
-[/Ship]
-
-[Ship]
-name=Test Sparrow 3
-ship=Sparrow
-system=Kappa 0ET2-HY5D
-x=16794
-y=200
-z=-99830
-faction=Player
+cargo=Jumpdrive~1
 install=Ka Ka Ka/Ka Ka Ka
 [/Ship]
 
