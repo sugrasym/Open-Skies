@@ -1041,6 +1041,7 @@ public class Ship extends Celestial {
                                 cmdDock(getBuyFromStation());
                             } else {
                                 if (isPlayerFaction()) {
+                                    //todo: investigate and make sure that the ship can undock afterwards
                                     dockAtFriendlyStationInSystem();
                                 } else {
                                     /*

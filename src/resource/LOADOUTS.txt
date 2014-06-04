@@ -20,6 +20,15 @@ minCourage=0.85
 maxCourage=1.00
 [/Loadout]
 
+[Loadout]
+ship=Sparrow
+name=NC Supply Sparrow
+install=Ka Ka Ka/Ka Ka Ka
+cargo=Jumpdrive~1/Astronaut~1
+minCourage=0.85
+maxCourage=1.00
+[/Loadout]
+
 ################################################################################
 #Southern Coalition
 ################################################################################
@@ -38,6 +47,15 @@ ship=Sparrow
 name=SC Trade Sparrow
 install=Ka Ka Ka/Ka Ka Ka
 cargo=Astronaut~1
+minCourage=0.85
+maxCourage=1.00
+[/Loadout]
+
+[Loadout]
+ship=Sparrow
+name=SC Supply Sparrow
+install=Ka Ka Ka/Ka Ka Ka
+cargo=Jumpdrive~1/Astronaut~1
 minCourage=0.85
 maxCourage=1.00
 [/Loadout]
@@ -61,6 +79,15 @@ ship=Sparrow
 name=Commonwealth Trade Sparrow
 install=Ka Ka Ka/Ka Ka Ka
 cargo=Astronaut~1
+minCourage=0.85
+maxCourage=1.00
+[/Loadout]
+
+[Loadout]
+ship=Sparrow
+name=Commonwealth Supply Sparrow
+install=Ka Ka Ka/Ka Ka Ka
+cargo=Jumpdrive~1/Astronaut~1
 minCourage=0.85
 maxCourage=1.00
 [/Loadout]

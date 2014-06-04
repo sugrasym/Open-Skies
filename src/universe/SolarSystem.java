@@ -85,7 +85,7 @@ public class SolarSystem implements Entity, Serializable {
         z = Float.parseFloat(thisSystem.getValue("z"));
         //store owner
         String tmpOwner = thisSystem.getValue("owner");
-        if(owner != null) {
+        if (owner != null) {
             owner = tmpOwner;
         }
     }
@@ -448,25 +448,33 @@ public class SolarSystem implements Entity, Serializable {
 
     @Override
     public void periodicUpdate(float tpf) {
-        checkPlayerPresence();
-        for (int a = 0; a < celestials.size(); a++) {
-            celestials.get(a).periodicUpdate(tpf);
-            if (celestials.get(a).getState() == Entity.State.DEAD) {
-                //remove the entity
-                pullEntityFromSystem(celestials.get(a));
+        try {
+            checkPlayerPresence();
+            for (int a = 0; a < celestials.size(); a++) {
+                celestials.get(a).periodicUpdate(tpf);
+                if (celestials.get(a).getState() == Entity.State.DEAD) {
+                    //remove the entity
+                    pullEntityFromSystem(celestials.get(a));
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     @Override
     public void oosPeriodicUpdate(float tpf) {
-        checkPlayerPresence();
-        for (int a = 0; a < celestials.size(); a++) {
-            celestials.get(a).oosPeriodicUpdate(tpf);
-            if (celestials.get(a).getState() == Entity.State.DEAD) {
-                //remove the entity
-                pullEntityFromSystem(celestials.get(a));
+        try {
+            checkPlayerPresence();
+            for (int a = 0; a < celestials.size(); a++) {
+                celestials.get(a).oosPeriodicUpdate(tpf);
+                if (celestials.get(a).getState() == Entity.State.DEAD) {
+                    //remove the entity
+                    pullEntityFromSystem(celestials.get(a));
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
