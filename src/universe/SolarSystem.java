@@ -451,11 +451,11 @@ public class SolarSystem implements Entity, Serializable {
         try {
             checkPlayerPresence();
             for (int a = 0; a < celestials.size(); a++) {
-                celestials.get(a).periodicUpdate(tpf);
                 if (celestials.get(a).getState() == Entity.State.DEAD) {
                     //remove the entity
                     pullEntityFromSystem(celestials.get(a));
                 }
+                celestials.get(a).periodicUpdate(tpf);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -467,11 +467,11 @@ public class SolarSystem implements Entity, Serializable {
         try {
             checkPlayerPresence();
             for (int a = 0; a < celestials.size(); a++) {
-                celestials.get(a).oosPeriodicUpdate(tpf);
                 if (celestials.get(a).getState() == Entity.State.DEAD) {
                     //remove the entity
                     pullEntityFromSystem(celestials.get(a));
                 }
+                celestials.get(a).oosPeriodicUpdate(tpf);
             }
         } catch (Exception e) {
             e.printStackTrace();
