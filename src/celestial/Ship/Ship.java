@@ -923,14 +923,6 @@ public class Ship extends Celestial {
             else if (autopilot == Autopilot.WAITED) {
                 if (getNumInCargoBay(workingWare) > 0) {
                     cmdUndock();
-                    if (currentSystem != sellToStation.getCurrentSystem()) {
-                        /*
-                         * Undocking might use too much fuel to reach our destination
-                         * causing a failed trade run. Just jump right out of the gate.
-                         */
-                        autopilot = Autopilot.NONE;
-                        port = null;
-                    }
                 } else {
                     cmdUndock();
                 }
