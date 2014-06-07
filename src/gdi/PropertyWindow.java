@@ -135,11 +135,6 @@ public class PropertyWindow extends AstralWindow {
         inputList.setHeight((height / 2) - 1);
         inputList.setVisible(false);
         inputList.setY((getHeight() / 2) - inputList.getHeight() / 2);
-        //setup private trade window
-        /*trader.setX(20);
-         trader.setY(20);
-         trader.setWidth(width - 40);
-         trader.setHeight(height - 40);*/
         //setup private cargo window
         cargo.setX(20);
         cargo.setY(20);
@@ -531,14 +526,14 @@ public class PropertyWindow extends AstralWindow {
             infoList.addToList(" ");
             /*
              * More behavior info
-             */ /*if (selected.getBehavior() == Behavior.PATROL) {
-             //what are we flying to?
-             if (selected.getTarget() != null) {
-             infoList.addToList("Attacking:    " + selected.getTarget().getName());
-             } else {
-             infoList.addToList("NO AIM");
-             }
-             } else */ if (selected.getBehavior() == Behavior.SECTOR_TRADE) {
+             */ if (selected.getBehavior() == Behavior.PATROL) {
+                //what are we flying to?
+                if (selected.getTarget() != null) {
+                    infoList.addToList("Attacking:    " + selected.getTarget().getName());
+                } else {
+                    infoList.addToList("NO AIM");
+                }
+            } else if (selected.getBehavior() == Behavior.SECTOR_TRADE) {
                 Station start = selected.getBuyFromStation();
                 Station end = selected.getSellToStation();
                 Item ware = selected.getWorkingWare();
@@ -777,7 +772,7 @@ public class PropertyWindow extends AstralWindow {
             } else if (command.equals(CMD_UTRADE)) {
                 selected.setBehavior(Behavior.UNIVERSE_TRADE);
             } else if (command.equals(CMD_PATROL)) {
-                //selected.setBehavior(Behavior.PATROL);
+                selected.setBehavior(Behavior.PATROL);
             } else if (command.equals(CMD_MOVEFUNDS)) {
                 mode = Mode.WAITING_FOR_CREDITS;
                 showInput("0");

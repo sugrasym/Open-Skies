@@ -221,7 +221,11 @@ public class PhysicsEntity implements Entity, Serializable {
     public Vector3f getLinearVelocity() {
         return physics.getLinearVelocity();
     }
-
+    
+    public final float distanceTo(PhysicsEntity a) {
+        return a.getLocation().distance(getLocation());
+    }
+    
     /*
      * For those Aristotlian worlds.
      */

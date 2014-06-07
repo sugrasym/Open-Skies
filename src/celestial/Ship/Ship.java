@@ -28,6 +28,7 @@ import celestial.Celestial;
 import celestial.Explosion;
 import celestial.Jumphole;
 import celestial.Planet;
+import celestial.Projectile;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
@@ -90,6 +91,9 @@ public class Ship extends Celestial {
         ALL_STOP, //slow down until velocity is 0
         FOLLOW, //follow a target at a range
     }
+
+    public static final double PATROL_REFUEL_PERCENT = 0.5;
+    public static final double PLAYER_AGGRO_SHIELD = 0.5;
     public static final float STOP_LOW_VEL_BOUND = 1.0f;
     public static final float NAV_ANGLE_TOLERANCE = 0.02f;
     public static final float COM_ANGLE_TOLERANCE = 0.008f;
@@ -708,6 +712,76 @@ public class Ship extends Celestial {
             behaviorSectorTrade();
         } else if (behavior == Behavior.UNIVERSE_TRADE) {
             behaviorUniverseTrade();
+        } else if (behavior == Behavior.PATROL) {
+            behaviorPatrol();
+        }
+    }
+
+    protected void behaviorPatrol() {
+        if (!docked) {
+            if ((fuel / maxFuel) > PATROL_REFUEL_PERCENT) {
+                //target nearest enemy
+                targetNearestHostileShip();
+                if (target == null) {
+                    targetNearestHostileStation();
+                }
+            }
+            //handle what we got
+            if (target == null) {
+                /*
+                 * Resume the patrol. Pick a station to fly within sensor
+                 * range of and fly to it. If fuel is less than 50% go dock
+                 * so it is replenished.
+                 */
+                if (autopilot == Autopilot.NONE) {
+                    //fuel check
+                    if ((fuel / maxFuel) <= PATROL_REFUEL_PERCENT) {
+                        //dock at the nearest friendly station
+                        Station near = getNearestDockableStationInSystem();
+                        if (near != null) {
+                            cmdDock(near);
+                            System.out.println(getName() + " [P] is low on fuel and docking at "
+                                    + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
+                        } else {
+                            leaveSystem();
+                        }
+                    } else {
+                        /*
+                         * Get a random celestial or station in system. Stations
+                         * are preferred but if there aren't many available then
+                         * fly to celestials as well.
+                         */
+                        double pick = rnd.nextFloat();
+                        Celestial near = null;
+                        if (currentSystem.getStationList().size() < 4) {
+                            if (pick <= 0.5) {
+                                near = getRandomStationInSystem();
+                            } else {
+                                near = getRandomCelestialInSystem();
+                            }
+                        } else {
+                            near = getRandomStationInSystem();
+                        }
+                        if (near != null) {
+                            //fly within sensor range
+                            float range = sensor;
+                            cmdFlyToCelestial(near, range);
+                        } else {
+                            leaveSystem();
+                        }
+                    }
+                } else {
+                    //wait
+                }
+            } else {
+                //fight current target
+                if (target.isHostileToMe(this) || scanForContraband(target) || target == lastBlow) {
+                    cmdFightTarget(target);
+                }
+            }
+        } else {
+            //undock
+            cmdUndock();
         }
     }
 
@@ -1144,6 +1218,38 @@ public class Ship extends Celestial {
             cmdFightTarget(target);
         } else {
             //fighting!
+        }
+    }
+
+    /*
+     * Contraband
+     */
+    private boolean scanForContraband(Ship ship) {
+        /*
+         * Only used for detecting contraband being carried by the
+         * player.
+         */
+        if (ship.isPlayerFaction()) {
+            if (scanForContraband) {
+                ArrayList<Item> sc = ship.getCargoBay();
+                for (int a = 0; a < sc.size(); a++) {
+                    if (faction.isContraband(sc.get(a).getName())) {
+                        /*//notify the player
+                         if (conversation == null) {
+                         if (myFaction.getContrabandNotifications().size() > 0) {
+                         String pick = myFaction.getContrabandNotifications().
+                         get(rnd.nextInt(myFaction.getContrabandNotifications().size()));
+                         conversation = new Conversation(this, "Contraband " + sc.get(a).getName(), pick);
+                         }
+                         }*/
+                        //return true
+                        return true;
+                    }
+                }
+            }
+            return false;
+        } else {
+            return false;
         }
     }
 
@@ -2410,6 +2516,7 @@ public class Ship extends Celestial {
             Planet tmp = (Planet) flyToTarget;
             range += tmp.getRadius();
         }
+        setFlyToTarget(flyToTarget);
         //store range
         setRange(range);
     }
@@ -2659,6 +2766,170 @@ public class Ship extends Celestial {
                     closest = ships.get(a);
                 }
             }
+        }
+        //store
+        target = closest;
+    }
+
+    public void targetNearestNeutralShip() {
+        target = null;
+        //get a list of all nearby ships
+        ArrayList<Ship> nearby = getShipsInSensorRange();
+        ArrayList<Ship> neutrals = new ArrayList<>();
+        for (int a = 0; a < nearby.size(); a++) {
+            Ship tmp = (Ship) nearby.get(a);
+            if (nearby.get(a) instanceof Ship) {
+                if (tmp != this) {
+                    //make sure it is alive and isn't docked
+                    if (tmp.getState() == State.ALIVE && !tmp.isDocked()) {
+                        //check standings
+                        if (tmp.isNeutralToMe(this)) {
+                            neutrals.add(tmp);
+                        }
+                    }
+                }
+            }
+        }
+        //target the nearest one
+        Ship closest = null;
+        for (int a = 0; a < neutrals.size(); a++) {
+            if (closest == null) {
+                closest = neutrals.get(a);
+            } else {
+                double distClosest = closest.getLocation().distance(getLocation());
+                double distTest = neutrals.get(a).getLocation().distance(getLocation());
+                if (distTest < distClosest) {
+                    closest = neutrals.get(a);
+                }
+            }
+        }
+        //store
+        target = closest;
+    }
+
+    public void targetNearestFriendlyShip() {
+        target = null;
+        //get a list of all nearby ships
+        ArrayList<Ship> nearby = getShipsInSensorRange();
+        ArrayList<Ship> friendlies = new ArrayList<>();
+        for (int a = 0; a < nearby.size(); a++) {
+            Ship tmp = (Ship) nearby.get(a);
+            if (nearby.get(a) instanceof Ship) {
+                if (tmp != this) {
+                    //make sure it is alive and isn't docked
+                    if (tmp.getState() == State.ALIVE && !tmp.isDocked()) {
+                        //check standings
+                        if (tmp.isFriendlyToMe(this)) {
+                            friendlies.add(tmp);
+                        }
+                    }
+                }
+            }
+        }
+        //target the nearest one
+        Ship closest = null;
+        for (int a = 0; a < friendlies.size(); a++) {
+            if (closest == null) {
+                closest = friendlies.get(a);
+            } else {
+                double distClosest = closest.getLocation().distance(getLocation());
+                double distTest = friendlies.get(a).getLocation().distance(getLocation());
+                if (distTest < distClosest) {
+                    closest = friendlies.get(a);
+                }
+            }
+        }
+        //store
+        target = closest;
+    }
+    
+    public void targetNearestHostileShip() {
+        target = null;
+        //get a list of all nearby ships
+        ArrayList<Ship> nearby = getShipsInSensorRange();
+        ArrayList<Ship> hostiles = new ArrayList<>();
+        for (int a = 0; a < nearby.size(); a++) {
+            Ship tmp = (Ship) nearby.get(a);
+            if (nearby.get(a) instanceof Ship) {
+                if (tmp != this) {
+                    //make sure it is alive and isn't docked
+                    if (tmp.getState() == State.ALIVE && !tmp.isDocked()) {
+                        //check standings
+                        if (tmp.isHostileToMe(this)) {
+                            hostiles.add(tmp);
+                        }
+                    }
+                }
+            }
+        }
+        //target the nearest one
+        Ship closest = null;
+        for (int a = 0; a < hostiles.size(); a++) {
+            if (closest == null) {
+                closest = hostiles.get(a);
+            } else {
+                double distClosest = closest.getLocation().distance(getLocation());
+                double distTest = hostiles.get(a).getLocation().distance(getLocation());
+                if (distTest < distClosest) {
+                    closest = hostiles.get(a);
+                }
+            }
+        }
+        //see if it's being beaten on by the player
+        if (shield / maxShield < PLAYER_AGGRO_SHIELD) {
+            if (!isPlayerFaction()) {
+                if (lastBlow == currentSystem.getUniverse().getPlayerShip()) {
+                    if (closest != null) {
+                        double distClosest = closest.getLocation().distance(getLocation());
+                        double distTest = currentSystem.getUniverse().getPlayerShip().getLocation().distance(getLocation());
+                        if (distTest < distClosest) {
+                            closest = currentSystem.getUniverse().getPlayerShip();
+                        }
+                    } else {
+                        closest = currentSystem.getUniverse().getPlayerShip();
+                    }
+                }
+            }
+        }
+        //store
+        target = closest;
+    }
+
+    public void targetNearestHostileStation() {
+        target = null;
+        Station closest = null;
+        //get a list of all nearby hostiles
+        ArrayList<Entity> nearby = getCurrentSystem().getStationList();
+        ArrayList<Station> hostiles = new ArrayList<>();
+        for (int a = 0; a < nearby.size(); a++) {
+            Station tmp = (Station) nearby.get(a);
+            //make sure it is in range
+            if (distanceTo(tmp) < getSensor()) {
+                //make sure it is alive
+                if (tmp.getState() == State.ALIVE) {
+                    //check standings
+                    if (tmp.isHostileToMe(this)) {
+                        hostiles.add(tmp);
+                    }
+                }
+            }
+        }
+        //target the nearest one
+        if (hostiles.size() > 0) {
+            closest = hostiles.get(0);
+            for (int a = 0; a < hostiles.size(); a++) {
+                if (closest == null) {
+                    closest = hostiles.get(a);
+                } else {
+                    double distClosest = distanceTo(closest);
+                    double distTest = distanceTo(hostiles.get(a));
+                    if (distTest < distClosest) {
+                        closest = hostiles.get(a);
+                    }
+                }
+            }
+        } else {
+            //nothing to target
         }
         //store
         target = closest;
