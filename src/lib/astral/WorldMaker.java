@@ -47,7 +47,7 @@ public class WorldMaker {
 
     public WorldMaker() {
         //generate universe
-        String out = generate(1337, 1, 7, 80, 100, 1000, 64000, 256000, 500, 5000, 0, 0.40f, 0.40f);
+        String out = generate(31337, 1, 7, 80, 100, 1000, 64000, 256000, 500, 5000, 0, 0.40f, 0.40f);
         //save
         AstralIO tmp = new AstralIO();
         tmp.writeFile("new-UNIVERSE.txt", out);
@@ -359,7 +359,7 @@ public class WorldMaker {
         //pick a point outside of the planet
         float r = host.getRad() * 2;
         float dx = (rnd.nextInt(10000) + r) * Math.signum(rnd.nextFloat() - 0.5f);
-        float dy = (rnd.nextInt(10000) + r) * Math.signum(rnd.nextFloat() - 0.5f);
+        float dy = (rnd.nextInt(2000) + r) * Math.signum(rnd.nextFloat() - 0.5f);
         float dz = (rnd.nextInt(10000) + r) * Math.signum(rnd.nextFloat() - 0.5f);
         //store
         float x = host.getLoc().getX() + dx;

@@ -20,6 +20,7 @@ Player=0
 Northern Coalition=0
 Southern Coalition=0
 Commonwealth=0
+Rogers=0
 [/Faction]
 
 ################################################################################
@@ -36,6 +37,7 @@ Player=5
 Northern Coalition=10
 Southern Coalition=-5
 Commonwealth=-3
+Rogers=-5
 [/Faction]
 
 [Faction]
@@ -48,6 +50,7 @@ Player=-5
 Northern Coalition=-5
 Southern Coalition=10
 Commonwealth=-3
+Rogers=-5
 [/Faction]
 
 [Faction]
@@ -60,6 +63,24 @@ Player=0
 Northern Coalition=-3
 Southern Coalition=-3
 Commonwealth=10
+Rogers=-5
+[/Faction]
+
+################################################################################
+#Pirates (Rogers Group)
+################################################################################
+
+[Faction]
+name=Rogers
+var_isEmpire=false
+var_description=A roving band of petty thieves, The Rogers are a decentralized pirate group with few bases and few ships. Rogers can be found across the world.
+var_hosts=Northern Coalition/Southern Coalition/Commonwealth/Neutral
+Neutral=0
+Player=-5
+Northern Coalition=-5
+Southern Coalition=-5
+Commonwealth=-5
+Rogers=10
 [/Faction]
 
 ################################################################################
@@ -75,6 +96,7 @@ Player=10
 Northern Coalition=5
 Southern Coalition=-5
 Commonwealth=0
+Rogers=-5
 [/Faction]
 
 ################################################################################
@@ -102,6 +124,11 @@ trader0=Commonwealth Trade Sparrow,20
 merchant0=Commonwealth Supply Sparrow,20
 [/Loadout]
 
+[Loadout]
+name=Rogers
+patrol0=Rogers Sparrow,25
+[/Loadout]
+
 ################################################################################
 #Station lists for each faction
 #
@@ -116,16 +143,19 @@ merchant0=Commonwealth Supply Sparrow,20
 name=Northern Coalition
 station0=Industrial Kitchen,0.5
 station1=Sunfarm,1.0
+station2=Customs Office,0.25
 [/Stations]
 
 [Stations]
 name=Southern Coalition
 station0=Industrial Kitchen,0.5
 station1=Sunfarm,1.0
+station2=Customs Office,0.25
 [/Stations]
 
 [Stations]
 name=Commonwealth
 station0=Industrial Kitchen,0.5
 station1=Sunfarm,1.0
+station2=Customs Office,0.25
 [/Stations]

@@ -7,13 +7,13 @@ type=Sparrow
 class=Sparrow
 #physics
 mass=1
-thrust=97
-torque=9
+thrust=101
+torque=11
 #stats
 shield=10571
 shieldRecharge=180
 hull=1510
-fuel=450000
+fuel=45000
 sensor=2500
 cargo=250
 hardpoint=cannon,10,-1.0,0,-1.8/cannon,10,1.0,0,-1.8

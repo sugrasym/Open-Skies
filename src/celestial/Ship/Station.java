@@ -222,7 +222,7 @@ public class Station extends Ship {
             String status = relevant.getValue("economyExempt");
             if (status != null) {
                 economyExempt = Boolean.parseBoolean(status);
-                System.out.println(getType().getValue("name") + " has an exemption status of " + economyExempt);
+                System.out.println(getType().getValue("type") + " has an exemption status of " + economyExempt);
             } else {
                 economyExempt = false;
             }

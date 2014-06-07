@@ -506,7 +506,7 @@ public class God {
             Planet tmp = (Planet) host;
             float r = tmp.getRadius() * 2;
             float dx = (rnd.nextInt(10000) + r) * Math.signum(rnd.nextFloat() - 0.5f);
-            float dy = (rnd.nextInt(10000) + r) * Math.signum(rnd.nextFloat() - 0.5f);
+            float dy = (rnd.nextInt(2000) + r) * Math.signum(rnd.nextFloat() - 0.5f);
             float dz = (rnd.nextInt(10000) + r) * Math.signum(rnd.nextFloat() - 0.5f);
             //store
             x = host.getLocation().getX() + dx;
@@ -515,7 +515,7 @@ public class God {
         } else {
             //pick a point near the celestial
             x = host.getLocation().getX() + rnd.nextInt(10000) - 5000;
-            y = host.getLocation().getY() + rnd.nextInt(10000) - 5000;
+            y = host.getLocation().getY() + rnd.nextInt(2000) - 1000;
             z = host.getLocation().getZ() + rnd.nextInt(10000) - 5000;
         }
         //make a point

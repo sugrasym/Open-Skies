@@ -91,3 +91,16 @@ cargo=Jumpdrive~1/Astronaut~1
 minCourage=0.85
 maxCourage=1.00
 [/Loadout]
+
+################################################################################
+#Rogers
+################################################################################
+
+[Loadout]
+ship=Sparrow
+name=Rogers Sparrow
+install=Ka Ka Ka/Ka Ka Ka
+cargo=Astronaut~1
+minCourage=0.7
+maxCourage=1.00
+[/Loadout]
