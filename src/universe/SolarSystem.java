@@ -454,8 +454,9 @@ public class SolarSystem implements Entity, Serializable {
                 if (celestials.get(a).getState() == Entity.State.DEAD) {
                     //remove the entity
                     pullEntityFromSystem(celestials.get(a));
+                } else {
+                    celestials.get(a).periodicUpdate(tpf);
                 }
-                celestials.get(a).periodicUpdate(tpf);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -470,8 +471,9 @@ public class SolarSystem implements Entity, Serializable {
                 if (celestials.get(a).getState() == Entity.State.DEAD) {
                     //remove the entity
                     pullEntityFromSystem(celestials.get(a));
+                } else {
+                    celestials.get(a).oosPeriodicUpdate(tpf);
                 }
-                celestials.get(a).oosPeriodicUpdate(tpf);
             }
         } catch (Exception e) {
             e.printStackTrace();
