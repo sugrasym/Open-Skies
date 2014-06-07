@@ -747,9 +747,9 @@ public class Ship extends Celestial {
                         }
                     } else {
                         /*
-                         * Get a random celestial or station in system. Stations
+                         * Get a random planet or station in system. Stations
                          * are preferred but if there aren't many available then
-                         * fly to celestials as well.
+                         * fly to planets as well.
                          */
                         double pick = rnd.nextFloat();
                         Celestial near = null;
@@ -757,7 +757,7 @@ public class Ship extends Celestial {
                             if (pick <= 0.5) {
                                 near = getRandomStationInSystem();
                             } else {
-                                near = getRandomCelestialInSystem();
+                                near = getRandomPlanetInSystem();
                             }
                         } else {
                             near = getRandomStationInSystem();
@@ -3039,6 +3039,19 @@ public class Ship extends Celestial {
             ArrayList<Entity> jumpHoles = currentSystem.getJumpholeList();
             if (jumpHoles.size() > 0) {
                 ret = (Jumphole) jumpHoles.get(rnd.nextInt(jumpHoles.size()));
+            } else {
+                return null;
+            }
+        }
+        return ret;
+    }
+    
+    public Planet getRandomPlanetInSystem() {
+        Planet ret = null;
+        {
+            ArrayList<Entity> planets = currentSystem.getPlanetList();
+            if (planets.size() > 0) {
+                ret = (Planet) planets.get(rnd.nextInt(planets.size()));
             } else {
                 return null;
             }
