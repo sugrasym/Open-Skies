@@ -1114,24 +1114,13 @@ public class Ship extends Celestial {
                                 //start trading
                                 cmdDock(getBuyFromStation());
                             } else {
-                                if (isPlayerFaction()) {
-                                    //todo: investigate and make sure that the ship can undock afterwards
-                                    dockAtFriendlyStationInSystem();
-                                } else {
-                                    /*
-                                     * I honestly don't give a damn if some random NPC trader dies.
-                                     * It probably keeps the universe more interesting.
-                                     */
-                                    leaveSystem();
-                                }
+                                handleNoSectorTrades();
                             }
                         } else {
-                            //maybe profit awaits us elsewhere
-                            leaveSystem();
+                            handleNoSectorTrades();
                         }
                     } else {
-                        //profit definately awaits us elsewhere
-                        leaveSystem();
+                        handleNoSectorTrades();
                     }
                 }
             } else {
@@ -1208,6 +1197,19 @@ public class Ship extends Celestial {
             } else {
 
             }
+        }
+    }
+
+    private void handleNoSectorTrades() {
+        if (isPlayerFaction()) {
+            //todo: investigate and make sure that the ship can undock afterwards
+            dockAtFriendlyStationInSystem();
+        } else {
+            /*
+            * I honestly don't give a damn if some random NPC trader dies.
+            * It probably keeps the universe more interesting.
+            */
+            leaveSystem();
         }
     }
 
@@ -1539,7 +1541,7 @@ public class Ship extends Celestial {
         //see if we are there
         float dist = end.distance(getLocation());
         if (dist < hold && hold != Float.POSITIVE_INFINITY) {
-            autopilotAllStop();
+            oosAutopilotAllStop();
         } else {
             //make sure we aren't getting further from the target
             Vector3f dPos = getLocation().add(getVelocity());
