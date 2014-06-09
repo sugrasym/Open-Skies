@@ -515,8 +515,13 @@ public class Core {
                 }
             }
             //update god
-            if(godSafe) {
+            if (godSafe) {
                 god.periodicUpdate();
+            }
+            //see if we need to reset the camera
+            if (universe.getPlayerShip() != planetAppState.getAstralCamera().getTarget()) {
+                resetCamera();
+                resetHUD();
             }
         }
         //store tpf
@@ -603,10 +608,7 @@ public class Core {
 
     private void resetScene() {
         if (hud != null) {
-            //undo hud
-            hud.remove();
-            //clear markers
-            hud.clearMarkers();
+            clearHUD();
         }
         //clear nodes
         rootNode.detachAllChildren();
@@ -619,10 +621,26 @@ public class Core {
         bulletAppState.getPhysicsSpace().setGravity(Vector3f.ZERO);
         bulletAppState.getPhysicsSpace().setAccuracy(DEFAULT_TICK / 4);
         initPhysicsListeners();
+        addHUD();
+    }
+
+    private void addHUD() {
         //add hud
         if (hud != null) {
             hud.add();
         }
+    }
+
+    private void clearHUD() {
+        //undo hud
+        hud.remove();
+        //clear markers
+        hud.clearMarkers();
+    }
+    
+    private void resetHUD() {
+        clearHUD();
+        addHUD();
     }
 
     private void resetCamera() {

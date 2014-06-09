@@ -278,7 +278,7 @@ public class OverviewWindow extends AstralWindow {
                     gfx.drawLine(getWidth() / 2, (getHeight() / 2), (int) vpx + (getWidth() / 2), (int) vpy + (getHeight() / 2));
                 }
             } catch (Exception e) {
-                System.out.println("Error ddrawing direction vector in overview window");
+                System.out.println("Error drawing direction vector in overview window");
             }
         }
     }
