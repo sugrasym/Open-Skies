@@ -22,6 +22,18 @@ cargo=Jumpdrive~1
 install=Ka Ka Ka/Ka Ka Ka
 [/Ship]
 
+[Ship]
+name=Test Sparrow 2
+ship=Sparrow
+system=Eta LZM-F
+x=16794
+y=100
+z=-99830
+faction=Player
+cargo=Jumpdrive~1
+install=Ka Ka Ka/Ka Ka Ka
+[/Ship]
+
 [System]
 name=Tau 01-ZWL
 owner=Southern Coalition

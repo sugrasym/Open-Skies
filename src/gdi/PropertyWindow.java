@@ -522,6 +522,12 @@ public class PropertyWindow extends AstralWindow {
                     infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
                 }
             }
+            if (selected.getAutopilot() == Autopilot.FOLLOW) {
+                infoList.addToList("Target:       " + selected.getFlyToTarget().getName());
+                infoList.addToList("Range:        " + selected.getRange());
+                infoList.addToList("Distance:     " + roundTwoDecimal(selected.distanceTo(selected.getFlyToTarget())));
+                //infoList.addToList("Rel Speed:    " + roundTwoDecimal(selected.getVelocity().subtract(selected.getFlyToTarget().getVelocity()).length()));
+            }
             //breaking space
             infoList.addToList(" ");
             /*
@@ -844,19 +850,19 @@ public class PropertyWindow extends AstralWindow {
                     mode = Mode.NONE;
                 }
             } else if (command.equals(CMD_FOLLOW)) {
-                /*ArrayList<Object> choice = new ArrayList<>();
-                 choice.add("--Select Target To Follow--");
-                 choice.add(" ");
-                 ArrayList<Ship> sh = selected.getShipsInSensorRange();
-                 for (int a = 0; a < sh.size(); a++) {
-                 choice.add(sh.get(a));
-                 }
-                 if (sh.size() > 0) {
-                 showInputList(choice);
-                 mode = Mode.WAITING_FOR_FOLLOW;
-                 } else {
-                 mode = Mode.NONE;
-                 }*/
+                ArrayList<Object> choice = new ArrayList<>();
+                choice.add("--Select Target To Follow--");
+                choice.add(" ");
+                ArrayList<Ship> sh = selected.getShipsInSensorRange();
+                for (int a = 0; a < sh.size(); a++) {
+                    choice.add(sh.get(a));
+                }
+                if (sh.size() > 0) {
+                    showInputList(choice);
+                    mode = Mode.WAITING_FOR_FOLLOW;
+                } else {
+                    mode = Mode.NONE;
+                }
             } else if (command.equals(CMD_ALLSTOP)) {
                 selected.cmdAllStop();
             } else if (command.equals(CMD_JUMP)) {

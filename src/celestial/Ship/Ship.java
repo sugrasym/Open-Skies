@@ -373,6 +373,46 @@ public class Ship extends Celestial {
             autopilotFightTarget();
         } else if (autopilot == Autopilot.WAIT) {
             autopilotWaitBlock();
+        } else if (autopilot == Autopilot.FOLLOW) {
+            autopilotFollow();
+        }
+    }
+
+    private void autopilotFollow() {
+        if (getAutopilot() == Autopilot.FOLLOW) {
+            if (flyToTarget != null) {
+                if (flyToTarget.getCurrentSystem() == currentSystem) {
+                    double dist = distanceTo(flyToTarget);
+                    if (dist > sensor) {
+                        //no aim
+                        cmdAbort();
+                    } else {
+                        if (dist < (range)) {
+                            //back off
+                            throttle = -1;
+                        } else {
+                            if (dist > (range * 4)) {
+                                moveToPositionWithHold(flyToTarget.getPhysicsLocation(), getFollowHold());
+                            } else {
+                                //wait
+                                throttle = 0;
+                            }
+                        }
+                    }
+                } else {
+                    //determine if this is a system we could jump to
+                    SolarSystem targetSystem = flyToTarget.getCurrentSystem();
+                    if (canJump(targetSystem)) {
+                        //jump to follow target
+                        cmdJump(targetSystem);
+                    } else {
+                        //abort follow
+                        cmdAllStop();
+                    }
+                }
+            } else {
+                autopilot = Autopilot.NONE;
+            }
         }
     }
 
@@ -1206,9 +1246,9 @@ public class Ship extends Celestial {
             dockAtFriendlyStationInSystem();
         } else {
             /*
-            * I honestly don't give a damn if some random NPC trader dies.
-            * It probably keeps the universe more interesting.
-            */
+             * I honestly don't give a damn if some random NPC trader dies.
+             * It probably keeps the universe more interesting.
+             */
             leaveSystem();
         }
     }
@@ -1274,6 +1314,46 @@ public class Ship extends Celestial {
             oosAutopilotFightTarget();
         } else if (autopilot == Autopilot.WAIT) {
             oosAutopilotWaitBlock();
+        } else if (autopilot == Autopilot.FOLLOW) {
+            oosAutopilotFollow();
+        }
+    }
+    
+    private void oosAutopilotFollow() {
+        if (getAutopilot() == Autopilot.FOLLOW) {
+            if (flyToTarget != null) {
+                if (flyToTarget.getCurrentSystem() == currentSystem) {
+                    double dist = distanceTo(flyToTarget);
+                    if (dist > sensor) {
+                        //no aim
+                        cmdAbort();
+                    } else {
+                        if (dist < (range)) {
+                            //back off
+                            throttle = -1;
+                        } else {
+                            if (dist > (range * 4)) {
+                                oosMoveToPositionWithHold(flyToTarget.getLocation(), getFollowHold());
+                            } else {
+                                //wait
+                                throttle = 0;
+                            }
+                        }
+                    }
+                } else {
+                    //determine if this is a system we could jump to
+                    SolarSystem targetSystem = flyToTarget.getCurrentSystem();
+                    if (canJump(targetSystem)) {
+                        //jump to follow target
+                        cmdJump(targetSystem);
+                    } else {
+                        //abort follow
+                        cmdAllStop();
+                    }
+                }
+            } else {
+                autopilot = Autopilot.NONE;
+            }
         }
     }
 
@@ -2524,7 +2604,9 @@ public class Ship extends Celestial {
     }
 
     public void cmdFollowShip(Ship ship, float range) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.range = range;
+        flyToTarget = ship;
+        setAutopilot(Autopilot.FOLLOW);
     }
 
     public void cmdJump(SolarSystem pick) {
@@ -2844,7 +2926,7 @@ public class Ship extends Celestial {
         //store
         target = closest;
     }
-    
+
     public void targetNearestHostileShip() {
         target = null;
         //get a list of all nearby ships
@@ -3047,7 +3129,7 @@ public class Ship extends Celestial {
         }
         return ret;
     }
-    
+
     public Planet getRandomPlanetInSystem() {
         Planet ret = null;
         {
