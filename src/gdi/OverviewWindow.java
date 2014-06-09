@@ -192,13 +192,13 @@ public class OverviewWindow extends AstralWindow {
             if (celestial instanceof Ship) {
                 if (celestial instanceof Station) {
                     Station test = (Station) celestial;
-                    if(!test.isHostileToMe(sensorShip)) {
+                    if (!test.isHostileToMe(sensorShip)) {
                         //neutral and friendly stations are visible
                         return true;
                     }
                 } else {
                     Ship tmp = (Ship) celestial;
-                    if(tmp.getFaction().getName().equals(Faction.PLAYER)) {
+                    if (tmp.getFaction().getName().equals(Faction.PLAYER)) {
                         return true;
                     } else {
                         //ships that are not player are not discoverable
@@ -267,14 +267,18 @@ public class OverviewWindow extends AstralWindow {
         }
 
         private void drawDirectionVector(Graphics2D gfx) {
-            //draw velocity vector
-            gfx.setColor(Color.yellow);
-            Vector3f vel = sensorShip.getLinearVelocity();
-            double vTheta = Math.atan2(vel.z, vel.x);
-            double vpx = Math.cos(vTheta) * getWidth() / 2;
-            double vpy = Math.sin(vTheta) * getHeight() / 2;
-            if (!(vel.z == 0 && vel.x == 0)) {
-                gfx.drawLine(getWidth() / 2, (getHeight() / 2), (int) vpx + (getWidth() / 2), (int) vpy + (getHeight() / 2));
+            try {
+                //draw velocity vector
+                gfx.setColor(Color.yellow);
+                Vector3f vel = sensorShip.getLinearVelocity();
+                double vTheta = Math.atan2(vel.z, vel.x);
+                double vpx = Math.cos(vTheta) * getWidth() / 2;
+                double vpy = Math.sin(vTheta) * getHeight() / 2;
+                if (!(vel.z == 0 && vel.x == 0)) {
+                    gfx.drawLine(getWidth() / 2, (getHeight() / 2), (int) vpx + (getWidth() / 2), (int) vpy + (getHeight() / 2));
+                }
+            } catch (Exception e) {
+                System.out.println("Error ddrawing direction vector in overview window");
             }
         }
     }

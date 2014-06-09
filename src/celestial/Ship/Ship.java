@@ -1318,7 +1318,7 @@ public class Ship extends Celestial {
             oosAutopilotFollow();
         }
     }
-    
+
     private void oosAutopilotFollow() {
         if (getAutopilot() == Autopilot.FOLLOW) {
             if (flyToTarget != null) {
@@ -1677,14 +1677,27 @@ public class Ship extends Celestial {
         }
         //check docking updates
         if (docked) {
-            //no autopilot unless undocking
-            if (autopilot != Autopilot.UNDOCK
-                    && autopilot != Autopilot.WAITED
-                    && autopilot != Autopilot.WAIT) {
-                setAutopilot(Autopilot.NONE);
+            //make sure the station still exists
+            if (port != null) {
+                if (port.getParent() != null) {
+                    if (port.getParent().getState() == State.ALIVE) {
+                        //no autopilot unless undocking
+                        if (autopilot != Autopilot.UNDOCK
+                                && autopilot != Autopilot.WAITED
+                                && autopilot != Autopilot.WAIT) {
+                            setAutopilot(Autopilot.NONE);
+                        }
+                        //refuel
+                        fuel = maxFuel;
+                    } else {
+                        cmdUndock();
+                    }
+                } else {
+                    cmdUndock();
+                }
+            } else {
+                cmdUndock();
             }
-            //refuel
-            fuel = maxFuel;
         } else {
             //fire weapons if needed
             if (firing) {
@@ -3147,30 +3160,38 @@ public class Ship extends Celestial {
      * Jump drive
      */
     public boolean canJump(SolarSystem destination) {
-        double safety;
-        if (behavior == Behavior.UNIVERSE_TRADE) {
-            safety = TRADER_JD_SAFETY_FUEL;
-        } else {
-            safety = JUMP_SAFETY_FUEL;
-        }
-        //make sure we have a jump drive group device
-        if (hasGroupInCargo("jumpdrive")) {
-            //fuel cost is linear
-            if (fuel - getJumpFuelCost(destination) >= safety * maxFuel) {
-                return true;
+        if (destination != null) {
+            double safety;
+            if (behavior == Behavior.UNIVERSE_TRADE) {
+                safety = TRADER_JD_SAFETY_FUEL;
+            } else {
+                safety = JUMP_SAFETY_FUEL;
             }
+            //make sure we have a jump drive group device
+            if (hasGroupInCargo("jumpdrive")) {
+                //fuel cost is linear
+                if (fuel - getJumpFuelCost(destination) >= safety * maxFuel) {
+                    return true;
+                }
+            }
+        } else {
+            return false;
         }
         return false;
     }
 
     public double getJumpFuelCost(SolarSystem destination) {
-        //calculate distance between current system and destination
-        Vector3f cLoc = currentSystem.getLocation();
-        Vector3f dLoc = destination.getLocation();
-        double dist = cLoc.distance(dLoc);
-        //fuel cost is linear
-        double fuelCost = dist * 50;
-        return fuelCost;
+        if (destination != null) {
+            //calculate distance between current system and destination
+            Vector3f cLoc = currentSystem.getLocation();
+            Vector3f dLoc = destination.getLocation();
+            double dist = cLoc.distance(dLoc);
+            //fuel cost is linear
+            double fuelCost = dist * 50;
+            return fuelCost;
+        } else {
+            return Float.POSITIVE_INFINITY;
+        }
     }
 
     protected void dropJumpEffect() {

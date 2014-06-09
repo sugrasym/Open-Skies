@@ -279,30 +279,34 @@ public class EquipmentWindow extends AstralWindow {
         }
 
         protected void drawVectorLines(Graphics2D gfx, double ex, double ey) {
-            /*
-             * Shows the vectors of the target ship, useful in an intercept or
-             * a fight.
-             */
-            //draw the range of your craft's selected equipment
-            Hardpoint tmp = (Hardpoint) weaponList.getItemAtIndex(weaponList.getIndex());
-            if (tmp != null) {
-                double range = tmp.getMounted().getRange();
-                range /= ship.getSensor();
-                gfx.setColor(Color.RED);
-                int w = (int) (getWidth() * range);
-                int h = (int) (getHeight() * range);
-                gfx.drawOval((getWidth() / 2) - w / 2, (getHeight() / 2) - h / 2, w, h);
+            try {
+                /*
+                 * Shows the vectors of the target ship, useful in an intercept or
+                 * a fight.
+                 */
+                //draw the range of your craft's selected equipment
+                Hardpoint tmp = (Hardpoint) weaponList.getItemAtIndex(weaponList.getIndex());
+                if (tmp != null) {
+                    double range = tmp.getMounted().getRange();
+                    range /= ship.getSensor();
+                    gfx.setColor(Color.RED);
+                    int w = (int) (getWidth() * range);
+                    int h = (int) (getHeight() * range);
+                    gfx.drawOval((getWidth() / 2) - w / 2, (getHeight() / 2) - h / 2, w, h);
+                }
+                //horizontal line of sight of your craft
+                gfx.setColor(Color.CYAN);
+                Vector3f pointer = ship.getRotationAxis();
+                double dTheta = Math.atan2(pointer.z, pointer.x) - FastMath.PI;
+                double dpx = Math.cos(dTheta) * getWidth() / 2;
+                double dpy = Math.sin(dTheta) * getHeight() / 2;
+                gfx.drawLine(getWidth() / 2, (getHeight() / 2), (int) dpx + (getWidth() / 2), (int) dpy + (getHeight() / 2));
+                //line between your craft and the target
+                gfx.setColor(Color.PINK);
+                gfx.drawLine(getWidth() / 2, getHeight() / 2, (int) ex + (getWidth() / 2), (int) ey + (getHeight() / 2));
+            } catch (Exception e) {
+                System.out.println("Error drawing vector lines in overview window");
             }
-            //horizontal line of sight of your craft
-            gfx.setColor(Color.CYAN);
-            Vector3f pointer = ship.getRotationAxis();
-            double dTheta = Math.atan2(pointer.z, pointer.x) - FastMath.PI;
-            double dpx = Math.cos(dTheta) * getWidth() / 2;
-            double dpy = Math.sin(dTheta) * getHeight() / 2;
-            gfx.drawLine(getWidth() / 2, (getHeight() / 2), (int) dpx + (getWidth() / 2), (int) dpy + (getHeight() / 2));
-            //line between your craft and the target
-            gfx.setColor(Color.PINK);
-            gfx.drawLine(getWidth() / 2, getHeight() / 2, (int) ex + (getWidth() / 2), (int) ey + (getHeight() / 2));
         }
     }
 

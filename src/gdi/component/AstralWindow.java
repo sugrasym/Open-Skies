@@ -119,7 +119,7 @@ public class AstralWindow extends AstralComponent {
                 //render the backdrop
                 s.setColor(backColor);
                 s.fillRect(0, 0, getWidth(), getHeight());
-                //render components
+                //render componentsz
                 for (int a = 0; a < components.size(); a++) {
                     components.get(a).render(s);
                 }
