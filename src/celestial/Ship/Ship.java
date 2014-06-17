@@ -115,6 +115,7 @@ public class Ship extends Celestial {
     }
     public static final float NORMAL_DAMP = 0.26f;
     public static final float NEWTON_DAMP = 0;
+    public static final float ANGULAR_DAMP = 0.99f;
     private Term type;
     protected String _class;
     //health
@@ -289,7 +290,7 @@ public class Ship extends Celestial {
         physics = new RigidBodyControl(hullShape, getMass());
         center.addControl(physics);
         physics.setSleepingThresholds(0, 0);
-        physics.setAngularDamping(0.99f); //I do NOT want to deal with this at 0
+        physics.setAngularDamping(ANGULAR_DAMP); //I do NOT want to deal with this at 0
         center.setName(this.getClass().getName());
         //store physics name control
         nameControl.setParent(this);

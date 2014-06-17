@@ -50,6 +50,10 @@ public class Weapon extends Equipment {
     private float variation = 0.75f;
     private String texture = "Effects/Trail/point.png";
     private float emitterRate = 10;
+    private boolean guided = false;
+    private float accel;
+    private float turning;
+    private float shotMass;
 
     public Weapon(String name) {
         super(name);
@@ -118,6 +122,34 @@ public class Weapon extends Equipment {
             setVariation(Float.parseFloat(relevant.getValue("variation")));
             setTexture(relevant.getValue("texture"));
             setEmitterRate(Float.parseFloat(relevant.getValue("emitterRate")));
+            
+            String rawGuided = relevant.getValue("guided");
+            if(rawGuided != null) {
+                guided = Boolean.parseBoolean(rawGuided);
+            } else {
+                guided = false;
+            }
+            
+            String rawAccel = relevant.getValue("accel");
+            if(rawAccel != null) {
+                accel = Float.parseFloat(rawAccel);
+            } else {
+                accel = 0;
+            }
+            
+            String rawTurning = relevant.getValue("turning");
+            if(rawTurning != null) {
+                turning = Float.parseFloat(rawTurning);
+            } else {
+                turning = 0;
+            }
+            
+            String rawShotMass = relevant.getValue("shotMass");
+            if(rawShotMass != null) {
+                shotMass = Float.parseFloat(rawShotMass);
+            } else {
+                shotMass = 0.00000001f;
+            }
         } else {
             System.out.println("Error: The item " + getName() + " does not exist in WEAPONS.txt");
         }
@@ -145,7 +177,8 @@ public class Weapon extends Equipment {
          */
         if (enabled) {
             //generate projectile
-            Projectile pro = new Projectile(host.getCurrentSystem().getUniverse(), getName());
+            Projectile pro = new Projectile(host.getCurrentSystem().getUniverse(),
+                    host.getTarget(), getName(), shotMass);
             //store stats
             pro.setShieldDamage(shieldDamage);
             pro.setHullDamage(hullDamage);
@@ -176,6 +209,10 @@ public class Weapon extends Equipment {
             //store host
             pro.setHost(host);
             pro.setOrigin(socket);
+            //store guidance
+            pro.setAccel(accel);
+            pro.setTurning(turning);
+            pro.setGuided(guided);
             //put projectile in system
             host.getCurrentSystem().putEntityInSystem(pro);
         }

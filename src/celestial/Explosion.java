@@ -44,7 +44,7 @@ public class Explosion extends Projectile {
     private float life;
 
     public Explosion(Universe universe, float size, String name) {
-        super(universe, name);
+        super(universe, null, name, 0.0001f);
         setSize(size);
         initStats();
     }

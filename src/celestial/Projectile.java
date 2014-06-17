@@ -29,6 +29,7 @@ import com.jme3.effect.ParticleEmitter;
 import com.jme3.effect.ParticleMesh;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import universe.Universe;
 
@@ -58,14 +59,25 @@ public class Projectile extends Celestial {
     private Vector3f pVel;
     //lifetime counter
     private float diff = 0;
+    //guidance
+    private Celestial target;
+    private boolean isGuided = false;
+    private float accel = 0;
+    private float turning = 0;
+    //internat steering
+    float pitch;
+    float yaw;
+    float roll;
     //who fired?
     private Ship host;
     private Hardpoint origin;
     private boolean initialDistanceCheck = true;
 
-    public Projectile(Universe universe, String name) {
-        super(0.00000000001f, universe); //mass cannot be 0 or it is a static spatial in bullet physics
+    public Projectile(Universe universe, Celestial target, String name, float mass) {
+        super(mass, universe); //mass cannot be 0 or it is a static spatial in bullet physics
         setName(name);
+        setTarget(target);
+        setMass(mass);
     }
 
     @Override
@@ -102,7 +114,7 @@ public class Projectile extends Celestial {
 
     private void constructPhysics() {
         //initializes the physics as a sphere
-        SphereCollisionShape sphereShape = new SphereCollisionShape(Math.max(size,0.5f));
+        SphereCollisionShape sphereShape = new SphereCollisionShape(Math.max(size, 0.5f));
         //setup dynamic physics
         physics = new RigidBodyControl(sphereShape, getMass());
         //keep it from going to sleep
@@ -141,6 +153,121 @@ public class Projectile extends Celestial {
             setState(State.DYING);
         } else {
             //nope
+            if (isGuided()) {
+                //update steering
+                seekTarget();
+                //apply changes
+                steer();
+                thrust();
+            }
+        }
+    }
+
+    protected void steer() {
+        //steer
+        physics.applyTorque(Vector3f.UNIT_X.mult(turning * Math.min(pitch, 1)));
+        physics.applyTorque(Vector3f.UNIT_Y.mult(turning * Math.min(yaw, 1)));
+        physics.applyTorque(Vector3f.UNIT_Z.mult(turning * Math.min(roll, 1)));
+        //reset steering
+        pitch = 0;
+        yaw = 0;
+        roll = 0;
+    }
+
+    protected void thrust() {
+        //thrust
+        Vector3f direction = physics.getPhysicsRotation().mult(Vector3f.UNIT_Z);
+        physics.applyCentralForce(direction.mult(accel * -1.0f));
+    }
+
+    protected boolean seekTarget() {
+        boolean safe = false;
+        if (target != null) {
+            if (target.getState() == State.ALIVE) {
+                if (target.getCurrentSystem() == getCurrentSystem()) {
+                    //make sure we have drag
+                    physics.setLinearDamping(Ship.NORMAL_DAMP);
+                    physics.setAngularDamping(Ship.ANGULAR_DAMP);
+                    /*
+                     * Greedy algorithm
+                     * Face the target and accelerate towards it.
+                     */
+                    Vector3f dat = getSteeringData(target.getLocation(), Vector3f.UNIT_Y);
+                    grossPointNoseAtVector(dat, Ship.NAV_ANGLE_TOLERANCE);
+                } else {
+                    setGuided(false);
+                }
+            } else {
+                setGuided(false);
+            }
+        } else {
+            setGuided(false);
+        }
+        return safe;
+    }
+
+    private boolean grossPointNoseAtVector(Vector3f dat, float tolerance) {
+        boolean canAccel = true;
+        //put controls in correct positions to face target
+        if (Math.abs(dat.x) < FastMath.PI * (1 - tolerance)) {
+            pitch = -(dat.x);
+            canAccel = false;
+        } else {
+            pitch = -(dat.x) / 50.0f;
+        }
+        if (Math.abs(dat.y) < FastMath.PI * (1 - tolerance)) {
+            yaw = -(dat.y);
+            canAccel = false;
+        } else {
+            yaw = -(dat.y) / 50.0f;
+        }
+        if (Math.abs(dat.z) > FastMath.PI * tolerance) {
+            roll = (dat.z);
+            //canAccel = false;
+        } else {
+            //roll = (dat.z) / 100.0f;
+            roll = 0;
+        }
+        return canAccel;
+    }
+
+    private Vector3f getSteeringData(Vector3f worldPosition, Vector3f up) {
+        if (emitter != null) {
+            // RETREIVE LOCAL DIRECTION TO TARGET POSITION
+            Vector3f steeringPosition = new Vector3f();
+            emitter.getWorldRotation().inverse().multLocal(steeringPosition.set(worldPosition).subtractLocal(emitter.getWorldTranslation()));
+
+            // RETREIVE LOCAL UP VECTOR DIRECTION
+            Vector3f upPosition = new Vector3f(up);
+            emitter.getWorldRotation().inverse().multLocal(upPosition);
+
+            // CREATE 2D-VECTORS TO COMPARE
+            Vector3f elevatorPos = new Vector3f(steeringPosition).normalizeLocal();
+            elevatorPos.x = 0;
+            Vector3f rudderPos = new Vector3f(steeringPosition).normalizeLocal();
+            rudderPos.y = 0;
+            Vector3f aileronPos = new Vector3f(upPosition).normalizeLocal();
+            aileronPos.z = 0;
+
+            // CALCULATE ANGLES BETWEEN VECTORS AND INVERT STEERING DIRECTION IF NEEDED
+            Vector3f steeringData = new Vector3f();
+            steeringData.x = Vector3f.UNIT_Z.angleBetween(elevatorPos);
+            if (elevatorPos.y > 0) {
+                steeringData.x *= -1;
+            }
+            steeringData.y = Vector3f.UNIT_Z.angleBetween(rudderPos);
+            if (rudderPos.x < 0) {
+                steeringData.y *= -1;
+            }
+            steeringData.z = Vector3f.UNIT_Y.angleBetween(aileronPos);
+            if (aileronPos.x > 0) {
+                steeringData.z *= -1;
+            }
+
+            // RETURN THE DATA
+            return steeringData;
+        } else {
+            return Vector3f.ZERO;
         }
     }
 
@@ -283,5 +410,37 @@ public class Projectile extends Celestial {
 
     public void setOrigin(Hardpoint origin) {
         this.origin = origin;
+    }
+
+    public boolean isGuided() {
+        return isGuided;
+    }
+
+    public void setGuided(boolean isGuided) {
+        this.isGuided = isGuided;
+    }
+
+    public Celestial getTarget() {
+        return target;
+    }
+
+    public final void setTarget(Celestial target) {
+        this.target = target;
+    }
+
+    public float getAccel() {
+        return accel;
+    }
+
+    public void setAccel(float accel) {
+        this.accel = accel;
+    }
+
+    public float getTurning() {
+        return turning;
+    }
+
+    public void setTurning(float turning) {
+        this.turning = turning;
     }
 }
