@@ -38,6 +38,10 @@ import universe.Universe;
  * @author nwiehoff
  */
 public class Projectile extends Celestial {
+
+    public static final float LINEAR_DAMP = 0.99f;
+    public static final float ANGULAR_DAMP = 0.99f;
+    public static final float NAV_ANGLE_TOLERANCE = 0.008f;
     //particle effect
 
     transient ParticleEmitter emitter;
@@ -159,11 +163,8 @@ public class Projectile extends Celestial {
                     boolean safe = seekTarget();
                     //apply changes
                     steer();
-                    System.out.println(gettingCloser() + " " + getVelocity().length());
-                    if (gettingCloser() || getVelocity().length() < getAcceleration()) {
-                        if (safe) {
-                            thrust();
-                        }
+                    if (gettingCloser() || getVelocity().length() < getAcceleration()*LINEAR_DAMP) {
+                        thrust();
                     }
                     //sync physics
                     syncPhysics();
@@ -216,14 +217,15 @@ public class Projectile extends Celestial {
             if (target.getState() == State.ALIVE) {
                 if (target.getCurrentSystem() == getCurrentSystem()) {
                     //make sure we have drag
-                    physics.setLinearDamping(Ship.NORMAL_DAMP);
-                    physics.setAngularDamping(Ship.ANGULAR_DAMP);
+                    physics.setLinearDamping(LINEAR_DAMP);
+                    physics.setAngularDamping(ANGULAR_DAMP);
                     /*
                      * Greedy algorithm
                      * Face the target and accelerate towards it.
                      */
-                    Vector3f dat = getSteeringData(target.getPhysicsLocation(), Vector3f.UNIT_Y);
-                    safe = grossPointNoseAtVector(dat, Ship.NAV_ANGLE_TOLERANCE);
+                    Vector3f dat = getSteeringData(target.getPhysicsLocation().add(target.getLinearVelocity().mult((float)tpf))
+                            , Vector3f.UNIT_Y);
+                    safe = grossPointNoseAtVector(dat, NAV_ANGLE_TOLERANCE);
                 } else {
                     setGuided(false);
                 }
@@ -267,8 +269,8 @@ public class Projectile extends Celestial {
             roll = (dat.z);
             //canAccel = false;
         } else {
-            //roll = (dat.z) / 100.0f;
-            roll = 0;
+            roll = (dat.z) / 50.0f;
+            //roll = 0;
         }
         return canAccel;
     }

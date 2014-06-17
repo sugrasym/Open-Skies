@@ -6,7 +6,7 @@ type=cannon
 #shell info
 shieldDamage=750
 hullDamage=400
-range=5000
+range=1500
 speed=0
 mass=0
 refire=0.35
@@ -22,7 +22,7 @@ variation=0.5
 texture=Effects/Trail/point.png
 emitterRate=10
 guided=true
-thrust=5
-turning=0.1
+thrust=25
+turning=0.01
 shotMass=0.05
 [/Weapon]
