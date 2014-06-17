@@ -28,7 +28,6 @@ import celestial.Celestial;
 import celestial.Explosion;
 import celestial.Jumphole;
 import celestial.Planet;
-import celestial.Projectile;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;

@@ -22,7 +22,7 @@ variation=0.5
 texture=Effects/Trail/point.png
 emitterRate=10
 guided=true
-accel=1
-turning=0.01
-shotMass=0.1
+thrust=5
+turning=0.1
+shotMass=0.05
 [/Weapon]

@@ -51,7 +51,7 @@ public class Weapon extends Equipment {
     private String texture = "Effects/Trail/point.png";
     private float emitterRate = 10;
     private boolean guided = false;
-    private float accel;
+    private float thrust;
     private float turning;
     private float shotMass;
 
@@ -130,11 +130,11 @@ public class Weapon extends Equipment {
                 guided = false;
             }
             
-            String rawAccel = relevant.getValue("accel");
-            if(rawAccel != null) {
-                accel = Float.parseFloat(rawAccel);
+            String rawThrust = relevant.getValue("thrust");
+            if(rawThrust != null) {
+                thrust = Float.parseFloat(rawThrust);
             } else {
-                accel = 0;
+                thrust = 0;
             }
             
             String rawTurning = relevant.getValue("turning");
@@ -210,7 +210,7 @@ public class Weapon extends Equipment {
             pro.setHost(host);
             pro.setOrigin(socket);
             //store guidance
-            pro.setAccel(accel);
+            pro.setThrust(thrust);
             pro.setTurning(turning);
             pro.setGuided(guided);
             //put projectile in system

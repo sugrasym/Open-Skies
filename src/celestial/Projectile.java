@@ -62,7 +62,7 @@ public class Projectile extends Celestial {
     //guidance
     private Celestial target;
     private boolean isGuided = false;
-    private float accel = 0;
+    private float thrust = 0;
     private float turning = 0;
     //internat steering
     float pitch;
@@ -154,12 +154,42 @@ public class Projectile extends Celestial {
         } else {
             //nope
             if (isGuided()) {
-                //update steering
-                seekTarget();
-                //apply changes
-                steer();
-                thrust();
+                if (physics != null) {
+                    //update steering
+                    boolean safe = seekTarget();
+                    //apply changes
+                    steer();
+                    System.out.println(gettingCloser() + " " + getVelocity().length());
+                    if (gettingCloser() || getVelocity().length() < getAcceleration()) {
+                        if (safe) {
+                            thrust();
+                        }
+                    }
+                    //sync physics
+                    syncPhysics();
+                } else {
+                    setState(State.DYING);
+                }
             }
+        }
+    }
+
+    protected boolean gettingCloser() {
+        if (target != null) {
+            float dt = (float) tpf;
+            Vector3f tp = target.getLocation();
+            Vector3f tp2 = target.getLocation().add(target.getVelocity().mult(dt));
+            Vector3f pp = getLocation();
+            Vector3f pp2 = getLocation().add(getVelocity().mult(dt));
+            float d1 = tp.distance(pp);
+            float d2 = tp2.distance(pp2);
+            if (d1 > d2) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
         }
     }
 
@@ -177,7 +207,7 @@ public class Projectile extends Celestial {
     protected void thrust() {
         //thrust
         Vector3f direction = physics.getPhysicsRotation().mult(Vector3f.UNIT_Z);
-        physics.applyCentralForce(direction.mult(accel * -1.0f));
+        physics.applyCentralForce(direction.mult(thrust * -1.0f));
     }
 
     protected boolean seekTarget() {
@@ -192,8 +222,8 @@ public class Projectile extends Celestial {
                      * Greedy algorithm
                      * Face the target and accelerate towards it.
                      */
-                    Vector3f dat = getSteeringData(target.getLocation(), Vector3f.UNIT_Y);
-                    grossPointNoseAtVector(dat, Ship.NAV_ANGLE_TOLERANCE);
+                    Vector3f dat = getSteeringData(target.getPhysicsLocation(), Vector3f.UNIT_Y);
+                    safe = grossPointNoseAtVector(dat, Ship.NAV_ANGLE_TOLERANCE);
                 } else {
                     setGuided(false);
                 }
@@ -204,6 +234,18 @@ public class Projectile extends Celestial {
             setGuided(false);
         }
         return safe;
+    }
+
+    public void syncPhysics() {
+        if (physics != null) {
+            setLocation(physics.getPhysicsLocation());
+            setRotation(physics.getPhysicsRotation());
+            setVelocity(physics.getLinearVelocity());
+        }
+    }
+
+    public float getAcceleration() {
+        return thrust / getMass();
     }
 
     private boolean grossPointNoseAtVector(Vector3f dat, float tolerance) {
@@ -428,12 +470,12 @@ public class Projectile extends Celestial {
         this.target = target;
     }
 
-    public float getAccel() {
-        return accel;
+    public float getThrust() {
+        return thrust;
     }
 
-    public void setAccel(float accel) {
-        this.accel = accel;
+    public void setThrust(float accel) {
+        this.thrust = accel;
     }
 
     public float getTurning() {
