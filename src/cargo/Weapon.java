@@ -54,6 +54,7 @@ public class Weapon extends Equipment {
     private float thrust;
     private float turning;
     private float shotMass;
+    private float delay;
 
     public Weapon(String name) {
         super(name);
@@ -122,33 +123,40 @@ public class Weapon extends Equipment {
             setVariation(Float.parseFloat(relevant.getValue("variation")));
             setTexture(relevant.getValue("texture"));
             setEmitterRate(Float.parseFloat(relevant.getValue("emitterRate")));
-            
+
             String rawGuided = relevant.getValue("guided");
-            if(rawGuided != null) {
+            if (rawGuided != null) {
                 guided = Boolean.parseBoolean(rawGuided);
             } else {
                 guided = false;
             }
-            
+
             String rawThrust = relevant.getValue("thrust");
-            if(rawThrust != null) {
+            if (rawThrust != null) {
                 thrust = Float.parseFloat(rawThrust);
             } else {
                 thrust = 0;
             }
-            
+
             String rawTurning = relevant.getValue("turning");
-            if(rawTurning != null) {
+            if (rawTurning != null) {
                 turning = Float.parseFloat(rawTurning);
             } else {
                 turning = 0;
             }
-            
+
             String rawShotMass = relevant.getValue("shotMass");
-            if(rawShotMass != null) {
+            if (rawShotMass != null) {
                 shotMass = Float.parseFloat(rawShotMass);
             } else {
                 shotMass = 0.00000001f;
+            }
+
+            String rawDelay = relevant.getValue("delay");
+            if (rawDelay != null) {
+                delay = Float.parseFloat(rawDelay);
+            } else {
+                delay = 0;
             }
         } else {
             System.out.println("Error: The item " + getName() + " does not exist in WEAPONS.txt");
@@ -161,7 +169,9 @@ public class Weapon extends Equipment {
             setActivationTimer(0); //restart cooldown
             //determine if OOS or not
             if (host.getCurrentSystem() == host.getCurrentSystem().getUniverse().getPlayerShip().getCurrentSystem()) {
-                fire(target);
+                if (!guided || (host.getTarget() != null)) {
+                    fire(target);
+                }
             } else {
                 oosFire(target);
             }
@@ -206,6 +216,7 @@ public class Weapon extends Equipment {
             pro.setLocation(loc);
             pro.setRotation(rot);
             pro.setVelocity(vel);
+            pro.setDelay(delay);
             //store host
             pro.setHost(host);
             pro.setOrigin(socket);

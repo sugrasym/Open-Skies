@@ -41,7 +41,7 @@ public class Projectile extends Celestial {
 
     public static final float LINEAR_DAMP = 0.99f;
     public static final float ANGULAR_DAMP = 0.99f;
-    public static final float NAV_ANGLE_TOLERANCE = 0.008f;
+    public static final float NAV_ANGLE_TOLERANCE = 0.016f;
     //particle effect
 
     transient ParticleEmitter emitter;
@@ -63,6 +63,7 @@ public class Projectile extends Celestial {
     private Vector3f pVel;
     //lifetime counter
     private float diff = 0;
+    private float life = 0;
     //guidance
     private Celestial target;
     private boolean isGuided = false;
@@ -76,6 +77,8 @@ public class Projectile extends Celestial {
     private Ship host;
     private Hardpoint origin;
     private boolean initialDistanceCheck = true;
+    //collission testing delay
+    private float delay;
 
     public Projectile(Universe universe, Celestial target, String name, float mass) {
         super(mass, universe); //mass cannot be 0 or it is a static spatial in bullet physics
@@ -145,8 +148,8 @@ public class Projectile extends Celestial {
      */
     @Override
     protected void alive() {
-        //check distance from origin
-        if (diff > 0.75f && initialDistanceCheck) {
+        //check distance from origin and test delay
+        if (diff > (0.25 + size) && life > delay && initialDistanceCheck) {
             //disable further testing
             initialDistanceCheck = false;
             //so it can hit everything
@@ -155,28 +158,35 @@ public class Projectile extends Celestial {
         }
         //increment lifespan
         diff += getVelocity().length() * tpf;
+        life += tpf;
         //has the projectile exceeded its max range?
         if (diff >= range) {
             //yep
             setState(State.DYING);
         } else {
             //nope
-            if (isGuided()) {
-                if (physics != null) {
-                    //update steering
-                    boolean safe = seekTarget();
-                    //apply changes
-                    steer();
-                    if (!gettingCloser(2) && safe) {
-                        thrust();
-                    } else if (!gettingCloser(1)) {
-                        reverseThrust();
+            if (isGuided() && life > delay) {
+                if (physics != null && target != null) {
+                    if (target.getState() == State.ALIVE) {
+                        //update steering
+                        boolean safe = seekTarget();
+                        //apply changes
+                        steer();
+                        if (!gettingCloser(2) && safe) {
+                            thrust(1);
+                        } else if (!gettingCloser(1)) {
+                            thrust(0.5f);
+                        }
+                        //sync physics
+                        syncPhysics();
+                    } else {
+                        thrust(1);
                     }
-                    //sync physics
-                    syncPhysics();
                 } else {
                     setState(State.DYING);
                 }
+            } else {
+                thrust(0.15f);
             }
         }
     }
@@ -211,16 +221,16 @@ public class Projectile extends Celestial {
         roll = 0;
     }
 
-    protected void thrust() {
+    protected void thrust(float percent) {
         //thrust
         Vector3f direction = physics.getPhysicsRotation().mult(Vector3f.UNIT_Z);
-        physics.applyCentralForce(direction.mult(thrust * -1.0f));
+        physics.applyCentralForce(direction.mult(thrust * -percent));
     }
 
-    protected void reverseThrust() {
+    protected void reverseThrust(float percent) {
         //thrust
         Vector3f direction = physics.getPhysicsRotation().mult(Vector3f.UNIT_Z);
-        physics.applyCentralForce(direction.mult(thrust * 1.0f));
+        physics.applyCentralForce(direction.mult(thrust * percent));
     }
 
     protected boolean seekTarget() {
@@ -497,5 +507,19 @@ public class Projectile extends Celestial {
 
     public void setTurning(float turning) {
         this.turning = turning;
+    }
+
+    /**
+     * @return the delay
+     */
+    public float getDelay() {
+        return delay;
+    }
+
+    /**
+     * @param delay the delay to set
+     */
+    public void setDelay(float delay) {
+        this.delay = delay;
     }
 }

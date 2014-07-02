@@ -22,7 +22,8 @@ variation=0.5
 texture=Effects/Trail/point.png
 emitterRate=100
 guided=true
-thrust=25
+thrust=75
 turning=0.01
 shotMass=0.05
+delay=1
 [/Weapon]
