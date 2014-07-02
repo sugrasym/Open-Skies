@@ -104,7 +104,11 @@ public class Projectile extends Celestial {
         emitter.setHighLife(lowLife);
         emitter.getParticleInfluencer().setVelocityVariation(variation);
         emitter.getParticleInfluencer().setInitialVelocity(pVel);
-        emitter.setInWorldSpace(false);
+        if (!isGuided) {
+            emitter.setInWorldSpace(false);
+        } else {
+            emitter.setInWorldSpace(true);
+        }
         emitter.setSelectRandomImage(true);
         emitter.setEnabled(true);
         emitter.setParticlesPerSec(emitterRate);
@@ -142,7 +146,7 @@ public class Projectile extends Celestial {
     @Override
     protected void alive() {
         //check distance from origin
-        if (diff > 0.25f && initialDistanceCheck) {
+        if (diff > 0.75f && initialDistanceCheck) {
             //disable further testing
             initialDistanceCheck = false;
             //so it can hit everything
@@ -163,8 +167,10 @@ public class Projectile extends Celestial {
                     boolean safe = seekTarget();
                     //apply changes
                     steer();
-                    if (gettingCloser() || getVelocity().length() < getAcceleration()*LINEAR_DAMP) {
+                    if (!gettingCloser(2) && safe) {
                         thrust();
+                    } else if (!gettingCloser(1)) {
+                        reverseThrust();
                     }
                     //sync physics
                     syncPhysics();
@@ -175,7 +181,7 @@ public class Projectile extends Celestial {
         }
     }
 
-    protected boolean gettingCloser() {
+    protected boolean gettingCloser(double tolerance) {
         if (target != null) {
             float dt = (float) tpf;
             Vector3f tp = target.getLocation();
@@ -184,7 +190,7 @@ public class Projectile extends Celestial {
             Vector3f pp2 = getLocation().add(getVelocity().mult(dt));
             float d1 = tp.distance(pp);
             float d2 = tp2.distance(pp2);
-            if (d1 > d2) {
+            if (d1 > (d2 * tolerance)) {
                 return true;
             } else {
                 return false;
@@ -211,6 +217,12 @@ public class Projectile extends Celestial {
         physics.applyCentralForce(direction.mult(thrust * -1.0f));
     }
 
+    protected void reverseThrust() {
+        //thrust
+        Vector3f direction = physics.getPhysicsRotation().mult(Vector3f.UNIT_Z);
+        physics.applyCentralForce(direction.mult(thrust * 1.0f));
+    }
+
     protected boolean seekTarget() {
         boolean safe = false;
         if (target != null) {
@@ -223,8 +235,7 @@ public class Projectile extends Celestial {
                      * Greedy algorithm
                      * Face the target and accelerate towards it.
                      */
-                    Vector3f dat = getSteeringData(target.getPhysicsLocation().add(target.getLinearVelocity().mult((float)tpf))
-                            , Vector3f.UNIT_Y);
+                    Vector3f dat = getSteeringData(target.getPhysicsLocation().add(target.getLinearVelocity().mult((float) tpf)), Vector3f.UNIT_Y);
                     safe = grossPointNoseAtVector(dat, NAV_ANGLE_TOLERANCE);
                 } else {
                     setGuided(false);
