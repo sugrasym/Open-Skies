@@ -18,6 +18,12 @@ E - Roll right
 Up Arrow - Pitch down
 Down Arrow - Pitch up
 
+Weapons
+--------------------------------------------------------------------------------
+SPACE - Fire active weapons
+J - Toggle Missiles / Batteries
+L - Toggle Cannons / Turrets
+
 User Interface
 --------------------------------------------------------------------------------
 1 - Toggle Equipment Window

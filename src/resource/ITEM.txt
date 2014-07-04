@@ -20,7 +20,20 @@ description=Consumer goods are household items that are relatively easy to produ
 ################################################################################
 
 [Item]
-name=Ka Ka Ka
+name=Test Missile
+type=missile
+volume=1
+mass=10
+HP=100
+minPrice=500
+maxPrice=750
+group=weapon
+store=1000
+description=Devtest weapon
+[/Item]
+
+[Item]
+name=Test Cannon
 type=cannon
 volume=1
 mass=10

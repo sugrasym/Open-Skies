@@ -2345,6 +2345,22 @@ public class Ship extends Celestial {
             Logger.getLogger(Ship.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void toggleCannons() {
+        for(int a = 0; a < hardpoints.size(); a++) {
+            if (hardpoints.get(a).getType().equals(Item.TYPE_CANNON) || hardpoints.get(a).getType().equals(Item.TYPE_TURRET)) {
+                hardpoints.get(a).setEnabled(!hardpoints.get(a).isEnabled());
+            }
+        }
+    }
+    
+    public void toggleMissiles() {
+        for(int a = 0; a < hardpoints.size(); a++) {
+            if (hardpoints.get(a).getType().equals(Item.TYPE_MISSILE) || hardpoints.get(a).getType().equals(Item.TYPE_BATTERY)) {
+                hardpoints.get(a).setEnabled(!hardpoints.get(a).isEnabled());
+            }
+        }
+    }
 
     public void fireActiveTurrets(Entity target) {
         for (int a = 0; a < hardpoints.size(); a++) {

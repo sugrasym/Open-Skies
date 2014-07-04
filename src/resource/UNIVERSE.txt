@@ -7,7 +7,7 @@ y=0
 z=-99630
 cash=50000
 cargo=Jumpdrive~1
-install=Ka Ka Ka/Ka Ka Ka
+install=Test Missile/Test Missile/Test Cannon/Test Cannon
 [/NewGame]
 
 [Ship]

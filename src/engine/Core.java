@@ -399,6 +399,16 @@ public class Core {
                         universe.getPlayerShip().setPitch(0);
                     }
                 }
+                if (name.equals("KEY_J")) {
+                    if (keyPressed) {
+                        universe.getPlayerShip().toggleMissiles();
+                    }
+                }
+                if (name.equals("KEY_K")) {
+                    if (keyPressed) {
+                        universe.getPlayerShip().toggleCannons();
+                    }
+                }
             } else {
                 //docked only windows
                 if (keyPressed) {

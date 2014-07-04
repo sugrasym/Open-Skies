@@ -1,15 +1,15 @@
 ########SPECIAL TEST WEAPONS########
 [Weapon]
 #weapon info
-name=Ka Ka Ka
-type=cannon
+name=Test Missile
+type=missile
 #shell info
 shieldDamage=750
 hullDamage=400
 range=1500
 speed=0
 mass=0
-refire=0.35
+refire=10.5
 #graphics info
 size=0.5
 startColor=0,1,0,1
@@ -26,4 +26,29 @@ thrust=75
 turning=0.01
 shotMass=0.05
 delay=1
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Test Cannon
+type=cannon
+#shell info
+shieldDamage=300
+hullDamage=150
+range=500
+speed=300
+mass=0
+refire=0.35
+#graphics info
+size=0.75
+startColor=0,1,1,1
+endColor=1,0,1,0.1
+pVel=1,1,1
+highLife=1
+lowLife=0.1
+numParticles=10
+variation=0.3
+texture=Effects/Trail/point.png
+emitterRate=10
+delay=0.1
 [/Weapon]
