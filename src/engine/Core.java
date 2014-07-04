@@ -531,7 +531,7 @@ public class Core {
             }
             //update god
             if (godSafe) {
-                //god.periodicUpdate();
+                god.periodicUpdate();
             }
             //see if we need to reset the camera
             if (universe.getPlayerShip() != planetAppState.getAstralCamera().getTarget()) {

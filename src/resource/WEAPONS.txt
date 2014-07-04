@@ -20,6 +20,7 @@ lowLife=0.1
 numParticles=100
 variation=0.5
 texture=Effects/Trail/point.png
+sound=Audio/Effects/Weapons/Test Missile.wav
 emitterRate=100
 guided=true
 thrust=75
