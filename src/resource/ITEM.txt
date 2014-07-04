@@ -49,6 +49,19 @@ description=Devtest weapon
 #Ammunition
 ################################################################################
 
+[Item]
+name=Test Missile Ammunition
+type=ammo
+volume=1
+mass=0.1
+HP=100
+minPrice=200
+maxPrice=675
+group=weapon
+store=1000
+description=Ammo for devtest weapon
+[/Item]
+
 ################################################################################
 #Ships
 ################################################################################

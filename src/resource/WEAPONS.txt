@@ -26,6 +26,7 @@ thrust=75
 turning=0.01
 shotMass=0.05
 delay=1
+ammo=Test Missile Ammunition
 [/Weapon]
 
 [Weapon]

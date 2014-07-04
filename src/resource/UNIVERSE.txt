@@ -6,7 +6,7 @@ x=16694
 y=0
 z=-99630
 cash=50000
-cargo=Jumpdrive~1
+cargo=Jumpdrive~1/Test Missile Ammunition~12
 install=Test Missile/Test Missile/Test Cannon/Test Cannon
 [/NewGame]
 
@@ -19,7 +19,7 @@ y=0
 z=-99830
 faction=Player
 cargo=Jumpdrive~1
-install=Ka Ka Ka/Ka Ka Ka
+install=Test Missile/Test Missile/Test Cannon/Test Cannon
 [/Ship]
 
 [Ship]
@@ -31,7 +31,7 @@ y=100
 z=-99830
 faction=Player
 cargo=Jumpdrive~1
-install=Ka Ka Ka/Ka Ka Ka
+install=Test Missile/Test Missile/Test Cannon/Test Cannon
 [/Ship]
 
 [System]

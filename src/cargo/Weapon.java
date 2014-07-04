@@ -55,6 +55,7 @@ public class Weapon extends Equipment {
     private float turning;
     private float shotMass;
     private float delay;
+    private Item ammo;
 
     public Weapon(String name) {
         super(name);
@@ -68,7 +69,7 @@ public class Weapon extends Equipment {
         Parser.Term relevant = null;
         for (int a = 0; a < terms.size(); a++) {
             String termName = terms.get(a).getValue("name");
-            if (termName.matches(getName())) {
+            if (termName.equals(getName())) {
                 //get the stats we want
                 relevant = terms.get(a);
                 //and end
@@ -158,6 +159,11 @@ public class Weapon extends Equipment {
             } else {
                 delay = 0;
             }
+
+            String rawAmmo = relevant.getValue("ammo");
+            if (rawAmmo != null) {
+                ammo = new Item(rawAmmo);
+            }
         } else {
             System.out.println("Error: The item " + getName() + " does not exist in WEAPONS.txt");
         }
@@ -165,15 +171,48 @@ public class Weapon extends Equipment {
 
     @Override
     public void activate(Entity target) {
-        if (getCoolDown() <= getActivationTimer() && enabled) {
-            setActivationTimer(0); //restart cooldown
-            //determine if OOS or not
-            if (host.getCurrentSystem() == host.getCurrentSystem().getUniverse().getPlayerShip().getCurrentSystem()) {
-                if (!guided || (host.getTarget() != null)) {
+        if (getCoolDown() <= getActivationTimer() && enabled && hasAmmo()) {
+            if (!guided || (host.getTarget() != null)) {
+                setActivationTimer(0); //restart cooldown
+                //determine if OOS or not
+                if (host.getCurrentSystem() == host.getCurrentSystem().getUniverse().getPlayerShip().getCurrentSystem()) {
                     fire(target);
+                } else {
+                    oosFire(target);
                 }
-            } else {
-                oosFire(target);
+            }
+        }
+    }
+
+    public boolean hasAmmo() {
+        if (ammo != null) {
+            if (host.getNumInCargoBay(ammo) > 0) {
+                //and return true;
+                return true;
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void useAmmo() {
+        if (ammo != null) {
+            ArrayList<Item> cargo = host.getCargoBay();
+            for (int a = 0; a < cargo.size(); a++) {
+                Item tmp = cargo.get(a);
+                if (tmp.getName().equals(ammo.getName())) {
+                    if (tmp.getGroup().equals(ammo.getGroup())) {
+                        if (tmp.getType().equals(ammo.getType())) {
+                            if (tmp.getQuantity() > 1) {
+                                tmp.setQuantity(tmp.getQuantity() - 1);
+                            } else {
+                                cargo.remove(tmp);
+                            }
+                            break;
+                        }
+                    }
+                }
             }
         }
     }
@@ -226,6 +265,8 @@ public class Weapon extends Equipment {
             pro.setGuided(guided);
             //put projectile in system
             host.getCurrentSystem().putEntityInSystem(pro);
+            //use ammo
+            useAmmo();
         }
     }
 
@@ -342,5 +383,19 @@ public class Weapon extends Equipment {
 
     public void setEmitterRate(float emitterRate) {
         this.emitterRate = emitterRate;
+    }
+    
+    @Override
+    public String toString() {
+        String ret = "";
+        if (ammo == null) {
+            ret = super.toString();
+        } else if (host != null) {
+            ret = super.toString();
+            ret += " <" + host.getNumInCargoBay(ammo) + ">";
+        } else {
+            ret = super.toString();
+        }
+        return ret;
     }
 }
