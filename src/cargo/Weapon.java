@@ -20,6 +20,8 @@ package cargo;
 
 import celestial.Projectile;
 import celestial.Ship.Ship;
+import com.jme3.asset.AssetManager;
+import com.jme3.audio.AudioNode;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
@@ -56,6 +58,8 @@ public class Weapon extends Equipment {
     private float shotMass;
     private float delay;
     private Item ammo;
+    private String soundPath;
+    private transient AudioNode sound;
 
     public Weapon(String name) {
         super(name);
@@ -164,8 +168,33 @@ public class Weapon extends Equipment {
             if (rawAmmo != null) {
                 ammo = new Item(rawAmmo);
             }
+
+            String rawSound = relevant.getValue("sound");
+            if (rawSound != null) {
+                soundPath = rawSound;
+            }
         } else {
             System.out.println("Error: The item " + getName() + " does not exist in WEAPONS.txt");
+        }
+    }
+
+    @Override
+    public void construct(AssetManager assets) {
+        if (soundPath != null) {
+            sound = new AudioNode(assets, soundPath);
+        }
+    }
+
+    @Override
+    public void deconstruct() {
+        killSound();
+    }
+
+    @Override
+    public void killSound() {
+        if (sound != null) {
+            sound.stop();
+            sound = null;
         }
     }
 
@@ -177,9 +206,19 @@ public class Weapon extends Equipment {
                 //determine if OOS or not
                 if (host.getCurrentSystem() == host.getCurrentSystem().getUniverse().getPlayerShip().getCurrentSystem()) {
                     fire(target);
+                    playSound();
                 } else {
                     oosFire(target);
                 }
+            }
+        }
+    }
+
+    private void playSound() {
+        if (sound != null) {
+            if (!host.getSoundQue().contains(sound)) {
+                sound.setLocalTranslation(host.getLocation().clone());
+                host.getSoundQue().add(sound);
             }
         }
     }
@@ -384,7 +423,7 @@ public class Weapon extends Equipment {
     public void setEmitterRate(float emitterRate) {
         this.emitterRate = emitterRate;
     }
-    
+
     @Override
     public String toString() {
         String ret = "";

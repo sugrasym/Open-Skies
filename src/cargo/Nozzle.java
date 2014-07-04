@@ -123,7 +123,7 @@ public class Nozzle extends Hardpoint {
     }
 
     @Override
-    public void deconstruct(AssetManager assets) {
+    public void deconstruct() {
         emitter = null;
         node = null;
     }

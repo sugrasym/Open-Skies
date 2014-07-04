@@ -29,6 +29,7 @@ import celestial.Explosion;
 import celestial.Jumphole;
 import celestial.Planet;
 import com.jme3.asset.AssetManager;
+import com.jme3.audio.AudioNode;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
@@ -183,6 +184,9 @@ public class Ship extends Celestial {
     private Ship lastBlow = this;
     //RNG
     Random rnd = new Random();
+    //audio
+    private transient ArrayList<AudioNode> soundQue = new ArrayList<>();
+    private AudioNode engineNoise;
 
     public Ship(Universe universe, Term type, String faction) {
         super(Float.parseFloat(type.getValue("mass")), universe);
@@ -264,6 +268,8 @@ public class Ship extends Celestial {
         //construct hardpoints
         constructHardpoints(assets);
         constructNozzles(assets);
+        //construct sound effects
+        constructSounds(assets);
     }
 
     @Override
@@ -271,6 +277,7 @@ public class Ship extends Celestial {
         spatial = null;
         mat = null;
         physics = null;
+        killSounds();
     }
 
     protected void loadSpatial(AssetManager assets, String name) {
@@ -331,6 +338,15 @@ public class Ship extends Celestial {
             nozzles.get(a).construct(assets);
             //store node with spatial
             center.attachChild(nozzles.get(a).getNode());
+        }
+    }
+    
+    protected void constructSounds(AssetManager assets) {
+        //setup engine noise
+        engineNoise = new AudioNode(assets, "Audio/Effects/engine loop.wav");
+        //setup hardpoint sounds
+        for(int a = 0; a < hardpoints.size(); a++) {
+            hardpoints.get(a).construct(assets);
         }
     }
 
@@ -1779,12 +1795,16 @@ public class Ship extends Celestial {
             dropExplosion();
             setState(State.DEAD);
         }
+        //stop any sound effects
+        killSounds();
     }
 
     protected void dead() {
         if (physicsSafe()) {
             //nothing to do really
         }
+        //for good measure
+        killSounds();
     }
 
     protected void updateCenter() {
@@ -3323,5 +3343,30 @@ public class Ship extends Celestial {
 
     public void setWorkingWare(Item workingWare) {
         this.workingWare = workingWare;
+    }
+    
+    /*
+     * Sound Effects
+     */
+    
+    public ArrayList<AudioNode> getSoundQue() {
+        return soundQue;
+    }
+    
+    protected void killSounds() {
+        //stop sounds
+        for(int a = 0; a < getSoundQue().size(); a++) {
+            getSoundQue().get(a).stop();
+        }
+        getSoundQue().clear();
+        //get rid of individual sound effects
+        if(engineNoise != null) {
+            engineNoise.stop();
+            engineNoise = null;
+        }
+        //get rid of hardpoint sounds
+        for(int a = 0; a < hardpoints.size(); a++) {
+            hardpoints.get(a).deconstruct();
+        }
     }
 }

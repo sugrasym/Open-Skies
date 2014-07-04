@@ -32,6 +32,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Node;
 import com.jme3.system.AppSettings;
+import com.jme3.audio.Listener;
 import entity.Entity;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
@@ -82,12 +83,15 @@ public class Core {
     AppSettings settings;
     AssetManager assets;
     InputManager input;
+    Listener listener;
     private float tpf;
     //render safety
     boolean hudRendering = false;
     boolean hasFocus = true;
 
-    public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState, AssetManager assets, PlanetAppState planetAppState, InputManager input, AppSettings settings) {
+    public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState, 
+            AssetManager assets, PlanetAppState planetAppState, 
+            InputManager input, AppSettings settings, Listener listener) {
         this.rootNode = rootNode;
         this.guiNode = guiNode;
         this.bulletAppState = bulletAppState;
@@ -95,6 +99,7 @@ public class Core {
         this.planetAppState = planetAppState;
         this.input = input;
         this.settings = settings;
+        this.listener = listener;
         //initialize
         init();
     }
@@ -526,13 +531,15 @@ public class Core {
             }
             //update god
             if (godSafe) {
-                god.periodicUpdate();
+                //god.periodicUpdate();
             }
             //see if we need to reset the camera
             if (universe.getPlayerShip() != planetAppState.getAstralCamera().getTarget()) {
                 resetCamera();
                 resetHUD();
             }
+            //update sound
+            updateAudio();
         }
         //store tpf
         this.tpf = tpf;
@@ -565,6 +572,26 @@ public class Core {
                 t.start();
             } else {
                 //don't do any gui rendering without focus and do not collect!
+            }
+        }
+    }
+    
+    private void updateAudio() {
+        //center audio listener on player
+        listener.setLocation(universe.getPlayerShip().getLocation());
+        //play sound effects for ships
+        SolarSystem playerSystem = universe.getPlayerShip().getCurrentSystem();
+        ArrayList<Entity> celestials = playerSystem.getCelestials();
+        for(int a = 0; a < celestials.size(); a++) {
+            if(celestials.get(a) instanceof Ship) {
+                Ship tmp = (Ship) celestials.get(a);
+                for(int b = 0; b < tmp.getSoundQue().size(); b++) {
+                    //I'm not permitting looping sounds to be played by ships using the que
+                    tmp.getSoundQue().get(b).setLooping(false);
+                    //play the sound and pop it off
+                    tmp.getSoundQue().get(b).play();
+                    tmp.getSoundQue().remove(b);
+                }
             }
         }
     }

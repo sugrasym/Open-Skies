@@ -50,6 +50,7 @@ lowLife=0.1
 numParticles=10
 variation=0.3
 texture=Effects/Trail/point.png
+sound=Audio/Effects/Weapons/Test Cannon.wav
 emitterRate=10
 delay=0.1
 [/Weapon]

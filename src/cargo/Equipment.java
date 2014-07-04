@@ -19,6 +19,7 @@
 package cargo;
 
 import celestial.Ship.Ship;
+import com.jme3.asset.AssetManager;
 import entity.Entity;
 import java.io.Serializable;
 
@@ -129,5 +130,17 @@ public class Equipment extends Item implements Serializable {
 
     public void setSocket(Hardpoint socket) {
         this.socket = socket;
+    }
+    
+    public void construct(AssetManager assets) {
+        //TODO
+    }
+    
+    public void deconstruct() {
+        killSound();
+    }
+    
+    public void killSound() {
+        //TODO
     }
 }
