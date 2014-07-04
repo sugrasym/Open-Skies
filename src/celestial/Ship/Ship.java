@@ -30,6 +30,7 @@ import celestial.Jumphole;
 import celestial.Planet;
 import com.jme3.asset.AssetManager;
 import com.jme3.audio.AudioNode;
+import com.jme3.audio.AudioSource.Status;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
@@ -340,12 +341,12 @@ public class Ship extends Celestial {
             center.attachChild(nozzles.get(a).getNode());
         }
     }
-    
+
     protected void constructSounds(AssetManager assets) {
         //setup engine noise
         engineNoise = new AudioNode(assets, "Audio/Effects/engine loop.wav");
         //setup hardpoint sounds
-        for(int a = 0; a < hardpoints.size(); a++) {
+        for (int a = 0; a < hardpoints.size(); a++) {
             hardpoints.get(a).construct(assets);
         }
     }
@@ -1787,6 +1788,7 @@ public class Ship extends Celestial {
             updateTorque();
             updateNozzles();
             syncPhysics();
+            centerEngineNoise();
         }
     }
 
@@ -1828,6 +1830,8 @@ public class Ship extends Celestial {
             fireRearThrusters(throttle);
         } else if (throttle < 0) {
             fireForwardThrusters(Math.abs(throttle));
+        } else {
+            stopEngineNoise();
         }
         /*
          * Without fuel you won't have any inertial engines so it makes sense
@@ -1952,21 +1956,27 @@ public class Ship extends Celestial {
     }
 
     public void fireRearThrusters(float percent) {
-        applyThrust(-getThrust() * percent);
+        if (applyThrust(-getThrust() * percent)) {
+            playEngineNoise();
+        }
     }
 
     public void fireForwardThrusters(float percent) {
-        applyThrust(getThrust() * percent);
+        if (applyThrust(getThrust() * percent)) {
+            playEngineNoise();
+        }
     }
 
-    public void applyThrust(float force) {
+    public boolean applyThrust(float force) {
         if (engine != EngineMode.NEWTON) {
             if (sufficientFuel(force)) {
                 Vector3f direction = physics.getPhysicsRotation().mult(Vector3f.UNIT_Z);
                 physics.applyCentralForce(direction.mult(force));
                 useFuel(force);
+                return true;
             }
         }
+        return false;
     }
 
     /*
@@ -2365,17 +2375,17 @@ public class Ship extends Celestial {
             Logger.getLogger(Ship.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void toggleCannons() {
-        for(int a = 0; a < hardpoints.size(); a++) {
+        for (int a = 0; a < hardpoints.size(); a++) {
             if (hardpoints.get(a).getType().equals(Item.TYPE_CANNON) || hardpoints.get(a).getType().equals(Item.TYPE_TURRET)) {
                 hardpoints.get(a).setEnabled(!hardpoints.get(a).isEnabled());
             }
         }
     }
-    
+
     public void toggleMissiles() {
-        for(int a = 0; a < hardpoints.size(); a++) {
+        for (int a = 0; a < hardpoints.size(); a++) {
             if (hardpoints.get(a).getType().equals(Item.TYPE_MISSILE) || hardpoints.get(a).getType().equals(Item.TYPE_BATTERY)) {
                 hardpoints.get(a).setEnabled(!hardpoints.get(a).isEnabled());
             }
@@ -3344,7 +3354,7 @@ public class Ship extends Celestial {
     public void setWorkingWare(Item workingWare) {
         this.workingWare = workingWare;
     }
-    
+
     /*
      * Sound Effects
      */
@@ -3352,21 +3362,43 @@ public class Ship extends Celestial {
     public ArrayList<AudioNode> getSoundQue() {
         return soundQue;
     }
-    
+
     protected void killSounds() {
         //stop sounds
-        for(int a = 0; a < getSoundQue().size(); a++) {
+        for (int a = 0; a < getSoundQue().size(); a++) {
             getSoundQue().get(a).stop();
         }
         getSoundQue().clear();
         //get rid of individual sound effects
-        if(engineNoise != null) {
+        if (engineNoise != null) {
             engineNoise.stop();
             engineNoise = null;
         }
         //get rid of hardpoint sounds
-        for(int a = 0; a < hardpoints.size(); a++) {
+        for (int a = 0; a < hardpoints.size(); a++) {
             hardpoints.get(a).deconstruct();
+        }
+    }
+
+    protected void playEngineNoise() {
+        if (engineNoise != null) {
+            engineNoise.setLooping(true);
+            if (engineNoise.getStatus() != Status.Playing) {
+                engineNoise.play();
+            }
+        }
+    }
+
+    protected void stopEngineNoise() {
+        if (engineNoise != null) {
+            engineNoise.setLooping(false);
+            engineNoise.stop();
+        }
+    }
+
+    protected void centerEngineNoise() {
+        if (engineNoise != null) {
+            engineNoise.setLocalTranslation(getLocation());
         }
     }
 }
