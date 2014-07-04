@@ -482,4 +482,22 @@ public class Station extends Ship {
     public void setEconomyExcempt(boolean economyExcempt) {
         this.economyExempt = economyExcempt;
     }
+    
+    /*
+     * Utility and reporting
+     */
+    @Override
+    public String toString() {
+        String ret = "";
+        if (!isPlayerFaction()) {
+            ret = getName();
+        } else {
+            if (this.getCurrentSystem().getUniverse().getPlayerShip().getCurrentSystem() == getCurrentSystem()) {
+                ret = getName();
+            } else {
+                ret = getName() + ", " + getCurrentSystem().getName();
+            }
+        }
+        return ret;
+    }
 }

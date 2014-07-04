@@ -331,28 +331,32 @@ public class HUD {
             SolarSystem system = universe.getPlayerShip().getCurrentSystem();
             //get a list of ships in that system
             ArrayList<Entity> ships = new ArrayList(system.getShipList());
+            ArrayList<Entity> stations = new ArrayList(system.getStationList());
+            ArrayList<Entity> combinedList = new ArrayList<>();
+            combinedList.addAll(ships);
+            combinedList.addAll(stations);
             //remove anything from this list we already have markers for
             for (int a = 0; a < markers.size(); a++) {
-                ships.remove(markers.get(a).getTarget());
+                combinedList.remove(markers.get(a).getTarget());
             }
             //remove anything not in sensor range
-            for (int a = 0; a < ships.size(); a++) {
-                float dist = ships.get(a).getLocation().distance(universe.getPlayerShip().getLocation());
+            for (int a = 0; a < combinedList.size(); a++) {
+                float dist = combinedList.get(a).getLocation().distance(universe.getPlayerShip().getLocation());
                 if (dist <= universe.getPlayerShip().getSensor()) {
                     //safe
                 } else {
-                    ships.remove(ships.get(a));
+                    combinedList.remove(combinedList.get(a));
                 }
             }
             //is there anything new to add?
-            if (ships.size() > 0) {
+            if (combinedList.size() > 0) {
                 //add it
-                for (int a = 0; a < ships.size(); a++) {
+                for (int a = 0; a < combinedList.size(); a++) {
                     //make sure it isn't the player ship
-                    if (ships.get(a) != universe.getPlayerShip()) {
-                        float dist = ships.get(a).getLocation().distance(universe.getPlayerShip().getLocation());
+                    if (combinedList.get(a) != universe.getPlayerShip()) {
+                        float dist = combinedList.get(a).getLocation().distance(universe.getPlayerShip().getLocation());
                         if (dist < universe.getPlayerShip().getSensor()) {
-                            HudMarker m = new HudMarker(assets, camera, ships.get(a), 50, 50);
+                            HudMarker m = new HudMarker(assets, camera, combinedList.get(a), 50, 50);
                             markers.add(m);
                             m.setVisible(true);
                             m.add(guiNode);

@@ -18,7 +18,7 @@ x=16794
 y=0
 z=-99830
 faction=Player
-cargo=Jumpdrive~1
+cargo=Jumpdrive~1/Test Missile Ammunition~12
 install=Test Missile/Test Missile/Test Cannon/Test Cannon
 [/Ship]
 
@@ -30,7 +30,7 @@ x=16794
 y=100
 z=-99830
 faction=Player
-cargo=Jumpdrive~1
+cargo=Jumpdrive~1/Test Missile Ammunition~12
 install=Test Missile/Test Missile/Test Cannon/Test Cannon
 [/Ship]
 
