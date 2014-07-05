@@ -89,8 +89,8 @@ public class Core {
     boolean hudRendering = false;
     boolean hasFocus = true;
 
-    public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState, 
-            AssetManager assets, PlanetAppState planetAppState, 
+    public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState,
+            AssetManager assets, PlanetAppState planetAppState,
             InputManager input, AppSettings settings, Listener listener) {
         this.rootNode = rootNode;
         this.guiNode = guiNode;
@@ -531,7 +531,7 @@ public class Core {
             }
             //update god
             if (godSafe) {
-                god.periodicUpdate();
+                //od.periodicUpdate();
             }
             //see if we need to reset the camera
             if (universe.getPlayerShip() != planetAppState.getAstralCamera().getTarget()) {
@@ -575,22 +575,31 @@ public class Core {
             }
         }
     }
-    
+
     private void updateAudio() {
         //center audio listener on player
         listener.setLocation(universe.getPlayerShip().getLocation());
         //play sound effects for ships
         SolarSystem playerSystem = universe.getPlayerShip().getCurrentSystem();
         ArrayList<Entity> celestials = playerSystem.getCelestials();
-        for(int a = 0; a < celestials.size(); a++) {
-            if(celestials.get(a) instanceof Ship) {
+        for (int a = 0; a < celestials.size(); a++) {
+            if (celestials.get(a) instanceof Ship) {
                 Ship tmp = (Ship) celestials.get(a);
-                for(int b = 0; b < tmp.getSoundQue().size(); b++) {
-                    //I'm not permitting looping sounds to be played by ships using the que
-                    tmp.getSoundQue().get(b).setLooping(false);
-                    //play the sound and pop it off
-                    tmp.getSoundQue().get(b).play();
-                    tmp.getSoundQue().remove(b);
+                if (tmp.distanceTo(universe.getPlayerShip()) < Universe.SOUND_RANGE) {
+                    if (tmp.getSoundQue() != null) {
+                        for (int b = 0; b < tmp.getSoundQue().size(); b++) {
+                            //I'm not permitting looping sounds to be played by ships using the que
+                            tmp.getSoundQue().get(b).setLooping(false);
+                            //play the sound and pop it off
+                            tmp.getSoundQue().get(b).play();
+                            tmp.getSoundQue().remove(b);
+                        }
+                    } else {
+                        //this ship has not initialized its sound que
+                    }
+                } else {
+                    //too far away to care about
+                    tmp.getSoundQue().clear();
                 }
             }
         }
@@ -674,7 +683,7 @@ public class Core {
         //clear markers
         hud.clearMarkers();
     }
-    
+
     private void resetHUD() {
         clearHUD();
         addHUD();

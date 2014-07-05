@@ -39,9 +39,8 @@ import universe.Universe;
  */
 public class Projectile extends Celestial {
 
-    public static final float LINEAR_DAMP = 0.99f;
+    public static final float LINEAR_DAMP = 0.999f;
     public static final float ANGULAR_DAMP = 0.99f;
-    public static final float NAV_ANGLE_TOLERANCE = 0.016f;
     //particle effect
 
     transient ParticleEmitter emitter;
@@ -69,7 +68,7 @@ public class Projectile extends Celestial {
     private boolean isGuided = false;
     private float thrust = 0;
     private float turning = 0;
-    //internat steering
+    //internal steering
     float pitch;
     float yaw;
     float roll;
@@ -165,30 +164,32 @@ public class Projectile extends Celestial {
             setState(State.DYING);
         } else {
             //nope
-            if (isGuided() && life > delay) {
-                if (physics != null && target != null) {
+            if (isGuided()) {
+                //update steering
+                boolean safe = seekTarget();
+                //apply changes
+                steer();
+                if (physics != null && target != null && life > delay) {
                     if (target.getState() == State.ALIVE) {
-                        //update steering
-                        boolean safe = seekTarget();
-                        //apply changes
-                        steer();
-                        if (!gettingCloser(2) && safe) {
+                        if (safe) {
                             thrust(1);
-                        } else if (!gettingCloser(1)) {
-                            thrust(0.5f);
+                            System.out.println("b");
+                        } else {
+                            thrust(0.0f);
+                            System.out.println("a");
                         }
-                        //sync physics
-                        syncPhysics();
                     } else {
                         thrust(1);
                     }
                 } else {
-                    setState(State.DYING);
+                    thrust(1);
                 }
             } else {
-                thrust(0.15f);
+                thrust(0.1f);
             }
         }
+        //sync physics
+        syncPhysics();
     }
 
     protected boolean gettingCloser(double tolerance) {
@@ -211,10 +212,27 @@ public class Projectile extends Celestial {
     }
 
     protected void steer() {
+        System.out.println(pitch + " , " + yaw + " , " + roll);
+        //clamp torque between -1 and 1
+        if (pitch > 1) {
+            pitch = 1;
+        } else if (pitch < -1) {
+            pitch = -1;
+        }
+        if (yaw > 1) {
+            yaw = 1;
+        } else if (yaw < -1) {
+            yaw = -1;
+        }
+        if (roll > 1) {
+            roll = 1;
+        } else if (roll < -1) {
+            roll = -1;
+        }
         //steer
-        physics.applyTorque(Vector3f.UNIT_X.mult(turning * Math.min(pitch, 1)));
-        physics.applyTorque(Vector3f.UNIT_Y.mult(turning * Math.min(yaw, 1)));
-        physics.applyTorque(Vector3f.UNIT_Z.mult(turning * Math.min(roll, 1)));
+        physics.applyTorque(Vector3f.UNIT_X.mult(turning * pitch));
+        physics.applyTorque(Vector3f.UNIT_Y.mult(turning * yaw));
+        physics.applyTorque(Vector3f.UNIT_Z.mult(turning * roll));
         //reset steering
         pitch = 0;
         yaw = 0;
@@ -223,13 +241,13 @@ public class Projectile extends Celestial {
 
     protected void thrust(float percent) {
         //thrust
-        Vector3f direction = physics.getPhysicsRotation().mult(Vector3f.UNIT_Z);
+        Vector3f direction = getRotation().mult(Vector3f.UNIT_Z);
         physics.applyCentralForce(direction.mult(thrust * -percent));
     }
 
     protected void reverseThrust(float percent) {
         //thrust
-        Vector3f direction = physics.getPhysicsRotation().mult(Vector3f.UNIT_Z);
+        Vector3f direction = getRotation().mult(Vector3f.UNIT_Z);
         physics.applyCentralForce(direction.mult(thrust * percent));
     }
 
@@ -245,16 +263,16 @@ public class Projectile extends Celestial {
                      * Greedy algorithm
                      * Face the target and accelerate towards it.
                      */
-                    Vector3f dat = getSteeringData(target.getPhysicsLocation().add(target.getLinearVelocity().mult((float) tpf)), Vector3f.UNIT_Y);
-                    safe = grossPointNoseAtVector(dat, NAV_ANGLE_TOLERANCE);
+                    Vector3f dat = getSteeringData(target.getPhysicsLocation().add(target.getVelocity().mult((float) tpf)), Vector3f.UNIT_Y);
+                    safe = grossPointNoseAtVector(dat);
                 } else {
-                    setGuided(false);
+                    //
                 }
             } else {
-                setGuided(false);
+                //
             }
         } else {
-            setGuided(false);
+            //
         }
         return safe;
     }
@@ -271,27 +289,14 @@ public class Projectile extends Celestial {
         return thrust / getMass();
     }
 
-    private boolean grossPointNoseAtVector(Vector3f dat, float tolerance) {
-        boolean canAccel = true;
+    private boolean grossPointNoseAtVector(Vector3f dat) {
+        boolean canAccel = false;
         //put controls in correct positions to face target
-        if (Math.abs(dat.x) < FastMath.PI * (1 - tolerance)) {
-            pitch = -(dat.x);
-            canAccel = false;
-        } else {
-            pitch = -(dat.x) / 50.0f;
-        }
-        if (Math.abs(dat.y) < FastMath.PI * (1 - tolerance)) {
-            yaw = -(dat.y);
-            canAccel = false;
-        } else {
-            yaw = -(dat.y) / 50.0f;
-        }
-        if (Math.abs(dat.z) > FastMath.PI * tolerance) {
-            roll = (dat.z);
-            //canAccel = false;
-        } else {
-            roll = (dat.z) / 50.0f;
-            //roll = 0;
+        pitch = -dat.x;
+        yaw = -dat.y;
+        roll = dat.z;
+        if (Math.abs(dat.x - 0.25f) > FastMath.PI && Math.abs(dat.y - 0.25f) > FastMath.PI) {
+            canAccel = true;
         }
         return canAccel;
     }
@@ -300,11 +305,11 @@ public class Projectile extends Celestial {
         if (emitter != null) {
             // RETREIVE LOCAL DIRECTION TO TARGET POSITION
             Vector3f steeringPosition = new Vector3f();
-            emitter.getWorldRotation().inverse().multLocal(steeringPosition.set(worldPosition).subtractLocal(emitter.getWorldTranslation()));
+            physics.getPhysicsRotation().inverse().multLocal(steeringPosition.set(worldPosition).subtractLocal(physics.getPhysicsLocation()));
 
             // RETREIVE LOCAL UP VECTOR DIRECTION
             Vector3f upPosition = new Vector3f(up);
-            emitter.getWorldRotation().inverse().multLocal(upPosition);
+            physics.getPhysicsRotation().inverse().multLocal(upPosition);
 
             // CREATE 2D-VECTORS TO COMPARE
             Vector3f elevatorPos = new Vector3f(steeringPosition).normalizeLocal();
@@ -509,16 +514,10 @@ public class Projectile extends Celestial {
         this.turning = turning;
     }
 
-    /**
-     * @return the delay
-     */
     public float getDelay() {
         return delay;
     }
 
-    /**
-     * @param delay the delay to set
-     */
     public void setDelay(float delay) {
         this.delay = delay;
     }

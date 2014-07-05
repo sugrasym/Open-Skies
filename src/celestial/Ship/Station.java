@@ -132,6 +132,7 @@ public class Station extends Ship {
      */
     @Override
     protected void oosAlive() {
+        super.oosAlive();
         //update docking ports
         oosUpdateDockingPorts();
     }

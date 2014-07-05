@@ -149,52 +149,56 @@ public class HudMarker extends AstralWindow {
 
         @Override
         public void render(Graphics f) {
-            if (isVisible()) {
-                //setup graphics
-                Graphics2D gfx = (Graphics2D) f;
-                gfx.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                //redo backdrop
-                gfx.setComposite(AlphaComposite.Clear);
-                gfx.fillRect(0, 0, width, height);
-                gfx.setComposite(AlphaComposite.Src);
-                //render marker
-                if (target instanceof Celestial) {
-                    if (target instanceof Ship) {
-                        //draw marker
+            try {
+                if (isVisible()) {
+                    //setup graphics
+                    Graphics2D gfx = (Graphics2D) f;
+                    gfx.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                    //redo backdrop
+                    gfx.setComposite(AlphaComposite.Clear);
+                    gfx.fillRect(0, 0, width, height);
+                    gfx.setComposite(AlphaComposite.Src);
+                    //render marker
+                    if (target instanceof Celestial) {
+                        if (target instanceof Ship) {
+                            //draw marker
+                            gfx.setStroke(new BasicStroke(3));
+                            Ship tmp = (Ship) target;
+                            Ship player = tmp.getCurrentSystem().getUniverse().getPlayerShip();
+                            float standing = player.getStandingsToMe(tmp);
+                            if (tmp == player.getTarget()) {
+                                gfx.setColor(Color.YELLOW);
+                            } else if (tmp.getFaction().getName().equals(Faction.PLAYER)) {
+                                gfx.setColor(Color.MAGENTA);
+                            } else if (standing <= Faction.HOSTILE_STANDING) {
+                                gfx.setColor(Color.RED);
+                            } else if (standing >= Faction.FRIENDLY_STANDING) {
+                                gfx.setColor(Color.GREEN);
+                            } else {
+                                gfx.setColor(Color.WHITE);
+                            }
+                            gfx.drawOval(5, 5, width - 10, height - 10);
+                            //draw health bars
+                            if (tmp == player.getTarget()) {
+                                //I only want health bars for player's target
+                                float shieldPercent = tmp.getShield() / tmp.getMaxShield();
+                                float hullPercent = tmp.getHull() / tmp.getMaxHull();
+                                //draw hull
+                                gfx.setColor(Color.RED);
+                                gfx.fillRect(0, 0, (int) (width * hullPercent), 3);
+                                //draw shield
+                                gfx.setColor(Color.GREEN);
+                                gfx.fillRect(0, 0, (int) (width * shieldPercent), 3);
+                            }
+                        }
+                    } else {
                         gfx.setStroke(new BasicStroke(3));
-                        Ship tmp = (Ship) target;
-                        Ship player = tmp.getCurrentSystem().getUniverse().getPlayerShip();
-                        float standing = player.getStandingsToMe(tmp);
-                        if (tmp == player.getTarget()) {
-                            gfx.setColor(Color.YELLOW);
-                        } else if (tmp.getFaction().getName().equals(Faction.PLAYER)) {
-                            gfx.setColor(Color.MAGENTA);
-                        } else if (standing <= Faction.HOSTILE_STANDING) {
-                            gfx.setColor(Color.RED);
-                        } else if (standing >= Faction.FRIENDLY_STANDING) {
-                            gfx.setColor(Color.GREEN);
-                        } else {
-                            gfx.setColor(Color.WHITE);
-                        }
-                        gfx.drawOval(5, 5, width - 10, height - 10);
-                        //draw health bars
-                        if (tmp == player.getTarget()) {
-                            //I only want health bars for player's target
-                            float shieldPercent = tmp.getShield() / tmp.getMaxShield();
-                            float hullPercent = tmp.getHull() / tmp.getMaxHull();
-                            //draw hull
-                            gfx.setColor(Color.RED);
-                            gfx.fillRect(0, 0, (int) (width * hullPercent), 3);
-                            //draw shield
-                            gfx.setColor(Color.GREEN);
-                            gfx.fillRect(0, 0, (int) (width * shieldPercent), 3);
-                        }
+                        gfx.setColor(Color.WHITE);
+                        gfx.drawRect(0, 0, width - 1, height - 1);
                     }
-                } else {
-                    gfx.setStroke(new BasicStroke(3));
-                    gfx.setColor(Color.WHITE);
-                    gfx.drawRect(0, 0, width - 1, height - 1);
                 }
+            } catch (Exception e) {
+                System.out.println("An error occured updating a marker");
             }
         }
     }

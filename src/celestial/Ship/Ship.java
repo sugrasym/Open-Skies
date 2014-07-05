@@ -187,7 +187,7 @@ public class Ship extends Celestial {
     Random rnd = new Random();
     //audio
     private transient ArrayList<AudioNode> soundQue = new ArrayList<>();
-    private AudioNode engineNoise;
+    private transient AudioNode engineNoise;
 
     public Ship(Universe universe, Term type, String faction) {
         super(Float.parseFloat(type.getValue("mass")), universe);
@@ -3358,8 +3358,10 @@ public class Ship extends Celestial {
     /*
      * Sound Effects
      */
-    
     public ArrayList<AudioNode> getSoundQue() {
+        if (soundQue == null) {
+            soundQue = new ArrayList<AudioNode>();
+        }
         return soundQue;
     }
 
@@ -3382,9 +3384,11 @@ public class Ship extends Celestial {
 
     protected void playEngineNoise() {
         if (engineNoise != null) {
-            engineNoise.setLooping(true);
-            if (engineNoise.getStatus() != Status.Playing) {
-                engineNoise.play();
+            if (distanceTo(this.currentSystem.getUniverse().getPlayerShip()) < Universe.SOUND_RANGE) {
+                engineNoise.setLooping(true);
+                if (engineNoise.getStatus() != Status.Playing) {
+                    engineNoise.play();
+                }
             }
         }
     }

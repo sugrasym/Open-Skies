@@ -6,27 +6,27 @@ type=missile
 #shell info
 shieldDamage=750
 hullDamage=400
-range=1500
+range=1750
 speed=0
 mass=0
 refire=10.5
 #graphics info
 size=0.5
-startColor=0,1,0,1
-endColor=0,0,1,0.1
+startColor=1,1,1,1
+endColor=1,0,0,0.1
 pVel=1,4,1
 highLife=1
 lowLife=0.1
-numParticles=100
+numParticles=200
 variation=0.5
 texture=Effects/Trail/point.png
 sound=Audio/Effects/Weapons/Test Missile.wav
-emitterRate=100
+emitterRate=200
 guided=true
-thrust=75
+thrust=255
 turning=0.01
 shotMass=0.05
-delay=1
+delay=0.25
 ammo=Test Missile Ammunition
 [/Weapon]
 
@@ -53,5 +53,5 @@ variation=0.3
 texture=Effects/Trail/point.png
 sound=Audio/Effects/Weapons/Test Cannon.wav
 emitterRate=10
-delay=0.1
+delay=0.01
 [/Weapon]
