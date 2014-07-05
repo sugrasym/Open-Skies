@@ -40,6 +40,8 @@ public class Universe implements Serializable {
     private transient AssetManager assets;
     //player property
     private ArrayList<Entity> playerProperty = new ArrayList<>();
+    //discovered space
+    private ArrayList<SolarSystem> discoveredSpace = new ArrayList<>();
     
     public Universe(AssetManager assets) {
         this.assets = assets;
@@ -116,5 +118,9 @@ public class Universe implements Serializable {
     
     public void setAssets(AssetManager assets) {
         this.assets = assets;
+    }
+
+    public ArrayList<SolarSystem> getDiscoveredSpace() {
+        return discoveredSpace;
     }
 }

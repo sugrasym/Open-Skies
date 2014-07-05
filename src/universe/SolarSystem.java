@@ -19,6 +19,9 @@
  */
 package universe;
 
+import cargo.Equipment;
+import cargo.Hardpoint;
+import cargo.Weapon;
 import celestial.Celestial;
 import celestial.Field;
 import celestial.Jumphole;
@@ -472,6 +475,9 @@ public class SolarSystem implements Entity, Serializable {
                     //remove the entity
                     pullEntityFromSystem(celestials.get(a));
                 } else {
+                    //do integrity checks
+                    checkEntity(celestials.get(a));
+                    //update as normal
                     celestials.get(a).oosPeriodicUpdate(tpf);
                 }
             }
@@ -480,9 +486,55 @@ public class SolarSystem implements Entity, Serializable {
         }
     }
 
+    private void checkEntity(Entity entity) {
+        if (entity instanceof Ship) {
+            if (!celestials.contains(universe.getPlayerShip())) {
+                Ship test = (Ship) entity;
+                //don't do OOS checks on player property obviously
+                if (!test.isPlayerFaction()) {
+                    //remove entities the player can't see that are out of fuel
+                    double fuelPercent = test.getFuel() / test.getMaxFuel();
+                    if (fuelPercent < 0.03) {
+                        System.out.println("Removing derelict ship [F] " + test.getName() + " :: " + test.getAutopilot());
+                        test.setState(State.DYING);
+                    }
+                    //see if this entity has a weapon with ammo left
+                    boolean hasAmmo = false;
+                    ArrayList<Hardpoint> hp = test.getHardpoints();
+                    if (hp.size() > 0) {
+                        for (int l = 0; l < hp.size(); l++) {
+                            Equipment mounted = hp.get(l).getMounted();
+                            if (mounted instanceof Weapon) {
+                                Weapon tmp = (Weapon) mounted;
+                                if (tmp.hasAmmo()) {
+                                    hasAmmo = true;
+                                    break;
+                                }
+                            }
+                        }
+                    } else {
+                        hasAmmo = true;
+                    }
+                    //remove entities that are completely out of ammo
+                    if (hasAmmo) {
+                        //do nothing
+                    } else {
+                        System.out.println("Removing derelict ship [A] " + test.getName() + " :: " + test.getAutopilot());
+                        test.setState(State.DYING);
+                    }
+                } else {
+                    discover();
+                }
+            } else {
+                discover();
+            }
+        }
+    }
+
     private void checkPlayerPresence() {
         if (celestials.contains(universe.getPlayerShip())) {
             hasGraphics = true;
+            discover();
         } else {
             if (hasGraphics) {
                 deconstruct();
@@ -623,5 +675,15 @@ public class SolarSystem implements Entity, Serializable {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    private void discover() {
+        //add to discovered list if needed
+        if (universe.getDiscoveredSpace().contains(this)) {
+            //do nothing
+        } else {
+            //add to discovered space
+            universe.getDiscoveredSpace().add(this);
+        }
     }
 }

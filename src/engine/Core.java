@@ -534,7 +534,12 @@ public class Core {
                 god.periodicUpdate();
             }
             //see if we need to reset the camera
-            if (universe.getPlayerShip() != planetAppState.getAstralCamera().getTarget()) {
+            if (planetAppState.getAstralCamera() != null) {
+                if (universe.getPlayerShip() != planetAppState.getAstralCamera().getTarget()) {
+                    resetCamera();
+                    resetHUD();
+                }
+            } else {
                 resetCamera();
                 resetHUD();
             }

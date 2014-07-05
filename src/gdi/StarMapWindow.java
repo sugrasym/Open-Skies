@@ -113,8 +113,8 @@ public class StarMapWindow extends AstralWindow {
         private void fillMap(Graphics2D gfx, Graphics2D tfx) {
             if (universe != null) {
                 //get a list of solar systems the player has visited
-                ArrayList<SolarSystem> systems = universe.getSystems(); //will show everything
-                //ArrayList<SolarSystem> systems = universe.getDiscoveredSpace(); //will show discovered space
+                //ArrayList<SolarSystem> systems = universe.getSystems(); //will show everything
+                ArrayList<SolarSystem> systems = universe.getDiscoveredSpace(); //will show discovered space
                 //iterate through and draw an icon for each one
                 for (int a = 0; a < systems.size(); a++) {
                     //compute offset

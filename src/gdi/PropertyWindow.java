@@ -868,9 +868,8 @@ public class PropertyWindow extends AstralWindow {
             } else if (command.equals(CMD_JUMP)) {
                 ArrayList<Object> choice = new ArrayList<>();
                 choice.add("--Select Target System--");
-                choice.add("TODO: Restrict to discovered space");
                 choice.add(" ");
-                ArrayList<SolarSystem> sh = ship.getCurrentSystem().getUniverse().getSystems();
+                ArrayList<SolarSystem> sh = ship.getCurrentSystem().getUniverse().getDiscoveredSpace();
                 for (int a = 0; a < sh.size(); a++) {
                     if (ship.canJump(sh.get(a))) {
                         choice.add(sh.get(a));
