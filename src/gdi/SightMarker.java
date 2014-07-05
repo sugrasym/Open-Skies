@@ -117,29 +117,33 @@ public class SightMarker extends AstralWindow {
 
         @Override
         public void render(Graphics f) {
-            if (isVisible()) {
-                //setup graphics
-                Graphics2D gfx = (Graphics2D) f;
-                gfx.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                //redo backdrop
-                gfx.setComposite(AlphaComposite.Clear);
-                gfx.fillRect(0, 0, width, height);
-                gfx.setComposite(AlphaComposite.Src);
-                //render marker
-                if (host.getTarget() != null) {
-                    //draw marker
-                    gfx.setStroke(new BasicStroke(2));
-                    //pick by range
-                    float range = (float) host.getNearWeaponRange();
-                    float distance = host.getLocation().distance(host.getTarget().getLocation());
-                    if (range < distance) {
-                        gfx.setColor(Color.orange);
-                    } else {
-                        gfx.setColor(Color.blue);
+            try {
+                if (isVisible()) {
+                    //setup graphics
+                    Graphics2D gfx = (Graphics2D) f;
+                    gfx.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                    //redo backdrop
+                    gfx.setComposite(AlphaComposite.Clear);
+                    gfx.fillRect(0, 0, width, height);
+                    gfx.setComposite(AlphaComposite.Src);
+                    //render marker
+                    if (host.getTarget() != null) {
+                        //draw marker
+                        gfx.setStroke(new BasicStroke(2));
+                        //pick by range
+                        float range = (float) host.getNearWeaponRange();
+                        float distance = host.getLocation().distance(host.getTarget().getLocation());
+                        if (range < distance) {
+                            gfx.setColor(Color.orange);
+                        } else {
+                            gfx.setColor(Color.blue);
+                        }
+                        //draw
+                        gfx.drawRect(5, 5, width - 10, height - 10);
                     }
-                    //draw
-                    gfx.drawRect(5, 5, width-10, height-10);
                 }
+            } catch (Exception e) {
+                System.out.println("Error rendering sight marker");
             }
         }
     }

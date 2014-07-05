@@ -23,11 +23,13 @@ texture=Effects/Trail/point.png
 sound=Audio/Effects/Weapons/Test Missile.wav
 emitterRate=200
 guided=true
-thrust=255
-turning=0.01
+thrust=25
+turning=0.1
 shotMass=0.05
 delay=0.25
 ammo=Test Missile Ammunition
+maxLife=120
+proximityFuse=50
 [/Weapon]
 
 [Weapon]

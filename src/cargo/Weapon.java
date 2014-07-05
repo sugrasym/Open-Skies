@@ -58,6 +58,8 @@ public class Weapon extends Equipment {
     private float shotMass;
     private float delay;
     private Item ammo;
+    private float maxLife;
+    private float proximityFuse;
     private String soundPath;
     private transient AudioNode sound;
 
@@ -172,6 +174,20 @@ public class Weapon extends Equipment {
             String rawSound = relevant.getValue("sound");
             if (rawSound != null) {
                 soundPath = rawSound;
+            }
+            
+            String rawMaxLife = relevant.getValue("maxLife");
+            if (rawMaxLife != null) {
+                maxLife = Float.parseFloat(rawMaxLife);
+            } else {
+                maxLife = 0;
+            }
+            
+            String rawFuse = relevant.getValue("proximityFuse");
+            if (rawFuse != null) {
+                proximityFuse = Float.parseFloat(rawFuse);
+            } else {
+                proximityFuse = 0;
             }
         } else {
             System.out.println("Error: The item " + getName() + " does not exist in WEAPONS.txt");
@@ -302,6 +318,8 @@ public class Weapon extends Equipment {
             pro.setThrust(thrust);
             pro.setTurning(turning);
             pro.setGuided(guided);
+            pro.setMaxLife(maxLife);
+            pro.setProximityFuse(proximityFuse);
             //put projectile in system
             host.getCurrentSystem().putEntityInSystem(pro);
             //use ammo
