@@ -273,6 +273,14 @@ public class HUD {
     public void setUniverse(Universe universe) {
         this.universe = universe;
     }
+    
+    public void hideCentralWindows() {
+        cargoWindow.setVisible(false);
+        propertyWindow.setVisible(false);
+        cargoWindow.setVisible(false);
+        tradeWindow.setVisible(false);
+        starMapWindow.setVisible(false);
+    }
 
     public void toggleSensorWindow() {
         overview.setVisible(!overview.isVisible());
@@ -283,19 +291,27 @@ public class HUD {
     }
 
     public void toggleCargoWindow() {
-        cargoWindow.setVisible(!cargoWindow.isVisible());
+        boolean visible = !cargoWindow.isVisible();
+        hideCentralWindows();
+        cargoWindow.setVisible(visible);
     }
 
     public void togglePropertyWindow() {
-        propertyWindow.setVisible(!propertyWindow.isVisible());
+        boolean visible = !propertyWindow.isVisible();
+        hideCentralWindows();
+        propertyWindow.setVisible(visible);
     }
 
     public void toggleTradeWindow() {
-        tradeWindow.setVisible(!tradeWindow.isVisible());
+        boolean visible = !tradeWindow.isVisible();
+        hideCentralWindows();
+        tradeWindow.setVisible(visible);
     }
 
     public void toggleStarMapWindow() {
-        starMapWindow.setVisible(!starMapWindow.isVisible());
+        boolean visible = !starMapWindow.isVisible();
+        hideCentralWindows();
+        starMapWindow.setVisible(visible);
     }
 
     /*
