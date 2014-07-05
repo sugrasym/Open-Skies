@@ -4,8 +4,8 @@
 name=Test Missile
 type=missile
 #shell info
-shieldDamage=750
-hullDamage=400
+shieldDamage=1450
+hullDamage=825
 range=1750
 speed=0
 mass=0
@@ -28,8 +28,8 @@ turning=0.1
 shotMass=0.05
 delay=0.25
 ammo=Test Missile Ammunition
-maxLife=120
-proximityFuse=50
+maxLife=600
+proximityFuse=65
 [/Weapon]
 
 [Weapon]

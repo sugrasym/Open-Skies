@@ -40,7 +40,7 @@ import universe.Universe;
  * @author nwiehoff
  */
 public class Projectile extends Celestial {
-    
+
     public static final float ANGULAR_DAMP = 0.99f;
     public static final float STOP_LOW_VEL_BOUND = 1.0f;
     public static final float STOP_CAUTION = 0.75f;
@@ -84,20 +84,20 @@ public class Projectile extends Celestial {
     private float delay;
     private float maxLife;
     private float proximityFuse;
-    
+
     public Projectile(Universe universe, Celestial target, String name, float mass) {
         super(mass, universe); //mass cannot be 0 or it is a static spatial in bullet physics
         setName(name);
         setTarget(target);
         setMass(mass);
     }
-    
+
     @Override
     public void construct(AssetManager assets) {
         constructProjectile(assets);
         constructPhysics();
     }
-    
+
     private void constructProjectile(AssetManager assets) {
         emitter = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, numParticles);
         Material trailMat = new Material(assets, "Common/MatDefs/Misc/Particle.j3md");
@@ -127,7 +127,7 @@ public class Projectile extends Celestial {
         //store as spatial
         spatial = emitter;
     }
-    
+
     private void constructPhysics() {
         //initializes the physics as a sphere
         SphereCollisionShape sphereShape = new SphereCollisionShape(Math.max(size, 0.5f));
@@ -173,7 +173,7 @@ public class Projectile extends Celestial {
         //sync physics
         syncPhysics();
     }
-    
+
     public void doDumbfire() {
         //not guided
         //check max range
@@ -181,7 +181,7 @@ public class Projectile extends Celestial {
             setState(State.DYING);
         }
     }
-    
+
     public void doGuided() {
         //check lifetime
         if (life >= getMaxLife()) {
@@ -209,25 +209,10 @@ public class Projectile extends Celestial {
                     throttle = 1;
                 }
                 if (getProximityFuse() > 0) {
-                    System.out.println(getProximityFuse());
                     float dist = target.distanceTo(this);
                     if (dist <= getProximityFuse()) {
                         setState(State.DYING);
-                        //explode damaging all ships in fuse range
-                        ArrayList<Entity> shipEntities = this.getCurrentSystem().getShipList();
-                        ArrayList<Entity> stationEntities = this.getCurrentSystem().getStationList();
-                        ArrayList<Entity> combinedList = new ArrayList<>();
-                        combinedList.addAll(shipEntities);
-                        combinedList.addAll(stationEntities);
-                        for (int a = 0; a < combinedList.size(); a++) {
-                            if (combinedList.get(a) instanceof Ship) {
-                                Ship tmp = (Ship) combinedList.get(a);
-                                if (tmp.distanceTo(this) < getProximityFuse()) {
-                                    tmp.applyDamage(shieldDamage, hullDamage);
-                                    tmp.setLastBlow(host);
-                                }
-                            }
-                        }
+                        //fuse damage will be handled in the next tick in dying
                     }
                 }
             } else {
@@ -238,7 +223,25 @@ public class Projectile extends Celestial {
             }
         }
     }
-    
+
+    public void aoeDamageFromFuse() {
+        //explode damaging all ships in fuse range
+        ArrayList<Entity> shipEntities = this.getCurrentSystem().getShipList();
+        ArrayList<Entity> stationEntities = this.getCurrentSystem().getStationList();
+        ArrayList<Entity> combinedList = new ArrayList<>();
+        combinedList.addAll(shipEntities);
+        combinedList.addAll(stationEntities);
+        for (int a = 0; a < combinedList.size(); a++) {
+            if (combinedList.get(a) instanceof Ship) {
+                Ship tmp = (Ship) combinedList.get(a);
+                if (tmp.distanceTo(this) < getProximityFuse()) {
+                    tmp.applyDamage(shieldDamage, hullDamage);
+                    tmp.setLastBlow(host);
+                }
+            }
+        }
+    }
+
     protected boolean gettingCloser(double tolerance) {
         if (target != null) {
             float dt = (float) tpf;
@@ -257,7 +260,7 @@ public class Projectile extends Celestial {
             return true;
         }
     }
-    
+
     protected void decelerate() {
         //stop throttle
         throttle = 0;
@@ -286,7 +289,7 @@ public class Projectile extends Celestial {
             physics.setLinearVelocity(lVol);
         }
     }
-    
+
     protected void steer() {
         //clamp torque between -1 and 1
         if (pitch > 1) {
@@ -313,19 +316,19 @@ public class Projectile extends Celestial {
         yaw = 0;
         roll = 0;
     }
-    
+
     protected void thrust(float percent) {
         //thrust
         Vector3f direction = getRotation().mult(Vector3f.UNIT_Z);
         physics.applyCentralForce(direction.mult(thrust * -percent));
     }
-    
+
     protected void reverseThrust(float percent) {
         //thrust
         Vector3f direction = getRotation().mult(Vector3f.UNIT_Z);
         physics.applyCentralForce(direction.mult(thrust * percent));
     }
-    
+
     protected boolean seekTarget() {
         boolean safe = false;
         if (target != null) {
@@ -350,7 +353,7 @@ public class Projectile extends Celestial {
         }
         return safe;
     }
-    
+
     public void syncPhysics() {
         if (physics != null) {
             setLocation(physics.getPhysicsLocation());
@@ -358,23 +361,23 @@ public class Projectile extends Celestial {
             setVelocity(physics.getLinearVelocity());
         }
     }
-    
+
     public float getAcceleration() {
         return thrust / getMass();
     }
-    
+
     private boolean grossPointNoseAtVector(Vector3f dat) {
         boolean canAccel = false;
         //put controls in correct positions to face target
         pitch = -dat.x;
         yaw = -dat.y;
         roll = dat.z;
-        if (Math.abs(dat.x - 1.5f) > FastMath.PI && Math.abs(dat.y - 1.5f) > FastMath.PI) {
+        if (Math.abs(dat.x - 2f) > FastMath.PI && Math.abs(dat.y - 2f) > FastMath.PI) {
             canAccel = true;
         }
         return canAccel;
     }
-    
+
     private Vector3f getSteeringData(Vector3f worldPosition, Vector3f up) {
         if (emitter != null) {
             // RETREIVE LOCAL DIRECTION TO TARGET POSITION
@@ -414,184 +417,206 @@ public class Projectile extends Celestial {
             return Vector3f.ZERO;
         }
     }
-    
+
     @Override
     protected void dying() {
+        super.dying();
+        //drop an explosion
+        dropExplosion();
+        //damage anything in fuse range
+        if(proximityFuse > 0) {
+            aoeDamageFromFuse();
+        }
+        //die
         setState(State.DEAD);
     }
-    
+
+    protected void dropExplosion() {
+        //TODO: Dynamic explosions from effects file
+        Explosion explosion = new Explosion(getCurrentSystem().getUniverse(),
+                Math.max(proximityFuse, size), getName() + " Explosion");
+        explosion.setLocation(getLocation());
+        explosion.setRotation(getRotation());
+        explosion.setVelocity(getVelocity());
+        explosion.setpVel(getVelocity());
+        //use projectile colors for now
+        explosion.setStartColor(startColor);
+        explosion.setEndColor(endColor);
+        getCurrentSystem().putEntityInSystem(explosion);
+    }
+
     public float getShieldDamage() {
         return shieldDamage;
     }
-    
+
     public void setShieldDamage(float shieldDamage) {
         this.shieldDamage = shieldDamage;
     }
-    
+
     public float getHullDamage() {
         return hullDamage;
     }
-    
+
     public void setHullDamage(float hullDamage) {
         this.hullDamage = hullDamage;
     }
-    
+
     public float getSpeed() {
         return speed;
     }
-    
+
     public void setSpeed(float speed) {
         this.speed = speed;
     }
-    
+
     public float getRange() {
         return range;
     }
-    
+
     public void setRange(float range) {
         this.range = range;
     }
-    
+
     public ColorRGBA getStartColor() {
         return startColor;
     }
-    
+
     public void setStartColor(ColorRGBA startColor) {
         this.startColor = startColor;
     }
-    
+
     public ColorRGBA getEndColor() {
         return endColor;
     }
-    
+
     public void setEndColor(ColorRGBA endColor) {
         this.endColor = endColor;
     }
-    
+
     public float getHighLife() {
         return highLife;
     }
-    
+
     public void setHighLife(float highLife) {
         this.highLife = highLife;
     }
-    
+
     public float getLowLife() {
         return lowLife;
     }
-    
+
     public void setLowLife(float lowLife) {
         this.lowLife = lowLife;
     }
-    
+
     public int getNumParticles() {
         return numParticles;
     }
-    
+
     public void setNumParticles(int numParticles) {
         this.numParticles = numParticles;
     }
-    
+
     public float getVariation() {
         return variation;
     }
-    
+
     public void setVariation(float variation) {
         this.variation = variation;
     }
-    
+
     public String getTexture() {
         return texture;
     }
-    
+
     public void setTexture(String texture) {
         this.texture = texture;
     }
-    
+
     public float getDiff() {
         return diff;
     }
-    
+
     public void setDiff(float diff) {
         this.diff = diff;
     }
-    
+
     public float getSize() {
         return size;
     }
-    
+
     public void setSize(float size) {
         this.size = size;
     }
-    
+
     public float getEmitterRate() {
         return emitterRate;
     }
-    
+
     public void setEmitterRate(float emitterRate) {
         this.emitterRate = emitterRate;
     }
-    
+
     public Vector3f getpVel() {
         return pVel;
     }
-    
+
     public void setpVel(Vector3f pVel) {
         this.pVel = pVel;
     }
-    
+
     public Ship getHost() {
         return host;
     }
-    
+
     public void setHost(Ship host) {
         this.host = host;
     }
-    
+
     public Hardpoint getOrigin() {
         return origin;
     }
-    
+
     public void setOrigin(Hardpoint origin) {
         this.origin = origin;
     }
-    
+
     public boolean isGuided() {
         return isGuided;
     }
-    
+
     public void setGuided(boolean isGuided) {
         this.isGuided = isGuided;
     }
-    
+
     public Celestial getTarget() {
         return target;
     }
-    
+
     public final void setTarget(Celestial target) {
         this.target = target;
     }
-    
+
     public float getThrust() {
         return thrust;
     }
-    
+
     public void setThrust(float accel) {
         this.thrust = accel;
     }
-    
+
     public float getTurning() {
         return turning;
     }
-    
+
     public void setTurning(float turning) {
         this.turning = turning;
     }
-    
+
     public float getDelay() {
         return delay;
     }
-    
+
     public void setDelay(float delay) {
         this.delay = delay;
     }
