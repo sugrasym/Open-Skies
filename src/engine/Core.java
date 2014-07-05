@@ -177,7 +177,6 @@ public class Core {
         ship.addInitialEquipment(install);
         //setup start system
         addSystem(start);
-
         //center planetappstate on player ship
         planetAppState.setCameraShip(ship);
         //setup player shortcut
