@@ -27,12 +27,13 @@ import gdi.CargoWindow;
 import gdi.EquipmentWindow;
 import gdi.FuelWindow;
 import gdi.HealthWindow;
+import gdi.HudMarker;
 import gdi.OverviewWindow;
 import gdi.PropertyWindow;
+import gdi.SightMarker;
+import gdi.StandingWindow;
 import gdi.StarMapWindow;
 import gdi.TradeWindow;
-import gdi.HudMarker;
-import gdi.SightMarker;
 import gdi.component.AstralWindow;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -62,6 +63,7 @@ public class HUD {
     PropertyWindow propertyWindow;
     TradeWindow tradeWindow;
     StarMapWindow starMapWindow;
+    StandingWindow standingWindow;
     //IFF Manager
     IFFManager iffManager = new IFFManager();
     private boolean resetWindowFlag;
@@ -123,6 +125,11 @@ public class HUD {
         starMapWindow.setX((width / 2) - starMapWindow.getWidth() / 2);
         starMapWindow.setY((height / 2) - starMapWindow.getHeight() / 2);
         windows.add(starMapWindow);
+        //standing window
+        standingWindow = new StandingWindow(assets);
+        standingWindow.setX((width / 2) - standingWindow.getWidth() / 2);
+        standingWindow.setY((height / 2) - standingWindow.getHeight() / 2);
+        windows.add(standingWindow);
     }
 
     public void add() {
@@ -165,6 +172,7 @@ public class HUD {
             propertyWindow.update(getUniverse().getPlayerShip());
             tradeWindow.update(getUniverse().getPlayerShip());
             starMapWindow.updateMap(getUniverse());
+            standingWindow.update(getUniverse().getPlayerShip());
             //periodic update on other windows
             for (int a = 0; a < windows.size(); a++) {
                 windows.get(a).periodicUpdate();
@@ -280,6 +288,7 @@ public class HUD {
         cargoWindow.setVisible(false);
         tradeWindow.setVisible(false);
         starMapWindow.setVisible(false);
+        standingWindow.setVisible(false);
     }
 
     public void toggleSensorWindow() {
@@ -312,6 +321,12 @@ public class HUD {
         boolean visible = !starMapWindow.isVisible();
         hideCentralWindows();
         starMapWindow.setVisible(visible);
+    }
+    
+    public void toggleStandingWindow() {
+        boolean visible = !standingWindow.isVisible();
+        hideCentralWindows();
+        standingWindow.setVisible(visible);
     }
 
     /*

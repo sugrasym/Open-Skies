@@ -2437,6 +2437,10 @@ public class Ship extends Celestial {
     /*
      * Faction standings checks
      */
+    public int getStandingsToMe(String test) {
+        return (int) faction.getStanding(test);
+    }
+    
     public int getStandingsToMe(Faction test) {
         return (int) faction.getStanding(test.getName());
     }

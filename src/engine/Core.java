@@ -329,6 +329,11 @@ public class Core {
                     //toggle property window
                     hud.toggleStarMapWindow();
                 }
+                // * 6 is handled when docked * //
+                if (name.equals("KEY_7")) {
+                    //toggle standing window
+                    hud.toggleStandingWindow();
+                }
             }
             if (!universe.getPlayerShip().isDocked()) {
                 //docking
