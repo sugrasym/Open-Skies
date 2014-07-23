@@ -21,18 +21,25 @@ package engine;
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
 import com.jme3.asset.AssetManager;
+import com.jme3.audio.Listener;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
+import com.jme3.input.RawInputListener;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
+import com.jme3.input.event.JoyAxisEvent;
+import com.jme3.input.event.JoyButtonEvent;
+import com.jme3.input.event.KeyInputEvent;
+import com.jme3.input.event.MouseButtonEvent;
+import com.jme3.input.event.MouseMotionEvent;
+import com.jme3.input.event.TouchEvent;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Node;
 import com.jme3.system.AppSettings;
-import com.jme3.audio.Listener;
 import entity.Entity;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
@@ -107,6 +114,7 @@ public class Core {
     private void init() {
         initKeys();
         initMouse();
+        initJoyStick();
         newGame("Default");
         //do last
         initPhysicsListeners();
@@ -198,6 +206,10 @@ public class Core {
         input.addListener(actionListener, new String[]{"MOUSE_LClick",
             "MOUSE_RClick",
             "MOUSE_CClick"});
+    }
+
+    private void initJoyStick() {
+        input.addRawInputListener(new JoystickEventListener());
     }
 
     private void initKeys() {
@@ -436,43 +448,71 @@ public class Core {
         }
     };
 
-    /*protected class JoystickEventListener implements RawInputListener {
+    protected class JoystickEventListener implements RawInputListener {
 
-     public void onJoyAxisEvent(JoyAxisEvent evt) {
-     if (state == GameState.IN_SPACE) {
-     if (evt.getAxis().getAxisId() == 0) {
-     universe.getPlayer().getActiveShip().setYaw(-evt.getValue());
-     } else if (evt.getAxis().getAxisId() == 1) {
-     universe.getPlayer().getActiveShip().setPitch(evt.getValue());
-     } else if (evt.getAxis().getAxisId() == 2) {
-     universe.getPlayer().getActiveShip().setRoll(-evt.getValue());
-     } else if (evt.getAxis().getAxisId() == 3) {
-     universe.getPlayer().getActiveShip().setThrottle(-evt.getValue());
-     }
-     }
-     }
+        public void onJoyAxisEvent(JoyAxisEvent evt) {
+            if (state == GameState.IN_SPACE) {
+                if (!universe.getPlayerShip().isDocked()) {
+                    if (evt.getAxis().getAxisId() == 0) {
+                        universe.getPlayerShip().setYaw(-evt.getValue());
+                    } else if (evt.getAxis().getAxisId() == 1) {
+                        universe.getPlayerShip().setPitch(evt.getValue());
+                    } else if (evt.getAxis().getAxisId() == 2) {
+                        universe.getPlayerShip().setRoll(-evt.getValue());
+                    } else if (evt.getAxis().getAxisId() == 3) {
+                        //currently unused due to non-traditional throttle
+                    }
+                    /*
+                     * POV / HAT used for thrust
+                     */
+                    else if(evt.getAxis().getAxisId() == 6) {
+                        if(Math.abs(evt.getValue()) > 0) {
+                            universe.getPlayerShip().setThrottle(evt.getValue());
+                        } else {
+                            universe.getPlayerShip().setThrottle(0);
+                        }
+                    }
+                }
+            }
+        }
 
-     public void onJoyButtonEvent(JoyButtonEvent evt) {
-     }
+        public void onJoyButtonEvent(JoyButtonEvent evt) {
+            if (state == GameState.IN_SPACE) {
+                if (!universe.getPlayerShip().isDocked()) {
+                    if (evt.getButton().getButtonId() == 0) {
+                        universe.getPlayerShip().setFiring(evt.isPressed());
+                    } else if (evt.getButton().getButtonId() == 1) {
+                        universe.getPlayerShip().toggleMissiles();
+                    }
+                }
+            }
+        }
 
-     public void beginInput() {
-     }
+        public void beginInput() {
+        }
 
-     public void endInput() {
-     }
+        public void endInput() {
+        }
 
-     public void onMouseMotionEvent(MouseMotionEvent evt) {
-     }
+        @Override
+        public void onMouseMotionEvent(MouseMotionEvent mme) {
 
-     public void onMouseButtonEvent(MouseButtonEvent evt) {
-     }
+        }
 
-     public void onKeyEvent(KeyInputEvent evt) {
-     }
+        @Override
+        public void onMouseButtonEvent(MouseButtonEvent mbe) {
 
-     public void onTouchEvent(TouchEvent evt) {
-     }
-     }*/
+        }
+
+        @Override
+        public void onKeyEvent(KeyInputEvent kie) {
+        }
+
+        @Override
+        public void onTouchEvent(TouchEvent te) {
+
+        }
+    }
 
     /*
      * Facilities for adding and removing game entities seamlessly FROM THE
