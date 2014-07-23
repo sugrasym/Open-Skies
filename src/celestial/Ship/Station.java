@@ -272,7 +272,7 @@ public class Station extends Ship {
                         ArrayList<Term> list = t.getTermsOfType("Ship");
                         Term hull = null;
                         for (int a = 0; a < list.size(); a++) {
-                            if (list.get(a).getValue("type").equals(ship)) {
+                            if (list.get(a).getValue("type").equals(item.getName())) {
                                 hull = list.get(a);
                                 break;
                             }
@@ -280,6 +280,7 @@ public class Station extends Ship {
 
                         //create ship
                         Ship newShip = new Ship(getCurrentSystem().getUniverse(), hull, Faction.PLAYER);
+                        newShip.setName("Your "+item.getName());
                         //find an open hanger
                         DockingPort pick = null;
                         for (int a = 0; a < ports.size(); a++) {
@@ -299,7 +300,7 @@ public class Station extends Ship {
                             pick.setClient(newShip);
                             newShip.setPort(pick);
                             //allow the port to naturally pick it up when it collides
-                            newShip.setLocation(pick.getNode().getWorldTranslation());
+                            newShip.setPhysicsLocation(pick.getNode().getWorldTranslation());
                             newShip.setAutopilot(Autopilot.DOCK_STAGE2);
                             //transfer funds
                             ship.setCash(ship.getCash() - price);
