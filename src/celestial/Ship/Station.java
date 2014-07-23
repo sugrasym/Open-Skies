@@ -31,6 +31,7 @@ import com.jme3.renderer.queue.RenderQueue;
 import java.util.ArrayList;
 import java.util.Random;
 import lib.Faction;
+import lib.astral.Parser;
 import lib.astral.Parser.Term;
 import universe.Universe;
 
@@ -72,7 +73,7 @@ public class Station extends Ship {
             spatial = assets.loadModel("Models/Stations/UnknownStation/Model.blend");
         }
     }
-    
+
     @Override
     protected void constructMaterial(AssetManager assets, String name) {
         //load texture
@@ -266,39 +267,46 @@ public class Station extends Ship {
                         /*
                          * This one is a little more complicated.
                          */
-                        /*//make a ship
-                         Ship newShip = new Ship("Your " + rel.getName(), rel.getName());
-                         //initialize it to the correct faction
-                         newShip.setFaction(ship.getFaction());
-                         newShip.init(false);
-                         //find an open hanger
-                         PortContainer pick = null;
-                         for (int a = 0; a < docks.size(); a++) {
-                         if (docks.get(a).canFit(newShip) && docks.get(a).isAvailable(newShip)) {
-                         //got one
-                         pick = docks.get(a);
-                         break;
-                         }
-                         }
-                         if (pick != null) {
-                         //decrement stocks
-                         rel.setQuantity(rel.getQuantity() - 1);
-                         //drop it in the current solar system
-                         newShip.setCurrentSystem(currentSystem);
-                         currentSystem.putEntityInSystem(newShip);
-                         //drop it in that port
-                         pick.setClient(newShip);
-                         newShip.setPort(pick);
-                         //allow the port to naturally pick it up when it collides
-                         newShip.setX(pick.getPortX());
-                         newShip.setY(pick.getPortY());
-                         newShip.setAutopilot(Autopilot.DOCK_STAGE3);
-                         //transfer funds
-                         ship.setCash(ship.getCash() - price);
-                         setCash(getCash() + price);
-                         //make sure it doesn't have funds
-                         newShip.setCash(0);
-                         }*/
+                        //make a ship
+                        Parser t = Universe.getCache().getShipCache();
+                        ArrayList<Term> list = t.getTermsOfType("Ship");
+                        Term hull = null;
+                        for (int a = 0; a < list.size(); a++) {
+                            if (list.get(a).getValue("type").equals(ship)) {
+                                hull = list.get(a);
+                                break;
+                            }
+                        }
+
+                        //create ship
+                        Ship newShip = new Ship(getCurrentSystem().getUniverse(), hull, Faction.PLAYER);
+                        //find an open hanger
+                        DockingPort pick = null;
+                        for (int a = 0; a < ports.size(); a++) {
+                            if (ports.get(a).isEmpty()) {
+                                //got one
+                                pick = ports.get(a);
+                                break;
+                            }
+                        }
+                        if (pick != null) {
+                            //decrement stocks
+                            rel.setQuantity(rel.getQuantity() - 1);
+                            //drop it in the current solar system
+                            newShip.setCurrentSystem(currentSystem);
+                            currentSystem.putEntityInSystem(newShip);
+                            //drop it in that port
+                            pick.setClient(newShip);
+                            newShip.setPort(pick);
+                            //allow the port to naturally pick it up when it collides
+                            newShip.setLocation(pick.getNode().getWorldTranslation());
+                            newShip.setAutopilot(Autopilot.DOCK_STAGE2);
+                            //transfer funds
+                            ship.setCash(ship.getCash() - price);
+                            setCash(getCash() + price);
+                            //make sure it doesn't have funds
+                            newShip.setCash(0);
+                        }
                     } else {
                         /*
                          * This is pretty simple
@@ -350,7 +358,7 @@ public class Station extends Ship {
             }
         }
     }
-    
+
     public boolean buysWare(Item ware) {
         {
             for (int a = 0; a < stationBuying.size(); a++) {
@@ -483,7 +491,7 @@ public class Station extends Ship {
     public void setEconomyExcempt(boolean economyExcempt) {
         this.economyExempt = economyExcempt;
     }
-    
+
     /*
      * Utility and reporting
      */

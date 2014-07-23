@@ -499,7 +499,7 @@ public class Ship extends Celestial {
 
     private void autopilotUndock() {
         //get the docking align
-        Vector3f align = port.getAlign().getWorldTranslation();
+        Vector3f align = getPort().getAlign().getWorldTranslation();
         //fly towards it
         moveToPositionWithHold(align, Float.POSITIVE_INFINITY);
         //abort when hold is reached
@@ -517,16 +517,16 @@ public class Ship extends Celestial {
                 //make sure we can actually dock there
                 Station tmp = (Station) flyToTarget;
                 if (tmp.getCurrentSystem() == currentSystem) {
-                    if (port == null) {
+                    if (getPort() == null) {
                         //get the docking port to use
-                        port = tmp.requestDockingPort(this);
+                        setPort(tmp.requestDockingPort(this));
                     } else {
                         //get the docking align
-                        Vector3f align = port.getAlign().getWorldTranslation();
+                        Vector3f align = getPort().getAlign().getWorldTranslation();
                         //fly to it
                         float distance = align.distance(physics.getPhysicsLocation());
                         float velocity = physics.getLinearVelocity().length();
-                        if (distance < port.getSize() / 2) {
+                        if (distance < getPort().getSize() / 2) {
                             autopilotAllStop();
                             if (velocity == 0 || autopilot == Autopilot.NONE) {
                                 //next stage
@@ -573,12 +573,12 @@ public class Ship extends Celestial {
                 //make sure we can actually dock there
                 Station tmp = (Station) flyToTarget;
                 if (tmp.getCurrentSystem() == currentSystem) {
-                    if (port == null) {
+                    if (getPort() == null) {
                         //abort because this is stage 2
                         cmdAbortDock();
                     } else {
                         //get the docking port
-                        Vector3f dock = port.getNode().getWorldTranslation();
+                        Vector3f dock = getPort().getNode().getWorldTranslation();
                         //get the hold
                         float hold = DockingPort.DOCK_SPEED_LIMIT / 2;
                         //fly to it
@@ -999,11 +999,11 @@ public class Ship extends Celestial {
             }
         } else {
             //setup wait
-            if (autopilot == Autopilot.NONE && port != null) {
+            if (autopilot == Autopilot.NONE && getPort() != null) {
                 //restore fuel
                 fuel = maxFuel;
                 //do buying and selling
-                Station curr = port.getParent();
+                Station curr = getPort().getParent();
                 if (curr == buyFromStation) {
                     //make sure the price is still ok
                     if ((curr.getPrice(workingWare) <= buyFromPrice)
@@ -1057,7 +1057,7 @@ public class Ship extends Celestial {
                 } else {
                     cmdUndock();
                 }
-            } else if (port == null) {
+            } else if (getPort() == null) {
                 abortTrade();
                 cmdUndock();
             } else {
@@ -1196,11 +1196,11 @@ public class Ship extends Celestial {
                 }
             }
         } else {
-            if (autopilot == Autopilot.NONE && port != null) {
+            if (autopilot == Autopilot.NONE && getPort() != null) {
                 //restore fuel
                 fuel = maxFuel;
                 //do buying and selling
-                Station curr = port.getParent();
+                Station curr = getPort().getParent();
                 if (curr == getBuyFromStation()) {
                     //make sure the price is still ok
                     if ((curr.getPrice(getWorkingWare()) <= getBuyFromPrice()) && (getSellToStation().getPrice(getWorkingWare()) >= getSellToPrice())) {
@@ -1248,7 +1248,7 @@ public class Ship extends Celestial {
             } else if (autopilot == Autopilot.WAITED) {
                 //finally undock
                 cmdUndock();
-            } else if (port == null) {
+            } else if (getPort() == null) {
                 abortTrade();
                 cmdUndock();
             } else {
@@ -1528,16 +1528,16 @@ public class Ship extends Celestial {
                 //make sure we can actually dock there
                 Station tmp = (Station) flyToTarget;
                 if (tmp.getCurrentSystem() == currentSystem) {
-                    if (port == null) {
+                    if (getPort() == null) {
                         //get the docking port to use
-                        port = tmp.requestDockingPort(this);
+                        setPort(tmp.requestDockingPort(this));
                     } else {
                         //get the "docking align"
-                        Vector3f align = port.rawAlignPosition();
+                        Vector3f align = getPort().rawAlignPosition();
                         //fly to it
                         float distance = align.distance(getLocation());
                         float velocity = getVelocity().length();
-                        if (distance < port.getSize() / 2) {
+                        if (distance < getPort().getSize() / 2) {
                             oosAutopilotAllStop();
                             if (velocity == 0 || autopilot == Autopilot.NONE) {
                                 //next stage
@@ -1584,12 +1584,12 @@ public class Ship extends Celestial {
                 //make sure we can actually dock there
                 Station tmp = (Station) flyToTarget;
                 if (tmp.getCurrentSystem() == currentSystem) {
-                    if (port == null) {
+                    if (getPort() == null) {
                         //abort because this is stage 2
                         cmdAbortDock();
                     } else {
                         //get the docking port
-                        Vector3f dock = port.rawPortPosition();
+                        Vector3f dock = getPort().rawPortPosition();
                         //get the hold
                         float hold = DockingPort.DOCK_SPEED_LIMIT / 2;
                         //fly to it
@@ -1619,7 +1619,7 @@ public class Ship extends Celestial {
 
     private void oosAutopilotUndock() {
         //get the docking align
-        Vector3f align = port.rawAlignPosition();
+        Vector3f align = getPort().rawAlignPosition();
         //fly towards it
         oosMoveToPositionWithHold(align, Float.POSITIVE_INFINITY);
         //abort when hold is reached
@@ -1695,9 +1695,9 @@ public class Ship extends Celestial {
         //check docking updates
         if (docked) {
             //make sure the station still exists
-            if (port != null) {
-                if (port.getParent() != null) {
-                    if (port.getParent().getState() == State.ALIVE) {
+            if (getPort() != null) {
+                if (getPort().getParent() != null) {
+                    if (getPort().getParent().getState() == State.ALIVE) {
                         //no autopilot unless undocking
                         if (autopilot != Autopilot.UNDOCK
                                 && autopilot != Autopilot.WAITED
@@ -2598,9 +2598,9 @@ public class Ship extends Celestial {
 
     public void cmdAbort() {
         setAutopilot(Autopilot.NONE);
-        if (port != null) {
-            port.release();
-            port = null;
+        if (getPort() != null) {
+            getPort().release();
+            setPort(null);
         }
         throttle = 0;
         pitch = 0;
@@ -2610,25 +2610,25 @@ public class Ship extends Celestial {
 
     public void cmdAllStop() {
         setAutopilot(Autopilot.ALL_STOP);
-        if (port != null) {
-            port.release();
-            port = null;
+        if (getPort() != null) {
+            getPort().release();
+            setPort(null);
         }
     }
 
     public void cmdAbortDock() {
         cmdAbort();
-        if (port != null) {
-            port.release();
-            port = null;
+        if (getPort() != null) {
+            getPort().release();
+            setPort(null);
         }
     }
 
     public void cmdDock(Station pick) {
         if (!docked) {
             //TODO: Make this a real behavior
-            port = pick.requestDockingPort(this);
-            if (port != null) {
+            setPort(pick.requestDockingPort(this));
+            if (getPort() != null) {
                 flyToTarget = pick;
                 setAutopilot(Autopilot.DOCK_STAGE1);
             }
@@ -3408,5 +3408,9 @@ public class Ship extends Celestial {
         if (engineNoise != null) {
             engineNoise.setLocalTranslation(getLocation());
         }
+    }
+    
+    public void setPort(DockingPort port) {
+        this.port = port;
     }
 }
