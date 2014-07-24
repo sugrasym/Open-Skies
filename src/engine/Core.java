@@ -552,7 +552,7 @@ public class Core {
          * In-game updating
          */
         if (state == GameState.IN_SPACE) {
-            if (!HandlePlayerDeath()) {
+            if (!handlePlayerDeath()) {
                 boolean godSafe = true;
                 //update systems
                 for (int a = 0; a < universe.getSystems().size(); a++) {
@@ -596,7 +596,7 @@ public class Core {
         this.tpf = tpf;
     }
 
-    private boolean HandlePlayerDeath() {
+    private boolean handlePlayerDeath() {
         if (universe.getPlayerShip() == null
                 || universe.getPlayerShip().getState() == State.DEAD) {
             state = GameState.GAME_OVER;
