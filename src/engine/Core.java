@@ -41,6 +41,7 @@ import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Node;
 import com.jme3.system.AppSettings;
 import entity.Entity;
+import entity.Entity.State;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
@@ -65,6 +66,7 @@ public class Core {
 
         PAUSED,
         IN_SPACE,
+        GAME_OVER
     }
     private GameState state = GameState.PAUSED;
     private static final float DEFAULT_TICK = 0.016666668f;
@@ -461,12 +463,10 @@ public class Core {
                         universe.getPlayerShip().setRoll(-evt.getValue());
                     } else if (evt.getAxis().getAxisId() == 3) {
                         //currently unused due to non-traditional throttle
-                    }
-                    /*
+                    } /*
                      * POV / HAT used for thrust
-                     */
-                    else if(evt.getAxis().getAxisId() == 6) {
-                        if(Math.abs(evt.getValue()) > 0) {
+                     */ else if (evt.getAxis().getAxisId() == 6) {
+                        if (Math.abs(evt.getValue()) > 0) {
                             universe.getPlayerShip().setThrottle(evt.getValue());
                         } else {
                             universe.getPlayerShip().setThrottle(0);
@@ -552,75 +552,88 @@ public class Core {
          * In-game updating
          */
         if (state == GameState.IN_SPACE) {
-            boolean godSafe = true;
-            //update systems
-            for (int a = 0; a < universe.getSystems().size(); a++) {
-                if (universe.getSystems().get(a) != universe.getPlayerShip().getCurrentSystem()) {
-                    universe.getSystems().get(a).oosPeriodicUpdate(tpf);
-                } else {
-                    //make sure there is no transition to be done
-                    if (universe.getPlayerShip().getCurrentSystem().hasGraphics()) {
-                        //update
-                        universe.getPlayerShip().getCurrentSystem().periodicUpdate(tpf);
+            if (!HandlePlayerDeath()) {
+                boolean godSafe = true;
+                //update systems
+                for (int a = 0; a < universe.getSystems().size(); a++) {
+                    if (universe.getSystems().get(a) != universe.getPlayerShip().getCurrentSystem()) {
+                        universe.getSystems().get(a).oosPeriodicUpdate(tpf);
                     } else {
-                        //transition to the new system
-                        resetScene();
-                        addSystem(universe.getPlayerShip().getCurrentSystem());
-                        resetCamera();
-                        //make sure the new system is flagged for graphics
-                        universe.getPlayerShip().getCurrentSystem().forceGraphics();
-                        godSafe = false;
+                        //make sure there is no transition to be done
+                        if (universe.getPlayerShip().getCurrentSystem().hasGraphics()) {
+                            //update
+                            universe.getPlayerShip().getCurrentSystem().periodicUpdate(tpf);
+                        } else {
+                            //transition to the new system
+                            resetScene();
+                            addSystem(universe.getPlayerShip().getCurrentSystem());
+                            resetCamera();
+                            //make sure the new system is flagged for graphics
+                            universe.getPlayerShip().getCurrentSystem().forceGraphics();
+                            godSafe = false;
+                        }
                     }
                 }
-            }
-            //update god
-            if (godSafe) {
-                god.periodicUpdate();
-            }
-            //see if we need to reset the camera
-            if (planetAppState.getAstralCamera() != null) {
-                if (universe.getPlayerShip() != planetAppState.getAstralCamera().getTarget()) {
+                //update god
+                if (godSafe) {
+                    god.periodicUpdate();
+                }
+                //see if we need to reset the camera
+                if (planetAppState.getAstralCamera() != null) {
+                    if (universe.getPlayerShip() != planetAppState.getAstralCamera().getTarget()) {
+                        resetCamera();
+                        resetHUD();
+                    }
+                } else {
                     resetCamera();
                     resetHUD();
                 }
-            } else {
-                resetCamera();
-                resetHUD();
+                //update sound
+                updateAudio();
             }
-            //update sound
-            updateAudio();
         }
         //store tpf
         this.tpf = tpf;
     }
 
+    private boolean HandlePlayerDeath() {
+        if (universe.getPlayerShip() == null
+                || universe.getPlayerShip().getState() == State.DEAD) {
+            state = GameState.GAME_OVER;
+            return true;
+        }
+        return false;
+    }
+
     public void render(RenderManager rm) {
-        if (hudRendering) {
-            //wait
-        } else {
-            if (hasFocus) {
-                //collect from the previous render thread
-                hud.collect();
-                //update
-                hud.periodicUpdate(tpf, getCamera());
-                //now start another render thread
-                Thread t = new Thread() {
-                    public void run() {
-                        try {
-                            //flag
-                            hudRendering = true;
-                            //render hud
-                            hud.render(assets);
-                        } catch (Exception e) {
-                            System.out.println("Hud rendering messed up");
-                        }
-                        //dismiss
-                        hudRendering = false;
-                    }
-                };
-                t.start();
+        if (state == GameState.IN_SPACE) {
+            if (hudRendering) {
+                //wait
             } else {
-                //don't do any gui rendering without focus and do not collect!
+                if (hasFocus) {
+                    //collect from the previous render thread
+                    hud.collect();
+                    //update
+                    hud.periodicUpdate(tpf, getCamera());
+                    //now start another render thread
+                    Thread t = new Thread() {
+                        public void run() {
+                            try {
+                                //flag
+                                hudRendering = true;
+                                //render hud
+                                hud.render(assets);
+                            } catch (Exception e) {
+                                System.out.println("Hud rendering messed up");
+                            }
+                            //dismiss
+                            hudRendering = false;
+                        }
+                    };
+                    t.start();
+                } else {
+                    //don't do any gui rendering without focus and do not collect!
+                }
             }
         }
     }

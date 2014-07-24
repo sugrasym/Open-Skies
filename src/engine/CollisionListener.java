@@ -49,14 +49,14 @@ public class CollisionListener implements PhysicsCollisionListener {
             } else if (objA.getParent() instanceof Planet) {
                 if (objB.getParent() instanceof Ship) {
                     handlePlanetCollision((Ship) objB.getParent());
-                } else if(objB.getParent() instanceof Projectile) {
+                } else if (objB.getParent() instanceof Projectile) {
                     Projectile pro = (Projectile) objB.getParent();
                     pro.setState(State.DYING);
                 }
             } else if (objB.getParent() instanceof Planet) {
                 if (objA.getParent() instanceof Ship) {
                     handlePlanetCollision((Ship) objA.getParent());
-                } else if(objA.getParent() instanceof Projectile) {
+                } else if (objA.getParent() instanceof Projectile) {
                     Projectile pro = (Projectile) objA.getParent();
                     pro.setState(State.DYING);
                 }
@@ -96,6 +96,10 @@ public class CollisionListener implements PhysicsCollisionListener {
     }
 
     private void handlePlanetCollision(Ship a) {
-        a.applyDamage((float) (25 * a.getMass() * a.getLinearVelocity().length()));
+        try {
+            a.applyDamage((float) (25 * a.getMass() * a.getLinearVelocity().length()));
+        } catch (Exception e) {
+            System.out.println("Error handling planet - ship collission");
+        }
     }
 }
