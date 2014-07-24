@@ -78,10 +78,10 @@ public class Planet extends Celestial {
             if (atmosphereShell != null) {
                 atmospherePhysics = new RigidBodyControl(sphereShape, getMass());
                 atmosphereShell.addControl(atmospherePhysics);
-                //avoid collissions
-                atmospherePhysics.setKinematic(false);
-                atmosphereShell.getControl(RigidBodyControl.class).setCollideWithGroups(PhysicsCollisionObject.COLLISION_GROUP_NONE);
             }
+            //store physics name control
+            nameControl.setParent(this);
+            spatial.addControl(nameControl);
         }
     }
 

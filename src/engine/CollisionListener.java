@@ -25,6 +25,7 @@ import celestial.Ship.Ship;
 import com.jme3.bullet.collision.PhysicsCollisionEvent;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
 import entity.Entity;
+import entity.Entity.State;
 import entity.PhysicsEntity.PhysicsNameControl;
 
 /**
@@ -48,10 +49,16 @@ public class CollisionListener implements PhysicsCollisionListener {
             } else if (objA.getParent() instanceof Planet) {
                 if (objB.getParent() instanceof Ship) {
                     handlePlanetCollision((Ship) objB.getParent());
+                } else if(objB.getParent() instanceof Projectile) {
+                    Projectile pro = (Projectile) objB.getParent();
+                    pro.setState(State.DYING);
                 }
             } else if (objB.getParent() instanceof Planet) {
                 if (objA.getParent() instanceof Ship) {
                     handlePlanetCollision((Ship) objA.getParent());
+                } else if(objA.getParent() instanceof Projectile) {
+                    Projectile pro = (Projectile) objA.getParent();
+                    pro.setState(State.DYING);
                 }
             } else if (objA.getParent() instanceof Projectile) {
                 if (objB.getParent() instanceof Ship) {
@@ -89,7 +96,6 @@ public class CollisionListener implements PhysicsCollisionListener {
     }
 
     private void handlePlanetCollision(Ship a) {
-        //I am pretty sure this will kill you
-        a.applyDamage(Float.MAX_VALUE);
+        a.applyDamage((float) (25 * a.getMass() * a.getLinearVelocity().length()));
     }
 }
