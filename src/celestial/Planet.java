@@ -57,6 +57,7 @@ public class Planet extends Celestial {
     private Term type;
     private int seed = 0;
     protected float radius;
+    private float atmosphereScaler;
 
     public Planet(Universe universe, String name, Term type, float radius) {
         super(Float.POSITIVE_INFINITY, universe);
@@ -109,16 +110,19 @@ public class Planet extends Celestial {
                 planetDataSource.setHeightScale(heightScale * radius);
                 fractalPlanet = Utility.createEarthLikePlanet(assets, radius, null, planetDataSource);
                 spatial = fractalPlanet;
+                setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
             } else if (palette.equals("Barren")) {
                 FractalDataSource moonDataSource = new FractalDataSource(seed);
                 moonDataSource.setHeightScale(heightScale * radius);
                 fractalPlanet = Utility.createMoonLikePlanet(assets, radius, moonDataSource);
                 spatial = fractalPlanet;
+                setAtmosphereScaler(0);
             } else if (palette.equals("Lava")) {
                 // Add planet
                 FractalDataSource planetDataSource = new FractalDataSource(seed);
                 planetDataSource.setHeightScale(heightScale * radius);
                 fractalPlanet = Utility.createChthonianPlanet(assets, radius, null, planetDataSource, seed);
+                setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
                 spatial = fractalPlanet;
             } else if (palette.equals("Mars")) {
                 //determine water presence
@@ -127,6 +131,7 @@ public class Planet extends Celestial {
                 FractalDataSource planetDataSource = new FractalDataSource(seed);
                 planetDataSource.setHeightScale(heightScale * radius);
                 fractalPlanet = Utility.createMarsLikePlanet(assets, radius, null, planetDataSource, hasWater, seed);
+                setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
                 spatial = fractalPlanet;
             }
         } else if (group.equals("gas")) {
@@ -214,7 +219,10 @@ public class Planet extends Celestial {
             float colB = (float) airColor.getBlue() / 255.0f;
             ColorRGBA atmoColor = new ColorRGBA(colR, colG, colB, 0.5f);
             //generate shell
-            atmosphereShell = Utility.createAtmosphereShell(assets, radius * 1.01f, planetDataSource, atmoColor);
+            setAtmosphereScaler(0.01f);
+            atmosphereShell = Utility.createAtmosphereShell(assets,
+                    radius + (radius * getAtmosphereScaler()),
+                    planetDataSource, atmoColor);
         }
     }
 
@@ -297,5 +305,13 @@ public class Planet extends Celestial {
     @Override
     public String toString() {
         return getName();
+    }
+
+    public float getAtmosphereScaler() {
+        return atmosphereScaler;
+    }
+
+    public void setAtmosphereScaler(float atmosphereScaler) {
+        this.atmosphereScaler = atmosphereScaler;
     }
 }

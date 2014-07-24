@@ -46,7 +46,7 @@ import java.util.Random;
  *
  */
 public class Utility {
-    private static final float ATMOSPHERE_MULTIPLIER = .045f;
+    public static final float ATMOSPHERE_MULTIPLIER = .045f;
 
     public static Node createGridAxis(AssetManager assetManager, int lines, int spacing) {
         Node grid = new Node("Grid Axis");
