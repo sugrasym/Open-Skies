@@ -192,7 +192,7 @@ public class MenuHomeWindow extends AstralWindow {
     }
 
     private int countSaves() {
-        String path = System.getProperty("user.home") + AstralIO.SAVE_GAME_DIR;
+        String path = AstralIO.getSaveDir();
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
         return listOfFiles.length;
@@ -200,7 +200,7 @@ public class MenuHomeWindow extends AstralWindow {
 
     private void addSaves(AstralList list) {
         //add all the files
-        String path = System.getProperty("user.home") + AstralIO.SAVE_GAME_DIR;
+        String path = AstralIO.getSaveDir();
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
         for (int i = 0; i < listOfFiles.length; i++) {

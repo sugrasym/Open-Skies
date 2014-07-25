@@ -22,6 +22,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -35,7 +36,8 @@ import universe.Universe;
 public class AstralIO implements Serializable {
 
     public static final String RESOURCE_DIR = "/resource/";
-    public static final String SAVE_GAME_DIR = "/.outlier/";
+    public static final String HOME_DIR = "/.outlier/";
+    public static final String SAVE_GAME_DIR = "/saves/";
 
     public static String readFile(String target, boolean local) {
         String ret = "";
@@ -60,6 +62,29 @@ public class AstralIO implements Serializable {
             }
         }
         return ret;
+    }
+    
+    public static void setupGameDir() {
+        String home = System.getProperty("user.home") + HOME_DIR;
+        String saves = System.getProperty("user.home") + getSaveDir();
+        //create the main folder
+        File homeFolder = new File(home);
+        if (!homeFolder.exists()) {
+            homeFolder.mkdir();
+        }
+        //create the subfolder
+        File saveFolder = new File(saves);
+        if (!saveFolder.exists()) {
+            saveFolder.mkdir();
+        }
+    }
+    
+    public static String getHomeDir() {
+        return System.getProperty("user.home") + "/" + HOME_DIR;
+    }
+    
+    public static String getSaveDir() {
+        return System.getProperty("user.home") + HOME_DIR + SAVE_GAME_DIR;
     }
 
     public void writeFile(String target, String text) {
@@ -117,7 +142,8 @@ public class AstralIO implements Serializable {
         //generate serializable universe
         Everything everything = new Everything(universe);
         //serialize universe
-        FileOutputStream fos = new FileOutputStream(gameName + ".hab");
+        FileOutputStream fos = new FileOutputStream(getSaveDir() 
+                + gameName + ".hab");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(everything);
     }

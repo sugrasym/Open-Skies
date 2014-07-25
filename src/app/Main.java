@@ -22,9 +22,13 @@ import com.jme3.renderer.RenderManager;
 import com.jme3.scene.plugins.blender.BlenderModelLoader;
 import engine.Core;
 import jmeplanet.PlanetAppState;
+import lib.astral.AstralIO;
 
 /**
- * - What do you say to Goons? - Die.
+ * - needs a better quote
+ * Goonswarm fed is actually pretty cool, but that Sir Molle quite
+ * WAS priceless. I mean he had a pink purse and was smoking a cigar
+ * when he said it.
  */
 public class Main extends SimpleApplication {
     //fpp
@@ -53,6 +57,8 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
+        //setup game directory
+        AstralIO.setupGameDir();
         //register models
         assetManager.registerLoader(BlenderModelLoader.class, "blend");
         //init physics

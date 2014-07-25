@@ -707,9 +707,11 @@ public class Core {
                 setUniverse(null);
             }
             resetScene();
+            gameName = gameName.replace(".hab", ""); //hacking this together
             //get everything
             Everything everything;
-            FileInputStream fis = new FileInputStream(gameName + ".hab");
+            FileInputStream fis =
+                    new FileInputStream(AstralIO.getSaveDir()+gameName + ".hab");
             ObjectInputStream ois = new ObjectInputStream(fis);
             everything = (Everything) ois.readObject();
             //unpack universe
@@ -759,6 +761,7 @@ public class Core {
     }
 
     private void clearHUD() {
+        hud.reset();
         //undo hud
         hud.remove();
         //clear markers
