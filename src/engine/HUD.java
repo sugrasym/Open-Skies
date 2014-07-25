@@ -39,6 +39,7 @@ import gdi.component.AstralWindow;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import universe.SolarSystem;
 import universe.Universe;
 
@@ -160,7 +161,7 @@ public class HUD {
         //add markers
         iffManager.add();
         //add windows
-        for (int a = 0; a < windows.size(); a++) {
+        for (int a = windows.size()-1; a >= 0; a--) {
             windows.get(a).add(guiNode);
         }
     }
@@ -326,6 +327,8 @@ public class HUD {
             }
             windows.clear();
             windows.addAll(Arrays.asList(arr));
+            remove();
+            add();
         }
     }
 
