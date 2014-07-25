@@ -63,9 +63,7 @@ import universe.Universe;
 public class Core {
 
     public enum GameState {
-
         MAIN_MENU,
-        PAUSED,
         IN_SPACE,
         GAME_OVER
     }
@@ -260,10 +258,6 @@ public class Core {
         input.addMapping("KEY_DOWN", new KeyTrigger(KeyInput.KEY_DOWN));
         input.addMapping("KEY_LEFT", new KeyTrigger(KeyInput.KEY_LEFT));
         input.addMapping("KEY_RIGHT", new KeyTrigger(KeyInput.KEY_RIGHT));
-        //function keys dedicated to engine control
-        input.addMapping("Normal", new KeyTrigger(KeyInput.KEY_F1));
-        input.addMapping("Cruise", new KeyTrigger(KeyInput.KEY_F2));
-        input.addMapping("Newton", new KeyTrigger(KeyInput.KEY_F3));
         //quick load and quick save dedicated keys
         input.addMapping("QuickSave", new KeyTrigger(KeyInput.KEY_INSERT));
         input.addMapping("QuickLoad", new KeyTrigger(KeyInput.KEY_PAUSE));
@@ -276,6 +270,17 @@ public class Core {
         input.addMapping("KEY_PGDN", new KeyTrigger(KeyInput.KEY_PGDN));
         //function keys
         input.addMapping("KEY_F1", new KeyTrigger(KeyInput.KEY_F1));
+        input.addMapping("KEY_F2", new KeyTrigger(KeyInput.KEY_F2));
+        input.addMapping("KEY_F3", new KeyTrigger(KeyInput.KEY_F3));
+        input.addMapping("KEY_F4", new KeyTrigger(KeyInput.KEY_F4));
+        input.addMapping("KEY_F5", new KeyTrigger(KeyInput.KEY_F5));
+        input.addMapping("KEY_F6", new KeyTrigger(KeyInput.KEY_F6));
+        input.addMapping("KEY_F7", new KeyTrigger(KeyInput.KEY_F7));
+        input.addMapping("KEY_F8", new KeyTrigger(KeyInput.KEY_F8));
+        input.addMapping("KEY_F9", new KeyTrigger(KeyInput.KEY_F9));
+        input.addMapping("KEY_F10", new KeyTrigger(KeyInput.KEY_F10));
+        input.addMapping("KEY_F11", new KeyTrigger(KeyInput.KEY_F11));
+        input.addMapping("KEY_F12", new KeyTrigger(KeyInput.KEY_F12));
         //add
         input.addListener(actionListener, new String[]{
             "KEY_0", "KEY_1", "KEY_2", "KEY_3", "KEY_4", "KEY_5", "KEY_6",
@@ -285,9 +290,10 @@ public class Core {
             "KEY_T", "KEY_U", "KEY_V", "KEY_X", "KEY_Y", "KEY_Z",
             "KEY_W", "KEY_A", "KEY_S", "KEY_D", "KEY_SPACE", "KEY_RETURN",
             "KEY_Q", "KEY_E", "KEY_UP", "KEY_DOWN", "KEY_LEFT", "KEY_RIGHT",
-            "KEY_BACKSPACE", "Normal", "Cruise", "Newton", "QuickSave",
-            "QuickLoad", "KEY_END", "KEY_HOME", "KEY_PGUP", "KEY_PGDN",
-            "KEY_F1"});
+            "KEY_BACKSPACE", "QuickSave", "QuickLoad", "KEY_END", "KEY_HOME",
+            "KEY_PGUP", "KEY_PGDN", "KEY_F1", "KEY_F2", "KEY_F3", "KEY_F4", 
+            "KEY_F5","KEY_F6", "KEY_F7", "KEY_F8", "KEY_F9", "KEY_F10", 
+            "KEY_F11","KEY_F12"});
     }
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {
@@ -342,6 +348,10 @@ public class Core {
                 if (name.equals("KEY_7")) {
                     //toggle standing window
                     hud.toggleStandingWindow();
+                }
+                if(name.equals("KEY_F4")) {
+                    //toggle main menu window
+                    hud.toggleMenuHomeWindow();
                 }
             }
             if (!universe.getPlayerShip().isDocked()) {

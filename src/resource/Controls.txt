@@ -5,7 +5,7 @@ Open Skies Control Card
 Navigation
 --------------------------------------------------------------------------------
 Joystick Axis control pitch, yaw, and roll.
-Joystick throttle controls thrust. It supports both forward and reverse.
+Joystick hat is throttle. It will make sense when you try it.
 
 W - Fire forward thruster
 S - Fire rear thruster
@@ -18,11 +18,16 @@ E - Roll right
 Up Arrow - Pitch down
 Down Arrow - Pitch up
 
+F1 - Dock with current target / Undock
+
 Weapons
 --------------------------------------------------------------------------------
 SPACE - Fire active weapons
 J - Toggle Missiles / Batteries
 L - Toggle Cannons / Turrets
+
+Joystick Button 1 - Fire active weapons
+Joystick Button 2 - Hold to temporarily toggle missile activation
 
 User Interface
 --------------------------------------------------------------------------------
@@ -34,6 +39,8 @@ User Interface
 6 - Toggle Trade Window (must be docked)
 7 - Toggle Standing Window
 
+F4 - Main Menu (does not pause game)
+
 UP ARROW - Scroll List Up
 DOWN ARROW - Scroll List Down
 
@@ -41,6 +48,8 @@ Loading And Saving
 --------------------------------------------------------------------------------
 Quick Load - Pause
 Quick Save - Insert
+
+F4 to use main menu to load and save other games
 
 Overview Window (when focused)
 --------------------------------------------------------------------------------
@@ -50,12 +59,6 @@ PGDWN - Toggle show Ship names
 
 END - Increase view area 2x
 HOME - Decrease view area 2x
-
-Note that sensor modes have different returns and therefore different uses.
-- Short Active : 1/2 range, can see anything.
-- Active       : Normal range, can't see secrets
-- Passive      : 10x range, can't see ships
-- Deep Field   : 100x range, can't see ships or stations.
 
 The overview is displayed as if you are looking down at the ecliptic plane of
 the solar system. The cyan line shows the direction you are facing on the XZ

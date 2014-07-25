@@ -352,6 +352,7 @@ public class HUD {
         tradeWindow.setVisible(false);
         starMapWindow.setVisible(false);
         standingWindow.setVisible(false);
+        menuHomeWindow.setVisible(false);
     }
 
     public void toggleSensorWindow() {
@@ -390,6 +391,12 @@ public class HUD {
         boolean visible = !standingWindow.isVisible();
         hideCentralWindows();
         standingWindow.setVisible(visible);
+    }
+    
+    public void toggleMenuHomeWindow() {
+        boolean visible = !menuHomeWindow.isVisible();
+        hideCentralWindows();
+        menuHomeWindow.setVisible(visible);
     }
 
     /*
