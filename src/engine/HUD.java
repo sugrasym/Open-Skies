@@ -28,6 +28,7 @@ import gdi.EquipmentWindow;
 import gdi.FuelWindow;
 import gdi.HealthWindow;
 import gdi.HudMarker;
+import gdi.MenuHomeWindow;
 import gdi.OverviewWindow;
 import gdi.PropertyWindow;
 import gdi.SightMarker;
@@ -64,6 +65,7 @@ public class HUD {
     TradeWindow tradeWindow;
     StarMapWindow starMapWindow;
     StandingWindow standingWindow;
+    MenuHomeWindow menuHomeWindow;
     //IFF Manager
     IFFManager iffManager = new IFFManager();
     private boolean resetWindowFlag;
@@ -78,16 +80,24 @@ public class HUD {
         this.height = height;
     }
 
-    private void configureForMenu() {
+    private void configureForMenu(Core engine) {
+        remove();
         //clear old windows
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).remove(guiNode);
         }
         windows.clear();
-        //
+        //menuHome window
+        menuHomeWindow = new MenuHomeWindow(assets, engine);
+        menuHomeWindow.setX((width / 2) - menuHomeWindow.getWidth() / 2);
+        menuHomeWindow.setY((height / 2) - menuHomeWindow.getHeight() / 2);
+        windows.add(menuHomeWindow);
+        //finish
+        add();
     }
 
-    private void configureForSpace() {
+    private void configureForSpace(Core engine) {
+        remove();
         //clear old windows
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).remove(guiNode);
@@ -142,6 +152,8 @@ public class HUD {
         standingWindow.setX((width / 2) - standingWindow.getWidth() / 2);
         standingWindow.setY((height / 2) - standingWindow.getHeight() / 2);
         windows.add(standingWindow);
+        //finish
+        add();
     }
 
     public void add() {
@@ -161,6 +173,11 @@ public class HUD {
             windows.get(a).remove(guiNode);
         }
     }
+    
+    public void reset() {
+        remove();
+        windows.clear();
+    }
 
     public void periodicUpdate(float tpf, Core engine) {
         try {
@@ -176,14 +193,14 @@ public class HUD {
 
     private void doMenuUpdate(Core engine, float tpf) {
         if (windows.isEmpty()) {
-            configureForMenu();
+            configureForMenu(engine);
         }
         System.out.println("reached");
     }
 
     private void doSpaceUpdate(Core engine, float tpf) {
         if (windows.isEmpty()) {
-            configureForSpace();
+            configureForSpace(engine);
         }
         this.camera = engine.getCamera();
         //update iffs

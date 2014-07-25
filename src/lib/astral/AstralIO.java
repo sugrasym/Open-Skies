@@ -35,6 +35,7 @@ import universe.Universe;
 public class AstralIO implements Serializable {
 
     public static final String RESOURCE_DIR = "/resource/";
+    public static final String SAVE_GAME_DIR = "/.outlier/";
 
     public static String readFile(String target, boolean local) {
         String ret = "";

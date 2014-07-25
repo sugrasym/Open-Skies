@@ -72,7 +72,7 @@ public class Core {
     private GameState state = GameState.MAIN_MENU;
     private static final float DEFAULT_TICK = 0.016666668f;
     //game objects
-    Universe universe;
+    private Universe universe;
     God god;
     //nodes
     Node rootNode;
@@ -130,10 +130,10 @@ public class Core {
 
     private void initGod() {
         god = null;
-        god = new God(universe);
+        god = new God(getUniverse());
     }
 
-    private void newGame(String name) {
+    public void newGame(String name) {
         //get the game from the universe
         Parser parse = new Parser("UNIVERSE.txt");
         ArrayList<Term> games = parse.getTermsOfType("NewGame");
@@ -147,10 +147,10 @@ public class Core {
 
         //generate the world
         resetScene();
-        universe = new Universe(assets);
+        setUniverse(new Universe(assets));
         //determine start system
         String sysName = game.getValue("system");
-        SolarSystem start = universe.getSystemWithName(sysName);
+        SolarSystem start = getUniverse().getSystemWithName(sysName);
         //determine start ship
         Parser ships = new Parser("SHIP.txt");
         String shipName = game.getValue("ship");
@@ -158,7 +158,7 @@ public class Core {
         ArrayList<Term> types = ships.getTermsOfType("Ship");
         for (int a = 0; a < types.size(); a++) {
             if (types.get(a).getValue("type").equals(shipName)) {
-                ship = new Ship(universe, types.get(a), Faction.PLAYER);
+                ship = new Ship(getUniverse(), types.get(a), Faction.PLAYER);
                 ship.setName("Your " + shipName);
                 break;
             }
@@ -183,9 +183,10 @@ public class Core {
         //center planetappstate on player ship
         planetAppState.setCameraShip(ship);
         //setup player shortcut
-        universe.setPlayerShip(ship);
+        getUniverse().setPlayerShip(ship);
         //inform hud of new universe
-        hud.setUniverse(universe);
+        hud.reset();
+        hud.setUniverse(getUniverse());
         //start god
         initGod();
         //start game
@@ -296,8 +297,6 @@ public class Core {
                 if (!hud.handleKeyAction(getState(), name, keyPressed)) {
                     if (getState() == GameState.IN_SPACE) {
                         handleInSpaceKeys(name, keyPressed);
-                    } else {
-                        newGame("Default");
                     }
                 }
             } else if (split[0].equals("MOUSE")) {
@@ -349,84 +348,84 @@ public class Core {
                 //docking
                 if (name.equals("KEY_F1")) {
                     if (keyPressed) {
-                        if (universe.getPlayerShip().getTarget() instanceof Station) {
-                            universe.getPlayerShip().cmdDock((Station) universe.getPlayerShip().getTarget());
+                        if (getUniverse().getPlayerShip().getTarget() instanceof Station) {
+                            getUniverse().getPlayerShip().cmdDock((Station) getUniverse().getPlayerShip().getTarget());
                         }
                     }
                 }
                 //fire
                 if (name.equals("KEY_SPACE")) {
-                    universe.getPlayerShip().setFiring(keyPressed);
+                    getUniverse().getPlayerShip().setFiring(keyPressed);
                 }
                 //all stop
                 if (name.equals("KEY_HOME")) {
-                    universe.getPlayerShip().cmdAllStop();
+                    getUniverse().getPlayerShip().cmdAllStop();
                 }
                 //handle nav actions
                 if (name.equals("KEY_Q")) {
                     if (keyPressed) {
-                        universe.getPlayerShip().setRoll(1);
+                        getUniverse().getPlayerShip().setRoll(1);
                     } else {
-                        universe.getPlayerShip().setRoll(0);
+                        getUniverse().getPlayerShip().setRoll(0);
                     }
                 }
                 if (name.equals("KEY_E")) {
                     if (keyPressed) {
-                        universe.getPlayerShip().setRoll(-1);
+                        getUniverse().getPlayerShip().setRoll(-1);
                     } else {
-                        universe.getPlayerShip().setRoll(0);
+                        getUniverse().getPlayerShip().setRoll(0);
                     }
                 }
                 if (name.equals("KEY_W")) {
                     if (keyPressed) {
-                        universe.getPlayerShip().setThrottle(1);
+                        getUniverse().getPlayerShip().setThrottle(1);
                     } else {
-                        universe.getPlayerShip().setThrottle(0);
+                        getUniverse().getPlayerShip().setThrottle(0);
                     }
                 }
                 if (name.equals("KEY_S")) {
                     if (keyPressed) {
-                        universe.getPlayerShip().setThrottle(-1);
+                        getUniverse().getPlayerShip().setThrottle(-1);
                     } else {
-                        universe.getPlayerShip().setThrottle(0);
+                        getUniverse().getPlayerShip().setThrottle(0);
                     }
                 }
                 if (name.equals("KEY_A")) {
                     if (keyPressed) {
-                        universe.getPlayerShip().setYaw(1);
+                        getUniverse().getPlayerShip().setYaw(1);
                     } else {
-                        universe.getPlayerShip().setYaw(0);
+                        getUniverse().getPlayerShip().setYaw(0);
                     }
                 }
                 if (name.equals("KEY_D")) {
                     if (keyPressed) {
-                        universe.getPlayerShip().setYaw(-1);
+                        getUniverse().getPlayerShip().setYaw(-1);
                     } else {
-                        universe.getPlayerShip().setYaw(0);
+                        getUniverse().getPlayerShip().setYaw(0);
                     }
                 }
                 if (name.equals("KEY_UP")) {
                     if (keyPressed) {
-                        universe.getPlayerShip().setPitch(-1);
+                        getUniverse().getPlayerShip().setPitch(-1);
                     } else {
-                        universe.getPlayerShip().setPitch(0);
+                        getUniverse().getPlayerShip().setPitch(0);
                     }
                 }
                 if (name.equals("KEY_DOWN")) {
                     if (keyPressed) {
-                        universe.getPlayerShip().setPitch(1);
+                        getUniverse().getPlayerShip().setPitch(1);
                     } else {
-                        universe.getPlayerShip().setPitch(0);
+                        getUniverse().getPlayerShip().setPitch(0);
                     }
                 }
                 if (name.equals("KEY_J")) {
                     if (keyPressed) {
-                        universe.getPlayerShip().toggleMissiles();
+                        getUniverse().getPlayerShip().toggleMissiles();
                     }
                 }
                 if (name.equals("KEY_K")) {
                     if (keyPressed) {
-                        universe.getPlayerShip().toggleCannons();
+                        getUniverse().getPlayerShip().toggleCannons();
                     }
                 }
             } else {
@@ -440,7 +439,7 @@ public class Core {
                 //undock
                 if (name.equals("KEY_F1")) {
                     if (keyPressed) {
-                        universe.getPlayerShip().cmdUndock();
+                        getUniverse().getPlayerShip().cmdUndock();
                     }
                 }
             }
@@ -453,20 +452,20 @@ public class Core {
             if (getState() == GameState.IN_SPACE) {
                 if (!universe.getPlayerShip().isDocked()) {
                     if (evt.getAxis().getAxisId() == 0) {
-                        universe.getPlayerShip().setYaw(-evt.getValue());
+                        getUniverse().getPlayerShip().setYaw(-evt.getValue());
                     } else if (evt.getAxis().getAxisId() == 1) {
-                        universe.getPlayerShip().setPitch(evt.getValue());
+                        getUniverse().getPlayerShip().setPitch(evt.getValue());
                     } else if (evt.getAxis().getAxisId() == 2) {
-                        universe.getPlayerShip().setRoll(-evt.getValue());
+                        getUniverse().getPlayerShip().setRoll(-evt.getValue());
                     } else if (evt.getAxis().getAxisId() == 3) {
                         //currently unused due to non-traditional throttle
                     } /*
                      * POV / HAT used for thrust
                      */ else if (evt.getAxis().getAxisId() == 6) {
                         if (Math.abs(evt.getValue()) > 0) {
-                            universe.getPlayerShip().setThrottle(evt.getValue());
+                            getUniverse().getPlayerShip().setThrottle(evt.getValue());
                         } else {
-                            universe.getPlayerShip().setThrottle(0);
+                            getUniverse().getPlayerShip().setThrottle(0);
                         }
                     }
                 }
@@ -477,9 +476,9 @@ public class Core {
             if (getState() == GameState.IN_SPACE) {
                 if (!universe.getPlayerShip().isDocked()) {
                     if (evt.getButton().getButtonId() == 0) {
-                        universe.getPlayerShip().setFiring(evt.isPressed());
+                        getUniverse().getPlayerShip().setFiring(evt.isPressed());
                     } else if (evt.getButton().getButtonId() == 1) {
-                        universe.getPlayerShip().toggleMissiles();
+                        getUniverse().getPlayerShip().toggleMissiles();
                     }
                 }
             }
@@ -565,21 +564,21 @@ public class Core {
         if (!handlePlayerDeath()) {
             boolean godSafe = true;
             //update systems
-            for (int a = 0; a < universe.getSystems().size(); a++) {
-                if (universe.getSystems().get(a) != universe.getPlayerShip().getCurrentSystem()) {
-                    universe.getSystems().get(a).oosPeriodicUpdate(tpf);
+            for (int a = 0; a < getUniverse().getSystems().size(); a++) {
+                if (getUniverse().getSystems().get(a) != getUniverse().getPlayerShip().getCurrentSystem()) {
+                    getUniverse().getSystems().get(a).oosPeriodicUpdate(tpf);
                 } else {
                     //make sure there is no transition to be done
-                    if (universe.getPlayerShip().getCurrentSystem().hasGraphics()) {
+                    if (getUniverse().getPlayerShip().getCurrentSystem().hasGraphics()) {
                         //update
-                        universe.getPlayerShip().getCurrentSystem().periodicUpdate(tpf);
+                        getUniverse().getPlayerShip().getCurrentSystem().periodicUpdate(tpf);
                     } else {
                         //transition to the new system
                         resetScene();
-                        addSystem(universe.getPlayerShip().getCurrentSystem());
+                        addSystem(getUniverse().getPlayerShip().getCurrentSystem());
                         resetCamera();
                         //make sure the new system is flagged for graphics
-                        universe.getPlayerShip().getCurrentSystem().forceGraphics();
+                        getUniverse().getPlayerShip().getCurrentSystem().forceGraphics();
                         godSafe = false;
                     }
                 }
@@ -590,7 +589,7 @@ public class Core {
             }
             //see if we need to reset the camera
             if (planetAppState.getAstralCamera() != null) {
-                if (universe.getPlayerShip() != planetAppState.getAstralCamera().getTarget()) {
+                if (getUniverse().getPlayerShip() != planetAppState.getAstralCamera().getTarget()) {
                     resetCamera();
                     resetHUD();
                 }
@@ -604,8 +603,8 @@ public class Core {
     }
 
     private boolean handlePlayerDeath() {
-        if (universe.getPlayerShip() == null
-                || universe.getPlayerShip().getState() == State.DEAD) {
+        if (getUniverse().getPlayerShip() == null
+                || getUniverse().getPlayerShip().getState() == State.DEAD) {
             setState(GameState.GAME_OVER);
             return true;
         }
@@ -660,14 +659,14 @@ public class Core {
 
     private void updateSpaceAudio() {
         //center audio listener on player
-        listener.setLocation(universe.getPlayerShip().getLocation());
+        listener.setLocation(getUniverse().getPlayerShip().getLocation());
         //play sound effects for ships
-        SolarSystem playerSystem = universe.getPlayerShip().getCurrentSystem();
+        SolarSystem playerSystem = getUniverse().getPlayerShip().getCurrentSystem();
         ArrayList<Entity> celestials = playerSystem.getCelestials();
         for (int a = 0; a < celestials.size(); a++) {
             if (celestials.get(a) instanceof Ship) {
                 Ship tmp = (Ship) celestials.get(a);
-                if (tmp.distanceTo(universe.getPlayerShip()) < Universe.SOUND_RANGE) {
+                if (tmp.distanceTo(getUniverse().getPlayerShip()) < Universe.SOUND_RANGE) {
                     if (tmp.getSoundQue() != null) {
                         for (int b = 0; b < tmp.getSoundQue().size(); b++) {
                             //I'm not permitting looping sounds to be played by ships using the que
@@ -693,7 +692,7 @@ public class Core {
     public void save(String gameName) {
         try {
             //save
-            new AstralIO().saveGame(universe, gameName);
+            new AstralIO().saveGame(getUniverse(), gameName);
         } catch (Exception ex) {
             Logger.getLogger(Core.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -702,10 +701,10 @@ public class Core {
     public void load(String gameName) {
         try {
             //unload universe
-            if (universe != null) {
-                removeSystem(universe.getPlayerShip().getCurrentSystem());
-                universe.setPlayerShip(null);
-                universe = null;
+            if (getUniverse() != null) {
+                removeSystem(getUniverse().getPlayerShip().getCurrentSystem());
+                getUniverse().setPlayerShip(null);
+                setUniverse(null);
             }
             resetScene();
             //get everything
@@ -714,17 +713,17 @@ public class Core {
             ObjectInputStream ois = new ObjectInputStream(fis);
             everything = (Everything) ois.readObject();
             //unpack universe
-            universe = everything.getUniverse();
+            setUniverse(everything.getUniverse());
             //enter the player's system
-            addSystem(universe.getPlayerShip().getCurrentSystem());
+            addSystem(getUniverse().getPlayerShip().getCurrentSystem());
             //reset camera
             resetCamera();
             //restore HUD
             if (hud != null) {
-                hud.setUniverse(universe);
+                hud.setUniverse(getUniverse());
             }
             //restore assets
-            universe.setAssets(assets);
+            getUniverse().setAssets(assets);
             //restore god
             initGod();
             //go
@@ -774,7 +773,7 @@ public class Core {
     private void resetCamera() {
         //restore camera
         planetAppState.freeCamera();
-        planetAppState.setCameraShip(universe.getPlayerShip());
+        planetAppState.setCameraShip(getUniverse().getPlayerShip());
     }
 
     public AstralCamera getCamera() {
@@ -795,5 +794,13 @@ public class Core {
 
     public void setState(GameState state) {
         this.state = state;
+    }
+    
+    public Universe getUniverse() {
+        return universe;
+    }
+
+    public void setUniverse(Universe universe) {
+        this.universe = universe;
     }
 }
