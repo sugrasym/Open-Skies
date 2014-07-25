@@ -64,21 +64,14 @@ public class Core {
 
     public enum GameState {
 
+        MAIN_MENU,
         PAUSED,
         IN_SPACE,
         GAME_OVER
     }
-    private GameState state = GameState.PAUSED;
+    private GameState state = GameState.MAIN_MENU;
     private static final float DEFAULT_TICK = 0.016666668f;
     //game objects
-    /*
-     * Although you can chuck any game object into this list, it is best to maintain the hierchy.
-     * - Universe
-     * -- Solar System
-     * ---- Celestial
-     * ----- Celestial children (asteroids?)
-     * ---- Ship / Station
-     */
     Universe universe;
     God god;
     //nodes
@@ -117,7 +110,7 @@ public class Core {
         initKeys();
         initMouse();
         initJoyStick();
-        newGame("Default");
+        //newGame("Default");
         //do last
         initPhysicsListeners();
         initHud();
@@ -125,7 +118,7 @@ public class Core {
     }
 
     private void initHud() {
-        hud = new HUD(guiNode, universe, settings.getWidth(),
+        hud = new HUD(guiNode, settings.getWidth(),
                 settings.getHeight(), assets);
         hud.add();
     }
@@ -191,11 +184,12 @@ public class Core {
         planetAppState.setCameraShip(ship);
         //setup player shortcut
         universe.setPlayerShip(ship);
+        //inform hud of new universe
+        hud.setUniverse(universe);
         //start god
         initGod();
         //start game
-        state = GameState.IN_SPACE;
-        //TODO: init code
+        setState(GameState.IN_SPACE);
 
     }
 
@@ -299,21 +293,24 @@ public class Core {
             Vector2f origin = input.getCursorPosition();
             String[] split = name.split("_");
             if (split[0].equals("KEY")) {
-                if (!hud.handleKeyAction(state, name, keyPressed)) {
-                    if (state == GameState.IN_SPACE) {
+                if (!hud.handleKeyAction(getState(), name, keyPressed)) {
+                    if (getState() == GameState.IN_SPACE) {
                         handleInSpaceKeys(name, keyPressed);
+                    } else {
+                        newGame("Default");
                     }
                 }
             } else if (split[0].equals("MOUSE")) {
-                if (state == GameState.IN_SPACE) {
-                    hud.handleMouseAction(state, name, keyPressed, new Vector3f(origin.x, origin.y, 0));
-                }
+                hud.handleMouseAction(getState(), name, keyPressed, 
+                        new Vector3f(origin.x, origin.y, 0));
             } else {
-                //quickload and quicksave
-                if (name.equals("QuickSave")) {
-                    save("Quick");
-                } else if (name.equals("QuickLoad")) {
-                    load("Quick");
+                if (getState() == GameState.IN_SPACE) {
+                    //quickload and quicksave
+                    if (name.equals("QuickSave")) {
+                        save("Quick");
+                    } else if (name.equals("QuickLoad")) {
+                        load("Quick");
+                    }
                 }
             }
 
@@ -453,7 +450,7 @@ public class Core {
     protected class JoystickEventListener implements RawInputListener {
 
         public void onJoyAxisEvent(JoyAxisEvent evt) {
-            if (state == GameState.IN_SPACE) {
+            if (getState() == GameState.IN_SPACE) {
                 if (!universe.getPlayerShip().isDocked()) {
                     if (evt.getAxis().getAxisId() == 0) {
                         universe.getPlayerShip().setYaw(-evt.getValue());
@@ -477,7 +474,7 @@ public class Core {
         }
 
         public void onJoyButtonEvent(JoyButtonEvent evt) {
-            if (state == GameState.IN_SPACE) {
+            if (getState() == GameState.IN_SPACE) {
                 if (!universe.getPlayerShip().isDocked()) {
                     if (evt.getButton().getButtonId() == 0) {
                         universe.getPlayerShip().setFiring(evt.isPressed());
@@ -551,94 +548,117 @@ public class Core {
         /*
          * In-game updating
          */
-        if (state == GameState.IN_SPACE) {
-            if (!handlePlayerDeath()) {
-                boolean godSafe = true;
-                //update systems
-                for (int a = 0; a < universe.getSystems().size(); a++) {
-                    if (universe.getSystems().get(a) != universe.getPlayerShip().getCurrentSystem()) {
-                        universe.getSystems().get(a).oosPeriodicUpdate(tpf);
-                    } else {
-                        //make sure there is no transition to be done
-                        if (universe.getPlayerShip().getCurrentSystem().hasGraphics()) {
-                            //update
-                            universe.getPlayerShip().getCurrentSystem().periodicUpdate(tpf);
-                        } else {
-                            //transition to the new system
-                            resetScene();
-                            addSystem(universe.getPlayerShip().getCurrentSystem());
-                            resetCamera();
-                            //make sure the new system is flagged for graphics
-                            universe.getPlayerShip().getCurrentSystem().forceGraphics();
-                            godSafe = false;
-                        }
-                    }
-                }
-                //update god
-                if (godSafe) {
-                    god.periodicUpdate();
-                }
-                //see if we need to reset the camera
-                if (planetAppState.getAstralCamera() != null) {
-                    if (universe.getPlayerShip() != planetAppState.getAstralCamera().getTarget()) {
-                        resetCamera();
-                        resetHUD();
-                    }
-                } else {
-                    resetCamera();
-                    resetHUD();
-                }
-                //update sound
-                updateAudio();
-            }
+        if (getState() == GameState.IN_SPACE) {
+            doSpaceUpdate(tpf);
+        } else if(getState() == GameState.MAIN_MENU) {
+            doMenuUpdate(tpf);
         }
         //store tpf
         this.tpf = tpf;
+    }
+    
+    private void doMenuUpdate(float tpf) {
+        System.out.println("also reached");
+    }
+
+    private void doSpaceUpdate(float tpf) {
+        if (!handlePlayerDeath()) {
+            boolean godSafe = true;
+            //update systems
+            for (int a = 0; a < universe.getSystems().size(); a++) {
+                if (universe.getSystems().get(a) != universe.getPlayerShip().getCurrentSystem()) {
+                    universe.getSystems().get(a).oosPeriodicUpdate(tpf);
+                } else {
+                    //make sure there is no transition to be done
+                    if (universe.getPlayerShip().getCurrentSystem().hasGraphics()) {
+                        //update
+                        universe.getPlayerShip().getCurrentSystem().periodicUpdate(tpf);
+                    } else {
+                        //transition to the new system
+                        resetScene();
+                        addSystem(universe.getPlayerShip().getCurrentSystem());
+                        resetCamera();
+                        //make sure the new system is flagged for graphics
+                        universe.getPlayerShip().getCurrentSystem().forceGraphics();
+                        godSafe = false;
+                    }
+                }
+            }
+            //update god
+            if (godSafe) {
+                god.periodicUpdate();
+            }
+            //see if we need to reset the camera
+            if (planetAppState.getAstralCamera() != null) {
+                if (universe.getPlayerShip() != planetAppState.getAstralCamera().getTarget()) {
+                    resetCamera();
+                    resetHUD();
+                }
+            } else {
+                resetCamera();
+                resetHUD();
+            }
+            //update sound
+            updateSpaceAudio();
+        }
     }
 
     private boolean handlePlayerDeath() {
         if (universe.getPlayerShip() == null
                 || universe.getPlayerShip().getState() == State.DEAD) {
-            state = GameState.GAME_OVER;
+            setState(GameState.GAME_OVER);
             return true;
         }
         return false;
     }
 
     public void render(RenderManager rm) {
-        if (state == GameState.IN_SPACE) {
-            if (hudRendering) {
-                //wait
-            } else {
-                if (hasFocus) {
-                    //collect from the previous render thread
-                    hud.collect();
-                    //update
-                    hud.periodicUpdate(tpf, getCamera());
-                    //now start another render thread
-                    Thread t = new Thread() {
-                        public void run() {
-                            try {
-                                //flag
-                                hudRendering = true;
-                                //render hud
-                                hud.render(assets);
-                            } catch (Exception e) {
-                                System.out.println("Hud rendering messed up");
-                            }
-                            //dismiss
-                            hudRendering = false;
+        if (getState() == GameState.IN_SPACE) {
+            doSpaceRendering();
+        } else if (getState() == GameState.MAIN_MENU) {
+            doMenuRendering();
+        }
+    }
+
+    private void doMenuRendering() {
+        hud.periodicUpdate(tpf, this);
+        hud.render(assets, this);
+        hud.collect();
+    }
+
+    private void doSpaceRendering() {
+        if (hudRendering) {
+            //wait
+        } else {
+            if (hasFocus) {
+                //collect from the previous render thread
+                hud.collect();
+                //update
+                hud.periodicUpdate(tpf, this);
+                //now start another render thread
+                final Core passCore = this;
+                Thread t = new Thread() {
+                    public void run() {
+                        try {
+                            //flag
+                            hudRendering = true;
+                            //render hud
+                            hud.render(assets, passCore);
+                        } catch (Exception e) {
+                            System.out.println("Hud rendering messed up");
                         }
-                    };
-                    t.start();
-                } else {
-                    //don't do any gui rendering without focus and do not collect!
-                }
+                        //dismiss
+                        hudRendering = false;
+                    }
+                };
+                t.start();
+            } else {
+                //don't do any gui rendering without focus and do not collect!
             }
         }
     }
 
-    private void updateAudio() {
+    private void updateSpaceAudio() {
         //center audio listener on player
         listener.setLocation(universe.getPlayerShip().getLocation());
         //play sound effects for ships
@@ -708,7 +728,7 @@ public class Core {
             //restore god
             initGod();
             //go
-            state = GameState.IN_SPACE;
+            setState(GameState.IN_SPACE);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -767,5 +787,13 @@ public class Core {
 
     public void setFocus(boolean hasFocus) {
         this.hasFocus = hasFocus;
+    }
+
+    public GameState getState() {
+        return state;
+    }
+
+    public void setState(GameState state) {
+        this.state = state;
     }
 }

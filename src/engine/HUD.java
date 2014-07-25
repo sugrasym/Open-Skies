@@ -71,16 +71,28 @@ public class HUD {
     private int width;
     private int height;
 
-    public HUD(Node guiNode, Universe universe, int width, int height, AssetManager assets) {
+    public HUD(Node guiNode, int width, int height, AssetManager assets) {
         this.guiNode = guiNode;
-        this.universe = universe;
         this.assets = assets;
         this.width = width;
         this.height = height;
-        init();
     }
 
-    private void init() {
+    private void configureForMenu() {
+        //clear old windows
+        for (int a = 0; a < windows.size(); a++) {
+            windows.get(a).remove(guiNode);
+        }
+        windows.clear();
+        //
+    }
+
+    private void configureForSpace() {
+        //clear old windows
+        for (int a = 0; a < windows.size(); a++) {
+            windows.get(a).remove(guiNode);
+        }
+        windows.clear();
         //health window
         health = new HealthWindow(assets);
         health.setX((width / 2) - health.getWidth() / 2);
@@ -150,45 +162,71 @@ public class HUD {
         }
     }
 
-    public void periodicUpdate(float tpf, AstralCamera camera) {
+    public void periodicUpdate(float tpf, Core engine) {
         try {
-            this.camera = camera;
-            //update iffs
-            iffManager.periodicUpdate(tpf);
-            //resets windows if a new marker or window was added
-            if (resetWindowFlag) {
-                remove();
-                add();
-                resetWindowFlag = false;
-            }
-            //store camera
-            this.camera = camera;
-            //special update on simple windows
-            health.updateHealth(getUniverse().getPlayerShip());
-            fuel.updateFuel(getUniverse().getPlayerShip());
-            overview.updateOverview(getUniverse().getPlayerShip());
-            equipment.update(getUniverse().getPlayerShip());
-            cargoWindow.update(getUniverse().getPlayerShip());
-            propertyWindow.update(getUniverse().getPlayerShip());
-            tradeWindow.update(getUniverse().getPlayerShip());
-            starMapWindow.updateMap(getUniverse());
-            standingWindow.update(getUniverse().getPlayerShip());
-            //periodic update on other windows
-            for (int a = 0; a < windows.size(); a++) {
-                windows.get(a).periodicUpdate();
+            if (engine.getState() == GameState.IN_SPACE) {
+                doSpaceUpdate(engine, tpf);
+            } else if (engine.getState() == GameState.MAIN_MENU) {
+                doMenuUpdate(engine, tpf);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void render(AssetManager assets) {
+    private void doMenuUpdate(Core engine, float tpf) {
+        if (windows.isEmpty()) {
+            configureForMenu();
+        }
+        System.out.println("reached");
+    }
+
+    private void doSpaceUpdate(Core engine, float tpf) {
+        if (windows.isEmpty()) {
+            configureForSpace();
+        }
+        this.camera = engine.getCamera();
+        //update iffs
+        iffManager.periodicUpdate(tpf);
+        //resets windows if a new marker or window was added
+        if (resetWindowFlag) {
+            remove();
+            add();
+            resetWindowFlag = false;
+        }
+        //store camera
+        this.camera = engine.getCamera();
+        //special update on simple windows
+        health.updateHealth(getUniverse().getPlayerShip());
+        fuel.updateFuel(getUniverse().getPlayerShip());
+        overview.updateOverview(getUniverse().getPlayerShip());
+        equipment.update(getUniverse().getPlayerShip());
+        cargoWindow.update(getUniverse().getPlayerShip());
+        propertyWindow.update(getUniverse().getPlayerShip());
+        tradeWindow.update(getUniverse().getPlayerShip());
+        starMapWindow.updateMap(getUniverse());
+        standingWindow.update(getUniverse().getPlayerShip());
+        //periodic update on other windows
+        for (int a = 0; a < windows.size(); a++) {
+            windows.get(a).periodicUpdate();
+        }
+    }
+
+    public void render(AssetManager assets, Core engine) {
+        if (engine.getState() == GameState.IN_SPACE) {
+            updateWindows();
+            //update markers
+            iffManager.render(assets);
+        } else if (engine.getState() == GameState.MAIN_MENU) {
+            updateWindows();
+        }
+    }
+
+    private void updateWindows() {
         //update windows
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).render(null);
         }
-        //update markers
-        iffManager.render(assets);
     }
 
     public void collect() {
@@ -281,7 +319,7 @@ public class HUD {
     public void setUniverse(Universe universe) {
         this.universe = universe;
     }
-    
+
     public void hideCentralWindows() {
         cargoWindow.setVisible(false);
         propertyWindow.setVisible(false);
@@ -322,7 +360,7 @@ public class HUD {
         hideCentralWindows();
         starMapWindow.setVisible(visible);
     }
-    
+
     public void toggleStandingWindow() {
         boolean visible = !standingWindow.isVisible();
         hideCentralWindows();
