@@ -107,7 +107,7 @@ public class MenuHomeWindow extends AstralWindow {
                 engine.newGame("Default");
             } else if (command.matches("Load Quicksave")) {
                 setVisible(false);
-                engine.load("quicksave");
+                engine.load("Quick");
             } else if (command.matches("Load Game")) {
                 mainList.setVisible(false);
                 saveList.setVisible(false);
