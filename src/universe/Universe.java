@@ -34,7 +34,7 @@ import lib.astral.Parser.Term;
 public class Universe implements Serializable {
     
     private static final transient ResourceCache cache;
-    public static final int SOUND_RANGE = 10000;
+    public static final int SOUND_RANGE = 2000;
     private ArrayList<SolarSystem> systems = new ArrayList<>();
     protected Ship playerShip;
     private transient AssetManager assets;

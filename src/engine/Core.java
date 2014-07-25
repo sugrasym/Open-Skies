@@ -718,11 +718,10 @@ public class Core {
         try {
             unloadUniverse();
             resetScene();
-            gameName = gameName.replace(".hab", ""); //hacking this together
             //get everything
             Everything everything;
             FileInputStream fis =
-                    new FileInputStream(AstralIO.getSaveDir()+gameName + ".hab");
+                    new FileInputStream(AstralIO.getSaveDir()+gameName);
             ObjectInputStream ois = new ObjectInputStream(fis);
             everything = (Everything) ois.readObject();
             //unpack universe

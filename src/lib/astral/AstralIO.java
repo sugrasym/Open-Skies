@@ -65,8 +65,8 @@ public class AstralIO implements Serializable {
     }
     
     public static void setupGameDir() {
-        String home = System.getProperty("user.home") + HOME_DIR;
-        String saves = System.getProperty("user.home") + getSaveDir();
+        String home = getHomeDir();
+        String saves = getSaveDir();
         //create the main folder
         File homeFolder = new File(home);
         if (!homeFolder.exists()) {
@@ -142,8 +142,7 @@ public class AstralIO implements Serializable {
         //generate serializable universe
         Everything everything = new Everything(universe);
         //serialize universe
-        FileOutputStream fos = new FileOutputStream(getSaveDir() 
-                + gameName + ".hab");
+        FileOutputStream fos = new FileOutputStream(getSaveDir() + gameName);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(everything);
     }

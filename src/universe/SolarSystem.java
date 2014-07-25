@@ -458,7 +458,6 @@ public class SolarSystem implements Entity, Serializable {
                     //remove the entity
                     pullEntityFromSystem(celestials.get(a));
                 } else {
-                    celestials.get(a).periodicUpdate(tpf);
                     //enforce planet rules
                     //todo: remove this when surfaces are done
                     /*
@@ -481,6 +480,8 @@ public class SolarSystem implements Entity, Serializable {
                             }
                         }
                     }
+                    //but leave this
+                    celestials.get(a).periodicUpdate(tpf);
                 }
             }
         } catch (Exception e) {
