@@ -118,10 +118,6 @@ public class MenuHomeWindow extends AstralWindow {
                 gameList.setVisible(false);
                 populateSaveGameList();
                 saveList.setVisible(true);
-            } else if (command.matches("Settings")) {
-                mainList.setVisible(false);
-                saveList.setVisible(false);
-                gameList.setVisible(false);
             }
         } else if (gameList.isVisible()) {
             int index = gameList.getIndex();
@@ -163,8 +159,6 @@ public class MenuHomeWindow extends AstralWindow {
         if (engine.getUniverse() != null) {
             mainList.addToList("");
             mainList.addToList("Save Game");
-            mainList.addToList("");
-            mainList.addToList("Settings");
         }
     }
 

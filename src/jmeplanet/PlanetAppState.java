@@ -145,7 +145,6 @@ public class PlanetAppState extends AbstractAppState implements Control {
 
     @Override
     public void update(float tpf) {
-
         //if we have something to look at, center at it
         if (cameraShip != null) {
             if (astralCamera != null) {

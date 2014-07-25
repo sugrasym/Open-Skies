@@ -153,6 +153,12 @@ public class HUD {
         standingWindow.setX((width / 2) - standingWindow.getWidth() / 2);
         standingWindow.setY((height / 2) - standingWindow.getHeight() / 2);
         windows.add(standingWindow);
+        //menuHome window
+        menuHomeWindow = new MenuHomeWindow(assets, engine);
+        menuHomeWindow.setX((width / 2) - menuHomeWindow.getWidth() / 2);
+        menuHomeWindow.setY((height / 2) - menuHomeWindow.getHeight() / 2);
+        menuHomeWindow.setVisible(false);
+        windows.add(menuHomeWindow);
         //finish
         add();
     }
@@ -196,7 +202,6 @@ public class HUD {
         if (windows.isEmpty()) {
             configureForMenu(engine);
         }
-        System.out.println("reached");
     }
 
     private void doSpaceUpdate(Core engine, float tpf) {

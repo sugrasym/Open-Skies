@@ -551,13 +551,29 @@ public class Core {
             doSpaceUpdate(tpf);
         } else if(getState() == GameState.MAIN_MENU) {
             doMenuUpdate(tpf);
+        } else if(getState() == GameState.GAME_OVER) {
+            doGameOverUpdate(tpf);
         }
         //store tpf
         this.tpf = tpf;
     }
     
+    private void doGameOverUpdate(float tpf) {
+        //todo: make this a proper state
+        //for now return to menu
+        suicide();
+        setState(GameState.MAIN_MENU);
+    }
+
+    private void suicide() {
+        planetAppState.freeCamera();
+        unloadUniverse();
+        resetScene();
+        hud.reset();
+    }
+    
     private void doMenuUpdate(float tpf) {
-        System.out.println("also reached");
+        
     }
 
     private void doSpaceUpdate(float tpf) {
@@ -612,20 +628,10 @@ public class Core {
     }
 
     public void render(RenderManager rm) {
-        if (getState() == GameState.IN_SPACE) {
-            doSpaceRendering();
-        } else if (getState() == GameState.MAIN_MENU) {
-            doMenuRendering();
-        }
+        doHUDRendering();
     }
 
-    private void doMenuRendering() {
-        hud.periodicUpdate(tpf, this);
-        hud.render(assets, this);
-        hud.collect();
-    }
-
-    private void doSpaceRendering() {
+    private void doHUDRendering() {
         if (hudRendering) {
             //wait
         } else {
@@ -700,12 +706,7 @@ public class Core {
 
     public void load(String gameName) {
         try {
-            //unload universe
-            if (getUniverse() != null) {
-                removeSystem(getUniverse().getPlayerShip().getCurrentSystem());
-                getUniverse().setPlayerShip(null);
-                setUniverse(null);
-            }
+            unloadUniverse();
             resetScene();
             gameName = gameName.replace(".hab", ""); //hacking this together
             //get everything
@@ -735,7 +736,17 @@ public class Core {
         }
     }
 
+    private void unloadUniverse() {
+        //unload universe
+        if (getUniverse() != null) {
+            removeSystem(getUniverse().getPlayerShip().getCurrentSystem());
+            getUniverse().setPlayerShip(null);
+            setUniverse(null);
+        }
+    }
+
     private void resetScene() {
+        System.gc();
         if (hud != null) {
             clearHUD();
         }
@@ -751,6 +762,7 @@ public class Core {
         bulletAppState.getPhysicsSpace().setAccuracy(DEFAULT_TICK / 4);
         initPhysicsListeners();
         addHUD();
+        System.gc();
     }
 
     private void addHUD() {
