@@ -51,16 +51,16 @@ description=This factory produces box meals.
 ################################################################################
 
 [Item]
-name=Test Missile
+name=Dart Missile
 type=missile
-volume=1
+volume=10
 mass=0.05
 HP=100
 minPrice=500
 maxPrice=750
 group=weapon
 store=1000
-description=Devtest weapon
+description=A low end missile designed to attack fast moving fighters at range. This is the launcher, ammunition is sold separately.
 [/Item]
 
 [Item]
@@ -81,16 +81,16 @@ description=Devtest weapon
 ################################################################################
 
 [Item]
-name=Test Missile Ammunition
+name=Dart Missile Ammunition
 type=ammo
 volume=1
 mass=0.01
 HP=100
-minPrice=200
-maxPrice=675
+minPrice=50
+maxPrice=75
 group=weapon
 store=1000
-description=Ammo for devtest weapon
+description=Charge for Dart Missile.
 [/Item]
 
 ################################################################################

@@ -114,6 +114,7 @@ public class Ship extends Celestial {
         NORMAL,
         NEWTON
     }
+    private transient AssetManager assets;
     public static final float NORMAL_DAMP = 0.26f;
     public static final float NEWTON_DAMP = 0;
     public static final float ANGULAR_DAMP = 0.99f;
@@ -258,6 +259,7 @@ public class Ship extends Celestial {
 
     @Override
     public void construct(AssetManager assets) {
+        this.assets = assets;
         //Get name
         String name = getType().getValue("type");
         //load spatial
@@ -2405,9 +2407,11 @@ public class Ship extends Celestial {
                     if (hardpoints.get(a).getSize() >= equipment.getVolume()) {
                         if (hardpoints.get(a).getType().equals(equipment.getType())) {
                             hardpoints.get(a).mount(equipment);
-                            //is this a weapon?
-                            Weapon wep = (Weapon) equipment;
-                            //wep.initGraphics();
+                            if(physics != null) {
+                                if(assets != null) {
+                                    hardpoints.get(a).construct(assets);
+                                }
+                            }
                             //remove from cargo
                             cargoBay.remove(equipment);
                             break;

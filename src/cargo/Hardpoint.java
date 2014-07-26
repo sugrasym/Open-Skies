@@ -67,6 +67,7 @@ public class Hardpoint implements Serializable {
 
     public void unmount(Equipment equipment) {
         setMounted(empty);
+        equipment.deconstruct();
         equipment.setSocket(null);
     }
 

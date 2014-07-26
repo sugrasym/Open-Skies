@@ -1,15 +1,15 @@
 ########SPECIAL TEST WEAPONS########
 [Weapon]
 #weapon info
-name=Test Missile
+name=Dart Missile
 type=missile
 #shell info
-shieldDamage=1450
-hullDamage=825
+shieldDamage=2900
+hullDamage=1100
 range=1750
 speed=0
 mass=0.05
-refire=10.5
+refire=10.3
 #graphics info
 size=0.5
 startColor=1,1,1,1
@@ -27,7 +27,7 @@ thrust=25
 turning=0.1
 shotMass=0.05
 delay=0.25
-ammo=Test Missile Ammunition
+ammo=Dart Missile Ammunition
 maxLife=600
 proximityFuse=65
 [/Weapon]

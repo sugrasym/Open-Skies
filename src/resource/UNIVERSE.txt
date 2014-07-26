@@ -6,8 +6,8 @@ x=1669
 y=0
 z=-9963
 cash=50000
-cargo=Jumpdrive~1/Test Missile Ammunition~12
-install=Test Missile/Test Missile/Test Cannon/Test Cannon
+cargo=Jumpdrive~1/Dart Missile Ammunition~12
+install=Dart Missile/Dart Missile/Test Cannon/Test Cannon
 [/NewGame]
 
 [Ship]
@@ -18,8 +18,8 @@ x=1679
 y=0
 z=-9983
 faction=Player
-cargo=Jumpdrive~1/Test Missile Ammunition~12
-install=Test Missile/Test Missile/Test Cannon/Test Cannon
+cargo=Jumpdrive~1/Dart Missile Ammunition~12
+install=Dart Missile/Dart Missile/Test Cannon/Test Cannon
 [/Ship]
 
 [System]
