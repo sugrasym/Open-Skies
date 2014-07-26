@@ -14,12 +14,43 @@ product=Industrial Kitchen,1
 resource=
 [/Process]
 
+[Process]
+name=CheatMakeMassConverter
+cycle=282500
+product=Mass Converter,1
+resource=
+[/Process]
+
 #Shipyards
 
 [Process]
 name=CheatMakeSparrow
 cycle=6400
 product=Sparrow,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeCrow
+cycle=12800
+product=Crow,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeRaven
+cycle=25600
+product=Raven,1
+resource=
+[/Process]
+
+#Seed Ore (Until mining is added in later version)
+
+
+[Process]
+name=CheatMakeOre
+cycle=256
+product=Ore,1
 resource=
 [/Process]
 
@@ -64,6 +95,15 @@ name=BasicSolar
 cycle=45
 product=Standard Energy Unit,80
 resource=
+[/Process]
+
+#Intermediate Products
+
+[Process]
+name=MassBlocks
+cycle=45
+product=Mass Block,1
+resource=Standard Energy Unit,10/Ore,1
 [/Process]
 
 #Food

@@ -46,6 +46,19 @@ group=constructionkit
 description=This factory produces box meals.
 [/Item]
 
+[Item]
+name=Mass Converter
+type=station
+volume=200
+mass=50
+HP=100
+minPrice=1259000
+maxPrice=2820000
+store=10
+group=constructionkit
+description=This factory produces mass blocks from standard energy units and ore.
+[/Item]
+
 ################################################################################
 #Weapons
 ################################################################################
@@ -216,6 +229,32 @@ maxPrice=25
 store=250
 group=food
 description=Boxed meals come in a variety of styles and flavours, but all of them share ease of preparation and a very long shelf life.
+[/Item]
+
+[Item]
+name=Ore
+type=commodity
+volume=2
+mass=0.1
+HP=100
+minPrice=50
+maxPrice=75
+store=250
+group=ore
+description=Material to be refined for use in higher manufacturing.
+[/Item]
+
+[Item]
+name=Mass Block
+type=commodity
+volume=1
+mass=0.1
+HP=100
+minPrice=225
+maxPrice=300
+store=250
+group=ore
+description=A standardized mass unit that can be used in a wide variety of industrial processes.
 [/Item]
 
 ################################################################################

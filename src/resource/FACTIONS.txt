@@ -151,6 +151,7 @@ station0=Industrial Kitchen,0.5
 station1=Sunfarm,1.0
 station2=Customs Office,0.25
 station3=Shipyard,0.25
+station4=Mass Converter,0.25
 [/Stations]
 
 [Stations]
@@ -159,6 +160,7 @@ station0=Industrial Kitchen,0.5
 station1=Sunfarm,1.0
 station2=Customs Office,0.25
 station3=Shipyard,0.25
+station4=Mass Converter,0.25
 [/Stations]
 
 [Stations]
@@ -167,6 +169,7 @@ station0=Industrial Kitchen,0.5
 station1=Sunfarm,1.0
 station2=Customs Office,0.25
 station3=Shipyard,0.25
+station4=Mass Converter,0.25
 [/Stations]
 
 ##########################################
