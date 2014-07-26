@@ -20,7 +20,7 @@ lowLife=0.1
 numParticles=200
 variation=0.5
 texture=Effects/Trail/point.png
-sound=Audio/Effects/Weapons/Test Missile.wav
+sound=Audio/Effects/Weapons/Dart Missile.wav
 emitterRate=200
 guided=true
 thrust=25
@@ -34,7 +34,7 @@ proximityFuse=65
 
 [Weapon]
 #weapon info
-name=Test Cannon
+name=Talon A-7
 type=cannon
 #shell info
 shieldDamage=300
@@ -53,7 +53,7 @@ lowLife=0.1
 numParticles=10
 variation=0.3
 texture=Effects/Trail/point.png
-sound=Audio/Effects/Weapons/Test Cannon.wav
+sound=Audio/Effects/Weapons/Talon A-7.wav
 emitterRate=10
 delay=0.01
 [/Weapon]

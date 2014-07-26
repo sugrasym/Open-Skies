@@ -5,7 +5,7 @@
 [Loadout]
 ship=Sparrow
 name=NC Fleet Sparrow
-install=Dart Missile/Dart Missile/Test Cannon/Test Cannon
+install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 cargo=Astronaut~1/Dart Missile Ammunition~12
 minCourage=0.85
 maxCourage=1.00
@@ -14,7 +14,7 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=NC Trade Sparrow
-install=Dart Missile/Dart Missile/Test Cannon/Test Cannon
+install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 cargo=Astronaut~1/Dart Missile Ammunition~12
 minCourage=0.85
 maxCourage=1.00
@@ -23,7 +23,7 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=NC Supply Sparrow
-install=Dart Missile/Dart Missile/Test Cannon/Test Cannon
+install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 cargo=Jumpdrive~1/Astronaut~1/Dart Missile Ammunition~12
 minCourage=0.85
 maxCourage=1.00
@@ -36,7 +36,7 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=SC Fleet Sparrow
-install=Dart Missile/Dart Missile/Test Cannon/Test Cannon
+install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 cargo=Astronaut~1/Dart Missile Ammunition~12
 minCourage=0.85
 maxCourage=1.00
@@ -45,7 +45,7 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=SC Trade Sparrow
-install=Dart Missile/Dart Missile/Test Cannon/Test Cannon
+install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 cargo=Astronaut~1/Dart Missile Ammunition~12
 minCourage=0.85
 maxCourage=1.00
@@ -54,7 +54,7 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=SC Supply Sparrow
-install=Dart Missile/Dart Missile/Test Cannon/Test Cannon
+install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 cargo=Jumpdrive~1/Astronaut~1/Dart Missile Ammunition~12
 minCourage=0.85
 maxCourage=1.00
@@ -68,7 +68,7 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=Commonwealth Sparrow
-install=Dart Missile/Dart Missile/Test Cannon/Test Cannon
+install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 cargo=Astronaut~1/Dart Missile Ammunition~12
 minCourage=0.85
 maxCourage=1.00
@@ -77,7 +77,7 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=Commonwealth Trade Sparrow
-install=Dart Missile/Dart Missile/Test Cannon/Test Cannon
+install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 cargo=Astronaut~1/Dart Missile Ammunition~12
 minCourage=0.85
 maxCourage=1.00
@@ -86,7 +86,7 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=Commonwealth Supply Sparrow
-install=Dart Missile/Dart Missile/Test Cannon/Test Cannon
+install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 cargo=Jumpdrive~1/Astronaut~1/Dart Missile Ammunition~12
 minCourage=0.85
 maxCourage=1.00
@@ -99,7 +99,7 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=Rogers Sparrow
-install=Dart Missile/Dart Missile/Test Cannon/Test Cannon
+install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 cargo=Astronaut~1/Dart Missile Ammunition~12
 minCourage=0.7
 maxCourage=1.00

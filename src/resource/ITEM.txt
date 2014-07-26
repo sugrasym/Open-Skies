@@ -64,16 +64,16 @@ description=A low end missile designed to attack fast moving fighters at range. 
 [/Item]
 
 [Item]
-name=Test Cannon
+name=Talon A-7
 type=cannon
-volume=1
+volume=10
 mass=0.05
 HP=100
-minPrice=500
-maxPrice=750
+minPrice=1670
+maxPrice=2800
 group=weapon
-store=1000
-description=Devtest weapon
+store=128
+description=A light cannon designed for combat at close range. Delivers significant kinetic damage on impact as well as damage from its plasma charge.
 [/Item]
 
 ################################################################################
