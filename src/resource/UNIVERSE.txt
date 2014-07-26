@@ -6,8 +6,8 @@ x=1669
 y=0
 z=-9963
 cash=50000
-cargo=Dart Missile Ammunition~50
-install=Dart Missile/Dart Missile/Span R-3/Span R-3
+install=Arrow Rocket/Arrow Rocket/Span R-3/Span R-3
+cargo=Astronaut~1/Arrow Rocket Ammunition~200
 [/NewGame]
 
 [Ship]

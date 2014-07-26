@@ -34,6 +34,39 @@ proximityFuse=65
 
 [Weapon]
 #weapon info
+name=Arrow Rocket
+type=missile
+#shell info
+shieldDamage=1100
+hullDamage=500
+range=1750
+speed=0
+mass=0.05
+refire=1.5
+#graphics info
+size=0.25
+startColor=0,1,1,1
+endColor=1,0,0,0.1
+pVel=1,4,1
+highLife=1
+lowLife=0.1
+numParticles=200
+variation=0.5
+texture=Effects/Trail/point.png
+sound=Audio/Effects/Weapons/Arrow Rocket.wav
+emitterRate=200
+guided=true
+thrust=32
+turning=0.25
+shotMass=0.05
+delay=0.25
+ammo=Arrow Rocket Ammunition
+maxLife=250
+proximityFuse=50
+[/Weapon]
+
+[Weapon]
+#weapon info
 name=Talon A-7
 type=cannon
 #shell info

@@ -59,8 +59,21 @@ HP=100
 minPrice=500
 maxPrice=750
 group=weapon
-store=1000
-description=A low end missile designed to attack fast moving fighters at range. This is the launcher, ammunition is sold separately.
+store=64
+description=A low end launcher designed to attack fast moving fighters at range. This is the launcher, ammunition is sold separately.
+[/Item]
+
+[Item]
+name=Arrow Rocket
+type=missile
+volume=10
+mass=0.05
+HP=100
+minPrice=500
+maxPrice=750
+group=weapon
+store=128
+description=A low end launcher designed to fill the engagement zone with small independently guided rockets. Ammunition sold separately.
 [/Item]
 
 [Item]
@@ -117,6 +130,19 @@ maxPrice=75
 group=weapon
 store=1000
 description=Charge for Dart Missile.
+[/Item]
+
+[Item]
+name=Arrow Rocket Ammunition
+type=ammo
+volume=1
+mass=0.001
+HP=100
+minPrice=5
+maxPrice=10
+group=weapon
+store=1000
+description=Charge for Arrow Rocket.
 [/Item]
 
 ################################################################################
