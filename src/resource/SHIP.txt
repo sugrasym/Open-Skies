@@ -24,5 +24,55 @@ nozzleEndColor=1,0,0,0.1
 [/Ship]
 
 ################################################################################
+Medium Fighters
+################################################################################
+
+[Ship]
+type=Crow
+class=Crow
+#physics
+mass=1.1
+thrust=177
+torque=12
+#stats
+shield=16005
+shieldRecharge=185
+hull=3250
+fuel=57000
+sensor=2425
+cargo=300
+hardpoint=missile,15,-1.0,0,-1.8/missile,15,1.0,0,-1.8/cannon,10,-1.0,0,-1.8/cannon,10,1.0,0,-1.8
+#nozzles
+nozzle=rear,1,0,0,1.75/forward,1,1.2,0,-1/forward,1,-1.2,0,-1
+nozzleStartColor=1,1,1,0.5
+nozzleEndColor=1,0,0,0.1
+[/Ship]
+
+################################################################################
+Heavy Fighters
+################################################################################
+
+[Ship]
+type=Raven
+class=Raven
+#physics
+mass=1.3
+thrust=180
+torque=10
+#stats
+shield=28000
+shieldRecharge=200
+hull=6780
+fuel=72000
+sensor=2200
+cargo=350
+hardpoint=missile,20,-1.0,0,-1.8/missile,20,1.0,0,-1.8/cannon,15,-1.0,0,-1.8/cannon,15,1.0,0,-1.8
+#nozzles
+nozzle=rear,1,0,0,1.75/forward,1,1.2,0,-1/forward,1,-1.2,0,-1
+nozzleStartColor=1,1,1,0.5
+nozzleEndColor=1,0,0,0.1
+[/Ship]
+
+################################################################################
 #Test Ships - REMOVE BEFORE WORLD BUILDING THESE SUCK AND ARE FOR TESTING
 ################################################################################

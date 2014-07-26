@@ -107,7 +107,33 @@ minPrice=32000
 maxPrice=64000
 store=25
 group=fighter
-description=The Sparrow is an older fighter design that is currently used as a police craft. For a light fighter it is well rounded, although many would criticize it as being generalized to a fault.
+description=The Sparrow is a light fighter designed to outrun and intercept slower craft. It carries a balanced armament of light missiles and light cannons.
+[/Item]
+
+[Item]
+name=Crow
+type=ship
+volume=2500
+mass=1
+HP=100
+minPrice=75000
+maxPrice=92000
+store=12
+group=fighter
+description=The Crow is a medium fighter designed for prolonged combat. It has a larger cargo bay to carry more ammunition, heavier shields, thicker hull, and more fuel than the Sparrow. However it is less agile due to the added mass.
+[/Item]
+
+[Item]
+name=Raven
+type=ship
+volume=2500
+mass=1
+HP=100
+minPrice=106000
+maxPrice=135000
+store=6
+group=fighter
+description=The Raven is a heavy fighter designed for fighting in prolonged sieges. It has very heavy shields and hull, a large cargo bay, and generous fuel capacity. It can also carry heavier weapons due to expanded hardpoints. However, it is less agile than most opponents and depends on its shields for protection.
 [/Item]
 
 ################################################################################
