@@ -162,3 +162,19 @@ station1=Sunfarm,1.0
 station2=Customs Office,0.25
 station3=Shipyard,0.25
 [/Stations]
+
+##########################################
+#Music for each faction
+#This is for the benefit of WorldMaker
+##########################################
+
+[Music]
+name=Neutral
+ambient0=Audio/Music/Undefined.wav
+ambient1=Audio/Music/Beyond The Frontier.wav
+ambient2=Audio/Music/Cold And Dark.wav
+ambient3=Audio/Music/Running Out Of Thoughts.wav
+ambient4=Audio/Music/Feeling Small.wav
+danger0=Audio/Music/Committing.wav
+danger1=Audio/Music/Engaging.wav
+[/Music]

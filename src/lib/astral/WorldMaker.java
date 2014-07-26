@@ -117,6 +117,8 @@ public class WorldMaker {
                             + "y=" + y + "\n"
                             + "z=" + z + "\n"
                             + "sky=" + skyTypes.get(pick).getValue("name") + "\n"
+                            + "ambient=" + sys.getAmbientMusic() + "\n"
+                            + "danger=" + sys.getDangerMusic() + "\n"
                             + "[/System]\n\n";
                     //get star types
                     pick = rnd.nextInt(starTypes.size());
@@ -653,8 +655,8 @@ public class WorldMaker {
         private final String name;
         private String owner = "Neutral";
         //todo: update audio when doing sound system (these paths will fail)
-        private String ambientMusic = "audio/music/Undefined.wav";
-        private String dangerMusic = "audio/music/Committing.wav";
+        private String ambientMusic = "Audio/Music/Undefined.wav";
+        private String dangerMusic = "Audio/Music/Committing.wav";
         private final SuperFaction neutralFaction = new SuperFaction(null, "Neutral");
 
         public Sysling(String name, Vector3f loc) {
@@ -664,6 +666,11 @@ public class WorldMaker {
             ArrayList<String> ambientMusic = neutralFaction.getAmbientMusic();
             if (ambientMusic.size() > 0) {
                 setAmbientMusic(ambientMusic.get(rnd.nextInt(ambientMusic.size())));
+            }
+            //pick danger music
+            ArrayList<String> dangerMusic = neutralFaction.getDangerMusic();
+            if (dangerMusic.size() > 0) {
+                setDangerMusic(dangerMusic.get(rnd.nextInt(dangerMusic.size())));
             }
         }
 

@@ -64,6 +64,7 @@ import universe.Universe;
 public class Core {
 
     public enum GameState {
+
         MAIN_MENU,
         IN_SPACE,
         GAME_OVER
@@ -90,9 +91,9 @@ public class Core {
     boolean hudRendering = false;
     boolean hasFocus = true;
     //music
-    private String menuTrack = "Audio/Music/Success and Failure.wav";
+    private static final String menuTrack = "Audio/Music/Success and Failure.wav";
     private String ambientTrack = "";
-    private String dangerTrack = "Audio/Music/Committing.wav";
+    private String dangerTrack = "";
     boolean isAmbient = true;
     private AudioNode music;
 
@@ -300,9 +301,9 @@ public class Core {
             "KEY_W", "KEY_A", "KEY_S", "KEY_D", "KEY_SPACE", "KEY_RETURN",
             "KEY_Q", "KEY_E", "KEY_UP", "KEY_DOWN", "KEY_LEFT", "KEY_RIGHT",
             "KEY_BACKSPACE", "QuickSave", "QuickLoad", "KEY_END", "KEY_HOME",
-            "KEY_PGUP", "KEY_PGDN", "KEY_F1", "KEY_F2", "KEY_F3", "KEY_F4", 
-            "KEY_F5","KEY_F6", "KEY_F7", "KEY_F8", "KEY_F9", "KEY_F10", 
-            "KEY_F11","KEY_F12", "KEY_MINUS"});
+            "KEY_PGUP", "KEY_PGDN", "KEY_F1", "KEY_F2", "KEY_F3", "KEY_F4",
+            "KEY_F5", "KEY_F6", "KEY_F7", "KEY_F8", "KEY_F9", "KEY_F10",
+            "KEY_F11", "KEY_F12", "KEY_MINUS"});
     }
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {
@@ -315,7 +316,7 @@ public class Core {
                     }
                 }
             } else if (split[0].equals("MOUSE")) {
-                hud.handleMouseAction(getState(), name, keyPressed, 
+                hud.handleMouseAction(getState(), name, keyPressed,
                         new Vector3f(origin.x, origin.y, 0));
             } else {
                 if (getState() == GameState.IN_SPACE) {
@@ -358,7 +359,7 @@ public class Core {
                     //toggle standing window
                     hud.toggleStandingWindow();
                 }
-                if(name.equals("KEY_F4")) {
+                if (name.equals("KEY_F4")) {
                     //toggle main menu window
                     hud.toggleMenuHomeWindow();
                 }
@@ -568,20 +569,23 @@ public class Core {
          */
         if (getState() == GameState.IN_SPACE) {
             doSpaceUpdate(tpf);
-        } else if(getState() == GameState.MAIN_MENU) {
+        } else if (getState() == GameState.MAIN_MENU) {
             doMenuUpdate(tpf);
-        } else if(getState() == GameState.GAME_OVER) {
+        } else if (getState() == GameState.GAME_OVER) {
             doGameOverUpdate(tpf);
         }
         //store tpf
         this.tpf = tpf;
     }
-    
+
     private void doGameOverUpdate(float tpf) {
         //todo: make this a proper state
         //for now return to menu
         suicide();
         setState(GameState.MAIN_MENU);
+        isAmbient = true;
+        ambientTrack = "";
+        dangerTrack = "";
     }
 
     private void suicide() {
@@ -590,7 +594,7 @@ public class Core {
         resetScene();
         hud.reset();
     }
-    
+
     private void doMenuUpdate(float tpf) {
         updateMusic();
     }
@@ -730,8 +734,8 @@ public class Core {
             resetScene();
             //get everything
             Everything everything;
-            FileInputStream fis =
-                    new FileInputStream(AstralIO.getSaveDir()+gameName);
+            FileInputStream fis
+                    = new FileInputStream(AstralIO.getSaveDir() + gameName);
             ObjectInputStream ois = new ObjectInputStream(fis);
             everything = (Everything) ois.readObject();
             //unpack universe
@@ -783,30 +787,57 @@ public class Core {
         addHUD();
         System.gc();
     }
-    
+
     private void updateMusic() {
-        if(state == GameState.MAIN_MENU) {
-            if(!ambientTrack.equals(menuTrack)) {
+        if (state == GameState.MAIN_MENU) {
+            if (!ambientTrack.equals(menuTrack)) {
                 switchTrack(true, menuTrack);
             }
-        } else if(state == GameState.IN_SPACE) {
-            
+        } else if (state == GameState.IN_SPACE) {
+            if (universe.getPlayerShip() != null) {
+                boolean danger = false;
+                ArrayList<Ship> tests = universe.getPlayerShip().getShipsInSensorRange();
+                for (int a = 0; a < tests.size(); a++) {
+                    if (universe.getPlayerShip().isHostileToMe(tests.get(a))) {
+                        danger = true;
+                        break;
+                    }
+                }
+                if (!danger) {
+                    if (ambientTrack.equals(universe.getPlayerShip().getCurrentSystem().getAmbientMusic()) && isAmbient) {
+                        //do nothing
+                    } else {
+                        switchTrack(true, universe.getPlayerShip().getCurrentSystem().getAmbientMusic());
+                    }
+                } else if (danger) {
+                    if (dangerTrack.equals(universe.getPlayerShip().getCurrentSystem().getDangerMusic()) && !isAmbient) {
+                        //do nothing
+                    } else {
+                        switchTrack(false, universe.getPlayerShip().getCurrentSystem().getDangerMusic());
+                    }
+                }
+            }
         }
     }
-    
+
     private void switchTrack(boolean ambient, String target) {
-        if(music != null) {
-            music.setLooping(false);
-            music.stop();
-        }
-        music = new AudioNode(assets, target);
-        music.setLooping(true);
-        music.setPositional(false);
-        music.play();
-        if(ambient) {
-            ambientTrack = target;
-        } else {
-            dangerTrack = target;
+        try {
+            if (music != null) {
+                music.setLooping(false);
+                music.stop();
+            }
+            music = new AudioNode(assets, target);
+            music.setLooping(true);
+            music.setPositional(false);
+            music.play();
+            isAmbient = ambient;
+            if (ambient) {
+                ambientTrack = target;
+            } else {
+                dangerTrack = target;
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to switch track");
         }
     }
 
@@ -855,7 +886,7 @@ public class Core {
     public void setState(GameState state) {
         this.state = state;
     }
-    
+
     public Universe getUniverse() {
         return universe;
     }

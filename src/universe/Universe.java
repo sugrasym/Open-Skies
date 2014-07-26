@@ -73,7 +73,17 @@ public class Universe implements Serializable {
         SolarSystem system = null;
         {
             system = new SolarSystem(this, thisSystem, parse);
+            //get music
+            String ambient = thisSystem.getValue("ambient");
+            String danger = thisSystem.getValue("danger");
+            if(ambient != null) {
+                system.setAmbientMusic(ambient);
+            }
+            if(danger != null) {
+                system.setDangerMusic(danger);
+            }
             system.initSystem(assets);
+            
         }
         System.out.println("Working: " + system.getName() + " solar system created. ");
         return system;

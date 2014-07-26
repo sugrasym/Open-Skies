@@ -74,6 +74,9 @@ public class SolarSystem implements Entity, Serializable {
     private final ArrayList<Entity> shipList = new ArrayList<>();
     private final ArrayList<Entity> planetList = new ArrayList<>();
     private final ArrayList<Entity> jumpholeList = new ArrayList<>();
+    //music
+    private String ambientMusic = "Audio/Music/Undefined.wav";
+    private String dangerMusic = "Audio/Music/Committing.wav";
     //sov
     private String owner = "Neutral";
 
@@ -710,5 +713,21 @@ public class SolarSystem implements Entity, Serializable {
             //add to discovered space
             universe.getDiscoveredSpace().add(this);
         }
+    }
+
+    public String getAmbientMusic() {
+        return ambientMusic;
+    }
+
+    public void setAmbientMusic(String ambientMusic) {
+        this.ambientMusic = ambientMusic;
+    }
+
+    public String getDangerMusic() {
+        return dangerMusic;
+    }
+
+    public void setDangerMusic(String dangerMusic) {
+        this.dangerMusic = dangerMusic;
     }
 }
