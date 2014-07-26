@@ -5,8 +5,26 @@
 [Loadout]
 ship=Sparrow
 name=NC Fleet Sparrow
-install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
-cargo=Astronaut~1/Dart Missile Ammunition~12
+install=Dart Missile/Dart Missile/Claw C-6/Claw C-6
+cargo=Astronaut~1/Dart Missile Ammunition~50
+minCourage=0.85
+maxCourage=1.00
+[/Loadout]
+
+[Loadout]
+ship=Crow
+name=NC Fleet Crow
+install=Dart Missile/Dart Missile/Claw C-6/Claw C-6
+cargo=Astronaut~1/Dart Missile Ammunition~75
+minCourage=0.85
+maxCourage=1.00
+[/Loadout]
+
+[Loadout]
+ship=Raven
+name=NC Fleet Raven
+install=Dart Missile/Dart Missile/Span R-3/Span R-3
+cargo=Astronaut~1/Dart Missile Ammunition~125
 minCourage=0.85
 maxCourage=1.00
 [/Loadout]
@@ -37,7 +55,25 @@ maxCourage=1.00
 ship=Sparrow
 name=SC Fleet Sparrow
 install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
-cargo=Astronaut~1/Dart Missile Ammunition~12
+cargo=Astronaut~1/Dart Missile Ammunition~50
+minCourage=0.85
+maxCourage=1.00
+[/Loadout]
+
+[Loadout]
+ship=Crow
+name=SC Fleet Crow
+install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
+cargo=Astronaut~1/Dart Missile Ammunition~75
+minCourage=0.85
+maxCourage=1.00
+[/Loadout]
+
+[Loadout]
+ship=Raven
+name=SC Fleet Raven
+install=Dart Missile/Dart Missile/Span R-3/Span R-3
+cargo=Astronaut~1/Dart Missile Ammunition~125
 minCourage=0.85
 maxCourage=1.00
 [/Loadout]
@@ -45,7 +81,7 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=SC Trade Sparrow
-install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
+install=Dart Missile/Dart Missile/Claw C-6/Claw C-6
 cargo=Astronaut~1/Dart Missile Ammunition~12
 minCourage=0.85
 maxCourage=1.00
@@ -54,7 +90,7 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=SC Supply Sparrow
-install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
+install=Dart Missile/Dart Missile/Claw C-6/Claw C-6
 cargo=Jumpdrive~1/Astronaut~1/Dart Missile Ammunition~12
 minCourage=0.85
 maxCourage=1.00
@@ -102,5 +138,23 @@ name=Rogers Sparrow
 install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 cargo=Astronaut~1/Dart Missile Ammunition~12
 minCourage=0.7
+maxCourage=1.00
+[/Loadout]
+
+[Loadout]
+ship=Crow
+name=Rogers Crow
+install=Dart Missile/Dart Missile/Claw C-6/Claw C-6
+cargo=Astronaut~1/Dart Missile Ammunition~36
+minCourage=0.7
+maxCourage=1.00
+[/Loadout]
+
+[Loadout]
+ship=Raven
+name=Rogers Raven
+install=Dart Missile/Dart Missile/Span R-3/Span R-3
+cargo=Astronaut~1/Dart Missile Ammunition~48
+minCourage=0.85
 maxCourage=1.00
 [/Loadout]

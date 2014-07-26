@@ -105,14 +105,18 @@ Rogers=-5
 
 [Loadout]
 name=Northern Coalition
-patrol0=NC Fleet Sparrow,100
+patrol0=NC Fleet Sparrow,75
+patrol1=NC Fleet Crow,50
+patrol2=NC Fleet Raven,25
 trader0=NC Trade Sparrow,20
 merchant0=NC Supply Sparrow,20
 [/Loadout]
 
 [Loadout]
 name=Southern Coalition
-patrol0=SC Fleet Sparrow,100
+patrol0=SC Fleet Sparrow,75
+patrol1=SC Fleet Crow,50
+patrol2=SC Fleet Raven,25
 trader0=SC Trade Sparrow,20
 merchant0=SC Supply Sparrow,20
 [/Loadout]
@@ -126,7 +130,9 @@ merchant0=Commonwealth Supply Sparrow,20
 
 [Loadout]
 name=Rogers
-patrol0=Rogers Sparrow,25
+patrol0=Rogers Sparrow,75
+patrol1=Rogers Crow,50
+patrol2=Rogers Raven,25
 [/Loadout]
 
 ################################################################################

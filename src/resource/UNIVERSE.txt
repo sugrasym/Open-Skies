@@ -1,13 +1,13 @@
 [NewGame]
 name=Default
-ship=Crow
+ship=Raven
 system=Upsilon WC4-W8S
 x=1669
 y=0
 z=-9963
 cash=50000
-cargo=Jumpdrive~1/Dart Missile Ammunition~12
-install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
+cargo=Dart Missile Ammunition~50
+install=Dart Missile/Dart Missile/Span R-3/Span R-3
 [/NewGame]
 
 [Ship]

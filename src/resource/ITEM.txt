@@ -76,6 +76,32 @@ store=128
 description=A light cannon designed for combat at close range. Delivers significant kinetic damage on impact as well as damage from its plasma charge.
 [/Item]
 
+[Item]
+name=Claw C-6
+type=cannon
+volume=10
+mass=0.06
+HP=100
+minPrice=3135
+maxPrice=6210
+group=weapon
+store=90
+description=A light cannon designed to hit fast moving targets. Delivers kinetic damage on impact as well as damage from its plasma charge. This cannon has a high refire rate and muzzle velocity.
+[/Item]
+
+[Item]
+name=Span R-3
+type=cannon
+volume=15
+mass=0.07
+HP=100
+minPrice=4735
+maxPrice=8115
+group=weapon
+store=70
+description=A heavy cannon that does significant damage at medium range.
+[/Item]
+
 ################################################################################
 #Ammunition
 ################################################################################
