@@ -762,14 +762,51 @@ public class Ship extends Celestial {
      * such low level code.
      */
     private void behave() {
+        //shield percent
+        double shieldPercent = 100 * (shield / maxShield);
         if (behavior == Behavior.NONE) {
         } else if (behavior == Behavior.TEST) {
             behaviorTest();
         } else if (behavior == Behavior.SECTOR_TRADE) {
-            behaviorSectorTrade();
+            if (shieldPercent > 75) {
+                behaviorSectorTrade();
+            } else {
+                behaviorPatrol();
+            }
         } else if (behavior == Behavior.UNIVERSE_TRADE) {
-            behaviorUniverseTrade();
+            if (shieldPercent > 75) {
+                behaviorUniverseTrade();
+            } else if (shieldPercent > 40) {
+                behaviorPatrol();
+            } else {
+                tryJumpRetreat();
+            }
         } else if (behavior == Behavior.PATROL) {
+            behaviorPatrol();
+        }
+    }
+
+    private void tryJumpRetreat() {
+        /*
+         * Attempts to retreat using the jump drive. If there is nowhere to
+         * retreat to, it will continue to fight.
+         */
+        //get a list of systems in jump range
+        ArrayList<SolarSystem> zone = new ArrayList<>();
+        for (int a = 0; a < currentSystem.getUniverse().getSystems().size(); a++) {
+            if (canJump(currentSystem.getUniverse().getSystems().get(a))) {
+                zone.add(currentSystem.getUniverse().getSystems().get(a));
+            }
+        }
+        if (zone.size() > 0 && target != null) {
+            //abort trade
+            abortTrade();
+            //jump
+            cmdJump(zone.get(rnd.nextInt(zone.size())));
+            //notify
+            System.out.println(getName() + " escaped to " + currentSystem.getName());
+        } else {
+            //keep fighting
             behaviorPatrol();
         }
     }
@@ -1852,15 +1889,15 @@ public class Ship extends Celestial {
             }
         }
     }
-    
+
     @Override
     public float getMass() {
         float addedMass = 0;
-        for(int a = 0; a < cargoBay.size(); a++) {
+        for (int a = 0; a < cargoBay.size(); a++) {
             addedMass += cargoBay.get(a).getMass();
         }
-        for(int a = 0; a < hardpoints.size(); a++) {
-            if(!hardpoints.get(a).isEmpty()) {
+        for (int a = 0; a < hardpoints.size(); a++) {
+            if (!hardpoints.get(a).isEmpty()) {
                 addedMass += hardpoints.get(a).getMounted().getMass();
             }
         }
@@ -2303,11 +2340,19 @@ public class Ship extends Celestial {
      * Cash
      */
     public long getCash() {
-        return cash;
+        if (homeBase == null) {
+            return cash;
+        } else {
+            return homeBase.getCash();
+        }
     }
 
     public void setCash(long cash) {
-        this.cash = cash;
+        if (homeBase == null) {
+            this.cash = cash;
+        } else {
+            homeBase.setCash(cash);
+        }
     }
 
     /*
@@ -2454,7 +2499,7 @@ public class Ship extends Celestial {
     public int getStandingsToMe(String test) {
         return (int) faction.getStanding(test);
     }
-    
+
     public int getStandingsToMe(Faction test) {
         return (int) faction.getStanding(test.getName());
     }
@@ -2584,11 +2629,13 @@ public class Ship extends Celestial {
         abortTrade();
         //wait
         ArrayList<Station> fstat = getDockableStationsInSystem();
-        Station near = fstat.get(rnd.nextInt(fstat.size()));
-        if (near != null) {
-            cmdDock(near);
-        } else {
-            cmdAllStop();
+        if (fstat.size() > 0) {
+            Station near = fstat.get(rnd.nextInt(fstat.size()));
+            if (near != null) {
+                cmdDock(near);
+            } else {
+                cmdAllStop();
+            }
         }
     }
 
@@ -3424,7 +3471,7 @@ public class Ship extends Celestial {
             engineNoise.setLocalTranslation(getLocation());
         }
     }
-    
+
     public void setPort(DockingPort port) {
         this.port = port;
     }
