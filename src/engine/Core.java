@@ -21,6 +21,7 @@ package engine;
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
 import com.jme3.asset.AssetManager;
+import com.jme3.audio.AudioNode;
 import com.jme3.audio.Listener;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.input.InputManager;
@@ -88,6 +89,12 @@ public class Core {
     //render safety
     boolean hudRendering = false;
     boolean hasFocus = true;
+    //music
+    private String menuTrack = "Audio/Music/Success and Failure.wav";
+    private String ambientTrack = "";
+    private String dangerTrack = "Audio/Music/Committing.wav";
+    boolean isAmbient = true;
+    private AudioNode music;
 
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState,
             AssetManager assets, PlanetAppState planetAppState,
@@ -585,7 +592,7 @@ public class Core {
     }
     
     private void doMenuUpdate(float tpf) {
-        
+        updateMusic();
     }
 
     private void doSpaceUpdate(float tpf) {
@@ -627,6 +634,7 @@ public class Core {
             }
             //update sound
             updateSpaceAudio();
+            updateMusic();
         }
     }
 
@@ -774,6 +782,32 @@ public class Core {
         initPhysicsListeners();
         addHUD();
         System.gc();
+    }
+    
+    private void updateMusic() {
+        if(state == GameState.MAIN_MENU) {
+            if(!ambientTrack.equals(menuTrack)) {
+                switchTrack(true, menuTrack);
+            }
+        } else if(state == GameState.IN_SPACE) {
+            
+        }
+    }
+    
+    private void switchTrack(boolean ambient, String target) {
+        if(music != null) {
+            music.setLooping(false);
+            music.stop();
+        }
+        music = new AudioNode(assets, target);
+        music.setLooping(true);
+        music.setPositional(false);
+        music.play();
+        if(ambient) {
+            ambientTrack = target;
+        } else {
+            dangerTrack = target;
+        }
     }
 
     private void addHUD() {
