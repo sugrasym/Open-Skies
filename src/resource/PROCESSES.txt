@@ -1,9 +1,34 @@
+#Station Construction Kits
+
+[Process]
+name=CheatMakeSunfarm
+cycle=282500
+product=Sunfarm,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeIndustrialKitchen
+cycle=282500
+product=Industrial Kitchen,1
+resource=
+[/Process]
+
 #Shipyards
 
 [Process]
 name=CheatMakeSparrow
 cycle=6400
 product=Sparrow,1
+resource=
+[/Process]
+
+#Seed Jump Drives
+
+[Process]
+name=CheatMakeJumpdrive
+cycle=640
+product=Jumpdrive,1
 resource=
 [/Process]
 

@@ -485,7 +485,15 @@ public class Station extends Ship {
         }
     }
     
-
+    public void clearWares() {
+        setCash(0);
+        for(int a = 0; a < stationSelling.size(); a++) {
+            stationSelling.get(a).setQuantity(0);
+        }
+        for(int a = 0; a < stationBuying.size(); a++) {
+            stationBuying.get(a).setQuantity(0);
+        }
+    }
 
     public boolean isEconomyExcempt() {
         return economyExempt;

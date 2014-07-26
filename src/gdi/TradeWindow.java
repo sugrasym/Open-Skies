@@ -181,6 +181,7 @@ public class TradeWindow extends AstralWindow {
                     propertyList.addToList("Bay Volume:   " + ship.getCargo());
                     propertyList.addToList("Volume Used:  " + ship.getBayUsed());
                     propertyList.addToList("Percent Used: " + ship.getBayUsed() / ship.getCargo() * 100.0 + "%");
+                    propertyList.addToList("Vessel Mass:  " + ship.getMass());
                     propertyList.addToList(" ");
                     propertyList.addToList("--BASIC--");
                     propertyList.addToList(" ");

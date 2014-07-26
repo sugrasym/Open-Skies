@@ -8,7 +8,7 @@ shieldDamage=1450
 hullDamage=825
 range=1750
 speed=0
-mass=0
+mass=0.05
 refire=10.5
 #graphics info
 size=0.5
@@ -41,7 +41,7 @@ shieldDamage=300
 hullDamage=150
 range=500
 speed=300
-mass=0
+mass=0.05
 refire=0.35
 #graphics info
 size=0.75

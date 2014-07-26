@@ -30,6 +30,8 @@ import com.jme3.math.Vector3f;
 import gdi.component.AstralList;
 import gdi.component.AstralWindow;
 import java.util.ArrayList;
+import lib.astral.Parser;
+import universe.Universe;
 
 public class CargoWindow extends AstralWindow {
 
@@ -118,6 +120,7 @@ public class CargoWindow extends AstralWindow {
                 propertyList.addToList("Bay Volume:   " + ship.getCargo());
                 propertyList.addToList("Volume Used:  " + ship.getBayUsed());
                 propertyList.addToList("Percent Used: " + ship.getBayUsed() / ship.getCargo() * 100.0 + "%");
+                propertyList.addToList("Vessel Mass:  " + ship.getMass());
                 propertyList.addToList(" ");
                 propertyList.addToList("--BASIC--");
                 propertyList.addToList(" ");
@@ -215,13 +218,13 @@ public class CargoWindow extends AstralWindow {
              * Options for stations
              */
             //determine if this is a station
-            /*if (selected.getGroup().equals("constructionkit")) {
-             if (!ship.isDocked()) {
-             optionList.addToList("--Setup--");
-             optionList.addToList(CMD_DEPLOY);
-             optionList.addToList(" ");
-             }
-             }*/
+            if (selected.getGroup().equals("constructionkit")) {
+                if (!ship.isDocked()) {
+                    optionList.addToList("--Setup--");
+                    optionList.addToList(CMD_DEPLOY);
+                    optionList.addToList(" ");
+                }
+            }
             /*
              * Options for repair kits
              */
@@ -369,13 +372,21 @@ public class CargoWindow extends AstralWindow {
                     }
                 }
             } else if (command.equals(CMD_DEPLOY)) {
-                /*Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 if (selected.getQuantity() == 1) {
                     //deploy the station
-                   Station ret = new Station(name, selected.getName());
+                    Parser tmp = Universe.getCache().getStationCache();
+                    ArrayList<Parser.Term> list = tmp.getTermsOfType("Station");
+                    Parser.Term hull = null;
+                    for (int a = 0; a < list.size(); a++) {
+                        if (list.get(a).getValue("type").equals(selected.getName())) {
+                            hull = list.get(a);
+                            break;
+                        }
+                    }
+                    Station ret = new Station(ship.getCurrentSystem().getUniverse(),
+                            hull, ship.getFaction().getName());
                     ret.setName("Your " + selected.getName());
-                    ret.setFaction(ship.getFaction());
-                    ret.init(false);
                     //
                     boolean safe = false;
                     double sx = 0;
@@ -387,8 +398,7 @@ public class CargoWindow extends AstralWindow {
                     sx = (ship.getLocation().getX()) + dx;
                     sz = (ship.getLocation().getZ()) + dy;
                     if (safe) {
-                        ret.setX(sx);
-                        ret.setZ(sz);
+                        ret.setLocation(new Vector3f((float) sx, ship.getLocation().getY(), (float) sz));
                         //finalize
                         ret.setCurrentSystem(ship.getCurrentSystem());
                         ship.getCurrentSystem().putEntityInSystem(ret);
@@ -398,7 +408,7 @@ public class CargoWindow extends AstralWindow {
                         //since it's not NPC make sure it has no start cash
                         ret.clearWares();
                     }
-                }*/
+                }
             } else if (command.equals(CMD_CLAIMSOV)) {/*
                  Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                  if (selected.getQuantity() == 1) {

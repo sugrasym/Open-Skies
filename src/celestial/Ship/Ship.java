@@ -1852,6 +1852,20 @@ public class Ship extends Celestial {
             }
         }
     }
+    
+    @Override
+    public float getMass() {
+        float addedMass = 0;
+        for(int a = 0; a < cargoBay.size(); a++) {
+            addedMass += cargoBay.get(a).getMass();
+        }
+        for(int a = 0; a < hardpoints.size(); a++) {
+            if(!hardpoints.get(a).isEmpty()) {
+                addedMass += hardpoints.get(a).getMounted().getMass();
+            }
+        }
+        return super.getMass() + addedMass;
+    }
 
     protected void updateTorque() {
         /*
@@ -2731,6 +2745,7 @@ public class Ship extends Celestial {
      */
     public void syncPhysics() {
         if (physics != null) {
+            physics.setMass(getMass()); //because ship masses are dynamic
             setLocation(physics.getPhysicsLocation());
             setRotation(physics.getPhysicsRotation());
             setVelocity(physics.getLinearVelocity());

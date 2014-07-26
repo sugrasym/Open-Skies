@@ -7,8 +7,8 @@ type=Sparrow
 class=Sparrow
 #physics
 mass=1
-thrust=101
-torque=11
+thrust=210
+torque=15
 #stats
 shield=10571
 shieldRecharge=180

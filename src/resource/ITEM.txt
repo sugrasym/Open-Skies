@@ -6,13 +6,44 @@
 name=Consumer Goods
 type=commodity
 volume=1
-mass=2
+mass=0.002
 HP=100
 minPrice=300
 maxPrice=950
 group=product
 store=60
 description=Consumer goods are household items that are relatively easy to produce. Small personal fabrication devices are ubiquitous and capable of converting a sufficient quantity of input materials into a desired good. This process is so lightweight that it often doesn't require any additional energy beyond what all stations can generate internally, making consumer goods manufacturing an attractive option for light stations such as customs offices. 
+[/Item]
+
+################################################################################
+Station Construction Kits
+(NOTE: These are going to go up in volume once freighters are added!)
+################################################################################
+
+[Item]
+name=Sunfarm
+type=station
+volume=200
+mass=14000
+HP=100
+minPrice=6250000
+maxPrice=9100000
+store=10
+group=constructionkit
+description=This station has been fit with efficient solar collectors to produce energy.
+[/Item]
+
+[Item]
+name=Industrial Kitchen
+type=station
+volume=200
+mass=14000
+HP=100
+minPrice=980000
+maxPrice=1750000
+store=10
+group=constructionkit
+description=This factory produces box meals.
 [/Item]
 
 ################################################################################
@@ -23,7 +54,7 @@ description=Consumer goods are household items that are relatively easy to produ
 name=Test Missile
 type=missile
 volume=1
-mass=10
+mass=0.05
 HP=100
 minPrice=500
 maxPrice=750
@@ -36,7 +67,7 @@ description=Devtest weapon
 name=Test Cannon
 type=cannon
 volume=1
-mass=10
+mass=0.05
 HP=100
 minPrice=500
 maxPrice=750
@@ -53,7 +84,7 @@ description=Devtest weapon
 name=Test Missile Ammunition
 type=ammo
 volume=1
-mass=0.1
+mass=0.01
 HP=100
 minPrice=200
 maxPrice=675
@@ -70,7 +101,7 @@ description=Ammo for devtest weapon
 name=Sparrow
 type=ship
 volume=2500
-mass=100
+mass=1
 HP=100
 minPrice=32000
 maxPrice=64000
@@ -87,7 +118,7 @@ description=The Sparrow is an older fighter design that is currently used as a p
 name=Standard Energy Unit
 type=commodity
 volume=1
-mass=0.5
+mass=0.001
 HP=100
 minPrice=5
 maxPrice=15
@@ -100,7 +131,7 @@ description=A standardized energy unit produced by a power plant and moved to a 
 name=Box Meals
 type=commodity
 volume=1
-mass=1
+mass=0.001
 HP=100
 minPrice=20
 maxPrice=25
@@ -129,7 +160,7 @@ description=Empty space.
 name=Jumpdrive
 type=commodity
 volume=120
-mass=20
+mass=0.1
 HP=100
 minPrice=836000
 maxPrice=2192000
@@ -142,7 +173,7 @@ description=A novel device capable of taking advantage of vacuum fluctuations to
 name=Astronaut
 type=commodity
 volume=4
-mass=12
+mass=0.01
 HP=100
 minPrice=800
 maxPrice=1500
@@ -157,7 +188,7 @@ description=The pilot of a starfighter or transport, ejected from their ship.
 name=Repair Paste
 type=commodity
 volume=1
-mass=1
+mass=0.1
 HP=200
 minPrice=1250
 maxPrice=3750
@@ -170,7 +201,7 @@ description=A tube of paste with a plastic applicator intended to repair damage 
 name=Capital Repair Paste
 type=commodity
 volume=100
-mass=100
+mass=1
 HP=25000
 minPrice=60000
 maxPrice=270000
