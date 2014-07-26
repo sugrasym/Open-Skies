@@ -76,6 +76,11 @@ public class Star extends Planet {
         light = new PointLight();
         light.setRadius(Float.MAX_VALUE);
         light.setColor(col);
+        //store physics name control
+        nameControl.setParent(this);
+        spatial.addControl(nameControl);
+        //death zone
+        setAtmosphereScaler(0.1f);
     }
     
     public void deconstruct() {

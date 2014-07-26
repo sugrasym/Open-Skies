@@ -468,6 +468,8 @@ public class SolarSystem implements Entity, Serializable {
                      * If you want to explore planet surfaces anyway, just
                      * comment out the below if block and recompile. This
                      * thing is open source :)
+                     * 
+                     * Note that this also handles star death zones
                      */
                     if (celestials.get(a) instanceof Ship) {
                         Ship s = (Ship) celestials.get(a);
