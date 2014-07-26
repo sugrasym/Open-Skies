@@ -281,6 +281,8 @@ public class Core {
         input.addMapping("KEY_F10", new KeyTrigger(KeyInput.KEY_F10));
         input.addMapping("KEY_F11", new KeyTrigger(KeyInput.KEY_F11));
         input.addMapping("KEY_F12", new KeyTrigger(KeyInput.KEY_F12));
+        //dash
+        input.addMapping("KEY_MINUS", new KeyTrigger(KeyInput.KEY_MINUS));
         //add
         input.addListener(actionListener, new String[]{
             "KEY_0", "KEY_1", "KEY_2", "KEY_3", "KEY_4", "KEY_5", "KEY_6",
@@ -293,7 +295,7 @@ public class Core {
             "KEY_BACKSPACE", "QuickSave", "QuickLoad", "KEY_END", "KEY_HOME",
             "KEY_PGUP", "KEY_PGDN", "KEY_F1", "KEY_F2", "KEY_F3", "KEY_F4", 
             "KEY_F5","KEY_F6", "KEY_F7", "KEY_F8", "KEY_F9", "KEY_F10", 
-            "KEY_F11","KEY_F12"});
+            "KEY_F11","KEY_F12", "KEY_MINUS"});
     }
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {

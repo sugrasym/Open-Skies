@@ -484,6 +484,8 @@ public class Station extends Ship {
             }
         }
     }
+    
+
 
     public boolean isEconomyExcempt() {
         return economyExempt;

@@ -24,6 +24,7 @@ import cargo.Hardpoint;
 import cargo.Item;
 import cargo.Weapon;
 import celestial.Ship.Ship;
+import celestial.Ship.Station;
 import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
 import gdi.component.AstralList;
@@ -369,58 +370,35 @@ public class CargoWindow extends AstralWindow {
                 }
             } else if (command.equals(CMD_DEPLOY)) {
                 /*Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                 if (selected.getQuantity() == 1) {
-                 //deploy the station
-                 Station ret = new Station(name, selected.getName());
-                 ret.setName("Your " + selected.getName());
-                 ret.setFaction(ship.getFaction());
-                 ret.init(false);
-                 //
-                 boolean safe = false;
-                 double sx = 0;
-                 double sy = 0;
-                 if (!ret.isNeedAsteroid()) {
-                 safe = true;
-                 //configure coordinates
-                 double dx = ship.getWidth();
-                 double dy = ship.getHeight();
-                 sx = (ship.getX() + ship.getWidth() / 2) + dx;
-                 sy = (ship.getY() + ship.getHeight() / 2) + dy;
-                 } else {
-                 //find a nearby asteroid
-                 ArrayList<Entity> asts = ship.getCurrentSystem().getAsteroidList();
-                 if (asts.size() > 0) {
-                 Asteroid pick = (Asteroid) asts.get(0);
-                 double record = Double.MAX_VALUE;
-                 for (int a = 0; a < asts.size(); a++) {
-                 Asteroid test = (Asteroid) asts.get(a);
-                 if (ship.distanceTo(test) < record) {
-                 record = ship.distanceTo(test);
-                 pick = test;
-                 }
-                 }
-                 safe = true;
-                 sx = pick.getX();
-                 sy = pick.getY();
-                 //remove asteroid
-                 pick.setState(State.DEAD);
-                 } else {
-                 //nowhere to put it
-                 }
-                 }
-                 if (safe) {
-                 ret.setX(sx);
-                 ret.setY(sy);
-                 //finalize
-                 ret.setCurrentSystem(ship.getCurrentSystem());
-                 ship.getCurrentSystem().putEntityInSystem(ret);
-                 //remove item from cargo
-                 selected.setQuantity(0);
-                 ship.removeFromCargoBay(selected);
-                 //since it's not NPC make sure it has no start cash
-                 ret.clearWares();
-                 }
-                 }*/
+                if (selected.getQuantity() == 1) {
+                    //deploy the station
+                   Station ret = new Station(name, selected.getName());
+                    ret.setName("Your " + selected.getName());
+                    ret.setFaction(ship.getFaction());
+                    ret.init(false);
+                    //
+                    boolean safe = false;
+                    double sx = 0;
+                    double sz = 0;
+                    safe = true; //todo: make asteroid mines only buildable on asteroids
+                    //configure coordinates
+                    double dx = 500;
+                    double dy = 500;
+                    sx = (ship.getLocation().getX()) + dx;
+                    sz = (ship.getLocation().getZ()) + dy;
+                    if (safe) {
+                        ret.setX(sx);
+                        ret.setZ(sz);
+                        //finalize
+                        ret.setCurrentSystem(ship.getCurrentSystem());
+                        ship.getCurrentSystem().putEntityInSystem(ret);
+                        //remove item from cargo
+                        selected.setQuantity(0);
+                        ship.removeFromCargoBay(selected);
+                        //since it's not NPC make sure it has no start cash
+                        ret.clearWares();
+                    }
+                }*/
             } else if (command.equals(CMD_CLAIMSOV)) {/*
                  Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                  if (selected.getQuantity() == 1) {

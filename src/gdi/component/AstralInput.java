@@ -51,6 +51,8 @@ public class AstralInput extends AstralLabel {
             setCanReturn(true);
         } else if (ke.equals("KEY_SPACE")) {
             setText(getText() + " ");
+        } else if (ke.equals("KEY_MINUS")) {
+            setText(getText() + "-");
         } else {
             setText(getText() + ke.split("_")[1]);
         }
