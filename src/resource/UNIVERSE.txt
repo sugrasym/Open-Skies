@@ -5,8 +5,7 @@ system=Eta LZM-F
 x=16694
 y=0
 z=-99630
-cash=50000
-cargo=Jumpdrive~1/Test Missile Ammunition~12
+cash=99999999999
 install=Test Missile/Test Missile/Test Cannon/Test Cannon
 [/NewGame]
 
@@ -625,13 +624,13 @@ out=Omega MAN-MBY/Tau EOF-O Jumphole
 [/Jumphole]
 
 [Station]
-name=Industrial Kitchen 8
-system=Omega MAN-MBY
-station=Industrial Kitchen
+name=Test Shipyard
+system=Eta LZM-F
+station=Shipyard
 x=-42380
 y=28195
 z=-36638
-faction=Southern Coalition
+faction=Northern Coalition
 [/Station]
 
 [Station]

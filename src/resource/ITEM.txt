@@ -24,7 +24,7 @@ Station Construction Kits
 name=Sunfarm
 type=station
 volume=200
-mass=14000
+mass=50
 HP=100
 minPrice=6250000
 maxPrice=9100000
@@ -37,7 +37,7 @@ description=This station has been fit with efficient solar collectors to produce
 name=Industrial Kitchen
 type=station
 volume=200
-mass=14000
+mass=50
 HP=100
 minPrice=980000
 maxPrice=1750000

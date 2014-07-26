@@ -704,8 +704,8 @@ public class PropertyWindow extends AstralWindow {
                     if (selected.getHomeBase() != null) {
                         optionList.addToList(" ");
                         optionList.addToList(CMD_CLEARHOME);
-                        optionList.addToList(CMD_SUPPLYHOME);
-                        optionList.addToList(CMD_REPRESENTHOME);
+                        //optionList.addToList(CMD_SUPPLYHOME);
+                        //optionList.addToList(CMD_REPRESENTHOME);
                         optionList.addToList(" ");
                     } else {
                         optionList.addToList(" ");
