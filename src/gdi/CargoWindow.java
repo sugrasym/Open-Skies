@@ -53,7 +53,7 @@ public class CargoWindow extends AstralWindow {
         super(assets, 500, 400, false);
         generate();
     }
-    
+
     public CargoWindow(AssetManager assets, int width, int height) {
         super(assets, width, height, false);
         generate();
@@ -224,12 +224,11 @@ public class CargoWindow extends AstralWindow {
             /*
              * Options for repair kits
              */
-            /*
-             if (selected.getGroup().equals("repairkit")) {
-             optionList.addToList("--Setup--");
-             optionList.addToList(CMD_USEPASTE);
-             optionList.addToList(" ");
-             }*/
+            if (selected.getGroup().equals("repairkit")) {
+                optionList.addToList("--Setup--");
+                optionList.addToList(CMD_USEPASTE);
+                optionList.addToList(" ");
+            }
             /*
              * Options for cannons
              */
@@ -458,23 +457,23 @@ public class CargoWindow extends AstralWindow {
                  }
                  }*/
 
-            } else if (command.equals(CMD_USEPASTE)) {/*
-                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                 for (int a = 0; a < selected.getQuantity(); a++) {
-                 //if the hp of the ship is less than the max, use a unit of paste
-                 if (ship.getHull() < ship.getMaxHull()) {
-                 ship.setHull(ship.getHull() + selected.getHP());
-                 selected.setQuantity(selected.getQuantity() - 1);
-                 }
-                 //limit to max hull
-                 if (ship.getHull() > ship.getMaxHull()) {
-                 ship.setHull(ship.getMaxHull());
-                 }
-                 }
-                 //remove if needed
-                 if (selected.getQuantity() <= 0) {
-                 ship.removeFromCargoBay(selected);
-                 }*/
+            } else if (command.equals(CMD_USEPASTE)) {
+                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                for (int a = 0; a < selected.getQuantity(); a++) {
+                    //if the hp of the ship is less than the max, use a unit of paste
+                    if (ship.getHull() < ship.getMaxHull()) {
+                        ship.setHull(ship.getHull() + (float) selected.getHP());
+                        selected.setQuantity(selected.getQuantity() - 1);
+                    }
+                    //limit to max hull
+                    if (ship.getHull() > ship.getMaxHull()) {
+                        ship.setHull(ship.getMaxHull());
+                    }
+                }
+                //remove if needed
+                if (selected.getQuantity() <= 0) {
+                    ship.removeFromCargoBay(selected);
+                }
 
             }
         }
