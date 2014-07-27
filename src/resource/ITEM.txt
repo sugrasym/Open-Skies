@@ -85,6 +85,19 @@ group=constructionkit
 description=This factory produces Arrow and Dart Launchers with their ammunition.
 [/Item]
 
+[Item]
+name=Fighter Cannon Factory
+type=station
+volume=200
+mass=50
+HP=100
+minPrice=4263000
+maxPrice=5120800
+store=10
+group=constructionkit
+description=This factory produces a class of fighter cannons.
+[/Item]
+
 ################################################################################
 #Weapons
 ################################################################################

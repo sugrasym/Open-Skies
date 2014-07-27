@@ -35,6 +35,13 @@ product=Low Grade Missile Factory,1
 resource=
 [/Process]
 
+[Process]
+name=CheatMakeFighterCannonFactory
+cycle=282500
+product=Fighter Cannon Factory,1
+resource=
+[/Process]
+
 #Shipyards
 
 [Process]
@@ -132,6 +139,27 @@ name=FairMakeArrowLauncher
 cycle=450
 product=Arrow Rocket,1
 resource=Mass Block,1/Standard Energy Unit,8/Box Meals,3
+[/Process]
+
+[Process]
+name=FairMakeTalonA7
+cycle=1602
+product=Talon A-7,1
+resource=Mass Block,2/Box Meals,3/Standard Energy Unit,7/Plank Tubes,1/Microchips,1
+[/Process]
+
+[Process]
+name=FairMakeClawC6
+cycle=1801
+product=Claw C-6,1
+resource=Mass Block,2/Box Meals,3/Standard Energy Unit,7/Plank Tubes,4/Microchips,1
+[/Process]
+
+[Process]
+name=FairMakeSpanR3
+cycle=2107
+product=Span R-3,1
+resource=Mass Block,4/Box Meals,6/Standard Energy Unit,17/Plank Tubes,4/Microchips,4
 [/Process]
 
 #Energy
