@@ -161,3 +161,20 @@ port=basic,10,75,0,0,300,0,0/basic,10,-55,0,0,-280,0,0
 economyExempt=true
 class=StandardSmallStation
 [/Station]
+
+[Station]
+type=Frontier Base
+thrust=0
+torque=0
+shield=137500
+shieldRecharge=1000
+hull=69000
+fuel=2500000000000
+mass=0
+sensor=5000
+cargo=512000
+job=BoxMealSink/EnergySink/SeedRepairPaste/OreSink/MassSink/FairMakeArrowRocketAmmo/FairMakeDartMissileAmmo/FairMakeDartLauncher/FairMakeArrowLauncher/TubeSink/ChipSink
+port=basic,10,75,0,0,300,0,0/basic,10,-55,0,0,-280,0,0
+economyExempt=true
+class=StandardSmallStation
+[/Station]

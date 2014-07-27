@@ -189,3 +189,25 @@ cargo=Jumpdrive~1/Astronaut~1/Arrow Rocket Ammunition~50
 minCourage=0.85
 maxCourage=1.00
 [/Loadout]
+
+################################################################################
+#Frontier
+################################################################################
+
+[Loadout]
+ship=Crow
+name=Frontier Supply Crow
+install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
+cargo=Jumpdrive~1/Astronaut~1/Dart Missile Ammunition~36
+minCourage=0.7
+maxCourage=1.00
+[/Loadout]
+
+[Loadout]
+ship=Raven
+name=Frontier Supply Raven
+install=Arrow Rocket/Arrow Rocket/Span R-3/Span R-3
+cargo=Jumpdrive~1/Astronaut~1/Arrow Rocket Ammunition~50
+minCourage=0.85
+maxCourage=1.00
+[/Loadout]

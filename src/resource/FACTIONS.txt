@@ -22,6 +22,7 @@ Southern Coalition=0
 Commonwealth=0
 Rogers=0
 Lancers=0
+Frontier=0
 [/Faction]
 
 ################################################################################
@@ -40,6 +41,7 @@ Southern Coalition=-5
 Commonwealth=-3
 Rogers=-5
 Lancers=-2
+Frontier=0
 [/Faction]
 
 [Faction]
@@ -54,6 +56,7 @@ Southern Coalition=10
 Commonwealth=-3
 Rogers=-5
 Lancers=-2
+Frontier=0
 [/Faction]
 
 [Faction]
@@ -68,6 +71,7 @@ Southern Coalition=-3
 Commonwealth=10
 Rogers=-5
 Lancers=2
+Frontier=0
 [/Faction]
 
 ################################################################################
@@ -86,6 +90,7 @@ Southern Coalition=-5
 Commonwealth=-5
 Rogers=10
 Lancers=3
+Frontier=-3
 [/Faction]
 
 ################################################################################
@@ -104,7 +109,28 @@ Southern Coalition=-2
 Commonwealth=2
 Rogers=3
 Lancers=10
+Frontier=0
 [/Faction]
+
+################################################################################
+#Frontier
+################################################################################
+
+[Faction]
+name=Frontier
+var_isEmpire=false
+var_description=Originally from what is now the SC, Frontier is an international trade corporation that has remained neutral in this conflict. However, this neutrality has cost them valuable national protection against pirates which they must provide themselves.
+var_hosts=Neutral
+Neutral=0
+Player=0
+Northern Coalition=0
+Southern Coalition=0
+Commonwealth=0
+Rogers=-3
+Lancers=0
+Frontier=10
+[/Faction]
+
 
 ################################################################################
 #The Player
@@ -121,6 +147,7 @@ Southern Coalition=-5
 Commonwealth=0
 Rogers=-5
 Lancers=0
+Frontier=0
 [/Faction]
 
 ################################################################################
@@ -164,6 +191,12 @@ name=Lancers
 patrol0=Lancers Sparrow,40
 patrol1=Lancers Crow,15
 merchant0=Lancers Supply Raven,10
+[/Loadout]
+
+[Loadout]
+name=Frontier
+merchant0=Frontier Supply Crow,25
+merchant1=Frontier Supply Raven,12
 [/Loadout]
 
 ################################################################################
@@ -220,6 +253,11 @@ station0=Pirate Base,0.1
 [Stations]
 name=Lancers
 station0=Lancer Base,0.1
+[/Stations]
+
+[Stations]
+name=Frontier
+station0=Frontier Base,0.1
 [/Stations]
 
 ##########################################
