@@ -24,6 +24,7 @@ import universe.Universe;
 public class MenuHomeWindow extends AstralWindow {
 
     AstralLabel logoLabel = new AstralLabel();
+    AstralLabel versionLabel = new AstralLabel();
     AstralList mainList = new AstralList(this);
     AstralList gameList = new AstralList(this);
     AstralList saveList = new AstralList(this);
@@ -50,6 +51,14 @@ public class MenuHomeWindow extends AstralWindow {
         logoLabel.setWidth(getWidth());
         logoLabel.setHeight(50);
         logoLabel.setVisible(true);
+        //setup version label
+        versionLabel.setText("Alpha 1");
+        versionLabel.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        versionLabel.setX(0);
+        versionLabel.setY(height-17);
+        versionLabel.setWidth(getWidth());
+        versionLabel.setHeight(50);
+        versionLabel.setVisible(true);
         //setup menu list
         mainList.setX(getWidth() / 2 - 200);
         mainList.setY(getHeight() / 2 - 200);
@@ -74,6 +83,7 @@ public class MenuHomeWindow extends AstralWindow {
         saveList.setVisible(false);
         //add components
         addComponent(logoLabel);
+        addComponent(versionLabel);
         addComponent(mainList);
         addComponent(gameList);
         addComponent(saveList);
