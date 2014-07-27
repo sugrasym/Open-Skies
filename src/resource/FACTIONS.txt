@@ -21,6 +21,7 @@ Northern Coalition=0
 Southern Coalition=0
 Commonwealth=0
 Rogers=0
+Lancers=0
 [/Faction]
 
 ################################################################################
@@ -38,6 +39,7 @@ Northern Coalition=10
 Southern Coalition=-5
 Commonwealth=-3
 Rogers=-5
+Lancers=-2
 [/Faction]
 
 [Faction]
@@ -51,6 +53,7 @@ Northern Coalition=-5
 Southern Coalition=10
 Commonwealth=-3
 Rogers=-5
+Lancers=-2
 [/Faction]
 
 [Faction]
@@ -64,6 +67,7 @@ Northern Coalition=-3
 Southern Coalition=-3
 Commonwealth=10
 Rogers=-5
+Lancers=2
 [/Faction]
 
 ################################################################################
@@ -81,6 +85,25 @@ Northern Coalition=-5
 Southern Coalition=-5
 Commonwealth=-5
 Rogers=10
+Lancers=3
+[/Faction]
+
+################################################################################
+#Lancers
+################################################################################
+
+[Faction]
+name=Lancers
+var_isEmpire=false
+var_description=A terrorist organization dedicated to overthrowing both the NC and SC. They have been known to cooperate with local pirate forces.
+var_hosts=Northern Coalition/Southern Coalition/Neutral
+Neutral=0
+Player=0
+Northern Coalition=-2
+Southern Coalition=-2
+Commonwealth=2
+Rogers=3
+Lancers=10
 [/Faction]
 
 ################################################################################
@@ -97,6 +120,7 @@ Northern Coalition=5
 Southern Coalition=-5
 Commonwealth=0
 Rogers=-5
+Lancers=0
 [/Faction]
 
 ################################################################################
@@ -133,6 +157,13 @@ name=Rogers
 patrol0=Rogers Sparrow,75
 patrol1=Rogers Crow,50
 patrol2=Rogers Raven,25
+[/Loadout]
+
+[Loadout]
+name=Lancers
+patrol0=Lancers Sparrow,40
+patrol1=Lancers Crow,15
+merchant0=Lancers Supply Raven,10
 [/Loadout]
 
 ################################################################################
@@ -184,6 +215,11 @@ station7=Fighter Cannon Factory,0.17
 [Stations]
 name=Rogers
 station0=Pirate Base,0.1
+[/Stations]
+
+[Stations]
+name=Lancers
+station0=Lancer Base,0.1
 [/Stations]
 
 ##########################################

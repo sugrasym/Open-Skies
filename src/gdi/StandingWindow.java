@@ -162,7 +162,7 @@ public class StandingWindow extends AstralWindow {
             infoList.addToList("--Will Attack--");
             infoList.addToList(" ");
             for (int a = 0; a < selected.getStandings().size(); a++) {
-                if (selected.getStandings().get(a).getDouble() < Faction.HOSTILE_STANDING) {
+                if (selected.getStandings().get(a).getDouble() <= Faction.HOSTILE_STANDING) {
                     if (!selected.getStandings().get(a).getString().matches(PLAYER_FACTION)) {
                         infoList.addToList(selected.getStandings().get(a).getString());
                     }

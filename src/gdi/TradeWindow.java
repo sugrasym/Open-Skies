@@ -392,8 +392,8 @@ public class TradeWindow extends AstralWindow {
             String mShield = test.getValue("shield");
             String rShield = test.getValue("shieldRecharge");
             String mHull = test.getValue("hull");
-            String accel = test.getValue("accel");
-            String turn = test.getValue("turning");
+            String thrust = test.getValue("thrust");
+            String torque = test.getValue("torque");
             String sensor = test.getValue("sensor");
             String fuel = test.getValue("fuel");
             String mass = test.getValue("mass");
@@ -406,8 +406,8 @@ public class TradeWindow extends AstralWindow {
             propertyList.addToList("Sensor:       " + sensor);
             propertyList.addToList("Cargo:        " + cargo);
             propertyList.addToList("Mass:         " + mass);
-            propertyList.addToList("Accel:        " + accel);
-            propertyList.addToList("Turning:      " + turn);
+            propertyList.addToList("Thrust:       " + thrust);
+            propertyList.addToList("Torque:       " + torque);
         }
     }
 
