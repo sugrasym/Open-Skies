@@ -172,6 +172,11 @@ station3=Shipyard,0.25
 station4=Mass Converter,0.25
 [/Stations]
 
+[Stations]
+name=Rogers
+station0=Pirate Base,0.1
+[/Stations]
+
 ##########################################
 #Music for each faction
 #This is for the benefit of WorldMaker

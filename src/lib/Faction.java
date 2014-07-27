@@ -184,7 +184,9 @@ public class Faction implements Serializable {
                 }
                 try {
                     isEmpire = Boolean.parseBoolean(tmp2.getValue("var_isEmpire"));
-                    spread = Double.parseDouble((tmp2.getValue("var_worldPercent"))) / 100.0;
+                    if(isEmpire) {
+                        spread = Double.parseDouble((tmp2.getValue("var_worldPercent"))) / 100.0;
+                    }
                     //store hosts
                     String ho = tmp2.getValue("var_hosts");
                     if (ho != null) {

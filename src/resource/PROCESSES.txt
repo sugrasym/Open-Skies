@@ -88,6 +88,26 @@ product=Salvage Software,1
 resource=
 [/Process]
 
+#Ammo
+
+[Process]
+name=FairMakeArrowRocketAmmo
+cycle=100
+product=Arrow Rocket Ammunition,100
+resource=Mass Block,1/Standard Energy Unit,10/Box Meals,1
+[/Process]
+
+[Process]
+name=FairMakeDartMissileAmmo
+cycle=220
+product=Dart Missile Ammunition,10
+resource=Mass Block,1/Standard Energy Unit,10/Box Meals,1
+[/Process]
+
+#Weapons
+
+
+
 #Energy
 
 [Process]
@@ -119,7 +139,7 @@ resource=Standard Energy Unit,10
 
 [Process]
 name=BoxMealSink
-cycle=512
+cycle=5120
 product=
 resource=Box Meals,25
 [/Process]
@@ -128,9 +148,34 @@ resource=Box Meals,25
 
 [Process]
 name=ConsumerGoodsSink
-cycle=512
+cycle=5120
 product=
 resource=Consumer Goods,25
+[/Process]
+
+#Energy Sinks
+
+[Process]
+name=EnergySink
+cycle=2780
+product=
+resource=Standard Energy Unit,25
+[/Process]
+
+#Ore Sinks
+
+[Process]
+name=OreSink
+cycle=4600
+product=
+resource=Ore,25
+[/Process]
+
+[Process]
+name=MassSink
+cycle=5120
+product=
+resource=Mass Block,25
 [/Process]
 
 #[Process]

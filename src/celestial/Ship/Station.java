@@ -493,6 +493,7 @@ public class Station extends Ship {
         for(int a = 0; a < stationBuying.size(); a++) {
             stationBuying.get(a).setQuantity(0);
         }
+        economyExempt = false;
     }
 
     public boolean isEconomyExcempt() {
