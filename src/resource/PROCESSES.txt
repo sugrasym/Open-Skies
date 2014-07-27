@@ -28,6 +28,13 @@ product=Computer Plant,1
 resource=
 [/Process]
 
+[Process]
+name=CheatMakeLowGradeMissileFactory
+cycle=282500
+product=Low Grade Missile Factory,1
+resource=
+[/Process]
+
 #Shipyards
 
 [Process]
@@ -113,7 +120,19 @@ resource=Mass Block,1/Standard Energy Unit,10/Box Meals,1
 
 #Weapons
 
+[Process]
+name=FairMakeDartLauncher
+cycle=600
+product=Dart Missile,1
+resource=Mass Block,1/Standard Energy Unit,8/Box Meals,3
+[/Process]
 
+[Process]
+name=FairMakeArrowLauncher
+cycle=450
+product=Arrow Rocket,1
+resource=Mass Block,1/Standard Energy Unit,8/Box Meals,3
+[/Process]
 
 #Energy
 

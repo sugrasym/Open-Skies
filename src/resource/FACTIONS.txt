@@ -153,6 +153,7 @@ station2=Customs Office,0.25
 station3=Shipyard,0.25
 station4=Mass Converter,0.25
 station5=Computer Plant,0.17
+station6=Low Grade Missile Factory,0.17
 [/Stations]
 
 [Stations]
@@ -163,6 +164,7 @@ station2=Customs Office,0.25
 station3=Shipyard,0.25
 station4=Mass Converter,0.25
 station5=Computer Plant,0.17
+station6=Low Grade Missile Factory,0.17
 [/Stations]
 
 [Stations]
@@ -173,6 +175,7 @@ station2=Customs Office,0.25
 station3=Shipyard,0.25
 station4=Mass Converter,0.25
 station5=Computer Plant,0.17
+station6=Low Grade Missile Factory,0.17
 [/Stations]
 
 [Stations]

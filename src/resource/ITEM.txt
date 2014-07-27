@@ -72,6 +72,19 @@ group=constructionkit
 description=This factory produces microchips and plank tubes.
 [/Item]
 
+[Item]
+name=Low Grade Missile Factory
+type=station
+volume=200
+mass=50
+HP=100
+minPrice=5259000
+maxPrice=8280000
+store=10
+group=constructionkit
+description=This factory produces Arrow and Dart Launchers with their ammunition.
+[/Item]
+
 ################################################################################
 #Weapons
 ################################################################################

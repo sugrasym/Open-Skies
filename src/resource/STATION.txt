@@ -80,6 +80,22 @@ class=StandardSmallStation
 [/Station]
 
 [Station]
+type=Low Grade Missile Factory
+thrust=0
+torque=0
+shield=137500
+shieldRecharge=1000
+hull=69000
+fuel=2500000000000
+mass=0
+sensor=5000
+cargo=512000
+job=FairMakeDartLauncher/FairMakeArrowLauncher/FairMakeArrowRocketAmmo/FairMakeDartMissileAmmo
+port=basic,10,75,0,0,300,0,0/basic,10,-55,0,0,-280,0,0
+class=StandardSmallStation
+[/Station]
+
+[Station]
 type=Shipyard
 thrust=0
 torque=0
@@ -90,7 +106,7 @@ fuel=2500000000000
 mass=0
 sensor=5000
 cargo=512000
-job=CheatMakeSparrow/CheatMakeCrow/CheatMakeRaven/SeedRepairPaste/SeedCapitalRepairPaste/CheatMakeJumpdrive/CheatMakeSunfarm/CheatMakeIndustrialKitchen/CheatMakeMassConverter/CheatMakeComputerPlant
+job=CheatMakeSparrow/CheatMakeCrow/CheatMakeRaven/SeedRepairPaste/SeedCapitalRepairPaste/CheatMakeJumpdrive/CheatMakeSunfarm/CheatMakeIndustrialKitchen/CheatMakeMassConverter/CheatMakeComputerPlant/CheatMakeLowGradeMissileFactory/TubeSink/ChipSink/BoxMealSink/EnergySink/MassSink
 port=basic,10,75,0,0,300,0,0/basic,10,-55,0,0,-280,0,0
 economyExempt=true
 class=StandardSmallStation
