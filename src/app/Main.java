@@ -25,10 +25,8 @@ import jmeplanet.PlanetAppState;
 import lib.astral.AstralIO;
 
 /**
- * - needs a better quote
- * Goonswarm fed is actually pretty cool, but that Sir Molle quite
- * WAS priceless. I mean he had a pink purse and was smoking a cigar
- * when he said it.
+ * I suppose this is the time for me to say something
+ * profound.
  */
 public class Main extends SimpleApplication {
     //fpp
