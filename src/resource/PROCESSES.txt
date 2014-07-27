@@ -21,6 +21,13 @@ product=Mass Converter,1
 resource=
 [/Process]
 
+[Process]
+name=CheatMakeComputerPlant
+cycle=282500
+product=Computer Plant,1
+resource=
+[/Process]
+
 #Shipyards
 
 [Process]
@@ -126,6 +133,20 @@ product=Mass Block,1
 resource=Standard Energy Unit,10/Ore,1
 [/Process]
 
+[Process]
+name=PlankTubes
+cycle=64
+product=Plank Tubes,3
+resource=Mass Block,2/Standard Energy Unit,20
+[/Process]
+
+[Process]
+name=Microchips
+cycle=38
+product=Microchips,5
+resource=Mass Block,2/Standard Energy Unit,2
+[/Process]
+
 #Food
 
 [Process]
@@ -176,6 +197,22 @@ name=MassSink
 cycle=5120
 product=
 resource=Mass Block,25
+[/Process]
+
+#Tech Sinks
+
+[Process]
+name=TubeSink
+cycle=5120
+product=
+resource=Plank Tubes,25
+[/Process]
+
+[Process]
+name=ChipSink
+cycle=5120
+product=
+resource=Microchips,25
 [/Process]
 
 #[Process]

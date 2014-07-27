@@ -59,6 +59,19 @@ group=constructionkit
 description=This factory produces mass blocks from standard energy units and ore.
 [/Item]
 
+[Item]
+name=Computer Plant
+type=station
+volume=200
+mass=50
+HP=100
+minPrice=1559000
+maxPrice=2780000
+store=10
+group=constructionkit
+description=This factory produces microchips and plank tubes.
+[/Item]
+
 ################################################################################
 #Weapons
 ################################################################################
@@ -255,6 +268,32 @@ maxPrice=300
 store=250
 group=ore
 description=A standardized mass unit that can be used in a wide variety of industrial processes.
+[/Item]
+
+[Item]
+name=Plank Tubes
+type=commodity
+volume=3
+mass=0.05
+HP=100
+minPrice=400
+maxPrice=450
+store=64
+group=commodity
+description=A vacuum tube designed to produce quantum fluctuations for use in quantum computing.
+[/Item]
+
+[Item]
+name=Microchips
+type=commodity
+volume=3
+mass=0.05
+HP=100
+minPrice=128
+maxPrice=215
+store=128
+group=commodity
+description=Solid state computer components for use in computer boards.
 [/Item]
 
 ################################################################################
