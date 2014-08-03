@@ -24,9 +24,9 @@ probability=0.1
 [/Planet]
 
 [Planet]
-name=Chthonian
+name=Frozen
 group=rock
-palette=Lava
+palette=Ice
 probability=0.1
 [/Planet]
 
@@ -61,7 +61,7 @@ probability=0.2
 
 [Planet]
 name=NeverShouldAppearInAnyUniverseForAnyReason HINTITWONTWORKLOL
-group=pony
-palette=friendship
+group=lol
+palette=lolol
 probability=0.0
 [/Planet]

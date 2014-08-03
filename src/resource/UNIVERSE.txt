@@ -61,7 +61,7 @@ seed=-905015795
 [Planet]
 name='Yung 7'
 system=Tau 01-ZWL
-texture=Chthonian
+texture=Frozen
 x=59713
 y=0
 z=94587
@@ -777,7 +777,7 @@ seed=1140945012
 [Planet]
 name='Coleman 22'
 system=Alpha 2Y-C
-texture=Chthonian
+texture=Frozen
 x=35056
 y=0
 z=-69877
@@ -1423,7 +1423,7 @@ seed=-980106453
 [Planet]
 name='Martin 15'
 system=Alpha 00-NS
-texture=Chthonian
+texture=Frozen
 x=10076
 y=0
 z=4661
@@ -1750,7 +1750,7 @@ seed=-1864739000
 [Planet]
 name='Charles 1'
 system=Gamma 7-GJ
-texture=Chthonian
+texture=Frozen
 x=-171572
 y=0
 z=-172598
@@ -1794,7 +1794,7 @@ seed=-519177824
 [Planet]
 name='Murphey 3'
 system=Gamma 7-GJ
-texture=Chthonian
+texture=Frozen
 x=-100327
 y=0
 z=-159030
@@ -2463,7 +2463,7 @@ seed=1817871270
 [Planet]
 name='Tiberius 1'
 system=Tau HP-BAJZ
-texture=Chthonian
+texture=Frozen
 x=54912
 y=0
 z=34269
@@ -2957,7 +2957,7 @@ seed=1552317391
 [Planet]
 name='Porter 14'
 system=Omega VXO-U1
-texture=Chthonian
+texture=Frozen
 x=-35047
 y=0
 z=-39036
@@ -5265,7 +5265,7 @@ seed=1250991064
 [Planet]
 name='Theresa 9'
 system=Omega 1F2-RZUA
-texture=Chthonian
+texture=Frozen
 x=89888
 y=0
 z=-62144
@@ -5514,7 +5514,7 @@ seed=371881027
 [Planet]
 name='Parker 21'
 system=Sigma 5-RQ
-texture=Chthonian
+texture=Frozen
 x=61666
 y=0
 z=70156
@@ -5570,7 +5570,7 @@ seed=-1695505559
 [Planet]
 name='Nolo 2'
 system=Zeta S3OU-1A
-texture=Chthonian
+texture=Frozen
 x=99233
 y=0
 z=-92107
@@ -5625,7 +5625,7 @@ seed=-1694738437
 [Planet]
 name='Upana 17'
 system=Zeta S3OU-1A
-texture=Chthonian
+texture=Frozen
 x=77212
 y=0
 z=-44185
@@ -5776,7 +5776,7 @@ seed=346055179
 [Planet]
 name='Irene 17'
 system=Zeta 8L3Y-U
-texture=Chthonian
+texture=Frozen
 x=-151168
 y=0
 z=157762
@@ -5864,7 +5864,7 @@ seed=297671189
 [Planet]
 name='Wilson 21'
 system=Nu 5WO-6
-texture=Chthonian
+texture=Frozen
 x=46820
 y=0
 z=-50858
@@ -5875,7 +5875,7 @@ seed=63880637
 [Planet]
 name='Martin 20'
 system=Nu 5WO-6
-texture=Chthonian
+texture=Frozen
 x=47549
 y=0
 z=-16186
@@ -6050,7 +6050,7 @@ seed=-1984021442
 [Planet]
 name='Haart 16'
 system=Delta AR74-Q
-texture=Chthonian
+texture=Frozen
 x=-17510
 y=0
 z=-84839
@@ -6272,7 +6272,7 @@ seed=526267881
 [Planet]
 name='Romeo 21'
 system=Alpha BV-C
-texture=Chthonian
+texture=Frozen
 x=59355
 y=0
 z=25003
@@ -6418,7 +6418,7 @@ seed=-1370487842
 [Planet]
 name='Su 22'
 system=Gamma MB-QLR
-texture=Chthonian
+texture=Frozen
 x=-190597
 y=0
 z=-13707
@@ -6429,7 +6429,7 @@ seed=380808060
 [Planet]
 name='Ian 19'
 system=Gamma MB-QLR
-texture=Chthonian
+texture=Frozen
 x=182161
 y=0
 z=-132040
@@ -6451,7 +6451,7 @@ seed=619119219
 [Planet]
 name='Rose 24'
 system=Gamma MB-QLR
-texture=Chthonian
+texture=Frozen
 x=-89956
 y=0
 z=119375
@@ -7737,7 +7737,7 @@ seed=-430670617
 [Planet]
 name='Davis 20'
 system=Psi WC-AQKX
-texture=Chthonian
+texture=Frozen
 x=48648
 y=0
 z=-31817
@@ -7880,7 +7880,7 @@ seed=195849514
 [Planet]
 name='Johnson 5'
 system=Iota J6-KGI
-texture=Chthonian
+texture=Frozen
 x=-194971
 y=0
 z=12217
@@ -8034,7 +8034,7 @@ seed=-1837274743
 [Planet]
 name='Darwin 17'
 system=Nu UFM-L
-texture=Chthonian
+texture=Frozen
 x=-93458
 y=0
 z=-26281
@@ -8614,7 +8614,7 @@ seed=1351163566
 [Planet]
 name='Morgan 23'
 system=Xi 2ROE-WER
-texture=Chthonian
+texture=Frozen
 x=-58910
 y=0
 z=-41368
@@ -8625,7 +8625,7 @@ seed=1927649187
 [Planet]
 name='Edwards 7'
 system=Xi 2ROE-WER
-texture=Chthonian
+texture=Frozen
 x=22535
 y=0
 z=-19153
@@ -8791,7 +8791,7 @@ seed=1439500795
 [Planet]
 name='Larua 6'
 system=Iota 96C-I3O
-texture=Chthonian
+texture=Frozen
 x=81695
 y=0
 z=154883
@@ -8944,7 +8944,7 @@ seed=1694201143
 [Planet]
 name='Hawking 17'
 system=Xi L8C-DUG
-texture=Chthonian
+texture=Frozen
 x=47210
 y=0
 z=-22866
@@ -8977,7 +8977,7 @@ seed=2010719309
 [Planet]
 name='Tim 14'
 system=Xi L8C-DUG
-texture=Chthonian
+texture=Frozen
 x=-101225
 y=0
 z=76311
@@ -9404,7 +9404,7 @@ seed=-1854133770
 [Planet]
 name='Browns 5'
 system=Theta 7MPP-1ZXL
-texture=Chthonian
+texture=Frozen
 x=-56412
 y=0
 z=28701

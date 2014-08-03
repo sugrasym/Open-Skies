@@ -179,7 +179,7 @@ public class Utility {
         return planet;
     }
 
-    public static Planet createChthonianPlanet(AssetManager assetManager, float radius, Material oceanMaterial, HeightDataSource dataSource, int seed) {
+    public static Planet createIcePlanet(AssetManager assetManager, float radius, Material oceanMaterial, HeightDataSource dataSource, int seed) {
 
         float heightScale = dataSource.getHeightScale();
 
@@ -187,7 +187,7 @@ public class Utility {
         Material planetMaterial = new Material(assetManager, "JmePlanet/MatDefs/Terrain.j3md");
 
         // region1 texture
-        Texture region1 = assetManager.loadTexture("Textures/lava.png");
+        Texture region1 = assetManager.loadTexture("Textures/snow.png");
         region1.setWrap(Texture.WrapMode.Repeat);
         planetMaterial.setTexture("Region1ColorMap", region1);
         planetMaterial.setVector3("Region1", new Vector3f(heightScale * 0f, heightScale * 0.75f, 0));
@@ -197,12 +197,12 @@ public class Utility {
         planetMaterial.setTexture("Region2ColorMap", region2);
         planetMaterial.setVector3("Region2", new Vector3f(heightScale * 0f, heightScale * 0.75f, 0));
         // region3 texture
-        Texture region3 = assetManager.loadTexture("Textures/moon.png");
+        Texture region3 = assetManager.loadTexture("Textures/dirty-snow.png");
         region3.setWrap(Texture.WrapMode.Repeat);
         planetMaterial.setTexture("Region3ColorMap", region3);
         planetMaterial.setVector3("Region3", new Vector3f(heightScale * 0f, heightScale * 0.75f, 0));
         // region4 texture
-        Texture region4 = assetManager.loadTexture("Textures/moon_rough.png");
+        Texture region4 = assetManager.loadTexture("Textures/ice.png");
         region4.setWrap(Texture.WrapMode.Repeat);
         planetMaterial.setTexture("Region4ColorMap", region4);
         planetMaterial.setVector3("Region4", new Vector3f(heightScale * 0.5f, heightScale * 1.0f, 0));
@@ -213,12 +213,7 @@ public class Utility {
         planetMaterial.setTexture("SlopeColorMap", rock);
 
         // create planet
-        Planet planet = new Planet("Chthonian", radius, planetMaterial, dataSource, false);
-        // create ocean
-        if (oceanMaterial == null) {
-            oceanMaterial = assetManager.loadMaterial("Materials/Lava.j3m");
-        }
-        planet.createOcean(oceanMaterial);
+        Planet planet = new Planet("Ice", radius, planetMaterial, dataSource, false);
 
         // create atmosphere
         Material atmosphereMaterial = new Material(assetManager, "JmePlanet/MatDefs/Atmosphere.j3md");

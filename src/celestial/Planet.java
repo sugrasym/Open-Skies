@@ -117,11 +117,11 @@ public class Planet extends Celestial {
                 fractalPlanet = Utility.createMoonLikePlanet(assets, radius, moonDataSource);
                 spatial = fractalPlanet;
                 setAtmosphereScaler(0);
-            } else if (palette.equals("Lava")) {
+            } else if (palette.equals("Ice")) {
                 // Add planet
                 FractalDataSource planetDataSource = new FractalDataSource(seed);
                 planetDataSource.setHeightScale(heightScale * radius);
-                fractalPlanet = Utility.createChthonianPlanet(assets, radius, null, planetDataSource, seed);
+                fractalPlanet = Utility.createIcePlanet(assets, radius, null, planetDataSource, seed);
                 setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
                 spatial = fractalPlanet;
             } else if (palette.equals("Mars")) {
