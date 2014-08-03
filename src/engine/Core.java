@@ -448,6 +448,21 @@ public class Core {
                         getUniverse().getPlayerShip().toggleCannons();
                     }
                 }
+                if (name.equals("KEY_R")) {
+                    if (keyPressed) {
+                        getUniverse().getPlayerShip().targetNearestHostileShip();
+                    }
+                }
+                if (name.equals("KEY_T")) {
+                    if (keyPressed) {
+                        getUniverse().getPlayerShip().targetNearestFriendlyShip();
+                    }
+                }
+                if (name.equals("KEY_Y")) {
+                    if (keyPressed) {
+                        getUniverse().getPlayerShip().targetNearestNeutralShip();
+                    }
+                }
             } else {
                 //docked only windows
                 if (keyPressed) {

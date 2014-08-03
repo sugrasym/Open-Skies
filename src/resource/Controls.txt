@@ -29,6 +29,10 @@ L - Toggle Cannons / Turrets
 Joystick Button 1 - Fire active weapons
 Joystick Button 2 - Hold to temporarily toggle missile activation
 
+R - Target nearest hostile ship
+T - Target nearest friendly ship
+Y - Target nearest neutral ship
+
 User Interface
 --------------------------------------------------------------------------------
 1 - Toggle Equipment Window
