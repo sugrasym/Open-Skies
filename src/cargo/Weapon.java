@@ -25,6 +25,7 @@ import com.jme3.audio.AudioNode;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
+import engine.Core;
 import entity.Entity;
 import java.util.ArrayList;
 import lib.astral.Parser;
@@ -300,7 +301,7 @@ public class Weapon extends Equipment {
             pro.setEndColor(endColor);
             pro.setpVel(pVel);
             //determine world location and rotation
-            Vector3f loc = getSocket().getNode().getWorldTranslation().add(host.getLinearVelocity().mult(tpf));
+            Vector3f loc = getSocket().getNode().getWorldTranslation().add(host.getLinearVelocity().mult(Math.min(tpf,Core.DEFAULT_TICK)));
             Quaternion rot = getSocket().getNode().getWorldRotation();
             //interpolate velocity
             Vector3f vel = Vector3f.UNIT_Z.mult(-(speed));

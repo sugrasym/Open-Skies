@@ -70,7 +70,7 @@ public class Core {
         GAME_OVER
     }
     private GameState state = GameState.MAIN_MENU;
-    private static final float DEFAULT_TICK = 0.016666668f;
+    public static final float DEFAULT_TICK = 0.016666668f;
     //game objects
     private Universe universe;
     God god;
