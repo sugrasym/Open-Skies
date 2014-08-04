@@ -21,7 +21,6 @@ faction=Player
 cargo=Jumpdrive~1/Dart Missile Ammunition~12
 install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 [/Ship]
-
 [System]
 name=Tau 01-ZWL
 owner=Commonwealth
@@ -61,7 +60,7 @@ seed=-905015795
 [Planet]
 name='Yung 7'
 system=Tau 01-ZWL
-texture=Frozen
+texture=BandedGas
 x=59713
 y=0
 z=94587
@@ -72,7 +71,7 @@ seed=-1522218611
 [Planet]
 name='Thomas 14'
 system=Tau 01-ZWL
-texture=Martian
+texture=BandedGas
 x=-4340
 y=0
 z=74741
@@ -215,7 +214,7 @@ seed=-161705157
 [Planet]
 name='Davis 4'
 system=Upsilon WC4-W8S
-texture=Martian
+texture=Barren
 x=49688
 y=0
 z=19525
@@ -226,7 +225,7 @@ seed=-1880082301
 [Planet]
 name='Hicks 2'
 system=Upsilon WC4-W8S
-texture=Martian
+texture=BandedGas
 x=152223
 y=0
 z=102710
@@ -237,7 +236,7 @@ seed=1215238540
 [Planet]
 name='Porter 12'
 system=Upsilon WC4-W8S
-texture=Martian
+texture=BandedGas
 x=-106793
 y=0
 z=141424
@@ -248,7 +247,7 @@ seed=409464802
 [Planet]
 name='Borales 21'
 system=Upsilon WC4-W8S
-texture=Barren
+texture=BandedGas
 x=-66301
 y=0
 z=163137
@@ -259,7 +258,7 @@ seed=-429214710
 [Planet]
 name='Smith 17'
 system=Upsilon WC4-W8S
-texture=WetMartian
+texture=BandedGas
 x=-22596
 y=0
 z=-125868
@@ -370,7 +369,7 @@ seed=540563051
 [Planet]
 name='Augustus 15'
 system=Rho 00L0-MAN
-texture=BandedGas
+texture=Terran
 x=163092
 y=0
 z=28499
@@ -513,7 +512,7 @@ seed=-1329964169
 [Field]
 name=Kappa X-38LM Field
 system=Kappa X-38LM
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -606,7 +605,7 @@ seed=-738293538
 [Field]
 name=Alpha CJZ-3MR Field
 system=Alpha CJZ-3MR
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -619,7 +618,7 @@ seed=-1495104410
 [Planet]
 name='Anne 6'
 system=Alpha CJZ-3MR
-texture=Barren
+texture=Martian
 x=146295
 y=0
 z=-68161
@@ -720,7 +719,7 @@ seed=-1271413129
 [Field]
 name=Alpha 2Y-C Field
 system=Alpha 2Y-C
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -777,7 +776,7 @@ seed=1140945012
 [Planet]
 name='Coleman 22'
 system=Alpha 2Y-C
-texture=Frozen
+texture=BandedGas
 x=35056
 y=0
 z=-69877
@@ -943,7 +942,7 @@ seed=-218006638
 [Field]
 name=Alpha FE1-XE4 Field
 system=Alpha FE1-XE4
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -956,7 +955,7 @@ seed=1140494107
 [Planet]
 name='Juan 15'
 system=Alpha FE1-XE4
-texture=BandedGas
+texture=Frozen
 x=95885
 y=0
 z=77174
@@ -967,7 +966,7 @@ seed=1716859928
 [Planet]
 name='Linsey 24'
 system=Alpha FE1-XE4
-texture=Barren
+texture=Frozen
 x=38825
 y=0
 z=-36219
@@ -978,7 +977,7 @@ seed=-1537420106
 [Planet]
 name='Robinson 13'
 system=Alpha FE1-XE4
-texture=BandedGas
+texture=Frozen
 x=9902
 y=0
 z=53051
@@ -989,7 +988,7 @@ seed=2116597493
 [Planet]
 name='William 17'
 system=Alpha FE1-XE4
-texture=BandedGas
+texture=Barren
 x=-29752
 y=0
 z=-6317
@@ -1117,7 +1116,7 @@ seed=948151948
 [Field]
 name=Rho TI8L-X Field
 system=Rho TI8L-X
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -1141,7 +1140,7 @@ seed=-201737654
 [Planet]
 name='Roby 2'
 system=Rho TI8L-X
-texture=BandedGas
+texture=Frozen
 x=-38448
 y=0
 z=-46083
@@ -1319,7 +1318,7 @@ seed=1146940669
 [Planet]
 name='Ben 11'
 system=Lambda V-0
-texture=BandedGas
+texture=Terran
 x=14196
 y=0
 z=-97501
@@ -1341,7 +1340,7 @@ seed=2139427236
 [Planet]
 name='Long 15'
 system=Lambda V-0
-texture=BandedGas
+texture=WetMartian
 x=-99819
 y=0
 z=-38228
@@ -1423,7 +1422,7 @@ seed=-980106453
 [Planet]
 name='Martin 15'
 system=Alpha 00-NS
-texture=Frozen
+texture=BandedGas
 x=10076
 y=0
 z=4661
@@ -1538,7 +1537,7 @@ seed=-931937021
 [Planet]
 name='Rogers 22'
 system=Iota G-WCXG
-texture=WetMartian
+texture=BandedGas
 x=77190
 y=0
 z=-112412
@@ -1632,7 +1631,7 @@ seed=234443166
 [Planet]
 name='Russel 15'
 system=Chi 3H7-PZ
-texture=Barren
+texture=Terran
 x=24492
 y=0
 z=-122488
@@ -1739,7 +1738,7 @@ seed=1813542482
 [Planet]
 name='Thomas 22'
 system=Gamma 7-GJ
-texture=BandedGas
+texture=Barren
 x=-24218
 y=0
 z=-149633
@@ -1750,7 +1749,7 @@ seed=-1864739000
 [Planet]
 name='Charles 1'
 system=Gamma 7-GJ
-texture=Frozen
+texture=BandedGas
 x=-171572
 y=0
 z=-172598
@@ -1761,7 +1760,7 @@ seed=-1091657132
 [Planet]
 name='Edwards 20'
 system=Gamma 7-GJ
-texture=Barren
+texture=BandedGas
 x=-20118
 y=0
 z=-53928
@@ -1772,7 +1771,7 @@ seed=975746988
 [Planet]
 name='Victoria 17'
 system=Gamma 7-GJ
-texture=BandedGas
+texture=Martian
 x=90047
 y=0
 z=-101154
@@ -1794,7 +1793,7 @@ seed=-519177824
 [Planet]
 name='Murphey 3'
 system=Gamma 7-GJ
-texture=Frozen
+texture=Terran
 x=-100327
 y=0
 z=-159030
@@ -1917,7 +1916,7 @@ seed=-1621667754
 [Planet]
 name='Olana 5'
 system=Iota 3XB5-BD
-texture=Martian
+texture=Frozen
 x=-60464
 y=0
 z=-16058
@@ -1928,7 +1927,7 @@ seed=1692704570
 [Planet]
 name='Knight 2'
 system=Iota 3XB5-BD
-texture=Barren
+texture=BandedGas
 x=-162129
 y=0
 z=-49003
@@ -2011,7 +2010,7 @@ seed=-1729162171
 [Field]
 name=Lambda A0EL-Z3M Field
 system=Lambda A0EL-Z3M
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -2024,7 +2023,7 @@ seed=-1186550424
 [Planet]
 name='Graham 3'
 system=Lambda A0EL-Z3M
-texture=BandedGas
+texture=Frozen
 x=-42835
 y=0
 z=115722
@@ -2035,7 +2034,7 @@ seed=1402354850
 [Planet]
 name='Alex 12'
 system=Lambda A0EL-Z3M
-texture=WetMartian
+texture=Frozen
 x=120089
 y=0
 z=-35033
@@ -2046,7 +2045,7 @@ seed=-1853073884
 [Planet]
 name='Jones 2'
 system=Lambda A0EL-Z3M
-texture=Terran
+texture=BandedGas
 x=-64999
 y=0
 z=15277
@@ -2157,7 +2156,7 @@ seed=1205214952
 [Planet]
 name='Mitchel 23'
 system=Iota QK6-D
-texture=Barren
+texture=BandedGas
 x=-53311
 y=0
 z=-24252
@@ -2282,7 +2281,7 @@ seed=-1254109010
 [Planet]
 name='Tiberius 13'
 system=Omicron ONH-09
-texture=Barren
+texture=BandedGas
 x=-23736
 y=0
 z=241936
@@ -2293,7 +2292,7 @@ seed=-21763379
 [Planet]
 name='Price 14'
 system=Omicron ONH-09
-texture=Terran
+texture=Barren
 x=-200989
 y=0
 z=88766
@@ -2304,7 +2303,7 @@ seed=421162412
 [Planet]
 name='Ford 14'
 system=Omicron ONH-09
-texture=BandedGas
+texture=Frozen
 x=-151324
 y=0
 z=28864
@@ -2439,7 +2438,7 @@ seed=-937271651
 [Field]
 name=Tau HP-BAJZ Field
 system=Tau HP-BAJZ
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -2452,7 +2451,7 @@ seed=-1128036212
 [Planet]
 name='Ray 6'
 system=Tau HP-BAJZ
-texture=BandedGas
+texture=Terran
 x=-55023
 y=0
 z=-32036
@@ -2463,7 +2462,7 @@ seed=1817871270
 [Planet]
 name='Tiberius 1'
 system=Tau HP-BAJZ
-texture=Frozen
+texture=Barren
 x=54912
 y=0
 z=34269
@@ -2617,7 +2616,7 @@ seed=1245539785
 [Planet]
 name='Kurt 17'
 system=Zeta H4R-9GV
-texture=BandedGas
+texture=Barren
 x=42333
 y=0
 z=27065
@@ -2854,7 +2853,7 @@ seed=398860026
 [Planet]
 name='Jordan 1'
 system=Beta Y-IYSQ
-texture=Barren
+texture=BandedGas
 x=-62546
 y=0
 z=-47664
@@ -2946,7 +2945,7 @@ seed=-662700031
 [Planet]
 name='Alfonso 15'
 system=Omega VXO-U1
-texture=BandedGas
+texture=Barren
 x=-47621
 y=0
 z=6821
@@ -2957,7 +2956,7 @@ seed=1552317391
 [Planet]
 name='Porter 14'
 system=Omega VXO-U1
-texture=Frozen
+texture=BandedGas
 x=-35047
 y=0
 z=-39036
@@ -3050,7 +3049,7 @@ seed=-1630758969
 [Field]
 name=Eta 97-D Field
 system=Eta 97-D
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -3063,7 +3062,7 @@ seed=1877759099
 [Planet]
 name='Franlkin 10'
 system=Eta 97-D
-texture=BandedGas
+texture=Martian
 x=136827
 y=0
 z=-109095
@@ -3074,7 +3073,7 @@ seed=740576016
 [Planet]
 name='Augustus 11'
 system=Eta 97-D
-texture=BandedGas
+texture=Martian
 x=191413
 y=0
 z=-182973
@@ -3137,7 +3136,7 @@ seed=937212992
 [Planet]
 name='Turner 19'
 system=Kappa ZQKC-4
-texture=Barren
+texture=BandedGas
 x=91193
 y=0
 z=36954
@@ -3148,7 +3147,7 @@ seed=-1496627584
 [Planet]
 name='Freeman 1'
 system=Kappa ZQKC-4
-texture=BandedGas
+texture=Martian
 x=-107835
 y=0
 z=104725
@@ -3170,7 +3169,7 @@ seed=-72253903
 [Planet]
 name='Cole 4'
 system=Kappa ZQKC-4
-texture=BandedGas
+texture=Terran
 x=-101727
 y=0
 z=-2604
@@ -3257,7 +3256,7 @@ seed=190464632
 [Field]
 name=Rho AG2-0GN Field
 system=Rho AG2-0GN
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -3292,7 +3291,7 @@ seed=294495209
 [Planet]
 name='Brooks 1'
 system=Rho AG2-0GN
-texture=BandedGas
+texture=Frozen
 x=-11877
 y=0
 z=96647
@@ -3314,7 +3313,7 @@ seed=1138741780
 [Planet]
 name='Lewis 6'
 system=Rho AG2-0GN
-texture=BandedGas
+texture=Barren
 x=-37310
 y=0
 z=-40440
@@ -3367,7 +3366,7 @@ seed=602536825
 [Planet]
 name='Owens 6'
 system=Lambda TUJQ-34
-texture=Terran
+texture=Frozen
 x=73836
 y=0
 z=42400
@@ -3378,7 +3377,7 @@ seed=264598830
 [Planet]
 name='Wene 17'
 system=Lambda TUJQ-34
-texture=WetMartian
+texture=Frozen
 x=114075
 y=0
 z=-91106
@@ -3389,7 +3388,7 @@ seed=191281182
 [Planet]
 name='Cox 22'
 system=Lambda TUJQ-34
-texture=BandedGas
+texture=Frozen
 x=-65647
 y=0
 z=17162
@@ -3400,7 +3399,7 @@ seed=1667631883
 [Planet]
 name='Bradley 14'
 system=Lambda TUJQ-34
-texture=BandedGas
+texture=Frozen
 x=-71920
 y=0
 z=134213
@@ -3422,7 +3421,7 @@ seed=1089470007
 [Planet]
 name='Hughes 22'
 system=Lambda TUJQ-34
-texture=Barren
+texture=Martian
 x=13262
 y=0
 z=63863
@@ -3587,7 +3586,7 @@ seed=1180165370
 [Planet]
 name='Martinez 1'
 system=Kappa DE-1
-texture=Terran
+texture=Barren
 x=35587
 y=0
 z=59695
@@ -3668,7 +3667,7 @@ seed=871891427
 [Planet]
 name='Carter 12'
 system=Epsilon SVF7-QD
-texture=BandedGas
+texture=Frozen
 x=117791
 y=0
 z=112458
@@ -3679,7 +3678,7 @@ seed=25833413
 [Planet]
 name='Wilson 1'
 system=Epsilon SVF7-QD
-texture=Terran
+texture=Barren
 x=-136964
 y=0
 z=-96781
@@ -3826,7 +3825,7 @@ seed=1879503119
 [Field]
 name=Tau YHO-CTY Field
 system=Tau YHO-CTY
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -4041,7 +4040,7 @@ seed=1792388783
 [Planet]
 name='Ophellia 24'
 system=Mu N-LIND
-texture=WetMartian
+texture=BandedGas
 x=47263
 y=0
 z=-2569
@@ -4126,7 +4125,7 @@ seed=897293328
 [Planet]
 name='Hunter 14'
 system=Iota O-9BFU
-texture=Terran
+texture=Barren
 x=159270
 y=0
 z=-155864
@@ -4148,7 +4147,7 @@ seed=-416470230
 [Planet]
 name='Nate 2'
 system=Iota O-9BFU
-texture=BandedGas
+texture=Barren
 x=70197
 y=0
 z=24101
@@ -4234,7 +4233,7 @@ seed=434591122
 [Field]
 name=Delta OFU-Q Field
 system=Delta OFU-Q
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -4343,7 +4342,7 @@ seed=1169929855
 [Planet]
 name='Katia 24'
 system=Iota D8HH-AWBQ
-texture=Barren
+texture=BandedGas
 x=50623
 y=0
 z=-100514
@@ -4354,7 +4353,7 @@ seed=-72780124
 [Planet]
 name='Bailey 21'
 system=Iota D8HH-AWBQ
-texture=Barren
+texture=Martian
 x=-132262
 y=0
 z=264
@@ -4376,7 +4375,7 @@ seed=676080530
 [Planet]
 name='Rice 12'
 system=Iota D8HH-AWBQ
-texture=BandedGas
+texture=Frozen
 x=-84106
 y=0
 z=10430
@@ -4709,7 +4708,7 @@ seed=-910464609
 [Planet]
 name='Cathy 23'
 system=Beta VFI6-Z
-texture=BandedGas
+texture=Terran
 x=-232430
 y=0
 z=166162
@@ -4720,7 +4719,7 @@ seed=365790228
 [Planet]
 name='Robert 21'
 system=Beta VFI6-Z
-texture=Martian
+texture=BandedGas
 x=238800
 y=0
 z=54554
@@ -4731,7 +4730,7 @@ seed=-1770246092
 [Planet]
 name='Farraday 1'
 system=Beta VFI6-Z
-texture=BandedGas
+texture=Martian
 x=160653
 y=0
 z=30755
@@ -4742,7 +4741,7 @@ seed=278839667
 [Planet]
 name='Thomas 2'
 system=Beta VFI6-Z
-texture=Terran
+texture=BandedGas
 x=214038
 y=0
 z=-21570
@@ -5039,7 +5038,7 @@ seed=1683027062
 [Planet]
 name='Jason 14'
 system=Psi FPAW-C96
-texture=Barren
+texture=Terran
 x=-741
 y=0
 z=-58390
@@ -5050,7 +5049,7 @@ seed=1675618937
 [Planet]
 name='Dolly 3'
 system=Psi FPAW-C96
-texture=Barren
+texture=BandedGas
 x=-50560
 y=0
 z=-2091
@@ -5061,7 +5060,7 @@ seed=450520149
 [Planet]
 name='Wene 13'
 system=Psi FPAW-C96
-texture=Barren
+texture=BandedGas
 x=-27129
 y=0
 z=-26771
@@ -5132,7 +5131,7 @@ seed=-925154373
 [Planet]
 name='Olana 22'
 system=Tau F-PIG5
-texture=BandedGas
+texture=Barren
 x=-108112
 y=0
 z=-139397
@@ -5197,7 +5196,7 @@ seed=-508069262
 [Field]
 name=Omega 1F2-RZUA Field
 system=Omega 1F2-RZUA
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -5210,7 +5209,7 @@ seed=878659273
 [Planet]
 name='Akoni 18'
 system=Omega 1F2-RZUA
-texture=Martian
+texture=BandedGas
 x=-163863
 y=0
 z=-120923
@@ -5221,7 +5220,7 @@ seed=1870923427
 [Planet]
 name='Britt 17'
 system=Omega 1F2-RZUA
-texture=BandedGas
+texture=Terran
 x=121985
 y=0
 z=152093
@@ -5232,7 +5231,7 @@ seed=-961689514
 [Planet]
 name='Juliet 23'
 system=Omega 1F2-RZUA
-texture=BandedGas
+texture=Frozen
 x=62795
 y=0
 z=129725
@@ -5254,7 +5253,7 @@ seed=-260430804
 [Planet]
 name='Omeka 4'
 system=Omega 1F2-RZUA
-texture=BandedGas
+texture=Barren
 x=-6693
 y=0
 z=153530
@@ -5265,7 +5264,7 @@ seed=1250991064
 [Planet]
 name='Theresa 9'
 system=Omega 1F2-RZUA
-texture=Frozen
+texture=Barren
 x=89888
 y=0
 z=-62144
@@ -5514,7 +5513,7 @@ seed=371881027
 [Planet]
 name='Parker 21'
 system=Sigma 5-RQ
-texture=Frozen
+texture=WetMartian
 x=61666
 y=0
 z=70156
@@ -5557,7 +5556,7 @@ seed=-1858238163
 [Field]
 name=Zeta S3OU-1A Field
 system=Zeta S3OU-1A
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -5570,7 +5569,7 @@ seed=-1695505559
 [Planet]
 name='Nolo 2'
 system=Zeta S3OU-1A
-texture=Frozen
+texture=BandedGas
 x=99233
 y=0
 z=-92107
@@ -5581,7 +5580,7 @@ seed=1268720829
 [Planet]
 name='Hamilton 7'
 system=Zeta S3OU-1A
-texture=Barren
+texture=Martian
 x=-185508
 y=0
 z=39061
@@ -5603,7 +5602,7 @@ seed=-1695440495
 [Planet]
 name='Ema 3'
 system=Zeta S3OU-1A
-texture=BandedGas
+texture=Terran
 x=-81612
 y=0
 z=10292
@@ -5625,7 +5624,7 @@ seed=-1694738437
 [Planet]
 name='Upana 17'
 system=Zeta S3OU-1A
-texture=Frozen
+texture=BandedGas
 x=77212
 y=0
 z=-44185
@@ -5754,7 +5753,7 @@ seed=-419847486
 [Planet]
 name='Nora 21'
 system=Zeta 8L3Y-U
-texture=Terran
+texture=Barren
 x=-109392
 y=0
 z=-222699
@@ -5776,7 +5775,7 @@ seed=346055179
 [Planet]
 name='Irene 17'
 system=Zeta 8L3Y-U
-texture=Frozen
+texture=WetMartian
 x=-151168
 y=0
 z=157762
@@ -5864,7 +5863,7 @@ seed=297671189
 [Planet]
 name='Wilson 21'
 system=Nu 5WO-6
-texture=Frozen
+texture=Barren
 x=46820
 y=0
 z=-50858
@@ -5875,7 +5874,7 @@ seed=63880637
 [Planet]
 name='Martin 20'
 system=Nu 5WO-6
-texture=Frozen
+texture=BandedGas
 x=47549
 y=0
 z=-16186
@@ -5886,7 +5885,7 @@ seed=-1716899210
 [Planet]
 name='Smith 10'
 system=Nu 5WO-6
-texture=BandedGas
+texture=Frozen
 x=16048
 y=0
 z=-19146
@@ -5908,7 +5907,7 @@ seed=609757886
 [Planet]
 name='Crawford 4'
 system=Nu 5WO-6
-texture=BandedGas
+texture=Barren
 x=-67295
 y=0
 z=-38711
@@ -6037,7 +6036,7 @@ seed=1741208410
 [Field]
 name=Delta AR74-Q Field
 system=Delta AR74-Q
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -6050,7 +6049,7 @@ seed=-1984021442
 [Planet]
 name='Haart 16'
 system=Delta AR74-Q
-texture=Frozen
+texture=Terran
 x=-17510
 y=0
 z=-84839
@@ -6061,7 +6060,7 @@ seed=-1586509104
 [Planet]
 name='Baker 10'
 system=Delta AR74-Q
-texture=Terran
+texture=Martian
 x=-67076
 y=0
 z=9712
@@ -6072,7 +6071,7 @@ seed=121562420
 [Planet]
 name='Washington 19'
 system=Delta AR74-Q
-texture=BandedGas
+texture=Barren
 x=-119777
 y=0
 z=89680
@@ -6083,7 +6082,7 @@ seed=-1509511618
 [Planet]
 name='Patterson 9'
 system=Delta AR74-Q
-texture=Barren
+texture=BandedGas
 x=103261
 y=0
 z=19880
@@ -6105,7 +6104,7 @@ seed=1712542948
 [Planet]
 name='Black 7'
 system=Delta AR74-Q
-texture=Martian
+texture=Barren
 x=85432
 y=0
 z=49371
@@ -6272,7 +6271,7 @@ seed=526267881
 [Planet]
 name='Romeo 21'
 system=Alpha BV-C
-texture=Frozen
+texture=BandedGas
 x=59355
 y=0
 z=25003
@@ -6396,7 +6395,7 @@ seed=-213231645
 [Planet]
 name='Watson 21'
 system=Gamma MB-QLR
-texture=Terran
+texture=Frozen
 x=-133758
 y=0
 z=224288
@@ -6407,7 +6406,7 @@ seed=630215084
 [Planet]
 name='Peter 9'
 system=Gamma MB-QLR
-texture=Martian
+texture=BandedGas
 x=48201
 y=0
 z=-176450
@@ -6418,7 +6417,7 @@ seed=-1370487842
 [Planet]
 name='Su 22'
 system=Gamma MB-QLR
-texture=Frozen
+texture=BandedGas
 x=-190597
 y=0
 z=-13707
@@ -6429,7 +6428,7 @@ seed=380808060
 [Planet]
 name='Ian 19'
 system=Gamma MB-QLR
-texture=Frozen
+texture=Barren
 x=182161
 y=0
 z=-132040
@@ -6440,7 +6439,7 @@ seed=-546867124
 [Planet]
 name='Foster 3'
 system=Gamma MB-QLR
-texture=WetMartian
+texture=Terran
 x=221275
 y=0
 z=-215352
@@ -6451,7 +6450,7 @@ seed=619119219
 [Planet]
 name='Rose 24'
 system=Gamma MB-QLR
-texture=Frozen
+texture=BandedGas
 x=-89956
 y=0
 z=119375
@@ -6555,7 +6554,7 @@ seed=-863518115
 [Planet]
 name='Melissa 5'
 system=Mu A20-U5
-texture=Barren
+texture=BandedGas
 x=25878
 y=0
 z=55587
@@ -6566,7 +6565,7 @@ seed=979537924
 [Planet]
 name='Rebecca 6'
 system=Mu A20-U5
-texture=BandedGas
+texture=Barren
 x=-113151
 y=0
 z=-22254
@@ -6695,7 +6694,7 @@ seed=2119128597
 [Field]
 name=Tau R5YL-X Field
 system=Tau R5YL-X
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -6719,7 +6718,7 @@ seed=-184004888
 [Planet]
 name='Long 11'
 system=Tau R5YL-X
-texture=BandedGas
+texture=Frozen
 x=-64395
 y=0
 z=-80353
@@ -6817,7 +6816,7 @@ seed=1594853685
 [Planet]
 name='Simpson 16'
 system=Gamma E-M3
-texture=Terran
+texture=BandedGas
 x=21713
 y=0
 z=55423
@@ -6910,7 +6909,7 @@ seed=2122919469
 [Planet]
 name='Dixon 17'
 system=Epsilon V0I9-WCR2
-texture=Barren
+texture=BandedGas
 x=54885
 y=0
 z=-46654
@@ -6921,7 +6920,7 @@ seed=-719407768
 [Planet]
 name='Hicks 23'
 system=Epsilon V0I9-WCR2
-texture=Terran
+texture=BandedGas
 x=23073
 y=0
 z=-51073
@@ -6932,7 +6931,7 @@ seed=2012164586
 [Planet]
 name='Jesse 1'
 system=Epsilon V0I9-WCR2
-texture=Martian
+texture=BandedGas
 x=-67795
 y=0
 z=44319
@@ -7087,7 +7086,7 @@ seed=338712123
 [Planet]
 name='Colin 23'
 system=Eta 8MSN-DSE2
-texture=Barren
+texture=Terran
 x=98982
 y=0
 z=-70077
@@ -7210,7 +7209,7 @@ seed=-1773230158
 [Field]
 name=Eta R-C3C Field
 system=Eta R-C3C
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -7245,7 +7244,7 @@ seed=-2141688885
 [Planet]
 name='Graham 10'
 system=Eta R-C3C
-texture=BandedGas
+texture=Terran
 x=-18564
 y=0
 z=98814
@@ -7460,7 +7459,7 @@ seed=1831874055
 [Planet]
 name='Ashley 3'
 system=Sigma 7-2
-texture=Barren
+texture=Terran
 x=-106754
 y=0
 z=-147708
@@ -7471,7 +7470,7 @@ seed=1585295197
 [Planet]
 name='Huni 6'
 system=Sigma 7-2
-texture=BandedGas
+texture=Terran
 x=-201432
 y=0
 z=-16437
@@ -7606,7 +7605,7 @@ seed=941834739
 [Field]
 name=Nu JYJ-7 Field
 system=Nu JYJ-7
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -7619,7 +7618,7 @@ seed=-1855954705
 [Planet]
 name='Hill 11'
 system=Nu JYJ-7
-texture=BandedGas
+texture=Frozen
 x=63306
 y=0
 z=-85241
@@ -7737,7 +7736,7 @@ seed=-430670617
 [Planet]
 name='Davis 20'
 system=Psi WC-AQKX
-texture=Frozen
+texture=BandedGas
 x=48648
 y=0
 z=-31817
@@ -7845,7 +7844,7 @@ seed=1380353458
 [Field]
 name=Iota J6-KGI Field
 system=Iota J6-KGI
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -7858,7 +7857,7 @@ seed=2060326630
 [Planet]
 name='Wright 3'
 system=Iota J6-KGI
-texture=BandedGas
+texture=Barren
 x=128800
 y=0
 z=-186514
@@ -7869,7 +7868,7 @@ seed=-745713059
 [Planet]
 name='Hunt 23'
 system=Iota J6-KGI
-texture=BandedGas
+texture=Barren
 x=-133802
 y=0
 z=68480
@@ -7880,7 +7879,7 @@ seed=195849514
 [Planet]
 name='Johnson 5'
 system=Iota J6-KGI
-texture=Frozen
+texture=BandedGas
 x=-194971
 y=0
 z=12217
@@ -7902,7 +7901,7 @@ seed=-1211481484
 [Planet]
 name='Nelson 15'
 system=Iota J6-KGI
-texture=Terran
+texture=BandedGas
 x=172226
 y=0
 z=242847
@@ -7913,7 +7912,7 @@ seed=-1391476721
 [Planet]
 name='Stephen 22'
 system=Iota J6-KGI
-texture=Barren
+texture=BandedGas
 x=-102573
 y=0
 z=30762
@@ -8034,7 +8033,7 @@ seed=-1837274743
 [Planet]
 name='Darwin 17'
 system=Nu UFM-L
-texture=Frozen
+texture=BandedGas
 x=-93458
 y=0
 z=-26281
@@ -8045,7 +8044,7 @@ seed=-1355084731
 [Planet]
 name='Henry 24'
 system=Nu UFM-L
-texture=Terran
+texture=Frozen
 x=-115264
 y=0
 z=26674
@@ -8132,7 +8131,7 @@ seed=1754712595
 [Planet]
 name='Henderman 11'
 system=Phi 7D-AG7
-texture=BandedGas
+texture=Martian
 x=173021
 y=0
 z=-45389
@@ -8143,7 +8142,7 @@ seed=155377997
 [Planet]
 name='Lee 17'
 system=Phi 7D-AG7
-texture=BandedGas
+texture=Frozen
 x=182601
 y=0
 z=64060
@@ -8154,7 +8153,7 @@ seed=-916071385
 [Planet]
 name='Carter 5'
 system=Phi 7D-AG7
-texture=BandedGas
+texture=Barren
 x=-82336
 y=0
 z=-49933
@@ -8165,7 +8164,7 @@ seed=552029177
 [Planet]
 name='Lowde 12'
 system=Phi 7D-AG7
-texture=Barren
+texture=Terran
 x=-54318
 y=0
 z=32455
@@ -8176,7 +8175,7 @@ seed=-1492966987
 [Planet]
 name='Galba 14'
 system=Phi 7D-AG7
-texture=Terran
+texture=Martian
 x=-82158
 y=0
 z=-78954
@@ -8270,7 +8269,7 @@ seed=-1324957933
 [Planet]
 name='Miguel 5'
 system=Epsilon A-YIRY
-texture=Barren
+texture=Martian
 x=209151
 y=0
 z=229342
@@ -8347,7 +8346,7 @@ seed=166356811
 [Field]
 name=Xi W5-S2L Field
 system=Xi W5-S2L
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -8360,7 +8359,7 @@ seed=492188150
 [Planet]
 name='Otho 20'
 system=Xi W5-S2L
-texture=BandedGas
+texture=Barren
 x=-91153
 y=0
 z=40262
@@ -8463,7 +8462,7 @@ seed=1261888205
 [Planet]
 name='Lewis 24'
 system=Zeta 1-F5
-texture=Barren
+texture=Frozen
 x=-106889
 y=0
 z=-61385
@@ -8474,7 +8473,7 @@ seed=-1803626653
 [Planet]
 name='Mason 1'
 system=Zeta 1-F5
-texture=Barren
+texture=BandedGas
 x=-114410
 y=0
 z=166110
@@ -8485,7 +8484,7 @@ seed=2046356102
 [Planet]
 name='Bill 16'
 system=Zeta 1-F5
-texture=BandedGas
+texture=WetMartian
 x=135993
 y=0
 z=-49397
@@ -8601,7 +8600,7 @@ seed=16969091
 [Field]
 name=Xi 2ROE-WER Field
 system=Xi 2ROE-WER
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -8614,7 +8613,7 @@ seed=1351163566
 [Planet]
 name='Morgan 23'
 system=Xi 2ROE-WER
-texture=Frozen
+texture=BandedGas
 x=-58910
 y=0
 z=-41368
@@ -8625,7 +8624,7 @@ seed=1927649187
 [Planet]
 name='Edwards 7'
 system=Xi 2ROE-WER
-texture=Frozen
+texture=BandedGas
 x=22535
 y=0
 z=-19153
@@ -8636,7 +8635,7 @@ seed=-1946565232
 [Planet]
 name='Stucker 10'
 system=Xi 2ROE-WER
-texture=BandedGas
+texture=WetMartian
 x=-37811
 y=0
 z=53924
@@ -8647,7 +8646,7 @@ seed=-226059792
 [Planet]
 name='Sanchez 1'
 system=Xi 2ROE-WER
-texture=Barren
+texture=BandedGas
 x=46134
 y=0
 z=-57970
@@ -8778,7 +8777,7 @@ seed=2043413354
 [Field]
 name=Iota 96C-I3O Field
 system=Iota 96C-I3O
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -8813,7 +8812,7 @@ seed=-1071109524
 [Planet]
 name='Russel 20'
 system=Iota 96C-I3O
-texture=Barren
+texture=Martian
 x=-67115
 y=0
 z=95892
@@ -8824,7 +8823,7 @@ seed=105836035
 [Planet]
 name='Alfonso 2'
 system=Iota 96C-I3O
-texture=Barren
+texture=BandedGas
 x=-197479
 y=0
 z=-190358
@@ -8835,7 +8834,7 @@ seed=-45022540
 [Planet]
 name='Lala 13'
 system=Iota 96C-I3O
-texture=BandedGas
+texture=Barren
 x=53793
 y=0
 z=-8594
@@ -8931,7 +8930,7 @@ seed=713432267
 [Field]
 name=Xi L8C-DUG Field
 system=Xi L8C-DUG
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -8944,7 +8943,7 @@ seed=1694201143
 [Planet]
 name='Hawking 17'
 system=Xi L8C-DUG
-texture=Frozen
+texture=BandedGas
 x=47210
 y=0
 z=-22866
@@ -8966,7 +8965,7 @@ seed=-664140101
 [Planet]
 name='Parker 6'
 system=Xi L8C-DUG
-texture=Martian
+texture=Barren
 x=58867
 y=0
 z=-18774
@@ -8977,7 +8976,7 @@ seed=2010719309
 [Planet]
 name='Tim 14'
 system=Xi L8C-DUG
-texture=Frozen
+texture=Barren
 x=-101225
 y=0
 z=76311
@@ -9042,7 +9041,7 @@ seed=-9611920
 [Field]
 name=Iota 3-HPB Field
 system=Iota 3-HPB
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -9055,7 +9054,7 @@ seed=420404341
 [Planet]
 name='Perry 2'
 system=Iota 3-HPB
-texture=BandedGas
+texture=Barren
 x=-78964
 y=0
 z=16770
@@ -9077,7 +9076,7 @@ seed=-1535631744
 [Planet]
 name='Gonzales 19'
 system=Iota 3-HPB
-texture=BandedGas
+texture=Barren
 x=-60244
 y=0
 z=-62428
@@ -9088,7 +9087,7 @@ seed=-890034242
 [Planet]
 name='Parker 17'
 system=Iota 3-HPB
-texture=BandedGas
+texture=Frozen
 x=-10407
 y=0
 z=3943
@@ -9099,7 +9098,7 @@ seed=1842383696
 [Planet]
 name='Shaw 21'
 system=Iota 3-HPB
-texture=WetMartian
+texture=Frozen
 x=83617
 y=0
 z=-59437
@@ -9110,7 +9109,7 @@ seed=1254302176
 [Planet]
 name='Lucio 6'
 system=Iota 3-HPB
-texture=Barren
+texture=BandedGas
 x=68275
 y=0
 z=-69627
@@ -9274,7 +9273,7 @@ seed=544024197
 [Planet]
 name='Bradley 21'
 system=Epsilon 63W-3D
-texture=Martian
+texture=Barren
 x=63609
 y=0
 z=50408
@@ -9285,7 +9284,7 @@ seed=1012445655
 [Planet]
 name='Moris 5'
 system=Epsilon 63W-3D
-texture=BandedGas
+texture=Barren
 x=44198
 y=0
 z=-60179
@@ -9296,7 +9295,7 @@ seed=-57924828
 [Planet]
 name='Keli 21'
 system=Epsilon 63W-3D
-texture=Barren
+texture=BandedGas
 x=62792
 y=0
 z=57839
@@ -9369,7 +9368,7 @@ seed=1696198605
 [Field]
 name=Theta 7MPP-1ZXL Field
 system=Theta 7MPP-1ZXL
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -9393,7 +9392,7 @@ seed=-1232803033
 [Planet]
 name='Dixon 2'
 system=Theta 7MPP-1ZXL
-texture=Martian
+texture=BandedGas
 x=25702
 y=0
 z=-52082
@@ -9404,7 +9403,7 @@ seed=-1854133770
 [Planet]
 name='Browns 5'
 system=Theta 7MPP-1ZXL
-texture=Frozen
+texture=WetMartian
 x=-56412
 y=0
 z=28701
@@ -9520,7 +9519,7 @@ seed=1152117930
 [Planet]
 name='Eduoard 14'
 system=Delta 4-3
-texture=BandedGas
+texture=Barren
 x=58648
 y=0
 z=-60436
@@ -9542,7 +9541,7 @@ seed=1279268091
 [Planet]
 name='Brooks 17'
 system=Delta 4-3
-texture=BandedGas
+texture=Terran
 x=-58637
 y=0
 z=46736
@@ -9648,7 +9647,7 @@ seed=1360852412
 [Planet]
 name='Henry 21'
 system=Mu 3-I1J
-texture=Barren
+texture=BandedGas
 x=-48666
 y=0
 z=25482
@@ -9659,7 +9658,7 @@ seed=-170521333
 [Planet]
 name='Miller 17'
 system=Mu 3-I1J
-texture=Martian
+texture=WetMartian
 x=55075
 y=0
 z=-135334
@@ -9670,7 +9669,7 @@ seed=906290003
 [Planet]
 name='King 5'
 system=Mu 3-I1J
-texture=Barren
+texture=BandedGas
 x=-50106
 y=0
 z=-134709
@@ -9870,7 +9869,7 @@ seed=767105811
 [Field]
 name=Epsilon V9-Z Field
 system=Epsilon V9-Z
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -9883,7 +9882,7 @@ seed=-1403176348
 [Planet]
 name='Scott 23'
 system=Epsilon V9-Z
-texture=Terran
+texture=BandedGas
 x=-13343
 y=0
 z=-86374
@@ -9944,7 +9943,7 @@ seed=-1886791521
 [Field]
 name=Mu CJ-V Field
 system=Mu CJ-V
-type=Dark Asteroid Field
+type=Ice Asteroid Field
 x=0
 y=0
 z=0
@@ -9957,7 +9956,7 @@ seed=1472659993
 [Planet]
 name='Lewis 8'
 system=Mu CJ-V
-texture=Barren
+texture=BandedGas
 x=-84683
 y=0
 z=148784
@@ -9979,7 +9978,7 @@ seed=-1881579906
 [Planet]
 name='Otis 3'
 system=Mu CJ-V
-texture=Terran
+texture=BandedGas
 x=60087
 y=0
 z=-66190

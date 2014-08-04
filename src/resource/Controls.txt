@@ -24,7 +24,7 @@ Weapons
 --------------------------------------------------------------------------------
 SPACE - Fire active weapons
 J - Toggle Missiles / Batteries
-L - Toggle Cannons / Turrets
+K - Toggle Cannons / Turrets
 
 Joystick Button 1 - Fire active weapons
 Joystick Button 2 - Hold to temporarily toggle missile activation

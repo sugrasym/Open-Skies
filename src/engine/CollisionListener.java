@@ -19,6 +19,7 @@
  */
 package engine;
 
+import celestial.Jumphole;
 import celestial.Planet;
 import celestial.Projectile;
 import celestial.Ship.Ship;
@@ -48,14 +49,22 @@ public class CollisionListener implements PhysicsCollisionListener {
                 handleShipCollision((Ship) objA.getParent(), (Ship) objB.getParent(), impulse);
             } else if (objA.getParent() instanceof Planet) {
                 if (objB.getParent() instanceof Ship) {
-                    handlePlanetCollision((Ship) objB.getParent());
+                    if (!(objA.getParent() instanceof Jumphole)) {
+                        handlePlanetCollision((Ship) objB.getParent());
+                    } else {
+                        //jumpholes do their own tests
+                    }
                 } else if (objB.getParent() instanceof Projectile) {
                     Projectile pro = (Projectile) objB.getParent();
                     pro.setState(State.DYING);
                 }
             } else if (objB.getParent() instanceof Planet) {
                 if (objA.getParent() instanceof Ship) {
-                    handlePlanetCollision((Ship) objA.getParent());
+                    if (!(objB.getParent() instanceof Jumphole)) {
+                        handlePlanetCollision((Ship) objA.getParent());
+                    } else {
+                        //jumpholes do their own tests
+                    }
                 } else if (objA.getParent() instanceof Projectile) {
                     Projectile pro = (Projectile) objA.getParent();
                     pro.setState(State.DYING);
