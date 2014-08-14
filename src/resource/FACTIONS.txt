@@ -35,12 +35,12 @@ var_isEmpire=true
 var_description=The Northern Coalition, or NC, was formed at the same time as the Southern Coalition by aggregating smaller nations into a larger one. Due to increasing political tensions, smaller countries banded together to prepare for what most believed was an inevitable war. Now, the NC is one of the two superpowers seeking dominance in the interstellar political landscape. /br/ /br/ The NC employs a senate in which each member nation sends a single representative to the floor to discuss issues and make policy. The government of each member nation is left largely untouched by the senate, and there are a wide variety of governmental structures in the NC. This has lead to signficant criticism due to some member nations being oppressive, however the senate fears losing members more than attempting to standardize civil rights across the coalition.
 var_worldPercent=30
 Neutral=0
-Player=5
-Northern Coalition=10
-Southern Coalition=-5
-Commonwealth=-3
-Rogers=-5
-Lancers=-2
+Player=50
+Northern Coalition=100
+Southern Coalition=-50
+Commonwealth=-30
+Rogers=-50
+Lancers=-20
 Frontier=0
 [/Faction]
 
@@ -50,12 +50,12 @@ var_isEmpire=true
 var_description=The Southern Coalition, or SC, formed around the same time as the Northern Coalition by aggregating smaller nations into a larger one. Due to increasing political tensions, smaller countries banded together to prepare for what most believed was an inevitable war. Now, the SC is one of the two superpowers seeking dominance in the interstellar political landscape. /br/ /br/ The SC structures member states in a hierarchy based on who has been in the coalition the longest, and what contributions each state has made to the larger effort. Representation is based on population, skewing the power distribution towards the top largest members. However, the SC takes the conduct of its members seriously. Member states are required to conform to ethical and civil rights standards or face expulsion. Naturally, these standards of behavior are written by the most powerful members of the SC and enforced on everyone else.
 var_worldPercent=30
 Neutral=0
-Player=-5
-Northern Coalition=-5
-Southern Coalition=10
-Commonwealth=-3
-Rogers=-5
-Lancers=-2
+Player=-50
+Northern Coalition=-50
+Southern Coalition=100
+Commonwealth=-30
+Rogers=-50
+Lancers=-20
 Frontier=0
 [/Faction]
 
@@ -66,11 +66,11 @@ var_description=As the two coalitions formed, there were concerns of a massive i
 var_worldPercent=15
 Neutral=0
 Player=0
-Northern Coalition=-3
-Southern Coalition=-3
-Commonwealth=10
-Rogers=-5
-Lancers=2
+Northern Coalition=-30
+Southern Coalition=-30
+Commonwealth=100
+Rogers=-50
+Lancers=20
 Frontier=0
 [/Faction]
 
@@ -84,13 +84,13 @@ var_isEmpire=false
 var_description=A roving band of petty thieves, The Rogers are a decentralized pirate group with few bases and few ships. Rogers can be found across the world.
 var_hosts=Northern Coalition/Southern Coalition/Commonwealth/Neutral
 Neutral=0
-Player=-5
-Northern Coalition=-5
-Southern Coalition=-5
-Commonwealth=-5
-Rogers=10
-Lancers=3
-Frontier=-3
+Player=-50
+Northern Coalition=-50
+Southern Coalition=-50
+Commonwealth=-50
+Rogers=100
+Lancers=30
+Frontier=-30
 [/Faction]
 
 ################################################################################
@@ -104,11 +104,11 @@ var_description=A terrorist organization dedicated to overthrowing both the NC a
 var_hosts=Northern Coalition/Southern Coalition/Neutral
 Neutral=0
 Player=0
-Northern Coalition=-2
-Southern Coalition=-2
-Commonwealth=2
-Rogers=3
-Lancers=10
+Northern Coalition=-20
+Southern Coalition=-20
+Commonwealth=20
+Rogers=30
+Lancers=100
 Frontier=0
 [/Faction]
 
@@ -126,7 +126,7 @@ Player=0
 Northern Coalition=0
 Southern Coalition=0
 Commonwealth=0
-Rogers=-3
+Rogers=-30
 Lancers=0
 Frontier=10
 [/Faction]
@@ -141,11 +141,11 @@ name=Player
 var_isEmpire=false
 var_worldPercent=0
 Neutral=0
-Player=10
-Northern Coalition=5
-Southern Coalition=-5
+Player=100
+Northern Coalition=50
+Southern Coalition=-50
 Commonwealth=0
-Rogers=-5
+Rogers=-50
 Lancers=0
 Frontier=0
 [/Faction]

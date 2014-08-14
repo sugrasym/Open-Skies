@@ -173,6 +173,17 @@ public class Station extends Ship {
         }
         return false;
     }
+    
+    @Override
+    protected void deathPenalty() {
+        //did the player destroy this ship?
+        if (getLastBlow().getFaction().getName().equals(Faction.PLAYER)) {
+            //adjust the player's standings accordingly
+            if (!faction.getName().equals("Neutral")) {
+                getCurrentSystem().getUniverse().getPlayerShip().getFaction().derivedModification(faction, Faction.STATION_KILL_PENALTY);
+            }
+        }
+    }
 
     private void updateDockingPorts() {
         for (int a = 0; a < ports.size(); a++) {
@@ -319,6 +330,12 @@ public class Station extends Ship {
                             //transfer funds
                             ship.setCash(ship.getCash() - price);
                             setCash(getCash() + price);
+                            //adjust standings
+                            if(ship.getFaction().getName().equals(Faction.PLAYER)) {
+                                double scaler = ship.getStandingsToMe(this) / (double)Faction.PERMA_GREEN;
+                                double delta = price * Faction.MARKET_DELTA * Math.abs(scaler);
+                                getCurrentSystem().getUniverse().getPlayerShip().getFaction().derivedModification(faction, delta);
+                            }
                         }
                     }
                 }

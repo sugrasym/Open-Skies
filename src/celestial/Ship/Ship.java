@@ -1793,14 +1793,18 @@ public class Ship extends Celestial {
         }
         if (hull <= 0) {
             System.out.println(getName() + " was destroyed in " + currentSystem.getName() + " by " + getLastBlow().getName());
-            //did the player destroy this ship?
-            if (getLastBlow().getFaction().getName().equals(Faction.PLAYER)) {
-                //adjust the player's standings accordingly
-                if (!faction.getName().equals("Neutral")) {
-                    getCurrentSystem().getUniverse().getPlayerShip().getFaction().derivedModification(faction, -1.0);
-                }
-            }
+            deathPenalty();
             setState(State.DYING);
+        }
+    }
+
+    protected void deathPenalty() {
+        //did the player destroy this ship?
+        if (getLastBlow().getFaction().getName().equals(Faction.PLAYER)) {
+            //adjust the player's standings accordingly
+            if (!faction.getName().equals("Neutral")) {
+                getCurrentSystem().getUniverse().getPlayerShip().getFaction().derivedModification(faction, Faction.SHIP_KILL_PENALTY);
+            }
         }
     }
 

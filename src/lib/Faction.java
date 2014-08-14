@@ -38,10 +38,13 @@ import universe.Universe;
  */
 public class Faction implements Serializable {
 
-    public static final int PERMA_RED = -10;
-    public static final int PERMA_GREEN = 10;
-    public static final int HOSTILE_STANDING = -2;
-    public static final int FRIENDLY_STANDING = 2;
+    public static final int PERMA_RED = -100;
+    public static final int PERMA_GREEN = 100;
+    public static final int HOSTILE_STANDING = -20;
+    public static final int FRIENDLY_STANDING = 20;
+    public static final int SHIP_KILL_PENALTY = -10;
+    public static final int STATION_KILL_PENALTY = -25;
+    public static final double MARKET_DELTA = 0.0001;
     private final String name;
     private String description = "No Information Found";
     //sov and distribution
@@ -229,8 +232,8 @@ public class Faction implements Serializable {
          * You also get a derived bonus to their enemies so long as they
          * are not -10 (perma red) to you.
          * 
-         * A faction will always hate you if you are -10 to them and will
-         * always like you if you are +10 to them. -9 to 9 is the normal
+         * A faction will always hate you if you are -100 to them and will
+         * always like you if you are +100 to them. -99 to 99 is the normal
          * range for dynamic standings.
          * 
          */
@@ -257,12 +260,12 @@ public class Faction implements Serializable {
                         double lS = getStanding(tmpName);
                         if (lS > PERMA_RED && lS < PERMA_GREEN) {
                             //get their relationship as a percentage
-                            double per = tmpStanding / 10.0;
+                            double per = tmpStanding / 100.0;
                             //multiply the delta by that percentage
                             double deltaPrime = (per) * delta;
                             //it's harder to make friends than lose them
                             if (deltaPrime > 0) {
-                                deltaPrime /= 4;
+                                deltaPrime /= 4.0;
                             }
                             //calculate new standings
                             newStanding = lS + deltaPrime;
