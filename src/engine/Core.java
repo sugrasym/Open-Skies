@@ -96,6 +96,11 @@ public class Core {
     private String dangerTrack = "";
     boolean isAmbient = true;
     private AudioNode music;
+    //control mapping
+    private int PITCH_AXIS;
+    private int YAW_AXIS;
+    private int ROLL_AXIS;
+    private int THROTTLE_AXIS;
 
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState,
             AssetManager assets, PlanetAppState planetAppState,
@@ -108,8 +113,52 @@ public class Core {
         this.input = input;
         this.settings = settings;
         this.listener = listener;
+        //load controls
+        loadControls();
         //initialize
         init();
+    }
+    
+    private void loadControls() {
+        /*
+         * This is going to one day allow total remapping of controls, but
+         * for now it exists to make the joystick axes customizable.
+         */
+        //try to parse out the mappings
+        try {
+            Parser p = new Parser(AstralIO.getPayloadFile(), false);
+            ArrayList<Term> maps = p.getTermsOfType("Mapper");
+            for(int a = 0; a < maps.size(); a++) {
+                Term map = maps.get(a);
+                if(map.getValue("name").equals("Controls")) {
+                    
+                    //get raw data
+                    String pitchString = map.getValue("j_pitch_axis");
+                    String yawString = map.getValue("j_yaw_axis");
+                    String rollString = map.getValue("j_roll_axis");
+                    String throttleString = map.getValue("j_throttle_axis");
+                    
+                    //parse into mappings
+                    PITCH_AXIS = Integer.parseInt(pitchString);
+                    YAW_AXIS = Integer.parseInt(yawString);
+                    ROLL_AXIS = Integer.parseInt(rollString);
+                    THROTTLE_AXIS = Integer.parseInt(throttleString);
+                    
+                    System.out.println("Sucessfully applied custom mappings from "+AstralIO.getPayloadFile());
+                    
+                    break;
+                }
+            }
+        } catch(Exception e) {
+            System.out.println("Error: Unable to parse payload file "+AstralIO.getPayloadFile());
+            System.out.println("Setting controls to defaults as fallback!");
+            //default mappings
+            PITCH_AXIS = 0;
+            YAW_AXIS = 1;
+            ROLL_AXIS = 2;
+            THROTTLE_AXIS = 3;
+            e.printStackTrace();
+        }
     }
 
     private void init() {
@@ -486,13 +535,13 @@ public class Core {
         public void onJoyAxisEvent(JoyAxisEvent evt) {
             if (getState() == GameState.IN_SPACE) {
                 if (!universe.getPlayerShip().isDocked()) {
-                    if (evt.getAxis().getAxisId() == 0) {
+                    if (evt.getAxis().getAxisId() == PITCH_AXIS) {
                         getUniverse().getPlayerShip().setYaw(-evt.getValue());
-                    } else if (evt.getAxis().getAxisId() == 1) {
+                    } else if (evt.getAxis().getAxisId() == YAW_AXIS) {
                         getUniverse().getPlayerShip().setPitch(evt.getValue());
-                    } else if (evt.getAxis().getAxisId() == 2) {
+                    } else if (evt.getAxis().getAxisId() == ROLL_AXIS) {
                         getUniverse().getPlayerShip().setRoll(-evt.getValue());
-                    } else if (evt.getAxis().getAxisId() == 3) {
+                    } else if (evt.getAxis().getAxisId() == THROTTLE_AXIS) {
                         //currently unused due to non-traditional throttle
                     } /*
                      * POV / HAT used for thrust

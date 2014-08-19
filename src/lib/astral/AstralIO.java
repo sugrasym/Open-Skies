@@ -38,6 +38,7 @@ public class AstralIO implements Serializable {
     public static final String RESOURCE_DIR = "/resource/";
     public static final String HOME_DIR = "/.outlier/";
     public static final String SAVE_GAME_DIR = "/saves/";
+    public static final String PAYLOAD_FILE = "/payload.txt";
 
     public static String readFile(String target, boolean local) {
         String ret = "";
@@ -63,31 +64,62 @@ public class AstralIO implements Serializable {
         }
         return ret;
     }
-    
+
     public static void setupGameDir() {
-        String home = getHomeDir();
-        String saves = getSaveDir();
-        //create the main folder
-        File homeFolder = new File(home);
-        if (!homeFolder.exists()) {
-            homeFolder.mkdir();
-        }
+        deployRootDir();
+        deploySaveDir();
+        deployControlPayload();
+    }
+
+    /*
+     * Deploys the saved game directory
+     */
+    public static void deploySaveDir() {
         //create the subfolder
+        String saves = getSaveDir();
         File saveFolder = new File(saves);
         if (!saveFolder.exists()) {
             saveFolder.mkdir();
         }
     }
-    
+
+    /*
+     * Deploys the root of the game directory structure
+     */
+    public static void deployRootDir() {
+        //create the main folder
+        String home = getHomeDir();
+        File homeFolder = new File(home);
+        if (!homeFolder.exists()) {
+            homeFolder.mkdir();
+        }
+    }
+
+    /*
+     * Deploys initial control mappings
+     */
+    public static void deployControlPayload() {
+        //deploy initial control mapping
+        File file = new File(getPayloadFile());
+        if (!file.exists()) {
+            String payload = readTextFromJar("PAYLOAD.txt"); //I actually typed "string" instead of "String", filfthy C#
+            writeFile(getPayloadFile(), payload);
+        }
+    }
+
     public static String getHomeDir() {
         return System.getProperty("user.home") + "/" + HOME_DIR;
     }
-    
+
     public static String getSaveDir() {
         return System.getProperty("user.home") + HOME_DIR + SAVE_GAME_DIR;
     }
 
-    public void writeFile(String target, String text) {
+    public static String getPayloadFile() {
+        return System.getProperty("user.home") + HOME_DIR + PAYLOAD_FILE;
+    }
+
+    public static void writeFile(String target, String text) {
         try {
             FileWriter fstream = new FileWriter(target);
             BufferedWriter out = new BufferedWriter(fstream);
