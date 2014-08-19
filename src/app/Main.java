@@ -20,13 +20,15 @@ import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.plugins.blender.BlenderModelLoader;
+import com.jme3.system.AppSettings;
 import engine.Core;
 import jmeplanet.PlanetAppState;
 import lib.astral.AstralIO;
 
 /**
- * I suppose this is the time for me to say something
- * profound.
+ *  Hour by hour, one more change 
+ *  I'm sewing them together, take great pains 
+ *      - Rarity
  */
 public class Main extends SimpleApplication {
     //fpp
@@ -39,6 +41,10 @@ public class Main extends SimpleApplication {
 
     public static void main(String[] args) {
         Main app = new Main();
+        //override settings for joystick
+        AppSettings settings = new AppSettings(true);
+        settings.setUseJoysticks(true);
+        app.setSettings(settings);
         //set properties
         System.setProperty("sun.java2d.transaccel", "True");
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
