@@ -61,3 +61,24 @@ body=The superior man is modest in his speech, but exceeds in his actions.
 source=Confucius
 [/Quote]
 
+################################################################################
+#Zecora
+#Yes the cartoon Zebra.
+#I have some serious historical heavyweights in here, lets break it up a bit.
+#And this actually is a damn good quote.
+################################################################################
+
+[Quote]
+body=With each mistake you learn something new, growing up into a better you.
+source=Zecora/br/My Little Pony: Friendship is Magic
+[/Quote]
+
+################################################################################
+#Jean-Luc Picard
+#Might as well while I'm at it!
+################################################################################
+
+[Quote]
+body=It is possible to commit no mistakes and still lose./br/That is not a weakness, that is life.
+source=Jean-Luc Picard/br/Star Trek: The Next Generation
+[/Quote]
