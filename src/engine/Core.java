@@ -91,7 +91,7 @@ public class Core {
     boolean hudRendering = false;
     boolean hasFocus = true;
     //music
-    private static final String menuTrack = "Audio/Music/Success and Failure.wav";
+    private static final String menuTrack = "Audio/Music/Acclimated.wav";
     private String ambientTrack = "";
     private String dangerTrack = "";
     boolean isAmbient = true;
