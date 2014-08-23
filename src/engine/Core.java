@@ -64,12 +64,12 @@ import universe.Universe;
 public class Core {
 
     public enum GameState {
-
+        QUOTE,
         MAIN_MENU,
         IN_SPACE,
         GAME_OVER
     }
-    private GameState state = GameState.MAIN_MENU;
+    private GameState state = GameState.QUOTE;
     public static final float DEFAULT_TICK = 0.016666668f;
     //game objects
     private Universe universe;
@@ -637,9 +637,19 @@ public class Core {
             doMenuUpdate(tpf);
         } else if (getState() == GameState.GAME_OVER) {
             doGameOverUpdate(tpf);
+        } else if (getState() == GameState.QUOTE) {
+            doQuoteUpdate(tpf);
         }
         //store tpf
         this.tpf = tpf;
+    }
+    
+    private void doQuoteUpdate(float tpf) {
+        /*
+         * This state displays a quote from a file when the game first
+         * starts. Once it elapses it will never be reached again within
+         * my defined flow of the session.
+         */
     }
 
     private void doGameOverUpdate(float tpf) {

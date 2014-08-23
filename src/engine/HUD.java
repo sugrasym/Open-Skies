@@ -31,6 +31,7 @@ import gdi.HudMarker;
 import gdi.MenuHomeWindow;
 import gdi.OverviewWindow;
 import gdi.PropertyWindow;
+import gdi.QuoteWindow;
 import gdi.SightMarker;
 import gdi.StandingWindow;
 import gdi.StarMapWindow;
@@ -67,6 +68,7 @@ public class HUD {
     StarMapWindow starMapWindow;
     StandingWindow standingWindow;
     MenuHomeWindow menuHomeWindow;
+    QuoteWindow quoteWindow;
     //IFF Manager
     IFFManager iffManager = new IFFManager();
     private boolean resetWindowFlag;
@@ -79,6 +81,22 @@ public class HUD {
         this.assets = assets;
         this.width = width;
         this.height = height;
+    }
+    
+    private void configureForQuote(Core engine) {
+        remove();
+        //clear old windows
+        for (int a = 0; a < windows.size(); a++) {
+            windows.get(a).remove(guiNode);
+        }
+        windows.clear();
+        //quote window
+        quoteWindow = new QuoteWindow(assets, engine);
+        quoteWindow.setX((width / 2) - quoteWindow.getWidth() / 2);
+        quoteWindow.setY((height / 2) - quoteWindow.getHeight() / 2);
+        windows.add(quoteWindow);
+        //finish
+        add();
     }
 
     private void configureForMenu(Core engine) {
@@ -192,9 +210,23 @@ public class HUD {
                 doSpaceUpdate(engine, tpf);
             } else if (engine.getState() == GameState.MAIN_MENU) {
                 doMenuUpdate(engine, tpf);
+            } else if (engine.getState() == GameState.QUOTE) {
+                doQuoteUpdate(engine, tpf);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    private void doQuoteUpdate(Core engine, float tpf) {
+        if (windows.isEmpty()) {
+            configureForQuote(engine);
+        } else {
+            quoteWindow.update(tpf);
+            if(quoteWindow.doneShowing()) {
+                reset();
+                engine.setState(GameState.MAIN_MENU);
+            }
         }
     }
 
@@ -241,6 +273,8 @@ public class HUD {
             //update markers
             iffManager.render(assets);
         } else if (engine.getState() == GameState.MAIN_MENU) {
+            updateWindows();
+        } else if (engine.getState() == GameState.QUOTE) {
             updateWindows();
         }
     }

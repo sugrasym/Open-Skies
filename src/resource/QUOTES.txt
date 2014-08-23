@@ -1,0 +1,4 @@
+[Quote]
+body=Imagination will often carry us to worlds that never were./br/But without it we go nowhere.
+source=Carl Sagan
+[/Quote]

@@ -49,6 +49,7 @@ public class ResourceCache {
     private Parser planetCache = new Parser("PLANET.txt");
     //private Parser missionCache = new Parser("MISSIONS.txt");
     private Parser nameCache = new Parser("NAMES.txt");
+    private Parser quoteCache = new Parser("QUOTES.txt");
 
     public ResourceCache() {
         try {
@@ -116,6 +117,10 @@ public class ResourceCache {
 
     public Parser getNameCache() {
         return nameCache;
+    }
+    
+    public Parser getQuoteCache() {
+        return quoteCache;
     }
 
     public ArrayList<Spriteling> getStations() {
