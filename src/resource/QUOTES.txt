@@ -1,4 +1,35 @@
+################################################################################
+#Carl Sagan was a pretty cool dude.
+#He has tons of awesome quotes, so I'm going to keep it down to 2 really nice 
+#ones.
+################################################################################
+
 [Quote]
 body=Imagination will often carry us to worlds that never were./br/But without it we go nowhere.
 source=Carl Sagan
+[/Quote]
+
+[Quote]
+body=If you wish to make an apple pie from scratch, you must first invent the universe.
+source=Carl Sagan
+[/Quote]
+
+################################################################################
+#Gene Kranz
+################################################################################
+
+[Quote]
+body=From this day forward, Flight Control will be known by two words: "Tough and Competent."/br/Tough means we are forever accountable for what we do or what we fail to do.
+source=Eugene Kranz
+[/Quote]
+
+The worthwhile problems are the ones you can really solve or help solve, the ones you can really contribute something to. ... No problem is too small or too trivial if we can really do something about it.
+
+################################################################################
+#Richard Feynman
+################################################################################
+
+[Quote]
+body=The worthwhile problems are the ones you can really solve or help solve,/br/the ones you can really contribute something to. No problem is too small/br/or too trivial if we can really do something about it.
+source=Richard Feynman
 [/Quote]
