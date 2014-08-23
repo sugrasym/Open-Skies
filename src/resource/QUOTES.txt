@@ -23,8 +23,6 @@ body=From this day forward, Flight Control will be known by two words: "Tough an
 source=Eugene Kranz
 [/Quote]
 
-The worthwhile problems are the ones you can really solve or help solve, the ones you can really contribute something to. ... No problem is too small or too trivial if we can really do something about it.
-
 ################################################################################
 #Richard Feynman
 ################################################################################
@@ -82,7 +80,6 @@ source=Zecora/br/My Little Pony: Friendship is Magic
 body=It is possible to commit no mistakes and still lose./br/That is not a weakness, that is life.
 source=Jean-Luc Picard/br/Star Trek: The Next Generation
 [/Quote]
-
 
 ################################################################################
 #Albert Einstein
