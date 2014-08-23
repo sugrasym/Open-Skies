@@ -33,3 +33,31 @@ The worthwhile problems are the ones you can really solve or help solve, the one
 body=The worthwhile problems are the ones you can really solve or help solve,/br/the ones you can really contribute something to. No problem is too small/br/or too trivial if we can really do something about it.
 source=Richard Feynman
 [/Quote]
+
+################################################################################
+#Thomas Paine
+################################################################################
+
+[Quote]
+body=Where knowledge is a duty, ignorance is a crime.
+source=Thomas Paine
+[/Quote]
+
+################################################################################
+#John F Kennedy
+################################################################################
+
+[Quote]
+body=My call is not to those who believe they belong to the past./br/My call is to those who believe in the future.
+source=John F Kennedy
+[/Quote]
+
+################################################################################
+#Confucius
+################################################################################
+
+[Quote]
+body=The superior man is modest in his speech, but exceeds in his actions.
+source=Confucius
+[/Quote]
+
