@@ -82,3 +82,31 @@ source=Zecora/br/My Little Pony: Friendship is Magic
 body=It is possible to commit no mistakes and still lose./br/That is not a weakness, that is life.
 source=Jean-Luc Picard/br/Star Trek: The Next Generation
 [/Quote]
+
+
+################################################################################
+#Albert Einstein
+################################################################################
+
+[Quote]
+body=I do not need any promise of eternity to be happy. My eternity is now./br/I have only one interest: to fulfill my purpose here where I am./br/This purpose is not given me by my parents or my surroundings./br/It is induced by some unknown factors./br/These factors make me a part of eternity. 
+source=Albert Einstein
+[/Quote]
+
+################################################################################
+#Martin Luther King Jr.
+################################################################################
+
+[Quote]
+body=Yes, it is love that will save our world and our civilization, love even for enemies.
+source=Martin Luther King Jr.
+[/Quote]
+
+################################################################################
+#Eleanor Roosevelt
+################################################################################
+
+[Quote]
+body=We face the future fortified with the lessons we have learned from the past./br/It is today that we must create the world of the future.
+source=Eleanor Roosevelt
+[/Quote]
