@@ -44,6 +44,11 @@ public class Main extends SimpleApplication {
         //override settings for joystick
         AppSettings settings = new AppSettings(true);
         settings.setUseJoysticks(true);
+        settings.setVSync(true);
+        settings.setWidth(1440);
+        settings.setHeight(900);
+        settings.setTitle("Outlier: Open Skies");
+        settings.setMinResolution(800, 600);
         app.setSettings(settings);
         //set properties
         System.setProperty("sun.java2d.transaccel", "True");

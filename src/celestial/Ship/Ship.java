@@ -95,7 +95,7 @@ public class Ship extends Celestial {
 
     public static final double PATROL_REFUEL_PERCENT = 0.5;
     public static final double PLAYER_AGGRO_SHIELD = 0.5;
-    public static final float STOP_LOW_VEL_BOUND = 1.0f;
+    public static final float STOP_LOW_VEL_BOUND = 2.5f;
     public static final float NAV_ANGLE_TOLERANCE = 0.02f;
     public static final float COM_ANGLE_TOLERANCE = 0.008f;
     public static final float ROLL_LOCK = FastMath.PI / 32;
