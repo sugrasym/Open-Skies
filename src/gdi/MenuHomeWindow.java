@@ -121,7 +121,7 @@ public class MenuHomeWindow extends AstralWindow {
                 if (getState() == InternalState.PRENEW) {
                     engine.newGame("Default");
                 } else if(getState() == InternalState.PRELOAD) {
-                    engine.load(loadGameName);
+                    engine.load(getLoadGameName());
                 }
                 resetState();
             }
@@ -135,7 +135,7 @@ public class MenuHomeWindow extends AstralWindow {
         //reset state
         setState(InternalState.NORMAL);
         setStateCounter(0);
-        loadGameName = null;
+        setLoadGameName(null);
     }
 
     @Override
@@ -165,7 +165,7 @@ public class MenuHomeWindow extends AstralWindow {
                 setState(InternalState.PRENEW);
             } else if (command.matches("Load Quicksave")) {
                 setVisible(false);
-                loadGameName = "Quick";
+                setLoadGameName("Quick");
                 setState(InternalState.PRELOAD);
             } else if (command.matches("Load Game")) {
                 mainList.setVisible(false);
@@ -182,7 +182,7 @@ public class MenuHomeWindow extends AstralWindow {
             int index = gameList.getIndex();
             if (index > 2) {
                 setVisible(false);
-                loadGameName = (String) gameList.getItemAtIndex(index);
+                setLoadGameName((String) gameList.getItemAtIndex(index));
                 setState(InternalState.PRELOAD);
             } else if (index == 1) {
                 mainList.setVisible(true);
@@ -279,5 +279,13 @@ public class MenuHomeWindow extends AstralWindow {
 
     private void setStateCounter(int stateCounter) {
         this.stateCounter = stateCounter;
+    }
+
+    private String getLoadGameName() {
+        return loadGameName;
+    }
+
+    private void setLoadGameName(String loadGameName) {
+        this.loadGameName = loadGameName;
     }
 }

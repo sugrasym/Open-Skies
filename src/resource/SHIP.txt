@@ -74,5 +74,25 @@ nozzleEndColor=1,0,0,0.1
 [/Ship]
 
 ################################################################################
+#Special Objects
+################################################################################
+
+[Ship]
+type=Container
+class=Container
+#physics
+mass=0.01
+thrust=0
+torque=0
+#stats
+shield=1000
+shieldRecharge=0
+hull=500
+fuel=1
+sensor=0
+cargo=9999999999
+[/Ship]
+
+################################################################################
 #Test Ships - REMOVE BEFORE WORLD BUILDING THESE SUCK AND ARE FOR TESTING
 ################################################################################
