@@ -2260,6 +2260,24 @@ public class Ship extends Celestial {
         }
     }
 
+    public void ejectFromCargoBay(Item item) {
+        cargoBay.remove(item);
+        //make a container for this item
+        CargoContainer container = new CargoContainer(getUniverse(), item);
+        //set its position near the ship
+        container.setLocation(getLocation().add(
+                4.0f * (float) Math.signum(rnd.nextDouble() - 0.5),
+                4.0f * (float) Math.signum(rnd.nextDouble() - 0.5),
+                4.0f * (float) Math.signum(rnd.nextDouble() - 0.5))); //todo: dynamic width
+        //containers are ejected with slightly different velocity
+        float speed = getVelocity().length();
+        Vector3f unitVelocity = getVelocity().normalize();
+        speed *= 1 + rnd.nextFloat();
+        container.setVelocity(unitVelocity.mult(speed));
+        //drop it into space
+        getCurrentSystem().putEntityInSystem(container);
+    }
+
     public int getNumInCargoBay(Item item) {
         int count = 0;
         if (item != null) {
@@ -2411,8 +2429,8 @@ public class Ship extends Celestial {
                     if (hardpoints.get(a).getSize() >= equipment.getVolume()) {
                         if (hardpoints.get(a).getType().equals(equipment.getType())) {
                             hardpoints.get(a).mount(equipment);
-                            if(physics != null) {
-                                if(assets != null) {
+                            if (physics != null) {
+                                if (assets != null) {
                                     hardpoints.get(a).construct(assets);
                                 }
                             }
@@ -3482,5 +3500,9 @@ public class Ship extends Celestial {
 
     public void setPort(DockingPort port) {
         this.port = port;
+    }
+
+    public Universe getUniverse() {
+        return getCurrentSystem().getUniverse();
     }
 }

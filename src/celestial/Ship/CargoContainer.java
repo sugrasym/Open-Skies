@@ -21,7 +21,7 @@
 
 package celestial.Ship;
 
-import lib.astral.Parser.Term;
+import cargo.Item;
 import universe.Universe;
 
 /**
@@ -30,7 +30,9 @@ import universe.Universe;
  */
 
 public class CargoContainer extends Ship {
-    public CargoContainer(Universe universe, Term type, String faction) {
-        super(universe, type, faction);
+    public CargoContainer(Universe universe, Item contents) {
+        super(universe, Universe.getCache().getCargoContainerTerm(), "Neutral");
+        addToCargoBay(contents);
+        setName(contents.toString());
     }
 }

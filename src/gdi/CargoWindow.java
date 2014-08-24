@@ -300,7 +300,7 @@ public class CargoWindow extends AstralWindow {
                 ship.removeFromCargoBay(selected);
             } else if (command.equals(CMD_EJECT)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                //ship.ejectCargo(selected);
+                ship.ejectFromCargoBay(selected);
             } else if (command.equals(CMD_UNMOUNT)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 Equipment tmp = (Equipment) selected;

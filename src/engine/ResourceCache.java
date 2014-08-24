@@ -19,21 +19,15 @@
  */
 package engine;
 
-import java.awt.Image;
 import java.util.ArrayList;
 import lib.astral.Parser;
+import lib.astral.Parser.Term;
 
 /**
  *
  * @author nwiehoff
  */
 public class ResourceCache {
-    //sprite cache
-
-    private ArrayList<Spriteling> ships = new ArrayList<>();
-    private ArrayList<Spriteling> stations = new ArrayList<>();
-    private ArrayList<Spriteling> projectiles = new ArrayList<>();
-    private ArrayList<Spriteling> explosions = new ArrayList<>();
     //parser cache
     private Parser universeCache = new Parser("UNIVERSE.txt");
     private Parser shipCache = new Parser("SHIP.txt");
@@ -50,6 +44,8 @@ public class ResourceCache {
     //private Parser missionCache = new Parser("MISSIONS.txt");
     private Parser nameCache = new Parser("NAMES.txt");
     private Parser quoteCache = new Parser("QUOTES.txt");
+    
+    private Term cargoContainerTerm;
 
     public ResourceCache() {
         try {
@@ -60,7 +56,15 @@ public class ResourceCache {
     }
 
     private void init() throws Exception {
-        //TODO
+        //init the cargo container term
+        ArrayList<Term> shipTerms = shipCache.getTermsOfType("Ship");
+        for(int a = 0; a < shipTerms.size(); a++) {
+            Term test = shipTerms.get(a);
+            if(test.getValue("type").equals("Container")) {
+                cargoContainerTerm = test;
+                break;
+            }
+        }
     }
 
     public Parser getUniverseCache() {
@@ -122,43 +126,8 @@ public class ResourceCache {
     public Parser getQuoteCache() {
         return quoteCache;
     }
-
-    public ArrayList<Spriteling> getStations() {
-        return stations;
-    }
-
-    private class Spriteling {
-        /*
-         * Simple structure for linking a sprite to its name so it can be
-         * easily referenced.
-         */
-
-        private final String name;
-        private final Image sprite;
-        private final int hash;
-
-        public Spriteling(String name, Image sprite) {
-            //hash
-            this.name = name;
-            this.hash = name.hashCode();
-            //store image
-            this.sprite = sprite;
-        }
-
-        public boolean matches(String test) {
-            return test.hashCode() == hash;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public Image getSprite() {
-            return sprite;
-        }
-
-        public int getHash() {
-            return hash;
-        }
+    
+    public Term getCargoContainerTerm() {
+        return cargoContainerTerm;
     }
 }
