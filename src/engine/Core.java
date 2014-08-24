@@ -67,8 +67,7 @@ public class Core {
         QUOTE,
         MAIN_MENU,
         IN_SPACE,
-        GAME_OVER,
-        PAUSE
+        GAME_OVER
     }
     private GameState state = GameState.QUOTE;
     public static final float DEFAULT_TICK = 0.016666668f;
