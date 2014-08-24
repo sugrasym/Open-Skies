@@ -25,7 +25,6 @@ import gdi.component.AstralLabel;
 import gdi.component.AstralList;
 import gdi.component.AstralWindow;
 import java.awt.Font;
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,12 +37,22 @@ import universe.Universe;
  */
 public class MenuHomeWindow extends AstralWindow {
 
+    private enum InternalState {
+
+        NORMAL,
+        PRENEW,
+        PRELOAD,
+    }
+
     AstralLabel logoLabel = new AstralLabel();
     AstralLabel versionLabel = new AstralLabel();
     AstralList mainList = new AstralList(this);
     AstralList gameList = new AstralList(this);
     AstralList saveList = new AstralList(this);
-    private Core engine;
+    private final Core engine;
+    private InternalState state = InternalState.NORMAL;
+    private int stateCounter = 0;
+    private String loadGameName;
 
     public MenuHomeWindow(AssetManager assets, Core engine) {
         super(assets, 800, 600, false);
@@ -70,7 +79,7 @@ public class MenuHomeWindow extends AstralWindow {
         versionLabel.setText("Alpha 1+");
         versionLabel.setFont(new Font("Monospaced", Font.PLAIN, 14));
         versionLabel.setX(0);
-        versionLabel.setY(height-17);
+        versionLabel.setY(height - 17);
         versionLabel.setWidth(getWidth());
         versionLabel.setHeight(50);
         versionLabel.setVisible(true);
@@ -106,6 +115,29 @@ public class MenuHomeWindow extends AstralWindow {
         setVisible(true);
     }
 
+    public void update(float tpf) {
+        if (getState() != InternalState.NORMAL) {
+            if (getStateCounter() > 2) {
+                if (getState() == InternalState.PRENEW) {
+                    engine.newGame("Default");
+                } else if(getState() == InternalState.PRELOAD) {
+                    engine.load(loadGameName);
+                }
+                resetState();
+            }
+            
+            //increment state counter
+            setStateCounter(getStateCounter() + 1);
+        }
+    }
+
+    private void resetState() {
+        //reset state
+        setState(InternalState.NORMAL);
+        setStateCounter(0);
+        loadGameName = null;
+    }
+
     @Override
     public void setVisible(boolean visible) {
         super.setVisible(visible);
@@ -114,6 +146,7 @@ public class MenuHomeWindow extends AstralWindow {
         }
     }
 
+    @Override
     public void handleMouseReleasedEvent(String me, Vector3f mouseLoc) {
         super.handleMouseReleasedEvent(me, mouseLoc);
         String command = "";
@@ -129,10 +162,11 @@ public class MenuHomeWindow extends AstralWindow {
         if (mainList.isVisible()) {
             if (command.matches("New Game")) {
                 setVisible(false);
-                engine.newGame("Default");
+                setState(InternalState.PRENEW);
             } else if (command.matches("Load Quicksave")) {
                 setVisible(false);
-                engine.load("Quick");
+                loadGameName = "Quick";
+                setState(InternalState.PRELOAD);
             } else if (command.matches("Load Game")) {
                 mainList.setVisible(false);
                 saveList.setVisible(false);
@@ -147,7 +181,9 @@ public class MenuHomeWindow extends AstralWindow {
         } else if (gameList.isVisible()) {
             int index = gameList.getIndex();
             if (index > 2) {
-                engine.load((String) gameList.getItemAtIndex(index));
+                setVisible(false);
+                loadGameName = (String) gameList.getItemAtIndex(index);
+                setState(InternalState.PRELOAD);
             } else if (index == 1) {
                 mainList.setVisible(true);
                 gameList.setVisible(false);
@@ -227,5 +263,21 @@ public class MenuHomeWindow extends AstralWindow {
                 list.addToList(listOfFiles[i].getName());
             }
         }
+    }
+
+    private InternalState getState() {
+        return state;
+    }
+
+    private void setState(InternalState state) {
+        this.state = state;
+    }
+
+    private int getStateCounter() {
+        return stateCounter;
+    }
+
+    private void setStateCounter(int stateCounter) {
+        this.stateCounter = stateCounter;
     }
 }

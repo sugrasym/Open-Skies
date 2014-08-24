@@ -40,7 +40,6 @@ import gdi.component.AstralWindow;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import universe.SolarSystem;
 import universe.Universe;
 
@@ -51,9 +50,9 @@ import universe.Universe;
 public class HUD {
     //resources
 
-    private Node guiNode;
+    private final Node guiNode;
     private Universe universe;
-    private AssetManager assets;
+    private final AssetManager assets;
     //camera
     AstralCamera camera;
     //windows
@@ -73,8 +72,8 @@ public class HUD {
     IFFManager iffManager = new IFFManager();
     private boolean resetWindowFlag;
     //display
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
     public HUD(Node guiNode, int width, int height, AssetManager assets) {
         this.guiNode = guiNode;
@@ -234,6 +233,7 @@ public class HUD {
         if (windows.isEmpty()) {
             configureForMenu(engine);
         }
+        menuHomeWindow.update(tpf);
     }
 
     private void doSpaceUpdate(Core engine, float tpf) {
@@ -261,6 +261,7 @@ public class HUD {
         tradeWindow.update(getUniverse().getPlayerShip());
         starMapWindow.updateMap(getUniverse());
         standingWindow.update(getUniverse().getPlayerShip());
+        menuHomeWindow.update(tpf);
         //periodic update on other windows
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).periodicUpdate();
