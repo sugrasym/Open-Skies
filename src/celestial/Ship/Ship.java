@@ -108,6 +108,7 @@ public class Ship extends Celestial {
     public static final double TRADER_REFUEL_PERCENT = 0.25;
     public static final double MAX_WAIT_TIME = 25;
     public static final double MIN_WAIT_TIME = 5;
+    public static final float DEATH_CARGO_DROP_CHANCE = 0.4f;
 
     public enum EngineMode {
 
@@ -1769,6 +1770,16 @@ public class Ship extends Celestial {
         //behave
         behave();
     }
+    
+    protected void dyingAlways() {
+        //for each item in the cargo bay, roll dice to eject a cargo container
+        for(int a = 0; a < cargoBay.size(); a++) {
+            float p = rnd.nextFloat();
+            if(p > DEATH_CARGO_DROP_CHANCE) {
+                ejectFromCargoBay(cargoBay.get(a));
+            }
+        }
+    }
 
     protected void updateTarget() {
         if (target != null) {
@@ -1818,6 +1829,7 @@ public class Ship extends Celestial {
     /*
      * Methods for in-system updating. It primarily uses the physics system.
      */
+    @Override
     protected void alive() {
         super.alive();
         aliveAlways();
@@ -1835,7 +1847,10 @@ public class Ship extends Celestial {
         }
     }
 
+    @Override
     protected void dying() {
+        super.dying();
+        dyingAlways();
         if (physicsSafe()) {
             dropExplosion();
             setState(State.DEAD);
@@ -1844,7 +1859,9 @@ public class Ship extends Celestial {
         killSounds();
     }
 
+    @Override
     protected void dead() {
+        super.dead();
         if (physicsSafe()) {
             //nothing to do really
         }
@@ -1957,6 +1974,7 @@ public class Ship extends Celestial {
     @Override
     protected void oosDying() {
         super.oosDying();
+        dyingAlways();
         setState(State.DEAD);
     }
 
@@ -2251,12 +2269,33 @@ public class Ship extends Celestial {
         }
         return true;
     }
+    
+    public boolean addAllToCargoBay(ArrayList<Item> items) {
+        if(items != null) {
+            boolean addedRange = true;
+            //for every item in the list, try to add it
+            for(int a = 0; a < items.size(); a++) {
+                if(!addToCargoBay(items.get(a))) {
+                    //we can report not all items were added properly
+                    addedRange = false;
+                }
+            }
+            return addedRange;
+        }
+        return true;
+    }
 
     public void removeFromCargoBay(Item item) {
         if (item.getQuantity() > 1) {
             item.setQuantity(item.getQuantity() - 1);
         } else {
             cargoBay.remove(item);
+        }
+    }
+    
+    public void removeAllFromCargoBay() {
+        for(int a = 0; a < cargoBay.size(); a++) {
+            removeFromCargoBay(cargoBay.get(a));
         }
     }
 
@@ -2272,8 +2311,10 @@ public class Ship extends Celestial {
         //containers are ejected with slightly different velocity
         float speed = getVelocity().length();
         Vector3f unitVelocity = getVelocity().normalize();
+        Vector3f fuzzVelocity = new Vector3f(rnd.nextFloat(), rnd.nextFloat(), 
+                rnd.nextFloat());
         speed *= 1 + rnd.nextFloat();
-        container.setVelocity(unitVelocity.mult(speed));
+        container.setVelocity(unitVelocity.mult(speed).add(fuzzVelocity));
         //drop it into space
         getCurrentSystem().putEntityInSystem(container);
     }

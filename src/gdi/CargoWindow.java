@@ -190,6 +190,7 @@ public class CargoWindow extends AstralWindow {
     }
 
     private void fillCommandLines(Item selected) {
+        boolean canEject = true;
         if (selected instanceof Equipment) {
             optionList.addToList("--Fitting--");
             Equipment tmp = (Equipment) selected;
@@ -197,6 +198,7 @@ public class CargoWindow extends AstralWindow {
             if (socket != null) {
                 //it is mounted
                 optionList.addToList(CMD_UNMOUNT);
+                canEject = false;
             } else {
                 //it is not mounted
                 optionList.addToList(CMD_MOUNT);
@@ -275,7 +277,7 @@ public class CargoWindow extends AstralWindow {
         optionList.addToList(" ");
         optionList.addToList("--Dangerous--");
         optionList.addToList(CMD_TRASH);
-        if (!ship.isDocked()) {
+        if (!ship.isDocked() && canEject) {
             optionList.addToList(CMD_EJECT);
         }
     }

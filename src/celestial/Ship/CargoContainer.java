@@ -30,9 +30,33 @@ import universe.Universe;
  */
 
 public class CargoContainer extends Ship {
+    private static final float MAX_LIFE = 5000;
+    private final float maxLife;
+    private float life = 0;
     public CargoContainer(Universe universe, Item contents) {
         super(universe, Universe.getCache().getCargoContainerTerm(), "Neutral");
         addToCargoBay(contents);
         setName(contents.toString());
+        maxLife = rnd.nextFloat() * MAX_LIFE;
+    }
+    
+    @Override
+    protected void aliveAlways() {
+        super.aliveAlways();
+        life += tpf;
+        if(life > maxLife) {
+            setState(State.DYING);
+        }
+    }
+    
+    @Override
+    protected void dyingAlways() {
+        //do nothing
+    }
+    
+    @Override
+    public String toString() {
+        return getName() + " " + 
+                (int)((float)(1.0f-(life / maxLife)) * 100.0f)+"%";
     }
 }

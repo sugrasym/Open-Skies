@@ -22,6 +22,7 @@ package engine;
 import celestial.Jumphole;
 import celestial.Planet;
 import celestial.Projectile;
+import celestial.Ship.CargoContainer;
 import celestial.Ship.Ship;
 import com.jme3.bullet.collision.PhysicsCollisionEvent;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
@@ -95,13 +96,25 @@ public class CollisionListener implements PhysicsCollisionListener {
     }
 
     private void handleShipCollision(Ship a, Ship b, float impulse) {
-        //just use the worst possible thing
-        float damageA = (float) (25 * b.getMass() * impulse);
-        float damageB = (float) (25 * a.getMass() * impulse);
-        float worstCase = Math.max(damageA, damageB);
-        //apply damage
-        a.applyDamage(worstCase);
-        b.applyDamage(worstCase);
+        //this is the case where the first ship is a cargo container
+        if (a instanceof CargoContainer) {
+            b.addAllToCargoBay(a.getCargoBay());
+            a.removeAllFromCargoBay();
+            a.setState(State.DYING);
+        } //this is the case where the second ship is a cargo container
+        if (b instanceof CargoContainer) {
+            a.addAllToCargoBay(b.getCargoBay());
+            b.removeAllFromCargoBay();
+            b.setState(State.DYING);
+        } else {
+            //just use the worst possible thing
+            float damageA = (float) (25 * b.getMass() * impulse);
+            float damageB = (float) (25 * a.getMass() * impulse);
+            float worstCase = Math.max(damageA, damageB);
+            //apply damage
+            a.applyDamage(worstCase);
+            b.applyDamage(worstCase);
+        }
     }
 
     private void handlePlanetCollision(Ship a) {
