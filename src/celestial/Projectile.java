@@ -44,6 +44,7 @@ public class Projectile extends Celestial {
     public static final float ANGULAR_DAMP = 0.99f;
     public static final float STOP_LOW_VEL_BOUND = 1.0f;
     public static final float STOP_CAUTION = 0.75f;
+    public static final float LOW_TORQUE_VELOCITY = 10.0f;
     //particle effect
 
     transient ParticleEmitter emitter;
@@ -308,9 +309,9 @@ public class Projectile extends Celestial {
             roll = -1;
         }
         //steer
-        physics.applyTorque(Vector3f.UNIT_X.mult(turning * pitch));
-        physics.applyTorque(Vector3f.UNIT_Y.mult(turning * yaw));
-        physics.applyTorque(Vector3f.UNIT_Z.mult(turning * roll));
+        physics.applyTorque(Vector3f.UNIT_X.mult(getTurning() * pitch));
+        physics.applyTorque(Vector3f.UNIT_Y.mult(getTurning()  * yaw));
+        physics.applyTorque(Vector3f.UNIT_Z.mult(getTurning()  * roll));
         //reset steering
         pitch = 0;
         yaw = 0;
@@ -606,6 +607,11 @@ public class Projectile extends Celestial {
     }
 
     public float getTurning() {
+        if(target != null) {
+            if(target.getVelocity().length() < LOW_TORQUE_VELOCITY) {
+                return Math.min(turning, 0.125f);
+            }
+        }
         return turning;
     }
 
