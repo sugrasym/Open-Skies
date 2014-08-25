@@ -45,6 +45,8 @@ public class Projectile extends Celestial {
     public static final float STOP_LOW_VEL_BOUND = 1.0f;
     public static final float STOP_CAUTION = 0.75f;
     public static final float LOW_TORQUE_VELOCITY = 10.0f;
+    public static final float LOW_TURNING = 0.0625f;
+    public static final float NAV_ANGLE_TOLERANCE = 0.05f;
     //particle effect
 
     transient ParticleEmitter emitter;
@@ -342,7 +344,7 @@ public class Projectile extends Celestial {
                      * Face the target and accelerate towards it.
                      */
                     Vector3f dat = getSteeringData(target.getPhysicsLocation().add(target.getVelocity().mult((float) tpf)), Vector3f.UNIT_Y);
-                    safe = grossPointNoseAtVector(dat);
+                    safe = grossPointNoseAtVector(dat, NAV_ANGLE_TOLERANCE);
                 } else {
                     //
                 }
@@ -367,14 +369,26 @@ public class Projectile extends Celestial {
         return thrust / getMass();
     }
 
-    private boolean grossPointNoseAtVector(Vector3f dat) {
-        boolean canAccel = false;
+    private boolean grossPointNoseAtVector(Vector3f dat, float tolerance) {
+        boolean canAccel = true;
         //put controls in correct positions to face target
-        pitch = -dat.x;
-        yaw = -dat.y;
-        roll = dat.z;
-        if (Math.abs(dat.x - 2f) > FastMath.PI && Math.abs(dat.y - 2f) > FastMath.PI) {
-            canAccel = true;
+        if (Math.abs(dat.x) < FastMath.PI * (1 - tolerance)) {
+            pitch = -(dat.x);
+            canAccel = false;
+        } else {
+            pitch = 0;
+        }
+        if (Math.abs(dat.y) < FastMath.PI * (1 - tolerance)) {
+            yaw = -(dat.y);
+            canAccel = false;
+        } else {
+            yaw = 0;
+        }
+        if (Math.abs(dat.z) > FastMath.PI * tolerance) {
+            roll = (dat.z);
+            //canAccel = false;
+        } else {
+            roll = 0;
         }
         return canAccel;
     }
@@ -609,7 +623,7 @@ public class Projectile extends Celestial {
     public float getTurning() {
         if(target != null) {
             if(target.getVelocity().length() < LOW_TORQUE_VELOCITY) {
-                return Math.min(turning, 0.125f);
+                return Math.min(turning, LOW_TURNING);
             }
         }
         return turning;
