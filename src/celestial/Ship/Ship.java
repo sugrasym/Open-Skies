@@ -630,9 +630,14 @@ public class Ship extends Celestial {
         if (lVol.length() > getAcceleration()) {
             //use reverse thrusters
             Vector3f thrustTarget = getSteeringData(getPhysicsLocation().add(lVol), Vector3f.UNIT_Y);
-            boolean safe = pointNoseAtVector(thrustTarget, NAV_ANGLE_TOLERANCE);
-            if (safe) {
-                throttle = -1;
+            if (Math.abs(thrustTarget.x) == 0 && Math.abs(thrustTarget.y) == 0) {
+                //this is a stuck case, we are flying exactly backwards
+                throttle = 1;
+            } else {
+                boolean safe = pointNoseAtVector(thrustTarget, NAV_ANGLE_TOLERANCE);
+                if (safe) {
+                    throttle = -1;
+                }
             }
         } else if (lVol.length() > STOP_LOW_VEL_BOUND) {
             //apply counter force
@@ -1770,12 +1775,12 @@ public class Ship extends Celestial {
         //behave
         behave();
     }
-    
+
     protected void dyingAlways() {
         //for each item in the cargo bay, roll dice to eject a cargo container
-        for(int a = 0; a < cargoBay.size(); a++) {
+        for (int a = 0; a < cargoBay.size(); a++) {
             float p = rnd.nextFloat();
-            if(p > DEATH_CARGO_DROP_CHANCE) {
+            if (p > DEATH_CARGO_DROP_CHANCE) {
                 ejectFromCargoBay(cargoBay.get(a));
             }
         }
@@ -2269,13 +2274,13 @@ public class Ship extends Celestial {
         }
         return true;
     }
-    
+
     public boolean addAllToCargoBay(ArrayList<Item> items) {
-        if(items != null) {
+        if (items != null) {
             boolean addedRange = true;
             //for every item in the list, try to add it
-            for(int a = 0; a < items.size(); a++) {
-                if(!addToCargoBay(items.get(a))) {
+            for (int a = 0; a < items.size(); a++) {
+                if (!addToCargoBay(items.get(a))) {
                     //we can report not all items were added properly
                     addedRange = false;
                 }
@@ -2292,9 +2297,9 @@ public class Ship extends Celestial {
             cargoBay.remove(item);
         }
     }
-    
+
     public void removeAllFromCargoBay() {
-        for(int a = 0; a < cargoBay.size(); a++) {
+        for (int a = 0; a < cargoBay.size(); a++) {
             removeFromCargoBay(cargoBay.get(a));
         }
     }
@@ -2311,7 +2316,7 @@ public class Ship extends Celestial {
         //containers are ejected with slightly different velocity
         float speed = getVelocity().length();
         Vector3f unitVelocity = getVelocity().normalize();
-        Vector3f fuzzVelocity = new Vector3f(rnd.nextFloat(), rnd.nextFloat(), 
+        Vector3f fuzzVelocity = new Vector3f(rnd.nextFloat(), rnd.nextFloat(),
                 rnd.nextFloat());
         speed *= 1 + rnd.nextFloat();
         container.setVelocity(unitVelocity.mult(speed).add(fuzzVelocity));
