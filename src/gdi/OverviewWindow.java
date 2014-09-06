@@ -100,21 +100,25 @@ public class OverviewWindow extends AstralWindow {
         public void render(Graphics f) {
             BufferedImage frame = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
             if (sensorShip != null) {
-                //update sensor range display
-                rangeLabel.setText("VIEW: " + sensorShip.getSensor() * area);
-                modeLabel.setText(area + "x");
-                //get graphics
-                Graphics2D gfx = (Graphics2D) frame.getGraphics();
-                //draw stuff
-                fillRadar(gfx);
-                //draw circle
-                gfx.setColor(Color.BLUE);
-                gfx.drawOval(0, 0, getWidth(), getHeight());
+                try {
+                    //update sensor range display
+                    rangeLabel.setText("VIEW: " + sensorShip.getSensor() * area);
+                    modeLabel.setText(area + "x");
+                    //get graphics
+                    Graphics2D gfx = (Graphics2D) frame.getGraphics();
+                    //draw stuff
+                    fillRadar(gfx);
+                    //draw circle
+                    gfx.setColor(Color.BLUE);
+                    gfx.drawOval(0, 0, getWidth(), getHeight());
+                } catch(Exception e) {
+                    System.out.println("Error updating overview window");
+                }
             }
             f.drawImage(frame, getX(), getY(), getWidth(), getHeight(), null);
         }
 
-        private void fillRadar(Graphics2D gfx) {
+        private void fillRadar(Graphics2D gfx) throws Exception {
             //get entity list
             ArrayList<Entity> entities = sensorShip.getCurrentSystem().getCelestials();
             drawVectorLines(gfx);

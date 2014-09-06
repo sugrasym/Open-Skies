@@ -111,6 +111,8 @@ public class Ship extends Celestial {
     public static final double MAX_WAIT_TIME = 25;
     public static final double MIN_WAIT_TIME = 5;
     public static final float DEATH_CARGO_DROP_CHANCE = 0.4f;
+    public static final float PLANET_AVOID_CAUTION = 1.5f;
+    public static final float PLANET_AVOID_CAUTION_2 = 1.75f;
 
     public enum EngineMode {
 
@@ -434,7 +436,7 @@ public class Ship extends Celestial {
             
             //check distance
             float dist = test.distanceTo(this);
-            if(dist > test.getSafetyZone(1.75f)) {
+            if(dist > test.getSafetyZone(PLANET_AVOID_CAUTION_2)) {
                 //all stop
                 autopilotAllStop();
                 if(getAutopilot() == Autopilot.NONE) {
@@ -1425,6 +1427,42 @@ public class Ship extends Celestial {
             oosAutopilotWaitBlock();
         } else if (autopilot == Autopilot.FOLLOW) {
             oosAutopilotFollow();
+        } else if (autopilot == Autopilot.AVOID_PLANET) {
+            oosAutopilotAvoidPlanet();
+        } else if (autopilot == Autopilot.AVOID_PLANET_2) {
+            oosAutopilotAvoidPlanet2();
+        }
+    }
+    
+    /*
+     * This one keeps us from hitting the planet.
+     */
+    private void oosAutopilotAvoidPlanet() {
+        if(getAutopilot() == Autopilot.AVOID_PLANET) {
+            oosAutopilotAllStop();
+            //we'll be stopped when autopilot is none
+            if(getAutopilot() == Autopilot.NONE) {
+                setAutopilot(Autopilot.AVOID_PLANET_2);
+            }
+        }
+    }
+    
+    /*
+     * This one gets us around the planet
+     */
+    private void oosAutopilotAvoidPlanet2() {
+        
+        if(getAutopilot() == Autopilot.AVOID_PLANET_2) {
+            Planet test = getNearestPlanetInSystem();
+            //rotate the ship away from the planet
+            Vector3f avoidance = test.getLocation().cross(getLocation());
+            oosMoveToPositionWithHold(avoidance, Float.POSITIVE_INFINITY);
+            
+            //check distance
+            float dist = test.distanceTo(this);
+            if(dist > test.getSafetyZone(PLANET_AVOID_CAUTION_2)) {
+                setAutopilot(getAutopilotBackup());
+            }
         }
     }
 
@@ -1847,7 +1885,7 @@ public class Ship extends Celestial {
             Planet near = getNearestPlanetInSystem();
             //check distance to it
             float dist = near.distanceTo(this);
-            if(dist <= near.getSafetyZone(1.5f)) {
+            if(dist <= near.getSafetyZone(PLANET_AVOID_CAUTION)) {
                 //we are too close to this planet
                 setAutopilotBackup(getAutopilot());
                 setAutopilot(Autopilot.AVOID_PLANET);
