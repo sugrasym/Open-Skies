@@ -124,7 +124,7 @@ public class EquipmentWindow extends AstralWindow {
     }
 
     private void generate() {
-        backColor = windowGrey;
+        backColor = windowBlue;
         setVisible(true);
         //setup the list
         weaponList.setX(0);
@@ -241,7 +241,7 @@ public class EquipmentWindow extends AstralWindow {
                 gfx.setColor(Color.BLUE);
                 gfx.drawOval(0, 0, getWidth(), getHeight());
                 //draw border
-                gfx.setColor(amber);
+                gfx.setColor(whiteForeground);
                 gfx.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
             }
             f.drawImage(frame, getX(), getY(), getWidth(), getHeight(), null);

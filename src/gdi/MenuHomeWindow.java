@@ -63,7 +63,7 @@ public class MenuHomeWindow extends AstralWindow {
     private void generate() {
         setFocused(true);
         //a nice color
-        backColor = windowGrey;
+        backColor = windowBlue;
         //setup dimensions
         setWidth(800);
         setHeight(600);

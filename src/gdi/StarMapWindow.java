@@ -57,7 +57,7 @@ public class StarMapWindow extends AstralWindow {
         setWidth(500);
         setHeight(400);
         //set color
-        backColor = windowGrey;
+        backColor = windowBlue;
         //not visible at start
         setVisible(false);
         //setup map canvas
@@ -157,7 +157,7 @@ public class StarMapWindow extends AstralWindow {
                     }
                     //map
                     if (systems.get(a) == universe.getPlayerShip().getCurrentSystem()) {
-                        tfx.setColor(amber);
+                        tfx.setColor(whiteForeground);
                         tfx.fillRect((int) rx - 2, (int) rz - 2, 4, 4);
                         tfx.setColor(Color.GREEN);
                     } else {

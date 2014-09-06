@@ -63,7 +63,7 @@ public class CargoWindow extends AstralWindow {
     }
 
     private void generate() {
-        backColor = windowGrey;
+        backColor = windowBlue;
         setVisible(false);
         //setup the cargo list
         cargoList.setX(0);

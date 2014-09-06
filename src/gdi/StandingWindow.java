@@ -49,7 +49,7 @@ public class StandingWindow extends AstralWindow {
     }
 
     private void generate() {
-        backColor = windowGrey;
+        backColor = windowBlue;
         //size this window
         setVisible(false);
         //setup the cargo list

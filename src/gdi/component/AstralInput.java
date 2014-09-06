@@ -36,7 +36,7 @@ public class AstralInput extends AstralLabel {
 
     public AstralInput() {
         setFocusColor(Color.PINK);
-        setBackColor(windowGrey);
+        setBackColor(windowBlue);
     }
 
     @Override

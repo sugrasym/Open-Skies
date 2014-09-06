@@ -39,8 +39,8 @@ public class AstralComponent {
     protected boolean visible;
     protected String name;
     //colors
-    protected Color windowGrey = new Color(25, 25, 25);
-    protected Color amber = new Color(255, 126, 0);
+    protected Color windowBlue = new Color(20, 30, 45);
+    protected Color whiteForeground = new Color(250, 250, 250);
     protected Color transparent = new Color(0, 0, 0, 0);
     protected Color focusColor = Color.PINK;
 

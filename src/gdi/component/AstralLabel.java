@@ -34,7 +34,7 @@ public class AstralLabel extends AstralComponent {
 
     protected String text;
     protected Font font = new Font("Monospaced", Font.PLAIN, 12);
-    protected Color fontColor = amber;
+    protected Color fontColor = whiteForeground;
     protected Color backColor = transparent;
     BufferedImage buffer;
 

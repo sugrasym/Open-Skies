@@ -30,7 +30,7 @@ import java.awt.image.BufferedImage;
  */
 public class AstralBar extends AstralComponent {
 
-    protected Color barColor = amber;
+    protected Color barColor = whiteForeground;
     protected double percentage = 100;
     BufferedImage buffer;
 

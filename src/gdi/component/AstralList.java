@@ -37,8 +37,8 @@ public class AstralList extends AstralComponent {
     ArrayList<Object> listContents = new ArrayList<>();
     //appearance
     protected Font font = new Font("Monospaced", Font.PLAIN, 12);
-    protected Color fontColor = amber;
-    protected Color backColor = windowGrey;
+    protected Color fontColor = whiteForeground;
+    protected Color backColor = windowBlue;
     protected Color selectColor = Color.DARK_GRAY;
     BufferedImage buffer;
     //index and scrolling
