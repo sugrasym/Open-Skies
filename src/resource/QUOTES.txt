@@ -107,3 +107,12 @@ source=Martin Luther King Jr.
 body=We face the future fortified with the lessons we have learned from the past./br/It is today that we must create the world of the future.
 source=Eleanor Roosevelt
 [/Quote]
+
+################################################################################
+#Jimi Hendrix
+################################################################################
+
+[Quote]
+body=Knowledge speaks, but wisdom listens.
+source=Jimi Hendrix
+[/Quote]
