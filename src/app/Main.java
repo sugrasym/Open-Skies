@@ -48,6 +48,7 @@ public class Main extends SimpleApplication {
         settings.setWidth(1440);
         settings.setHeight(900);
         settings.setTitle("Outlier: Open Skies");
+        settings.setSettingsDialogImage("splash.png");
         settings.setMinResolution(800, 600);
         app.setSettings(settings);
         //set properties
