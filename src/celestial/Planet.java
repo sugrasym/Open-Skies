@@ -314,4 +314,12 @@ public class Planet extends Celestial {
     public void setAtmosphereScaler(float atmosphereScaler) {
         this.atmosphereScaler = atmosphereScaler;
     }
+    
+    public float getSafetyZone(float caution) {
+        return getAtmosphereRadius() * caution;
+    }
+
+    public float getAtmosphereRadius() {
+        return getRadius() + (this.getRadius() * getAtmosphereScaler());
+    }
 }

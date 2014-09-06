@@ -91,6 +91,8 @@ public class Ship extends Celestial {
         ATTACK_TARGET, //attack current target
         ALL_STOP, //slow down until velocity is 0
         FOLLOW, //follow a target at a range
+        AVOID_PLANET, //avoid hitting a planet
+        AVOID_PLANET_2, //go around the planet
     }
 
     public static final double PATROL_REFUEL_PERCENT = 0.5;
@@ -154,6 +156,7 @@ public class Ship extends Celestial {
     private Ship target;
     //behavior and autopilot
     protected Autopilot autopilot = Autopilot.NONE;
+    protected Autopilot autopilotBackup = Autopilot.NONE;
     protected Behavior behavior = Behavior.NONE;
     //behavior targets
     protected Celestial flyToTarget;
@@ -395,6 +398,50 @@ public class Ship extends Celestial {
             autopilotWaitBlock();
         } else if (autopilot == Autopilot.FOLLOW) {
             autopilotFollow();
+        } else if (autopilot == Autopilot.AVOID_PLANET) {
+            autopilotAvoidPlanet();
+        } else if (autopilot == Autopilot.AVOID_PLANET_2) {
+            autopilotAvoidPlanet2();
+        }
+    }
+    
+    /*
+     * This one keeps us from hitting the planet.
+     */
+    private void autopilotAvoidPlanet() {
+        if(getAutopilot() == Autopilot.AVOID_PLANET) {
+            autopilotAllStop();
+            //we'll be stopped when autopilot is none
+            if(getAutopilot() == Autopilot.NONE) {
+                setAutopilot(Autopilot.AVOID_PLANET_2);
+            }
+        }
+    }
+    
+    /*
+     * This one gets us around the planet
+     */
+    private void autopilotAvoidPlanet2() {
+        if(getAutopilot() == Autopilot.AVOID_PLANET_2) {
+            Planet test = getNearestPlanetInSystem();
+            //rotate the ship away from the planet
+            Vector3f avoidance = test.getLocation().cross(getLocation());
+            if(pointNoseAtVector(getSteeringData(avoidance, 
+                    Vector3f.UNIT_Y), NAV_ANGLE_TOLERANCE)) {
+                //accelerate away
+                throttle = 1;
+            }
+            
+            //check distance
+            float dist = test.distanceTo(this);
+            if(dist > test.getSafetyZone(1.75f)) {
+                //all stop
+                autopilotAllStop();
+                if(getAutopilot() == Autopilot.NONE) {
+                    //restore original behavior
+                    setAutopilot(getAutopilotBackup());
+                }
+            }
         }
     }
 
@@ -1761,6 +1808,13 @@ public class Ship extends Celestial {
                 cmdUndock();
             }
         } else {
+            //run planet avoider
+            if(autopilot != Autopilot.NONE &&
+                    autopilot != Autopilot.ALL_STOP &&
+                    autopilot != Autopilot.AVOID_PLANET && 
+                    autopilot != Autopilot.AVOID_PLANET_2) {
+                updatePlanetAvoidance();
+            }
             //fire weapons if needed
             if (firing) {
                 fireActiveModules();
@@ -1782,6 +1836,21 @@ public class Ship extends Celestial {
             float p = rnd.nextFloat();
             if (p > DEATH_CARGO_DROP_CHANCE) {
                 ejectFromCargoBay(cargoBay.get(a));
+            }
+        }
+    }
+    
+    protected void updatePlanetAvoidance() {
+        if(getAutopilot() != Autopilot.AVOID_PLANET && 
+                getAutopilot() != Autopilot.AVOID_PLANET_2) {
+            //get the nearest planet
+            Planet near = getNearestPlanetInSystem();
+            //check distance to it
+            float dist = near.distanceTo(this);
+            if(dist <= near.getSafetyZone(1.5f)) {
+                //we are too close to this planet
+                setAutopilotBackup(getAutopilot());
+                setAutopilot(Autopilot.AVOID_PLANET);
             }
         }
     }
@@ -2688,6 +2757,14 @@ public class Ship extends Celestial {
     public void setAutopilot(Autopilot autopilot) {
         this.autopilot = autopilot;
     }
+    
+    public Autopilot getAutopilotBackup() {
+        return autopilotBackup;
+    }
+
+    public void setAutopilotBackup(Autopilot autopilotBackup) {
+        this.autopilotBackup = autopilotBackup;
+    }
 
     public Behavior getBehavior() {
         return behavior;
@@ -3336,6 +3413,25 @@ public class Ship extends Celestial {
             } else {
                 return null;
             }
+        }
+        return ret;
+    }
+    
+    public Planet getNearestPlanetInSystem() {
+        Planet ret = null;
+        {
+            ArrayList<Entity> planets = currentSystem.getPlanetList();
+            float close = Float.POSITIVE_INFINITY;
+            for(int a = 0; a < planets.size(); a++) {
+                if(!(planets.get(a) instanceof Jumphole)) {
+                    float dist = distanceTo((Planet)planets.get(a));
+                    if(dist < close) {
+                        ret = (Planet) planets.get(a);
+                        close = dist;
+                    }
+                }
+            }
+            
         }
         return ret;
     }
