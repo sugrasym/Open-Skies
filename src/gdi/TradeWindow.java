@@ -428,7 +428,8 @@ public class TradeWindow extends AstralWindow {
             //it's a weapon! time to provide important information about it
             propertyList.addToList(" ");
             String type = test.getValue("type");
-            String damage = test.getValue("damage");
+            String shieldDamage = test.getValue("shieldDamage");
+            String hullDamage = test.getValue("hullDamage");
             String range = test.getValue("range");
             String speed = test.getValue("speed");
             String refire = test.getValue("refire");
@@ -438,7 +439,8 @@ public class TradeWindow extends AstralWindow {
             String turning = test.getValue("turning");
             //add
             propertyList.addToList("Type:         " + type);
-            propertyList.addToList("Damage:       " + damage);
+            propertyList.addToList("Damage:       " + shieldDamage +" / " 
+                    + hullDamage);
             propertyList.addToList("Range:        " + range);
             propertyList.addToList("Muzzle Vel:   " + speed);
             propertyList.addToList("Cooldown:     " + refire);
