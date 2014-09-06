@@ -406,40 +406,44 @@ public class Ship extends Celestial {
             autopilotAvoidPlanet2();
         }
     }
-    
+
     /*
      * This one keeps us from hitting the planet.
      */
     private void autopilotAvoidPlanet() {
-        if(getAutopilot() == Autopilot.AVOID_PLANET) {
+        if (getAutopilot() == Autopilot.AVOID_PLANET) {
             autopilotAllStop();
             //we'll be stopped when autopilot is none
-            if(getAutopilot() == Autopilot.NONE) {
+            if (getAutopilot() == Autopilot.NONE) {
                 setAutopilot(Autopilot.AVOID_PLANET_2);
             }
         }
     }
-    
+
     /*
      * This one gets us around the planet
      */
     private void autopilotAvoidPlanet2() {
-        if(getAutopilot() == Autopilot.AVOID_PLANET_2) {
+        if (getAutopilot() == Autopilot.AVOID_PLANET_2) {
             Planet test = getNearestPlanetInSystem();
             //rotate the ship away from the planet
             Vector3f avoidance = test.getLocation().cross(getLocation());
-            if(pointNoseAtVector(getSteeringData(avoidance, 
+            if (pointNoseAtVector(getSteeringData(avoidance,
                     Vector3f.UNIT_Y), NAV_ANGLE_TOLERANCE)) {
                 //accelerate away
-                throttle = 1;
+                if (getVelocity().length() < getFlightHold()) {
+                    throttle = 1;
+                } else {
+                    throttle = 0;
+                }
             }
-            
+
             //check distance
             float dist = test.distanceTo(this);
-            if(dist > test.getSafetyZone(PLANET_AVOID_CAUTION_2)) {
+            if (dist > test.getSafetyZone(PLANET_AVOID_CAUTION_2)) {
                 //all stop
                 autopilotAllStop();
-                if(getAutopilot() == Autopilot.NONE) {
+                if (getAutopilot() == Autopilot.NONE) {
                     //restore original behavior
                     setAutopilot(getAutopilotBackup());
                 }
@@ -1433,34 +1437,34 @@ public class Ship extends Celestial {
             oosAutopilotAvoidPlanet2();
         }
     }
-    
+
     /*
      * This one keeps us from hitting the planet.
      */
     private void oosAutopilotAvoidPlanet() {
-        if(getAutopilot() == Autopilot.AVOID_PLANET) {
+        if (getAutopilot() == Autopilot.AVOID_PLANET) {
             oosAutopilotAllStop();
             //we'll be stopped when autopilot is none
-            if(getAutopilot() == Autopilot.NONE) {
+            if (getAutopilot() == Autopilot.NONE) {
                 setAutopilot(Autopilot.AVOID_PLANET_2);
             }
         }
     }
-    
+
     /*
      * This one gets us around the planet
      */
     private void oosAutopilotAvoidPlanet2() {
-        
-        if(getAutopilot() == Autopilot.AVOID_PLANET_2) {
+
+        if (getAutopilot() == Autopilot.AVOID_PLANET_2) {
             Planet test = getNearestPlanetInSystem();
             //rotate the ship away from the planet
             Vector3f avoidance = test.getLocation().cross(getLocation());
             oosMoveToPositionWithHold(avoidance, Float.POSITIVE_INFINITY);
-            
+
             //check distance
             float dist = test.distanceTo(this);
-            if(dist > test.getSafetyZone(PLANET_AVOID_CAUTION_2)) {
+            if (dist > test.getSafetyZone(PLANET_AVOID_CAUTION_2)) {
                 setAutopilot(getAutopilotBackup());
             }
         }
@@ -1847,10 +1851,10 @@ public class Ship extends Celestial {
             }
         } else {
             //run planet avoider
-            if(autopilot != Autopilot.NONE &&
-                    autopilot != Autopilot.ALL_STOP &&
-                    autopilot != Autopilot.AVOID_PLANET && 
-                    autopilot != Autopilot.AVOID_PLANET_2) {
+            if (autopilot != Autopilot.NONE
+                    && autopilot != Autopilot.ALL_STOP
+                    && autopilot != Autopilot.AVOID_PLANET
+                    && autopilot != Autopilot.AVOID_PLANET_2) {
                 updatePlanetAvoidance();
             }
             //fire weapons if needed
@@ -1877,15 +1881,15 @@ public class Ship extends Celestial {
             }
         }
     }
-    
+
     protected void updatePlanetAvoidance() {
-        if(getAutopilot() != Autopilot.AVOID_PLANET && 
-                getAutopilot() != Autopilot.AVOID_PLANET_2) {
+        if (getAutopilot() != Autopilot.AVOID_PLANET
+                && getAutopilot() != Autopilot.AVOID_PLANET_2) {
             //get the nearest planet
             Planet near = getNearestPlanetInSystem();
             //check distance to it
             float dist = near.distanceTo(this);
-            if(dist <= near.getSafetyZone(PLANET_AVOID_CAUTION)) {
+            if (dist <= near.getSafetyZone(PLANET_AVOID_CAUTION)) {
                 //we are too close to this planet
                 setAutopilotBackup(getAutopilot());
                 setAutopilot(Autopilot.AVOID_PLANET);
@@ -2795,7 +2799,7 @@ public class Ship extends Celestial {
     public void setAutopilot(Autopilot autopilot) {
         this.autopilot = autopilot;
     }
-    
+
     public Autopilot getAutopilotBackup() {
         return autopilotBackup;
     }
@@ -3454,22 +3458,22 @@ public class Ship extends Celestial {
         }
         return ret;
     }
-    
+
     public Planet getNearestPlanetInSystem() {
         Planet ret = null;
         {
             ArrayList<Entity> planets = currentSystem.getPlanetList();
             float close = Float.POSITIVE_INFINITY;
-            for(int a = 0; a < planets.size(); a++) {
-                if(!(planets.get(a) instanceof Jumphole)) {
-                    float dist = distanceTo((Planet)planets.get(a));
-                    if(dist < close) {
+            for (int a = 0; a < planets.size(); a++) {
+                if (!(planets.get(a) instanceof Jumphole)) {
+                    float dist = distanceTo((Planet) planets.get(a));
+                    if (dist < close) {
                         ret = (Planet) planets.get(a);
                         close = dist;
                     }
                 }
             }
-            
+
         }
         return ret;
     }
