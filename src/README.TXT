@@ -7,10 +7,12 @@ Additional open source software licenses in CREDITS.TXT
 I strongly advise you read Controls.txt before playing.
 Best played with a traditional 3 axis joystick.
 
-Note that this is Alpha 1 and the game is incomplete.
+Note that this is Alpha 2 and the game is incomplete.
 Many features and assets are missing, and this is
 only the first of many alpha and later beta releases
 before a final version is reached.
+
+You can edit your joystick controls in ~/.outlier/payload.txt !
 
 This game is designed to be easy to mod, try it!
 
