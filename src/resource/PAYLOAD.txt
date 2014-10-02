@@ -3,5 +3,5 @@ name=Controls
 j_pitch_axis=0
 j_yaw_axis=1
 j_roll_axis=2
-j_throttle_axis=3
+j_throttle_axis=6
 [/Mapper]

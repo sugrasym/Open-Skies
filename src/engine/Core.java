@@ -541,11 +541,9 @@ public class Core {
                         getUniverse().getPlayerShip().setPitch(evt.getValue());
                     } else if (evt.getAxis().getAxisId() == ROLL_AXIS) {
                         getUniverse().getPlayerShip().setRoll(-evt.getValue());
-                    } else if (evt.getAxis().getAxisId() == THROTTLE_AXIS) {
-                        //currently unused due to non-traditional throttle
                     } /*
                      * POV / HAT used for thrust
-                     */ else if (evt.getAxis().getAxisId() == 6) {
+                     */ else if (evt.getAxis().getAxisId() == THROTTLE_AXIS) {
                         if (Math.abs(evt.getValue()) > 0) {
                             getUniverse().getPlayerShip().setThrottle(evt.getValue());
                         } else {
