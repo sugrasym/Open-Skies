@@ -20,6 +20,7 @@ package engine;
 
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
+import com.jme3.app.SimpleApplication;
 import com.jme3.asset.AssetManager;
 import com.jme3.audio.AudioNode;
 import com.jme3.audio.Listener;
@@ -265,6 +266,9 @@ public class Core {
     }
 
     private void initKeys() {
+        //remove escape key to exit
+        input.deleteMapping(SimpleApplication.INPUT_MAPPING_EXIT);
+        input.addMapping("KEY_ESCAPE", new KeyTrigger(KeyInput.KEY_ESCAPE));
         //Number keys
         input.addMapping("KEY_0", new KeyTrigger(KeyInput.KEY_0));
         input.addMapping("KEY_1", new KeyTrigger(KeyInput.KEY_1));
@@ -352,7 +356,7 @@ public class Core {
             "KEY_BACKSPACE", "QuickSave", "QuickLoad", "KEY_END", "KEY_HOME",
             "KEY_PGUP", "KEY_PGDN", "KEY_F1", "KEY_F2", "KEY_F3", "KEY_F4",
             "KEY_F5", "KEY_F6", "KEY_F7", "KEY_F8", "KEY_F9", "KEY_F10",
-            "KEY_F11", "KEY_F12", "KEY_MINUS"});
+            "KEY_F11", "KEY_F12", "KEY_MINUS", "KEY_ESCAPE"});
     }
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {

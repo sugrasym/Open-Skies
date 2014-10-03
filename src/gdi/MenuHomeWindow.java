@@ -76,7 +76,7 @@ public class MenuHomeWindow extends AstralWindow {
         logoLabel.setHeight(50);
         logoLabel.setVisible(true);
         //setup version label
-        versionLabel.setText("Alpha 2");
+        versionLabel.setText("Alpha 2+");
         versionLabel.setFont(new Font("Monospaced", Font.PLAIN, 14));
         versionLabel.setX(0);
         versionLabel.setY(height - 17);
@@ -177,6 +177,9 @@ public class MenuHomeWindow extends AstralWindow {
                 gameList.setVisible(false);
                 populateSaveGameList();
                 saveList.setVisible(true);
+            } else if (command.matches("Exit")) {
+                //I don't hate you
+                System.exit(0);
             }
         } else if (gameList.isVisible()) {
             int index = gameList.getIndex();
@@ -221,6 +224,8 @@ public class MenuHomeWindow extends AstralWindow {
             mainList.addToList("");
             mainList.addToList("Save Game");
         }
+        mainList.addToList("");
+        mainList.addToList("Exit");
     }
 
     private void populateSaveGameList() {

@@ -312,6 +312,12 @@ public class HUD {
     }
 
     public boolean handleKeyAction(GameState state, String name, boolean keyPressed) {
+        if(state == GameState.IN_SPACE) {
+            if("KEY_ESCAPE".equals(name)) {
+                hideCentralWindows();
+                return true;
+            }
+        }
         for (int a = 0; a < windows.size(); a++) {
             if (windows.get(a).isFocused() && windows.get(a).isVisible()) {
                 if (!keyPressed) {
