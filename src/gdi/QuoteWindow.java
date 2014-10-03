@@ -37,7 +37,7 @@ import universe.Universe;
 public class QuoteWindow extends AstralWindow {
     
     float living = 0;
-    private static final float MAX_LIFE = 5;
+    private static final float MAX_LIFE = 15;
 
     AstralLabel quoteLabel = new AstralLabel();
     private final Core engine;
