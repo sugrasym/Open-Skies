@@ -72,9 +72,6 @@ public class TradeWindow extends AstralWindow {
 
     private void generate() {
         backColor = windowBlue;
-        //size this window
-        width = 500;
-        height = 400;
         setVisible(false);
         //setup input method
         input.setName("Input");
