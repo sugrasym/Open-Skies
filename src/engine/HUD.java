@@ -297,6 +297,14 @@ public class HUD {
     public void handleMouseMoved(GameState state, String name, Vector3f mouseLoc) {
         //check focus changes
         checkFocusChanges((int) mouseLoc.x, (int) mouseLoc.y);
+        //handle event
+        for (int a = 0; a < windows.size(); a++) {
+            if (windows.get(a).isFocused() && windows.get(a).isVisible()) {
+                Vector3f adjLoc = new Vector3f(mouseLoc.x, height - mouseLoc.y, height);
+                windows.get(a).handleMouseMovedEvent(name, adjLoc);
+                break;
+            }
+        }
     }
     
     public void handleMouseAction(GameState state, String name, boolean mousePressed, Vector3f mouseLoc) {

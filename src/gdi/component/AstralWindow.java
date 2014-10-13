@@ -189,10 +189,7 @@ public class AstralWindow extends AstralComponent {
                 Rectangle mRect = new Rectangle((int) adjLoc.x, (int) adjLoc.y, 1, 1);
                 for (int a = 0; a < components.size(); a++) {
                     if (components.get(a).intersects(mRect)) {
-                        components.get(a).setFocused(true);
                         components.get(a).handleMousePressedEvent(me, adjLoc);
-                    } else {
-                        components.get(a).setFocused(false);
                     }
                 }
             } else {
@@ -200,10 +197,7 @@ public class AstralWindow extends AstralComponent {
                 Rectangle mRect = new Rectangle((int) adjLoc.x, (int) adjLoc.y, 1, 1);
                 for (int a = 0; a < components.size(); a++) {
                     if (components.get(a).intersects(mRect)) {
-                        components.get(a).setFocused(true);
                         components.get(a).handleMousePressedEvent(me, adjLoc);
-                    } else {
-                        components.get(a).setFocused(false);
                     }
                 }
             }
@@ -232,8 +226,32 @@ public class AstralWindow extends AstralComponent {
     }
 
     @Override
-    public void handleMouseMovedEvent(MouseEvent me) {
-        /**/
+    public void handleMouseMovedEvent(String me, Vector3f mouseLoc) {
+        if (visible) {
+            if (flat) {
+                Vector3f adjLoc = new Vector3f(mouseLoc.x - x, mouseLoc.y - y, 0);
+                Rectangle mRect = new Rectangle((int) adjLoc.x, (int) adjLoc.y, 1, 1);
+                for (int a = 0; a < components.size(); a++) {
+                    if (components.get(a).intersects(mRect)) {
+                        components.get(a).setFocused(true);
+                        components.get(a).handleMouseMovedEvent(me, adjLoc);
+                    } else {
+                        components.get(a).setFocused(false);
+                    }
+                }
+            } else {
+                Vector3f adjLoc = new Vector3f(mouseLoc.x - x, (int) (mouseLoc.y - (mouseLoc.z - getHeight()) + y), 0);
+                Rectangle mRect = new Rectangle((int) adjLoc.x, (int) adjLoc.y, 1, 1);
+                for (int a = 0; a < components.size(); a++) {
+                    if (components.get(a).intersects(mRect)) {
+                        components.get(a).setFocused(true);
+                        components.get(a).handleMouseMovedEvent(me, adjLoc);
+                    } else {
+                        components.get(a).setFocused(false);
+                    }
+                }
+            }
+        }
     }
 
     public Color getBackColor() {

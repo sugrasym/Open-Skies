@@ -76,7 +76,7 @@ public class AstralComponent {
     public void handleKeyReleasedEvent(String ke) {
     }
 
-    public void handleMouseMovedEvent(MouseEvent me) {
+    public void handleMouseMovedEvent(String me, Vector3f mouseLoc) {
     }
 
     public void handleMousePressedEvent(String me, Vector3f mouseLoc) {
