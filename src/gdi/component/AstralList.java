@@ -106,6 +106,10 @@ public class AstralList extends AstralComponent {
 
     @Override
     public void periodicUpdate() {
+        if(!isFocused() || !isVisible()) {
+            scrollDirection = 0;
+            dragging = false;
+        }
         if (scrollDirection == 0) {
         } else if (scrollDirection == -1) {
             scrollUp();
