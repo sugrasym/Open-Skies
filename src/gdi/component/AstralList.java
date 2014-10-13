@@ -1,17 +1,17 @@
 /*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*
  * A list is a, well, list of objects. You can select from the list, scroll
@@ -56,7 +56,7 @@ public class AstralList extends AstralComponent {
         super(width, height);
         this.parent = parent;
     }
-    
+
     public AstralList(AstralWindow parent) {
         super();
         this.parent = parent;
@@ -81,7 +81,7 @@ public class AstralList extends AstralComponent {
                 s.setColor(fontColor);
                 for (int a = scrollPosition; a < listContents.size(); a++) {
                     s.drawString(listContents.get(a).toString(), 1, ((a + 1) - scrollPosition) * getFont().getSize());
-                } 
+                }
                 //draw indicator that there is more or less to the list
                 int displayableLines = getHeight() / getFont().getSize();
                 //draw scroll bar
@@ -207,7 +207,7 @@ public class AstralList extends AstralComponent {
     public void handleMouseReleasedEvent(String me, Vector3f mouseLoc) {
         if (dragging) {
             //scroll based on how far the mouse moved
-            int dy = ((int)(mouseLoc.getY() - y) - oldMy);
+            int dy = ((int) (mouseLoc.getY() - y) - oldMy);
             double change = dy / (double) getHeight();
             scrollPosition += (int) (listContents.size() * change);
             //check bounds
@@ -218,7 +218,7 @@ public class AstralList extends AstralComponent {
                 scrollPosition = listContents.size() - 1;
             }
             dragging = false;
-        } else {        
+        } else {
             //determine the relative mouse location
             int rx = oldMx = (int) mouseLoc.x - x;
             int ry = oldMy = (int) mouseLoc.y - y;

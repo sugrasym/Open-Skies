@@ -228,26 +228,37 @@ public class AstralWindow extends AstralComponent {
     @Override
     public void handleMouseMovedEvent(String me, Vector3f mouseLoc) {
         if (visible) {
+            boolean foundOne = false;
             if (flat) {
                 Vector3f adjLoc = new Vector3f(mouseLoc.x - x, mouseLoc.y - y, 0);
                 Rectangle mRect = new Rectangle((int) adjLoc.x, (int) adjLoc.y, 1, 1);
-                for (int a = 0; a < components.size(); a++) {
-                    if (components.get(a).intersects(mRect)) {
-                        components.get(a).setFocused(true);
-                        components.get(a).handleMouseMovedEvent(me, adjLoc);
+                for (int a = components.size() - 1; a >= 0; a--) {
+                    if (components.get(a).isVisible()) {
+                        if (components.get(a).intersects(mRect) && !foundOne) {
+                            components.get(a).setFocused(true);
+                            foundOne = true;
+                            components.get(a).handleMouseMovedEvent(me, adjLoc);
+                        } else {
+                            components.get(a).setFocused(false);
+                        }
                     } else {
-                        components.get(a).setFocused(false);
+                        components.get(a).setVisible(false);
                     }
                 }
             } else {
                 Vector3f adjLoc = new Vector3f(mouseLoc.x - x, (int) (mouseLoc.y - (mouseLoc.z - getHeight()) + y), 0);
                 Rectangle mRect = new Rectangle((int) adjLoc.x, (int) adjLoc.y, 1, 1);
-                for (int a = 0; a < components.size(); a++) {
-                    if (components.get(a).intersects(mRect)) {
-                        components.get(a).setFocused(true);
-                        components.get(a).handleMouseMovedEvent(me, adjLoc);
+                for (int a = components.size() - 1; a >= 0; a--) {
+                    if (components.get(a).isVisible()) {
+                        if (components.get(a).intersects(mRect) && !foundOne) {
+                            components.get(a).setFocused(true);
+                            foundOne = true;
+                            components.get(a).handleMouseMovedEvent(me, adjLoc);
+                        } else {
+                            components.get(a).setFocused(false);
+                        }
                     } else {
-                        components.get(a).setFocused(false);
+                        components.get(a).setVisible(false);
                     }
                 }
             }
