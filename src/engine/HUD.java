@@ -294,9 +294,12 @@ public class HUD {
         iffManager.collect();
     }
 
-    public void handleMouseAction(GameState state, String name, boolean mousePressed, Vector3f mouseLoc) {
+    public void handleMouseMoved(GameState state, String name, Vector3f mouseLoc) {
         //check focus changes
         checkFocusChanges((int) mouseLoc.x, (int) mouseLoc.y);
+    }
+    
+    public void handleMouseAction(GameState state, String name, boolean mousePressed, Vector3f mouseLoc) {
         //handle event
         for (int a = 0; a < windows.size(); a++) {
             if (windows.get(a).isFocused() && windows.get(a).isVisible()) {
@@ -355,8 +358,8 @@ public class HUD {
         }
         if (foundOne) {
             /*
-             * Since sorting can be expensive, I only resort windows when the focus is known
-             * to have changed.
+             * Sorting is expensive, so this should only be called when the
+             * mouse is known to have been moved.
              */
             AstralWindow arr[] = new AstralWindow[windows.size()];
             for (int a = 0; a < windows.size(); a++) {

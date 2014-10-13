@@ -27,9 +27,12 @@ import com.jme3.audio.Listener;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
+import com.jme3.input.MouseInput;
 import com.jme3.input.RawInputListener;
 import com.jme3.input.controls.ActionListener;
+import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.input.event.JoyAxisEvent;
 import com.jme3.input.event.JoyButtonEvent;
@@ -255,10 +258,21 @@ public class Core {
         input.addMapping("MOUSE_LClick", new MouseButtonTrigger(0));
         input.addMapping("MOUSE_RClick", new MouseButtonTrigger(1));
         input.addMapping("MOUSE_CClick", new MouseButtonTrigger(2));
+        //mouse axis
+        input.addMapping("Mouse_MOVELEFT", new MouseAxisTrigger(MouseInput.AXIS_X, true));
+        input.addMapping("MOUSE_MOVERIGHT", new MouseAxisTrigger(MouseInput.AXIS_X, false));
+        input.addMapping("MOUSE_MOVEUP", new MouseAxisTrigger(MouseInput.AXIS_Y, false));
+        input.addMapping("MOUSE_MOVEDOWN", new MouseAxisTrigger(MouseInput.AXIS_Y, true));
         //store
-        input.addListener(actionListener, new String[]{"MOUSE_LClick",
+        input.addListener(actionListener, new String[]{
+            "MOUSE_LClick",
             "MOUSE_RClick",
             "MOUSE_CClick"});
+        input.addListener(analogListener, new String[]{
+            "MOUSE_MOVELEFT",
+            "MOUSE_MOVERIGHT",
+            "MOUSE_MOVEUP",
+            "MOUSE_MOVEDOWN"});
     }
 
     private void initJoyStick() {
@@ -358,6 +372,21 @@ public class Core {
             "KEY_F5", "KEY_F6", "KEY_F7", "KEY_F8", "KEY_F9", "KEY_F10",
             "KEY_F11", "KEY_F12", "KEY_MINUS", "KEY_ESCAPE"});
     }
+    
+    private AnalogListener analogListener = new AnalogListener() {
+
+        @Override
+        public void onAnalog(String string, float f, float f1) {
+            String[] split = string.split("_");
+            Vector2f origin = input.getCursorPosition();
+            if(split[0].equals("MOUSE")) {
+                hud.handleMouseMoved(state, string, 
+                        new Vector3f(origin.x, origin.y, 0));
+            }
+        }
+        
+    };
+    
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {
             Vector2f origin = input.getCursorPosition();
