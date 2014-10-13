@@ -207,7 +207,7 @@ public class AstralList extends AstralComponent {
     public void handleMouseReleasedEvent(String me, Vector3f mouseLoc) {
         if (dragging) {
             //scroll based on how far the mouse moved
-            int dy = ((int)mouseLoc.getY() - oldMy);
+            int dy = ((int)(mouseLoc.getY() - y) - oldMy);
             double change = dy / (double) getHeight();
             scrollPosition += (int) (listContents.size() * change);
             //check bounds
@@ -217,16 +217,16 @@ public class AstralList extends AstralComponent {
             if (scrollPosition > listContents.size()) {
                 scrollPosition = listContents.size() - 1;
             }
+            dragging = false;
+        } else {        
+            //determine the relative mouse location
+            int rx = oldMx = (int) mouseLoc.x - x;
+            int ry = oldMy = (int) mouseLoc.y - y;
+            //create the local mouse rect
+            Rectangle mouseRect = new Rectangle(rx, ry, 1, 1);
+            //check for list intersections to update selection
+            checkForListIntersection(mouseRect);
         }
-        dragging = false;
-        //check for a click
-        //determine the relative mouse location
-        int rx = oldMx = (int) mouseLoc.x - x;
-        int ry = oldMy = (int) mouseLoc.y - y;
-        //create the local mouse rect
-        Rectangle mouseRect = new Rectangle(rx, ry, 1, 1);
-        //check for list intersections to update selection
-        checkForListIntersection(mouseRect);
     }
 
     private void checkForListIntersection(Rectangle mouseRect) {
