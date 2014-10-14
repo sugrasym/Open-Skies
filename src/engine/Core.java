@@ -112,6 +112,8 @@ public class Core {
     private String KEY_REVERSE_THRUST;
     private String KEY_PITCH_UP;
     private String KEY_PITCH_DOWN;
+    private String KEY_ROLL_LEFT;
+    private String KEY_ROLL_RIGHT;
     private String KEY_EQUIPMENT_WINDOW;
     private String KEY_OVERVIEW_WINDOW;
     private String KEY_CARGO_WINDOW;
@@ -163,6 +165,9 @@ public class Core {
 
                     String keyPitchUpString = map.getValue("k_pitch_up");
                     String keyPitchDownString = map.getValue("k_pitch_down");
+                    
+                    String keyRollLeftString = map.getValue("k_roll_left");
+                    String keyRollRightString = map.getValue("k_roll_right");
 
                     String keyEquipmentWindowString = map.getValue("k_equipment_window");
                     String keyOverviewWindowString = map.getValue("k_overview_window");
@@ -185,6 +190,9 @@ public class Core {
 
                     KEY_PITCH_UP = keyPitchUpString.trim();
                     KEY_PITCH_DOWN = keyPitchDownString.trim();
+                    
+                    KEY_ROLL_LEFT = keyRollLeftString.trim();
+                    KEY_ROLL_RIGHT = keyRollRightString.trim();
 
                     KEY_EQUIPMENT_WINDOW = keyEquipmentWindowString.trim();
                     KEY_OVERVIEW_WINDOW = keyOverviewWindowString.trim();
@@ -213,6 +221,8 @@ public class Core {
             KEY_YAW_RIGHT = "KEY_D";
             KEY_PITCH_UP = "KEY_UP";
             KEY_PITCH_DOWN = "KEY_DOWN";
+            KEY_ROLL_LEFT = "KEY_Q";
+            KEY_ROLL_RIGHT = "KEY_E";
             KEY_EQUIPMENT_WINDOW = "KEY_1";
             KEY_OVERVIEW_WINDOW = "KEY_2";
             KEY_CARGO_WINDOW = "KEY_3";
@@ -523,14 +533,14 @@ public class Core {
                     getUniverse().getPlayerShip().cmdAllStop();
                 }
                 //handle nav actions
-                if (name.equals("KEY_Q")) {
+                if (name.equals(KEY_ROLL_LEFT)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().setRoll(1);
                     } else {
                         getUniverse().getPlayerShip().setRoll(0);
                     }
                 }
-                if (name.equals("KEY_E")) {
+                if (name.equals(KEY_ROLL_RIGHT)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().setRoll(-1);
                     } else {
