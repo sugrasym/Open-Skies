@@ -4,4 +4,8 @@ j_pitch_axis=0
 j_yaw_axis=1
 j_roll_axis=2
 j_throttle_axis=6
+k_forward_thrust=KEY_W
+k_yaw_left=KEY_A
+k_reverse_thrust=KEY_S
+k_yaw_right=KEY_D
 [/Mapper]

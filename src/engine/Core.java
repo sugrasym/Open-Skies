@@ -68,6 +68,7 @@ import universe.Universe;
 public class Core {
 
     public enum GameState {
+
         QUOTE,
         MAIN_MENU,
         IN_SPACE,
@@ -105,6 +106,10 @@ public class Core {
     private int YAW_AXIS;
     private int ROLL_AXIS;
     private int THROTTLE_AXIS;
+    private String KEY_YAW_LEFT;
+    private String KEY_YAW_RIGHT;
+    private String KEY_FORWARD_THRUST;
+    private String KEY_REVERSE_THRUST;
 
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState,
             AssetManager assets, PlanetAppState planetAppState,
@@ -122,7 +127,7 @@ public class Core {
         //initialize
         init();
     }
-    
+
     private void loadControls() {
         /*
          * This is going to one day allow total remapping of controls, but
@@ -132,35 +137,49 @@ public class Core {
         try {
             Parser p = new Parser(AstralIO.getPayloadFile(), false);
             ArrayList<Term> maps = p.getTermsOfType("Mapper");
-            for(int a = 0; a < maps.size(); a++) {
+            for (int a = 0; a < maps.size(); a++) {
                 Term map = maps.get(a);
-                if(map.getValue("name").equals("Controls")) {
-                    
-                    //get raw data
+                if (map.getValue("name").equals("Controls")) {
+
+                    //get joystick axis
                     String pitchString = map.getValue("j_pitch_axis");
                     String yawString = map.getValue("j_yaw_axis");
                     String rollString = map.getValue("j_roll_axis");
                     String throttleString = map.getValue("j_throttle_axis");
-                    
+
+                    String keyForwardThrustString = map.getValue("k_forward_thrust");
+                    String keyReverseThrustString = map.getValue("k_reverse_thrust");
+                    String keyYawLeftString = map.getValue("k_yaw_left");
+                    String keyYawRightString = map.getValue("k_yaw_right");
+
                     //parse into mappings
                     PITCH_AXIS = Integer.parseInt(pitchString);
                     YAW_AXIS = Integer.parseInt(yawString);
                     ROLL_AXIS = Integer.parseInt(rollString);
                     THROTTLE_AXIS = Integer.parseInt(throttleString);
-                    
-                    System.out.println("Sucessfully applied custom mappings from "+AstralIO.getPayloadFile());
-                    
+
+                    KEY_FORWARD_THRUST = keyForwardThrustString.trim();
+                    KEY_REVERSE_THRUST = keyReverseThrustString.trim();
+                    KEY_YAW_LEFT = keyYawLeftString.trim();
+                    KEY_YAW_RIGHT = keyYawRightString.trim();
+
+                    System.out.println("Sucessfully applied custom mappings from " + AstralIO.getPayloadFile());
+
                     break;
                 }
             }
-        } catch(Exception e) {
-            System.out.println("Error: Unable to parse payload file "+AstralIO.getPayloadFile());
+        } catch (Exception e) {
+            System.out.println("Error: Unable to parse payload file " + AstralIO.getPayloadFile());
             System.out.println("Setting controls to defaults as fallback!");
             //default mappings
             PITCH_AXIS = 0;
             YAW_AXIS = 1;
             ROLL_AXIS = 2;
             THROTTLE_AXIS = 3;
+            KEY_FORWARD_THRUST = "KEY_W";
+            KEY_REVERSE_THRUST = "KEY_S";
+            KEY_YAW_LEFT = "KEY_A";
+            KEY_YAW_RIGHT = "KEY_D";
             e.printStackTrace();
         }
     }
@@ -372,21 +391,21 @@ public class Core {
             "KEY_F5", "KEY_F6", "KEY_F7", "KEY_F8", "KEY_F9", "KEY_F10",
             "KEY_F11", "KEY_F12", "KEY_MINUS", "KEY_ESCAPE"});
     }
-    
+
     private AnalogListener analogListener = new AnalogListener() {
 
         @Override
         public void onAnalog(String string, float f, float f1) {
             String[] split = string.split("_");
             Vector2f origin = input.getCursorPosition();
-            if(split[0].equals("MOUSE")) {
-                hud.handleMouseMoved(state, string, 
+            if (split[0].equals("MOUSE")) {
+                hud.handleMouseMoved(state, string,
                         new Vector3f(origin.x, origin.y, 0));
             }
         }
-        
+
     };
-    
+
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {
             Vector2f origin = input.getCursorPosition();
@@ -478,28 +497,28 @@ public class Core {
                         getUniverse().getPlayerShip().setRoll(0);
                     }
                 }
-                if (name.equals("KEY_W")) {
+                if (name.equals(KEY_FORWARD_THRUST)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().setThrottle(1);
                     } else {
                         getUniverse().getPlayerShip().setThrottle(0);
                     }
                 }
-                if (name.equals("KEY_S")) {
+                if (name.equals(KEY_REVERSE_THRUST)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().setThrottle(-1);
                     } else {
                         getUniverse().getPlayerShip().setThrottle(0);
                     }
                 }
-                if (name.equals("KEY_A")) {
+                if (name.equals(KEY_YAW_LEFT)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().setYaw(1);
                     } else {
                         getUniverse().getPlayerShip().setYaw(0);
                     }
                 }
-                if (name.equals("KEY_D")) {
+                if (name.equals(KEY_YAW_RIGHT)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().setYaw(-1);
                     } else {
@@ -674,7 +693,7 @@ public class Core {
         //store tpf
         this.tpf = tpf;
     }
-    
+
     private void doQuoteUpdate(float tpf) {
         /*
          * This state displays a quote from a file when the game first
