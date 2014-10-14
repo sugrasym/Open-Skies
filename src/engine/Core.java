@@ -121,6 +121,9 @@ public class Core {
     private String KEY_STARMAP_WINDOW;
     private String KEY_TRADE_WINDOW;
     private String KEY_STANDING_WINDOW;
+    private String KEY_TGT_NEAREST_ENEMY;
+    private String KEY_TGT_NEAREST_FRIENDLY;
+    private String KEY_TGT_NEAREST_NEUTRAL;
 
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState,
             AssetManager assets, PlanetAppState planetAppState,
@@ -176,6 +179,10 @@ public class Core {
                     String keyStarmapWindowString = map.getValue("k_starmap_window");
                     String keyTradeWindowString = map.getValue("k_trade_window");
                     String keyStandingWindowString = map.getValue("k_standing_window");
+                    
+                    String keyNearestEnemyString = map.getValue("k_tgt_nearest_enemy");
+                    String keyNearestFriendlyString = map.getValue("k_tgt_nearest_friendly");
+                    String keyNearestNeutralString = map.getValue("k_tgt_nearest_neutral");
 
                     //parse into mappings
                     PITCH_AXIS = Integer.parseInt(pitchString);
@@ -201,6 +208,10 @@ public class Core {
                     KEY_STARMAP_WINDOW = keyStarmapWindowString.trim();
                     KEY_TRADE_WINDOW = keyTradeWindowString.trim();
                     KEY_STANDING_WINDOW = keyStandingWindowString.trim();
+                    
+                    KEY_TGT_NEAREST_ENEMY = keyNearestEnemyString.trim();
+                    KEY_TGT_NEAREST_FRIENDLY = keyNearestFriendlyString.trim();
+                    KEY_TGT_NEAREST_NEUTRAL = keyNearestNeutralString.trim();
 
                     System.out.println("Sucessfully applied custom mappings from " + AstralIO.getPayloadFile());
 
@@ -230,6 +241,9 @@ public class Core {
             KEY_STARMAP_WINDOW = "KEY_5";
             KEY_TRADE_WINDOW = "KEY_6";
             KEY_STANDING_WINDOW = "KEY_7";
+            KEY_TGT_NEAREST_ENEMY = "KEY_R";
+            KEY_TGT_NEAREST_FRIENDLY = "KEY_T";
+            KEY_TGT_NEAREST_NEUTRAL = "KEY_Y";
             e.printStackTrace();
         }
     }
@@ -599,17 +613,17 @@ public class Core {
                         getUniverse().getPlayerShip().toggleCannons();
                     }
                 }
-                if (name.equals("KEY_R")) {
+                if (name.equals(KEY_TGT_NEAREST_ENEMY)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().targetNearestHostileShip();
                     }
                 }
-                if (name.equals("KEY_T")) {
+                if (name.equals(KEY_TGT_NEAREST_FRIENDLY)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().targetNearestFriendlyShip();
                     }
                 }
-                if (name.equals("KEY_Y")) {
+                if (name.equals(KEY_TGT_NEAREST_NEUTRAL)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().targetNearestNeutralShip();
                     }
