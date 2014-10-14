@@ -22,4 +22,6 @@ k_standing_window=KEY_7
 k_tgt_nearest_enemy=KEY_R
 k_tgt_nearest_friendly=KEY_T
 k_tgt_nearest_neutral=KEY_Y
+k_fire=KEY_SPACE
+k_stop=KEY_HOME
 [/Mapper]

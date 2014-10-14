@@ -124,6 +124,8 @@ public class Core {
     private String KEY_TGT_NEAREST_ENEMY;
     private String KEY_TGT_NEAREST_FRIENDLY;
     private String KEY_TGT_NEAREST_NEUTRAL;
+    private String KEY_FIRE;
+    private String KEY_STOP;
 
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState,
             AssetManager assets, PlanetAppState planetAppState,
@@ -183,6 +185,9 @@ public class Core {
                     String keyNearestEnemyString = map.getValue("k_tgt_nearest_enemy");
                     String keyNearestFriendlyString = map.getValue("k_tgt_nearest_friendly");
                     String keyNearestNeutralString = map.getValue("k_tgt_nearest_neutral");
+                    
+                    String keyFireString = map.getValue("k_fire");
+                    String keyStopString = map.getValue("k_stop");
 
                     //parse into mappings
                     PITCH_AXIS = Integer.parseInt(pitchString);
@@ -212,6 +217,9 @@ public class Core {
                     KEY_TGT_NEAREST_ENEMY = keyNearestEnemyString.trim();
                     KEY_TGT_NEAREST_FRIENDLY = keyNearestFriendlyString.trim();
                     KEY_TGT_NEAREST_NEUTRAL = keyNearestNeutralString.trim();
+                    
+                    KEY_FIRE = keyFireString.trim();
+                    KEY_STOP = keyStopString.trim();
 
                     System.out.println("Sucessfully applied custom mappings from " + AstralIO.getPayloadFile());
 
@@ -244,6 +252,8 @@ public class Core {
             KEY_TGT_NEAREST_ENEMY = "KEY_R";
             KEY_TGT_NEAREST_FRIENDLY = "KEY_T";
             KEY_TGT_NEAREST_NEUTRAL = "KEY_Y";
+            KEY_FIRE = "KEY_SPACE";
+            KEY_STOP = "KEY_HOME";
             e.printStackTrace();
         }
     }
@@ -539,11 +549,11 @@ public class Core {
                     }
                 }
                 //fire
-                if (name.equals("KEY_SPACE")) {
+                if (name.equals(KEY_FIRE)) {
                     getUniverse().getPlayerShip().setFiring(keyPressed);
                 }
                 //all stop
-                if (name.equals("KEY_HOME")) {
+                if (name.equals(KEY_STOP)) {
                     getUniverse().getPlayerShip().cmdAllStop();
                 }
                 //handle nav actions
