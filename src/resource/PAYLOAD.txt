@@ -24,4 +24,6 @@ k_tgt_nearest_friendly=KEY_T
 k_tgt_nearest_neutral=KEY_Y
 k_fire=KEY_SPACE
 k_stop=KEY_HOME
+k_toggle_missiles=KEY_J
+k_toggle_cannons=KEY_K
 [/Mapper]

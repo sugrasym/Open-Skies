@@ -126,6 +126,8 @@ public class Core {
     private String KEY_TGT_NEAREST_NEUTRAL;
     private String KEY_FIRE;
     private String KEY_STOP;
+    private String KEY_TOGGLE_MISSILES;
+    private String KEY_TOGGLE_CANNONS;
 
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState,
             AssetManager assets, PlanetAppState planetAppState,
@@ -188,6 +190,9 @@ public class Core {
                     
                     String keyFireString = map.getValue("k_fire");
                     String keyStopString = map.getValue("k_stop");
+                    
+                    String keyToggleMissilesString = map.getValue("k_toggle_missiles");
+                    String keyToggleCannonsString = map.getValue("k_toggle_cannons");
 
                     //parse into mappings
                     PITCH_AXIS = Integer.parseInt(pitchString);
@@ -220,6 +225,9 @@ public class Core {
                     
                     KEY_FIRE = keyFireString.trim();
                     KEY_STOP = keyStopString.trim();
+                    
+                    KEY_TOGGLE_MISSILES = keyToggleMissilesString.trim();
+                    KEY_TOGGLE_CANNONS = keyToggleCannonsString.trim();
 
                     System.out.println("Sucessfully applied custom mappings from " + AstralIO.getPayloadFile());
 
@@ -254,6 +262,8 @@ public class Core {
             KEY_TGT_NEAREST_NEUTRAL = "KEY_Y";
             KEY_FIRE = "KEY_SPACE";
             KEY_STOP = "KEY_HOME";
+            KEY_TOGGLE_MISSILES = "KEY_J";
+            KEY_TOGGLE_CANNONS = "KEY_K";
             e.printStackTrace();
         }
     }
@@ -613,12 +623,12 @@ public class Core {
                         getUniverse().getPlayerShip().setPitch(0);
                     }
                 }
-                if (name.equals("KEY_J")) {
+                if (name.equals(KEY_TOGGLE_MISSILES)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().toggleMissiles();
                     }
                 }
-                if (name.equals("KEY_K")) {
+                if (name.equals(KEY_TOGGLE_CANNONS)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().toggleCannons();
                     }
