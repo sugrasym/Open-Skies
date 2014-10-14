@@ -150,8 +150,7 @@ public class Core {
 
     private void loadControls() {
         /*
-         * This is going to one day allow total remapping of controls, but
-         * for now it exists to make the joystick axes customizable.
+         * Allows controls to be remapped by editing a text file.
          */
         //try to parse out the mappings
         try {
