@@ -102,10 +102,10 @@ public class Core {
     boolean isAmbient = true;
     private AudioNode music;
     //control mapping
-    private int PITCH_AXIS;
-    private int YAW_AXIS;
-    private int ROLL_AXIS;
-    private int THROTTLE_AXIS;
+    private int JOYSTICK_PITCH_AXIS;
+    private int JOYSTICK_YAW_AXIS;
+    private int JOYSTICK_ROLL_AXIS;
+    private int JOYSTICK_THROTTLE_AXIS;
     private String KEY_YAW_LEFT;
     private String KEY_YAW_RIGHT;
     private String KEY_FORWARD_THRUST;
@@ -128,6 +128,8 @@ public class Core {
     private String KEY_STOP;
     private String KEY_TOGGLE_MISSILES;
     private String KEY_TOGGLE_CANNONS;
+    private int JOYSTICK_FIRE_BUTTON;
+    private int JOYSTICK_SEC_BUTTON;
 
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState,
             AssetManager assets, PlanetAppState planetAppState,
@@ -193,12 +195,15 @@ public class Core {
                     
                     String keyToggleMissilesString = map.getValue("k_toggle_missiles");
                     String keyToggleCannonsString = map.getValue("k_toggle_cannons");
+                    
+                    String joyFireButton = map.getValue("j_fire");
+                    String joySecButton = map.getValue("j_sec");
 
                     //parse into mappings
-                    PITCH_AXIS = Integer.parseInt(pitchString);
-                    YAW_AXIS = Integer.parseInt(yawString);
-                    ROLL_AXIS = Integer.parseInt(rollString);
-                    THROTTLE_AXIS = Integer.parseInt(throttleString);
+                    JOYSTICK_PITCH_AXIS = Integer.parseInt(pitchString);
+                    JOYSTICK_YAW_AXIS = Integer.parseInt(yawString);
+                    JOYSTICK_ROLL_AXIS = Integer.parseInt(rollString);
+                    JOYSTICK_THROTTLE_AXIS = Integer.parseInt(throttleString);
 
                     KEY_FORWARD_THRUST = keyForwardThrustString.trim();
                     KEY_REVERSE_THRUST = keyReverseThrustString.trim();
@@ -228,6 +233,9 @@ public class Core {
                     
                     KEY_TOGGLE_MISSILES = keyToggleMissilesString.trim();
                     KEY_TOGGLE_CANNONS = keyToggleCannonsString.trim();
+                    
+                    JOYSTICK_FIRE_BUTTON = Integer.parseInt(joyFireButton.trim());
+                    JOYSTICK_SEC_BUTTON = Integer.parseInt(joySecButton.trim());
 
                     System.out.println("Sucessfully applied custom mappings from " + AstralIO.getPayloadFile());
 
@@ -238,10 +246,10 @@ public class Core {
             System.out.println("Error: Unable to parse payload file " + AstralIO.getPayloadFile());
             System.out.println("Setting controls to defaults as fallback!");
             //default mappings
-            PITCH_AXIS = 0;
-            YAW_AXIS = 1;
-            ROLL_AXIS = 2;
-            THROTTLE_AXIS = 3;
+            JOYSTICK_PITCH_AXIS = 0;
+            JOYSTICK_YAW_AXIS = 1;
+            JOYSTICK_ROLL_AXIS = 2;
+            JOYSTICK_THROTTLE_AXIS = 3;
             KEY_FORWARD_THRUST = "KEY_W";
             KEY_REVERSE_THRUST = "KEY_S";
             KEY_YAW_LEFT = "KEY_A";
@@ -264,6 +272,8 @@ public class Core {
             KEY_STOP = "KEY_HOME";
             KEY_TOGGLE_MISSILES = "KEY_J";
             KEY_TOGGLE_CANNONS = "KEY_K";
+            JOYSTICK_FIRE_BUTTON = 0;
+            JOYSTICK_SEC_BUTTON = 1;
             e.printStackTrace();
         }
     }
@@ -671,15 +681,15 @@ public class Core {
         public void onJoyAxisEvent(JoyAxisEvent evt) {
             if (getState() == GameState.IN_SPACE) {
                 if (!universe.getPlayerShip().isDocked()) {
-                    if (evt.getAxis().getAxisId() == PITCH_AXIS) {
+                    if (evt.getAxis().getAxisId() == JOYSTICK_PITCH_AXIS) {
                         getUniverse().getPlayerShip().setYaw(-evt.getValue());
-                    } else if (evt.getAxis().getAxisId() == YAW_AXIS) {
+                    } else if (evt.getAxis().getAxisId() == JOYSTICK_YAW_AXIS) {
                         getUniverse().getPlayerShip().setPitch(evt.getValue());
-                    } else if (evt.getAxis().getAxisId() == ROLL_AXIS) {
+                    } else if (evt.getAxis().getAxisId() == JOYSTICK_ROLL_AXIS) {
                         getUniverse().getPlayerShip().setRoll(-evt.getValue());
                     } /*
                      * POV / HAT used for thrust
-                     */ else if (evt.getAxis().getAxisId() == THROTTLE_AXIS) {
+                     */ else if (evt.getAxis().getAxisId() == JOYSTICK_THROTTLE_AXIS) {
                         if (Math.abs(evt.getValue()) > 0) {
                             getUniverse().getPlayerShip().setThrottle(evt.getValue());
                         } else {
@@ -693,9 +703,9 @@ public class Core {
         public void onJoyButtonEvent(JoyButtonEvent evt) {
             if (getState() == GameState.IN_SPACE) {
                 if (!universe.getPlayerShip().isDocked()) {
-                    if (evt.getButton().getButtonId() == 0) {
+                    if (evt.getButton().getButtonId() == JOYSTICK_FIRE_BUTTON) {
                         getUniverse().getPlayerShip().setFiring(evt.isPressed());
-                    } else if (evt.getButton().getButtonId() == 1) {
+                    } else if (evt.getButton().getButtonId() == JOYSTICK_SEC_BUTTON) {
                         getUniverse().getPlayerShip().toggleMissiles();
                     }
                 }

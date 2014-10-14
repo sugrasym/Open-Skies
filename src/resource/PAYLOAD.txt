@@ -26,4 +26,6 @@ k_fire=KEY_SPACE
 k_stop=KEY_HOME
 k_toggle_missiles=KEY_J
 k_toggle_cannons=KEY_K
+j_fire=0
+j_sec=1
 [/Mapper]
