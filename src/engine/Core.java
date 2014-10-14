@@ -112,6 +112,13 @@ public class Core {
     private String KEY_REVERSE_THRUST;
     private String KEY_PITCH_UP;
     private String KEY_PITCH_DOWN;
+    private String KEY_EQUIPMENT_WINDOW;
+    private String KEY_OVERVIEW_WINDOW;
+    private String KEY_CARGO_WINDOW;
+    private String KEY_PROPERTY_WINDOW;
+    private String KEY_STARMAP_WINDOW;
+    private String KEY_TRADE_WINDOW;
+    private String KEY_STANDING_WINDOW;
 
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState,
             AssetManager assets, PlanetAppState planetAppState,
@@ -153,9 +160,17 @@ public class Core {
                     String keyReverseThrustString = map.getValue("k_reverse_thrust");
                     String keyYawLeftString = map.getValue("k_yaw_left");
                     String keyYawRightString = map.getValue("k_yaw_right");
-                    
+
                     String keyPitchUpString = map.getValue("k_pitch_up");
                     String keyPitchDownString = map.getValue("k_pitch_down");
+
+                    String keyEquipmentWindowString = map.getValue("k_equipment_window");
+                    String keyOverviewWindowString = map.getValue("k_overview_window");
+                    String keyCargoWindowString = map.getValue("k_cargo_window");
+                    String keyPropertyWindowString = map.getValue("k_property_window");
+                    String keyStarmapWindowString = map.getValue("k_starmap_window");
+                    String keyTradeWindowString = map.getValue("k_trade_window");
+                    String keyStandingWindowString = map.getValue("k_standing_window");
 
                     //parse into mappings
                     PITCH_AXIS = Integer.parseInt(pitchString);
@@ -167,9 +182,17 @@ public class Core {
                     KEY_REVERSE_THRUST = keyReverseThrustString.trim();
                     KEY_YAW_LEFT = keyYawLeftString.trim();
                     KEY_YAW_RIGHT = keyYawRightString.trim();
-                    
+
                     KEY_PITCH_UP = keyPitchUpString.trim();
                     KEY_PITCH_DOWN = keyPitchDownString.trim();
+
+                    KEY_EQUIPMENT_WINDOW = keyEquipmentWindowString.trim();
+                    KEY_OVERVIEW_WINDOW = keyOverviewWindowString.trim();
+                    KEY_CARGO_WINDOW = keyCargoWindowString.trim();
+                    KEY_PROPERTY_WINDOW = keyPropertyWindowString.trim();
+                    KEY_STARMAP_WINDOW = keyStarmapWindowString.trim();
+                    KEY_TRADE_WINDOW = keyTradeWindowString.trim();
+                    KEY_STANDING_WINDOW = keyStandingWindowString.trim();
 
                     System.out.println("Sucessfully applied custom mappings from " + AstralIO.getPayloadFile());
 
@@ -190,6 +213,13 @@ public class Core {
             KEY_YAW_RIGHT = "KEY_D";
             KEY_PITCH_UP = "KEY_UP";
             KEY_PITCH_DOWN = "KEY_DOWN";
+            KEY_EQUIPMENT_WINDOW = "KEY_1";
+            KEY_OVERVIEW_WINDOW = "KEY_2";
+            KEY_CARGO_WINDOW = "KEY_3";
+            KEY_PROPERTY_WINDOW = "KEY_4";
+            KEY_STARMAP_WINDOW = "KEY_5";
+            KEY_TRADE_WINDOW = "KEY_6";
+            KEY_STANDING_WINDOW = "KEY_7";
             e.printStackTrace();
         }
     }
@@ -445,28 +475,28 @@ public class Core {
         private void handleInSpaceKeys(String name, boolean keyPressed) {
             //these keys show and hide GDI elements
             if (keyPressed) {
-                if (name.equals("KEY_1")) {
+                if (name.equals(KEY_EQUIPMENT_WINDOW)) {
                     //toggle equipment window
                     hud.toggleEquipmentWindow();
                 }
-                if (name.equals("KEY_2")) {
+                if (name.equals(KEY_OVERVIEW_WINDOW)) {
                     //toggle overview window
                     hud.toggleSensorWindow();
                 }
-                if (name.equals("KEY_3")) {
+                if (name.equals(KEY_CARGO_WINDOW)) {
                     //toggle cargo window
                     hud.toggleCargoWindow();
                 }
-                if (name.equals("KEY_4")) {
+                if (name.equals(KEY_PROPERTY_WINDOW)) {
                     //toggle property window
                     hud.togglePropertyWindow();
                 }
-                if (name.equals("KEY_5")) {
+                if (name.equals(KEY_STARMAP_WINDOW)) {
                     //toggle property window
                     hud.toggleStarMapWindow();
                 }
                 // * 6 is handled when docked * //
-                if (name.equals("KEY_7")) {
+                if (name.equals(KEY_STANDING_WINDOW)) {
                     //toggle standing window
                     hud.toggleStandingWindow();
                 }
@@ -577,7 +607,7 @@ public class Core {
             } else {
                 //docked only windows
                 if (keyPressed) {
-                    if (name.equals("KEY_6")) {
+                    if (name.equals(KEY_TRADE_WINDOW)) {
                         //toggle trade window
                         hud.toggleTradeWindow();
                     }
