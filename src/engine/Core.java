@@ -110,6 +110,8 @@ public class Core {
     private String KEY_YAW_RIGHT;
     private String KEY_FORWARD_THRUST;
     private String KEY_REVERSE_THRUST;
+    private String KEY_PITCH_UP;
+    private String KEY_PITCH_DOWN;
 
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState,
             AssetManager assets, PlanetAppState planetAppState,
@@ -151,6 +153,9 @@ public class Core {
                     String keyReverseThrustString = map.getValue("k_reverse_thrust");
                     String keyYawLeftString = map.getValue("k_yaw_left");
                     String keyYawRightString = map.getValue("k_yaw_right");
+                    
+                    String keyPitchUpString = map.getValue("k_pitch_up");
+                    String keyPitchDownString = map.getValue("k_pitch_down");
 
                     //parse into mappings
                     PITCH_AXIS = Integer.parseInt(pitchString);
@@ -162,6 +167,9 @@ public class Core {
                     KEY_REVERSE_THRUST = keyReverseThrustString.trim();
                     KEY_YAW_LEFT = keyYawLeftString.trim();
                     KEY_YAW_RIGHT = keyYawRightString.trim();
+                    
+                    KEY_PITCH_UP = keyPitchUpString.trim();
+                    KEY_PITCH_DOWN = keyPitchDownString.trim();
 
                     System.out.println("Sucessfully applied custom mappings from " + AstralIO.getPayloadFile());
 
@@ -180,6 +188,8 @@ public class Core {
             KEY_REVERSE_THRUST = "KEY_S";
             KEY_YAW_LEFT = "KEY_A";
             KEY_YAW_RIGHT = "KEY_D";
+            KEY_PITCH_UP = "KEY_UP";
+            KEY_PITCH_DOWN = "KEY_DOWN";
             e.printStackTrace();
         }
     }
@@ -525,14 +535,14 @@ public class Core {
                         getUniverse().getPlayerShip().setYaw(0);
                     }
                 }
-                if (name.equals("KEY_UP")) {
+                if (name.equals(KEY_PITCH_UP)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().setPitch(-1);
                     } else {
                         getUniverse().getPlayerShip().setPitch(0);
                     }
                 }
-                if (name.equals("KEY_DOWN")) {
+                if (name.equals(KEY_PITCH_DOWN)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().setPitch(1);
                     } else {

@@ -8,4 +8,6 @@ k_forward_thrust=KEY_W
 k_yaw_left=KEY_A
 k_reverse_thrust=KEY_S
 k_yaw_right=KEY_D
+k_pitch_up=KEY_UP
+k_pitch_down=KEY_DOWN
 [/Mapper]
