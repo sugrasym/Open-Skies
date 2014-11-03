@@ -2658,7 +2658,7 @@ public class Ship extends Celestial {
         }
     }
 
-    public void fireActiveTurrets(Entity target) {
+    public void fireActiveTurrets(Celestial target) {
         for (int a = 0; a < hardpoints.size(); a++) {
             if (hardpoints.get(a).getType().equals(Item.TYPE_TURRET) || hardpoints.get(a).getType().equals(Item.TYPE_BATTERY)) {
                 hardpoints.get(a).activate(target);
@@ -2666,7 +2666,7 @@ public class Ship extends Celestial {
         }
     }
 
-    public void fireActiveGuns(Entity target) {
+    public void fireActiveGuns(Celestial target) {
         for (int a = 0; a < hardpoints.size(); a++) {
             if (hardpoints.get(a).getType().equals(Item.TYPE_CANNON) || hardpoints.get(a).getType().equals(Item.TYPE_MISSILE)) {
                 hardpoints.get(a).activate(target);

@@ -18,6 +18,7 @@
  */
 package cargo;
 
+import celestial.Celestial;
 import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import entity.Entity;
@@ -51,7 +52,7 @@ public class Equipment extends Item implements Serializable {
         this.tpf = (float) tpf;
     }
 
-    public void activate(Entity target) {
+    public void activate(Celestial target) {
         setActive(true);
     }
 

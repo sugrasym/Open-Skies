@@ -18,6 +18,7 @@
  */
 package cargo;
 
+import celestial.Celestial;
 import celestial.Projectile;
 import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
@@ -177,21 +178,21 @@ public class Weapon extends Equipment {
             if (rawSound != null) {
                 soundPath = rawSound;
             }
-            
+
             String rawMaxLife = relevant.getValue("maxLife");
             if (rawMaxLife != null) {
                 maxLife = Float.parseFloat(rawMaxLife);
             } else {
                 maxLife = 0;
             }
-            
+
             String rawFuse = relevant.getValue("proximityFuse");
             if (rawFuse != null) {
                 proximityFuse = Float.parseFloat(rawFuse);
             } else {
                 proximityFuse = 0;
             }
-            
+
             String rawFiringCone = relevant.getValue("firingCone");
             if (rawFiringCone != null) {
                 setFiringCone(Float.parseFloat(rawFiringCone));
@@ -224,9 +225,11 @@ public class Weapon extends Equipment {
     }
 
     @Override
-    public void activate(Entity target) {
+    public void activate(Celestial target) {
         if (getCoolDown() <= getActivationTimer() && enabled && hasAmmo()) {
-            if (!guided || (host.getTarget() != null)) {
+            if ((!guided 
+                    && !getType().equals(Item.TYPE_TURRET) 
+                    && !getType().equals(Item.TYPE_BATTERY)) || (target != null)) {
                 setActivationTimer(0); //restart cooldown
                 //determine if OOS or not
                 if (host.getCurrentSystem() == host.getCurrentSystem().getUniverse().getPlayerShip().getCurrentSystem()) {
@@ -281,7 +284,7 @@ public class Weapon extends Equipment {
         }
     }
 
-    private void fire(Entity target) {
+    private void fire(Celestial target) {
         /*
          * This is the one called in system. It uses the physics system and is
          * under the assumption that the host has been fully constructed. It
@@ -291,7 +294,7 @@ public class Weapon extends Equipment {
         if (enabled) {
             //generate projectile
             Projectile pro = new Projectile(host.getCurrentSystem().getUniverse(),
-                    host.getTarget(), getName(), shotMass);
+                    target, getName(), shotMass);
             //store stats
             pro.setShieldDamage(shieldDamage);
             pro.setHullDamage(hullDamage);
@@ -308,13 +311,28 @@ public class Weapon extends Equipment {
             pro.setStartColor(startColor);
             pro.setEndColor(endColor);
             pro.setpVel(pVel);
-            //determine world location and rotation
-            Vector3f loc = getSocket().getNode().getWorldTranslation().add(host.getLinearVelocity().mult(Math.min(tpf,Core.DEFAULT_TICK)));
-            Quaternion rot = getSocket().getNode().getWorldRotation();
+
+            /*
+             * Missiles and cannons fire straight forward out of their hard points.
+             * Turrets and batteries need to simulate a swivel.
+             */
+            Vector3f loc = getSocket().getNode().getWorldTranslation().add(host.getLinearVelocity()
+                    .mult(Math.min(tpf, Core.DEFAULT_TICK)));
+            Quaternion rot;
+            Vector3f vel;
+
+            //determine world rotation
+            if (getType().equals(Item.TYPE_CANNON) || getType().equals(Item.TYPE_MISSILE)) {
+                rot = getSocket().getNode().getWorldRotation();
+            } else {
+                rot = getSocket().getNode().getWorldRotation(); //TODO - track target
+            }
+
             //interpolate velocity
-            Vector3f vel = Vector3f.UNIT_Z.mult(-(speed));
+            vel = Vector3f.UNIT_Z.mult(-(speed));
             rot.multLocal(vel);
             vel = vel.add(host.getLinearVelocity());
+
             //store physics
             pro.setLocation(loc);
             pro.setRotation(rot);

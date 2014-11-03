@@ -18,6 +18,7 @@
  */
 package cargo;
 
+import celestial.Celestial;
 import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import com.jme3.audio.AudioNode;
@@ -54,7 +55,7 @@ public class Hardpoint implements Serializable {
         mount(empty);
     }
 
-    public void activate(Entity target) {
+    public void activate(Celestial target) {
         getMounted().activate(target);
     }
 
