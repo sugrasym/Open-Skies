@@ -36,6 +36,8 @@ public class Celestial extends PhysicsEntity implements Serializable {
     //identity
     protected static AstralIO io = new AstralIO();
     protected SolarSystem currentSystem;
+    //discovery
+    private boolean discoveredByPlayer = false;
 
     public Celestial(float mass, Universe universe) {
         super(mass);
@@ -103,5 +105,17 @@ public class Celestial extends PhysicsEntity implements Serializable {
 
     public void construct(Universe universe) {
         construct(universe.getAssets());
+    }
+
+    public boolean isDiscoveredByPlayer() {
+        return discoveredByPlayer;
+    }
+
+    public void setDiscoveredByPlayer(boolean discoveredByPlayer) {
+        this.discoveredByPlayer = discoveredByPlayer;
+    }
+    
+    public void discover() {
+        this.discoveredByPlayer = true;
     }
 }

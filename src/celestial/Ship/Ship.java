@@ -1819,12 +1819,9 @@ public class Ship extends Celestial {
          * Contains methods to be called no matter if the ship is in system or
          * out of system
          */
-        //sync standings
+        //do player only stuff
         if (isPlayerFaction()) {
-            if (currentSystem.getUniverse() != null) {
-                faction = currentSystem.getUniverse().getPlayerShip().getFaction();
-                //messages = getUniverse().getPlayerShip().getMessages();
-            }
+            doPlayerFaction();
         }
         //check docking updates
         if (docked) {
@@ -1870,6 +1867,19 @@ public class Ship extends Celestial {
         updateHealth();
         //behave
         behave();
+    }
+
+    private void doPlayerFaction() {
+        //sync standings
+        if (currentSystem.getUniverse() != null) {
+            faction = currentSystem.getUniverse().getPlayerShip().getFaction();
+            //messages = getUniverse().getPlayerShip().getMessages();
+        }
+        //update discovery
+        ArrayList<Celestial> inRange = getCelestialsInSensorRange();
+        for (int a = 0; a < inRange.size(); a++) {
+            inRange.get(a).discover();
+        }
     }
 
     protected void dyingAlways() {
@@ -1922,6 +1932,14 @@ public class Ship extends Celestial {
             System.out.println(getName() + " was destroyed in " + currentSystem.getName() + " by " + getLastBlow().getName());
             deathPenalty();
             setState(State.DYING);
+        }
+    }
+
+    @Override
+    public void discover() {
+        //only player ships are discoverable
+        if (isPlayerFaction()) {
+            super.discover();
         }
     }
 
@@ -3354,6 +3372,22 @@ public class Ship extends Celestial {
                 Station tmp = (Station) stations.get(a);
                 if (tmp.getLocation().distance(getLocation()) < sensor) {
                     ret.add(tmp);
+                }
+            }
+        }
+        return ret;
+    }
+
+    public ArrayList<Celestial> getCelestialsInSensorRange() {
+        ArrayList<Celestial> ret = new ArrayList<>();
+        {
+            ArrayList<Entity> entities = getCurrentSystem().getCelestials();
+            for (int a = 0; a < entities.size(); a++) {
+                if (entities.get(a) instanceof Celestial) {
+                    Celestial tmp = (Celestial) entities.get(a);
+                    if (inSensorRange(tmp)) {
+                        ret.add(tmp);
+                    }
                 }
             }
         }

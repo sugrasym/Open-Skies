@@ -14,6 +14,7 @@
  */
 package gdi;
 
+import celestial.Celestial;
 import celestial.Planet;
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
@@ -111,7 +112,7 @@ public class OverviewWindow extends AstralWindow {
                     //draw circle
                     gfx.setColor(Color.BLUE);
                     gfx.drawOval(0, 0, getWidth(), getHeight());
-                } catch(Exception e) {
+                } catch (Exception e) {
                     System.out.println("Error updating overview window");
                 }
             }
@@ -137,7 +138,7 @@ public class OverviewWindow extends AstralWindow {
                 //calculate distance
                 double dist = magnitude(ex, ey, ez);
                 if (dist <= sensorShip.getSensor() || entities.get(a) instanceof Planet
-                        || isDiscovered(entities.get(a))) {
+                        || isEntityDiscovered(entities.get(a))) {
                     //adjust for size
                     ex /= view;
                     ez /= view;
@@ -171,7 +172,7 @@ public class OverviewWindow extends AstralWindow {
             gfx.drawOval((int) ex + (getWidth() / 2) - (int) (diam / 2), (int) ey + (getHeight() / 2) - (int) (diam / 2), (int) diam, (int) diam);
             gfx.setColor(Color.pink);
             gfx.setFont(radarFont);
-            if (isDiscovered(entities.get(a))) {
+            if (isDiscovered(pl)) {
                 gfx.drawString(pl.getName(), (int) (ex + diam / 2) + (getWidth() / 2) - 1, (int) (ey + diam / 2) + (getHeight() / 2) - 1);
             } else {
                 gfx.drawString("NO AIM", (int) (ex + diam / 2) + (getWidth() / 2) - 1, (int) (ey + diam / 2) + (getHeight() / 2) - 1);
@@ -191,18 +192,32 @@ public class OverviewWindow extends AstralWindow {
             drawStationOnRadar(gfx, ex, ey, entities, a);
         }
 
-        private boolean isDiscovered(Entity celestial) {
-            //TODO: Check to see if player has encountered this object before
+        private boolean isEntityDiscovered(Entity entity) {
+            if (entity instanceof Celestial) {
+                return isDiscovered((Celestial) entity);
+            }
+
+            return false;
+        }
+
+        private boolean isDiscovered(Celestial celestial) {
+            //check the discovery flag
+            if (celestial.isDiscoveredByPlayer()) {
+                return true;
+            }
+            //check special cases
             if (celestial instanceof Ship) {
                 if (celestial instanceof Station) {
                     Station test = (Station) celestial;
                     if (!test.isHostileToMe(sensorShip)) {
                         //neutral and friendly stations are visible
+                        celestial.discover();
                         return true;
                     }
                 } else {
                     Ship tmp = (Ship) celestial;
                     if (tmp.getFaction().getName().equals(Faction.PLAYER)) {
+                        celestial.discover();
                         return true;
                     } else {
                         //ships that are not player are not discoverable
@@ -210,7 +225,8 @@ public class OverviewWindow extends AstralWindow {
                     }
                 }
             }
-            return true;
+
+            return false;
         }
 
         protected void drawShipOnRadar(Graphics2D gfx, double ex, double ey, ArrayList<Entity> entities, int a) {

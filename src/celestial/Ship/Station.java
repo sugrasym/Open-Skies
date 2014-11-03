@@ -175,6 +175,12 @@ public class Station extends Ship {
     }
     
     @Override
+    public void discover() {
+        //any station can be discovered
+        setDiscoveredByPlayer(true);
+    }
+    
+    @Override
     protected void deathPenalty() {
         //did the player destroy this ship?
         if (getLastBlow().getFaction().getName().equals(Faction.PLAYER)) {
