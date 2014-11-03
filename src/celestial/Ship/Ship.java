@@ -2917,9 +2917,9 @@ public class Ship extends Celestial {
     public void cmdFlyToCelestial(Celestial flyToTarget, float range) {
         setAutopilot(Autopilot.FLY_TO_CELESTIAL);
         if (flyToTarget instanceof Planet) {
-            //add radius to range for safety
+            //add safety radius to range
             Planet tmp = (Planet) flyToTarget;
-            range += tmp.getRadius();
+            range += tmp.getSafetyZone(PLANET_AVOID_CAUTION);
         }
         setFlyToTarget(flyToTarget);
         //store range

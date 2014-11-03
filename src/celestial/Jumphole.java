@@ -43,7 +43,7 @@ import universe.Universe;
  * @author nwiehoff
  */
 public class Jumphole extends Planet {
-    
+
     transient ParticleEmitter emitter;
     private int seed;
     //colors
@@ -52,11 +52,11 @@ public class Jumphole extends Planet {
     //hole stuff
     private Jumphole outGate;
     protected String out = "n/n";
-    
+
     public Jumphole(Universe universe, String name) {
         super(universe, name, null, 15);
     }
-    
+
     @Override
     public void construct(AssetManager assets) {
         //create geometry
@@ -77,7 +77,7 @@ public class Jumphole extends Planet {
         nameControl.setParent(this);
         spatial.addControl(nameControl);
     }
-    
+
     private void setupCoreParticle(AssetManager assets) {
         //create the emitter
         emitter = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, 120);
@@ -101,26 +101,26 @@ public class Jumphole extends Planet {
         emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_XYZ);
         emitter.setParticlesPerSec(2);
     }
-    
+
     @Override
     public void deconstruct() {
         super.deconstruct();
     }
-    
+
     @Override
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         //node.attachChild(spatial);
         physics.getPhysicsSpace().add(spatial);
         node.attachChild(emitter);
     }
-    
+
     @Override
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         //node.detachChild(spatial);
         physics.getPhysicsSpace().remove(spatial);
         node.detachChild(emitter);
     }
-    
+
     @Override
     protected void alive() {
         super.alive();
@@ -129,23 +129,23 @@ public class Jumphole extends Planet {
         }
         aliveAlways();
     }
-    
+
     @Override
     protected void oosAlive() {
         super.oosAlive();
         aliveAlways();
     }
-    
+
     @Override
     public int getSeed() {
         return seed;
     }
-    
+
     @Override
     public void setSeed(int seed) {
         this.seed = seed;
     }
-    
+
     public void createLink(String out) {
         /*
          * Locates this gate's partner in the target solar system.
@@ -169,15 +169,15 @@ public class Jumphole extends Planet {
             }
         }
     }
-    
+
     public void linkWithPartner(Jumphole gate) {
         outGate = gate;
     }
-    
+
     public void setOut(String out) {
         this.out = out;
     }
-    
+
     private void jumpShip(Ship ship) {
         SolarSystem start = ship.getCurrentSystem();
         SolarSystem end = outGate.getCurrentSystem();
@@ -188,9 +188,9 @@ public class Jumphole extends Planet {
         ship.setLocation(outGate.getLocation().add(diff.mult(2)));
         //complete transfer
         end.putEntityInSystem(ship);
-        
+
     }
-    
+
     private void checkForJumpers() {
         //check for any ships to jump
         ArrayList<Entity> near = getCurrentSystem().getShipList();
@@ -203,7 +203,7 @@ public class Jumphole extends Planet {
             }
         }
     }
-    
+
     private void aliveAlways() {
         //guarantee link
         if (outGate == null) {
@@ -212,12 +212,17 @@ public class Jumphole extends Planet {
         //see if anything can jump through
         checkForJumpers();
     }
-    
+
     public String getOut() {
         return out;
     }
-    
+
     public Jumphole getOutGate() {
         return outGate;
+    }
+
+    @Override
+    public float getSafetyZone(float caution) {
+        return 0;
     }
 }
