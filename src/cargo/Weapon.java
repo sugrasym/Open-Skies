@@ -324,13 +324,20 @@ public class Weapon extends Equipment {
             //determine world rotation
             if (getType().equals(Item.TYPE_CANNON) || getType().equals(Item.TYPE_MISSILE)) {
                 rot = getSocket().getNode().getWorldRotation();
+                vel = Vector3f.UNIT_Z.mult(-(speed));
+                rot.multLocal(vel);
             } else {
-                rot = getSocket().getNode().getWorldRotation(); //TODO - track target
+                Vector3f targetLoc = target.getPhysicsLocation();
+                rot = new Quaternion();
+                rot.lookAt(targetLoc, Vector3f.UNIT_Y);
+                
+                Vector3f u = target.getPhysicsLocation()
+                        .subtract(getSocket().getNode().getWorldTranslation());
+                u = u.normalize();
+                
+                vel = u.mult(speed);
             }
-
-            //interpolate velocity
-            vel = Vector3f.UNIT_Z.mult(-(speed));
-            rot.multLocal(vel);
+            
             vel = vel.add(host.getLinearVelocity());
 
             //store physics
@@ -354,7 +361,7 @@ public class Weapon extends Equipment {
         }
     }
 
-    private void oosFire(Entity target) {
+    private void oosFire(Celestial target) {
         if (enabled) {
             if (target instanceof Ship) {
                 //directly damage the ship
