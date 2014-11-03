@@ -910,8 +910,7 @@ public class Ship extends Celestial {
                         Celestial near = getRandomPatrolPointInSystem();
                         if (near != null) {
                             //fly within sensor range
-                            float range = sensor;
-                            cmdFlyToCelestial(near, range);
+                            cmdFlyToCelestial(near, sensor);
                         } else {
                             leaveSystem();
                         }
