@@ -902,21 +902,12 @@ public class Ship extends Celestial {
                         }
                     } else {
                         /*
-                         * Get a random planet or station in system. Stations
-                         * are preferred but if there aren't many available then
-                         * fly to planets as well.
+                         * Pick a random patrol point in the system. Patrol
+                         * points can be planets, jumpholes, or non-hostile
+                         * stations. Leave the system if there are no patrol
+                         * points available.
                          */
-                        double pick = rnd.nextFloat();
-                        Celestial near = null;
-                        if (currentSystem.getStationList().size() < 4) {
-                            if (pick <= 0.5) {
-                                near = getRandomStationInSystem();
-                            } else {
-                                near = getRandomPlanetInSystem();
-                            }
-                        } else {
-                            near = getRandomStationInSystem();
-                        }
+                        Celestial near = getRandomPatrolPointInSystem();
                         if (near != null) {
                             //fly within sensor range
                             float range = sensor;
@@ -3454,12 +3445,31 @@ public class Ship extends Celestial {
         return ret;
     }
 
-    public Celestial getRandomCelestialInSystem() {
+    public Celestial getRandomPatrolPointInSystem() {
         Celestial ret = null;
         {
-            ArrayList<Entity> celestials = currentSystem.getCelestials();
-            if (celestials.size() > 0) {
-                ret = (Celestial) celestials.get(rnd.nextInt(celestials.size()));
+            ArrayList<Celestial> options = new ArrayList<>();
+            //add planets
+            ArrayList<Entity> planetEntities = getCurrentSystem().getPlanetList();
+            for (int a = 0; a < planetEntities.size(); a++) {
+                options.add((Celestial) planetEntities.get(a));
+            }
+            //add jumpholes
+            ArrayList<Entity> jumpholeEntities = getCurrentSystem().getJumpholeList();
+            for (int a = 0; a < jumpholeEntities.size(); a++) {
+                options.add((Celestial) jumpholeEntities.get(a));
+            }
+            //add non-hostile stations
+            ArrayList<Entity> stationEntities = getCurrentSystem().getStationList();
+            for (int a = 0; a < stationEntities.size(); a++) {
+                Station tmp = (Station) stationEntities.get(a);
+                if (!tmp.isHostileToMe(this)) {
+                    options.add(tmp);
+                }
+            }
+            
+            if (options.size() > 0) {
+                ret = options.get(rnd.nextInt(options.size()));
             } else {
                 return null;
             }
