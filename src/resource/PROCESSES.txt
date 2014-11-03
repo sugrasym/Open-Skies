@@ -42,6 +42,13 @@ product=Fighter Cannon Factory,1
 resource=
 [/Process]
 
+[Process]
+name=CheatMakeFighterTurretFactory
+cycle=282500
+product=Fighter Turret Factory,1
+resource=
+[/Process]
+
 #Shipyards
 
 [Process]
@@ -146,6 +153,13 @@ name=FairMakeTalonA7
 cycle=1602
 product=Talon A-7,1
 resource=Mass Block,2/Box Meals,3/Standard Energy Unit,7/Plank Tubes,1/Microchips,1
+[/Process]
+
+[Process]
+name=FairMakeTalonT2
+cycle=1825
+product=Talon T-2,1
+resource=Mass Block,3/Box Meals,3/Standard Energy Unit,7/Plank Tubes,1/Microchips,1
 [/Process]
 
 [Process]

@@ -211,7 +211,8 @@ station3=Shipyard,0.25
 station4=Mass Converter,0.25
 station5=Computer Plant,0.17
 station6=Low Grade Missile Factory,0.17
-station7=Fighter Cannon Factory,0.17
+station7=Fighter Cannon Factory,0.12
+station8=Fighter Turret Factory,0.12
 [/Stations]
 
 [Stations]
@@ -223,7 +224,8 @@ station3=Shipyard,0.25
 station4=Mass Converter,0.25
 station5=Computer Plant,0.17
 station6=Low Grade Missile Factory,0.17
-station7=Fighter Cannon Factory,0.17
+station7=Fighter Cannon Factory,0.12
+station8=Fighter Turret Factory,0.12
 [/Stations]
 
 [Stations]
@@ -235,7 +237,8 @@ station3=Shipyard,0.25
 station4=Mass Converter,0.25
 station5=Computer Plant,0.17
 station6=Low Grade Missile Factory,0.17
-station7=Fighter Cannon Factory,0.17
+station7=Fighter Cannon Factory,0.12
+station8=Fighter Turret Factory,0.12
 [/Stations]
 
 [Stations]
