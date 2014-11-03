@@ -2628,7 +2628,15 @@ public class Ship extends Celestial {
 
     public void toggleCannons() {
         for (int a = 0; a < hardpoints.size(); a++) {
-            if (hardpoints.get(a).getType().equals(Item.TYPE_CANNON) || hardpoints.get(a).getType().equals(Item.TYPE_TURRET)) {
+            if (hardpoints.get(a).getType().equals(Item.TYPE_CANNON)) {
+                hardpoints.get(a).setEnabled(!hardpoints.get(a).isEnabled());
+            }
+        }
+    }
+    
+    public void toggleTurrets() {
+        for (int a = 0; a < hardpoints.size(); a++) {
+            if (hardpoints.get(a).getType().equals(Item.TYPE_TURRET)) {
                 hardpoints.get(a).setEnabled(!hardpoints.get(a).isEnabled());
             }
         }
@@ -2636,7 +2644,15 @@ public class Ship extends Celestial {
 
     public void toggleMissiles() {
         for (int a = 0; a < hardpoints.size(); a++) {
-            if (hardpoints.get(a).getType().equals(Item.TYPE_MISSILE) || hardpoints.get(a).getType().equals(Item.TYPE_BATTERY)) {
+            if (hardpoints.get(a).getType().equals(Item.TYPE_MISSILE)) {
+                hardpoints.get(a).setEnabled(!hardpoints.get(a).isEnabled());
+            }
+        }
+    }
+    
+    public void toggleBatteries() {
+        for (int a = 0; a < hardpoints.size(); a++) {
+            if (hardpoints.get(a).getType().equals(Item.TYPE_BATTERY)) {
                 hardpoints.get(a).setEnabled(!hardpoints.get(a).isEnabled());
             }
         }
