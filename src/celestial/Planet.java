@@ -64,6 +64,8 @@ public class Planet extends Celestial {
         setName(name);
         this.type = type;
         this.radius = radius;
+        //planets are automatically discovered
+        discover();
     }
 
     public void construct(AssetManager assets) {
