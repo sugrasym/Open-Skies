@@ -128,6 +128,7 @@ public class Core {
     private String KEY_STOP;
     private String KEY_TOGGLE_MISSILES;
     private String KEY_TOGGLE_CANNONS;
+    private String KEY_TOGGLE_TURRETS;
     private int JOYSTICK_FIRE_BUTTON;
     private int JOYSTICK_SEC_BUTTON;
 
@@ -194,6 +195,7 @@ public class Core {
                     
                     String keyToggleMissilesString = map.getValue("k_toggle_missiles");
                     String keyToggleCannonsString = map.getValue("k_toggle_cannons");
+                    String keyToggleTurretsString = map.getValue("k_toggle_turrets");
                     
                     String joyFireButton = map.getValue("j_fire");
                     String joySecButton = map.getValue("j_sec");
@@ -232,6 +234,7 @@ public class Core {
                     
                     KEY_TOGGLE_MISSILES = keyToggleMissilesString.trim();
                     KEY_TOGGLE_CANNONS = keyToggleCannonsString.trim();
+                    KEY_TOGGLE_TURRETS = keyToggleTurretsString.trim();
                     
                     JOYSTICK_FIRE_BUTTON = Integer.parseInt(joyFireButton.trim());
                     JOYSTICK_SEC_BUTTON = Integer.parseInt(joySecButton.trim());
@@ -271,6 +274,7 @@ public class Core {
             KEY_STOP = "KEY_HOME";
             KEY_TOGGLE_MISSILES = "KEY_J";
             KEY_TOGGLE_CANNONS = "KEY_K";
+            KEY_TOGGLE_TURRETS = "KEY_L";
             JOYSTICK_FIRE_BUTTON = 0;
             JOYSTICK_SEC_BUTTON = 1;
             e.printStackTrace();
@@ -640,6 +644,11 @@ public class Core {
                 if (name.equals(KEY_TOGGLE_CANNONS)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().toggleCannons();
+                    }
+                }
+                if (name.equals(KEY_TOGGLE_TURRETS)) {
+                    if (keyPressed) {
+                        getUniverse().getPlayerShip().toggleTurrets();
                     }
                 }
                 if (name.equals(KEY_TGT_NEAREST_ENEMY)) {

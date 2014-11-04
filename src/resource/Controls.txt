@@ -24,8 +24,9 @@ F1 - Dock with current target / Undock
 Weapons
 --------------------------------------------------------------------------------
 SPACE - Fire active weapons
-J - Toggle Missiles / Batteries
-K - Toggle Cannons / Turrets
+J - Toggle Missiles
+K - Toggle Cannons
+L - Toggle Turrets
 
 Joystick Button 1 - Fire active weapons
 Joystick Button 2 - Hold to temporarily toggle missile activation
