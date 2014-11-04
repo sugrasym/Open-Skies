@@ -167,5 +167,4 @@ texture=Effects/Trail/point.png
 sound=Audio/Effects/Weapons/Talon T-2.wav
 emitterRate=10
 delay=0.01
-firingCone=1.38
 [/Weapon]

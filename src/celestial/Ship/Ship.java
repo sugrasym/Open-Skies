@@ -2604,9 +2604,11 @@ public class Ship extends Celestial {
                 float ux = Float.parseFloat(re[5]);
                 float uy = Float.parseFloat(re[6]);
                 float uz = Float.parseFloat(re[7]);
+                float gimbal = Float.parseFloat(re[8]);
 
                 hardpoints.add(new Hardpoint(this, hType, hSize,
-                        new Vector3f(hx, hy, hz), new Vector3f(ux, uy, uz)));
+                        new Vector3f(hx, hy, hz), new Vector3f(ux, uy, uz)
+                        , gimbal));
             }
         }
     }

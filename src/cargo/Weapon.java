@@ -61,7 +61,6 @@ public class Weapon extends Equipment {
     private Item ammo;
     private float maxLife;
     private float proximityFuse;
-    private float firingCone;
     private String soundPath;
     private transient AudioNode sound;
 
@@ -191,13 +190,6 @@ public class Weapon extends Equipment {
             } else {
                 proximityFuse = 0;
             }
-
-            String rawFiringCone = relevant.getValue("firingCone");
-            if (rawFiringCone != null) {
-                setFiringCone(Float.parseFloat(rawFiringCone));
-            } else {
-                setFiringCone(0);
-            }
         } else {
             System.out.println("Error: The item " + getName() + " does not exist in WEAPONS.txt");
         }
@@ -255,7 +247,7 @@ public class Weapon extends Equipment {
             Vector3f turretUp = adjustedTurretLocation();
             float t = turretUp.angleBetween(targetLoc);
             
-            if( t <= getFiringCone()) {
+            if( t <= getSocket().getGimbal()) {
                 return true;
             }
         }
@@ -545,14 +537,6 @@ public class Weapon extends Equipment {
             ret = super.toString();
         }
         return ret;
-    }
-
-    public float getFiringCone() {
-        return firingCone;
-    }
-
-    public void setFiringCone(float firingCone) {
-        this.firingCone = firingCone;
     }
     
     public float distanceTo(Vector3f loc) {

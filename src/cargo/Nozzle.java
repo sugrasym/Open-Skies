@@ -40,7 +40,7 @@ public class Nozzle extends Hardpoint {
     private String rawEnd;
 
     public Nozzle(Ship host, String type, int size, Vector3f loc, String rawStart, String rawEnd) {
-        super(host, type, size, loc, Vector3f.UNIT_Z);
+        super(host, type, size, loc, Vector3f.UNIT_Z,0);
         this.rawEnd = rawEnd;
         this.rawStart = rawStart;
     }

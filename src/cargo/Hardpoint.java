@@ -45,13 +45,15 @@ public class Hardpoint implements Serializable {
     private Vector3f up;
     private transient Node node;
     private transient Node upNode;
+    private float gimbal;
 
-    public Hardpoint(Ship host, String type, int size, Vector3f loc, Vector3f up) {
+    public Hardpoint(Ship host, String type, int size, Vector3f loc, Vector3f up, float gimbal) {
         this.type = type;
         this.size = size;
         this.host = host;
         this.loc = loc;
         this.up = up;
+        this.gimbal = gimbal;
         //mount nothing
         mount(empty);
     }
@@ -193,5 +195,13 @@ public class Hardpoint implements Serializable {
         if(mounted != null) {
             mounted.killSound();
         }
+    }
+
+    public float getGimbal() {
+        return gimbal;
+    }
+
+    public void setGimbal(float gimbal) {
+        this.gimbal = gimbal;
     }
 }
