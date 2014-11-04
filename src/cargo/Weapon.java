@@ -14,7 +14,7 @@
  */
 
 /*
- * Now for some meat. This class represents a turret.
+ * Represents a weapon (turret, cannon, battery, missile)
  */
 package cargo;
 
@@ -27,7 +27,6 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import engine.Core;
-import entity.Entity;
 import java.util.ArrayList;
 import lib.astral.Parser;
 
@@ -227,9 +226,7 @@ public class Weapon extends Equipment {
     @Override
     public void activate(Celestial target) {
         if (getCoolDown() <= getActivationTimer() && enabled && hasAmmo()) {
-            if ((!guided 
-                    && !getType().equals(Item.TYPE_TURRET) 
-                    && !getType().equals(Item.TYPE_BATTERY)) || (target != null)) {
+            if (canActivate(target)) {
                 setActivationTimer(0); //restart cooldown
                 //determine if OOS or not
                 if (host.getCurrentSystem() == host.getCurrentSystem().getUniverse().getPlayerShip().getCurrentSystem()) {
@@ -240,6 +237,38 @@ public class Weapon extends Equipment {
                 }
             }
         }
+    }
+
+    private boolean canActivate(Celestial target) {
+        return ((!guided
+                && !isTurret()
+                && !isBattery()) || (target != null))
+                && inFiringCone();
+    }
+
+    private boolean inFiringCone() {
+
+        if (isCannon() || isMissile()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isCannon() {
+        return getType().equals(Item.TYPE_CANNON);
+    }
+    
+    public boolean isMissile() {
+        return getType().equals(Item.TYPE_MISSILE);
+    }
+    
+    public boolean isBattery() {
+        return getType().equals(Item.TYPE_BATTERY);
+    }
+
+    public boolean isTurret() {
+        return getType().equals(Item.TYPE_TURRET);
     }
 
     private void playSound() {
@@ -322,22 +351,22 @@ public class Weapon extends Equipment {
             Vector3f vel;
 
             //determine world rotation
-            if (getType().equals(Item.TYPE_CANNON) || getType().equals(Item.TYPE_MISSILE)) {
+            if (isCannon() || isMissile()) {
                 rot = getSocket().getNode().getWorldRotation();
-                vel = Vector3f.UNIT_Z.mult(-(speed));
+                vel = getSocket().getUp().mult(-(speed));
                 rot.multLocal(vel);
             } else {
                 Vector3f targetLoc = target.getPhysicsLocation();
                 rot = new Quaternion();
                 rot.lookAt(targetLoc, Vector3f.UNIT_Y);
-                
+
                 Vector3f u = target.getPhysicsLocation()
                         .subtract(getSocket().getNode().getWorldTranslation());
                 u = u.normalize();
-                
+
                 vel = u.mult(speed);
             }
-            
+
             vel = vel.add(host.getLinearVelocity());
 
             //store physics

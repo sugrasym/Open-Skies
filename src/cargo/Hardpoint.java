@@ -21,14 +21,12 @@ package cargo;
 import celestial.Celestial;
 import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
-import com.jme3.audio.AudioNode;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
-import entity.Entity;
 import java.io.Serializable;
 
 /**
@@ -37,20 +35,22 @@ import java.io.Serializable;
  */
 public class Hardpoint implements Serializable {
 
-    protected String type;
-    protected int size;
-    protected Equipment mounted;
+    private String type;
+    private int size;
+    private Equipment mounted;
     Equipment empty = new Equipment("NOTHING");
     Ship host;
     //relative position in x,y,z from the origin
-    protected Vector3f loc;
-    protected transient Node node;
+    private Vector3f loc;
+    private Vector3f up;
+    private transient Node node;
 
-    public Hardpoint(Ship host, String type, int size, Vector3f loc) {
+    public Hardpoint(Ship host, String type, int size, Vector3f loc, Vector3f up) {
         this.type = type;
         this.size = size;
         this.host = host;
         this.loc = loc;
+        this.up = up;
         //mount nothing
         mount(empty);
     }
@@ -119,6 +119,14 @@ public class Hardpoint implements Serializable {
 
     public void setLoc(Vector3f loc) {
         this.loc = loc;
+    }
+    
+    public Vector3f getUp() {
+        return up;
+    }
+
+    public void setUp(Vector3f up) {
+        this.up = up;
     }
     
     public boolean notNothing() {

@@ -40,7 +40,7 @@ public class Nozzle extends Hardpoint {
     private String rawEnd;
 
     public Nozzle(Ship host, String type, int size, Vector3f loc, String rawStart, String rawEnd) {
-        super(host, type, size, loc);
+        super(host, type, size, loc, Vector3f.UNIT_Z);
         this.rawEnd = rawEnd;
         this.rawStart = rawStart;
     }
@@ -50,13 +50,13 @@ public class Nozzle extends Hardpoint {
         if (emitter != null) {
             if (host.getThrottle() != 0 && host.getFuel() > host.getThrust()) {
                 if (host.getThrottle() > 0) {
-                    if (type.equals("rear")) {
+                    if (getType().equals("rear")) {
                         emitter.setParticlesPerSec(100);
                     } else {
                         emitter.setParticlesPerSec(0);
                     }
                 } else {
-                    if (type.equals("forward")) {
+                    if (getType().equals("forward")) {
                         emitter.setParticlesPerSec(100);
                     } else {
                         emitter.setParticlesPerSec(0);
@@ -66,7 +66,7 @@ public class Nozzle extends Hardpoint {
                 emitter.setParticlesPerSec(0);
             }
             //emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_Z.mult(-host.getLinearVelocity().length())/*.mult((float) tpf)*/);
-            emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_Z.mult((float) Math.sqrt(host.getAcceleration()) * host.getThrottle()));
+            emitter.getParticleInfluencer().setInitialVelocity(getUp().mult((float) Math.sqrt(host.getAcceleration()) * host.getThrottle()));
         }
     }
 
@@ -79,7 +79,7 @@ public class Nozzle extends Hardpoint {
         mat.setColor("Color", ColorRGBA.Green);
         red.setMaterial(mat);
         //add to node
-        node.attachChild(red);
+        getNode().attachChild(red);
     }
 
     @Override
@@ -90,7 +90,7 @@ public class Nozzle extends Hardpoint {
         emitter.setMaterial(trailMat);
         emitter.setImagesX(1);
         emitter.setImagesY(1); // 1x1
-        emitter.setStartSize((float) size / 2);
+        emitter.setStartSize((float) getSize() / 2);
         emitter.setEndSize(0);
         emitter.setGravity(0f, 0f, 0f);
         emitter.setLowLife(0.9f);
@@ -98,7 +98,7 @@ public class Nozzle extends Hardpoint {
         emitter.getParticleInfluencer().setVelocityVariation(0.05f);
         emitter.setInWorldSpace(false);
         emitter.setSelectRandomImage(true);
-        node.attachChild(emitter);
+        getNode().attachChild(emitter);
         emitter.setEnabled(true);
         //setup start color
         {
@@ -125,6 +125,6 @@ public class Nozzle extends Hardpoint {
     @Override
     public void deconstruct() {
         emitter = null;
-        node = null;
+        setNode(null);
     }
 }
