@@ -538,9 +538,6 @@ public class Ship extends Celestial {
                                 fireActiveGuns(target);
                             }
                         }
-                        if (distance < minRange) {
-                            fireActiveTurrets(target);
-                        }
                     } else {
                         cmdAbort();
                     }
@@ -2723,7 +2720,7 @@ public class Ship extends Celestial {
     }
 
     public void fireActiveModules() {
-        fireActiveTurrets(target);
+        //fireActiveTurrets(target); turrets are independently targeting now
         fireActiveGuns(target);
     }
 
