@@ -243,13 +243,26 @@ public class Weapon extends Equipment {
         return ((!guided
                 && !isTurret()
                 && !isBattery()) || (target != null))
-                && inFiringCone();
+                && inFiringCone(target);
     }
 
-    private boolean inFiringCone() {
+    private boolean inFiringCone(Celestial target) {
 
         if (isCannon() || isMissile()) {
             return true;
+        } else if(isTurret() || isBattery()) {
+            Vector3f targetLoc = target.getLocation()
+                    .subtract(getSocket().getNode().getWorldTranslation())
+                    .normalize();
+            Vector3f turretUp = getSocket().getUpNode().getWorldTranslation()
+                    .subtract(getSocket().getNode().getWorldTranslation())
+                    .normalize();
+            float t = turretUp.angleBetween(targetLoc);
+            
+            if( t <= getFiringCone()) {
+                System.out.println(t+ " :: "  + getFiringCone());
+                return true;
+            }
         }
 
         return false;
@@ -353,7 +366,7 @@ public class Weapon extends Equipment {
             //determine world rotation
             if (isCannon() || isMissile()) {
                 rot = getSocket().getNode().getWorldRotation();
-                vel = getSocket().getUp().mult(-(speed));
+                vel = getSocket().getUp().mult(speed);
                 rot.multLocal(vel);
             } else {
                 Vector3f targetLoc = target.getPhysicsLocation();

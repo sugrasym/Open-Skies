@@ -327,26 +327,28 @@ public class Ship extends Celestial {
     protected void constructHardpoints(AssetManager assets) {
         for (int a = 0; a < hardpoints.size(); a++) {
             //initialize node
-            hardpoints.get(a).initNode();
+            hardpoints.get(a).initNodes();
             //debug
             //hardpoints.get(a).showDebugHardpoint(assets);
             //construct
             hardpoints.get(a).construct(assets);
             //store node with spatial
             center.attachChild(hardpoints.get(a).getNode());
+            center.attachChild(hardpoints.get(a).getUpNode());
         }
     }
 
     protected void constructNozzles(AssetManager assets) {
         for (int a = 0; a < nozzles.size(); a++) {
             //initialize node
-            nozzles.get(a).initNode();
+            nozzles.get(a).initNodes();
             //debug
             //nozzles.get(a).showDebugHardpoint(assets);
             //construct
             nozzles.get(a).construct(assets);
             //store node with spatial
             center.attachChild(nozzles.get(a).getNode());
+            center.attachChild(nozzles.get(a).getUpNode());
         }
     }
 
@@ -2181,6 +2183,7 @@ public class Ship extends Celestial {
     /*
      * Adding and removing from the scene
      */
+    @Override
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         node.attachChild(center);
         physics.getPhysicsSpace().add(center);
@@ -2189,6 +2192,7 @@ public class Ship extends Celestial {
         this.physics.setPhysicsRotation(getRotation().clone());
     }
 
+    @Override
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         setVelocity(this.physics.getLinearVelocity().clone());
         setLocation(this.physics.getPhysicsLocation().clone());

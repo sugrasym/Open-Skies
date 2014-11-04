@@ -126,5 +126,6 @@ public class Nozzle extends Hardpoint {
     public void deconstruct() {
         emitter = null;
         setNode(null);
+        setUpNode(null);
     }
 }

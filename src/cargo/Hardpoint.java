@@ -44,6 +44,7 @@ public class Hardpoint implements Serializable {
     private Vector3f loc;
     private Vector3f up;
     private transient Node node;
+    private transient Node upNode;
 
     public Hardpoint(Ship host, String type, int size, Vector3f loc, Vector3f up) {
         this.type = type;
@@ -149,9 +150,19 @@ public class Hardpoint implements Serializable {
         this.node = node;
     }
     
-    public void initNode() {
+    public Node getUpNode() {
+        return upNode;
+    }
+
+    public void setUpNode(Node upNode) {
+        this.upNode = upNode;
+    }
+    
+    public void initNodes() {
         node = new Node();
         node.move(loc);
+        upNode = new Node();
+        upNode.move(loc.add(up));
     }
     
     public void showDebugHardpoint(AssetManager assets) {
