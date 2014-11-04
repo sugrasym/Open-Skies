@@ -20,6 +20,7 @@
  */
 package gdi;
 
+import celestial.Celestial;
 import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
@@ -84,12 +85,8 @@ public class SightMarker extends AstralWindow {
         Ship target = host.getTarget();
         if (target != null) {
             setVisible(true);
-            //get target position
-            Vector3f tPos = target.getLocation();
-            //get target velocity
-            Vector3f tVel = target.getVelocity().subtract(host.getVelocity());
-            //add
-            Vector3f del = tPos.add(tVel);
+            float speed = host.getAverageCannonSpeed();
+            Vector3f del = host.leadTargetLocation(target, speed);
             //get screen coordinates
             Vector3f sLoc = camera.getScreenCoordinates(del);
             //set position

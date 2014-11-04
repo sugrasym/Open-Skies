@@ -499,7 +499,7 @@ public class Ship extends Celestial {
                         double distance = target.getLocation().distance(getLocation());
                         double minRange = getNearWeaponRange();
                         //rotate to face target
-                        Vector3f solution = target.getLocation();
+                        Vector3f solution = leadTargetLocation(target, getAverageCannonSpeed());
                         Vector3f steering = getSteeringData(solution, Vector3f.UNIT_Y);
                         boolean aligned = finePointNoseAtVector(steering, COM_ANGLE_TOLERANCE);
                         //keep at range
@@ -2103,7 +2103,7 @@ public class Ship extends Celestial {
                                     if (t == null) {
                                         t = hostile;
                                     } else {
-                                        if (w.distanceTo(hostile.getLocation()) 
+                                        if (w.distanceTo(hostile.getLocation())
                                                 < w.distanceTo(t.getLocation())) {
                                             t = hostile;
                                         }
@@ -2722,6 +2722,45 @@ public class Ship extends Celestial {
     public void fireActiveModules() {
         //fireActiveTurrets(target); turrets are independently targeting now
         fireActiveGuns(target);
+    }
+
+    public float getAverageCannonSpeed() {
+        float sum = 0;
+        int count = 0;
+        for (int a = 0; a < hardpoints.size(); a++) {
+            if (hardpoints.get(a).isEnabled()) {
+                if (hardpoints.get(a).notNothing()) {
+                    if (hardpoints.get(a).getMounted() instanceof Weapon) {
+                        Weapon w = (Weapon) hardpoints.get(a).getMounted();
+                        if (w.isCannon()) {
+                            sum += w.getSpeed();
+                            count++;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (count == 0) {
+            return 0;
+        }
+
+        return sum / (float)count;
+    }
+
+    public Vector3f leadTargetLocation(Celestial target, float speed) {
+        if (speed > 0) {
+            Vector3f targetLoc = target.getPhysicsLocation()
+                    .add((target.getLinearVelocity()
+                            .subtract(getLinearVelocity()))
+                            .mult((distanceTo(target) / speed)));
+            return targetLoc;
+        } else {
+            Vector3f targetLoc = target.getPhysicsLocation()
+                    .add((target.getLinearVelocity()
+                            .subtract(getLinearVelocity())));
+            return targetLoc;
+        }
     }
 
     public double getNearWeaponRange() {

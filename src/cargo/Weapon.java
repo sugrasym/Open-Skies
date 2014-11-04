@@ -251,12 +251,8 @@ public class Weapon extends Equipment {
         if (isCannon() || isMissile()) {
             return true;
         } else if(isTurret() || isBattery()) {
-            Vector3f targetLoc = target.getLocation()
-                    .subtract(getSocket().getNode().getWorldTranslation())
-                    .normalize();
-            Vector3f turretUp = getSocket().getUpNode().getWorldTranslation()
-                    .subtract(getSocket().getNode().getWorldTranslation())
-                    .normalize();
+            Vector3f targetLoc = adjustedTargetLocation(target);
+            Vector3f turretUp = adjustedTurretLocation();
             float t = turretUp.angleBetween(targetLoc);
             
             if( t <= getFiringCone()) {
@@ -267,6 +263,18 @@ public class Weapon extends Equipment {
         return false;
     }
 
+    private Vector3f adjustedTurretLocation() {
+        Vector3f turretUp = getSocket().getUpNode().getWorldTranslation()
+                .subtract(getSocket().getNode().getWorldTranslation())
+                .normalize();
+        return turretUp;
+    }
+
+    private Vector3f adjustedTargetLocation(Celestial target) {
+        Vector3f targetLoc = leadTargetLocation(target).normalize();
+        return targetLoc;
+    }
+    
     public boolean isCannon() {
         return getType().equals(Item.TYPE_CANNON);
     }
@@ -368,11 +376,11 @@ public class Weapon extends Equipment {
                 vel = getSocket().getUp().mult(speed);
                 rot.multLocal(vel);
             } else {
-                Vector3f targetLoc = target.getPhysicsLocation();
+                Vector3f targetLoc = leadTargetLocation(target);
                 rot = new Quaternion();
                 rot.lookAt(targetLoc, Vector3f.UNIT_Y);
 
-                Vector3f u = target.getPhysicsLocation()
+                Vector3f u = targetLoc
                         .subtract(getSocket().getNode().getWorldTranslation());
                 u = u.normalize();
 
@@ -400,6 +408,14 @@ public class Weapon extends Equipment {
             //use ammo
             useAmmo();
         }
+    }
+
+    private Vector3f leadTargetLocation(Celestial target) {
+        Vector3f targetLoc = target.getPhysicsLocation()
+                .add((target.getLinearVelocity()
+                        .subtract(host.getLinearVelocity()))
+                        .mult((distanceTo(target.getLocation()) / speed)));
+        return targetLoc;
     }
 
     private void oosFire(Celestial target) {
