@@ -246,7 +246,7 @@ public class Weapon extends Equipment {
                 && inFiringCone(target);
     }
 
-    private boolean inFiringCone(Celestial target) {
+    public boolean inFiringCone(Celestial target) {
 
         if (isCannon() || isMissile()) {
             return true;
@@ -260,7 +260,6 @@ public class Weapon extends Equipment {
             float t = turretUp.angleBetween(targetLoc);
             
             if( t <= getFiringCone()) {
-                System.out.println(t+ " :: "  + getFiringCone());
                 return true;
             }
         }
@@ -538,5 +537,9 @@ public class Weapon extends Equipment {
 
     public void setFiringCone(float firingCone) {
         this.firingCone = firingCone;
+    }
+    
+    public float distanceTo(Vector3f loc) {
+        return loc.distance(getSocket().getNode().getWorldTranslation());
     }
 }

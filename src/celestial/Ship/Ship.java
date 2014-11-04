@@ -1945,13 +1945,6 @@ public class Ship extends Celestial {
         }
     }
 
-    protected void updateHardpoints() {
-        //update hard points
-        for (int a = 0; a < hardpoints.size(); a++) {
-            hardpoints.get(a).periodicUpdate(tpf);
-        }
-    }
-
     /*
      * Methods for in-system updating. It primarily uses the physics system.
      */
@@ -1970,6 +1963,8 @@ public class Ship extends Celestial {
             updateNozzles();
             syncPhysics();
             centerEngineNoise();
+            //turret control
+            updateTurrets();
         }
     }
 
@@ -2081,6 +2076,50 @@ public class Ship extends Celestial {
     protected void updateNozzles() {
         for (int a = 0; a < nozzles.size(); a++) {
             nozzles.get(a).periodicUpdate(tpf);
+        }
+    }
+
+    protected void updateHardpoints() {
+        //update hard points
+        for (int a = 0; a < hardpoints.size(); a++) {
+            hardpoints.get(a).periodicUpdate(tpf);
+        }
+    }
+
+    protected void updateTurrets() {
+        ArrayList<Ship> hostiles = getHostileShipsInSensorRange();
+        for (int a = 0; a < hardpoints.size(); a++) {
+            Hardpoint h = hardpoints.get(a);
+            if (h.notNothing()) {
+                Equipment e = h.getMounted();
+                if (e instanceof Weapon) {
+                    Weapon w = (Weapon) e;
+                    if ((w.isTurret() || w.isBattery()) && w.isEnabled()) {
+                        Ship t = null;
+                        for (int b = 0; b < hostiles.size(); b++) {
+                            Ship hostile = hostiles.get(b);
+                            //check range
+                            if (w.distanceTo(hostile.getLocation()) <= w.getRange()) {
+                                //check firing cone
+                                if (w.inFiringCone(hostile)) {
+                                    //this is the target
+                                    if (t == null) {
+                                        t = hostile;
+                                    } else {
+                                        if (w.distanceTo(hostile.getLocation()) 
+                                                < w.distanceTo(t.getLocation())) {
+                                            t = hostile;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (t != null) {
+                            w.activate(t);
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -2568,8 +2607,8 @@ public class Ship extends Celestial {
                 float ux = Float.parseFloat(re[5]);
                 float uy = Float.parseFloat(re[6]);
                 float uz = Float.parseFloat(re[7]);
-                
-                hardpoints.add(new Hardpoint(this, hType, hSize, 
+
+                hardpoints.add(new Hardpoint(this, hType, hSize,
                         new Vector3f(hx, hy, hz), new Vector3f(ux, uy, uz)));
             }
         }
@@ -2642,7 +2681,7 @@ public class Ship extends Celestial {
             }
         }
     }
-    
+
     public void toggleTurrets() {
         for (int a = 0; a < hardpoints.size(); a++) {
             if (hardpoints.get(a).getType().equals(Item.TYPE_TURRET)) {
@@ -2658,7 +2697,7 @@ public class Ship extends Celestial {
             }
         }
     }
-    
+
     public void toggleBatteries() {
         for (int a = 0; a < hardpoints.size(); a++) {
             if (hardpoints.get(a).getType().equals(Item.TYPE_BATTERY)) {
@@ -3278,23 +3317,8 @@ public class Ship extends Celestial {
 
     public void targetNearestHostileShip() {
         target = null;
-        //get a list of all nearby ships
-        ArrayList<Ship> nearby = getShipsInSensorRange();
-        ArrayList<Ship> hostiles = new ArrayList<>();
-        for (int a = 0; a < nearby.size(); a++) {
-            Ship tmp = (Ship) nearby.get(a);
-            if (nearby.get(a) instanceof Ship) {
-                if (tmp != this) {
-                    //make sure it is alive and isn't docked
-                    if (tmp.getState() == State.ALIVE && !tmp.isDocked()) {
-                        //check standings
-                        if (tmp.isHostileToMe(this)) {
-                            hostiles.add(tmp);
-                        }
-                    }
-                }
-            }
-        }
+        //get a list of hostile ships in sensor range
+        ArrayList<Ship> hostiles = getHostileShipsInSensorRange();
         //target the nearest one
         Ship closest = null;
         for (int a = 0; a < hostiles.size(); a++) {
@@ -3409,6 +3433,28 @@ public class Ship extends Celestial {
         return ret;
     }
 
+    public ArrayList<Ship> getHostileShipsInSensorRange() {
+        //get a list of all nearby ships
+        ArrayList<Ship> nearby = getShipsInSensorRange();
+        ArrayList<Ship> hostiles = new ArrayList<>();
+        for (int a = 0; a < nearby.size(); a++) {
+            Ship tmp = (Ship) nearby.get(a);
+            if (nearby.get(a) instanceof Ship) {
+                if (tmp != this) {
+                    //make sure it is alive and isn't docked
+                    if (tmp.getState() == State.ALIVE && !tmp.isDocked()) {
+                        //check standings
+                        if (tmp.isHostileToMe(this)) {
+                            hostiles.add(tmp);
+                        }
+                    }
+                }
+            }
+        }
+
+        return hostiles;
+    }
+
     public ArrayList<Station> getDockableStationsInSystem() {
         return getDockableStationsInSystem(currentSystem);
     }
@@ -3491,7 +3537,7 @@ public class Ship extends Celestial {
                     options.add(tmp);
                 }
             }
-            
+
             if (options.size() > 0) {
                 ret = options.get(rnd.nextInt(options.size()));
             } else {
