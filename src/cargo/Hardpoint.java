@@ -168,7 +168,12 @@ public class Hardpoint implements Serializable {
     }
     
     public void showDebugHardpoint(AssetManager assets) {
-        Box point = new Box(0.1f,0.1f,0.1f);      
+        addNodeDebug(assets);   
+        addUpNodeDebug(assets);
+    }
+
+    private void addNodeDebug(AssetManager assets) {
+        Box point = new Box(0.1f,0.1f,0.1f);
         Geometry red = new Geometry("DebugHardpoint", point);
         red.setLocalTranslation(Vector3f.ZERO);
         Material mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
@@ -176,6 +181,17 @@ public class Hardpoint implements Serializable {
         red.setMaterial(mat);
         //add to node
         node.attachChild(red);
+    }
+    
+    private void addUpNodeDebug(AssetManager assets) {
+        Box point = new Box(0.1f,0.1f,0.1f);
+        Geometry gray = new Geometry("DebugHardpoint", point);
+        gray.setLocalTranslation(Vector3f.ZERO);
+        Material mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
+        mat.setColor("Color", ColorRGBA.LightGray);
+        gray.setMaterial(mat);
+        //add to node
+        upNode.attachChild(gray);
     }
     
     public void construct(AssetManager assets) {

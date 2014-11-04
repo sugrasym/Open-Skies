@@ -16,7 +16,7 @@ hull=1510
 fuel=45000
 sensor=2500
 cargo=250
-hardpoint=missile,10,-1.0,0,-1.8,0,0,-1,0/missile,10,1.0,0,-1.8,0,0,-1,0/cannon,10,-1.0,0,-1.8,0,0,-1,0/cannon,10,1.0,0,-1.8,0,0,-1,0/turret,10,1.0,0,-1.8,0,0,-1,1.48
+hardpoint=missile,10,-1.0,0,-1.8,0,0,-1,0/missile,10,1.0,0,-1.8,0,0,-1,0/cannon,10,-1.0,0,-1.8,0,0,-1,0/cannon,10,1.0,0,-1.8,0,0,-1,0
 #nozzles
 nozzle=rear,1,0,0,1.75/forward,1,1.2,0,-1/forward,1,-1.2,0,-1
 nozzleStartColor=1,1,1,0.5
@@ -41,7 +41,7 @@ hull=3250
 fuel=57000
 sensor=2425
 cargo=300
-hardpoint=missile,15,-1.0,0,-1.8,0,0,-1,0/missile,15,1.0,0,-1.8,0,0,-1,0/cannon,10,-1.0,0,-1.8,0,0,-1,0/cannon,10,1.0,0,-1.8,0,0,-1,0
+hardpoint=missile,15,-1.0,0,-1.8,0,0,-1,0/missile,15,1.0,0,-1.8,0,0,-1,0/cannon,10,-1.0,0,-1.8,0,0,-1,0/cannon,10,1.0,0,-1.8,0,0,-1,0/turret,10,0,0.45,1.65,0,0,1,1.48
 #nozzles
 nozzle=rear,1,0,0,1.75/forward,1,1.2,0,-1/forward,1,-1.2,0,-1
 nozzleStartColor=1,1,1,0.5
