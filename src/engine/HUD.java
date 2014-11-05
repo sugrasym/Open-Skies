@@ -36,6 +36,7 @@ import gdi.SightMarker;
 import gdi.StandingWindow;
 import gdi.StarMapWindow;
 import gdi.TradeWindow;
+import gdi.VelocityMarker;
 import gdi.component.AstralWindow;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -465,6 +466,7 @@ public class HUD {
 
         ArrayList<HudMarker> markers = new ArrayList<>();
         SightMarker sightMarker;
+        VelocityMarker velocityMarker;
 
         public IFFManager() {
         }
@@ -474,9 +476,17 @@ public class HUD {
                 sightMarker = new SightMarker(assets, universe.getPlayerShip(), camera, 25, 25);
                 sightMarker.add(guiNode);
             }
+            if (velocityMarker == null) {
+                velocityMarker = new VelocityMarker(assets, universe.getPlayerShip(), camera, 
+                        25, 25, width, height);
+                velocityMarker.add(guiNode);
+            }
             //update sight marker
             sightMarker.update(universe.getPlayerShip(), camera);
             sightMarker.periodicUpdate();
+            //update velocity marker
+            velocityMarker.update(universe.getPlayerShip(), camera);
+            velocityMarker.periodicUpdate();
             /*
              * Determine if any new ship markers need to be added
              */
@@ -538,6 +548,7 @@ public class HUD {
             }
             //render sight marker
             sightMarker.render(null);
+            velocityMarker.render(null);
         }
 
         public void collect() {
@@ -546,6 +557,9 @@ public class HUD {
             }
             if (sightMarker != null) {
                 sightMarker.collect();
+            }
+            if (velocityMarker != null) {
+                velocityMarker.collect();
             }
         }
 
