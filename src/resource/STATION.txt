@@ -122,7 +122,7 @@ fuel=2500000000000
 mass=0
 sensor=5000
 cargo=512000
-job=FairMakeTalonT2
+job=FairMakeTalonT2/FairMakeClawT5/FairMakeSpanT7
 port=basic,10,75,0,0,300,0,0/basic,10,-55,0,0,-280,0,0
 class=StandardSmallStation
 [/Station]

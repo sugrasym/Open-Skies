@@ -170,10 +170,24 @@ resource=Mass Block,2/Box Meals,3/Standard Energy Unit,7/Plank Tubes,4/Microchip
 [/Process]
 
 [Process]
+name=FairMakeClawT5
+cycle=2200
+product=Claw T-5,1
+resource=Mass Block,2/Box Meals,3/Standard Energy Unit,8/Plank Tubes,4/Microchips,1
+[/Process]
+
+[Process]
 name=FairMakeSpanR3
 cycle=2107
 product=Span R-3,1
 resource=Mass Block,4/Box Meals,6/Standard Energy Unit,17/Plank Tubes,4/Microchips,4
+[/Process]
+
+[Process]
+name=FairMakeSpanT7
+cycle=2600
+product=Span T-7,1
+resource=Mass Block,5/Box Meals,6/Standard Energy Unit,17/Plank Tubes,4/Microchips,4
 [/Process]
 
 #Energy

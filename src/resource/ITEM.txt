@@ -181,6 +181,19 @@ description=A light cannon designed to hit fast moving targets. Delivers kinetic
 [/Item]
 
 [Item]
+name=Claw T-5
+type=turret
+volume=10
+mass=0.09
+HP=100
+minPrice=3600
+maxPrice=6875
+group=weapon
+store=45
+description=A light turret designed to hit fast moving targets. Delivers kinetic damage on impact as well as damage from its plasma charge. This cannon has a high refire rate and muzzle velocity.
+[/Item]
+
+[Item]
 name=Span R-3
 type=cannon
 volume=15
@@ -191,6 +204,19 @@ maxPrice=8115
 group=weapon
 store=70
 description=A heavy cannon that does significant damage at medium range.
+[/Item]
+
+[Item]
+name=Span T-7
+type=turret
+volume=15
+mass=0.12
+HP=100
+minPrice=5100
+maxPrice=9202
+group=weapon
+store=35
+description=A heavy turret that does significant damage at medium range.
 [/Item]
 
 ################################################################################
