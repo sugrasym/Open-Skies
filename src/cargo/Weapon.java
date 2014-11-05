@@ -240,6 +240,11 @@ public class Weapon extends Equipment {
 
     public boolean inFiringCone(Celestial target) {
 
+        //turrets always hit oos
+        if(host.getCurrentSystem() != host.getCurrentSystem().getUniverse().getPlayerShip().getCurrentSystem()) {
+            return true;
+        }
+        
         if (isCannon() || isMissile()) {
             return true;
         } else if(isTurret() || isBattery()) {

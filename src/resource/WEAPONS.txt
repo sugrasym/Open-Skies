@@ -207,7 +207,7 @@ speed=475
 mass=0.07
 refire=0.38
 #graphics info
-size=0.51
+size=0.35
 startColor=1,1,0,1
 endColor=1,0,0,0.1
 pVel=3,1,3
