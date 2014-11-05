@@ -16,6 +16,9 @@ D - Yaw Right
 Q - Roll left
 E - Roll right
 
+C - Combat Mode (Weapons online, max speed reduced)
+V - Cruise Mode (Weapons offline - for travel)
+
 Up Arrow - Pitch down
 Down Arrow - Pitch up
 

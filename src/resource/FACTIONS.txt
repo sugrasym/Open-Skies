@@ -174,9 +174,9 @@ merchant0=Commonwealth Supply Sparrow,20
 
 [Loadout]
 name=Rogers
-patrol0=Rogers Sparrow,1750
-patrol1=Rogers Crow,500
-patrol2=Rogers Raven,250
+patrol0=Rogers Sparrow,75
+patrol1=Rogers Crow,50
+patrol2=Rogers Raven,25
 [/Loadout]
 
 [Loadout]

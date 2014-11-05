@@ -80,13 +80,7 @@ public class OverviewWindow extends AstralWindow {
         velLabel.setText("REL SPEED: " + roundTwoDecimal(sensorShip.getLinearVelocity().length()) + "u/s");
         throttleLabel.setText("THRUST: " + (int) (sensorShip.getThrottle() * 100) + "%");
         //update engine label
-        if (sensorShip.getEngine() == Ship.EngineMode.NORMAL) {
-            engineLabel.setText("NORMAL");
-        } else if (sensorShip.getEngine() == Ship.EngineMode.NEWTON) {
-            engineLabel.setText("NEWTON");
-        } else {
-            engineLabel.setText("");
-        }
+        engineLabel.setText(sensorShip.getEngine().toString());
     }
 
     private class OverviewCanvas extends AstralComponent {

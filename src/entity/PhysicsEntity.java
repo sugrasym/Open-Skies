@@ -112,11 +112,11 @@ public class PhysicsEntity implements Entity, Serializable {
      */
     @Override
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
-        node.attachChild(spatial);
-        physics.getPhysicsSpace().add(spatial);
         this.physics.setLinearVelocity(getVelocity().clone());
         this.physics.setPhysicsLocation(location.clone());
         this.physics.setPhysicsRotation(rotation.clone());
+        node.attachChild(spatial);
+        physics.getPhysicsSpace().add(spatial);
     }
 
     @Override

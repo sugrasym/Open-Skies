@@ -76,6 +76,7 @@ public class Core {
     }
     private GameState state = GameState.QUOTE;
     public static final float DEFAULT_TICK = 0.016666668f;
+    public static final float TICK_DIVIDER = 4.0f;
     //game objects
     private Universe universe;
     God god;
@@ -129,6 +130,8 @@ public class Core {
     private String KEY_TOGGLE_MISSILES;
     private String KEY_TOGGLE_CANNONS;
     private String KEY_TOGGLE_TURRETS;
+    private String KEY_CONFIGURE_COMBAT;
+    private String KEY_CONFIGURE_CRUISE;
     private int JOYSTICK_FIRE_BUTTON;
     private int JOYSTICK_SEC_BUTTON;
 
@@ -197,6 +200,9 @@ public class Core {
                     String keyToggleCannonsString = map.getValue("k_toggle_cannons");
                     String keyToggleTurretsString = map.getValue("k_toggle_turrets");
                     
+                    String keyConfigureCombatString = map.getValue("k_configure_combat");
+                    String keyConfigureCruiseString = map.getValue("k_configure_cruise");
+                    
                     String joyFireButton = map.getValue("j_fire");
                     String joySecButton = map.getValue("j_sec");
 
@@ -235,6 +241,9 @@ public class Core {
                     KEY_TOGGLE_MISSILES = keyToggleMissilesString.trim();
                     KEY_TOGGLE_CANNONS = keyToggleCannonsString.trim();
                     KEY_TOGGLE_TURRETS = keyToggleTurretsString.trim();
+                    
+                    KEY_CONFIGURE_COMBAT = keyConfigureCombatString.trim();
+                    KEY_CONFIGURE_CRUISE = keyConfigureCruiseString.trim();
                     
                     JOYSTICK_FIRE_BUTTON = Integer.parseInt(joyFireButton.trim());
                     JOYSTICK_SEC_BUTTON = Integer.parseInt(joySecButton.trim());
@@ -275,6 +284,8 @@ public class Core {
             KEY_TOGGLE_MISSILES = "KEY_J";
             KEY_TOGGLE_CANNONS = "KEY_K";
             KEY_TOGGLE_TURRETS = "KEY_L";
+            KEY_CONFIGURE_COMBAT = "KEY_C";
+            KEY_CONFIGURE_CRUISE = "KEY_V";
             JOYSTICK_FIRE_BUTTON = 0;
             JOYSTICK_SEC_BUTTON = 1;
             e.printStackTrace();
@@ -651,6 +662,16 @@ public class Core {
                         getUniverse().getPlayerShip().toggleTurrets();
                     }
                 }
+                if (name.equals(KEY_CONFIGURE_COMBAT)) {
+                    if (keyPressed) {
+                        getUniverse().getPlayerShip().configureForCombat();
+                    }
+                }
+                if (name.equals(KEY_CONFIGURE_CRUISE)) {
+                    if (keyPressed) {
+                        getUniverse().getPlayerShip().configureForCruise();
+                    }
+                }
                 if (name.equals(KEY_TGT_NEAREST_ENEMY)) {
                     if (keyPressed) {
                         getUniverse().getPlayerShip().targetNearestHostileShip();
@@ -780,6 +801,7 @@ public class Core {
      * Taking over some important jobs from the Main class.
      */
     public void periodicUpdate(float tpf) {
+        //System.out.println("tpf: "+tpf+" , "+"tick: "+(DEFAULT_TICK/TICK_DIVIDER)+" , "+" magic: "+((DEFAULT_TICK/TICK_DIVIDER) + tpf) / 2.0f);
         /*
          * In-game updating
          */
@@ -1008,7 +1030,7 @@ public class Core {
         bulletAppState.getPhysicsSpace().destroy();
         bulletAppState.getPhysicsSpace().create();
         bulletAppState.getPhysicsSpace().setGravity(Vector3f.ZERO);
-        bulletAppState.getPhysicsSpace().setAccuracy(DEFAULT_TICK / 4);
+        bulletAppState.getPhysicsSpace().setAccuracy(DEFAULT_TICK / TICK_DIVIDER);
         initPhysicsListeners();
         addHUD();
         System.gc();

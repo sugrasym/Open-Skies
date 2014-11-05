@@ -27,6 +27,8 @@ k_stop=KEY_HOME
 k_toggle_missiles=KEY_J
 k_toggle_cannons=KEY_K
 k_toggle_turrets=KEY_L
+k_configure_combat=KEY_C
+k_configure_cruise=KEY_V
 j_fire=0
 j_sec=1
 [/Mapper]

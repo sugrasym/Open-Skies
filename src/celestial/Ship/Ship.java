@@ -115,12 +115,13 @@ public class Ship extends Celestial {
     public static final float PLANET_AVOID_CAUTION_2 = 1.75f;
 
     public enum EngineMode {
-
-        NORMAL,
+        COMBAT,
+        CRUISE,
         NEWTON
     }
     private transient AssetManager assets;
-    public static final float NORMAL_DAMP = 0.26f;
+    public static final float COMBAT_DAMP = 0.65f;
+    public static final float CRUISE_DAMP = 0.15f;
     public static final float NEWTON_DAMP = 0;
     public static final float ANGULAR_DAMP = 0.99f;
     private Term type;
@@ -139,7 +140,7 @@ public class Ship extends Celestial {
     //navigation
     transient Node core;
     transient Node nav;
-    private EngineMode engine = EngineMode.NORMAL;
+    private EngineMode engine = EngineMode.NEWTON;
     private float throttle = 0;
     private float pitch = 0;
     private float yaw = 0;
@@ -1836,6 +1837,8 @@ public class Ship extends Celestial {
                 cmdUndock();
             }
         } else {
+            //update weapon status
+            configureEngineForTask();
             //run planet avoider
             if (autopilot != Autopilot.NONE
                     && autopilot != Autopilot.ALL_STOP
@@ -1877,6 +1880,21 @@ public class Ship extends Celestial {
             float p = rnd.nextFloat();
             if (p > DEATH_CARGO_DROP_CHANCE) {
                 ejectFromCargoBay(cargoBay.get(a));
+            }
+        }
+    }
+    
+    /*
+     * Configures the engine mode on the ship for the task being performed.
+     * To take full advantage of cruise mode, weapons are only enabled when
+     * fighting.
+     */
+    protected void configureEngineForTask() {
+        if(getAutopilot() != Autopilot.NONE) {
+            if(getAutopilot() == Autopilot.ATTACK_TARGET) {
+                configureForCombat();
+            } else {
+                configureForCruise();
             }
         }
     }
@@ -2021,10 +2039,18 @@ public class Ship extends Celestial {
         } else {
             /*
              * Update the drag coefficient based on whether we are accelerating.
-             * When accelerating, drag is applied.
+             * When accelerating, drag is applied. When weapons are online, the
+             * combat drag is used. This creates a penalty for flying around with
+             * weapons online as it reduces your maximum velocity.
              */
             if (throttle != 0) {
-                physics.setLinearDamping(NORMAL_DAMP);
+                if(areWeaponsOnline()) {
+                    setEngine(EngineMode.COMBAT);
+                    physics.setLinearDamping(COMBAT_DAMP);
+                } else {
+                    setEngine(EngineMode.CRUISE);
+                    physics.setLinearDamping(CRUISE_DAMP);
+                }
             } else {
                 physics.setLinearDamping(NEWTON_DAMP);
             }
@@ -3840,5 +3866,38 @@ public class Ship extends Celestial {
 
     public Universe getUniverse() {
         return getCurrentSystem().getUniverse();
+    }
+    
+    public boolean areWeaponsOnline() {
+        for(int a = 0; a < hardpoints.size(); a++) {
+            if(hardpoints.get(a).notNothing()) {
+                if(hardpoints.get(a).isEnabled()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public void activateWeapons() {
+        for(int a = 0; a < hardpoints.size(); a++) {
+            hardpoints.get(a).setEnabled(true);
+        }
+    }
+    
+    public void deactivateWeapons() {
+        for(int a = 0; a < hardpoints.size(); a++) {
+            hardpoints.get(a).setEnabled(false);
+        }
+    }
+    
+    public void configureForCombat() {
+        setEngine(EngineMode.COMBAT);
+        activateWeapons();
+    }
+    
+    public void configureForCruise() {
+        setEngine(EngineMode.CRUISE);
+        deactivateWeapons();
     }
 }

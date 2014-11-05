@@ -364,8 +364,6 @@ public class Weapon extends Equipment {
              * Missiles and cannons fire straight forward out of their hard points.
              * Turrets and batteries need to simulate a swivel.
              */
-            Vector3f loc = getSocket().getNode().getWorldTranslation().add(host.getLinearVelocity()
-                    .mult(Math.min(tpf, Core.DEFAULT_TICK)));
             Quaternion rot;
             Vector3f vel;
 
@@ -387,6 +385,9 @@ public class Weapon extends Equipment {
             }
 
             vel = vel.add(host.getLinearVelocity());
+            
+            Vector3f loc = getSocket().getNode().getWorldTranslation()
+                    .add(vel.mult(Math.min(tpf, Core.DEFAULT_TICK)));
 
             //store physics
             pro.setLocation(loc);
