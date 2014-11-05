@@ -213,6 +213,7 @@ station5=Computer Plant,0.17
 station6=Low Grade Missile Factory,0.17
 station7=Fighter Cannon Factory,0.12
 station8=Fighter Turret Factory,0.12
+station9=Fitting Outlet,0.05
 [/Stations]
 
 [Stations]
@@ -226,6 +227,7 @@ station5=Computer Plant,0.17
 station6=Low Grade Missile Factory,0.17
 station7=Fighter Cannon Factory,0.12
 station8=Fighter Turret Factory,0.12
+station9=Fitting Outlet,0.05
 [/Stations]
 
 [Stations]
@@ -239,6 +241,7 @@ station5=Computer Plant,0.17
 station6=Low Grade Missile Factory,0.17
 station7=Fighter Cannon Factory,0.12
 station8=Fighter Turret Factory,0.12
+station9=Fitting Outlet,0.05
 [/Stations]
 
 [Stations]

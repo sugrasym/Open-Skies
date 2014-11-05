@@ -145,6 +145,23 @@ class=StandardSmallStation
 [/Station]
 
 [Station]
+type=Fitting Outlet
+thrust=0
+torque=0
+shield=13750000
+shieldRecharge=1000
+hull=6900000
+fuel=2500000000000
+mass=0
+sensor=5000
+cargo=512000
+job=TransferDartMissile/TransferArrowRocket/TransferTalonA7/TransferTalonT2/TransferClawC6/TransferSpanR3/TransferClawT5/TransferSpanT7/TransferDartMissileAmmunition/TransferArrowRocketAmmunition/ClearFighterTurrets/ClearFighterCannons/ClearDartMissileAmmunition/ClearArrowRocketAmmunition/ClearDartMissile/ClearArrowRocket/ClearRepairPaste/ClearCapitalRepairPaste
+port=basic,10,75,0,0,300,0,0/basic,10,-55,0,0,-280,0,0
+economyExempt=true
+class=StandardSmallStation
+[/Station]
+
+[Station]
 type=Pirate Base
 thrust=0
 torque=0

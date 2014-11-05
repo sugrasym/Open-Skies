@@ -290,6 +290,136 @@ product=
 resource=Microchips,25
 [/Process]
 
+#Fitting Outlet
+
+[Process]
+name=TransferDartMissile
+cycle=500
+product=Dart Missile,1
+resource=Dart Missile,1
+[/Process]
+
+[Process]
+name=TransferArrowRocket
+cycle=500
+product=Arrow Rocket,1
+resource=Arrow Rocket,1
+[/Process]
+
+[Process]
+name=TransferTalonA7
+cycle=750
+product=Talon A-7,1
+resource=Talon A-7,1
+[/Process]
+
+[Process]
+name=TransferTalonT2
+cycle=675
+product=Talon T-2,1
+resource=Talon T-2,1
+[/Process]
+
+[Process]
+name=TransferClawC6
+cycle=500
+product=Claw C-6,1
+resource=Claw C-6,1
+[/Process]
+
+[Process]
+name=TransferSpanR3
+cycle=950
+product=Span R-3,1
+resource=Span R-3,1
+[/Process]
+
+[Process]
+name=TransferClawT5
+cycle=875
+product=Claw T-5,1
+resource=Claw T-5,1
+[/Process]
+
+[Process]
+name=TransferSpanT7
+cycle=500
+product=Span T-7,1
+resource=Span T-7,1
+[/Process]
+
+[Process]
+name=TransferDartMissileAmmunition
+cycle=50
+product=Dart Missile Ammunition,1
+resource=Dart Missile Ammunition,1
+[/Process]
+
+[Process]
+name=TransferArrowRocketAmmunition
+cycle=50
+product=Arrow Rocket Ammunition,1
+resource=Arrow Rocket Ammunition,1
+[/Process]
+
+#Fittng Outlet Sinks
+
+[Process]
+name=ClearFighterTurrets
+cycle=255
+product=
+resource=Span T-7,1/Claw T-5,1/Talon T-2,1
+[/Process]
+
+[Process]
+name=ClearFighterCannons
+cycle=255
+product=
+resource=Span R-3,1/Claw C-6,1/Talon A-7,1
+[/Process]
+
+[Process]
+name=ClearDartMissileAmmunition
+cycle=255
+product=
+resource=Dart Missile Ammunition,1
+[/Process]
+
+[Process]
+name=ClearArrowRocketAmmunition
+cycle=255
+product=
+resource=Arrow Rocket Ammunition,1
+[/Process]
+
+[Process]
+name=ClearDartMissile
+cycle=336
+product=
+resource=Dart Missile,1
+[/Process]
+
+[Process]
+name=ClearArrowRocket
+cycle=435
+product=
+resource=Arrow Rocket,1
+[/Process]
+
+[Process]
+name=ClearRepairPaste
+cycle=435
+product=
+resource=Repair Paste,1
+[/Process]
+
+[Process]
+name=ClearCapitalRepairPaste
+cycle=435
+product=
+resource=Capital Repair Paste,1
+[/Process]
+
 #[Process]
 #name=FairMakeHAPC
 #cycle=225
