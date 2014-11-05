@@ -197,11 +197,15 @@ public class CargoWindow extends AstralWindow {
             Hardpoint socket = tmp.getSocket();
             if (socket != null) {
                 //it is mounted
-                optionList.addToList(CMD_UNMOUNT);
+                if(ship.isDocked()) {
+                    optionList.addToList(CMD_UNMOUNT);
+                }
                 canEject = false;
             } else {
                 //it is not mounted
-                optionList.addToList(CMD_MOUNT);
+                if(ship.isDocked()) {
+                    optionList.addToList(CMD_MOUNT);
+                }
                 optionList.addToList(CMD_PACKAGE);
             }
             optionList.addToList(" ");
