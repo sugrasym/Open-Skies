@@ -263,7 +263,9 @@ public class Weapon extends Equipment {
     }
 
     private Vector3f adjustedTargetLocation(Celestial target) {
-        Vector3f targetLoc = leadTargetLocation(target).normalize();
+        Vector3f targetLoc = (leadTargetLocation(target)
+                .subtract(getSocket().getNode().getWorldTranslation()))
+                .normalize();
         return targetLoc;
     }
     

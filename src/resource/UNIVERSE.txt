@@ -1,18 +1,18 @@
 [NewGame]
 name=Default
-ship=Crow
+ship=Raven
 system=Alpha FE1-XE4
 x=46572
 y=42326
 z=-53003
 cash=50000
-install=Arrow Rocket/Arrow Rocket/Talon A-7/Talon A-7
+install=Arrow Rocket/Arrow Rocket/Talon A-7/Talon A-7/Talon T-2/Talon T-2/Talon T-2
 cargo=Jumpdrive~1/Arrow Rocket Ammunition~50
 [/NewGame]
 
 [Ship]
 name=Sparrow
-ship=Crow
+ship=Raven
 system=Alpha FE1-XE4
 x=45572
 y=42326
