@@ -135,6 +135,8 @@ public class Core {
     private String KEY_CONFIGURE_CRUISE;
     private int JOYSTICK_FIRE_BUTTON;
     private int JOYSTICK_SEC_BUTTON;
+    //control switches
+    private boolean shiftDown = false;
 
     public Core(Node rootNode, Node guiNode, BulletAppState bulletAppState,
             AssetManager assets, PlanetAppState planetAppState,
@@ -448,6 +450,9 @@ public class Core {
         input.addMapping("KEY_Z", new KeyTrigger(KeyInput.KEY_Z));
         //space bar
         input.addMapping("KEY_SPACE", new KeyTrigger(KeyInput.KEY_SPACE));
+        //shift keys
+        input.addMapping("KEY_LSHIFT", new KeyTrigger(KeyInput.KEY_LSHIFT));
+        input.addMapping("KEY_RSHIFT", new KeyTrigger(KeyInput.KEY_RSHIFT));
         //return and backspace
         input.addMapping("KEY_RETURN", new KeyTrigger(KeyInput.KEY_RETURN));
         input.addMapping("KEY_BACKSPACE", new KeyTrigger(KeyInput.KEY_BACK));
@@ -501,7 +506,8 @@ public class Core {
             "KEY_BACKSPACE", "QuickSave", "QuickLoad", "KEY_END", "KEY_HOME",
             "KEY_PGUP", "KEY_PGDN", "KEY_F1", "KEY_F2", "KEY_F3", "KEY_F4",
             "KEY_F5", "KEY_F6", "KEY_F7", "KEY_F8", "KEY_F9", "KEY_F10",
-            "KEY_F11", "KEY_F12", "KEY_MINUS", "KEY_ESCAPE"});
+            "KEY_F11", "KEY_F12", "KEY_MINUS", "KEY_ESCAPE", "KEY_LSHIFT",
+            "KEY_RSHIFT"});
     }
 
     private AnalogListener analogListener = new AnalogListener() {
@@ -520,10 +526,13 @@ public class Core {
 
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {
+            if(name.equals("KEY_LSHIFT")) {
+                shiftDown = keyPressed;
+            }
             Vector2f origin = input.getCursorPosition();
             String[] split = name.split("_");
             if (split[0].equals("KEY")) {
-                if (!hud.handleKeyAction(getState(), name, keyPressed)) {
+                if (!hud.handleKeyAction(getState(), name, keyPressed, shiftDown)) {
                     if (getState() == GameState.IN_SPACE) {
                         handleInSpaceKeys(name, keyPressed);
                     }

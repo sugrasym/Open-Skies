@@ -175,7 +175,7 @@ public class AstralList extends AstralComponent {
     }
 
     @Override
-    public void handleKeyPressedEvent(String ke) {
+    public void handleKeyPressedEvent(String ke, boolean shiftDown) {
         if (ke.equals("KEY_UP")) {
             scrollDirection = -1;
         } else if (ke.equals("KEY_DOWN")) {
@@ -184,7 +184,7 @@ public class AstralList extends AstralComponent {
     }
 
     @Override
-    public void handleKeyReleasedEvent(String ke) {
+    public void handleKeyReleasedEvent(String ke, boolean shiftDown) {
         if (ke.equals("KEY_UP")) {
             scrollDirection = 0;
         } else if (ke.equals("KEY_DOWN")) {

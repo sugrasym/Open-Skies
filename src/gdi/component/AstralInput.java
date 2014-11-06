@@ -18,12 +18,10 @@
  */
 package gdi.component;
 
-import com.jme3.asset.AssetManager;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 /**
@@ -40,7 +38,7 @@ public class AstralInput extends AstralLabel {
     }
 
     @Override
-    public void handleKeyReleasedEvent(String ke) {
+    public void handleKeyReleasedEvent(String ke, boolean shiftDown) {
         if (ke.equals("KEY_BACKSPACE")) {
             if (getText().length() > 0) {
                 setText(getText().substring(0, getText().length() - 1));
@@ -53,8 +51,16 @@ public class AstralInput extends AstralLabel {
             setText(getText() + " ");
         } else if (ke.equals("KEY_MINUS")) {
             setText(getText() + "-");
+        } else if (ke.equals("KEY_LSHIFT")) {
+            //do nothing
         } else {
-            setText(getText() + ke.split("_")[1]);
+            String in = ke.split("_")[1];
+            if(shiftDown) {
+                in = in.toUpperCase();
+            } else {
+                in = in.toLowerCase();
+            }
+            setText(getText() + in);
         }
     }
 

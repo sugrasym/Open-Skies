@@ -160,22 +160,22 @@ public class AstralWindow extends AstralComponent {
     }
 
     @Override
-    public void handleKeyPressedEvent(String ke) {
+    public void handleKeyPressedEvent(String ke, boolean shiftDown) {
         if (visible) {
             for (int a = 0; a < components.size(); a++) {
                 if (components.get(a).isFocused()) {
-                    components.get(a).handleKeyPressedEvent(ke);
+                    components.get(a).handleKeyPressedEvent(ke, shiftDown);
                 }
             }
         }
     }
 
     @Override
-    public void handleKeyReleasedEvent(String ke) {
+    public void handleKeyReleasedEvent(String ke, boolean shiftDown) {
         if (visible) {
             for (int a = 0; a < components.size(); a++) {
                 if (components.get(a).isFocused()) {
-                    components.get(a).handleKeyReleasedEvent(ke);
+                    components.get(a).handleKeyReleasedEvent(ke, shiftDown);
                 }
             }
         }

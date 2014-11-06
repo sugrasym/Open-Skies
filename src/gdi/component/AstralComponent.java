@@ -70,10 +70,10 @@ public class AstralComponent {
      * Event handling
      */
 
-    public void handleKeyPressedEvent(String ke) {
+    public void handleKeyPressedEvent(String ke, boolean shiftDown) {
     }
 
-    public void handleKeyReleasedEvent(String ke) {
+    public void handleKeyReleasedEvent(String ke, boolean shiftDown) {
     }
 
     public void handleMouseMovedEvent(String me, Vector3f mouseLoc) {

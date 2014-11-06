@@ -393,7 +393,7 @@ public class OverviewWindow extends AstralWindow {
     }
 
     @Override
-    public void handleKeyReleasedEvent(String ke) {
+    public void handleKeyReleasedEvent(String ke, boolean shiftDown) {
         /*
          * navmap keys
          */ if (ke.equals("KEY_HOME")) {
