@@ -129,3 +129,45 @@ choice0=Confirm/END
 [/Node]
 
 # Generic Rumours -- all factions should have these
+
+[Node]
+name=Hint0
+subject=Engine Modes
+body=When weapons are online, your ship's max velocity is reduced due to drag from the power system. Disabling weapons when not in combat is wise for faster travel.
+choice0=Good to know/END
+[/Node]
+
+[Node]
+name=Hint1
+subject=Station Ownership
+body=You can buy station construction kits from a shipyard and build your own factories, you'll also need to buy ships to keep them supplied and defended.
+choice0=Good to know/END
+[/Node]
+
+[Node]
+name=Hint2
+subject=Jumpholes
+body=Jumpholes are the main way of traveling between adjacent systems. As you explore the network you'll develop a map. One day you can get a jumpdrive and skip over some of them.
+choice0=Good to know/END
+[/Node]
+
+[Node]
+name=Hint3
+subject=Trading
+body=Trading is a good money maker, you just buy low and sell high. You can get multiple trade ships and automate this process.
+choice0=Good to know/END
+[/Node]
+
+[Node]
+name=Hint4
+subject=Mining
+body=Some asteroid fields can be mined with your cannons. Collecting the loot might be difficult, but it's a pretty low barrier to entry for making money.
+choice0=Good to know/END
+[/Node]
+
+[Node]
+name=Hint5
+subject=Missions
+body=People that don't hate you can offer you missions for their faction. They aren't easy, especially not the bounty hunts, but they pay very well.
+choice0=Good to know/END
+[/Node]

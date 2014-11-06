@@ -296,7 +296,12 @@ neut1=Hello1
 love0=Greetings0
 love1=Greetings1
 #rumors
-#rumor0=GenericRumor0
+rumor0=Hint0
+rumor1=Hint1
+rumor2=Hint2
+rumor3=Hint3
+rumor4=Hint4
+rumor5=Hint5
 [/Comm]
 
 [Comm]
@@ -316,7 +321,12 @@ neut1=Hello1
 love0=Greetings0
 love1=Greetings1
 #rumors
-#rumor0=GenericRumor0
+rumor0=Hint0
+rumor1=Hint1
+rumor2=Hint2
+rumor3=Hint3
+rumor4=Hint4
+rumor5=Hint5
 [/Comm]
 
 [Comm]
@@ -336,7 +346,12 @@ neut1=Hello1
 love0=Greetings0
 love1=Greetings1
 #rumors
-#rumor0=GenericRumor0
+rumor0=Hint0
+rumor1=Hint1
+rumor2=Hint2
+rumor3=Hint3
+rumor4=Hint4
+rumor5=Hint5
 [/Comm]
 
 [Comm]
@@ -356,7 +371,12 @@ neut1=Hello1
 love0=Greetings0
 love1=Greetings1
 #rumors
-#rumor0=GenericRumor0
+rumor0=Hint0
+rumor1=Hint1
+rumor2=Hint2
+rumor3=Hint3
+rumor4=Hint4
+rumor5=Hint5
 [/Comm]
 
 [Comm]
@@ -376,7 +396,12 @@ neut1=Hello1
 love0=Greetings0
 love1=Greetings1
 #rumors
-#rumor0=GenericRumor0
+rumor0=Hint0
+rumor1=Hint1
+rumor2=Hint2
+rumor3=Hint3
+rumor4=Hint4
+rumor5=Hint5
 [/Comm]
 
 [Comm]
@@ -396,5 +421,10 @@ neut1=Hello1
 love0=Greetings0
 love1=Greetings1
 #rumors
-#rumor0=GenericRumor0
+rumor0=Hint0
+rumor1=Hint1
+rumor2=Hint2
+rumor3=Hint3
+rumor4=Hint4
+rumor5=Hint5
 [/Comm]

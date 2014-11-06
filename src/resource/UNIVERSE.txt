@@ -1,24 +1,24 @@
 [NewGame]
 name=Default
 ship=Sparrow
-system=Tau 01-ZWL
-x=-6045
-y=-4562
-z=-26560
+system=Kappa X-38LM
+x=23787
+y=-31968
+z=-28371
 cash=50000
 install=Arrow Rocket/Arrow Rocket/Talon A-7/Talon A-7
-cargo=Jumpdrive~1/Arrow Rocket Ammunition~50
+cargo=Arrow Rocket Ammunition~50
 [/NewGame]
 
 [Ship]
 name=Sparrow
 ship=Sparrow
-system=Gamma E-M3
-x=-60453
-y=-44623
-z=-26563
+system=Kappa X-38LM
+x=23587
+y=-31968
+z=-28371
 faction=Player
-cargo=Jumpdrive~1/Dart Missile Ammunition~12
+cargo=Dart Missile Ammunition~12
 install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 [/Ship]
 
