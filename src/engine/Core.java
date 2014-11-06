@@ -122,6 +122,7 @@ public class Core {
     private String KEY_STARMAP_WINDOW;
     private String KEY_TRADE_WINDOW;
     private String KEY_STANDING_WINDOW;
+    private String KEY_COMM_WINDOW;
     private String KEY_TGT_NEAREST_ENEMY;
     private String KEY_TGT_NEAREST_FRIENDLY;
     private String KEY_TGT_NEAREST_NEUTRAL;
@@ -177,7 +178,7 @@ public class Core {
 
                     String keyPitchUpString = map.getValue("k_pitch_up");
                     String keyPitchDownString = map.getValue("k_pitch_down");
-                    
+
                     String keyRollLeftString = map.getValue("k_roll_left");
                     String keyRollRightString = map.getValue("k_roll_right");
 
@@ -188,21 +189,22 @@ public class Core {
                     String keyStarmapWindowString = map.getValue("k_starmap_window");
                     String keyTradeWindowString = map.getValue("k_trade_window");
                     String keyStandingWindowString = map.getValue("k_standing_window");
-                    
+                    String keyCommWindowString = map.getValue("k_comm_window");
+
                     String keyNearestEnemyString = map.getValue("k_tgt_nearest_enemy");
                     String keyNearestFriendlyString = map.getValue("k_tgt_nearest_friendly");
                     String keyNearestNeutralString = map.getValue("k_tgt_nearest_neutral");
-                    
+
                     String keyFireString = map.getValue("k_fire");
                     String keyStopString = map.getValue("k_stop");
-                    
+
                     String keyToggleMissilesString = map.getValue("k_toggle_missiles");
                     String keyToggleCannonsString = map.getValue("k_toggle_cannons");
                     String keyToggleTurretsString = map.getValue("k_toggle_turrets");
-                    
+
                     String keyConfigureCombatString = map.getValue("k_configure_combat");
                     String keyConfigureCruiseString = map.getValue("k_configure_cruise");
-                    
+
                     String joyFireButton = map.getValue("j_fire");
                     String joySecButton = map.getValue("j_sec");
 
@@ -219,7 +221,7 @@ public class Core {
 
                     KEY_PITCH_UP = keyPitchUpString.trim();
                     KEY_PITCH_DOWN = keyPitchDownString.trim();
-                    
+
                     KEY_ROLL_LEFT = keyRollLeftString.trim();
                     KEY_ROLL_RIGHT = keyRollRightString.trim();
 
@@ -230,21 +232,22 @@ public class Core {
                     KEY_STARMAP_WINDOW = keyStarmapWindowString.trim();
                     KEY_TRADE_WINDOW = keyTradeWindowString.trim();
                     KEY_STANDING_WINDOW = keyStandingWindowString.trim();
-                    
+                    KEY_COMM_WINDOW = keyCommWindowString.trim();
+
                     KEY_TGT_NEAREST_ENEMY = keyNearestEnemyString.trim();
                     KEY_TGT_NEAREST_FRIENDLY = keyNearestFriendlyString.trim();
                     KEY_TGT_NEAREST_NEUTRAL = keyNearestNeutralString.trim();
-                    
+
                     KEY_FIRE = keyFireString.trim();
                     KEY_STOP = keyStopString.trim();
-                    
+
                     KEY_TOGGLE_MISSILES = keyToggleMissilesString.trim();
                     KEY_TOGGLE_CANNONS = keyToggleCannonsString.trim();
                     KEY_TOGGLE_TURRETS = keyToggleTurretsString.trim();
-                    
+
                     KEY_CONFIGURE_COMBAT = keyConfigureCombatString.trim();
                     KEY_CONFIGURE_CRUISE = keyConfigureCruiseString.trim();
-                    
+
                     JOYSTICK_FIRE_BUTTON = Integer.parseInt(joyFireButton.trim());
                     JOYSTICK_SEC_BUTTON = Integer.parseInt(joySecButton.trim());
 
@@ -276,6 +279,7 @@ public class Core {
             KEY_STARMAP_WINDOW = "KEY_5";
             KEY_TRADE_WINDOW = "KEY_6";
             KEY_STANDING_WINDOW = "KEY_7";
+            KEY_COMM_WINDOW = "KEY_8";
             KEY_TGT_NEAREST_ENEMY = "KEY_R";
             KEY_TGT_NEAREST_FRIENDLY = "KEY_T";
             KEY_TGT_NEAREST_NEUTRAL = "KEY_Y";
@@ -568,6 +572,10 @@ public class Core {
                     //toggle standing window
                     hud.toggleStandingWindow();
                 }
+                if (name.equals(KEY_COMM_WINDOW)) {
+                    //toggle comm window
+                    hud.toggleCommWindow();
+                }
                 if (name.equals("KEY_F4")) {
                     //toggle main menu window
                     hud.toggleMenuHomeWindow();
@@ -579,6 +587,14 @@ public class Core {
                     if (keyPressed) {
                         if (getUniverse().getPlayerShip().getTarget() instanceof Station) {
                             getUniverse().getPlayerShip().cmdDock((Station) getUniverse().getPlayerShip().getTarget());
+                        }
+                    }
+                }
+                if (name.equals("KEY_H")) {
+                    if(keyPressed) {
+                        if (getUniverse().getPlayerShip().getTarget() != null) {
+                            getUniverse().getPlayerShip().getTarget().hail();
+                            hud.commWindow.setVisible(true);
                         }
                     }
                 }
@@ -873,6 +889,10 @@ public class Core {
             //update god
             if (godSafe) {
                 god.periodicUpdate();
+            }
+            //update player missions
+            for (int a = 0; a < universe.getPlayerMissions().size(); a++) {
+                universe.getPlayerMissions().get(a).periodicUpdate(tpf);
             }
             //see if we need to reset the camera
             if (planetAppState.getAstralCamera() != null) {

@@ -544,4 +544,13 @@ public class Station extends Ship {
         }
         return ret;
     }
+    
+    public boolean hasDocked(Ship ship) {
+        for (int a = 0; a < ports.size(); a++) {
+            if (ports.get(a).getClient() == ship && ship.isDocked()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -40,6 +40,8 @@ public class Universe implements Serializable {
     private transient AssetManager assets;
     //player property
     private ArrayList<Entity> playerProperty = new ArrayList<>();
+    //missions and scripting
+    private final ArrayList<Mission> playerMissions = new ArrayList<>();
     //discovered space
     private ArrayList<SolarSystem> discoveredSpace = new ArrayList<>();
     
@@ -132,5 +134,9 @@ public class Universe implements Serializable {
 
     public ArrayList<SolarSystem> getDiscoveredSpace() {
         return discoveredSpace;
+    }
+    
+    public ArrayList<Mission> getPlayerMissions() {
+        return playerMissions;
     }
 }

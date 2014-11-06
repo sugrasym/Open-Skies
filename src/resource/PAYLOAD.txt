@@ -19,6 +19,7 @@ k_property_window=KEY_4
 k_starmap_window=KEY_5
 k_trade_window=KEY_6
 k_standing_window=KEY_7
+k_comm_window=KEY_8
 k_tgt_nearest_enemy=KEY_R
 k_tgt_nearest_friendly=KEY_T
 k_tgt_nearest_neutral=KEY_Y

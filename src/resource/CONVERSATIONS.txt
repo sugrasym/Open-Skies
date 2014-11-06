@@ -1,0 +1,131 @@
+#Special comm nodes
+
+[Node]
+name=MISSION
+subject=Offer
+body=<#MISSION>
+choice0=Sounds Good/START_MISSION
+choice1=No, Thanks/END
+[/Node]
+
+[Node]
+name=START_MISSION
+subject=Mission Accepted
+body=Great, we'll monitor your progress.
+[/Node]
+
+#Special final node
+
+[Node]
+name=END
+subject=Channel closed.
+body=Channel closed.
+[/Node]
+
+[Node]
+name=Greetings0
+subject=Greetings
+body=Hello friend!
+choice0=Any jobs?/MISSION
+choice1=Heard anything?/RUMOR
+[/Node]
+
+[Node]
+name=Greetings1
+subject=Can I help you friend?
+body=How can I help?
+choice0=Any jobs?/MISSION
+choice1=Heard anything?/RUMOR
+[/Node]
+
+#Neutral Greetings
+
+[Node]
+name=Hello0
+subject=Hello
+body=Hello?
+choice0=Got anything?/MISSION
+[/Node]
+
+[Node]
+name=Hello1
+subject=Hello
+body=Yes?
+choice0=Got anything?/MISSION
+[/Node]
+
+#'We Hate You' messages
+
+[Node]
+name=DrinkBleach0
+subject=Your Reputation
+body=Drink bleach.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=KillYouMyself0
+subject=Your Reputation
+body=Don't talk to me, I should kill you myself for what you've done.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=Infamous0
+subject=Your Reputation
+body=Your reputation's no good around here.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=SelfDestruct0
+subject=Your Reputation
+body=Self destruct now and save us the trouble.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=NoAssociate0
+subject=Your Reputation
+body=We don't associate with the likes of you.
+choice0=Confirm/END
+[/Node]
+
+#Contraband Notification
+
+[Node]
+name=Contraband0
+subject=Drop It
+body=You're carrying illegal goods. Drop them or you will be destroyed.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=Contraband1
+subject=Drop It
+body=Surrender and drop your freight, smuggler.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=Contraband2
+subject=Drop It
+body=Drop the contraband, now.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=Contraband3
+subject=Drop It
+body=Make this easy on yourself and drop your freight.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=Contraband4
+subject=Drop It
+body=Drop the contraband. We can do this my way or the hard way.
+choice0=Confirm/END
+[/Node]
+
+# Generic Rumours -- all factions should have these

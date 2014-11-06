@@ -39,9 +39,9 @@ public class ResourceCache {
     private Parser processCache = new Parser("PROCESSES.txt");
     private Parser skyCache = new Parser("SKY.txt");
     private Parser loadoutCache = new Parser("LOADOUTS.txt");
-    //private Parser conversationCache = new Parser("CONVERSATIONS.txt");
+    private Parser conversationCache = new Parser("CONVERSATIONS.txt");
     private Parser planetCache = new Parser("PLANET.txt");
-    //private Parser missionCache = new Parser("MISSIONS.txt");
+    private Parser missionCache = new Parser("MISSIONS.txt");
     private Parser nameCache = new Parser("NAMES.txt");
     private Parser quoteCache = new Parser("QUOTES.txt");
     
@@ -107,17 +107,17 @@ public class ResourceCache {
         return loadoutCache;
     }
 
-    /*public Parser getConversationCache() {
+    public Parser getConversationCache() {
         return conversationCache;
-    }*/
+    }
 
     public Parser getPlanetCache() {
         return planetCache;
     }
 
-    /*public Parser getMissionCache() {
+    public Parser getMissionCache() {
         return missionCache;
-    }*/
+    }
 
     public Parser getNameCache() {
         return nameCache;

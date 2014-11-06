@@ -23,6 +23,7 @@ Up Arrow - Pitch down
 Down Arrow - Pitch up
 
 F1 - Dock with current target / Undock
+H - Hail a ship
 
 Weapons
 --------------------------------------------------------------------------------
@@ -47,6 +48,7 @@ User Interface
 5 - Toggle Star Map Window
 6 - Toggle Trade Window (must be docked)
 7 - Toggle Standing Window
+8 - Toggle Communications Window
 
 F4 - Main Menu (does not pause game)
 

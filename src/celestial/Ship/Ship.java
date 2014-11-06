@@ -47,7 +47,11 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jmeplanet.PlanetAppState;
+import lib.AstralMessage;
+import lib.Binling;
+import lib.Conversation;
 import lib.Faction;
+import lib.astral.Parser.Param;
 import lib.astral.Parser.Term;
 import universe.SolarSystem;
 import universe.Universe;
@@ -191,6 +195,10 @@ public class Ship extends Celestial {
     private double courage = 1;
     //detecting aggro
     private Ship lastBlow = this;
+    //communications
+    private ArrayList<AstralMessage> messages = new ArrayList<>();
+    private Conversation conversation;
+    private String pilot;
     //RNG
     Random rnd = new Random();
     //audio
@@ -219,6 +227,7 @@ public class Ship extends Celestial {
         _class = getType().getValue("class");
         installHardpoints(getType());
         installNozzles(getType());
+        setPilot(makeName());
     }
 
     private void initNav() {
@@ -226,6 +235,35 @@ public class Ship extends Celestial {
         nav = new Node();
         nav.move(Vector3f.UNIT_Z);
         core.attachChild(nav);
+    }
+    
+    private String makeName() {
+        /*
+         * Generates a random name for this ship's pilot.
+         */
+        ArrayList<Term> fg = Universe.getCache().getNameCache().getTermsOfType("First");
+        ArrayList<Term> lg = Universe.getCache().getNameCache().getTermsOfType("Last");
+        String first = "";
+        String last = "";
+        {
+            for (int a = 0; a < fg.size(); a++) {
+                if (fg.get(a).getValue("name").equals("Generic")) {
+                    Param pick = fg.get(a).getParams().get(rnd.nextInt(fg.get(a).getParams().size() - 1) + 1);
+                    first = pick.getValue();
+                    break;
+                }
+            }
+
+            for (int a = 0; a < lg.size(); a++) {
+                if (lg.get(a).getValue("name").equals("Generic")) {
+                    Param pick = lg.get(a).getParams().get(rnd.nextInt(lg.get(a).getParams().size() - 1) + 1);
+                    last = pick.getValue();
+                    break;
+                }
+            }
+        }
+
+        return first + " " + last;
     }
 
     public void addInitialEquipment(String equip) {
@@ -246,7 +284,7 @@ public class Ship extends Celestial {
                     fit(wep);
                 }
             } catch (Exception e) {
-                //e.printStackTrace();
+                e.printStackTrace();
             }
         }
     }
@@ -1857,6 +1895,8 @@ public class Ship extends Celestial {
         updateHardpoints();
         //update health
         updateHealth();
+        //update conversation
+        updateConversation();
         //behave
         behave();
     }
@@ -1939,6 +1979,15 @@ public class Ship extends Celestial {
             System.out.println(getName() + " was destroyed in " + currentSystem.getName() + " by " + getLastBlow().getName());
             deathPenalty();
             setState(State.DYING);
+        }
+    }
+    
+    private void updateConversation() {
+        if (getConversation() != null) {
+            getConversation().periodicUpdate(tpf);
+            if (getConversation().isDone()) {
+                conversation = null;
+            }
         }
     }
 
@@ -3742,6 +3791,117 @@ public class Ship extends Celestial {
 
     public void setScanForContraband(boolean scanForContraband) {
         this.scanForContraband = scanForContraband;
+    }
+    
+    /*
+     Conversation System
+     */
+    
+    public void recieveReply(Binling choice) {
+        if (conversation != null) {
+            conversation.reply(choice);
+        }
+    }
+
+    public void composeMessage(Ship recieve, String subject, String body, ArrayList<Binling> options) {
+        AstralMessage tmp = new AstralMessage(this, subject, body, options);
+        recieve.receiveMessage(tmp);
+    }
+
+    public boolean receiveMessage(AstralMessage message) {
+        /*
+         * NPCs do not use the messaging system to communicate with each other
+         * so any sent message is disregarded if it is not a player ship. Any
+         * message sent to a player ship is automatically forwarded to the
+         * player's current ship.
+         */
+        message.setWasSent(true);
+        if (faction.getName().equals(Faction.PLAYER)) {
+            /*stopSound(notifyMessage);
+            playSound(notifyMessage);*/
+            if (this == getUniverse().getPlayerShip()) {
+                //add to que
+                messages.add(message);
+            } else {
+                //forward
+                getUniverse().getPlayerShip().receiveMessage(message);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Conversation getConversation() {
+        return conversation;
+    }
+
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
+    }
+
+    public ArrayList<AstralMessage> getMessages() {
+        return messages;
+    }
+
+    public void hail() {
+        /*
+         * Used by the player to hail an NPC. The NPC has a direct line to
+         * the player's ship for replying. Hailing initiates a new conversation
+         * with the NPC.
+         */
+        //get player standings
+        int standings = getUniverse().getPlayerShip().getStandingsToMe(this);
+        if (conversation == null) {
+            if (standings > Faction.FRIENDLY_STANDING) {
+                //on great terms
+                /*
+                 * Will offer rumors and missions
+                 */
+               //offer mission
+               ArrayList<String> choices = getFaction().getFriendlyNotifications();
+               if (choices.size() > 0) {
+                   String pick = choices.get(rnd.nextInt(choices.size()));
+                   conversation = new Conversation(this, "Hail", pick);
+               } else {
+                   //nothing to say
+               }
+            } else if (standings > Faction.HOSTILE_STANDING) {
+                //on neutral terms
+                /*
+                 * Will offer you missions
+                 */
+                ArrayList<String> choices = getFaction().getNeutralNotifications();
+                if (choices.size() > 0) {
+                    String pick = choices.get(rnd.nextInt(choices.size()));
+                    conversation = new Conversation(this, "Hail", pick);
+                } else {
+                    //nothing to say
+                }
+            } else {
+                //on bad terms
+                /*
+                 * Will be nasty to you
+                 */
+                ArrayList<String> choices = getFaction().getHateNotifications();
+                if (choices.size() > 0) {
+                    String pick = choices.get(rnd.nextInt(choices.size()));
+                    conversation = new Conversation(this, "Hail", pick);
+                } else {
+                    //nothing to say
+                }
+            }
+        } else {
+            //still talking
+        }
+    }
+    
+    public String getPilot() {
+        return pilot;
+    }
+
+    public void setPilot(String pilot) {
+        this.pilot = pilot;
     }
 
     /*

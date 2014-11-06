@@ -24,6 +24,7 @@ import com.jme3.scene.Node;
 import engine.Core.GameState;
 import entity.Entity;
 import gdi.CargoWindow;
+import gdi.CommWindow;
 import gdi.EquipmentWindow;
 import gdi.FuelWindow;
 import gdi.HealthWindow;
@@ -69,6 +70,7 @@ public class HUD {
     StandingWindow standingWindow;
     MenuHomeWindow menuHomeWindow;
     QuoteWindow quoteWindow;
+    CommWindow commWindow;
     //IFF Manager
     IFFManager iffManager = new IFFManager();
     private boolean resetWindowFlag;
@@ -177,6 +179,12 @@ public class HUD {
         menuHomeWindow.setY((height / 2) - menuHomeWindow.getHeight() / 2);
         menuHomeWindow.setVisible(false);
         windows.add(menuHomeWindow);
+        //commWindow window
+        commWindow = new CommWindow(assets);
+        commWindow.setX(15);
+        commWindow.setY(height - (15 + commWindow.getHeight()));
+        commWindow.setVisible(true);
+        windows.add(commWindow);
         //finish
         add();
     }
@@ -263,6 +271,7 @@ public class HUD {
         starMapWindow.updateMap(getUniverse());
         standingWindow.update(getUniverse().getPlayerShip());
         menuHomeWindow.update(tpf);
+        commWindow.update(getUniverse().getPlayerShip());
         //periodic update on other windows
         for (int a = 0; a < windows.size(); a++) {
             windows.get(a).periodicUpdate();
@@ -450,6 +459,11 @@ public class HUD {
         boolean visible = !menuHomeWindow.isVisible();
         hideCentralWindows();
         menuHomeWindow.setVisible(visible);
+    }
+    
+    public void toggleCommWindow() {
+        boolean visible = !commWindow.isVisible();
+        commWindow.setVisible(visible);
     }
 
     /*

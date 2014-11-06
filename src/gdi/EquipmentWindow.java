@@ -50,7 +50,7 @@ public class EquipmentWindow extends AstralWindow {
     AstralLabel targetType = new AstralLabel(1, 1);
     AstralLabel targetFaction = new AstralLabel(1, 1);
     AstralLabel targetDistance = new AstralLabel(1, 1);
-    AstralLabel dockInfo = new AstralLabel(1, 1);
+    AstralLabel comm = new AstralLabel(1, 1);
     AstralBar targetShield = new AstralBar(1, 1);
     AstralBar targetHull = new AstralBar(1, 1);
     Font targetFont = new Font("Monospaced", Font.PLAIN, 10);
@@ -92,20 +92,22 @@ public class EquipmentWindow extends AstralWindow {
                 if (tmp instanceof Station) {
                     Station st = (Station) tmp;
                     if (ship.isDocked()) {
-                        dockInfo.setText("Press F1 To Launch");
+                        comm.setText("Press F1 To Launch");
                     } else {
                         if (ship.getPort() != null) {
-                            dockInfo.setText("Request Accepted");
+                            comm.setText("Request Accepted");
                         } else {
                             if (st.canDock(ship)) {
-                                dockInfo.setText("Press F1 For Docking");
+                                comm.setText("Press F1 For Docking");
                             } else {
-                                dockInfo.setText("Docking Denied");
+                                comm.setText("Docking Denied");
                             }
                         }
                     }
+                } else if (tmp instanceof Ship && !ship.isDocked()) {
+                    comm.setText("Press H To Hail");
                 } else {
-                    dockInfo.setText("");
+                    comm.setText("");
                 }
                 targetShield.setPercentage(ship.getTarget().getShield() / ship.getTarget().getMaxShield());
                 targetHull.setPercentage(ship.getTarget().getHull() / ship.getTarget().getMaxHull());
@@ -114,7 +116,7 @@ public class EquipmentWindow extends AstralWindow {
                 targetType.setText("");
                 targetFaction.setText("");
                 targetDistance.setText("");
-                dockInfo.setText("");
+                comm.setText("");
                 targetShield.setPercentage(0);
                 targetHull.setPercentage(0);
             }
@@ -175,14 +177,14 @@ public class EquipmentWindow extends AstralWindow {
         targetDistance.setHeight(targetFont.getSize() + 1);
         targetDistance.setVisible(true);
         //setup the target distance
-        dockInfo.setName("dock");
-        dockInfo.setText("DOCK");
-        dockInfo.setX(0);
-        dockInfo.setY((getHeight() / 2) + 1 + 5 * targetFont.getSize());
-        dockInfo.setFont(targetFont);
-        dockInfo.setWidth(getWidth() / 2);
-        dockInfo.setHeight((targetFont.getSize() + 1) * 2);
-        dockInfo.setVisible(true);
+        comm.setName("dock");
+        comm.setText("DOCK");
+        comm.setX(0);
+        comm.setY((getHeight() / 2) + 1 + 5 * targetFont.getSize());
+        comm.setFont(targetFont);
+        comm.setWidth(getWidth() / 2);
+        comm.setHeight((targetFont.getSize() + 1) * 2);
+        comm.setVisible(true);
         //setup the shield bar
         targetShield.setX(0);
         targetShield.setName("shield");
@@ -213,7 +215,7 @@ public class EquipmentWindow extends AstralWindow {
         addComponent(targetType);
         addComponent(targetFaction);
         addComponent(targetDistance);
-        addComponent(dockInfo);
+        addComponent(comm);
         addComponent(targetShield);
         addComponent(targetHull);
         addComponent(overview);

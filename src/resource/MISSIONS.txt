@@ -1,0 +1,34 @@
+#Generic Missions
+
+[Mission]
+name=Destroy Station
+type=DESTROY_STATION
+cash=250000>10000000
+delta=0>2
+briefing=We intend to hit an enemy space station, but due to politics can't be connected to the operation. We are looking for an experienced freelancer to destroy <TARGET> in <LOCATION>, so that plausible deniability can be constructed. As long as it dies, we don't want to know or care to know how you did it. You should know that a space station takes a fair bit of firepower to knock out, so grab some heavy hitters. Are you interested?
+[/Mission]
+
+[Mission]
+name=Bounty Hunt
+type=BOUNTY_HUNT
+cash=0>5000000
+delta=0>2
+briefing=Experienced bounty hunters are needed for a search and destroy mission. <NAME> has given us trouble in the past. <NAME> is flying a <SHIP> designated <SHIPNAME> and was last seen in <LOCATION>. Payment will be transferred upon confirmation you have destroyed the target. Do you want the job?
+[/Mission]
+
+[Mission]
+name=Delivery
+type=WARE_DELIVERY
+cash=0>1000000
+delta=0>2
+briefing=Experienced freighter captains are needed for a bulk delivery of <Q> <WARE> to <STATION> in <LOCATION>. This ware must be delivered in a single stack of the quantity we've requested. No other packaging methods will be accepted. We will pay <BASE REWARD> plus <UNIT PRICE> for each <WARE>. Think you can do it?
+[/Mission]
+
+[Mission]
+name=Escort Me
+type=ESCORT_ME
+cash=0>50000
+delta=0>2
+time=2>30
+briefing=My wingman never showed, want to stick with me for <TIME> minutes? I'll give you <REWARD>, but you'd better stick with me the whole time.
+[/Mission]
