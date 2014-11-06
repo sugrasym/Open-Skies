@@ -106,7 +106,7 @@ public class CommWindow extends AstralWindow {
             messageDisplay.addToList(" ");
             messageDisplay.addToList("From:         " + working.getSender().getName());
             messageDisplay.addToList("              " + working.getSender().getPilot());
-            messageDisplay.addToList("On Behalf Of: " + working.getSender().getFaction());
+            messageDisplay.addToList("On Behalf Of: " + working.getSender().getFaction().getName());
             messageDisplay.addToList("Subject:      " + working.getSubject());
             messageDisplay.addToList(" ");
             messageDisplay.addToList(" ");
