@@ -19,6 +19,8 @@
  */
 package engine;
 
+import cargo.Item;
+import celestial.Field;
 import celestial.Jumphole;
 import celestial.Planet;
 import celestial.Projectile;
@@ -73,15 +75,37 @@ public class CollisionListener implements PhysicsCollisionListener {
             } else if (objA.getParent() instanceof Projectile) {
                 if (objB.getParent() instanceof Ship) {
                     handleProjectileCollision((Ship) objB.getParent(), (Projectile) objA.getParent());
+                } else if(objB.getParent() instanceof Field) {
+                    handleProjectileFieldCollision((Projectile) objA.getParent(), (Field) objB.getParent());
                 }
             } else if (objB.getParent() instanceof Projectile) {
                 if (objA.getParent() instanceof Ship) {
                     handleProjectileCollision((Ship) objA.getParent(), (Projectile) objB.getParent());
+                } else if(objA.getParent() instanceof Field) {
+                    handleProjectileFieldCollision((Projectile) objB.getParent(), (Field) objA.getParent());
                 }
             }
         }
     }
 
+    private void handleProjectileFieldCollision(Projectile pro, Field field) {
+        if(pro.getState() == State.ALIVE) {
+            pro.setState(State.DYING);
+            if(field.isMineable()) {
+                //chip off a piece of the asteroid
+                Item i = new Item(field.getResource());
+                i.setQuantity(1);
+                CargoContainer can = new CargoContainer(
+                        field.getCurrentSystem().getUniverse(), i);
+
+                can.setLocation(pro.getLocation());
+                can.setVelocity(pro.getVelocity());
+
+                field.getCurrentSystem().putEntityInSystem(can);
+            }
+        }
+    }
+    
     private void handleProjectileCollision(Ship a, Projectile pro) {
         if (a != pro.getHost()) {
             //get damage

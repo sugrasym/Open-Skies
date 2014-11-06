@@ -1,10 +1,10 @@
 [NewGame]
 name=Default
 ship=Sparrow
-system=Gamma E-M3
-x=-60453
-y=-45623
-z=-26563
+system=Tau 01-ZWL
+x=-6045
+y=-4562
+z=-26560
 cash=50000
 install=Arrow Rocket/Arrow Rocket/Talon A-7/Talon A-7
 cargo=Jumpdrive~1/Arrow Rocket Ammunition~50

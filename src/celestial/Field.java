@@ -67,6 +67,9 @@ public class Field extends Celestial implements Serializable {
     //node for attatching blocks
     private transient Node node;
     private transient BulletAppState bulletAppState;
+    //mining
+    private boolean mineable = false;
+    private String resource;
 
     public Field(Universe universe, String name, Term field, int seed, Vector3f location, Vector3f bounds) {
         super(Float.POSITIVE_INFINITY, universe);
@@ -80,6 +83,15 @@ public class Field extends Celestial implements Serializable {
         rockScale = Integer.parseInt(field.getValue("rockScale"));
         diversity = Integer.parseInt(field.getValue("diversity"));
         count = Integer.parseInt(field.getValue("count"));
+        
+        String mineableRaw = field.getValue("mineable");
+        if(mineableRaw != null) {
+            mineable = Boolean.parseBoolean(mineableRaw);
+            if(mineable) {
+                resource = field.getValue("resource");
+            }
+        }
+        
         type = field;
     }
 
@@ -88,6 +100,7 @@ public class Field extends Celestial implements Serializable {
          * Make asteroid dummies
          */
         zones = new ArrayList<>();
+        nameControl.setParent(this);
         generatePatterns();
         generateAsteroids(assets);
     }
@@ -278,6 +291,22 @@ public class Field extends Celestial implements Serializable {
         this.patterns = blocks;
     }
 
+    public boolean isMineable() {
+        return mineable;
+    }
+
+    public void setMineable(boolean mineable) {
+        this.mineable = mineable;
+    }
+
+    public String getResource() {
+        return resource;
+    }
+
+    public void setResource(String resource) {
+        this.resource = resource;
+    }
+
     private class Block {
 
         private Vector3f[] map;
@@ -312,6 +341,7 @@ public class Field extends Celestial implements Serializable {
                 //box.setMass(0);
                 //box.setKinematic(false);
                 roids[a].addControl(box);
+                roids[a].addControl(nameControl);
                 System.out.println("Working - " + ((float) a / (float) map.length) * 100.0f);
             }
         }
