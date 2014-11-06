@@ -183,7 +183,7 @@ public class HUD {
         commWindow = new CommWindow(assets);
         commWindow.setX(15);
         commWindow.setY(height - (15 + commWindow.getHeight()));
-        commWindow.setVisible(true);
+        commWindow.setVisible(false);
         windows.add(commWindow);
         //finish
         add();

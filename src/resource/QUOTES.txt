@@ -116,3 +116,35 @@ source=Eleanor Roosevelt
 body=Knowledge speaks, but wisdom listens.
 source=Jimi Hendrix
 [/Quote]
+
+################################################################################
+#Taoism
+################################################################################
+
+[Quote]
+body=The journey is the reward.
+source=Taoist Proverb
+[/Quote]
+
+[Quote]
+body=To see things in the seed, that is genius.
+source=Taoist Proverb
+[/Quote]
+
+################################################################################
+#Socrates
+################################################################################
+
+[Quote]
+body=There is only one good, knowledge, and one evil, ignorance.
+source=Socrates
+[/Quote]
+
+################################################################################
+#Friedrich Nietzsche
+################################################################################
+
+[Quote]
+body=In some remote corner of the universe, poured out and glittering in innumerable solar systems,/br/there once was a star on which clever animals invented knowledge.
+source=Friedrich Nietzsche
+[/Quote]
