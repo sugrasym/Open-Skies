@@ -188,8 +188,8 @@ merchant0=Lancers Supply Raven,10
 
 [Loadout]
 name=Frontier
-merchant0=Frontier Supply Crow,50
-merchant1=Frontier Supply Raven,25
+merchant0=Frontier Supply Crow,35
+merchant1=Frontier Supply Raven,15
 [/Loadout]
 
 ################################################################################

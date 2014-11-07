@@ -408,14 +408,14 @@ resource=Arrow Rocket,1
 
 [Process]
 name=ClearRepairPaste
-cycle=435
+cycle=9350
 product=
 resource=Repair Paste,1
 [/Process]
 
 [Process]
 name=ClearCapitalRepairPaste
-cycle=435
+cycle=11350
 product=
 resource=Capital Repair Paste,1
 [/Process]

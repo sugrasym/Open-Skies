@@ -139,7 +139,7 @@ mass=0
 sensor=5000
 cargo=512000
 job=CheatMakeSparrow/CheatMakeCrow/CheatMakeRaven/SeedRepairPaste/SeedCapitalRepairPaste/CheatMakeJumpdrive/CheatMakeSunfarm/CheatMakeIndustrialKitchen/CheatMakeMassConverter/CheatMakeComputerPlant/CheatMakeLowGradeMissileFactory/CheatMakeFighterCannonFactory/CheatMakeFighterTurretFactory/TubeSink/ChipSink/BoxMealSink/EnergySink/MassSink
-port=basic,10,75,0,0,300,0,0/basic,10,-55,0,0,-280,0,0
+port=basic,10,75,0,0,300,0,0/basic,10,-55,0,0,-280,0,0/basic,10,0,55,0,0,280,0/basic,10,0,-55,0,0,-280,0/basic,10,0,0,55,0,0,280/basic,10,0,0,-55,0,0,-280
 economyExempt=true
 class=StandardSmallStation
 [/Station]

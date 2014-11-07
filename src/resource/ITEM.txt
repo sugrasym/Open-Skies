@@ -393,7 +393,7 @@ description=Empty space.
 [Item]
 name=Jumpdrive
 type=commodity
-volume=120
+volume=80
 mass=0.1
 HP=100
 minPrice=836000
@@ -426,7 +426,7 @@ mass=0.1
 HP=200
 minPrice=1250
 maxPrice=3750
-store=25
+store=50
 group=repairkit
 description=A tube of paste with a plastic applicator intended to repair damage to the hull of a ship. The label states that exposure to vacuum conditions voids warranty.
 [/Item]
@@ -434,12 +434,12 @@ description=A tube of paste with a plastic applicator intended to repair damage 
 [Item]
 name=Capital Repair Paste
 type=commodity
-volume=100
+volume=50
 mass=1
 HP=25000
 minPrice=60000
-maxPrice=270000
-store=12
+maxPrice=75000
+store=6
 group=repairkit
 description=A really big vat of paste with an impressively large plastic applicator designed to repair the hull of capital ships. The label states that the manufacturer is not liable for injuries caused by swimming in the vat of paste.
 [/Item]

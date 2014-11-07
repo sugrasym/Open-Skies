@@ -19,6 +19,7 @@
  */
 package gdi;
 
+import cargo.DockingPort;
 import cargo.Item;
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
@@ -162,7 +163,19 @@ public class TradeWindow extends AstralWindow {
                 Station station = ship.getPort().getParent();
                 ArrayList<Item> selling = station.getStationSelling();
                 for (int a = 0; a < selling.size(); a++) {
-                    productList.addToList(selling.get(a));
+                    Item tmp = selling.get(a);
+                    if(tmp.getType().equals("ship")) {
+                        //make sure there is a port available to sell at
+                        ArrayList<DockingPort> ports = station.getPorts();
+                        for(int n = 0; n < ports.size(); n++) {
+                            if(ports.get(n).isEmpty()) {
+                                productList.addToList(tmp);
+                                break;
+                            }
+                        }
+                    } else {
+                        productList.addToList(tmp);
+                    }
                 }
                 ArrayList<Item> buying = station.getStationBuying();
                 for (int a = 0; a < buying.size(); a++) {
