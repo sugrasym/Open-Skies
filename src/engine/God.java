@@ -534,8 +534,8 @@ public class God {
             for (int a = 0; a < stations.size(); a++) {
                 Station tmp = (Station) stations.get(a);
                 if (tmp.getState() == Ship.State.ALIVE) {
-                    if (tmp.getFaction().equals(faction.getName())) {
-                        if (tmp.getType().equals(type)) {
+                    if (tmp.getFaction().getName().equals(faction.getName())) {
+                        if (tmp.getType().getValue("type").equals(type)) {
                             count++;
                         }
                     }
@@ -555,7 +555,7 @@ public class God {
             for (int a = 0; a < ships.size(); a++) {
                 Ship tmp = (Ship) ships.get(a);
                 if (tmp.getState() == Ship.State.ALIVE) {
-                    if (tmp.getFaction().equals(faction.getName())) {
+                    if (tmp.getFaction().getName().equals(faction.getName())) {
                         if (tmp.getTemplate().equals(loadout)) {
                             count++;
                         }
@@ -575,7 +575,7 @@ public class God {
             ArrayList<Entity> ships = system.getShipList();
             for (int a = 0; a < ships.size(); a++) {
                 Ship tmp = (Ship) ships.get(a);
-                if (tmp.getFaction().equals(faction.getName())) {
+                if (tmp.getFaction().getName().equals(faction.getName())) {
                     if (tmp.getBehavior() == behavior) {
                         count++;
                     }
