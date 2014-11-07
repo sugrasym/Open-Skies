@@ -2,11 +2,18 @@
 Open Skies Control Card
 ################################################################################
 
+Most controls can be edited in ~/.outlier/payload.txt
+Windows: C:\Users\USERNAME\.outlier\payload.txt
+Linux: /home/USERNAME/.outlier/payload.txt
+
+If you accidentally corrupt the file, backup your saved games and delete the
+entire .outlier directory, it will be recreated the next time you launch the
+game.
+
 Navigation
 --------------------------------------------------------------------------------
 Joystick Axis control pitch, yaw, and roll.
 Joystick hat is throttle. It will make sense when you try it.
-Joystick controls can be edited in ~/.outlier/payload.txt
 
 W - Fire forward thruster
 S - Fire rear thruster
