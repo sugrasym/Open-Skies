@@ -119,6 +119,7 @@ public class Ship extends Celestial {
     public static final float PLANET_AVOID_CAUTION_2 = 1.75f;
 
     public enum EngineMode {
+
         COMBAT,
         CRUISE,
         NEWTON
@@ -236,7 +237,7 @@ public class Ship extends Celestial {
         nav.move(Vector3f.UNIT_Z);
         core.attachChild(nav);
     }
-    
+
     private String makeName() {
         /*
          * Generates a random name for this ship's pilot.
@@ -1157,8 +1158,14 @@ public class Ship extends Celestial {
                         //try to dump all our wares at this price
                         int q = getNumInCargoBay(workingWare);
                         curr.sell(this, workingWare, q);
-                        System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
+                        int numSold = q - getNumInCargoBay(workingWare);
+                        System.out.println(getName() + " sold " + (numSold)
                                 + " " + workingWare.getName() + " to " + curr.getName());
+                        if (numSold == 0) {
+                            //abort trading operation, station has filled up
+                            System.out.println(getName() + " aborted trading operation (Station not accepting sale)");
+                            abortTrade();
+                        }
                     } else {
                         //System.out.println(getName() + " did not sell (Bad sell price)");
                     }
@@ -1352,8 +1359,14 @@ public class Ship extends Celestial {
                         //try to dump all our wares at this price
                         int q = getNumInCargoBay(getWorkingWare());
                         curr.sell(this, getWorkingWare(), q);
-                        System.out.println(getName() + " sold " + (q - getNumInCargoBay(getWorkingWare()))
-                                + " " + getWorkingWare().getName() + " to " + curr.getName());
+                        int numSold = q - getNumInCargoBay(workingWare);
+                        System.out.println(getName() + " sold " + (numSold)
+                                + " " + workingWare.getName() + " to " + curr.getName());
+                        if (numSold == 0) {
+                            //abort trading operation, station has filled up
+                            System.out.println(getName() + " aborted trading operation (Station not accepting sale)");
+                            abortTrade();
+                        }
                     } else {
                         //System.out.println(getName() + " did not sell (Bad sell price)");
                     }
@@ -1923,15 +1936,15 @@ public class Ship extends Celestial {
             }
         }
     }
-    
+
     /*
      * Configures the engine mode on the ship for the task being performed.
      * To take full advantage of cruise mode, weapons are only enabled when
      * fighting.
      */
     protected void configureEngineForTask() {
-        if(getAutopilot() != Autopilot.NONE) {
-            if(getAutopilot() == Autopilot.ATTACK_TARGET) {
+        if (getAutopilot() != Autopilot.NONE) {
+            if (getAutopilot() == Autopilot.ATTACK_TARGET) {
                 configureForCombat();
             } else {
                 configureForCruise();
@@ -1981,7 +1994,7 @@ public class Ship extends Celestial {
             setState(State.DYING);
         }
     }
-    
+
     private void updateConversation() {
         if (getConversation() != null) {
             getConversation().periodicUpdate(tpf);
@@ -2093,7 +2106,7 @@ public class Ship extends Celestial {
              * weapons online as it reduces your maximum velocity.
              */
             if (throttle != 0) {
-                if(areWeaponsOnline()) {
+                if (areWeaponsOnline()) {
                     setEngine(EngineMode.COMBAT);
                     physics.setLinearDamping(COMBAT_DAMP);
                 } else {
@@ -2682,8 +2695,7 @@ public class Ship extends Celestial {
                 float gimbal = Float.parseFloat(re[8]);
 
                 hardpoints.add(new Hardpoint(this, hType, hSize,
-                        new Vector3f(hx, hy, hz), new Vector3f(ux, uy, uz)
-                        , gimbal));
+                        new Vector3f(hx, hy, hz), new Vector3f(ux, uy, uz), gimbal));
             }
         }
     }
@@ -2822,7 +2834,7 @@ public class Ship extends Celestial {
             return 0;
         }
 
-        return sum / (float)count;
+        return sum / (float) count;
     }
 
     public Vector3f leadTargetLocation(Celestial target, float speed) {
@@ -3792,11 +3804,10 @@ public class Ship extends Celestial {
     public void setScanForContraband(boolean scanForContraband) {
         this.scanForContraband = scanForContraband;
     }
-    
+
     /*
      Conversation System
      */
-    
     public void recieveReply(Binling choice) {
         if (conversation != null) {
             conversation.reply(choice);
@@ -3818,7 +3829,7 @@ public class Ship extends Celestial {
         message.setWasSent(true);
         if (faction.getName().equals(Faction.PLAYER)) {
             /*stopSound(notifyMessage);
-            playSound(notifyMessage);*/
+             playSound(notifyMessage);*/
             if (this == getUniverse().getPlayerShip()) {
                 //add to que
                 messages.add(message);
@@ -3858,14 +3869,14 @@ public class Ship extends Celestial {
                 /*
                  * Will offer rumors and missions
                  */
-               //offer mission
-               ArrayList<String> choices = getFaction().getFriendlyNotifications();
-               if (choices.size() > 0) {
-                   String pick = choices.get(rnd.nextInt(choices.size()));
-                   conversation = new Conversation(this, "Hail", pick);
-               } else {
-                   //nothing to say
-               }
+                //offer mission
+                ArrayList<String> choices = getFaction().getFriendlyNotifications();
+                if (choices.size() > 0) {
+                    String pick = choices.get(rnd.nextInt(choices.size()));
+                    conversation = new Conversation(this, "Hail", pick);
+                } else {
+                    //nothing to say
+                }
             } else if (standings > Faction.HOSTILE_STANDING) {
                 //on neutral terms
                 /*
@@ -3895,7 +3906,7 @@ public class Ship extends Celestial {
             //still talking
         }
     }
-    
+
     public String getPilot() {
         return pilot;
     }
@@ -4027,35 +4038,35 @@ public class Ship extends Celestial {
     public Universe getUniverse() {
         return getCurrentSystem().getUniverse();
     }
-    
+
     public boolean areWeaponsOnline() {
-        for(int a = 0; a < hardpoints.size(); a++) {
-            if(hardpoints.get(a).notNothing()) {
-                if(hardpoints.get(a).isEnabled()) {
+        for (int a = 0; a < hardpoints.size(); a++) {
+            if (hardpoints.get(a).notNothing()) {
+                if (hardpoints.get(a).isEnabled()) {
                     return true;
                 }
             }
         }
         return false;
     }
-    
+
     public void activateWeapons() {
-        for(int a = 0; a < hardpoints.size(); a++) {
+        for (int a = 0; a < hardpoints.size(); a++) {
             hardpoints.get(a).setEnabled(true);
         }
     }
-    
+
     public void deactivateWeapons() {
-        for(int a = 0; a < hardpoints.size(); a++) {
+        for (int a = 0; a < hardpoints.size(); a++) {
             hardpoints.get(a).setEnabled(false);
         }
     }
-    
+
     public void configureForCombat() {
         setEngine(EngineMode.COMBAT);
         activateWeapons();
     }
-    
+
     public void configureForCruise() {
         setEngine(EngineMode.CRUISE);
         deactivateWeapons();
