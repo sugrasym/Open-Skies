@@ -113,7 +113,7 @@ Frontier=0
 name=Frontier
 var_isEmpire=false
 var_description=Originally from what is now the SC, Frontier is an international trade corporation that has remained neutral in this conflict. However, this neutrality has cost them valuable national protection against pirates which they must provide themselves.
-var_hosts=Neutral
+var_hosts=Northern Coalition/Southern Coalition/Commonwealth/Neutral
 Neutral=0
 Player=0
 Northern Coalition=0
@@ -174,7 +174,7 @@ merchant0=Commonwealth Supply Sparrow,20
 
 [Loadout]
 name=Rogers
-patrol0=Rogers Sparrow,75
+patrol0=Rogers Sparrow,100
 patrol1=Rogers Crow,50
 patrol2=Rogers Raven,25
 [/Loadout]
@@ -188,8 +188,8 @@ merchant0=Lancers Supply Raven,10
 
 [Loadout]
 name=Frontier
-merchant0=Frontier Supply Crow,25
-merchant1=Frontier Supply Raven,12
+merchant0=Frontier Supply Crow,50
+merchant1=Frontier Supply Raven,25
 [/Loadout]
 
 ################################################################################
