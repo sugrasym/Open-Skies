@@ -733,7 +733,6 @@ public class Core {
     protected class JoystickEventListener implements RawInputListener {
 
         public void onJoyAxisEvent(JoyAxisEvent evt) {
-            System.out.println(evt.getAxis().getAxisId());
             if (getState() == GameState.IN_SPACE) {
                 if (!universe.getPlayerShip().isDocked()) {
                     if (evt.getAxis().getAxisId() == JOYSTICK_PITCH_AXIS) {
