@@ -733,6 +733,7 @@ public class Core {
     protected class JoystickEventListener implements RawInputListener {
 
         public void onJoyAxisEvent(JoyAxisEvent evt) {
+            System.out.println(evt.getAxis().getAxisId());
             if (getState() == GameState.IN_SPACE) {
                 if (!universe.getPlayerShip().isDocked()) {
                     if (evt.getAxis().getAxisId() == JOYSTICK_PITCH_AXIS) {
@@ -744,7 +745,7 @@ public class Core {
                     } /*
                      * POV / HAT used for thrust
                      */ else if (evt.getAxis().getAxisId() == JOYSTICK_THROTTLE_AXIS) {
-                        if (Math.abs(evt.getValue()) > 0) {
+                        if (Math.abs(evt.getValue()) > 0.01) { //deadzone but it really should be mapped to a HAT axis
                             getUniverse().getPlayerShip().setThrottle(evt.getValue());
                         } else {
                             getUniverse().getPlayerShip().setThrottle(0);
