@@ -32,4 +32,6 @@ k_configure_combat=KEY_C
 k_configure_cruise=KEY_V
 j_fire=0
 j_sec=1
+j_deadzone_throttle=0.01
+j_deadzone_rotation=0.01
 [/Mapper]

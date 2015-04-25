@@ -135,6 +135,8 @@ public class Core {
     private String KEY_CONFIGURE_CRUISE;
     private int JOYSTICK_FIRE_BUTTON;
     private int JOYSTICK_SEC_BUTTON;
+    private float JOYSTICK_DEADZONE_ROTATION;
+    private float JOYSTICK_DEADZONE_THROTTLE;
     //control switches
     private boolean shiftDown = false;
 
@@ -210,6 +212,9 @@ public class Core {
                     String joyFireButton = map.getValue("j_fire");
                     String joySecButton = map.getValue("j_sec");
 
+                    String joyDeadThrottle = map.getValue("j_deadzone_throttle");
+                    String joyDeadRotation = map.getValue("j_deadzone_rotation");
+
                     //parse into mappings
                     JOYSTICK_PITCH_AXIS = Integer.parseInt(pitchString);
                     JOYSTICK_YAW_AXIS = Integer.parseInt(yawString);
@@ -253,6 +258,9 @@ public class Core {
                     JOYSTICK_FIRE_BUTTON = Integer.parseInt(joyFireButton.trim());
                     JOYSTICK_SEC_BUTTON = Integer.parseInt(joySecButton.trim());
 
+                    JOYSTICK_DEADZONE_THROTTLE = Float.parseFloat(joyDeadThrottle.trim());
+                    JOYSTICK_DEADZONE_ROTATION = Float.parseFloat(joyDeadRotation.trim());
+
                     System.out.println("Sucessfully applied custom mappings from " + AstralIO.getPayloadFile());
 
                     break;
@@ -294,6 +302,8 @@ public class Core {
             KEY_CONFIGURE_CRUISE = "KEY_V";
             JOYSTICK_FIRE_BUTTON = 0;
             JOYSTICK_SEC_BUTTON = 1;
+            JOYSTICK_DEADZONE_THROTTLE = 0.1f;
+            JOYSTICK_DEADZONE_ROTATION = 0.01f;
             e.printStackTrace();
         }
     }
@@ -526,7 +536,7 @@ public class Core {
 
     private ActionListener actionListener = new ActionListener() {
         public void onAction(String name, boolean keyPressed, float tpf) {
-            if(name.equals("KEY_LSHIFT")) {
+            if (name.equals("KEY_LSHIFT")) {
                 shiftDown = keyPressed;
             }
             Vector2f origin = input.getCursorPosition();
@@ -600,7 +610,7 @@ public class Core {
                     }
                 }
                 if (name.equals("KEY_H")) {
-                    if(keyPressed) {
+                    if (keyPressed) {
                         if (getUniverse().getPlayerShip().getTarget() != null) {
                             getUniverse().getPlayerShip().getTarget().hail();
                             hud.commWindow.setVisible(true);
@@ -735,16 +745,28 @@ public class Core {
         public void onJoyAxisEvent(JoyAxisEvent evt) {
             if (getState() == GameState.IN_SPACE) {
                 if (!universe.getPlayerShip().isDocked()) {
-                    if (evt.getAxis().getAxisId() == JOYSTICK_PITCH_AXIS) {
-                        getUniverse().getPlayerShip().setYaw(-evt.getValue());
+                    if (Math.abs(evt.getAxis().getAxisId()) == JOYSTICK_PITCH_AXIS) {
+                        if (Math.abs(evt.getValue()) > JOYSTICK_DEADZONE_ROTATION) {
+                            getUniverse().getPlayerShip().setYaw(-evt.getValue());
+                        } else {
+                            getUniverse().getPlayerShip().setYaw(0);
+                        }
                     } else if (evt.getAxis().getAxisId() == JOYSTICK_YAW_AXIS) {
-                        getUniverse().getPlayerShip().setPitch(evt.getValue());
+                        if (Math.abs(evt.getValue()) > JOYSTICK_DEADZONE_ROTATION) {
+                            getUniverse().getPlayerShip().setPitch(evt.getValue());
+                        } else {
+                            getUniverse().getPlayerShip().setPitch(0);
+                        }
                     } else if (evt.getAxis().getAxisId() == JOYSTICK_ROLL_AXIS) {
-                        getUniverse().getPlayerShip().setRoll(-evt.getValue());
+                        if (Math.abs(evt.getValue()) > JOYSTICK_DEADZONE_ROTATION) {
+                            getUniverse().getPlayerShip().setRoll(-evt.getValue());
+                        } else {
+                            getUniverse().getPlayerShip().setRoll(0);
+                        }
                     } /*
                      * POV / HAT used for thrust
                      */ else if (evt.getAxis().getAxisId() == JOYSTICK_THROTTLE_AXIS) {
-                        if (Math.abs(evt.getValue()) > 0.01) { //deadzone but it really should be mapped to a HAT axis
+                        if (Math.abs(evt.getValue()) > JOYSTICK_DEADZONE_THROTTLE) { //deadzone but it really should be mapped to a HAT axis
                             getUniverse().getPlayerShip().setThrottle(evt.getValue());
                         } else {
                             getUniverse().getPlayerShip().setThrottle(0);
