@@ -68,12 +68,12 @@ import universe.Universe;
 public class Core {
 
     public enum GameState {
-
         QUOTE,
         MAIN_MENU,
         IN_SPACE,
         GAME_OVER
     }
+    
     private GameState state = GameState.QUOTE;
     public static final float DEFAULT_TICK = 0.016666668f;
     public static final float TICK_DIVIDER = 4.0f;
@@ -741,7 +741,6 @@ public class Core {
     };
 
     protected class JoystickEventListener implements RawInputListener {
-
         public void onJoyAxisEvent(JoyAxisEvent evt) {
             if (getState() == GameState.IN_SPACE) {
                 if (!universe.getPlayerShip().isDocked()) {
