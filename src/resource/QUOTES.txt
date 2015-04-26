@@ -90,6 +90,11 @@ body=I do not need any promise of eternity to be happy. My eternity is now./br/I
 source=Albert Einstein
 [/Quote]
 
+[Quote]
+body=We cannot solve our problems with the same thinking we used when we created them. 
+source=Albert Einstein
+[/Quote]
+
 ################################################################################
 #Martin Luther King Jr.
 ################################################################################
@@ -147,4 +152,22 @@ source=Socrates
 [Quote]
 body=In some remote corner of the universe, poured out and glittering in innumerable solar systems,/br/there once was a star on which clever animals invented knowledge.
 source=Friedrich Nietzsche
+[/Quote]
+
+################################################################################
+#David Bowman
+################################################################################
+
+[Quote]
+body=My God — it's full of stars!
+source=David Bowman/br/2001: A Space Odyssey (Novel)
+[/Quote]
+
+################################################################################
+#Willy Wonka
+################################################################################
+
+[Quote]
+body=If you want to view paradise,/br/Simply look around and view it./br/Anything you want to, do it./br/Want to change the world?/br/There's nothing to it.
+source=Willy Wonka/br/Willy Wonka And The Chocolate Factory
 [/Quote]
