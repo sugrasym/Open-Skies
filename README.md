@@ -20,6 +20,7 @@ you to ask me questions and let me know what you come up with!
 Also, this game contains additional open source components
 
 jMonkeyEngine - BSD License
+
 jmeplanet - Aaron Perkins, MIT license.
 
 Now here is the license!
