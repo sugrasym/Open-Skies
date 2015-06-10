@@ -23,6 +23,7 @@ jMonkeyEngine - BSD License
 jmeplanet - Aaron Perkins, MIT license.
 
 Now here is the license!
+
 -------------------------------------------------------------------------------------------
 Copyright (c) 2015 Nathan Wiehoff
 
@@ -43,6 +44,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
 -------------------------------------------------------------------------------------------
 
 Fly safe!
