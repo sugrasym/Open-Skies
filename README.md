@@ -48,4 +48,8 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------------------------------
 
+Building requires Java 8 and NetBeans IDE. You can get those as a free download.
+This game is cross platform and is developed on Linux, officially supported on
+Windows + Linux, and has been tested on OS X.
+
 Fly safe!
