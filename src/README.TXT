@@ -17,4 +17,7 @@ See the included Controls.txt for details.
 
 This game is designed to be easy to mod, try it!
 
+And it's MIT licensed now, so feel free to use it as
+a starting point for your own game!
+
 Have fun!
