@@ -12,8 +12,8 @@ The full license is below, however read this first (you'll regret not reading th
 1. You should seriously read the controls in src/resource/Controls.txt
 2. The skybox textures are 7zipped. You need to decompress them before you can test the game. assets/Textures/Skybox
 contains the archive.
-3. When you map your joystick, map it to a hat. You don't want to thrust constantly! This isn't Freelancer, you will
-run out of fuel fast if you don't use controlled bursts of thrust to manauver.
+3. When you map your joystick, map throttle to a hat. You don't want to thrust constantly! This isn't Freelancer,
+you will run out of fuel fast if you don't use controlled bursts of thrust to manauver.
 4. Outlier represents a potentially massive start towards your own space combat and trading simulator! I encourage
 you to ask me questions and let me know what you come up with!
 
