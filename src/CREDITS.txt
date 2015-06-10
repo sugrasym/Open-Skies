@@ -75,4 +75,4 @@ The following is the license header that applies th the JMonkeyEngine package.
 Game assets are mostly from High Albedo: Twisted Skies (my previous project) with some 3D
 models from an unreleased project of mine called Astral Clause.
 
-Outlier: Open Skies is licensed under GNU GPL v3.
+Outlier: Open Skies is licensed under the MIT license.

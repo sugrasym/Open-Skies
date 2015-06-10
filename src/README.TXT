@@ -1,7 +1,7 @@
 Thank you for downloading Outlier: Open Skies for testing!
 Please send your feedback to masternerdguy@yahoo.com .
 
-License is in LICENSE.txt and is a GPL 3 license.
+License is in LICENSE.txt and is a MIT License.
 Additional open source software licenses in CREDITS.TXT
 
 I strongly advise you read Controls.txt before playing.
