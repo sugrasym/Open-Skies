@@ -1,0 +1,20 @@
+################################################################################
+2015-06-13 "Hello Log!"
+################################################################################
+I have decided to keep an in-project log of thoughts and problems so that I can
+check it into source control.
+
+I have created 2 new branches
+--------------------------------------------------------------------------------
+* Development - Intended to store my working revisions (not guaranteed to even
+compile, it's what I personally will be working out of). I will merge it into
+master when I do a release.
+* Alpha3-2 - A snapshot for Alpha 3.2 . Every release from this point on will
+get its own branch to act as a snapshot.
+
+What's next?
+--------------------------------------------------------------------------------
+Two tasks are obviously the next steps:
+
+* Immediately, I want to do some bug hunting.
+* Then, I want to add an in-game way of configuring controls.
