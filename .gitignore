@@ -11,3 +11,6 @@
 /dist/
 /nbproject/private/
 *.db
+/*.so
+/*.dll
+/*.hab
