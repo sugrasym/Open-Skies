@@ -208,13 +208,18 @@ public class StarMapWindow extends AstralWindow {
     public void handleKeyReleasedEvent(String ke, boolean shiftDown) {
         /*
          * navmap keys
-         */ if (ke.equals("KEY_END")) {
-            incrementMode();
-        } else if (ke.equals("KEY_HOME")) {
-            decrementMode();
-        } else if (ke.equals("KEY_UP")) {
-            offset.y += 20;
-            offset.x += 0;
+         */
+        switch (ke) {
+            case "KEY_END":
+                incrementMode();
+                break;
+            case "KEY_HOME":
+                decrementMode();
+                break;
+            case "KEY_UP":
+                offset.y += 20;
+                offset.x += 0;
+                break;
         }
         if (ke.equals("KEY_DOWN")) {
             offset.y -= 20;

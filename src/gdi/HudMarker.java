@@ -52,7 +52,7 @@ public class HudMarker extends AstralWindow {
 
     private Entity target;
     private MarkerCanvas canvas;
-    private AstralCamera camera;
+    private final AstralCamera camera;
     private boolean relevant = true;
 
     public HudMarker(AssetManager assets, AstralCamera camera, Entity target, int width, int height) {

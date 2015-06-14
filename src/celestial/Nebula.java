@@ -52,7 +52,7 @@ public class Nebula extends Celestial {
     public static final int MAX_PARTICLES = 2000;
     //end constants
     Random rnd = new Random();
-    private Term type;
+    private final Term type;
     private ColorRGBA color = ColorRGBA.Black;
     private transient NebulaEmitter emitter;
     Vector3f volume;

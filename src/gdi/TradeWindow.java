@@ -300,12 +300,15 @@ public class TradeWindow extends AstralWindow {
 
     private void parseCommand(String command) {
         if (command != null) {
-            if (command.equals("Sell")) {
-                showInput();
-                action = Behavior.WAITING_TO_SELL;
-            } else if (command.equals("Buy")) {
-                showInput();
-                action = Behavior.WAITING_TO_BUY;
+            switch (command) {
+                case "Sell":
+                    showInput();
+                    action = Behavior.WAITING_TO_SELL;
+                    break;
+                case "Buy":
+                    showInput();
+                    action = Behavior.WAITING_TO_BUY;
+                    break;
             }
         }
     }

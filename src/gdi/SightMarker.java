@@ -27,7 +27,6 @@
  */
 package gdi;
 
-import celestial.Celestial;
 import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;

@@ -46,28 +46,32 @@ public class AstralInput extends AstralLabel {
 
     @Override
     public void handleKeyReleasedEvent(String ke, boolean shiftDown) {
-        if (ke.equals("KEY_BACKSPACE")) {
-            if (getText().length() > 0) {
-                setText(getText().substring(0, getText().length() - 1));
-            }
-        } else if (ke.equals("KEY_RETURN")) {
-            //return
-            setVisible(false);
-            setCanReturn(true);
-        } else if (ke.equals("KEY_SPACE")) {
-            setText(getText() + " ");
-        } else if (ke.equals("KEY_MINUS")) {
-            setText(getText() + "-");
-        } else if (ke.equals("KEY_LSHIFT")) {
-            //do nothing
-        } else {
-            String in = ke.split("_")[1];
-            if(shiftDown) {
-                in = in.toUpperCase();
-            } else {
-                in = in.toLowerCase();
-            }
-            setText(getText() + in);
+        switch (ke) {
+            case "KEY_BACKSPACE":
+                if (getText().length() > 0) {
+                    setText(getText().substring(0, getText().length() - 1));
+                }   break;
+            case "KEY_RETURN":
+                //return
+                setVisible(false);
+                setCanReturn(true);
+                break;
+            case "KEY_SPACE":
+                setText(getText() + " ");
+                break;
+            case "KEY_MINUS":
+                setText(getText() + "-");
+                break;
+            case "KEY_LSHIFT":
+                break;
+            default:
+                String in = ke.split("_")[1];
+                if(shiftDown) {
+                    in = in.toUpperCase();
+                } else {
+                    in = in.toLowerCase();
+                }   setText(getText() + in);
+                break;
         }
     }
 

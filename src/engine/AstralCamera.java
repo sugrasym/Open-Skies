@@ -49,7 +49,7 @@ public class AstralCamera {
     Node node = new Node();
     Node camNode = new Node();
     Node lookNode = new Node();
-    private Camera cam;
+    private final Camera cam;
     //target
     private Ship target;
     private Spatial spatial;

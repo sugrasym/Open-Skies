@@ -35,7 +35,6 @@ import celestial.Ship.Ship.Behavior;
 import celestial.Ship.Station;
 import com.jme3.math.Vector3f;
 import entity.Entity;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Random;
 import lib.Binling;

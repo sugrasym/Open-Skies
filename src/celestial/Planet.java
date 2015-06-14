@@ -28,7 +28,6 @@ package celestial;
 
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.bullet.collision.shapes.SphereCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.material.Material;
@@ -110,128 +109,141 @@ public class Planet extends Celestial {
         String group = type.getValue("group");
         String palette = type.getValue("palette");
         //split based on planet group
-        if (group.equals("rock")) {
-            //determine height scale
-            float heightScale = (sRand.nextFloat() * 0.02f) + 0.01f; //1% to 3%
-            if (palette.equals("Earth")) {
-                // Add planet
-                FractalDataSource planetDataSource = new FractalDataSource(seed);
-                planetDataSource.setHeightScale(heightScale * radius);
-                fractalPlanet = Utility.createEarthLikePlanet(assets, radius, null, planetDataSource);
-                spatial = fractalPlanet;
-                setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
-            } else if (palette.equals("Barren")) {
-                FractalDataSource moonDataSource = new FractalDataSource(seed);
-                moonDataSource.setHeightScale(heightScale * radius);
-                fractalPlanet = Utility.createMoonLikePlanet(assets, radius, moonDataSource);
-                spatial = fractalPlanet;
-                setAtmosphereScaler(0);
-            } else if (palette.equals("Ice")) {
-                // Add planet
-                FractalDataSource planetDataSource = new FractalDataSource(seed);
-                planetDataSource.setHeightScale(heightScale * radius);
-                fractalPlanet = Utility.createIcePlanet(assets, radius, null, planetDataSource, seed);
-                setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
-                spatial = fractalPlanet;
-            } else if (palette.equals("Mars")) {
-                //determine water presence
-                boolean hasWater = Boolean.parseBoolean(type.getValue("hasWater"));
-                // Add planet
-                FractalDataSource planetDataSource = new FractalDataSource(seed);
-                planetDataSource.setHeightScale(heightScale * radius);
-                fractalPlanet = Utility.createMarsLikePlanet(assets, radius, null, planetDataSource, hasWater, seed);
-                setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
-                spatial = fractalPlanet;
-            }
-        } else if (group.equals("gas")) {
-            Color airColor = Color.WHITE;
-            if (palette.equals("BandedGas")) {
-                //create a canvas
-                BufferedImage buff = new BufferedImage(2048, 1024, BufferedImage.TYPE_INT_RGB);
-                Graphics2D gfx = (Graphics2D) buff.getGraphics();
-                //draw debug texture
-                gfx.setColor(new Color(0, 0, 0, 0));
-                gfx.fillRect(0, 0, buff.getWidth(), buff.getHeight());
-                /*
-                 * Setup the sphere since we aren't using the procedural planet generator
-                 * supplied in the jmeplanet package
-                 */
-                //create geometry
-                Sphere objectSphere = new Sphere(256, 256, radius);
-                objectSphere.setTextureMode(Sphere.TextureMode.Projected);
-                spatial = new Geometry("Planet", objectSphere);
-                //retrieve texture
-                mat = new Material(assets, "Common/MatDefs/Light/Lighting.j3md");
-                mat.setFloat("Shininess", 0.32f);
-                mat.setBoolean("UseMaterialColors", false);
-                mat.setColor("Ambient", ColorRGBA.Black);
-                mat.setColor("Specular", ColorRGBA.White);
-                mat.setColor("Diffuse", ColorRGBA.White);
-                mat.getAdditionalRenderState().setBlendMode(BlendMode.Off);
-                /*
-                 * My gas giants are conservative. They have a color and brightness
-                 * which is held constant while bands are drawn varying the saturation.
-                 * 
-                 * Two passes are made. The first draws primary bands, which define the
-                 * overall look. The second does secondary bands which help de-alias
-                 * the planet.
-                 */
-                //determine band count
-                int bands = sRand.nextInt(75) + 25;
-                int height = (buff.getHeight() / bands);
-                //pick sat and val
-                float sat = sRand.nextFloat();
-                float value = sRand.nextFloat();
-                if (value < 0.45f) {
-                    value = 0.45f;
+        switch (group) {
+            case "rock":
+                //determine height scale
+                float heightScale = (sRand.nextFloat() * 0.02f) + 0.01f; //1% to 3%
+                switch (palette) {
+                    case "Earth":
+                        {
+                            // Add planet
+                            FractalDataSource planetDataSource = new FractalDataSource(seed);
+                            planetDataSource.setHeightScale(heightScale * radius);
+                            fractalPlanet = Utility.createEarthLikePlanet(assets, radius, null, planetDataSource);
+                            spatial = fractalPlanet;
+                            setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
+                            break;
+                        }
+                    case "Barren":
+                        FractalDataSource moonDataSource = new FractalDataSource(seed);
+                        moonDataSource.setHeightScale(heightScale * radius);
+                        fractalPlanet = Utility.createMoonLikePlanet(assets, radius, moonDataSource);
+                        spatial = fractalPlanet;
+                        setAtmosphereScaler(0);
+                        break;
+                    case "Ice":
+                        {
+                            // Add planet
+                            FractalDataSource planetDataSource = new FractalDataSource(seed);
+                            planetDataSource.setHeightScale(heightScale * radius);
+                            fractalPlanet = Utility.createIcePlanet(assets, radius, null, planetDataSource, seed);
+                            setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
+                            spatial = fractalPlanet;
+                            break;
+                        }
+                    case "Mars":
+                        {
+                            //determine water presence
+                            boolean hasWater = Boolean.parseBoolean(type.getValue("hasWater"));
+                            // Add planet
+                            FractalDataSource planetDataSource = new FractalDataSource(seed);
+                            planetDataSource.setHeightScale(heightScale * radius);
+                            fractalPlanet = Utility.createMarsLikePlanet(assets, radius, null, planetDataSource, hasWater, seed);
+                            setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
+                            spatial = fractalPlanet;
+                            break;
+                        }
                 }
-                //pick a hue
-                float hue = sRand.nextFloat();
-                //draw a baseplate
-                airColor = new Color(Color.HSBtoRGB(hue, sat, value));
-                gfx.setColor(airColor);
-                gfx.fillRect(0, 0, buff.getWidth(), buff.getHeight());
-                //pass 1, big bands
-                for (int a = 0; a < bands / 2; a++) {
-                    //vary saturation
-                    sat = sRand.nextFloat();
-                    //draw a band
-                    Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
-                    Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 64);
-                    gfx.setColor(col);
-                    gfx.fillRect(0, height / 2 * (a), buff.getWidth(), height);
-                }
-                //pass 2, small secondary bands
-                for (int a = 0; a < bands * 4; a++) {
-                    //vary saturation
-                    sat = sRand.nextFloat();
-                    //draw a band
-                    Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
-                    Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 16);
-                    gfx.setColor(col);
-                    gfx.fillRect(0, height / 4 * (a), buff.getWidth(), height);
-                }
-                //map to material
-                Image load = new AWTLoader().load(buff, true);
-                setTex(new Texture2D(load));
-                mat.setTexture("DiffuseMap", getTex());
-                spatial.setMaterial(mat);
-            }
-            //rotate
-            setRotation(getRotation().fromAngles(FastMath.PI / 2, 0, 0));
-            //add an atmosphere
-            FractalDataSource planetDataSource = new FractalDataSource(seed);
-            planetDataSource.setHeightScale(0.015f * radius);
-            //generate color
-            float colR = (float) airColor.getRed() / 255.0f;
-            float colG = (float) airColor.getGreen() / 255.0f;
-            float colB = (float) airColor.getBlue() / 255.0f;
-            ColorRGBA atmoColor = new ColorRGBA(colR, colG, colB, 0.5f);
-            //generate shell
+                break;
+            case "gas":
+                Color airColor = Color.WHITE;
+                if (palette.equals("BandedGas")) {
+                    //create a canvas
+                    BufferedImage buff = new BufferedImage(2048, 1024, BufferedImage.TYPE_INT_RGB);
+                    Graphics2D gfx = (Graphics2D) buff.getGraphics();
+                    //draw debug texture
+                    gfx.setColor(new Color(0, 0, 0, 0));
+                    gfx.fillRect(0, 0, buff.getWidth(), buff.getHeight());
+                    /*
+                    * Setup the sphere since we aren't using the procedural planet generator
+                    * supplied in the jmeplanet package
+                    */
+                    //create geometry
+                    Sphere objectSphere = new Sphere(256, 256, radius);
+                    objectSphere.setTextureMode(Sphere.TextureMode.Projected);
+                    spatial = new Geometry("Planet", objectSphere);
+                    //retrieve texture
+                    mat = new Material(assets, "Common/MatDefs/Light/Lighting.j3md");
+                    mat.setFloat("Shininess", 0.32f);
+                    mat.setBoolean("UseMaterialColors", false);
+                    mat.setColor("Ambient", ColorRGBA.Black);
+                    mat.setColor("Specular", ColorRGBA.White);
+                    mat.setColor("Diffuse", ColorRGBA.White);
+                    mat.getAdditionalRenderState().setBlendMode(BlendMode.Off);
+                    /*
+                    * My gas giants are conservative. They have a color and brightness
+                    * which is held constant while bands are drawn varying the saturation.
+                    *
+                    * Two passes are made. The first draws primary bands, which define the
+                    * overall look. The second does secondary bands which help de-alias
+                    * the planet.
+                    */
+                    //determine band count
+                    int bands = sRand.nextInt(75) + 25;
+                    int height = (buff.getHeight() / bands);
+                    //pick sat and val
+                    float sat = sRand.nextFloat();
+                    float value = sRand.nextFloat();
+                    if (value < 0.45f) {
+                        value = 0.45f;
+                    }
+                    //pick a hue
+                    float hue = sRand.nextFloat();
+                    //draw a baseplate
+                    airColor = new Color(Color.HSBtoRGB(hue, sat, value));
+                    gfx.setColor(airColor);
+                    gfx.fillRect(0, 0, buff.getWidth(), buff.getHeight());
+                    //pass 1, big bands
+                    for (int a = 0; a < bands / 2; a++) {
+                        //vary saturation
+                        sat = sRand.nextFloat();
+                        //draw a band
+                        Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
+                        Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 64);
+                        gfx.setColor(col);
+                        gfx.fillRect(0, height / 2 * (a), buff.getWidth(), height);
+                    }
+                    //pass 2, small secondary bands
+                    for (int a = 0; a < bands * 4; a++) {
+                        //vary saturation
+                        sat = sRand.nextFloat();
+                        //draw a band
+                        Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
+                        Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 16);
+                        gfx.setColor(col);
+                        gfx.fillRect(0, height / 4 * (a), buff.getWidth(), height);
+                    }
+                    //map to material
+                    Image load = new AWTLoader().load(buff, true);
+                    setTex(new Texture2D(load));
+                    mat.setTexture("DiffuseMap", getTex());
+                    spatial.setMaterial(mat);
+                }   //rotate
+                setRotation(getRotation().fromAngles(FastMath.PI / 2, 0, 0));
+                //add an atmosphere
+                FractalDataSource planetDataSource = new FractalDataSource(seed);
+                planetDataSource.setHeightScale(0.015f * radius);
+                //generate color
+                float colR = (float) airColor.getRed() / 255.0f;
+                float colG = (float) airColor.getGreen() / 255.0f;
+                float colB = (float) airColor.getBlue() / 255.0f;
+                ColorRGBA atmoColor = new ColorRGBA(colR, colG, colB, 0.5f);
+                //generate shell
             setAtmosphereScaler(0.01f);
-            atmosphereShell = Utility.createAtmosphereShell(assets,
+                atmosphereShell = Utility.createAtmosphereShell(assets,
                     radius + (radius * getAtmosphereScaler()),
                     planetDataSource, atmoColor);
+                break;
         }
     }
 

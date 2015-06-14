@@ -29,8 +29,6 @@ import com.jme3.math.Vector3f;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 
 /**
  *

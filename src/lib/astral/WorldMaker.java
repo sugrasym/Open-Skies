@@ -812,8 +812,8 @@ public class WorldMaker {
          * the sole purpose of avoiding collisions.
          */
 
-        private Vector3f loc;
-        private float rad;
+        private final Vector3f loc;
+        private final float rad;
 
         public Simpling(Vector3f loc, float rad) {
             this.loc = loc;

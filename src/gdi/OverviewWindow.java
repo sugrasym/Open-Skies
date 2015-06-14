@@ -404,14 +404,20 @@ public class OverviewWindow extends AstralWindow {
     public void handleKeyReleasedEvent(String ke, boolean shiftDown) {
         /*
          * navmap keys
-         */ if (ke.equals("KEY_HOME")) {
-            incrementMode();
-        } else if (ke.equals("KEY_END")) {
-            decrementMode();
-        } else if (ke.equals("KEY_PGDN")) {
-            setShowShipNames(!isShowShipNames());
-        } else if (ke.equals("KEY_PGUP")) {
-            setShowStationNames(!isShowStationNames());
+         */
+        switch (ke) {
+            case "KEY_HOME":
+                incrementMode();
+                break;
+            case "KEY_END":
+                decrementMode();
+                break;
+            case "KEY_PGDN":
+                setShowShipNames(!isShowShipNames());
+                break;
+            case "KEY_PGUP":
+                setShowStationNames(!isShowStationNames());
+                break;
         }
     }
 }

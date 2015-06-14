@@ -28,7 +28,6 @@ package cargo;
 import celestial.Celestial;
 import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
-import entity.Entity;
 import java.io.Serializable;
 
 /**

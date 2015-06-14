@@ -121,31 +121,33 @@ public class Conversation implements Serializable {
         //does this bindling have additional params?
         if (choice.getStr().size() > 1) {
             //is this a mission offer?
-            if (choice.getStr().get(1).equals("MISSION")) {
-                //generate a mission
-                tmpMission = new Mission(owner);
-                if (tmpMission.getBriefing() != null) {
-                    //append mission body
-                    String body = makeMissionDescription(tmpMission);
-                    currentNode.setMessage(currentNode.getMessage().replace("<#MISSION>", body));
-                } else {
-                    currentNode = findNode("END");
-                }
-            } else if (choice.getStr().get(1).equals("START_MISSION")) {
-                //assign generated mission
-                if (tmpMission != null) {
-                    owner.getUniverse().getPlayerMissions().add(tmpMission);
-                }
-            } else if (choice.getStr().get(1).equals("RUMOR")) {
-                //get a rumor
-                if (owner.getFaction().getRumorList().size() > 0) {
-                    String pick = owner.getFaction().getRumorList().get(rnd.nextInt(owner.getFaction().getRumorList().size()));
-                    currentNode = findNode(pick);
-                } else {
-                    currentNode = findNode("END");
-                }
-            } else {
-                //nope
+            switch (choice.getStr().get(1)) {
+                case "MISSION":
+                    //generate a mission
+                    tmpMission = new Mission(owner);
+                    if (tmpMission.getBriefing() != null) {
+                        //append mission body
+                        String body = makeMissionDescription(tmpMission);
+                        currentNode.setMessage(currentNode.getMessage().replace("<#MISSION>", body));
+                    } else {
+                        currentNode = findNode("END");
+                    }   break;
+                case "START_MISSION":
+                    //assign generated mission
+                    if (tmpMission != null) {
+                        owner.getUniverse().getPlayerMissions().add(tmpMission);
+                }   break;
+                case "RUMOR":
+                    //get a rumor
+                    if (owner.getFaction().getRumorList().size() > 0) {
+                        String pick = owner.getFaction().getRumorList().get(rnd.nextInt(owner.getFaction().getRumorList().size()));
+                        currentNode = findNode(pick);
+                    } else {
+                        currentNode = findNode("END");
+                }   break;
+            //nope
+                default:
+                    break;
             }
         } else {
             //nope

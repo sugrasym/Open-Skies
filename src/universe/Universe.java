@@ -46,11 +46,11 @@ public class Universe implements Serializable {
     protected Ship playerShip;
     private transient AssetManager assets;
     //player property
-    private ArrayList<Entity> playerProperty = new ArrayList<>();
+    private final ArrayList<Entity> playerProperty = new ArrayList<>();
     //missions and scripting
     private final ArrayList<Mission> playerMissions = new ArrayList<>();
     //discovered space
-    private ArrayList<SolarSystem> discoveredSpace = new ArrayList<>();
+    private final ArrayList<SolarSystem> discoveredSpace = new ArrayList<>();
     
     public Universe(AssetManager assets) {
         this.assets = assets;

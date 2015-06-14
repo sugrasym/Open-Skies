@@ -305,177 +305,168 @@ public class CargoWindow extends AstralWindow {
 
     private void parseCommand(String command) {
         if (command != null) {
-            if (command.equals(CMD_TRASH)) {
-                /*
-                 * This command simply destroys an item.
-                 */
-                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                ship.removeFromCargoBay(selected);
-            } else if (command.equals(CMD_EJECT)) {
-                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                ship.ejectFromCargoBay(selected);
-            } else if (command.equals(CMD_UNMOUNT)) {
-                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                Equipment tmp = (Equipment) selected;
-                ship.unfit(tmp);
-            } else if (command.equals(CMD_MOUNT)) {
-                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                Equipment tmp = (Equipment) selected;
-                ship.fit(tmp);
-            } else if (command.equals(CMD_STACK)) {
-                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                ArrayList<Item> cargoBay = ship.getCargoBay();
-                if (cargoBay.contains(selected)) {
-                    stackItem(cargoBay, selected);
-                }
-            } else if (command.equals(CMD_SPLIT)) {
-                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                ArrayList<Item> cargoBay = ship.getCargoBay();
-                if (cargoBay.contains(selected)) {
-                    if (selected.getQuantity() > 1) {
-                        Item tmp = new Item(selected.getName());
-                        cargoBay.add(tmp);
-                        selected.setQuantity(selected.getQuantity() - 1);
+            switch (command) {
+                case CMD_TRASH:
+                    {
+                        /*
+                        * This command simply destroys an item.
+                        */
+                        Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                        ship.removeFromCargoBay(selected);
+                        break;
                     }
-                }
-            } else if (command.equals(CMD_SPLITALL)) {
-                ArrayList<Item> cargoBay = ship.getCargoBay();
-                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                if (ship.hasInCargo(selected)) {
-                    if (selected.getQuantity() > 1) {
-                        for (int a = 0; a < cargoBay.size(); a++) {
-                            Item tmp = cargoBay.get(a);
-                            if (tmp.getName().equals(selected.getName())) {
-                                if (tmp.getType().equals(selected.getType())) {
-                                    if (tmp.getGroup().equals(selected.getGroup())) {
-                                        cargoBay.remove(tmp);
+                case CMD_EJECT:
+                    {
+                        Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                        ship.ejectFromCargoBay(selected);
+                        break;
+                    }
+                case CMD_UNMOUNT:
+                    {
+                        Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                        Equipment tmp = (Equipment) selected;
+                        ship.unfit(tmp);
+                        break;
+                    }
+                case CMD_MOUNT:
+                    {
+                        Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                        Equipment tmp = (Equipment) selected;
+                        ship.fit(tmp);
+                        break;
+                    }
+                case CMD_STACK:
+                    {
+                        Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                        ArrayList<Item> cargoBay = ship.getCargoBay();
+                        if (cargoBay.contains(selected)) {
+                            stackItem(cargoBay, selected);
+                }       break;
+                    }
+                case CMD_SPLIT:
+                {
+                    Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                    ArrayList<Item> cargoBay = ship.getCargoBay();
+                    if (cargoBay.contains(selected)) {
+                        if (selected.getQuantity() > 1) {
+                            Item tmp = new Item(selected.getName());
+                            cargoBay.add(tmp);
+                            selected.setQuantity(selected.getQuantity() - 1);
+                        }
+                }       break;
+                    }
+                case CMD_SPLITALL:
+                {
+                    ArrayList<Item> cargoBay = ship.getCargoBay();
+                    Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                    if (ship.hasInCargo(selected)) {
+                        if (selected.getQuantity() > 1) {
+                            for (int a = 0; a < cargoBay.size(); a++) {
+                                Item tmp = cargoBay.get(a);
+                                if (tmp.getName().equals(selected.getName())) {
+                                    if (tmp.getType().equals(selected.getType())) {
+                                        if (tmp.getGroup().equals(selected.getGroup())) {
+                                            cargoBay.remove(tmp);
+                                        }
                                     }
                                 }
                             }
+                            for (int a = 0; a < selected.getQuantity(); a++) {
+                                Item tmp = new Item(selected.getName());
+                                ship.addToCargoBay(tmp);
+                            }
                         }
-                        for (int a = 0; a < selected.getQuantity(); a++) {
-                            Item tmp = new Item(selected.getName());
-                            ship.addToCargoBay(tmp);
-                        }
-                    }
+                }       break;
                 }
-            } else if (command.equals(CMD_ASSEMBLE)) {
-                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                if (selected.getQuantity() == 1) {
-                    Weapon tmp = new Weapon(selected.getName());
-                    ship.removeFromCargoBay(selected);
-                    if (ship.addToCargoBay(tmp)) {
-                        //success
-                    } else {
-                        //failure, add the old one back
-                        ship.addToCargoBay(selected);
-                    }
-                }
-            } else if (command.equals(CMD_PACKAGE)) {
-                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                if (selected.getQuantity() == 1) {
-                    Equipment tmp = (Equipment) selected;
-                    ship.removeFromCargoBay(selected);
-                    Item nTmp = new Item(tmp.getName());
-                    if (ship.addToCargoBay(nTmp)) {
-                        //success!
-                    } else {
-                        //failure
-                        ship.addToCargoBay(selected);
-                    }
-                }
-            } else if (command.equals(CMD_DEPLOY)) {
-                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                if (selected.getQuantity() == 1) {
-                    //deploy the station
-                    Parser tmp = Universe.getCache().getStationCache();
-                    ArrayList<Parser.Term> list = tmp.getTermsOfType("Station");
-                    Parser.Term hull = null;
-                    for (int a = 0; a < list.size(); a++) {
-                        if (list.get(a).getValue("type").equals(selected.getName())) {
-                            hull = list.get(a);
-                            break;
-                        }
-                    }
-                    Station ret = new Station(ship.getCurrentSystem().getUniverse(),
-                            hull, ship.getFaction().getName());
-                    ret.setName("Your " + selected.getName());
-                    //
-                    boolean safe = false;
-                    double sx = 0;
-                    double sz = 0;
-                    safe = true; //todo: make asteroid mines only buildable on asteroids
-                    //configure coordinates
-                    double dx = 500;
-                    double dy = 500;
-                    sx = (ship.getLocation().getX()) + dx;
-                    sz = (ship.getLocation().getZ()) + dy;
-                    if (safe) {
-                        ret.setLocation(new Vector3f((float) sx, ship.getLocation().getY(), (float) sz));
-                        //finalize
-                        ret.setCurrentSystem(ship.getCurrentSystem());
-                        ship.getCurrentSystem().putEntityInSystem(ret);
-                        //remove item from cargo
-                        selected.setQuantity(0);
+                case CMD_ASSEMBLE:
+                {
+                    Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                    if (selected.getQuantity() == 1) {
+                        Weapon tmp = new Weapon(selected.getName());
                         ship.removeFromCargoBay(selected);
-                        //since it's not NPC make sure it has no start cash
-                        ret.clearWares();
+                        if (ship.addToCargoBay(tmp)) {
+                            //success
+                        } else {
+                            //failure, add the old one back
+                            ship.addToCargoBay(selected);
                     }
+                }       break;
                 }
-            } else if (command.equals(CMD_CLAIMSOV)) {/*
-                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                 if (selected.getQuantity() == 1) {
-                 if (!ship.getCurrentSystem().getOwner().equals("Neutral")) {
-                 //count stations
-                 int count = 0;
-                 ArrayList<Entity> stationList = ship.getCurrentSystem().getStationList();
-                 for (int a = 0; a < stationList.size(); a++) {
-                 Station test = (Station) stationList.get(a);
-                 if (test.getFaction().equals("Player")) {
-                 count++;
-                 }
-                 }
-                 if (count >= 4) {
-                 //standings hit
-                 Faction tmp = new Faction(ship.getCurrentSystem().getOwner());
-                 ship.getUniverse().getPlayerShip().getMyFaction().derivedModification(tmp, -8.0);
-                 //transfer
-                 ship.getCurrentSystem().setOwner("Player");
-                 //notify player
-                 ship.composeMessage(ship, ship.getCurrentSystem().getName() + " claimed", "Congratulations on your "
-                 + "recent acquisition! If you fail to maintain at least 1 station in this system "
-                 + "you will lose control, and it will return to a new owner. Fly safe. /br/ /br/ "
-                 + "Paralegal: Beyond the Law", null);
-                 //remove papers
-                 ship.removeFromCargoBay(selected);
-                 } else {
-                 ship.composeMessage(ship, "Terms of Service", "You need at least 4 stations here for us to transfer ownership. /br/ /br/ "
-                 + "Paralegal: Beyond the Law", null);
-                 }
-                 } else {
-                 ship.composeMessage(ship, "Terms of Service", "We can't work with neutral space, sorry /br/ /br/ "
-                 + "Paralegal: Beyond the Law", null);
-                 }
-                 }*/
-
-            } else if (command.equals(CMD_USEPASTE)) {
-                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                for (int a = 0; a < selected.getQuantity(); a++) {
-                    //if the hp of the ship is less than the max, use a unit of paste
-                    if (ship.getHull() < ship.getMaxHull()) {
-                        ship.setHull(ship.getHull() + (float) selected.getHP());
-                        selected.setQuantity(selected.getQuantity() - 1);
+                case CMD_PACKAGE:
+                {
+                    Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                    if (selected.getQuantity() == 1) {
+                        Equipment tmp = (Equipment) selected;
+                        ship.removeFromCargoBay(selected);
+                        Item nTmp = new Item(tmp.getName());
+                        if (ship.addToCargoBay(nTmp)) {
+                            //success!
+                        } else {
+                            //failure
+                            ship.addToCargoBay(selected);
                     }
-                    //limit to max hull
-                    if (ship.getHull() > ship.getMaxHull()) {
-                        ship.setHull(ship.getMaxHull());
-                    }
+                    }       break;
                 }
-                //remove if needed
+                case CMD_DEPLOY:
+                {
+                    Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                    if (selected.getQuantity() == 1) {
+                        //deploy the station
+                        Parser tmp = Universe.getCache().getStationCache();
+                        ArrayList<Parser.Term> list = tmp.getTermsOfType("Station");
+                        Parser.Term hull = null;
+                        for (int a = 0; a < list.size(); a++) {
+                            if (list.get(a).getValue("type").equals(selected.getName())) {
+                                hull = list.get(a);
+                                break;
+                            }
+                        }
+                        Station ret = new Station(ship.getCurrentSystem().getUniverse(),
+                                hull, ship.getFaction().getName());
+                        ret.setName("Your " + selected.getName());
+                        //
+                        boolean safe = false;
+                        double sx = 0;
+                        double sz = 0;
+                        safe = true; //todo: make asteroid mines only buildable on asteroids
+                        //configure coordinates
+                        double dx = 500;
+                        double dy = 500;
+                        sx = (ship.getLocation().getX()) + dx;
+                        sz = (ship.getLocation().getZ()) + dy;
+                        if (safe) {
+                            ret.setLocation(new Vector3f((float) sx, ship.getLocation().getY(), (float) sz));
+                            //finalize
+                            ret.setCurrentSystem(ship.getCurrentSystem());
+                            ship.getCurrentSystem().putEntityInSystem(ret);
+                            //remove item from cargo
+                            selected.setQuantity(0);
+                            ship.removeFromCargoBay(selected);
+                            //since it's not NPC make sure it has no start cash
+                            ret.clearWares();
+                        }
+                    }       break;
+                }
+                case CMD_CLAIMSOV:
+                    break;
+                case CMD_USEPASTE:
+                {
+                    Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                    for (int a = 0; a < selected.getQuantity(); a++) {
+                        //if the hp of the ship is less than the max, use a unit of paste
+                        if (ship.getHull() < ship.getMaxHull()) {
+                            ship.setHull(ship.getHull() + (float) selected.getHP());
+                            selected.setQuantity(selected.getQuantity() - 1);
+                        }
+                        //limit to max hull
+                        if (ship.getHull() > ship.getMaxHull()) {
+                            ship.setHull(ship.getMaxHull());
+                    }
+                }       //remove if needed
                 if (selected.getQuantity() <= 0) {
                     ship.removeFromCargoBay(selected);
-                }
-
+                }       break;
+                    }
             }
         }
     }

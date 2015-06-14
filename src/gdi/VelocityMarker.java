@@ -27,7 +27,6 @@
  */
 package gdi;
 
-import celestial.Celestial;
 import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
@@ -51,8 +50,8 @@ public class VelocityMarker extends AstralWindow {
     private VelocityCanvas canvas;
     private AstralCamera camera;
 
-    private int screenWidth;
-    private int screenHeight;
+    private final int screenWidth;
+    private final int screenHeight;
 
     public VelocityMarker(AssetManager assets, Ship host, AstralCamera camera,
             int width, int height, int screenWidth, int screenHeight) {

@@ -136,7 +136,7 @@ public class Ship extends Celestial {
     public static final float CRUISE_DAMP = 0.15f;
     public static final float NEWTON_DAMP = 0;
     public static final float ANGULAR_DAMP = 0.99f;
-    private Term type;
+    private final Term type;
     protected String _class;
     //health
     private float shield;
@@ -148,7 +148,7 @@ public class Ship extends Celestial {
     private float fuel;
     private float maxFuel;
     //fuel efficiency
-    private float burnMultiplier = 1;
+    private final float burnMultiplier = 1;
     //navigation
     transient Node core;
     transient Node nav;
@@ -204,7 +204,7 @@ public class Ship extends Celestial {
     //detecting aggro
     private Ship lastBlow = this;
     //communications
-    private ArrayList<AstralMessage> messages = new ArrayList<>();
+    private final ArrayList<AstralMessage> messages = new ArrayList<>();
     private Conversation conversation;
     private String pilot;
     //RNG

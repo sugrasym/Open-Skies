@@ -43,8 +43,8 @@ import com.jme3.scene.shape.Box;
 public class Nozzle extends Hardpoint {
 
     transient ParticleEmitter emitter;
-    private String rawStart;
-    private String rawEnd;
+    private final String rawStart;
+    private final String rawEnd;
 
     public Nozzle(Ship host, String type, int size, Vector3f loc, String rawStart, String rawEnd) {
         super(host, type, size, loc, Vector3f.UNIT_Z,0);

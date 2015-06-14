@@ -68,10 +68,10 @@ public class SolarSystem implements Entity, Serializable {
     //what it contains
     private ArrayList<Entity> celestials = new ArrayList<>();
     //what contains it
-    private Universe universe;
+    private final Universe universe;
     //engine resources
-    private Parser info;
-    private Term thisSystem;
+    private final Parser info;
+    private final Term thisSystem;
     private boolean hasGraphics = true;
     private transient Node rootNode;
     private transient BulletAppState physics;
