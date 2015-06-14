@@ -108,7 +108,7 @@ public class StandingWindow extends AstralWindow {
     private ArrayList<Binling> sort(ArrayList<Binling> list) {
         ArrayList<Binling> sorted = new ArrayList<>();
         {
-            Binling[] arr = (Binling[]) list.toArray(new Binling[0]);
+            Binling[] arr = (Binling[]) list.toArray(new Binling[list.size()]);
             for (int a = 0; a < arr.length; a++) {
                 for (int b = 1; b < arr.length - a; b++) {
                     if (arr[b - 1].getDouble() < arr[b].getDouble()) {
@@ -180,7 +180,7 @@ public class StandingWindow extends AstralWindow {
                 infoList.addToList("--Contraband--");
                 infoList.addToList(" ");
                 for (int a = 0; a < selected.getContraband().size(); a++) {
-                    infoList.addToList(selected.getContraband().get(a).toString());
+                    infoList.addToList(selected.getContraband().get(a));
                 }
             }
         }
@@ -228,7 +228,7 @@ public class StandingWindow extends AstralWindow {
                     }
                 }
             }
-            infoList.addToList(tmp.toString());
+            infoList.addToList(tmp);
         }
     }
 

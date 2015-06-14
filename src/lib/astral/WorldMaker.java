@@ -693,7 +693,7 @@ public class WorldMaker {
             /*
              * Sorts the syslings by distance ascending.
              */
-            Sysling[] arr = (Sysling[]) verse.toArray(new Sysling[0]);
+            Sysling[] arr = (Sysling[]) verse.toArray(new Sysling[verse.size()]);
             for (int a = 0; a < arr.length; a++) {
                 for (int b = 1; b < arr.length - a; b++) {
                     if (distance(arr[b - 1]) > distance(arr[b])) {

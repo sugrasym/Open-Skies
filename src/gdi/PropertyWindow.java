@@ -43,7 +43,6 @@ import gdi.component.AstralWindow;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import universe.SolarSystem;
 
 public class PropertyWindow extends AstralWindow {
@@ -654,7 +653,7 @@ public class PropertyWindow extends AstralWindow {
                     }
                 }
             }
-            infoList.addToList(tmp.toString());
+            infoList.addToList(tmp);
         }
     }
 

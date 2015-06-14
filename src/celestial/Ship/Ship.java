@@ -1023,7 +1023,7 @@ public class Ship extends Celestial {
                         for (int a = 0; a < friendly.size(); a++) {
                             ArrayList<Item> made = friendly.get(a).getStationSelling();
                             for (int b = 0; b < made.size(); b++) {
-                                String ware = made.get(b).getName().toString();
+                                String ware = made.get(b).getName();
                                 if (!produced.contains(ware)) {
                                     produced.add(ware);
                                 }
@@ -1034,7 +1034,7 @@ public class Ship extends Celestial {
                         for (int a = 0; a < friendly.size(); a++) {
                             ArrayList<Item> made = friendly.get(a).getStationBuying();
                             for (int b = 0; b < made.size(); b++) {
-                                String ware = made.get(b).getName().toString();
+                                String ware = made.get(b).getName();
                                 if (!consumed.contains(ware)) {
                                     consumed.add(ware);
                                 }
@@ -1238,7 +1238,7 @@ public class Ship extends Celestial {
                         for (int a = 0; a < friendly.size(); a++) {
                             ArrayList<Item> made = friendly.get(a).getStationSelling();
                             for (int b = 0; b < made.size(); b++) {
-                                String ware = made.get(b).getName().toString();
+                                String ware = made.get(b).getName();
                                 if (!produced.contains(ware)) {
                                     produced.add(ware);
                                 }
@@ -1249,7 +1249,7 @@ public class Ship extends Celestial {
                         for (int a = 0; a < friendly.size(); a++) {
                             ArrayList<Item> made = friendly.get(a).getStationBuying();
                             for (int b = 0; b < made.size(); b++) {
-                                String ware = made.get(b).getName().toString();
+                                String ware = made.get(b).getName();
                                 if (!consumed.contains(ware)) {
                                     consumed.add(ware);
                                 }

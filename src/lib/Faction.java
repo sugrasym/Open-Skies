@@ -90,7 +90,7 @@ public class Faction implements Serializable {
                     String type = "";
                     while ((type = comms.get(a).getValue("contraband" + x)) != null) {
                         //get station info
-                        String ty = type.toString();
+                        String ty = type;
                         contrabandNotifications.add(ty);
                         //iterate
                         x++;
@@ -104,7 +104,7 @@ public class Faction implements Serializable {
                     String type = "";
                     while ((type = comms.get(a).getValue("hate" + x)) != null) {
                         //get station info
-                        String ty = type.toString();
+                        String ty = type;
                         hateNotifications.add(ty);
                         //iterate
                         x++;
@@ -118,7 +118,7 @@ public class Faction implements Serializable {
                     String type = "";
                     while ((type = comms.get(a).getValue("neut" + x)) != null) {
                         //get station info
-                        String ty = type.toString();
+                        String ty = type;
                         neutralNotifications.add(ty);
                         //iterate
                         x++;
@@ -132,7 +132,7 @@ public class Faction implements Serializable {
                     String type = "";
                     while ((type = comms.get(a).getValue("love" + x)) != null) {
                         //get station info
-                        String ty = type.toString();
+                        String ty = type;
                         getFriendlyNotifications().add(ty);
                         //iterate
                         x++;
@@ -146,7 +146,7 @@ public class Faction implements Serializable {
                     String type = "";
                     while ((type = comms.get(a).getValue("rumor" + x)) != null) {
                         //get station info
-                        String ty = type.toString();
+                        String ty = type;
                         getRumorList().add(ty);
                         //iterate
                         x++;
@@ -160,7 +160,7 @@ public class Faction implements Serializable {
                     String type = "";
                     while ((type = comms.get(a).getValue("campaign" + x)) != null) {
                         //get station info
-                        String ty = type.toString();
+                        String ty = type;
                         getCampaignList().add(ty);
                         //iterate
                         x++;

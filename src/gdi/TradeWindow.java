@@ -376,7 +376,7 @@ public class TradeWindow extends AstralWindow {
                 }
             }
         }
-        propertyList.addToList(tmp.toString());
+        propertyList.addToList(tmp);
         appendShipDetails(selected);
         appendWeaponDetails(selected);
     }

@@ -116,7 +116,7 @@ public class SuperFaction extends Faction {
             String type = "";
             while ((type = muse.getValue("ambient" + a)) != null) {
                 //store
-                getAmbientMusic().add(type.toString());
+                getAmbientMusic().add(type);
                 //iterate
                 a++;
             }
@@ -141,7 +141,7 @@ public class SuperFaction extends Faction {
             String type = "";
             while ((type = muse.getValue("danger" + a)) != null) {
                 //store
-                getDangerMusic().add(type.toString());
+                getDangerMusic().add(type);
                 //iterate
                 a++;
             }

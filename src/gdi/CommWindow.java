@@ -153,7 +153,7 @@ public class CommWindow extends AstralWindow {
                     }
                 }
             }
-            messageDisplay.addToList(tmp.toString());
+            messageDisplay.addToList(tmp);
         }
     }
 

@@ -21,13 +21,13 @@
  */
 package jmeplanet;
 
+import com.jme3.bounding.BoundingBox;
+import com.jme3.material.Material;
+import com.jme3.material.RenderState.FaceCullMode;
 import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
-import com.jme3.scene.Node;
 import com.jme3.scene.Geometry;
-import com.jme3.material.Material;
-import com.jme3.bounding.BoundingBox;
-import com.jme3.material.RenderState.FaceCullMode;
+import com.jme3.scene.Node;
 import com.jme3.shader.VarType;
 import com.jme3.terrain.heightmap.AbstractHeightMap;
 

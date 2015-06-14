@@ -193,7 +193,7 @@ public class CargoWindow extends AstralWindow {
                 }
             }
         }
-        propertyList.addToList(tmp.toString());
+        propertyList.addToList(tmp);
     }
 
     private void fillCommandLines(Item selected) {
