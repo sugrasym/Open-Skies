@@ -1,4 +1,39 @@
 ################################################################################
+2015-06-14
+################################################################################
+I ran lots of automated refactoring and code analysis to get this project up to
+a more modern standard of Java code. I haven't gone to enhanced for loops yet
+because I am unsure whether I want to give up ready access to the index which I
+often print when debugging.
+
+I also fixed some bugs.
+
+Bugs Fixed
+--------------------------------------------------------------------------------
+* fixed issue where a docked ship could keep thrusting after being docked
+  - docking ports now set the thrust of the ships docked at them to 0
+* fixed issue where an old .outlier file could have an out of date payload, 
+  leading to failure to apply mappings
+  - deletes old file, deploys new one
+  - also has the effect of automatically "repairing" damaged settings
+
+Meta
+--------------------------------------------------------------------------------
+I wrote the JME team about my project, I wanted to tell them that their engine
+is awesome and show them the work I've done so far. I wouldn't be nearly this
+far along if it weren't for them.
+
+Also, on the MIT license, I want to say that I really hope someone makes a game
+based on the work done in Outlier. I know if I found this project when I was in
+high school back in the day, I would be elated. Back then I was just hacking in
+VegaStrike and GL-117 (and modding Freelancer).
+
+And the 100th episode of MLP: FiM was disappointing. They could have done a lot
+better than regurgitating bad fan fics. They had a chance to give personality
+and believable character traits / back stories to all the background ponies, and
+they totally blew it off.
+
+################################################################################
 2015-06-13 "Hello Log!"
 ################################################################################
 I have decided to keep an in-project log of thoughts and problems so that I can
