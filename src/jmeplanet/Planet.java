@@ -85,7 +85,7 @@ public class Planet extends Node {
      * @param quads Number of planer quads per patch.
      * @param minDepth Minimal depth for spliting.
      * @param maxDepth Max depth for splitting.
-     * @return true if inside or intersecting camera frustum
+     * @param noSurface
      */
     public Planet(String name, float baseRadius, Material material, HeightDataSource dataSource, int quads, int minDepth, int maxDepth, boolean noSurface) {
         super(name);
@@ -110,6 +110,7 @@ public class Planet extends Node {
      * @param baseRadius The radius of the planet
      * @param material The material applied to the planet
      * @param dataSource The <code>HeightDataSource</code> used for the terrain
+     * @param noSurface
      */
     public Planet(String name, float baseRadius, Material material, HeightDataSource dataSource, boolean noSurface) {
         super(name);
