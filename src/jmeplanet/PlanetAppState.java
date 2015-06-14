@@ -82,7 +82,7 @@ public class PlanetAppState extends AbstractAppState implements Control {
     public PlanetAppState(Spatial scene, DirectionalLight sun) {
         this.scene = scene;
         this.sun = sun;
-        this.planets = new ArrayList<Planet>();
+        this.planets = new ArrayList<>();
     }
 
     @Override

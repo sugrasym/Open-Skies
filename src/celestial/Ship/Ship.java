@@ -3992,7 +3992,7 @@ public class Ship extends Celestial {
      */
     public ArrayList<AudioNode> getSoundQue() {
         if (soundQue == null) {
-            soundQue = new ArrayList<AudioNode>();
+            soundQue = new ArrayList<>();
         }
         return soundQue;
     }

@@ -527,18 +527,13 @@ public class Core {
             "KEY_RSHIFT"});
     }
 
-    private final AnalogListener analogListener = new AnalogListener() {
-
-        @Override
-        public void onAnalog(String string, float f, float f1) {
-            String[] split = string.split("_");
-            Vector2f origin = input.getCursorPosition();
-            if (split[0].equals("MOUSE")) {
-                hud.handleMouseMoved(state, string,
-                        new Vector3f(origin.x, origin.y, 0));
-            }
+    private final AnalogListener analogListener = (String string, float f, float f1) -> {
+        String[] split = string.split("_");
+        Vector2f origin = input.getCursorPosition();
+        if (split[0].equals("MOUSE")) {
+            hud.handleMouseMoved(state, string,
+                    new Vector3f(origin.x, origin.y, 0));
         }
-
     };
 
     private final ActionListener actionListener = new ActionListener() {

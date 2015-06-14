@@ -410,23 +410,13 @@ public class PropertyWindow extends AstralWindow {
              * Then stations.
              */
             //sort
-            Collections.sort(pShips, new Comparator<Ship>() {
-                @Override
-                public int compare(Ship left, Ship right) {
-                    return left.getName().compareTo(right.getName());
-                }
-            });
+            Collections.sort(pShips, (Ship left, Ship right) -> left.getName().compareTo(right.getName()));
             //add
             for (int a = 0; a < pShips.size(); a++) {
                 logicalPropertyList.add(pShips.get(a));
             }
             //sort
-            Collections.sort(pStats, new Comparator<Ship>() {
-                @Override
-                public int compare(Ship left, Ship right) {
-                    return left.getName().compareTo(right.getName());
-                }
-            });
+            Collections.sort(pStats, (Ship left, Ship right) -> left.getName().compareTo(right.getName()));
             //add
             for (int a = 0; a < pStats.size(); a++) {
                 logicalPropertyList.add(pStats.get(a));
@@ -774,8 +764,8 @@ public class PropertyWindow extends AstralWindow {
             switch (command) {
                 case CMD_SWITCH:
                     /*
-                    * Switch to another ship.
-                    */ ship.getCurrentSystem().getUniverse().setPlayerShip(selected);
+                     * Switch to another ship.
+                     */ ship.getCurrentSystem().getUniverse().setPlayerShip(selected);
                     break;
                 case CMD_NONE:
                     //abort current behavior
@@ -808,28 +798,28 @@ public class PropertyWindow extends AstralWindow {
                     trader.setVisible(true);
                     tmp = selected;
                     break;
-                case CMD_DOCK:
-                    {
-                        ArrayList<Object> choice = new ArrayList<>();
-                        choice.add("--Select Station To Dock At--");
-                        choice.add(" ");
-                        ArrayList<Station> st = selected.getDockableStationsInSystem();
-                        for (int a = 0; a < st.size(); a++) {
-                            choice.add(st.get(a));
-                        }       if (st.size() > 0) {
-                            showInputList(choice);
-                            mode = Mode.WAITING_FOR_STATION;
-                        } else {
-                            mode = Mode.NONE;
-                }       break;
+                case CMD_DOCK: {
+                    ArrayList<Object> choice = new ArrayList<>();
+                    choice.add("--Select Station To Dock At--");
+                    choice.add(" ");
+                    ArrayList<Station> st = selected.getDockableStationsInSystem();
+                    for (int a = 0; a < st.size(); a++) {
+                        choice.add(st.get(a));
                     }
+                    if (st.size() > 0) {
+                        showInputList(choice);
+                        mode = Mode.WAITING_FOR_STATION;
+                    } else {
+                        mode = Mode.NONE;
+                    }
+                    break;
+                }
                 case CMD_REMOTECARGO:
                     mode = Mode.WAITING_FOR_CARGO;
                     cargo.setVisible(true);
                     tmp = selected;
                     break;
-                case CMD_ATTACK:
-                {
+                case CMD_ATTACK: {
                     mode = Mode.WAITING_FOR_ATTACK;
                     ArrayList<Object> choice = new ArrayList<>();
                     choice.add("--Select Target To Attack--");
@@ -837,18 +827,19 @@ public class PropertyWindow extends AstralWindow {
                     ArrayList<Ship> sh = selected.getShipsInSensorRange();
                     for (int a = 0; a < sh.size(); a++) {
                         choice.add(sh.get(a));
-                    }       if (sh.size() > 0) {
+                    }
+                    if (sh.size() > 0) {
                         showInputList(choice);
                         mode = Mode.WAITING_FOR_ATTACK;
                     } else {
                         mode = Mode.NONE;
-                }       break;
                     }
+                    break;
+                }
                 case CMD_DESTRUCT:
                     selected.setState(State.DYING);
                     break;
-                case CMD_FLYTO:
-                {
+                case CMD_FLYTO: {
                     ArrayList<Object> choice = new ArrayList<>();
                     choice.add("--Select Target To Fly To--");
                     choice.add(" ");
@@ -862,33 +853,35 @@ public class PropertyWindow extends AstralWindow {
                     }       //move to choices
                     for (int a = 0; a < cel.size(); a++) {
                         choice.add(cel.get(a));
-                    }       if (cel.size() > 0) {
+                    }
+                    if (cel.size() > 0) {
                         showInputList(choice);
                         mode = Mode.WAITING_FOR_CELESTIAL;
                     } else {
-                    mode = Mode.NONE;
-                }       break;
+                        mode = Mode.NONE;
                     }
-                case CMD_FOLLOW:
-                {
+                    break;
+                }
+                case CMD_FOLLOW: {
                     ArrayList<Object> choice = new ArrayList<>();
                     choice.add("--Select Target To Follow--");
                     choice.add(" ");
                     ArrayList<Ship> sh = selected.getShipsInSensorRange();
                     for (int a = 0; a < sh.size(); a++) {
                         choice.add(sh.get(a));
-                    }       if (sh.size() > 0) {
+                    }
+                    if (sh.size() > 0) {
                         showInputList(choice);
                         mode = Mode.WAITING_FOR_FOLLOW;
                     } else {
-                    mode = Mode.NONE;
-                }       break;
+                        mode = Mode.NONE;
+                    }
+                    break;
                 }
                 case CMD_ALLSTOP:
                     selected.cmdAllStop();
                     break;
-                case CMD_JUMP:
-                {
+                case CMD_JUMP: {
                     ArrayList<Object> choice = new ArrayList<>();
                     choice.add("--Select Target System--");
                     choice.add(" ");
@@ -897,18 +890,19 @@ public class PropertyWindow extends AstralWindow {
                         if (ship.canJump(sh.get(a))) {
                             choice.add(sh.get(a));
                         }
-                    }       if (sh.size() > 0) {
+                    }
+                    if (sh.size() > 0) {
                         showInputList(choice);
                         mode = Mode.WAITING_FOR_JUMP;
                     } else {
                         mode = Mode.NONE;
-                }       break;
+                    }
+                    break;
                 }
                 case CMD_CLEARHOME:
                     selected.clearHomeBase();
                     break;
-                case CMD_SETHOME:
-                {
+                case CMD_SETHOME: {
                     ArrayList<Object> choice = new ArrayList<>();
                     choice.add("--Select Home Base In System--");
                     choice.add(" ");
@@ -917,13 +911,15 @@ public class PropertyWindow extends AstralWindow {
                         if (selected.getCurrentSystem().getUniverse().getPlayerProperty().contains(stat.get(a))) {
                             choice.add(stat.get(a));
                         }
-                    }       if (stat.size() > 0) {
+                    }
+                    if (stat.size() > 0) {
                         showInputList(choice);
                         mode = Mode.WAITING_FOR_BASE;
                     } else {
-                    mode = Mode.NONE;
-                }       break;
+                        mode = Mode.NONE;
                     }
+                    break;
+                }
                 case CMD_SUPPLYHOME:
                     break;
                 case CMD_REPRESENTHOME:

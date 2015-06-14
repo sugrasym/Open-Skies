@@ -129,9 +129,9 @@ public class AstralIO implements Serializable {
     public static void writeFile(String target, String text) {
         try {
             FileWriter fstream = new FileWriter(target);
-            BufferedWriter out = new BufferedWriter(fstream);
-            out.write(text);
-            out.close();
+            try (BufferedWriter out = new BufferedWriter(fstream)) {
+                out.write(text);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
