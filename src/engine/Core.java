@@ -75,12 +75,13 @@ import universe.Universe;
 public class Core {
 
     public enum GameState {
+
         QUOTE,
         MAIN_MENU,
         IN_SPACE,
         GAME_OVER
     }
-    
+
     private GameState state = GameState.QUOTE;
     public static final float DEFAULT_TICK = 0.016666668f;
     public static final float TICK_DIVIDER = 4.0f;
@@ -276,6 +277,7 @@ public class Core {
         } catch (Exception e) {
             System.out.println("Error: Unable to parse payload file " + AstralIO.getPayloadFile());
             System.out.println("Setting controls to defaults as fallback!");
+
             //default mappings
             JOYSTICK_PITCH_AXIS = 0;
             JOYSTICK_YAW_AXIS = 1;
@@ -311,7 +313,9 @@ public class Core {
             JOYSTICK_SEC_BUTTON = 1;
             JOYSTICK_DEADZONE_THROTTLE = 0.1f;
             JOYSTICK_DEADZONE_ROTATION = 0.01f;
-            e.printStackTrace();
+
+            System.out.println("Redeploying payload file");
+            AstralIO.forceDeployControlPayload();
         }
     }
 
@@ -549,7 +553,8 @@ public class Core {
                         if (getState() == GameState.IN_SPACE) {
                             handleInSpaceKeys(name, keyPressed);
                         }
-                    }   break;
+                    }
+                    break;
                 case "MOUSE":
                     hud.handleMouseAction(getState(), name, keyPressed,
                             new Vector3f(origin.x, origin.y, 0));
@@ -749,6 +754,7 @@ public class Core {
     };
 
     protected class JoystickEventListener implements RawInputListener {
+
         public void onJoyAxisEvent(JoyAxisEvent evt) {
             if (getState() == GameState.IN_SPACE) {
                 if (!universe.getPlayerShip().isDocked()) {

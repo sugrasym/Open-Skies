@@ -89,12 +89,14 @@ public class DockingPort implements Serializable {
                             client.setDocked(true);
                             client.clearForces();
                             client.setPhysicsLocation(nLoc);
+                            client.setThrottle(0);
                         }
                     }
                 } else {
                     //keep client synced in bay
                     client.setPhysicsLocation(node.getWorldTranslation());
                     client.nullVelocity();
+                    client.setThrottle(0);
                 }
             } else {
                 //dead ships don't dock

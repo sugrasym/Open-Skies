@@ -113,6 +113,18 @@ public class AstralIO implements Serializable {
             writeFile(getPayloadFile(), payload);
         }
     }
+    
+    public static void forceDeployControlPayload() {
+        //delete the old payload file
+        File file = new File(getPayloadFile());
+        if(file.exists()) {
+            file.delete();
+        }
+        
+        //deploy the current one
+        String payload = readTextFromJar("PAYLOAD.txt");
+        writeFile(getPayloadFile(), payload);
+    }
 
     public static String getHomeDir() {
         return System.getProperty("user.home") + "/" + HOME_DIR;
