@@ -261,11 +261,7 @@ public class Projectile extends Celestial {
             Vector3f pp2 = getLocation().add(getVelocity().mult(dt));
             float d1 = tp.distance(pp);
             float d2 = tp2.distance(pp2);
-            if (d1 > (d2 * tolerance)) {
-                return true;
-            } else {
-                return false;
-            }
+            return d1 > (d2 * tolerance);
         } else {
             return true;
         }

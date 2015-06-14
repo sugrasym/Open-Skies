@@ -478,9 +478,7 @@ public class Station extends Ship {
             String[] arr = raw.split("/");
             for (int a = 0; a < arr.length; a++) {
                 Job p = new Job(this, arr[a], stationSelling, stationBuying);
-                if (p != null) {
-                    jobs.add(p);
-                }
+                jobs.add(p);
             }
         }
     }
@@ -539,7 +537,7 @@ public class Station extends Ship {
      */
     @Override
     public String toString() {
-        String ret = "";
+        String ret;
         if (!isPlayerFaction()) {
             ret = getName();
         } else {

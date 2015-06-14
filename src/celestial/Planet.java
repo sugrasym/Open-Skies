@@ -74,6 +74,7 @@ public class Planet extends Celestial {
         discover();
     }
 
+    @Override
     public void construct(AssetManager assets) {
         generateProceduralPlanet(assets);
         if (spatial != null) {
@@ -93,6 +94,7 @@ public class Planet extends Celestial {
         }
     }
 
+    @Override
     public void deconstruct() {
         setTex(null);
         mat = null;
@@ -247,6 +249,7 @@ public class Planet extends Celestial {
         }
     }
 
+    @Override
     protected void alive() {
         if (physics != null) {
             if (spatial != null) {
@@ -263,6 +266,7 @@ public class Planet extends Celestial {
         }
     }
 
+    @Override
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         if (spatial != null) {
             node.attachChild(spatial);
@@ -278,6 +282,7 @@ public class Planet extends Celestial {
         }
     }
 
+    @Override
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         node.detachChild(spatial);
         physics.getPhysicsSpace().remove(spatial);

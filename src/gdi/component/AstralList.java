@@ -154,7 +154,6 @@ public class AstralList extends AstralComponent {
         if (index < listContents.size()) {
             return listContents.get(index);
         } else {
-            index = 0;
             return null;
         }
     }

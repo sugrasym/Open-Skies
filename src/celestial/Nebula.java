@@ -65,6 +65,7 @@ public class Nebula extends Celestial {
         setName(name);
     }
 
+    @Override
     public void construct(AssetManager assets) {
         //calculate particle count based on the density constant
         int particles = (int) (DENSITY * (volume.x * volume.y * volume.z));
@@ -94,6 +95,7 @@ public class Nebula extends Celestial {
         emitter.emittParticleVolume();
     }
 
+    @Override
     public void deconstruct() {
         super.deconstruct();
         if (emitter != null) {
@@ -103,6 +105,7 @@ public class Nebula extends Celestial {
         emitter = null;
     }
 
+    @Override
     protected void alive() {
         if (emitter != null) {
             emitter.setLocalTranslation(getLocation().x, getLocation().y,
@@ -110,10 +113,12 @@ public class Nebula extends Celestial {
         }
     }
 
+    @Override
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         node.attachChild(emitter);
     }
 
+    @Override
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         node.detachChild(emitter);
     }

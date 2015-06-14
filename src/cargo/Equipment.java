@@ -97,7 +97,7 @@ public class Equipment extends Item implements Serializable {
 
     @Override
     public String toString() {
-        String ret = "";
+        String ret;
         if (enabled) {
             //return cooldown status
             double percentCooled = activationTimer / coolDown;

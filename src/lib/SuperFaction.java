@@ -86,7 +86,7 @@ public class SuperFaction extends Faction {
         if (stat != null) {
             //get types of stations
             int a = 0;
-            String type = "";
+            String type;
             while ((type = stat.getValue("station" + a)) != null) {
                 //get station info
                 String ty = type.split(",")[0];
@@ -113,7 +113,7 @@ public class SuperFaction extends Faction {
         if (muse != null) {
             //get types of stations
             int a = 0;
-            String type = "";
+            String type;
             while ((type = muse.getValue("ambient" + a)) != null) {
                 //store
                 getAmbientMusic().add(type);
@@ -138,7 +138,7 @@ public class SuperFaction extends Faction {
         if (muse != null) {
             //get types of stations
             int a = 0;
-            String type = "";
+            String type;
             while ((type = muse.getValue("danger" + a)) != null) {
                 //store
                 getDangerMusic().add(type);
@@ -167,7 +167,7 @@ public class SuperFaction extends Faction {
              */
             {
                 int a = 0;
-                String type = "";
+                String type;
                 while ((type = stat.getValue("patrol" + a)) != null) {
                     //get patrol info
                     String ty = type.split(",")[0];
@@ -182,7 +182,7 @@ public class SuperFaction extends Faction {
              */
             {
                 int a = 0;
-                String type = "";
+                String type;
                 while ((type = stat.getValue("trader" + a)) != null) {
                     //get trader info
                     String ty = type.split(",")[0];
@@ -197,7 +197,7 @@ public class SuperFaction extends Faction {
              */
             {
                 int a = 0;
-                String type = "";
+                String type;
                 while ((type = stat.getValue("merchant" + a)) != null) {
                     //get merchant info
                     String ty = type.split(",")[0];

@@ -541,6 +541,7 @@ public class Core {
     };
 
     private final ActionListener actionListener = new ActionListener() {
+        @Override
         public void onAction(String name, boolean keyPressed, float tpf) {
             if (name.equals("KEY_LSHIFT")) {
                 shiftDown = keyPressed;
@@ -755,6 +756,7 @@ public class Core {
 
     protected class JoystickEventListener implements RawInputListener {
 
+        @Override
         public void onJoyAxisEvent(JoyAxisEvent evt) {
             if (getState() == GameState.IN_SPACE) {
                 if (!universe.getPlayerShip().isDocked()) {
@@ -789,6 +791,7 @@ public class Core {
             }
         }
 
+        @Override
         public void onJoyButtonEvent(JoyButtonEvent evt) {
             if (getState() == GameState.IN_SPACE) {
                 if (!universe.getPlayerShip().isDocked()) {
@@ -801,9 +804,11 @@ public class Core {
             }
         }
 
+        @Override
         public void beginInput() {
         }
 
+        @Override
         public void endInput() {
         }
 
@@ -979,6 +984,7 @@ public class Core {
                 //now start another render thread
                 final Core passCore = this;
                 Thread t = new Thread() {
+                    @Override
                     public void run() {
                         try {
                             //flag

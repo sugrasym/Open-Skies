@@ -97,7 +97,7 @@ public class Parser implements Serializable {
          * generate a Term object.
          */
         String[] arr = raw.split("\n");
-        Term term = null;
+        Term term;
         {
             //the first line should contain the term's name
             String name = arr[0].replace("[", "").replace("]", "");

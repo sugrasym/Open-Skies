@@ -79,7 +79,7 @@ public class Universe implements Serializable {
     }
     
     private SolarSystem makeSystem(Parser parse, Term thisSystem) {
-        SolarSystem system = null;
+        SolarSystem system;
         {
             system = new SolarSystem(this, thisSystem, parse);
             //get music
@@ -91,7 +91,7 @@ public class Universe implements Serializable {
             if(danger != null) {
                 system.setDangerMusic(danger);
             }
-            system.initSystem(assets);
+            system.initSystem();
             
         }
         System.out.println("Working: " + system.getName() + " solar system created. ");

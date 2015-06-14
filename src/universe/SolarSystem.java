@@ -103,7 +103,7 @@ public class SolarSystem implements Entity, Serializable {
         }
     }
 
-    public final void initSystem(AssetManager assets) {
+    public final void initSystem() {
         /*
          * Adds all member objects. Member objects are any object that is
          * a member of this system according to the "system" param and is
@@ -118,7 +118,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < field.size(); a++) {
             if (field.get(a).getValue("system").equals(getName())) {
                 //this star needs to be created and stored
-                putEntityInSystem(makeField(assets, field.get(a)));
+                putEntityInSystem(makeField(field.get(a)));
             }
         }
         //nebula
@@ -126,7 +126,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < nebula.size(); a++) {
             if (nebula.get(a).getValue("system").equals(getName())) {
                 //this star needs to be created and stored
-                putEntityInSystem(makeNebula(assets, nebula.get(a)));
+                putEntityInSystem(makeNebula(nebula.get(a)));
             }
         }
         //star
@@ -134,7 +134,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < stars.size(); a++) {
             if (stars.get(a).getValue("system").equals(getName())) {
                 //this star needs to be created and stored
-                putEntityInSystem(makeStar(assets, stars.get(a)));
+                putEntityInSystem(makeStar(stars.get(a)));
             }
         }
         //planet
@@ -142,7 +142,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < planets.size(); a++) {
             if (planets.get(a).getValue("system").equals(getName())) {
                 //this planet needs to be created and stored
-                putEntityInSystem(makePlanet(assets, planets.get(a)));
+                putEntityInSystem(makePlanet(planets.get(a)));
             }
         }
         //station
@@ -166,13 +166,13 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < jumpholes.size(); a++) {
             if (jumpholes.get(a).getValue("system").equals(getName())) {
                 //this planet needs to be created and stored
-                putEntityInSystem(makeJumphole(assets, jumpholes.get(a)));
+                putEntityInSystem(makeJumphole(jumpholes.get(a)));
             }
         }
     }
 
     private Station makeStation(Term shipTerm) {
-        Station station = null;
+        Station station;
         {
             String type = shipTerm.getValue("station");
             Parser tmp = new Parser("STATION.txt");
@@ -201,7 +201,7 @@ public class SolarSystem implements Entity, Serializable {
     }
 
     private Ship makeShip(Term shipTerm) {
-        Ship ship = null;
+        Ship ship;
         {
             String type = shipTerm.getValue("ship");
             Parser tmp = new Parser("SHIP.txt");
@@ -239,8 +239,8 @@ public class SolarSystem implements Entity, Serializable {
         return ship;
     }
 
-    private Planet makePlanet(AssetManager assets, Term planetTerm) {
-        Planet planet = null;
+    private Planet makePlanet(Term planetTerm) {
+        Planet planet;
         {
             String texture = planetTerm.getValue("texture");
             //find logical texture
@@ -268,8 +268,8 @@ public class SolarSystem implements Entity, Serializable {
         return planet;
     }
 
-    private Star makeStar(AssetManager assets, Term starTerm) {
-        Star star = null;
+    private Star makeStar(Term starTerm) {
+        Star star;
         {
             String texture = starTerm.getValue("texture");
             //find the logical texture
@@ -295,8 +295,8 @@ public class SolarSystem implements Entity, Serializable {
         return star;
     }
 
-    private Jumphole makeJumphole(AssetManager assets, Term jumpholeTerm) {
-        Jumphole jumphole = null;
+    private Jumphole makeJumphole(Term jumpholeTerm) {
+        Jumphole jumphole;
         {
             //extract terms
             String pName = jumpholeTerm.getValue("name");
@@ -312,8 +312,8 @@ public class SolarSystem implements Entity, Serializable {
         return jumphole;
     }
 
-    private Field makeField(AssetManager assets, Term fieldTerm) {
-        Field field = null;
+    private Field makeField(Term fieldTerm) {
+        Field field;
         {
             //extract terms
             String pName = fieldTerm.getValue("name");
@@ -344,8 +344,8 @@ public class SolarSystem implements Entity, Serializable {
         return field;
     }
 
-    private Nebula makeNebula(AssetManager assets, Term nebulaTerm) {
-        Nebula nebula = null;
+    private Nebula makeNebula(Term nebulaTerm) {
+        Nebula nebula;
         {
             //extract terms
             String pName = nebulaTerm.getValue("name");

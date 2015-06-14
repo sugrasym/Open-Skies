@@ -202,7 +202,7 @@ public class God {
             }
             //do they meet the required density?
             for (int a = 0; a < count.length; a++) {
-                double density = 0;
+                double density;
                 //calculate density based on entity type
                 if (faction.isEmpire()) {
                     density = 1 + faction.getStations().get(a).getDouble() * faction.getSov().size();
@@ -213,8 +213,8 @@ public class God {
                 //System.out.println(faction.getStations().get(a).getString() + " " + count[a]);
                 while (count[a] < density) {
                     //celestials
-                    Celestial host = null;
-                    SolarSystem pick = null;
+                    Celestial host;
+                    SolarSystem pick;
                     //branch based on entity type
                     if (faction.isEmpire()) {
                         //pick a system this faction owns
@@ -298,8 +298,8 @@ public class God {
                 double density = faction.getMerchants().get(a).getDouble();
                 //System.out.println(faction.getMerchants().get(a).getString() + " " + count[a]);
                 while (count[a] < density) {
-                    Celestial host = null;
-                    SolarSystem pick = null;
+                    Celestial host;
+                    SolarSystem pick;
                     if (faction.isEmpire()) {
                         //pick a system this faction owns
                         ArrayList<SolarSystem> sov = faction.getSov();
@@ -382,8 +382,8 @@ public class God {
                 double density = faction.getTraders().get(a).getDouble();
                 //System.out.println(faction.getTraders().get(a).getString() + " " + count[a]);
                 while (count[a] < density) {
-                    Celestial host = null;
-                    SolarSystem pick = null;
+                    Celestial host;
+                    SolarSystem pick;
                     if (faction.isEmpire()) {
                         //pick a system this faction owns
                         ArrayList<SolarSystem> sov = faction.getSov();
@@ -466,8 +466,8 @@ public class God {
                 double density = faction.getPatrols().get(a).getDouble();
                 //System.out.println(faction.getPatrols().get(a).getString() + " " + count[a]);
                 while (count[a] < density) {
-                    Celestial host = null;
-                    SolarSystem pick = null;
+                    Celestial host;
+                    SolarSystem pick;
                     if (faction.isEmpire()) {
                         //pick a system this faction owns
                         ArrayList<SolarSystem> sov = faction.getSov();
@@ -504,9 +504,9 @@ public class God {
     }
 
     private Vector3f pointNearCelestial(Celestial host) {
-        float x = 0;
-        float y = 0;
-        float z = 0;
+        float x;
+        float y;
+        float z;
         if (host instanceof Planet) {
             //pick a point outside of the planet
             Planet tmp = (Planet) host;
@@ -610,7 +610,7 @@ public class God {
         /*
          * Generates a ship from a template.
          */
-        Ship ret = null;
+        Ship ret;
         {
             String cargo = "";
             String install = "";

@@ -425,9 +425,9 @@ public class CargoWindow extends AstralWindow {
                                 hull, ship.getFaction().getName());
                         ret.setName("Your " + selected.getName());
                         //
-                        boolean safe = false;
-                        double sx = 0;
-                        double sz = 0;
+                        boolean safe;
+                        double sx;
+                        double sz;
                         safe = true; //todo: make asteroid mines only buildable on asteroids
                         //configure coordinates
                         double dx = 500;

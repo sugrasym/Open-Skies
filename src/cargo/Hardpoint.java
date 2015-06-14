@@ -87,11 +87,7 @@ public class Hardpoint implements Serializable {
     }
 
     public boolean isEmpty() {
-        if (getMounted().getName().matches("NOTHING")) {
-            return true;
-        } else {
-            return false;
-        }
+        return getMounted().getName().matches("NOTHING");
     }
 
     @Override

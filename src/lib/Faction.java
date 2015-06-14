@@ -87,7 +87,7 @@ public class Faction implements Serializable {
                  */
                 {
                     int x = 0;
-                    String type = "";
+                    String type;
                     while ((type = comms.get(a).getValue("contraband" + x)) != null) {
                         //get station info
                         String ty = type;
@@ -101,7 +101,7 @@ public class Faction implements Serializable {
                  */
                 {
                     int x = 0;
-                    String type = "";
+                    String type;
                     while ((type = comms.get(a).getValue("hate" + x)) != null) {
                         //get station info
                         String ty = type;
@@ -115,7 +115,7 @@ public class Faction implements Serializable {
                  */
                 {
                     int x = 0;
-                    String type = "";
+                    String type;
                     while ((type = comms.get(a).getValue("neut" + x)) != null) {
                         //get station info
                         String ty = type;
@@ -129,7 +129,7 @@ public class Faction implements Serializable {
                  */
                 {
                     int x = 0;
-                    String type = "";
+                    String type;
                     while ((type = comms.get(a).getValue("love" + x)) != null) {
                         //get station info
                         String ty = type;
@@ -143,7 +143,7 @@ public class Faction implements Serializable {
                  */
                 {
                     int x = 0;
-                    String type = "";
+                    String type;
                     while ((type = comms.get(a).getValue("rumor" + x)) != null) {
                         //get station info
                         String ty = type;
@@ -157,7 +157,7 @@ public class Faction implements Serializable {
                  */
                 {
                     int x = 0;
-                    String type = "";
+                    String type;
                     while ((type = comms.get(a).getValue("campaign" + x)) != null) {
                         //get station info
                         String ty = type;

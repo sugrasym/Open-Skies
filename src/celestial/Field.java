@@ -102,6 +102,7 @@ public class Field extends Celestial implements Serializable {
         type = field;
     }
 
+    @Override
     public void construct(AssetManager assets) {
         /*
          * Make asteroid dummies
@@ -112,6 +113,7 @@ public class Field extends Celestial implements Serializable {
         generateAsteroids(assets);
     }
 
+    @Override
     public void deconstruct() {
         super.deconstruct();
         if (patterns != null) {
@@ -200,6 +202,7 @@ public class Field extends Celestial implements Serializable {
         return true;
     }
 
+    @Override
     protected void alive() {
         Ship host = universe.getPlayerShip();
         try {
@@ -266,10 +269,12 @@ public class Field extends Celestial implements Serializable {
         this.count = count;
     }
 
+    @Override
     public Vector3f getLocation() {
         return location;
     }
 
+    @Override
     public void setLocation(Vector3f location) {
         this.location = location;
     }
@@ -290,11 +295,11 @@ public class Field extends Celestial implements Serializable {
         this.rockScale = rockScale;
     }
 
-    public Block[] getBlocks() {
+    private Block[] getBlocks() {
         return patterns;
     }
 
-    public void setBlocks(Block[] blocks) {
+    private void setBlocks(Block[] blocks) {
         this.patterns = blocks;
     }
 
@@ -409,11 +414,13 @@ public class Field extends Celestial implements Serializable {
         }
     }
 
+    @Override
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         this.node = node;
         this.bulletAppState = physics;
     }
 
+    @Override
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
     }
 }

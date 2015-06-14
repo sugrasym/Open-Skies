@@ -131,6 +131,7 @@ public class Star extends Planet {
      b -= (0.0 * b);
      return new ColorRGBA(r, g, b, light.getAlpha());
      }*/
+    @Override
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         //node.attachChild(spatial);
         physics.getPhysicsSpace().add(spatial);
@@ -138,6 +139,7 @@ public class Star extends Planet {
         node.attachChild(emitter);
     }
     
+    @Override
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         //node.detachChild(spatial);
         physics.getPhysicsSpace().remove(spatial);
@@ -145,6 +147,7 @@ public class Star extends Planet {
         node.detachChild(emitter);
     }
     
+    @Override
     protected void alive() {
         super.alive();
         if (light != null) {
@@ -155,10 +158,12 @@ public class Star extends Planet {
         }
     }
     
+    @Override
     public int getSeed() {
         return seed;
     }
     
+    @Override
     public void setSeed(int seed) {
         this.seed = seed;
     }

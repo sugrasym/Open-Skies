@@ -56,8 +56,7 @@ public class WorldMaker {
         //generate universe
         String out = generate(31337, 1, 7, 80, 100, 1000, 64000, 256000, 500, 5000, 0, 0.40f, 0.40f);
         //save
-        AstralIO tmp = new AstralIO();
-        tmp.writeFile("new-UNIVERSE.txt", out);
+        AstralIO.writeFile("new-UNIVERSE.txt", out);
         System.out.println(out);
     }
 
@@ -627,7 +626,7 @@ public class WorldMaker {
         if (stat != null) {
             //get types of stations
             int a = 0;
-            String type = "";
+            String type;
             while ((type = stat.getValue("station" + a)) != null) {
                 //get station info
                 String ty = type.split(",")[0];
@@ -670,14 +669,14 @@ public class WorldMaker {
             this.loc = loc;
             this.name = name;
             //pick neutral ambient music
-            ArrayList<String> ambientMusic = neutralFaction.getAmbientMusic();
-            if (ambientMusic.size() > 0) {
-                setAmbientMusic(ambientMusic.get(rnd.nextInt(ambientMusic.size())));
+            ArrayList<String> am = neutralFaction.getAmbientMusic();
+            if (am.size() > 0) {
+                setAmbientMusic(am.get(rnd.nextInt(am.size())));
             }
             //pick danger music
-            ArrayList<String> dangerMusic = neutralFaction.getDangerMusic();
-            if (dangerMusic.size() > 0) {
-                setDangerMusic(dangerMusic.get(rnd.nextInt(dangerMusic.size())));
+            ArrayList<String> dm = neutralFaction.getDangerMusic();
+            if (dm.size() > 0) {
+                setDangerMusic(dm.get(rnd.nextInt(dm.size())));
             }
         }
 
@@ -753,7 +752,7 @@ public class WorldMaker {
             return ambientMusic;
         }
 
-        public void setAmbientMusic(String ambientMusic) {
+        public final void setAmbientMusic(String ambientMusic) {
             this.ambientMusic = ambientMusic;
         }
 
@@ -761,7 +760,7 @@ public class WorldMaker {
             return dangerMusic;
         }
 
-        public void setDangerMusic(String dangerMusic) {
+        public final void setDangerMusic(String dangerMusic) {
             this.dangerMusic = dangerMusic;
         }
     }
@@ -829,10 +828,7 @@ public class WorldMaker {
             minRad *= 1.5f;
             //determine if they are colliding using distance
             float dist = loc.distance(testLoc);
-            if (dist < minRad) {
-                return true;
-            }
-            return false;
+            return dist < minRad;
         }
 
         public Vector3f getLoc() {

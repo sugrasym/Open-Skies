@@ -87,7 +87,7 @@ public class Conversation implements Serializable {
             //generate binlings
             ArrayList<Binling> cho = new ArrayList<>();
             int v = 0;
-            String type = "";
+            String type;
             while ((type = list.get(a).getValue("choice" + v)) != null) {
                 //get station info
                 String msg = type.split("/")[0];

@@ -308,11 +308,7 @@ public class Weapon extends Equipment {
 
     public boolean hasAmmo() {
         if (ammo != null) {
-            if (host.getNumInCargoBay(ammo) > 0) {
-                //and return true;
-                return true;
-            }
-            return false;
+            return host.getNumInCargoBay(ammo) > 0;
         } else {
             return true;
         }
@@ -542,7 +538,7 @@ public class Weapon extends Equipment {
 
     @Override
     public String toString() {
-        String ret = "";
+        String ret;
         if (ammo == null) {
             ret = super.toString();
         } else if (host != null) {

@@ -417,7 +417,7 @@ public class Ship extends Celestial {
              * Returns a vector that represents a position vector being rotated
              * around the axis of the ship.
              */
-            Vector3f eul = null;
+            Vector3f eul;
             {
                 core.setLocalRotation(getPhysicsRotation().clone());
                 eul = nav.getWorldTranslation().clone();
@@ -567,7 +567,7 @@ public class Ship extends Celestial {
                                 /*
                                  * The enemy is out of weapons minRange and needs to be approached
                                  */
-                                float dP = 0;
+                                float dP;
                                 float d1 = getLocation().subtract(target.getLocation()).length();
                                 Vector3f dv1 = getLocation().add(getLinearVelocity().mult((float) tpf));
                                 Vector3f dv2 = target.getLocation().add(target.getLinearVelocity().mult((float) tpf));
@@ -636,7 +636,7 @@ public class Ship extends Celestial {
                             }
                         } else {
                             //determine correct hold to use
-                            float hold = 0;
+                            float hold;
                             if (distance <= getFlightHold()) {
                                 hold = distance;
                             } else {
@@ -794,7 +794,7 @@ public class Ship extends Celestial {
                         cmdAllStop();
                     } else {
                         //determine correct hold to use
-                        float hold = 0;
+                        float hold;
                         if (dist <= getFlightHold()) {
                             hold = dist;
                         } else {
@@ -831,7 +831,7 @@ public class Ship extends Celestial {
     private void moveToPositionWithHold(Vector3f end, float hold) {
         Vector3f b = end.clone();
         //safety
-        boolean canAccel = true;
+        boolean canAccel;
         //see if we are there
         float dist = end.distance(getPhysicsLocation());
         if (dist < hold && hold != Float.POSITIVE_INFINITY) {
@@ -1589,7 +1589,7 @@ public class Ship extends Celestial {
                             /*
                              * The enemy is out of weapons minRange and needs to be approached
                              */
-                            float dP = 0;
+                            float dP;
                             float d1 = getLocation().subtract(target.getLocation()).length();
                             Vector3f dv1 = getLocation().add(getVelocity().mult((float) tpf));
                             Vector3f dv2 = target.getLocation().add(target.getVelocity().mult((float) tpf));
@@ -1675,7 +1675,7 @@ public class Ship extends Celestial {
                         cmdAllStop();
                     } else {
                         //determine correct hold to use
-                        float hold = 0;
+                        float hold;
                         if (dist <= getFlightHold()) {
                             hold = dist;
                         } else {
@@ -1727,7 +1727,7 @@ public class Ship extends Celestial {
                             }
                         } else {
                             //determine correct hold to use
-                            float hold = 0;
+                            float hold;
                             if (distance <= getFlightHold()) {
                                 hold = distance;
                             } else {
@@ -2447,7 +2447,7 @@ public class Ship extends Celestial {
      */
     @Override
     public String toString() {
-        String ret = "";
+        String ret;
         if (!isPlayerFaction()) {
             ret = "(" + getType().getValue("type") + ") - " + getName();
         } else {
@@ -2508,7 +2508,7 @@ public class Ship extends Celestial {
             for (int a = 0; a < cargoBay.size(); a++) {
                 used += cargoBay.get(a).getVolume();
             }
-            double fVol = 0;
+            double fVol;
             if (cargoBay.contains(item)) {
                 fVol = item.getVolume() / item.getQuantity();
             } else {
@@ -2900,19 +2900,11 @@ public class Ship extends Celestial {
     }
 
     public boolean isHostileToMe(Ship ship) {
-        if (getStandingsToMe(ship) <= Faction.HOSTILE_STANDING) {
-            return true;
-        } else {
-            return false;
-        }
+        return getStandingsToMe(ship) <= Faction.HOSTILE_STANDING;
     }
 
     public boolean isFriendlyToMe(Ship ship) {
-        if (getStandingsToMe(ship) >= Faction.FRIENDLY_STANDING) {
-            return true;
-        } else {
-            return false;
-        }
+        return getStandingsToMe(ship) >= Faction.FRIENDLY_STANDING;
     }
 
     public boolean isNeutralToMe(Ship ship) {
@@ -2933,7 +2925,7 @@ public class Ship extends Celestial {
      * Trading Helpers
      */
     public Station getBestDropOff(ArrayList<SolarSystem> systems, Item ware) {
-        Station ret = null;
+        Station ret;
         {
             Station bStation = null;
             int bPrice = 0;
@@ -2962,7 +2954,7 @@ public class Ship extends Celestial {
     }
 
     public Station getBestPickup(ArrayList<SolarSystem> systems, Item ware) {
-        Station ret = null;
+        Station ret;
         {
             Station bStation = null;
             int bPrice = 0;
@@ -3608,7 +3600,7 @@ public class Ship extends Celestial {
     }
 
     public Station getNearestDockableStationInSystem() {
-        Station ret = null;
+        Station ret;
         {
             ArrayList<Station> stations = getDockableStationsInSystem();
             if (stations.size() > 0) {
@@ -3635,7 +3627,7 @@ public class Ship extends Celestial {
     }
 
     public Station getRandomStationInSystem() {
-        Station ret = null;
+        Station ret;
         {
             ArrayList<Entity> stations = currentSystem.getStationList();
             if (stations.size() > 0) {
@@ -3648,7 +3640,7 @@ public class Ship extends Celestial {
     }
 
     public Celestial getRandomPatrolPointInSystem() {
-        Celestial ret = null;
+        Celestial ret;
         {
             ArrayList<Celestial> options = new ArrayList<>();
             //add planets
@@ -3680,7 +3672,7 @@ public class Ship extends Celestial {
     }
 
     public Jumphole getRandomJumpholeInSystem() {
-        Jumphole ret = null;
+        Jumphole ret;
         {
             ArrayList<Entity> jumpHoles = currentSystem.getJumpholeList();
             if (jumpHoles.size() > 0) {
@@ -3693,7 +3685,7 @@ public class Ship extends Celestial {
     }
 
     public Planet getRandomPlanetInSystem() {
-        Planet ret = null;
+        Planet ret;
         {
             ArrayList<Entity> planets = currentSystem.getPlanetList();
             if (planets.size() > 0) {
