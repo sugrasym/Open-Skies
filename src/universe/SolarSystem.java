@@ -189,11 +189,15 @@ public class SolarSystem implements Entity, Serializable {
             float sx = Float.parseFloat(shipTerm.getValue("x"));
             float sy = Float.parseFloat(shipTerm.getValue("y"));
             float sz = Float.parseFloat(shipTerm.getValue("z"));
+            float tiltX = Float.parseFloat(shipTerm.getValue("tiltX"));
+            float tiltY = Float.parseFloat(shipTerm.getValue("tiltY"));
+            float tiltZ = Float.parseFloat(shipTerm.getValue("tiltZ"));
             String faction = shipTerm.getValue("faction");
             //create ship
             station = new Station(universe, hull, faction);
             //position ship
             station.setLocation(new Vector3f(sx, sy, sz));
+            station.setRotation(new Quaternion().fromAngles(tiltX, tiltY, tiltZ));
             station.setCurrentSystem(this);
             station.setName(sName);
         }

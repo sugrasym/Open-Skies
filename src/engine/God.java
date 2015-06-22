@@ -33,6 +33,8 @@ import celestial.Planet;
 import celestial.Ship.Ship;
 import celestial.Ship.Ship.Behavior;
 import celestial.Ship.Station;
+import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import entity.Entity;
 import java.util.ArrayList;
@@ -243,8 +245,14 @@ public class God {
                     }
                     //make a point
                     Vector3f pnt = pointNearCelestial(host);
+                    //pick rotation
+                    float tiltX = (rnd.nextFloat() - 0.5f) * FastMath.TWO_PI;
+                    float tiltY = (rnd.nextFloat() - 0.5f) * FastMath.TWO_PI;
+                    float tiltZ = (rnd.nextFloat() - 0.5f) * FastMath.TWO_PI;
                     //spawn
-                    spawnStation(faction, pick, pnt, faction.getStations().get(a));
+                    spawnStation(faction, pick, pnt,
+                            new Vector3f(tiltX, tiltY, tiltZ),
+                            faction.getStations().get(a));
                     //increment count
                     count[a]++;
                 }
@@ -702,12 +710,14 @@ public class God {
         System.out.println("Spawned " + loadout.getString() + " in " + system.getName() + " for " + faction.getName());
     }
 
-    public void spawnStation(Faction faction, SolarSystem system, Vector3f loc, Binling loadout) {
+    public void spawnStation(Faction faction, SolarSystem system, Vector3f loc,
+            Vector3f tilt, Binling loadout) {
         String name = loadout.getString() + " " + randomIDTag(5, basicSample);
         //get a basic ship to work with
         Station tmp = makeStation(loadout.getString(), name, faction.getName());
         //push coordinates
         tmp.setLocation(loc);
+        tmp.setRotation(new Quaternion().fromAngles(tilt.x, tilt.y, tilt.z));
         //finalize
         tmp.setCurrentSystem(system);
         system.putEntityInSystem(tmp);

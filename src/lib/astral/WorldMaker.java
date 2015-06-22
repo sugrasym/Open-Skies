@@ -338,6 +338,10 @@ public class WorldMaker {
                             x = (int) loc.getX();
                             y = (int) loc.getY();
                             z = (int) loc.getZ();
+                            //get initial rotation
+                            float tiltX = (rnd.nextFloat() - 0.5f) * FastMath.TWO_PI;
+                            float tiltY = (rnd.nextFloat() - 0.5f) * FastMath.TWO_PI;
+                            float tiltZ = (rnd.nextFloat() - 0.5f) * FastMath.TWO_PI;
                             //drop
                             thisSystem += "[Station]\n"
                                     + "name=" + tmp.getName() + "\n"
@@ -346,6 +350,9 @@ public class WorldMaker {
                                     + "x=" + x + "\n"
                                     + "y=" + y + "\n"
                                     + "z=" + z + "\n"
+                                    + "tiltX=" + tiltX + "\n"
+                                    + "tiltY=" + tiltY + "\n"
+                                    + "tiltZ=" + tiltZ + "\n"
                                     + "faction=" + tmp.getOwner() + "\n"
                                     + "[/Station]\n\n";
                         } else {
@@ -353,6 +360,10 @@ public class WorldMaker {
                             x = rnd.nextInt(2 * size) - size;
                             y = 0; // keep it near the ecliptic for now
                             z = rnd.nextInt(2 * size) - size;
+                            //get initial rotation
+                            float tiltX = (rnd.nextFloat() - 0.5f) * FastMath.TWO_PI;
+                            float tiltY = (rnd.nextFloat() - 0.5f) * FastMath.TWO_PI;
+                            float tiltZ = (rnd.nextFloat() - 0.5f) * FastMath.TWO_PI;
                             //drop
                             thisSystem += "[Station]\n"
                                     + "name=" + tmp.getName() + "\n"
@@ -361,6 +372,9 @@ public class WorldMaker {
                                     + "x=" + x + "\n"
                                     + "y=" + y + "\n"
                                     + "z=" + z + "\n"
+                                    + "tiltX=" + tiltX + "\n"
+                                    + "tiltY=" + tiltY + "\n"
+                                    + "tiltZ=" + tiltZ + "\n"
                                     + "faction=" + tmp.getOwner() + "\n"
                                     + "[/Station]\n\n";
                         }
