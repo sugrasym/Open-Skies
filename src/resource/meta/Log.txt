@@ -1,4 +1,20 @@
 ################################################################################
+2015-06-21
+################################################################################
+I focused on adding some variation to the universe. I added variation in star
+color and texture, planet tilt, and station orientation. This makes the universe
+a more interesting place to look at.
+
+I also slightly reduced the max size of a system made by world maker because it
+was a little big. The min size is unchanged.
+
+Meta
+--------------------------------------------------------------------------------
+The big question is what direction to go. I am going to ask for feedback from
+the IndieDB community on this one. I think I'll ask them what they want to most
+and least see implemented.
+
+################################################################################
 2015-06-14
 ################################################################################
 I ran lots of automated refactoring and code analysis to get this project up to
