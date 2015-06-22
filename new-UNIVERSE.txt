@@ -38,7 +38,7 @@ seed=1443105694
 [Planet]
 name='Larua 3'
 system=Tau 01-ZWL
-texture=WetMartian
+texture=BandedGas
 x=23392
 y=0
 z=-16862
@@ -52,7 +52,7 @@ seed=-1831762600
 [Planet]
 name='Thompson 14'
 system=Tau 01-ZWL
-texture=Barren
+texture=Frozen
 x=-62758
 y=0
 z=59208
@@ -533,7 +533,7 @@ seed=-249329809
 [Planet]
 name='Britt 20'
 system=Kappa X-38LM
-texture=BandedGas
+texture=Frozen
 x=77744
 y=0
 z=-84125
@@ -547,7 +547,7 @@ seed=560198608
 [Planet]
 name='Dean 14'
 system=Kappa X-38LM
-texture=BandedGas
+texture=Frozen
 x=47901
 y=0
 z=66286
@@ -686,7 +686,7 @@ seed=-1816682775
 [Planet]
 name='Collins 12'
 system=Alpha CJZ-3MR
-texture=Barren
+texture=BandedGas
 x=96641
 y=0
 z=109025
@@ -714,7 +714,7 @@ seed=-1190895943
 [Planet]
 name='Wright 22'
 system=Alpha CJZ-3MR
-texture=BandedGas
+texture=Terran
 x=92614
 y=0
 z=94135
@@ -728,7 +728,7 @@ seed=1402889142
 [Planet]
 name='Chelsey 23'
 system=Alpha CJZ-3MR
-texture=BandedGas
+texture=Frozen
 x=-24562
 y=0
 z=86617
@@ -1004,7 +1004,7 @@ seed=-290295337
 [Planet]
 name='Nina 8'
 system=Alpha FE1-XE4
-texture=Barren
+texture=BandedGas
 x=-63990
 y=0
 z=-42563
@@ -1112,7 +1112,7 @@ seed=-2063792482
 [Planet]
 name='Dougel 6'
 system=Rho TI8L-X
-texture=Frozen
+texture=BandedGas
 x=-36549
 y=0
 z=92661
@@ -1126,7 +1126,7 @@ seed=-1215037196
 [Planet]
 name='King 17'
 system=Rho TI8L-X
-texture=Martian
+texture=BandedGas
 x=78736
 y=0
 z=95240
@@ -1140,7 +1140,7 @@ seed=-1045570620
 [Planet]
 name='Oscar 14'
 system=Rho TI8L-X
-texture=BandedGas
+texture=WetMartian
 x=69411
 y=0
 z=-85626
@@ -1154,7 +1154,7 @@ seed=399020381
 [Planet]
 name='Ward 1'
 system=Rho TI8L-X
-texture=BandedGas
+texture=Barren
 x=-75420
 y=0
 z=54658
@@ -1318,7 +1318,7 @@ seed=549792895
 [Planet]
 name='Cambel 15'
 system=Lambda V-0
-texture=Martian
+texture=WetMartian
 x=76395
 y=0
 z=-73001
@@ -1332,7 +1332,7 @@ seed=1658008107
 [Planet]
 name='Murphey 3'
 system=Lambda V-0
-texture=Barren
+texture=BandedGas
 x=48731
 y=0
 z=71300
@@ -1346,7 +1346,7 @@ seed=-1207802452
 [Planet]
 name='Aka 8'
 system=Lambda V-0
-texture=Barren
+texture=Terran
 x=-1538
 y=0
 z=79153
@@ -1360,7 +1360,7 @@ seed=-1294852637
 [Planet]
 name='Ellis 19'
 system=Lambda V-0
-texture=BandedGas
+texture=Frozen
 x=62476
 y=0
 z=33285
@@ -1374,7 +1374,7 @@ seed=-217818591
 [Planet]
 name='Turner 3'
 system=Lambda V-0
-texture=Martian
+texture=Frozen
 x=-48327
 y=0
 z=30785
@@ -1388,7 +1388,7 @@ seed=-389788933
 [Planet]
 name='Juliet 7'
 system=Lambda V-0
-texture=BandedGas
+texture=Martian
 x=83719
 y=0
 z=95496
@@ -1511,7 +1511,7 @@ seed=1373582651
 [Planet]
 name='Claire 23'
 system=Alpha 00-NS
-texture=Barren
+texture=BandedGas
 x=-65885
 y=0
 z=-59948
@@ -1714,7 +1714,7 @@ seed=444495496
 [Planet]
 name='David 3'
 system=Chi 3H7-PZ
-texture=Frozen
+texture=Terran
 x=-55128
 y=0
 z=73916
@@ -1728,7 +1728,7 @@ seed=1284653917
 [Planet]
 name='Ross 21'
 system=Chi 3H7-PZ
-texture=BandedGas
+texture=Barren
 x=41732
 y=0
 z=67940
@@ -1822,7 +1822,7 @@ seed=425843322
 [Planet]
 name='Bailey 1'
 system=Gamma 7-GJ
-texture=Martian
+texture=BandedGas
 x=-62970
 y=0
 z=18235
@@ -1961,7 +1961,7 @@ seed=360551765
 [Planet]
 name='Scott 11'
 system=Iota 3XB5-BD
-texture=BandedGas
+texture=Frozen
 x=62470
 y=0
 z=-40537
@@ -1975,7 +1975,7 @@ seed=-1518535854
 [Planet]
 name='Kathleen 8'
 system=Iota 3XB5-BD
-texture=Barren
+texture=BandedGas
 x=20857
 y=0
 z=-6574
@@ -2069,7 +2069,7 @@ seed=970211936
 [Planet]
 name='Phil 16'
 system=Lambda A0EL-Z3M
-texture=Frozen
+texture=Barren
 x=25853
 y=0
 z=-54706
@@ -2083,7 +2083,7 @@ seed=-619701081
 [Planet]
 name='Ward 23'
 system=Lambda A0EL-Z3M
-texture=BandedGas
+texture=Frozen
 x=-62876
 y=0
 z=-61903
@@ -2097,7 +2097,7 @@ seed=-475747460
 [Planet]
 name='Zachary 7'
 system=Lambda A0EL-Z3M
-texture=Martian
+texture=BandedGas
 x=25022
 y=0
 z=-51592
@@ -2170,7 +2170,7 @@ seed=2073327698
 [Planet]
 name='Alvin 1'
 system=Iota QK6-D
-texture=BandedGas
+texture=WetMartian
 x=76191
 y=0
 z=-24364
@@ -2184,7 +2184,7 @@ seed=-1364010287
 [Planet]
 name='Miguel 10'
 system=Iota QK6-D
-texture=BandedGas
+texture=Barren
 x=-49667
 y=0
 z=-4295
@@ -2198,7 +2198,7 @@ seed=-1953275104
 [Planet]
 name='Perry 15'
 system=Iota QK6-D
-texture=BandedGas
+texture=Martian
 x=29408
 y=0
 z=-99742
@@ -2280,7 +2280,7 @@ seed=1237641472
 [Planet]
 name='Russel 12'
 system=Omicron ONH-09
-texture=Barren
+texture=BandedGas
 x=-58426
 y=0
 z=-24091
@@ -2294,7 +2294,7 @@ seed=-351826452
 [Planet]
 name='Khafre 6'
 system=Omicron ONH-09
-texture=Barren
+texture=Terran
 x=-39036
 y=0
 z=52428
@@ -2393,7 +2393,7 @@ seed=740576016
 [Planet]
 name='Murray 18'
 system=Gamma MH-4
-texture=Frozen
+texture=Barren
 x=-110566
 y=0
 z=118690
@@ -2407,7 +2407,7 @@ seed=1718333637
 [Planet]
 name='Ike 13'
 system=Gamma MH-4
-texture=BandedGas
+texture=Frozen
 x=15355
 y=0
 z=-20707
@@ -2421,7 +2421,7 @@ seed=456296632
 [Planet]
 name='Viola 20'
 system=Gamma MH-4
-texture=WetMartian
+texture=BandedGas
 x=-13592
 y=0
 z=-63046
@@ -2449,7 +2449,7 @@ seed=-113192250
 [Planet]
 name='Mele 24'
 system=Gamma MH-4
-texture=BandedGas
+texture=Terran
 x=-10292
 y=0
 z=-40873
@@ -2539,7 +2539,7 @@ seed=-66760767
 [Planet]
 name='Nicole 1'
 system=Tau HP-BAJZ
-texture=Barren
+texture=BandedGas
 x=138939
 y=0
 z=-4965
@@ -2620,7 +2620,7 @@ seed=-1727644125
 [Planet]
 name='Knight 24'
 system=Zeta H4R-9GV
-texture=BandedGas
+texture=Barren
 x=135289
 y=0
 z=8842
@@ -2634,7 +2634,7 @@ seed=1721430119
 [Planet]
 name='Rene 8'
 system=Zeta H4R-9GV
-texture=Martian
+texture=BandedGas
 x=-48718
 y=0
 z=154940
@@ -2859,7 +2859,7 @@ seed=-1817843757
 [Planet]
 name='Martinez 20'
 system=Beta Y-IYSQ
-texture=Frozen
+texture=BandedGas
 x=-125981
 y=0
 z=-46715
@@ -3024,7 +3024,7 @@ seed=-1279993650
 [Planet]
 name='Peterson 5'
 system=Omega VXO-U1
-texture=BandedGas
+texture=Barren
 x=-156990
 y=0
 z=181254
@@ -3052,7 +3052,7 @@ seed=-832971185
 [Planet]
 name='Bill 20'
 system=Omega VXO-U1
-texture=Barren
+texture=BandedGas
 x=43611
 y=0
 z=-100190
@@ -3384,7 +3384,7 @@ seed=1074921981
 [Planet]
 name='Allison 17'
 system=Kappa ZQKC-4
-texture=BandedGas
+texture=Barren
 x=75525
 y=0
 z=-78751
@@ -3546,7 +3546,7 @@ seed=1351869893
 [Planet]
 name='Ray 12'
 system=Rho AG2-0GN
-texture=Barren
+texture=Frozen
 x=-25935
 y=0
 z=-51698
@@ -3636,7 +3636,7 @@ seed=-1228696351
 [Planet]
 name='Gonzales 5'
 system=Lambda TUJQ-34
-texture=Barren
+texture=BandedGas
 x=-5167
 y=0
 z=-55623
@@ -3799,7 +3799,7 @@ seed=1518452151
 [Planet]
 name='Ted 24'
 system=Mu C-AVZ
-texture=BandedGas
+texture=Terran
 x=126999
 y=0
 z=86808
@@ -3813,7 +3813,7 @@ seed=87801122
 [Planet]
 name='Wale 18'
 system=Mu C-AVZ
-texture=Martian
+texture=BandedGas
 x=-28894
 y=0
 z=-127182
@@ -3961,7 +3961,7 @@ seed=457966959
 [Planet]
 name='Britt 5'
 system=Kappa DE-1
-texture=BandedGas
+texture=Barren
 x=-55706
 y=0
 z=-74089
@@ -3989,7 +3989,7 @@ seed=-463259342
 [Planet]
 name='Oliwa 14'
 system=Kappa DE-1
-texture=Barren
+texture=BandedGas
 x=-47647
 y=0
 z=-15878
@@ -4003,7 +4003,7 @@ seed=-636293360
 [Planet]
 name='Shaw 19'
 system=Kappa DE-1
-texture=BandedGas
+texture=Frozen
 x=-54229
 y=0
 z=-63322
@@ -4110,7 +4110,7 @@ seed=-1335874217
 [Planet]
 name='Leslie 24'
 system=Epsilon SVF7-QD
-texture=Terran
+texture=Frozen
 x=61244
 y=0
 z=-15627
@@ -4255,7 +4255,7 @@ seed=-1015102559
 [Planet]
 name='Malcolm 20'
 system=Tau YHO-CTY
-texture=BandedGas
+texture=Barren
 x=-5977
 y=0
 z=-1822
@@ -4269,7 +4269,7 @@ seed=-1045619159
 [Planet]
 name='Ray 19'
 system=Tau YHO-CTY
-texture=Terran
+texture=Frozen
 x=-92773
 y=0
 z=100849
@@ -4283,7 +4283,7 @@ seed=-115949523
 [Planet]
 name='Wene 13'
 system=Tau YHO-CTY
-texture=BandedGas
+texture=Frozen
 x=6922
 y=0
 z=-118440
@@ -4297,7 +4297,7 @@ seed=-132561324
 [Planet]
 name='Jenkins 2'
 system=Tau YHO-CTY
-texture=WetMartian
+texture=Martian
 x=90469
 y=0
 z=-74418
@@ -4497,7 +4497,7 @@ seed=-592314816
 [Planet]
 name='Cole 2'
 system=Phi MIL-GKJY
-texture=Barren
+texture=BandedGas
 x=-51459
 y=0
 z=28147
@@ -4596,7 +4596,7 @@ seed=1002414014
 [Planet]
 name='Thomas 13'
 system=Mu N-LIND
-texture=Frozen
+texture=BandedGas
 x=-48594
 y=0
 z=33130
@@ -4795,7 +4795,7 @@ seed=-1085011068
 [Planet]
 name='Jeff 13'
 system=Delta OFU-Q
-texture=BandedGas
+texture=Barren
 x=-32247
 y=0
 z=50767
@@ -5040,7 +5040,7 @@ seed=1161332657
 [Planet]
 name='Barnes 9'
 system=Sigma V-GODL
-texture=WetMartian
+texture=Barren
 x=55379
 y=0
 z=19346
@@ -5054,7 +5054,7 @@ seed=-670098435
 [Planet]
 name='Andrew 21'
 system=Sigma V-GODL
-texture=Frozen
+texture=Terran
 x=44009
 y=0
 z=53096
@@ -5248,7 +5248,7 @@ seed=526267881
 [Planet]
 name='Vincent 1'
 system=Beta VFI6-Z
-texture=Barren
+texture=WetMartian
 x=86783
 y=0
 z=-91405
@@ -5262,7 +5262,7 @@ seed=1249714007
 [Planet]
 name='Yao 7'
 system=Beta VFI6-Z
-texture=BandedGas
+texture=Frozen
 x=-37806
 y=0
 z=92682
@@ -5276,7 +5276,7 @@ seed=-1249515307
 [Planet]
 name='Fisher 4'
 system=Beta VFI6-Z
-texture=Martian
+texture=BandedGas
 x=85820
 y=0
 z=51178
@@ -5531,7 +5531,7 @@ seed=896428907
 [Planet]
 name='Frank 22'
 system=Chi 6S-79
-texture=Frozen
+texture=BandedGas
 x=-56726
 y=0
 z=45099
@@ -5545,7 +5545,7 @@ seed=780866929
 [Planet]
 name='Linsey 15'
 system=Chi 6S-79
-texture=Frozen
+texture=BandedGas
 x=-59107
 y=0
 z=-63381
@@ -5559,7 +5559,7 @@ seed=1122728253
 [Planet]
 name='Ford 18'
 system=Chi 6S-79
-texture=Martian
+texture=BandedGas
 x=6333
 y=0
 z=-51227
@@ -5573,7 +5573,7 @@ seed=-1748761725
 [Planet]
 name='Don 23'
 system=Chi 6S-79
-texture=BandedGas
+texture=Barren
 x=-36500
 y=0
 z=-49473
@@ -5587,7 +5587,7 @@ seed=-562475148
 [Planet]
 name='Collins 9'
 system=Chi 6S-79
-texture=BandedGas
+texture=Terran
 x=44298
 y=0
 z=-350
@@ -5739,7 +5739,7 @@ seed=-1480260203
 [Planet]
 name='Ben 8'
 system=Psi FPAW-C96
-texture=Frozen
+texture=Terran
 x=-122354
 y=0
 z=-68263
@@ -5753,7 +5753,7 @@ seed=1507457362
 [Planet]
 name='Debby 23'
 system=Psi FPAW-C96
-texture=Terran
+texture=BandedGas
 x=-94903
 y=0
 z=-61743
@@ -5767,7 +5767,7 @@ seed=-1208737667
 [Planet]
 name='Mitchel 6'
 system=Psi FPAW-C96
-texture=Barren
+texture=Martian
 x=131799
 y=0
 z=-22598
@@ -5781,7 +5781,7 @@ seed=1016608988
 [Planet]
 name='Yong 18'
 system=Psi FPAW-C96
-texture=BandedGas
+texture=Martian
 x=115945
 y=0
 z=66600
@@ -5795,7 +5795,7 @@ seed=-1771427264
 [Planet]
 name='Palmer 1'
 system=Psi FPAW-C96
-texture=Martian
+texture=BandedGas
 x=-118286
 y=0
 z=-59399
@@ -5922,7 +5922,7 @@ seed=1862538674
 [Planet]
 name='Diaz 18'
 system=Tau F-PIG5
-texture=BandedGas
+texture=Barren
 x=-53109
 y=0
 z=-4799
@@ -5936,7 +5936,7 @@ seed=1491388461
 [Planet]
 name='John 18'
 system=Tau F-PIG5
-texture=BandedGas
+texture=Barren
 x=86146
 y=0
 z=64918
@@ -6247,7 +6247,7 @@ seed=-1367365361
 [Planet]
 name='Ted 11'
 system=Sigma 5-RQ
-texture=Martian
+texture=BandedGas
 x=84258
 y=0
 z=-94487
@@ -6261,7 +6261,7 @@ seed=808455105
 [Planet]
 name='Bradley 1'
 system=Sigma 5-RQ
-texture=BandedGas
+texture=Barren
 x=-98874
 y=0
 z=82702
@@ -6275,7 +6275,7 @@ seed=-1229403296
 [Planet]
 name='Stucker 6'
 system=Sigma 5-RQ
-texture=Frozen
+texture=BandedGas
 x=8870
 y=0
 z=-51811
@@ -6443,7 +6443,7 @@ seed=-223113714
 [Planet]
 name='Cody 4'
 system=Zeta 8L3Y-U
-texture=Frozen
+texture=Martian
 x=15071
 y=0
 z=-66249
@@ -6457,7 +6457,7 @@ seed=1281461022
 [Planet]
 name='Cook 8'
 system=Zeta 8L3Y-U
-texture=BandedGas
+texture=WetMartian
 x=45753
 y=0
 z=-48947
@@ -6471,7 +6471,7 @@ seed=1777241531
 [Planet]
 name='Jerry 24'
 system=Zeta 8L3Y-U
-texture=Terran
+texture=Martian
 x=-99512
 y=0
 z=-74245
@@ -6485,7 +6485,7 @@ seed=-306899538
 [Planet]
 name='Nicole 10'
 system=Zeta 8L3Y-U
-texture=Barren
+texture=Frozen
 x=-90959
 y=0
 z=-135332
@@ -6499,7 +6499,7 @@ seed=-513245786
 [Planet]
 name='Lee 14'
 system=Zeta 8L3Y-U
-texture=Terran
+texture=BandedGas
 x=-138627
 y=0
 z=-35074
@@ -6554,7 +6554,7 @@ seed=986336883
 [Planet]
 name='Theresa 15'
 system=Nu 5WO-6
-texture=BandedGas
+texture=Barren
 x=-77166
 y=0
 z=26614
@@ -6568,7 +6568,7 @@ seed=-139317050
 [Planet]
 name='Dean 23'
 system=Nu 5WO-6
-texture=Barren
+texture=BandedGas
 x=-94522
 y=0
 z=34345
@@ -6582,7 +6582,7 @@ seed=1586927622
 [Planet]
 name='William 5'
 system=Nu 5WO-6
-texture=Frozen
+texture=BandedGas
 x=103554
 y=0
 z=120679
@@ -6596,7 +6596,7 @@ seed=-386011472
 [Planet]
 name='Holmes 15'
 system=Nu 5WO-6
-texture=BandedGas
+texture=Barren
 x=-95418
 y=0
 z=123377
@@ -6624,7 +6624,7 @@ seed=-1874969255
 [Planet]
 name='Darwin 17'
 system=Nu 5WO-6
-texture=BandedGas
+texture=Terran
 x=139647
 y=0
 z=126222
@@ -6692,7 +6692,7 @@ seed=499345867
 [Planet]
 name='Jeff 15'
 system=Delta AR74-Q
-texture=Martian
+texture=Terran
 x=63563
 y=0
 z=-7646
@@ -6720,7 +6720,7 @@ seed=-982677976
 [Planet]
 name='Cambel 6'
 system=Delta AR74-Q
-texture=Terran
+texture=BandedGas
 x=-97144
 y=0
 z=1654
@@ -6860,7 +6860,7 @@ seed=66243858
 [Planet]
 name='Barnes 16'
 system=Theta Z-911F
-texture=Terran
+texture=WetMartian
 x=-34985
 y=0
 z=139871
@@ -6874,7 +6874,7 @@ seed=-2065653034
 [Planet]
 name='Fisher 20'
 system=Theta Z-911F
-texture=BandedGas
+texture=Barren
 x=4031
 y=0
 z=-69462
@@ -6888,7 +6888,7 @@ seed=-1368353587
 [Planet]
 name='White 9'
 system=Theta Z-911F
-texture=Barren
+texture=BandedGas
 x=-88750
 y=0
 z=27827
@@ -7171,7 +7171,7 @@ seed=612164516
 [Planet]
 name='Robinson 11'
 system=Gamma MB-QLR
-texture=Barren
+texture=BandedGas
 x=-70632
 y=0
 z=-18326
@@ -7185,7 +7185,7 @@ seed=1580624037
 [Planet]
 name='Steward 9'
 system=Gamma MB-QLR
-texture=BandedGas
+texture=Frozen
 x=91569
 y=0
 z=-27128
@@ -7266,7 +7266,7 @@ seed=-1826920232
 [Planet]
 name='Martinez 9'
 system=Mu A20-U5
-texture=BandedGas
+texture=Barren
 x=27018
 y=0
 z=-59143
@@ -7280,7 +7280,7 @@ seed=880619848
 [Planet]
 name='Ramos 8'
 system=Mu A20-U5
-texture=Barren
+texture=Frozen
 x=21084
 y=0
 z=56931
@@ -7294,7 +7294,7 @@ seed=873263663
 [Planet]
 name='Leslie 19'
 system=Mu A20-U5
-texture=Martian
+texture=BandedGas
 x=47554
 y=0
 z=29061
@@ -7422,7 +7422,7 @@ seed=813576743
 [Planet]
 name='Chelsey 22'
 system=Tau R5YL-X
-texture=Barren
+texture=WetMartian
 x=16846
 y=0
 z=-54482
@@ -7436,7 +7436,7 @@ seed=-963596611
 [Planet]
 name='Cody 17'
 system=Tau R5YL-X
-texture=Frozen
+texture=BandedGas
 x=-20010
 y=0
 z=-65263
@@ -7595,7 +7595,7 @@ seed=-916743622
 [Planet]
 name='Michael 22'
 system=Epsilon V0I9-WCR2
-texture=Barren
+texture=Terran
 x=-90988
 y=0
 z=-120522
@@ -7685,7 +7685,7 @@ seed=924930314
 [Planet]
 name='Rose 12'
 system=Eta 8MSN-DSE2
-texture=BandedGas
+texture=Barren
 x=175480
 y=0
 z=-27900
@@ -7740,7 +7740,7 @@ seed=437392325
 [Planet]
 name='Chris 15'
 system=Eta R-C3C
-texture=BandedGas
+texture=Barren
 x=-93050
 y=0
 z=-34014
@@ -7886,7 +7886,7 @@ seed=503315243
 [Planet]
 name='Watson 18'
 system=Eta J7-I3A
-texture=BandedGas
+texture=Barren
 x=-53955
 y=0
 z=-73432
@@ -7967,7 +7967,7 @@ seed=1279268091
 [Planet]
 name='Barnes 17'
 system=Sigma 7-2
-texture=WetMartian
+texture=Frozen
 x=-78848
 y=0
 z=178560
@@ -7995,7 +7995,7 @@ seed=180049890
 [Planet]
 name='Cathy 18'
 system=Sigma 7-2
-texture=Barren
+texture=Frozen
 x=107289
 y=0
 z=112671
@@ -8149,7 +8149,7 @@ seed=1347897394
 [Planet]
 name='Colin 22'
 system=Nu JYJ-7
-texture=Barren
+texture=Frozen
 x=-183968
 y=0
 z=-4071
@@ -8248,7 +8248,7 @@ seed=23659662
 [Planet]
 name='Thomas 16'
 system=Psi WC-AQKX
-texture=Terran
+texture=Barren
 x=41109
 y=0
 z=-65589
@@ -8276,7 +8276,7 @@ seed=-728153836
 [Planet]
 name='Jordan 2'
 system=Psi WC-AQKX
-texture=Martian
+texture=Terran
 x=11069
 y=0
 z=-55871
@@ -8290,7 +8290,7 @@ seed=1536256456
 [Planet]
 name='Ike 4'
 system=Psi WC-AQKX
-texture=Frozen
+texture=BandedGas
 x=-65937
 y=0
 z=15096
@@ -8398,7 +8398,7 @@ seed=-1206294991
 [Planet]
 name='Grey 18'
 system=Iota J6-KGI
-texture=BandedGas
+texture=Frozen
 x=63984
 y=0
 z=-99285
@@ -8826,7 +8826,7 @@ seed=1198012971
 [Planet]
 name='Upana 24'
 system=Epsilon A-YIRY
-texture=BandedGas
+texture=Frozen
 x=-50886
 y=0
 z=-16708
@@ -8930,7 +8930,7 @@ seed=-489406258
 [Planet]
 name='Sanders 7'
 system=Xi W5-S2L
-texture=Barren
+texture=Frozen
 x=-121778
 y=0
 z=64927
@@ -8972,7 +8972,7 @@ seed=2136099240
 [Planet]
 name='Dick 20'
 system=Xi W5-S2L
-texture=BandedGas
+texture=Barren
 x=28221
 y=0
 z=-104998
@@ -8986,7 +8986,7 @@ seed=-1131762532
 [Planet]
 name='Mendel 13'
 system=Xi W5-S2L
-texture=Barren
+texture=BandedGas
 x=115781
 y=0
 z=-82665
@@ -9054,7 +9054,7 @@ seed=-1583155130
 [Planet]
 name='Daniels 15'
 system=Zeta 1-F5
-texture=Frozen
+texture=BandedGas
 x=-34957
 y=0
 z=-88420
@@ -9068,7 +9068,7 @@ seed=813179601
 [Planet]
 name='Lee 19'
 system=Zeta 1-F5
-texture=BandedGas
+texture=Martian
 x=-27094
 y=0
 z=74803
@@ -9082,7 +9082,7 @@ seed=442841925
 [Planet]
 name='Ashley 15'
 system=Zeta 1-F5
-texture=Terran
+texture=Frozen
 x=-10631
 y=0
 z=97507
@@ -9370,7 +9370,7 @@ seed=-325134653
 [Planet]
 name='Cunningham 22'
 system=Iota 96C-I3O
-texture=Barren
+texture=BandedGas
 x=-32745
 y=0
 z=-79375
@@ -9384,7 +9384,7 @@ seed=-51470253
 [Planet]
 name='Owens 21'
 system=Iota 96C-I3O
-texture=BandedGas
+texture=Frozen
 x=62754
 y=0
 z=93645
@@ -9486,7 +9486,7 @@ seed=-753980001
 [Planet]
 name='Brynt 19'
 system=Xi L8C-DUG
-texture=BandedGas
+texture=Terran
 x=-74419
 y=0
 z=139441
@@ -9500,7 +9500,7 @@ seed=-1039368660
 [Planet]
 name='Dunn 22'
 system=Xi L8C-DUG
-texture=Frozen
+texture=BandedGas
 x=-90811
 y=0
 z=-108289
@@ -9514,7 +9514,7 @@ seed=276221339
 [Planet]
 name='Gomez 2'
 system=Xi L8C-DUG
-texture=BandedGas
+texture=Martian
 x=-28424
 y=0
 z=62178
@@ -9596,7 +9596,7 @@ seed=-1021577054
 [Planet]
 name='Malcolm 17'
 system=Iota 3-HPB
-texture=BandedGas
+texture=Martian
 x=36228
 y=0
 z=-39421
@@ -9946,7 +9946,7 @@ seed=769058134
 [Planet]
 name='Martin 9'
 system=Delta 4-3
-texture=Terran
+texture=Martian
 x=-122329
 y=0
 z=34085
@@ -9960,7 +9960,7 @@ seed=11525589
 [Planet]
 name='Hawking 9'
 system=Delta 4-3
-texture=Martian
+texture=Frozen
 x=-104614
 y=0
 z=-17100
@@ -9974,7 +9974,7 @@ seed=1788322105
 [Planet]
 name='Mason 18'
 system=Delta 4-3
-texture=Martian
+texture=BandedGas
 x=143530
 y=0
 z=-47599
@@ -9988,7 +9988,7 @@ seed=-1441190706
 [Planet]
 name='Browns 1'
 system=Delta 4-3
-texture=Terran
+texture=Barren
 x=-123413
 y=0
 z=-41480
@@ -10082,7 +10082,7 @@ seed=1283917615
 [Planet]
 name='Diaz 11'
 system=Mu 3-I1J
-texture=Frozen
+texture=Barren
 x=15502
 y=0
 z=134357
@@ -10217,7 +10217,7 @@ seed=-1058559385
 [Planet]
 name='Ray 20'
 system=Psi NA-L
-texture=Martian
+texture=BandedGas
 x=-63887
 y=0
 z=-10940
@@ -10231,7 +10231,7 @@ seed=1691080881
 [Planet]
 name='Jacob 9'
 system=Psi NA-L
-texture=Barren
+texture=BandedGas
 x=32421
 y=0
 z=-27734
@@ -10421,7 +10421,7 @@ seed=-564184251
 [Planet]
 name='Phillipe 8'
 system=Mu CJ-V
-texture=BandedGas
+texture=Terran
 x=-25081
 y=0
 z=-72994
