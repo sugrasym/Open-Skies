@@ -296,8 +296,9 @@ public class SolarSystem implements Entity, Serializable {
             float px = Float.parseFloat(starTerm.getValue("x"));
             float py = Float.parseFloat(starTerm.getValue("y"));
             float pz = Float.parseFloat(starTerm.getValue("z"));
+            String color = starTerm.getValue("color");
             //make planet and store
-            star = new Star(universe, pName, tex, radius);
+            star = new Star(universe, pName, tex, color, radius);
             star.setLocation(new Vector3f(px, py, pz));
         }
         return star;

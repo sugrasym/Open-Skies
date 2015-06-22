@@ -1,8 +1,22 @@
 [Star]
-name=White
-color=1,1,1
+name=Basic1
 group=star
 palette=star
+asset=basic1.png
+[/Star]
+
+[Star]
+name=Basic2
+group=star
+palette=star
+asset=basic2.png
+[/Star]
+
+[Star]
+name=Basic3
+group=star
+palette=star
+asset=basic3.png
 [/Star]
 
 ################################################################################

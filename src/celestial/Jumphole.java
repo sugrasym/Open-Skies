@@ -89,7 +89,7 @@ public class Jumphole extends Planet {
         //create the emitter
         emitter = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, 120);
         mat = new Material(assets, "Common/MatDefs/Misc/Particle.j3md");
-        mat.setTexture("Texture", assets.loadTexture("Effects/Star/basic.png"));
+        mat.setTexture("Texture", assets.loadTexture("Effects/Star/jumphole.png"));
         //mat.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
         //mat.getAdditionalRenderState().setAlphaTest(true);
         emitter.setMaterial(mat);

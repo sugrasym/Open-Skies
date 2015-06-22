@@ -139,6 +139,19 @@ public class WorldMaker {
                         r = minPlanetSize;
                     }
                     int seed = rnd.nextInt();
+                    //stars can have a 50% variation from white on each axis
+                    float colR = 0.5f + (rnd.nextFloat() * 0.5f);
+                    float colG = 0.5f + (rnd.nextFloat() * 0.5f);
+                    float colB = 0.5f + (rnd.nextFloat() * 0.5f);
+                    //one axis has to be 1.0 or it will be translucent
+                    int ch = rnd.nextInt(3);
+                    if(ch == 0) {
+                        colR = 1.0f;
+                    } else if(ch == 1) {
+                        colG = 1.0f;
+                    } else if(ch == 2) {
+                        colB = 1.0f;
+                    }
                     thisSystem
                             += "[Star]\n"
                             + "name=" + systemName + "\n"
@@ -148,6 +161,7 @@ public class WorldMaker {
                             + "y=" + y + "\n"
                             + "z=" + z + "\n"
                             + "r=" + r + "\n"
+                            + "color=" + colR + "," + colG + "," + colB + "\n"
                             + "seed=" + seed + "\n"
                             + "[/Star]\n\n";
                     //add a simpling for testing

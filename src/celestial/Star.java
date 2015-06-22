@@ -38,7 +38,6 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Sphere;
-import java.util.Random;
 import jmeplanet.PlanetAppState;
 import lib.astral.Parser.Term;
 import universe.Universe;
@@ -52,12 +51,15 @@ public class Star extends Planet {
     transient PointLight light;
     transient ParticleEmitter emitter;
     private int seed;
-    Random rnd;
+    private final String color;
 
-    public Star(Universe universe, String name, Term texture, float radius) {
+    public Star(Universe universe, String name, Term texture, String color,
+            float radius) {
         super(universe, name, texture, radius, Vector3f.ZERO);
+        this.color = color;
     }
 
+    @Override
     public void construct(AssetManager assets) {
         //create geometry
         Sphere objectSphere = new Sphere(64, 64, radius);
@@ -65,7 +67,7 @@ public class Star extends Planet {
         //retrieve texture
         mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
         //setup color
-        String[] arr = getType().getValue("color").split(",");
+        String[] arr = color.split(",");
         float r = Float.parseFloat(arr[0]);
         float g = Float.parseFloat(arr[1]);
         float b = Float.parseFloat(arr[2]);
@@ -91,6 +93,7 @@ public class Star extends Planet {
         setAtmosphereScaler(0.1f);
     }
 
+    @Override
     public void deconstruct() {
         super.deconstruct();
         light = null;
@@ -100,7 +103,8 @@ public class Star extends Planet {
         //create the emitter
         emitter = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, 1);
         mat = new Material(assets, "Common/MatDefs/Misc/Particle.j3md");
-        mat.setTexture("Texture", assets.loadTexture("Effects/Star/basic.png"));
+        mat.setTexture("Texture", assets.loadTexture("Effects/Star/"
+                + getType().getValue("asset")));
         //mat.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
         //mat.getAdditionalRenderState().setAlphaTest(true);
         emitter.setMaterial(mat);
@@ -121,17 +125,6 @@ public class Star extends Planet {
          */
     }
 
-    /*private ColorRGBA adjustAmbientLighting(ColorRGBA light) {
-     //acuire color info
-     float r = light.getRed();
-     float g = light.getGreen();
-     float b = light.getBlue();
-     //Adjusts the star color to be 50% dimmer
-     r -= (0.0 * r);
-     g -= (0.0 * g);
-     b -= (0.0 * b);
-     return new ColorRGBA(r, g, b, light.getAlpha());
-     }*/
     @Override
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         //node.attachChild(spatial);
