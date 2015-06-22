@@ -139,19 +139,28 @@ public class WorldMaker {
                         r = minPlanetSize;
                     }
                     int seed = rnd.nextInt();
+                    
                     //stars can have a 50% variation from white on each axis
                     float colR = 0.5f + (rnd.nextFloat() * 0.5f);
                     float colG = 0.5f + (rnd.nextFloat() * 0.5f);
                     float colB = 0.5f + (rnd.nextFloat() * 0.5f);
-                    //one axis has to be 1.0 or it will be translucent
-                    int ch = rnd.nextInt(3);
-                    if(ch == 0) {
-                        colR = 1.0f;
-                    } else if(ch == 1) {
-                        colG = 1.0f;
-                    } else if(ch == 2) {
-                        colB = 1.0f;
+                    
+                    //bring the highest axis to 1.0 and raise the others proportionately
+                    float[] axes = new float[] {colR, colG, colB};
+                    
+                    float diff = Float.POSITIVE_INFINITY;
+                    for(int n = 0; n < 3; n++) {
+                        if((1.0f - axes[n]) < diff) {
+                            diff = 1.0f - axes[n];
+                        }
                     }
+                    
+                    float[] scaledAxes = new float[] {
+                        axes[0] + diff,
+                        axes[1] + diff,
+                        axes[2] + diff
+                    };
+
                     thisSystem
                             += "[Star]\n"
                             + "name=" + systemName + "\n"
@@ -161,7 +170,7 @@ public class WorldMaker {
                             + "y=" + y + "\n"
                             + "z=" + z + "\n"
                             + "r=" + r + "\n"
-                            + "color=" + colR + "," + colG + "," + colB + "\n"
+                            + "color=" + scaledAxes[0] + "," + scaledAxes[1] + "," + scaledAxes[2] + "\n"
                             + "seed=" + seed + "\n"
                             + "[/Star]\n\n";
                     //add a simpling for testing
