@@ -34,6 +34,8 @@ import com.jme3.material.Material;
 import com.jme3.material.RenderState.BlendMode;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Sphere;
@@ -64,6 +66,7 @@ public class Planet extends Celestial {
     private int seed = 0;
     protected float radius;
     private float atmosphereScaler;
+    private Vector3f tilt;
 
     public Planet(Universe universe, String name, Term type, float radius) {
         super(Float.POSITIVE_INFINITY, universe);
@@ -247,6 +250,9 @@ public class Planet extends Celestial {
                     planetDataSource, atmoColor);
                 break;
         }
+        //apply tilt
+        Quaternion dTilt = new Quaternion().fromAngles(tilt.x, tilt.y, tilt.z);
+        setRotation(getRotation().add(dTilt));
     }
 
     @Override
@@ -347,5 +353,13 @@ public class Planet extends Celestial {
 
     public float getAtmosphereRadius() {
         return getRadius() + (this.getRadius() * getAtmosphereScaler());
+    }
+
+    public Vector3f getTilt() {
+        return tilt;
+    }
+
+    public void setTilt(Vector3f tilt) {
+        this.tilt = tilt;
     }
 }

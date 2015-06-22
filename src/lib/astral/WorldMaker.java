@@ -26,6 +26,7 @@
  */
 package lib.astral;
 
+import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import java.util.ArrayList;
 import java.util.Random;
@@ -54,7 +55,8 @@ public class WorldMaker {
 
     public WorldMaker() {
         //generate universe
-        String out = generate(31337, 1, 7, 80, 100, 1000, 64000, 256000, 500, 5000, 0, 0.40f, 0.40f);
+        String out = generate(31337, 1, 7, 80, 100, 1000, 64000,
+                200000, 500, 5000, 0, 0.40f, 0.40f);
         //save
         AstralIO.writeFile("new-UNIVERSE.txt", out);
         System.out.println(out);
@@ -246,6 +248,10 @@ public class WorldMaker {
                         if (r < minPlanetSize) {
                             r = minPlanetSize;
                         }
+                        //generate tilt
+                        float tiltX = (rnd.nextFloat() - 0.5f) * FastMath.TWO_PI;
+                        float tiltY = (rnd.nextFloat() - 0.5f) * FastMath.TWO_PI;
+                        float tiltZ = (rnd.nextFloat() - 0.5f) * FastMath.TWO_PI;
                         //create a simpling for testing
                         Simpling test = new Simpling(new Vector3f(x, y, z), r);
                         boolean safe = true;
@@ -266,6 +272,9 @@ public class WorldMaker {
                                     + "y=" + y + "\n"
                                     + "z=" + z + "\n"
                                     + "r=" + r + "\n"
+                                    + "tiltX=" + tiltX + "\n"
+                                    + "tiltY=" + tiltY + "\n"
+                                    + "tiltZ=" + tiltZ + "\n"
                                     + "seed=" + seed + "\n"
                                     + "[/Planet]\n\n";
                         }
