@@ -61,7 +61,7 @@ public class Jumphole extends Planet {
     protected String out = "n/n";
 
     public Jumphole(Universe universe, String name) {
-        super(universe, name, null, 15);
+        super(universe, name, null, 15, Vector3f.ZERO);
     }
 
     @Override

@@ -64,15 +64,17 @@ public class Planet extends Celestial {
     protected transient RigidBodyControl atmospherePhysics;
     private Term type;
     private int seed = 0;
-    protected float radius;
+    protected final float radius;
     private float atmosphereScaler;
-    private Vector3f tilt;
+    private final Vector3f tilt;
 
-    public Planet(Universe universe, String name, Term type, float radius) {
+    public Planet(Universe universe, String name, Term type, float radius,
+            Vector3f tilt) {
         super(Float.POSITIVE_INFINITY, universe);
         setName(name);
         this.type = type;
         this.radius = radius;
+        this.tilt = tilt;
         //planets are automatically discovered
         discover();
     }
@@ -119,16 +121,15 @@ public class Planet extends Celestial {
                 //determine height scale
                 float heightScale = (sRand.nextFloat() * 0.02f) + 0.01f; //1% to 3%
                 switch (palette) {
-                    case "Earth":
-                        {
-                            // Add planet
-                            FractalDataSource planetDataSource = new FractalDataSource(seed);
-                            planetDataSource.setHeightScale(heightScale * radius);
-                            fractalPlanet = Utility.createEarthLikePlanet(assets, radius, null, planetDataSource);
-                            spatial = fractalPlanet;
-                            setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
-                            break;
-                        }
+                    case "Earth": {
+                        // Add planet
+                        FractalDataSource planetDataSource = new FractalDataSource(seed);
+                        planetDataSource.setHeightScale(heightScale * radius);
+                        fractalPlanet = Utility.createEarthLikePlanet(assets, radius, null, planetDataSource);
+                        spatial = fractalPlanet;
+                        setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
+                        break;
+                    }
                     case "Barren":
                         FractalDataSource moonDataSource = new FractalDataSource(seed);
                         moonDataSource.setHeightScale(heightScale * radius);
@@ -136,28 +137,26 @@ public class Planet extends Celestial {
                         spatial = fractalPlanet;
                         setAtmosphereScaler(0);
                         break;
-                    case "Ice":
-                        {
-                            // Add planet
-                            FractalDataSource planetDataSource = new FractalDataSource(seed);
-                            planetDataSource.setHeightScale(heightScale * radius);
-                            fractalPlanet = Utility.createIcePlanet(assets, radius, null, planetDataSource, seed);
-                            setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
-                            spatial = fractalPlanet;
-                            break;
-                        }
-                    case "Mars":
-                        {
-                            //determine water presence
-                            boolean hasWater = Boolean.parseBoolean(type.getValue("hasWater"));
-                            // Add planet
-                            FractalDataSource planetDataSource = new FractalDataSource(seed);
-                            planetDataSource.setHeightScale(heightScale * radius);
-                            fractalPlanet = Utility.createMarsLikePlanet(assets, radius, null, planetDataSource, hasWater, seed);
-                            setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
-                            spatial = fractalPlanet;
-                            break;
-                        }
+                    case "Ice": {
+                        // Add planet
+                        FractalDataSource planetDataSource = new FractalDataSource(seed);
+                        planetDataSource.setHeightScale(heightScale * radius);
+                        fractalPlanet = Utility.createIcePlanet(assets, radius, null, planetDataSource, seed);
+                        setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
+                        spatial = fractalPlanet;
+                        break;
+                    }
+                    case "Mars": {
+                        //determine water presence
+                        boolean hasWater = Boolean.parseBoolean(type.getValue("hasWater"));
+                        // Add planet
+                        FractalDataSource planetDataSource = new FractalDataSource(seed);
+                        planetDataSource.setHeightScale(heightScale * radius);
+                        fractalPlanet = Utility.createMarsLikePlanet(assets, radius, null, planetDataSource, hasWater, seed);
+                        setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
+                        spatial = fractalPlanet;
+                        break;
+                    }
                 }
                 break;
             case "gas":
@@ -170,9 +169,9 @@ public class Planet extends Celestial {
                     gfx.setColor(new Color(0, 0, 0, 0));
                     gfx.fillRect(0, 0, buff.getWidth(), buff.getHeight());
                     /*
-                    * Setup the sphere since we aren't using the procedural planet generator
-                    * supplied in the jmeplanet package
-                    */
+                     * Setup the sphere since we aren't using the procedural planet generator
+                     * supplied in the jmeplanet package
+                     */
                     //create geometry
                     Sphere objectSphere = new Sphere(256, 256, radius);
                     objectSphere.setTextureMode(Sphere.TextureMode.Projected);
@@ -186,13 +185,13 @@ public class Planet extends Celestial {
                     mat.setColor("Diffuse", ColorRGBA.White);
                     mat.getAdditionalRenderState().setBlendMode(BlendMode.Off);
                     /*
-                    * My gas giants are conservative. They have a color and brightness
-                    * which is held constant while bands are drawn varying the saturation.
-                    *
-                    * Two passes are made. The first draws primary bands, which define the
-                    * overall look. The second does secondary bands which help de-alias
-                    * the planet.
-                    */
+                     * My gas giants are conservative. They have a color and brightness
+                     * which is held constant while bands are drawn varying the saturation.
+                     *
+                     * Two passes are made. The first draws primary bands, which define the
+                     * overall look. The second does secondary bands which help de-alias
+                     * the planet.
+                     */
                     //determine band count
                     int bands = sRand.nextInt(75) + 25;
                     int height = (buff.getHeight() / bands);
@@ -244,10 +243,10 @@ public class Planet extends Celestial {
                 float colB = (float) airColor.getBlue() / 255.0f;
                 ColorRGBA atmoColor = new ColorRGBA(colR, colG, colB, 0.5f);
                 //generate shell
-            setAtmosphereScaler(0.01f);
+                setAtmosphereScaler(0.01f);
                 atmosphereShell = Utility.createAtmosphereShell(assets,
-                    radius + (radius * getAtmosphereScaler()),
-                    planetDataSource, atmoColor);
+                        radius + (radius * getAtmosphereScaler()),
+                        planetDataSource, atmoColor);
                 break;
         }
         //apply tilt
@@ -306,10 +305,6 @@ public class Planet extends Celestial {
         return radius;
     }
 
-    public void setRadius(float radius) {
-        this.radius = radius;
-    }
-
     public Term getType() {
         return type;
     }
@@ -346,7 +341,7 @@ public class Planet extends Celestial {
     public void setAtmosphereScaler(float atmosphereScaler) {
         this.atmosphereScaler = atmosphereScaler;
     }
-    
+
     public float getSafetyZone(float caution) {
         return getAtmosphereRadius() * caution;
     }
@@ -357,9 +352,5 @@ public class Planet extends Celestial {
 
     public Vector3f getTilt() {
         return tilt;
-    }
-
-    public void setTilt(Vector3f tilt) {
-        this.tilt = tilt;
     }
 }

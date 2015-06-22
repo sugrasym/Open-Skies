@@ -264,8 +264,8 @@ public class SolarSystem implements Entity, Serializable {
             float tiltZ = Float.parseFloat(planetTerm.getValue("tiltZ"));
             int seed = Integer.parseInt(planetTerm.getValue("seed"));
             //make planet and store
-            planet = new Planet(universe, pName, tex, radius);
-            planet.setTilt(new Vector3f(tiltX, tiltY, tiltZ));
+            planet = new Planet(universe, pName, tex, radius,
+                    new Vector3f(tiltX, tiltY, tiltZ));
             planet.setSeed(seed);
             planet.setLocation(new Vector3f(px, py, pz));
         }

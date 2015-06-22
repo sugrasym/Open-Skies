@@ -34,6 +34,7 @@ import com.jme3.effect.ParticleMesh;
 import com.jme3.light.PointLight;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Sphere;
@@ -47,16 +48,16 @@ import universe.Universe;
  * @author nwiehoff
  */
 public class Star extends Planet {
-    
+
     transient PointLight light;
     transient ParticleEmitter emitter;
     private int seed;
     Random rnd;
-    
+
     public Star(Universe universe, String name, Term texture, float radius) {
-        super(universe, name, texture, radius);
+        super(universe, name, texture, radius, Vector3f.ZERO);
     }
-    
+
     public void construct(AssetManager assets) {
         //create geometry
         Sphere objectSphere = new Sphere(64, 64, radius);
@@ -89,12 +90,12 @@ public class Star extends Planet {
         //death zone
         setAtmosphereScaler(0.1f);
     }
-    
+
     public void deconstruct() {
         super.deconstruct();
         light = null;
     }
-    
+
     private void setupCoreParticle(AssetManager assets, ColorRGBA color) {
         //create the emitter
         emitter = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, 1);
@@ -138,7 +139,7 @@ public class Star extends Planet {
         node.addLight(light);
         node.attachChild(emitter);
     }
-    
+
     @Override
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         //node.detachChild(spatial);
@@ -146,7 +147,7 @@ public class Star extends Planet {
         node.removeLight(light);
         node.detachChild(emitter);
     }
-    
+
     @Override
     protected void alive() {
         super.alive();
@@ -157,12 +158,12 @@ public class Star extends Planet {
             emitter.setLocalTranslation(getLocation());
         }
     }
-    
+
     @Override
     public int getSeed() {
         return seed;
     }
-    
+
     @Override
     public void setSeed(int seed) {
         this.seed = seed;
