@@ -22,6 +22,7 @@
 package jmeplanet;
 
 import com.jme3.asset.AssetManager;
+import com.jme3.asset.DesktopAssetManager;
 import com.jme3.bounding.BoundingSphere;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -82,7 +83,34 @@ public class Utility {
         return grid;
     }
 
-    public static Spatial createSkyBox(AssetManager assetManager, String textureName, boolean correctAxis) {
+    public static class SkyBoxContainer {
+        private Spatial skybox;
+        private Material mat;
+        private TextureCubeMap map;
+        private final DesktopAssetManager am;
+        
+        public SkyBoxContainer(Spatial skybox, Material mat, TextureCubeMap map,
+                DesktopAssetManager am) {
+            this.skybox = skybox;
+            this.mat = mat;
+            this.map = map;
+            this.am = am;
+        }
+        
+        public Spatial getSkyBox() {
+            return skybox;
+        }
+        
+        public void dispose() {
+            mat = null;
+            skybox = null;
+            map = null;
+            am.clearCache();
+            System.gc();
+        }
+    }
+    
+    public static SkyBoxContainer createSkyBox(AssetManager assetManager, String textureName, boolean correctAxis) {
         Mesh sphere = new Sphere(10, 10, 10000f);
         sphere.setStatic();
         Geometry sky = new Geometry("SkyBox", sphere);
@@ -121,7 +149,9 @@ public class Utility {
         mat.setVector3("NormalScale", Vector3f.UNIT_XYZ);
         sky.setMaterial(mat);
 
-        return sky;
+        SkyBoxContainer con = new SkyBoxContainer(sky, mat, cubemap, 
+                (DesktopAssetManager)assetManager);
+        return con;
     }
 
     public static Planet createEarthLikePlanet(AssetManager assetManager, float radius, Material oceanMaterial, HeightDataSource dataSource) {

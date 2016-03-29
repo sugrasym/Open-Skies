@@ -43,12 +43,12 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
-import com.jme3.scene.Spatial;
 import entity.Entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import jmeplanet.PlanetAppState;
 import jmeplanet.Utility;
+import jmeplanet.Utility.SkyBoxContainer;
 import lib.Faction;
 import lib.astral.Parser;
 import lib.astral.Parser.Term;
@@ -60,7 +60,7 @@ import lib.astral.Parser.Term;
 public class SolarSystem implements Entity, Serializable {
     //this system
 
-    transient Spatial skybox;
+    transient SkyBoxContainer skybox;
     protected String name;
     float x;
     float y;
@@ -635,6 +635,10 @@ public class SolarSystem implements Entity, Serializable {
 
     @Override
     public void construct(AssetManager assets) {
+        //cleanup skybox if needed
+        if(skybox != null) {
+            skybox.dispose();
+        }
         //construct children
         for (int a = 0; a < celestials.size(); a++) {
             celestials.get(a).construct(assets);
@@ -667,7 +671,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < celestials.size(); a++) {
             celestials.get(a).attach(node, physics, planetAppState);
         }
-        node.attachChild(skybox);
+        node.attachChild(skybox.getSkyBox());
     }
 
     @Override
@@ -675,7 +679,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < celestials.size(); a++) {
             celestials.get(a).detach(node, physics, planetAppState);
         }
-        node.detachChild(skybox);
+        node.detachChild(skybox.getSkyBox());
     }
 
     @Override
