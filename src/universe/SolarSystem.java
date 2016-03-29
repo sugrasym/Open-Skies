@@ -656,7 +656,12 @@ public class SolarSystem implements Entity, Serializable {
 
     @Override
     public void deconstruct() {
+        //cleanup skybox
+        if(skybox != null) {
+            skybox.dispose();
+        }
         skybox = null;
+        //cleanup children
         for (int a = 0; a < celestials.size(); a++) {
             celestials.get(a).deconstruct();
         }
