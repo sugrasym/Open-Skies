@@ -129,7 +129,7 @@ description=A low end launcher designed to attack fast moving fighters at range.
 [/Item]
 
 [Item]
-name=Arrow Rocket
+name=Arrow Missile
 type=missile
 volume=10
 mass=0.05
@@ -237,7 +237,7 @@ description=Charge for Dart Missile.
 [/Item]
 
 [Item]
-name=Arrow Rocket Ammunition
+name=Arrow Missile Ammunition
 type=ammo
 volume=1
 mass=0.001
@@ -246,7 +246,7 @@ minPrice=5
 maxPrice=10
 group=weapon
 store=1000
-description=Charge for Arrow Rocket.
+description=Charge for Arrow Missile.
 [/Item]
 
 ################################################################################

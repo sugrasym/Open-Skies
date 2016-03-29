@@ -23,8 +23,8 @@ maxCourage=1.00
 [Loadout]
 ship=Raven
 name=NC Fleet Raven
-install=Arrow Rocket/Arrow Rocket/Span R-3/Span R-3/Span T-7/Talon T-2/Talon T-2
-cargo=Astronaut~1/Arrow Rocket Ammunition~200
+install=Arrow Missile/Arrow Missile/Span R-3/Span R-3/Span T-7/Talon T-2/Talon T-2
+cargo=Astronaut~1/Arrow Missile Ammunition~200
 minCourage=0.85
 maxCourage=1.00
 [/Loadout]
@@ -72,8 +72,8 @@ maxCourage=1.00
 [Loadout]
 ship=Raven
 name=SC Fleet Raven
-install=Arrow Rocket/Arrow Rocket/Span R-3/Span R-3/Span T-7/Claw T-5/Claw T-5
-cargo=Astronaut~1/Arrow Rocket Ammunition~200
+install=Arrow Missile/Arrow Missile/Span R-3/Span R-3/Span T-7/Claw T-5/Claw T-5
+cargo=Astronaut~1/Arrow Missile Ammunition~200
 minCourage=0.85
 maxCourage=1.00
 [/Loadout]
@@ -104,8 +104,8 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=Commonwealth Sparrow
-install=Arrow Rocket/Arrow Rocket/Talon A-7/Talon A-7
-cargo=Astronaut~1/Arrow Rocket Ammunition~200
+install=Arrow Missile/Arrow Missile/Talon A-7/Talon A-7
+cargo=Astronaut~1/Arrow Missile Ammunition~200
 minCourage=0.85
 maxCourage=1.00
 [/Loadout]
@@ -113,8 +113,8 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=Commonwealth Trade Sparrow
-install=Arrow Rocket/Arrow Rocket/Talon A-7/Talon A-7
-cargo=Astronaut~1/Arrow Rocket Ammunition~50
+install=Arrow Missile/Arrow Missile/Talon A-7/Talon A-7
+cargo=Astronaut~1/Arrow Missile Ammunition~50
 minCourage=0.85
 maxCourage=1.00
 [/Loadout]
@@ -122,8 +122,8 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=Commonwealth Supply Sparrow
-install=Arrow Rocket/Arrow Rocket/Talon A-7/Talon A-7
-cargo=Jumpdrive~1/Astronaut~1/Arrow Rocket Ammunition~25
+install=Arrow Missile/Arrow Missile/Talon A-7/Talon A-7
+cargo=Jumpdrive~1/Astronaut~1/Arrow Missile Ammunition~25
 minCourage=0.85
 maxCourage=1.00
 [/Loadout]
@@ -135,8 +135,8 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=Rogers Sparrow
-install=Arrow Rocket/Arrow Rocket/Talon A-7/Talon A-7
-cargo=Astronaut~1/Arrow Rocket Ammunition~200
+install=Arrow Missile/Arrow Missile/Talon A-7/Talon A-7
+cargo=Astronaut~1/Arrow Missile Ammunition~200
 minCourage=0.7
 maxCourage=1.00
 [/Loadout]
@@ -166,8 +166,8 @@ maxCourage=1.00
 [Loadout]
 ship=Sparrow
 name=Lancers Sparrow
-install=Arrow Rocket/Arrow Rocket/Claw C-6/Claw C-6
-cargo=Astronaut~1/Arrow Rocket Ammunition~200
+install=Arrow Missile/Arrow Missile/Claw C-6/Claw C-6
+cargo=Astronaut~1/Arrow Missile Ammunition~200
 minCourage=0.7
 maxCourage=1.00
 [/Loadout]
@@ -184,8 +184,8 @@ maxCourage=1.00
 [Loadout]
 ship=Raven
 name=Lancers Supply Raven
-install=Arrow Rocket/Arrow Rocket/Span R-3/Span R-3/Span T-7/Claw T-5/Claw T-5
-cargo=Jumpdrive~1/Astronaut~1/Arrow Rocket Ammunition~50
+install=Arrow Missile/Arrow Missile/Span R-3/Span R-3/Span T-7/Claw T-5/Claw T-5
+cargo=Jumpdrive~1/Astronaut~1/Arrow Missile Ammunition~50
 minCourage=0.85
 maxCourage=1.00
 [/Loadout]
@@ -206,8 +206,8 @@ maxCourage=1.00
 [Loadout]
 ship=Raven
 name=Frontier Supply Raven
-install=Arrow Rocket/Arrow Rocket/Span R-3/Span R-3
-cargo=Jumpdrive~1/Astronaut~1/Arrow Rocket Ammunition~50
+install=Arrow Missile/Arrow Missile/Span R-3/Span R-3
+cargo=Jumpdrive~1/Astronaut~1/Arrow Missile Ammunition~50
 minCourage=0.85
 maxCourage=1.00
 [/Loadout]

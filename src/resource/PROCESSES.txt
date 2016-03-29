@@ -121,7 +121,7 @@ resource=
 [Process]
 name=FairMakeArrowRocketAmmo
 cycle=100
-product=Arrow Rocket Ammunition,100
+product=Arrow Missile Ammunition,100
 resource=Mass Block,1/Standard Energy Unit,10/Box Meals,1
 [/Process]
 
@@ -144,7 +144,7 @@ resource=Mass Block,1/Standard Energy Unit,8/Box Meals,3
 [Process]
 name=FairMakeArrowLauncher
 cycle=450
-product=Arrow Rocket,1
+product=Arrow Missile,1
 resource=Mass Block,1/Standard Energy Unit,8/Box Meals,3
 [/Process]
 
@@ -302,8 +302,8 @@ resource=Dart Missile,1
 [Process]
 name=TransferArrowRocket
 cycle=500
-product=Arrow Rocket,1
-resource=Arrow Rocket,1
+product=Arrow Missile,1
+resource=Arrow Missile,1
 [/Process]
 
 [Process]
@@ -358,8 +358,8 @@ resource=Dart Missile Ammunition,1
 [Process]
 name=TransferArrowRocketAmmunition
 cycle=50
-product=Arrow Rocket Ammunition,1
-resource=Arrow Rocket Ammunition,1
+product=Arrow Missile Ammunition,1
+resource=Arrow Missile Ammunition,1
 [/Process]
 
 #Fittng Outlet Sinks
@@ -389,7 +389,7 @@ resource=Dart Missile Ammunition,1
 name=ClearArrowRocketAmmunition
 cycle=255
 product=
-resource=Arrow Rocket Ammunition,1
+resource=Arrow Missile Ammunition,1
 [/Process]
 
 [Process]
@@ -403,7 +403,7 @@ resource=Dart Missile,1
 name=ClearArrowRocket
 cycle=435
 product=
-resource=Arrow Rocket,1
+resource=Arrow Missile,1
 [/Process]
 
 [Process]

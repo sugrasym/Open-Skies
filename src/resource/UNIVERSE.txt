@@ -6,8 +6,8 @@ x=-32099
 y=28368
 z=28289
 cash=50000
-install=Arrow Rocket/Arrow Rocket/Talon A-7/Talon A-7
-cargo=Arrow Rocket Ammunition~50
+install=Arrow Missile/Arrow Missile/Talon A-7/Talon A-7
+cargo=Arrow Missile Ammunition~50
 [/NewGame]
 
 [Ship]

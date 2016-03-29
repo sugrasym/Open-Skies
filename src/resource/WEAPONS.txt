@@ -34,7 +34,7 @@ proximityFuse=65
 
 [Weapon]
 #weapon info
-name=Arrow Rocket
+name=Arrow Missile
 type=missile
 #shell info
 shieldDamage=1100
@@ -53,14 +53,14 @@ lowLife=0.1
 numParticles=200
 variation=0.5
 texture=Effects/Trail/point.png
-sound=Audio/Effects/Weapons/Arrow Rocket.wav
+sound=Audio/Effects/Weapons/Arrow Missile.wav
 emitterRate=200
 guided=true
 thrust=32
 turning=0.25
 shotMass=0.05
 delay=0.25
-ammo=Arrow Rocket Ammunition
+ammo=Arrow Missile Ammunition
 maxLife=250
 proximityFuse=50
 [/Weapon]
