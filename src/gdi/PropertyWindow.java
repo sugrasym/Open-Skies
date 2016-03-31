@@ -810,7 +810,7 @@ public class PropertyWindow extends AstralWindow {
             Object selectedProperty = propertyList.getItemAtIndex(propertyList.getIndex());
             Ship selected = (Ship) selectedProperty;
             Station selectedStation = null;
-            if (selectedProperty instanceof Ship) {
+            if (selectedProperty instanceof Station) {
                 selectedStation = (Station) selectedProperty;
             }
             switch (command) {
