@@ -245,6 +245,19 @@ public class AstralList extends AstralComponent {
         }
     }
 
+    @Override
+    public void handleMouseMovedEvent(String me, Vector3f mouseLoc) {
+        switch(me)
+        {
+            case "MOUSE_SCROLLUP":
+                scrollUp();
+                break;
+            case "MOUSE_SCROLLDOWN":
+                scrollDown();
+                break;
+        }
+    }
+    
     private void checkForListIntersection(Rectangle mouseRect) {
         int displayableLines = getHeight() / getFont().getSize();
         for (int a = 0; a < displayableLines; a++) {

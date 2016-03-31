@@ -417,6 +417,10 @@ public class Core {
         input.addMapping("MOUSE_MOVERIGHT", new MouseAxisTrigger(MouseInput.AXIS_X, false));
         input.addMapping("MOUSE_MOVEUP", new MouseAxisTrigger(MouseInput.AXIS_Y, false));
         input.addMapping("MOUSE_MOVEDOWN", new MouseAxisTrigger(MouseInput.AXIS_Y, true));
+
+        input.addMapping("MOUSE_SCROLLUP", new MouseAxisTrigger(MouseInput.AXIS_WHEEL, false));
+        input.addMapping("MOUSE_SCROLLDOWN", new MouseAxisTrigger(MouseInput.AXIS_WHEEL, true));
+
         //store
         input.addListener(actionListener, new String[]{
             "MOUSE_LClick",
@@ -426,7 +430,9 @@ public class Core {
             "MOUSE_MOVELEFT",
             "MOUSE_MOVERIGHT",
             "MOUSE_MOVEUP",
-            "MOUSE_MOVEDOWN"});
+            "MOUSE_MOVEDOWN",
+            "MOUSE_SCROLLUP",
+            "MOUSE_SCROLLDOWN"});
     }
 
     private void initJoyStick() {

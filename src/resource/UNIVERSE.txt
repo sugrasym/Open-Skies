@@ -35,6 +35,20 @@ tiltZ=-1.6264597
 faction=Player
 [/Station]
 
+[Station]
+name=Fry's Electronics
+system=Kappa X-38LM
+station=Computer Plant
+x=-32299
+y=-28368
+z=-28289
+tiltX=2.0938509
+tiltY=2.602421
+tiltZ=-1.6264597
+faction=Player
+[/Station]
+
+
 [System]
 name=Tau 01-ZWL
 owner=Commonwealth
