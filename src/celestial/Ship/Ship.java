@@ -4070,4 +4070,5 @@ public class Ship extends Celestial {
         setEngine(EngineMode.CRUISE);
         deactivateWeapons();
     }
+
 }

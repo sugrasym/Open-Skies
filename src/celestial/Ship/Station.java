@@ -56,6 +56,8 @@ public class Station extends Ship {
     //manufacturing
     protected ArrayList<Job> jobs = new ArrayList<>();
     protected boolean economyExempt = false;
+    private int buyPrice;
+    private int sellPrice;
 
     public Station(Universe universe, Term type, String faction) {
         super(universe, type, faction);
@@ -269,6 +271,7 @@ public class Station extends Ship {
     public void buy(Ship ship, Item item, int quantity) {
         //get current offer
         int price = getPrice(item);
+        if (buyPrice != 0) price = buyPrice;
         Item tmp = new Item(item.getName());
         //repeat buy procedure
         for (int lx = 0; lx < quantity; lx++) {
@@ -359,6 +362,7 @@ public class Station extends Ship {
     public void sell(Ship ship, Item item, int quantity) {
         //get current offer
         int price = getPrice(item);
+        if (sellPrice != 0) price = sellPrice;
         //repeat sell procedure
         for (int lx = 0; lx < quantity; lx++) {
             Item rel = null;
@@ -557,5 +561,21 @@ public class Station extends Ship {
             }
         }
         return false;
+    }
+    
+    public int getBuyPrice() {
+        return buyPrice;
+    }
+
+    public void setBuyPrice(int price) {
+        buyPrice = price;
+    }
+
+    public int getSellPrice() {
+        return sellPrice;
+    }
+
+    public void setSellPrice(int price) {
+        sellPrice = price;
     }
 }
