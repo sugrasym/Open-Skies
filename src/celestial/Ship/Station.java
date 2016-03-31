@@ -456,7 +456,7 @@ public class Station extends Ship {
             }
         }
 
-        //return 0 and print a warning if nothing was found
+        //return 0 if nothing was found
         if (!found) {
             return 0;
         }
