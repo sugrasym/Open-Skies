@@ -259,7 +259,7 @@ public class PropertyWindow extends AstralWindow {
                     int price = Integer.parseInt(nm);
                     //push
                     Object selectedProperty = propertyList.getItemAtIndex(propertyList.getIndex());
-                    if (selectedProperty instanceof Ship) {
+                    if (selectedProperty instanceof Station) {
                         Station selectedStation = (Station) selectedProperty;
                         selectedStation.setBuyPrice(price);
                     }
@@ -279,7 +279,7 @@ public class PropertyWindow extends AstralWindow {
                     int price = Integer.parseInt(nm);
                     //push
                     Object selectedProperty = propertyList.getItemAtIndex(propertyList.getIndex());
-                    if (selectedProperty instanceof Ship) {
+                    if (selectedProperty instanceof Station) {
                         Station selectedStation = (Station) selectedProperty;
                         selectedStation.setSellPrice(price);
                     }
