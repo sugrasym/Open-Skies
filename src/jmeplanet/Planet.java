@@ -45,7 +45,7 @@ public class Planet extends Node {
     protected Node atmosphereNode;
     protected float baseRadius;
     protected float atmosphereRadius;
-    protected HeightDataSource dataSource;
+    private HeightDataSource dataSource;
     // Number of planer quads per patch. This value directly controls the 
     // complexity of the geometry generated.
     protected int quads = 32;
@@ -229,7 +229,7 @@ public class Planet extends Node {
     }
 
     public float getHeightScale() {
-        return dataSource.getHeightScale();
+        return getDataSource().getHeightScale();
     }
 
     public Vector3f getPlanetToCamera() {
@@ -359,8 +359,7 @@ public class Planet extends Node {
                     FastMath.pow(2.0f, 20f),
                     0f,
                     FastMath.pow(2.0f, 20f),
-                    this.baseRadius,
-                    this.dataSource,
+                    this.baseRadius, this.getDataSource(),
                     this.quads,
                     0,
                     this.minDepth,
@@ -380,8 +379,7 @@ public class Planet extends Node {
                     FastMath.pow(2.0f, 20f),
                     0f,
                     FastMath.pow(2.0f, 20f),
-                    this.baseRadius,
-                    this.dataSource,
+                    this.baseRadius, this.getDataSource(),
                     this.quads,
                     0,
                     this.minDepth,
@@ -401,8 +399,7 @@ public class Planet extends Node {
                     FastMath.pow(2.0f, 20f),
                     0f,
                     FastMath.pow(2.0f, 20f),
-                    this.baseRadius,
-                    this.dataSource,
+                    this.baseRadius, this.getDataSource(),
                     this.quads,
                     0,
                     this.minDepth,
@@ -422,8 +419,7 @@ public class Planet extends Node {
                     FastMath.pow(2.0f, 20f),
                     0f,
                     FastMath.pow(2.0f, 20f),
-                    this.baseRadius,
-                    this.dataSource,
+                    this.baseRadius, this.getDataSource(),
                     this.quads,
                     0,
                     this.minDepth,
@@ -443,8 +439,7 @@ public class Planet extends Node {
                     FastMath.pow(2.0f, 20f),
                     0f,
                     FastMath.pow(2.0f, 20f),
-                    this.baseRadius,
-                    this.dataSource,
+                    this.baseRadius, this.getDataSource(),
                     this.quads,
                     0,
                     this.minDepth,
@@ -464,8 +459,7 @@ public class Planet extends Node {
                     FastMath.pow(2.0f, 20f),
                     0f,
                     FastMath.pow(2.0f, 20f),
-                    this.baseRadius,
-                    this.dataSource,
+                    this.baseRadius, this.getDataSource(),
                     this.quads,
                     0,
                     this.minDepth,
@@ -760,5 +754,9 @@ public class Planet extends Node {
                 maxDepth,
                 null,
                 0);
+    }
+
+    public HeightDataSource getDataSource() {
+        return dataSource;
     }
 }

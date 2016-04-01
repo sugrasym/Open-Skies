@@ -488,35 +488,7 @@ public class SolarSystem implements Entity, Serializable {
     }
 
     private void doAlways(int a) {
-        enforcePlanetZones(a);
         enforceJumpholeZones(a);
-    }
-
-    private void enforcePlanetZones(int a) {
-        //enforce planet rules
-        //todo: remove this when surfaces are done
-        /*
-         * Currently, planets don't have much to do. In fact, they
-         * don't even have collidable surfaces! So they are kind of
-         * off limits in this build.
-         *
-         * If you want to explore planet surfaces anyway, just
-         * comment out the below if block and recompile. This
-         * thing is open source :)
-         *
-         * Note that this also handles star death zones
-         */
-        if (celestials.get(a) instanceof Ship) {
-            Ship s = (Ship) celestials.get(a);
-            for (int b = 0; b < planetList.size(); b++) {
-                Planet test = (Planet) planetList.get(b);
-                float shellR = test.getRadius()
-                        + (test.getRadius() * test.getAtmosphereScaler());
-                if (test.distanceTo(s) < shellR) {
-                    s.applyDamage(10000 * (1 - (test.distanceTo(s) / shellR)));
-                }
-            }
-        }
     }
 
     private void enforceJumpholeZones(int a) {
