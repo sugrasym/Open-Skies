@@ -31,6 +31,7 @@ import celestial.Celestial;
 import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
+import com.jme3.renderer.Camera;
 import engine.AstralCamera;
 import entity.Entity;
 import entity.Entity.State;
@@ -52,13 +53,15 @@ public class HudMarker extends AstralWindow {
 
     private Entity target;
     private MarkerCanvas canvas;
+    private final Ship playerShip;
     private final AstralCamera camera;
     private boolean relevant = true;
 
-    public HudMarker(AssetManager assets, AstralCamera camera, Entity target, int width, int height) {
+    public HudMarker(AssetManager assets, AstralCamera cam, Ship playerShip, Entity target, int width, int height) {
         super(assets, width, height, true);
         this.target = target;
-        this.camera = camera;
+        this.camera = cam;
+        this.playerShip = playerShip;
         init();
     }
 
@@ -97,7 +100,7 @@ public class HudMarker extends AstralWindow {
                 relevant = false;
             }
             //if it is a celestial there are more tests to do
-            Ship test = camera.getTarget().getCurrentSystem().getUniverse().getPlayerShip();
+            Ship test = playerShip;
             if (target instanceof Ship) {
                 Ship ship = (Ship) target;
                 Vector3f tLoc = ship.getLocation();
@@ -120,7 +123,7 @@ public class HudMarker extends AstralWindow {
         //get target screen position
         Vector3f sLoc = camera.getScreenCoordinates(tLoc);
         //make sure target is in sensor range
-        Ship test = camera.getTarget().getCurrentSystem().getUniverse().getPlayerShip();
+        Ship test = playerShip;
         if (test.getLocation().distance(tLoc) <= test.getSensor()) {
             //calculate dot product between camera angle and camera-relative target position
             Vector3f pos = tLoc.subtract(camera.getLocation());
@@ -171,7 +174,7 @@ public class HudMarker extends AstralWindow {
                             //draw marker
                             gfx.setStroke(new BasicStroke(3));
                             Ship tmp = (Ship) target;
-                            Ship player = tmp.getCurrentSystem().getUniverse().getPlayerShip();
+                            Ship player = playerShip;
                             float standing = player.getStandingsToMe(tmp);
                             if (tmp == player.getTarget()) {
                                 gfx.setColor(Color.YELLOW);

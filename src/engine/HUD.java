@@ -256,7 +256,9 @@ public class HUD {
         if (windows.isEmpty()) {
             configureForSpace(engine);
         }
+        //store camera
         this.camera = engine.getCamera();
+        
         //update iffs
         iffManager.periodicUpdate(tpf);
         //resets windows if a new marker or window was added
@@ -265,8 +267,7 @@ public class HUD {
             add();
             resetWindowFlag = false;
         }
-        //store camera
-        this.camera = engine.getCamera();
+        
         //special update on simple windows
         health.updateHealth(getUniverse().getPlayerShip());
         fuel.updateFuel(getUniverse().getPlayerShip());
@@ -540,7 +541,7 @@ public class HUD {
                     if (combinedList.get(a) != universe.getPlayerShip()) {
                         float dist = combinedList.get(a).getLocation().distance(universe.getPlayerShip().getLocation());
                         if (dist < universe.getPlayerShip().getSensor()) {
-                            HudMarker m = new HudMarker(assets, camera, combinedList.get(a), 50, 50);
+                            HudMarker m = new HudMarker(assets, camera, universe.getPlayerShip(), combinedList.get(a), 50, 50);
                             markers.add(m);
                             m.setVisible(true);
                             m.add(guiNode);

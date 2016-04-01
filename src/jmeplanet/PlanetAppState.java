@@ -36,19 +36,11 @@ import com.jme3.app.state.AppStateManager;
 import com.jme3.export.JmeExporter;
 import com.jme3.export.JmeImporter;
 import com.jme3.light.DirectionalLight;
-import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
-import com.jme3.post.FilterPostProcessor;
-import com.jme3.post.filters.BloomFilter;
-import com.jme3.post.filters.FogFilter;
-import com.jme3.renderer.Camera;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.Control;
-import com.jme3.shadow.CompareMode;
-import com.jme3.shadow.DirectionalLightShadowRenderer;
-import com.jme3.shadow.EdgeFilteringMode;
 import engine.AstralCamera;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,20 +55,11 @@ public class PlanetAppState extends AbstractAppState implements Control {
     protected Application app;
     protected List<Planet> planets;
     protected Planet nearestPlanet;
-    protected FilterPostProcessor nearFilter;
-    protected FilterPostProcessor farFilter;
-    protected FogFilter nearFog;
-    protected FogFilter farFog;
-    protected BloomFilter farBloom;
+
     protected Spatial scene;
     protected DirectionalLight sun;
-    protected ViewPort nearViewPort;
-    protected ViewPort farViewPort;
-    protected Camera nearCam;
-    protected Camera farCam;
-    protected boolean shadowsEnabled;
-    protected DirectionalLightShadowRenderer dlsr;
-    private Ship cameraShip; //added to let this appstate double as the player camera
+    protected Ship playerShip;
+
     private AstralCamera astralCamera;
 
     public PlanetAppState(Spatial scene, DirectionalLight sun) {
@@ -90,52 +73,6 @@ public class PlanetAppState extends AbstractAppState implements Control {
         super.initialize(stateManager, app);
 
         this.app = app;
-        farViewPort = app.getViewPort();
-        farCam = app.getCamera();
-
-        nearCam = this.farCam.clone();
-        nearCam.setFrustumPerspective(45f, (float) nearCam.getWidth() / nearCam.getHeight(), 1f, 310f);
-        farCam.setFrustumPerspective(45f, (float) farCam.getWidth() / farCam.getHeight(), 300f, 1e7f);
-
-        nearCam.setViewPort(0f, 1f, 0.0f, 1f);
-        nearViewPort = this.app.getRenderManager().createMainView("NearView", nearCam);
-        nearViewPort.setBackgroundColor(ColorRGBA.BlackNoAlpha);
-        nearViewPort.setClearFlags(false, true, true);
-        nearViewPort.attachScene(this.scene);
-
-        nearFilter = new FilterPostProcessor(app.getAssetManager());
-        nearViewPort.addProcessor(nearFilter);
-
-        nearFog = new FogFilter();
-        //nearFilter.addFilter(nearFog);
-
-        farFilter = new FilterPostProcessor(app.getAssetManager());
-        farViewPort.addProcessor(farFilter);
-
-        farFog = new FogFilter();
-        farFilter.addFilter(farFog);
-
-        farBloom = new BloomFilter();
-        farBloom.setDownSamplingFactor(2);
-        farBloom.setBlurScale(1.37f);
-        farBloom.setExposurePower(3.30f);
-        farBloom.setExposureCutOff(0.1f);
-        farBloom.setBloomIntensity(1.45f);
-        //farFilter.addFilter(farBloom);
-
-        if (sun != null) {
-
-            dlsr = new DirectionalLightShadowRenderer(app.getAssetManager(), 1024, 3);
-            dlsr.setLight(sun);
-            dlsr.setLambda(0.55f);
-            dlsr.setShadowIntensity(0.6f);
-            dlsr.setEdgeFilteringMode(EdgeFilteringMode.PCFPOISSON);
-            dlsr.setShadowCompareMode(CompareMode.Hardware);
-            dlsr.setShadowZExtend(100f);
-            if (shadowsEnabled) {
-                nearViewPort.addProcessor(dlsr);
-            }
-        }
     }
 
     @Override
@@ -145,28 +82,29 @@ public class PlanetAppState extends AbstractAppState implements Control {
 
     @Override
     public void update(float tpf) {
-        //if we have something to look at, center at it
-        if (cameraShip != null) {
-            if (astralCamera != null) {
-                astralCamera.periodicUpdate(tpf);
-            } else {
-                //setup astral camera
-                astralCamera = new AstralCamera(farCam);
-                astralCamera.setTarget(cameraShip);
+
+        if (astralCamera != null) {
+            astralCamera.periodicUpdate(tpf);
+        } else {
+            //setup astral camera
+            astralCamera = new AstralCamera(this.app);
+            astralCamera.attachScene(scene);
+            if (sun != null) {
+                astralCamera.addLight(sun, app.getAssetManager());
             }
         }
-        //update short camera
-        nearCam.setLocation(farCam.getLocation());
-        nearCam.setRotation(farCam.getRotation());
         if (planets.size() > 0) {
             this.nearestPlanet = findNearestPlanet();
 
             for (Planet planet : this.planets) {
-                planet.setCameraPosition(this.app.getCamera().getLocation());
+                planet.setCameraPosition(astralCamera.getLocation());
             }
-            updateFogAndBloom();
-        } else {
-            stopFogAndBloom();
+
+            if (this.nearestPlanet != null) {
+                astralCamera.updateFogAndBloom(this.nearestPlanet);
+            } else {
+                astralCamera.stopFogAndBloom();
+            }
         }
     }
 
@@ -195,18 +133,6 @@ public class PlanetAppState extends AbstractAppState implements Control {
         return Vector3f.ZERO;
     }
 
-    public void setShadowsEnabled(boolean enabled) {
-        this.shadowsEnabled = enabled;
-
-        if (dlsr != null) {
-            if (enabled) {
-                nearViewPort.addProcessor(dlsr);
-            } else {
-                nearViewPort.removeProcessor(dlsr);
-            }
-        }
-    }
-
     protected Planet findNearestPlanet() {
         Planet cPlanet = null;
         for (Planet planet : this.planets) {
@@ -217,76 +143,8 @@ public class PlanetAppState extends AbstractAppState implements Control {
         return cPlanet;
     }
 
-    protected void stopFogAndBloom() {
-        nearFog.setEnabled(false);
-        farFog.setEnabled(false);
-        farBloom.setEnabled(true);
-    }
-
-    protected void updateFogAndBloom() {
-        if (this.nearestPlanet == null) {
-            return;
-        }
-        Planet planet = this.nearestPlanet;
-        if (planet.getIsInOcean()) {
-            // turn on underwater fogging
-            nearFog.setFogColor(planet.getUnderwaterFogColor());
-            nearFog.setFogDistance(planet.getUnderwaterFogDistance());
-            nearFog.setFogDensity(planet.getUnderwaterFogDensity());
-            nearFog.setEnabled(true);
-            farFog.setFogColor(planet.getUnderwaterFogColor());
-            farFog.setFogDistance(planet.getUnderwaterFogDistance());
-            farFog.setFogDensity(planet.getUnderwaterFogDensity());
-            farFog.setEnabled(true);
-            farBloom.setEnabled(true);
-        } else {
-            if (planet.getIsInAtmosphere()) {
-                // turn on atomosphere fogging
-                nearFog.setFogColor(planet.getAtmosphereFogColor());
-                nearFog.setFogDistance(planet.getAtmosphereFogDistance());
-                nearFog.setFogDensity(planet.getAtmosphereFogDensity());
-                nearFog.setEnabled(true);
-                farFog.setFogColor(planet.getAtmosphereFogColor());
-                farFog.setFogDistance(planet.getAtmosphereFogDistance());
-                farFog.setFogDensity(planet.getAtmosphereFogDensity());
-                farFog.setEnabled(true);
-                farBloom.setEnabled(false);
-            } else {
-                // in space
-                nearFog.setEnabled(false);
-                farFog.setEnabled(false);
-                farBloom.setEnabled(true);
-            }
-        }
-    }
-
     public void removePlanet(Planet planet) {
         planets.remove(planet);
-    }
-
-    /*
-     * I have added these to allow this appstate to also track a spatial since
-     * it is already mucking around with the camera.
-     */
-    public Ship getCameraCenter() {
-        return cameraShip;
-    }
-
-    public void setCameraShip(Ship cameraShip) {
-        this.cameraShip = cameraShip;
-        if (cameraShip != null) {
-            cameraShip.getSpatial().addControl(this);
-        }
-    }
-
-    public void freeCamera() {
-        if (cameraShip != null) {
-            if (cameraShip.getSpatial() != null) {
-                cameraShip.getSpatial().removeControl(this);
-            }
-        }
-        cameraShip = null;
-        astralCamera = null;
     }
 
     @Override

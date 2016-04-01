@@ -29,6 +29,7 @@ import com.jme3.post.FilterPostProcessor;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.plugins.blender.BlenderModelLoader;
 import com.jme3.system.AppSettings;
+import engine.AstralCamera;
 import engine.Core;
 import jmeplanet.PlanetAppState;
 import lib.astral.AstralIO;
@@ -79,17 +80,25 @@ public class Main extends SimpleApplication {
     public void simpleInitApp() {
         //setup game directory
         AstralIO.setupGameDir();
+        
         //register models
         assetManager.registerLoader(BlenderModelLoader.class, "blend");
+        
         //init physics
         bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState);
         bulletAppState.getPhysicsSpace().setGravity(Vector3f.ZERO);
+
+        //setup camera
+        flyCam.setEnabled(false);
+        
         //setup planet generator
         planetAppState = new PlanetAppState(rootNode, null);
         stateManager.attach(planetAppState);
+        
         //start engine
         core = new Core(rootNode, guiNode, bulletAppState, assetManager, planetAppState, inputManager, settings, listener);
+        
         //setup post processing
         fpp = new FilterPostProcessor(assetManager);
         /*bloom.setDownSamplingFactor(4.0f);
@@ -99,8 +108,7 @@ public class Main extends SimpleApplication {
         //remove cruft
         setDisplayFps(false);
         setDisplayStatView(false);
-        flyCam.setMoveSpeed(40000);
-        flyCam.setEnabled(false);
+
         //prevent application from pausing when out of focus (I hate how X3TC does that!)
         setPauseOnLostFocus(false);
     }
