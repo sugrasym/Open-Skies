@@ -1,16 +1,16 @@
 /*
  * Copyright (c) 2015 Nathan Wiehoff
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -182,13 +182,13 @@ public class Station extends Ship {
         }
         return false;
     }
-    
+
     @Override
     public void discover() {
         //any station can be discovered
         setDiscoveredByPlayer(true);
     }
-    
+
     @Override
     protected void deathPenalty() {
         //did the player destroy this ship?
@@ -239,7 +239,7 @@ public class Station extends Ship {
          * Determines if the station is economy exempt or not. Exempt stations
          * do not go out of business and are used for things like customs offices
          * or ship yards.
-         * 
+         *
          * Player ships will never be exempt.
          */
         if (isPlayerFaction()) {
@@ -271,7 +271,6 @@ public class Station extends Ship {
     public void buy(Ship ship, Item item, int quantity) {
         //get current offer
         int price = getPrice(item);
-        if (buyPrice != 0) price = buyPrice;
         Item tmp = new Item(item.getName());
         //repeat buy procedure
         for (int lx = 0; lx < quantity; lx++) {
@@ -307,7 +306,7 @@ public class Station extends Ship {
 
                         //create ship
                         Ship newShip = new Ship(getCurrentSystem().getUniverse(), hull, Faction.PLAYER);
-                        newShip.setName("Your "+item.getName());
+                        newShip.setName("Your " + item.getName());
                         //find an open hanger
                         DockingPort pick = null;
                         for (int a = 0; a < ports.size(); a++) {
@@ -347,8 +346,8 @@ public class Station extends Ship {
                             ship.setCash(ship.getCash() - price);
                             setCash(getCash() + price);
                             //adjust standings
-                            if(ship.getFaction().getName().equals(Faction.PLAYER)) {
-                                double scaler = ship.getStandingsToMe(this) / (double)Faction.PERMA_GREEN;
+                            if (ship.getFaction().getName().equals(Faction.PLAYER)) {
+                                double scaler = ship.getStandingsToMe(this) / (double) Faction.PERMA_GREEN;
                                 double delta = price * Faction.MARKET_DELTA * Math.abs(scaler);
                                 getCurrentSystem().getUniverse().getPlayerShip().getFaction().derivedModification(faction, delta);
                             }
@@ -362,7 +361,6 @@ public class Station extends Ship {
     public void sell(Ship ship, Item item, int quantity) {
         //get current offer
         int price = getPrice(item);
-        if (sellPrice != 0) price = sellPrice;
         //repeat sell procedure
         for (int lx = 0; lx < quantity; lx++) {
             Item rel = null;
@@ -425,6 +423,12 @@ public class Station extends Ship {
         boolean found = false;
         for (int a = 0; a < stationBuying.size(); a++) {
             if (stationBuying.get(a).getName().equals(item.getName())) {
+                //return the static price if it is set
+                if (buyPrice != 0) {
+                    return buyPrice;
+                }
+
+                //get info we need to calculate the price
                 max = stationBuying.get(a).getMaxPrice();
                 min = stationBuying.get(a).getMinPrice();
                 q = stationBuying.get(a).getQuantity();
@@ -436,6 +440,12 @@ public class Station extends Ship {
         if (!found) {
             for (int a = 0; a < stationSelling.size(); a++) {
                 if (stationSelling.get(a).getName().equals(item.getName())) {
+                    //return the static price if it is set
+                    if (sellPrice != 0) {
+                        return sellPrice;
+                    }
+
+                    //get info we need to calculate the price
                     max = stationSelling.get(a).getMaxPrice();
                     min = stationSelling.get(a).getMinPrice();
                     q = stationSelling.get(a).getQuantity();
@@ -445,7 +455,13 @@ public class Station extends Ship {
                 }
             }
         }
-        //calculate price
+
+        //return 0 if nothing was found
+        if (!found) {
+            return 0;
+        }
+
+        //calculate price using linear elasticity
         int d = max - min;
         float per = (float) q / (float) s;
         int x = (int) (d * (1 - per));
@@ -516,13 +532,13 @@ public class Station extends Ship {
             }
         }
     }
-    
+
     public void clearWares() {
         setCash(0);
-        for(int a = 0; a < stationSelling.size(); a++) {
+        for (int a = 0; a < stationSelling.size(); a++) {
             stationSelling.get(a).setQuantity(0);
         }
-        for(int a = 0; a < stationBuying.size(); a++) {
+        for (int a = 0; a < stationBuying.size(); a++) {
             stationBuying.get(a).setQuantity(0);
         }
         economyExempt = false;
@@ -553,7 +569,7 @@ public class Station extends Ship {
         }
         return ret;
     }
-    
+
     public boolean hasDocked(Ship ship) {
         for (int a = 0; a < ports.size(); a++) {
             if (ports.get(a).getClient() == ship && ship.isDocked()) {
@@ -562,7 +578,7 @@ public class Station extends Ship {
         }
         return false;
     }
-    
+
     public int getBuyPrice() {
         return buyPrice;
     }
