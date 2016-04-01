@@ -59,11 +59,18 @@ public class Main extends SimpleApplication {
         settings.setSettingsDialogImage("splash.png");
         settings.setMinResolution(800, 600);
         app.setSettings(settings);
-        //set properties
+        
+        //set renderer properties
+        String osName = System.getProperty("os.name");
+        String renderMode = "DirectX";
         System.setProperty("sun.java2d.transaccel", "True");
-        System.setProperty("sun.java2d.opengl", "True");
-        System.out.println("Running on " + System.getProperty("os.name") + " using OpenGL");
         System.setProperty("sun.java2d.ddforcevram", "True");
+        if (!osName.contains("Windows")) {
+            System.setProperty("sun.java2d.opengl", "True");
+            renderMode = "OpenGL";
+        }
+        System.out.println("Running on " + osName + " using " + renderMode);
+        
         //start
         app.start();
     }
