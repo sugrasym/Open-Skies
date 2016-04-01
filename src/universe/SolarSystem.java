@@ -488,34 +488,24 @@ public class SolarSystem implements Entity, Serializable {
     }
 
     private void doAlways(int a) {
-        enforcePlanetZones(a);
+        doAtmosphereDamage(a);
         enforceJumpholeZones(a);
     }
 
-    private void enforcePlanetZones(int a) {
-        //enforce planet rules
-        //todo: remove this when surfaces are done
-        /*
-         * Currently, planets don't have much to do. In fact, they
-         * don't even have collidable surfaces! So they are kind of
-         * off limits in this build.
-         *
-         * If you want to explore planet surfaces anyway, just
-         * comment out the below if block and recompile. This
-         * thing is open source :)
-         *
-         * Note that this also handles star death zones
-         */
+    private void doAtmosphereDamage(int a) {
         if (celestials.get(a) instanceof Ship) {
             Ship s = (Ship) celestials.get(a);
-            for (int b = 0; b < planetList.size(); b++) {
-                Planet test = (Planet) planetList.get(b);
-                float shellR = test.getRadius()
-                        + (test.getRadius() * test.getAtmosphereScaler());
-                if (test.distanceTo(s) < shellR) {
-                    s.applyDamage(10000 * (1 - (test.distanceTo(s) / shellR)));
-                }
-            }
+            planetList.stream().filter((p) -> ((Planet) p).getAtmosphereRadius() > 0)
+                    .map((p) -> (Planet) p).forEach((test) -> {
+                        float shellR = test.getAtmosphereRadius();
+                        if (test.distanceTo(s) < shellR) {
+                            //only apply damage if above a threshold
+                            if (s.getVelocity().length() > Planet.MIN_ATMOSPHERE_DAMAGE_VELOCITY) {
+                                float damage = s.getVelocity().length() * (1 - (test.distanceTo(s) / shellR));
+                                s.applyDamage(damage * Planet.ATMOSPHERE_DAMAGE_SCALER);
+                            }
+                        }
+                    });
         }
     }
 
@@ -636,7 +626,7 @@ public class SolarSystem implements Entity, Serializable {
     @Override
     public void construct(AssetManager assets) {
         //cleanup skybox if needed
-        if(skybox != null) {
+        if (skybox != null) {
             skybox.dispose();
         }
         //construct children
@@ -657,7 +647,7 @@ public class SolarSystem implements Entity, Serializable {
     @Override
     public void deconstruct() {
         //cleanup skybox
-        if(skybox != null) {
+        if (skybox != null) {
             skybox.dispose();
         }
         skybox = null;

@@ -82,13 +82,13 @@ public class CollisionListener implements PhysicsCollisionListener {
             } else if (objA.getParent() instanceof Projectile) {
                 if (objB.getParent() instanceof Ship) {
                     handleProjectileCollision((Ship) objB.getParent(), (Projectile) objA.getParent());
-                } else if(objB.getParent() instanceof Field) {
+                } else if (objB.getParent() instanceof Field) {
                     handleProjectileFieldCollision((Projectile) objA.getParent(), (Field) objB.getParent());
                 }
             } else if (objB.getParent() instanceof Projectile) {
                 if (objA.getParent() instanceof Ship) {
                     handleProjectileCollision((Ship) objA.getParent(), (Projectile) objB.getParent());
-                } else if(objA.getParent() instanceof Field) {
+                } else if (objA.getParent() instanceof Field) {
                     handleProjectileFieldCollision((Projectile) objB.getParent(), (Field) objA.getParent());
                 }
             }
@@ -96,9 +96,9 @@ public class CollisionListener implements PhysicsCollisionListener {
     }
 
     private void handleProjectileFieldCollision(Projectile pro, Field field) {
-        if(pro.getState() == State.ALIVE) {
+        if (pro.getState() == State.ALIVE) {
             pro.setState(State.DYING);
-            if(field.isMineable()) {
+            if (field.isMineable()) {
                 //chip off a piece of the asteroid
                 Item i = new Item(field.getResource());
                 i.setQuantity(1);
@@ -112,7 +112,7 @@ public class CollisionListener implements PhysicsCollisionListener {
             }
         }
     }
-    
+
     private void handleProjectileCollision(Ship a, Projectile pro) {
         if (a != pro.getHost()) {
             //get damage
@@ -150,7 +150,7 @@ public class CollisionListener implements PhysicsCollisionListener {
 
     private void handlePlanetCollision(Ship a) {
         try {
-            a.applyDamage((float) (25 * a.getMass() * a.getLinearVelocity().length()));
+            a.applyDamage((float) (2.5 * a.getMass() * a.getLinearVelocity().length()));
         } catch (Exception e) {
             System.out.println("Error handling planet - ship collission");
         }
