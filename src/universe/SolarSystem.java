@@ -488,7 +488,25 @@ public class SolarSystem implements Entity, Serializable {
     }
 
     private void doAlways(int a) {
+        doAtmosphereDamage(a);
         enforceJumpholeZones(a);
+    }
+
+    private void doAtmosphereDamage(int a) {
+        if (celestials.get(a) instanceof Ship) {
+            Ship s = (Ship) celestials.get(a);
+            planetList.stream().filter((p) -> ((Planet) p).getAtmosphereRadius() > 0)
+                    .map((p) -> (Planet) p).forEach((test) -> {
+                        float shellR = test.getAtmosphereRadius();
+                        if (test.distanceTo(s) < shellR) {
+                            //only apply damage if above a threshold
+                            if (s.getVelocity().length() > Planet.MIN_ATMOSPHERE_DAMAGE_VELOCITY) {
+                                float damage = s.getVelocity().length() * (1 - (test.distanceTo(s) / shellR));
+                                s.applyDamage(damage * Planet.ATMOSPHERE_DAMAGE_SCALER);
+                            }
+                        }
+                    });
+        }
     }
 
     private void enforceJumpholeZones(int a) {
@@ -608,7 +626,7 @@ public class SolarSystem implements Entity, Serializable {
     @Override
     public void construct(AssetManager assets) {
         //cleanup skybox if needed
-        if(skybox != null) {
+        if (skybox != null) {
             skybox.dispose();
         }
         //construct children
@@ -629,7 +647,7 @@ public class SolarSystem implements Entity, Serializable {
     @Override
     public void deconstruct() {
         //cleanup skybox
-        if(skybox != null) {
+        if (skybox != null) {
             skybox.dispose();
         }
         skybox = null;
