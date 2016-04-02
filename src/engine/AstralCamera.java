@@ -66,9 +66,8 @@ public class AstralCamera {
     private Celestial target;
     private ArrayList<TargetPlacement> cachedTargetPlacements;
     private RenderManager renderManager;
-    private int trailingCount = 0;
-    public static int TRAILING_FACTOR = 15;
-    public static float DISTANCE_CHANGE_THRESHOLD = 1f;
+    public static float MAX_DISTANCE = 50f;
+    public static float MIN_DISTANCE = 1f;
 
     enum Mode {
 
@@ -110,47 +109,16 @@ public class AstralCamera {
             } else if (mode == Mode.NORMAL) {
                 Quaternion rotation = target.getPhysicsRotation();
                 Vector3f lookAtUpVector = rotation.mult(Vector3f.UNIT_Y);
-
-                //record position for camera to follow
-                TargetPlacement newPlacement = new TargetPlacement(target.getLocation(), rotation);
-
-                boolean increaseBuffer = false;
-                if (cachedTargetPlacements.isEmpty()) {
-                    increaseBuffer = true;
-                } else {
-                    float distanceFromLastPlacement = newPlacement.location.distance(cachedTargetPlacements.get(cachedTargetPlacements.size() - 1).location);
-                    if (distanceFromLastPlacement > DISTANCE_CHANGE_THRESHOLD) {
-                        increaseBuffer = true;
-                    }
+                Vector3f cameraLocation = appCam.getLocation();
+                Vector3f restPointLocation = target.getCameraRestPoint();
+                float distance = cameraLocation.distance(restPointLocation);
+                if (distance > MAX_DISTANCE) {
+                    distance = MAX_DISTANCE;
                 }
-                if (increaseBuffer){
-                    cachedTargetPlacements.add(newPlacement);
-                    trailingCount++;
+                if(distance > MIN_DISTANCE){
+                appCam.setLocation(cameraLocation.interpolate(restPointLocation, distance / MAX_DISTANCE));
                 }
-                
-                if (trailingCount == TRAILING_FACTOR) {
-                    //we've moved enough to matter
-                    //get the oldest placement in buffer
-                    TargetPlacement placementToLookAt = cachedTargetPlacements.remove(0);
-
-                    //remove points of little change so after trailing we can start moving to behind the ship
-                    boolean continueCulling = cachedTargetPlacements.size() > 1;
-                    while (continueCulling && !cachedTargetPlacements.isEmpty()) {
-                        if (placementToLookAt.location.distance(cachedTargetPlacements.get(0).location) < DISTANCE_CHANGE_THRESHOLD) {
-                            cachedTargetPlacements.remove(0);
-                        } else {
-                            continueCulling = false;
-                        }
-                    }
-                    trailingCount = cachedTargetPlacements.size();
-                    appCam.setLocation(placementToLookAt.location);
-                    lookAtUpVector = placementToLookAt.rotation.mult(Vector3f.UNIT_Y);
-
-                } else {
-                    //try to move to behind celestial
-                    appCam.setLocation(target.getCameraRestPoint().interpolate(appCam.getLocation(), .5f));
-                }
-                appCam.lookAt(target.getLocation(), lookAtUpVector);
+                appCam.lookAt(target.getPhysicsLocation(), lookAtUpVector);
             } else if (mode == Mode.RTS) {
                 //TODO: Handle rotations to camera and distance to make viewport look right
             }
@@ -164,7 +132,6 @@ public class AstralCamera {
     public void setTarget(Celestial target) {
         freeCamera();
         this.target = target;
-        trailingCount = 0;
     }
 
     public void addLight(DirectionalLight light, AssetManager assetManager) {

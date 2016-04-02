@@ -26,10 +26,12 @@
  */
 package celestial;
 
+import com.jme3.bullet.BulletAppState;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import entity.PhysicsEntity;
 import java.io.Serializable;
+import jmeplanet.PlanetAppState;
 import lib.astral.AstralIO;
 import universe.SolarSystem;
 import universe.Universe;
@@ -51,8 +53,6 @@ public class Celestial extends PhysicsEntity implements Serializable {
 
     public Celestial(float mass, Universe universe) {
         super(mass);
-        cameraRestPoint = new Node();
-        cameraRestPoint.move(0, 4, 15);
     }
     /*
      * For compartmentalizing behaviors. This is a cleaner solution than
@@ -126,12 +126,18 @@ public class Celestial extends PhysicsEntity implements Serializable {
     public void setDiscoveredByPlayer(boolean discoveredByPlayer) {
         this.discoveredByPlayer = discoveredByPlayer;
     }
-    
+
     public void discover() {
         this.discoveredByPlayer = true;
     }
 
     public Vector3f getCameraRestPoint() {
+        //hasn't been constructed so just stare into space
+        if (cameraRestPoint == null) {
+            cameraRestPoint = new Node();
+            cameraRestPoint.move(0, 4, 15);
+            ((Node) spatial).attachChild(cameraRestPoint);
+        }
         return cameraRestPoint.getWorldTranslation();
     }
 }

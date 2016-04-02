@@ -57,6 +57,7 @@ public class PhysicsEntity implements Entity, Serializable {
     //texture and geometry crap
     protected transient Material mat;
     protected transient Spatial spatial;
+    
     //entity crap
     private State state = State.ALIVE;
     /*
