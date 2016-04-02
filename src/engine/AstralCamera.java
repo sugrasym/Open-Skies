@@ -108,11 +108,6 @@ public class AstralCamera {
             if (mode == Mode.COCKPIT) {
                 //TODO: Handle using a different cam for cockpit
             } else if (mode == Mode.NORMAL) {
-                //continue to fill buffer if needed
-                if (trailingCount < TRAILING_FACTOR) {
-                    
-                }
-
                 Quaternion rotation = target.getPhysicsRotation();
                 Vector3f lookAtUpVector = rotation.mult(Vector3f.UNIT_Y);
 
