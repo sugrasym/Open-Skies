@@ -109,11 +109,12 @@ public class AstralCamera {
                 Vector3f cameraLocation = appCam.getLocation();
                 Vector3f restPointLocation = target.getCameraRestPoint();
                 float distance = cameraLocation.distance(restPointLocation);
+                //TODO: play with cam acceleration
                 if (distance > MAX_DISTANCE) {
                     distance = MAX_DISTANCE;
                 }
                 if(distance > MIN_DISTANCE){
-                appCam.setLocation(cameraLocation.interpolate(restPointLocation, (distance / MAX_DISTANCE)));
+                    appCam.setLocation(cameraLocation.interpolate(restPointLocation, (distance / MAX_DISTANCE)/9.8f));
                 }
                 appCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
             } else if (mode == Mode.RTS) {

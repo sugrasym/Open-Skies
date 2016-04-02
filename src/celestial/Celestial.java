@@ -144,7 +144,7 @@ public class Celestial extends PhysicsEntity implements Serializable {
         //default camera will be looking at where the front of this object is pointing
         if (lineOfSightPoint == null) {
             lineOfSightPoint = new Node();
-            lineOfSightPoint.move(0, 0, -1000);
+            lineOfSightPoint.move(0, 0, -50);
             ((Node) spatial).attachChild(lineOfSightPoint);
         }
         return lineOfSightPoint.getWorldTranslation();
