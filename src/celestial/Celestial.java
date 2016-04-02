@@ -26,6 +26,8 @@
  */
 package celestial;
 
+import com.jme3.math.Vector3f;
+import com.jme3.scene.Node;
 import entity.PhysicsEntity;
 import java.io.Serializable;
 import lib.astral.AstralIO;
@@ -45,9 +47,12 @@ public class Celestial extends PhysicsEntity implements Serializable {
     protected SolarSystem currentSystem;
     //discovery
     private boolean discoveredByPlayer = false;
+    private Node cameraRestPoint;
 
     public Celestial(float mass, Universe universe) {
         super(mass);
+        cameraRestPoint = new Node();
+        cameraRestPoint.move(0, 4, 15);
     }
     /*
      * For compartmentalizing behaviors. This is a cleaner solution than
@@ -124,5 +129,9 @@ public class Celestial extends PhysicsEntity implements Serializable {
     
     public void discover() {
         this.discoveredByPlayer = true;
+    }
+
+    public Vector3f getCameraRestPoint() {
+        return cameraRestPoint.getWorldTranslation();
     }
 }

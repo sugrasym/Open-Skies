@@ -941,7 +941,7 @@ public class Core {
                         //transition to the new system
                         resetScene();
                         addSystem(playerShip.getCurrentSystem());
-                        planetAppState.getAstralCamera().setTargetShip(playerShip);
+                        planetAppState.getAstralCamera().setTarget(playerShip);
                         //make sure the new system is flagged for graphics
                         playerShip.getCurrentSystem().forceGraphics();
                         godSafe = false;
@@ -959,8 +959,8 @@ public class Core {
             //see if we need to reset the camera
             AstralCamera camera = planetAppState.getAstralCamera();
             if (camera != null) {
-                if (playerShip.getSpatial() != camera.getTarget()) {
-                    camera.setTargetShip(playerShip);
+                if (playerShip != camera.getTarget()) {
+                    camera.setTarget(playerShip);
                     resetHUD();
                 }
             }
@@ -1073,7 +1073,7 @@ public class Core {
             //enter the player's system
             addSystem(playerShip.getCurrentSystem());
             //reset camera
-            planetAppState.getAstralCamera().setTargetShip(playerShip);
+            planetAppState.getAstralCamera().setTarget(playerShip);
             //restore HUD
             if (hud != null) {
                 hud.setUniverse(getUniverse());
