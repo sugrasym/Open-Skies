@@ -27,12 +27,10 @@
 package engine;
 
 import celestial.Celestial;
-import celestial.Ship.Ship;
 import com.jme3.app.Application;
 import com.jme3.asset.AssetManager;
 import com.jme3.light.DirectionalLight;
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
@@ -46,7 +44,6 @@ import com.jme3.shadow.CompareMode;
 import com.jme3.shadow.DirectionalLightShadowRenderer;
 import com.jme3.shadow.EdgeFilteringMode;
 import java.util.ArrayList;
-import java.util.List;
 import jmeplanet.Planet;
 
 /**
@@ -67,7 +64,7 @@ public class AstralCamera {
     private ArrayList<TargetPlacement> cachedTargetPlacements;
     private RenderManager renderManager;
     public static float MAX_DISTANCE = 50f;
-    public static float MIN_DISTANCE = 1f;
+    public static float MIN_DISTANCE = .1f;
 
     enum Mode {
 
@@ -116,9 +113,9 @@ public class AstralCamera {
                     distance = MAX_DISTANCE;
                 }
                 if(distance > MIN_DISTANCE){
-                appCam.setLocation(cameraLocation.interpolate(restPointLocation, distance / MAX_DISTANCE));
+                appCam.setLocation(cameraLocation.interpolate(restPointLocation, (distance / MAX_DISTANCE)));
                 }
-                appCam.lookAt(target.getPhysicsLocation(), lookAtUpVector);
+                appCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
             } else if (mode == Mode.RTS) {
                 //TODO: Handle rotations to camera and distance to make viewport look right
             }

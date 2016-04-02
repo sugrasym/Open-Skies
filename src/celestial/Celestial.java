@@ -26,12 +26,10 @@
  */
 package celestial;
 
-import com.jme3.bullet.BulletAppState;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import entity.PhysicsEntity;
 import java.io.Serializable;
-import jmeplanet.PlanetAppState;
 import lib.astral.AstralIO;
 import universe.SolarSystem;
 import universe.Universe;
@@ -50,6 +48,7 @@ public class Celestial extends PhysicsEntity implements Serializable {
     //discovery
     private boolean discoveredByPlayer = false;
     private Node cameraRestPoint;
+    private Node lineOfSightPoint;
 
     public Celestial(float mass, Universe universe) {
         super(mass);
@@ -139,5 +138,15 @@ public class Celestial extends PhysicsEntity implements Serializable {
             ((Node) spatial).attachChild(cameraRestPoint);
         }
         return cameraRestPoint.getWorldTranslation();
+    }
+    
+    public Vector3f getLineOfSightPoint(){
+        //default camera will be looking at where the front of this object is pointing
+        if (lineOfSightPoint == null) {
+            lineOfSightPoint = new Node();
+            lineOfSightPoint.move(0, 0, -1000);
+            ((Node) spatial).attachChild(lineOfSightPoint);
+        }
+        return lineOfSightPoint.getWorldTranslation();
     }
 }
