@@ -48,8 +48,11 @@ public class WorldMaker {
     private final String[] greek = {"Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta", "Theta", "Iota",
         "Kappa", "Lambda", "Mu", "Nu", "Xi", "Omicron", "Pi", "Rho", "Sigma", "Tau", "Upsilon", "Phi", "Chi",
         "Psi", "Omega"};
+    private final String[] namePrefixModifiers = {"New", "Cape", "Port"};
+    private final String[] nameSuffixModifiers = {"Minor", "Major"};
     //used names
     private final ArrayList<String> usedSystemNames = new ArrayList<>();
+    private final ArrayList<String> usedPlanetNames = new ArrayList<>();
     //rng
     Random rnd;
 
@@ -139,23 +142,23 @@ public class WorldMaker {
                         r = minPlanetSize;
                     }
                     int seed = rnd.nextInt();
-                    
+
                     //stars can have a 50% variation from white on each axis
                     float colR = 0.5f + (rnd.nextFloat() * 0.5f);
                     float colG = 0.5f + (rnd.nextFloat() * 0.5f);
                     float colB = 0.5f + (rnd.nextFloat() * 0.5f);
-                    
+
                     //bring the highest axis to 1.0 and raise the others proportionately
-                    float[] axes = new float[] {colR, colG, colB};
-                    
+                    float[] axes = new float[]{colR, colG, colB};
+
                     float diff = Float.POSITIVE_INFINITY;
-                    for(int n = 0; n < 3; n++) {
-                        if((1.0f - axes[n]) < diff) {
+                    for (int n = 0; n < 3; n++) {
+                        if ((1.0f - axes[n]) < diff) {
                             diff = 1.0f - axes[n];
                         }
                     }
-                    
-                    float[] scaledAxes = new float[] {
+
+                    float[] scaledAxes = new float[]{
                         axes[0] + diff,
                         axes[1] + diff,
                         axes[2] + diff
@@ -259,7 +262,20 @@ public class WorldMaker {
                         //pick texture
                         String texture = pickPlanetTexture(planetTypes);
                         //pick name
-                        String name = randomPlanetName();
+                        String name = "TMP";
+                        while (true) {
+                            name = randomPlanetName();
+                            for (int v = 0; v < usedPlanetNames.size(); v++) {
+                                if (usedPlanetNames.get(a).equals(name)) {
+                                    name = "TMP";
+                                }
+                            }
+
+                            if (!name.equals("TMP")) {
+                                usedPlanetNames.add(name);
+                                break;
+                            }
+                        }
                         //pick seed
                         seed = rnd.nextInt();
                         //generate position
@@ -500,7 +516,7 @@ public class WorldMaker {
         return syslings;
     }
 
-    private String randomPlanetName() {
+    private String randomName() {
         /*
          * Generates a random name for a planet
          */
@@ -525,12 +541,42 @@ public class WorldMaker {
                 }
             }
         }
-        int num = rnd.nextInt(24) + 1;
         if (rnd.nextFloat() > 0.5) {
-            return "'" + first + " " + num + "'";
+            return first;
         } else {
-            return "'" + last + " " + num + "'";
+            return last;
         }
+    }
+
+    public String randomPlanetName() {
+        String ret = "";
+        {
+            //pick a type
+            if (rnd.nextBoolean()) {
+                ArrayList<Term> city = Universe.getCache().getNameCache().getTermsOfType("City");
+                for (int a = 0; a < city.size(); a++) {
+                    if (city.get(a).getValue("name").equals("Generic")) {
+                        Parser.Param pick = city.get(a).getParams().get(rnd.nextInt(city.get(a).getParams().size() - 1) + 1);
+                        ret = pick.getValue();
+                        break;
+                    }
+                }
+            } else {
+                //name based
+                ret = randomName();
+            }
+
+            //wrap the base string
+            if (rnd.nextFloat() > 0.65) {
+                String prefix = namePrefixModifiers[rnd.nextInt(namePrefixModifiers.length)];
+                ret = prefix + " " + ret;
+            }
+            if (rnd.nextFloat() > 0.85) {
+                String suffix = nameSuffixModifiers[rnd.nextInt(nameSuffixModifiers.length)];
+                ret += " " + suffix;
+            }
+        }
+        return "'" + ret + "'";
     }
 
     public String randomSystemName(char[] sample) {
