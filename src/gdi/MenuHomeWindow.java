@@ -28,6 +28,8 @@ package gdi;
 import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
 import engine.Core;
+import entity.Entity;
+import entity.Entity.State;
 import gdi.component.AstralLabel;
 import gdi.component.AstralList;
 import gdi.component.AstralWindow;
@@ -127,12 +129,12 @@ public class MenuHomeWindow extends AstralWindow {
             if (getStateCounter() > 2) {
                 if (getState() == InternalState.PRENEW) {
                     engine.newGame("Default");
-                } else if(getState() == InternalState.PRELOAD) {
+                } else if (getState() == InternalState.PRELOAD) {
                     engine.load(getLoadGameName());
                 }
                 resetState();
             }
-            
+
             //increment state counter
             setStateCounter(getStateCounter() + 1);
         }
@@ -185,8 +187,18 @@ public class MenuHomeWindow extends AstralWindow {
                 populateSaveGameList();
                 saveList.setVisible(true);
             } else if (command.matches("Exit")) {
-                //I don't hate you
-                System.exit(0);
+                try {
+                    //save before quitting if the player is alive
+                    if (engine.getUniverse().getPlayerShip() != null
+                            && engine.getUniverse().getPlayerShip().getState() == State.ALIVE) {
+                        engine.save("Auto Exit");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Unable to exit save.");
+                } finally {
+                    //exit game
+                    System.exit(0);
+                }
             }
         } else if (gameList.isVisible()) {
             int index = gameList.getIndex();
