@@ -53,16 +53,18 @@ import jmeplanet.Planet;
 public class AstralCamera {
 
     //engine resources
-    private final Camera appCam;
+    private final Camera farCam;
+    private final Camera nearCam;
     protected FilterPostProcessor chaseFilter;
     protected FogFilter chaseFog;
     protected BloomFilter chaseBloom;
-    protected ViewPort chaseViewPort;
+    protected ViewPort farViewPort;
+    protected ViewPort nearViewPort;
     protected boolean shadowsEnabled = true;
     protected DirectionalLightShadowRenderer dlsr;
     private Celestial target;
-    private ArrayList<TargetPlacement> cachedTargetPlacements;
-    private RenderManager renderManager;
+    private final ArrayList<TargetPlacement> cachedTargetPlacements;
+    private final RenderManager renderManager;
     public static float MAX_DISTANCE = 50f;
     public static float MIN_DISTANCE = .1f;
 
@@ -75,15 +77,19 @@ public class AstralCamera {
     Mode mode = Mode.NORMAL;
 
     public AstralCamera(Application app) {
-        this.appCam = app.getCamera();
+        this.farCam = app.getCamera();
         this.renderManager = app.getRenderManager();
 
-        chaseViewPort = app.getViewPort();
+        farViewPort = app.getViewPort();
 
-        appCam.setViewPort(0f, 1f, 0f, 1f);
-        appCam.setFrustumPerspective(45f, (float) appCam.getWidth() / appCam.getHeight(), 1f, 1e7f);
+        farCam.setViewPort(0f, 1f, 0f, 1f);
+        nearCam = this.farCam.clone();
+
+        farCam.setFrustumPerspective(45f, (float) farCam.getWidth() / farCam.getHeight(), 300f, 1e7f);
+        nearCam.setFrustumPerspective(45f, (float) nearCam.getWidth() / nearCam.getHeight(), 1f, 310f);
+
         chaseFilter = new FilterPostProcessor(app.getAssetManager());
-        chaseViewPort.addProcessor(chaseFilter);
+        farViewPort.addProcessor(chaseFilter);
 
         chaseFog = new FogFilter();
         chaseFilter.addFilter(chaseFog);
@@ -106,17 +112,19 @@ public class AstralCamera {
             } else if (mode == Mode.NORMAL) {
                 Quaternion rotation = target.getPhysicsRotation();
                 Vector3f lookAtUpVector = rotation.mult(Vector3f.UNIT_Y);
-                Vector3f cameraLocation = appCam.getLocation();
+                Vector3f cameraLocation = farCam.getLocation();
                 Vector3f restPointLocation = target.getCameraRestPoint();
                 float distance = cameraLocation.distance(restPointLocation);
                 //TODO: play with cam acceleration
                 if (distance > MAX_DISTANCE) {
                     distance = MAX_DISTANCE;
                 }
-                if(distance > MIN_DISTANCE){
-                    appCam.setLocation(cameraLocation.interpolate(restPointLocation, (distance / MAX_DISTANCE)/9.8f));
+                if (distance > MIN_DISTANCE) {
+                    farCam.setLocation(cameraLocation.interpolate(restPointLocation, (distance / MAX_DISTANCE) / 9.8f));
+                    nearCam.setLocation(cameraLocation.interpolate(restPointLocation, (distance / MAX_DISTANCE) / 9.8f));
                 }
-                appCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
+                farCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
+                nearCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
             } else if (mode == Mode.RTS) {
                 //TODO: Handle rotations to camera and distance to make viewport look right
             }
@@ -141,7 +149,8 @@ public class AstralCamera {
         dlsr.setShadowCompareMode(CompareMode.Hardware);
         dlsr.setShadowZExtend(100f);
         if (shadowsEnabled) {
-            chaseViewPort.addProcessor(dlsr);
+            farViewPort.addProcessor(dlsr);
+            nearViewPort.addProcessor(dlsr);
         }
     }
 
@@ -179,9 +188,11 @@ public class AstralCamera {
 
         if (dlsr != null) {
             if (enabled) {
-                chaseViewPort.addProcessor(dlsr);
+                farViewPort.addProcessor(dlsr);
+                nearViewPort.addProcessor(dlsr);
             } else {
-                chaseViewPort.removeProcessor(dlsr);
+                farViewPort.removeProcessor(dlsr);
+                nearViewPort.removeProcessor(dlsr);
             }
         }
     }
@@ -193,26 +204,27 @@ public class AstralCamera {
     }
 
     public Vector3f getScreenCoordinates(Vector3f position) {
-        return appCam.getScreenCoordinates(position);
+        return farCam.getScreenCoordinates(position);
     }
 
     public Vector3f getLocation() {
-        return appCam.getLocation();
+        return farCam.getLocation();
     }
 
     public Vector3f getDirection() {
-        return appCam.getDirection();
-    }
-
-    public Camera getCamera() {
-        return appCam;
+        return farCam.getDirection();
     }
 
     public void attachScene(Spatial scene) {
-        appCam.setViewPort(0f, 1f, 0.0f, 1f);
-        chaseViewPort = renderManager.createMainView("ChaseCam", appCam);
-        chaseViewPort.setBackgroundColor(ColorRGBA.BlackNoAlpha);
-        chaseViewPort.setClearFlags(false, true, true);
-        chaseViewPort.attachScene(scene);
+        farCam.setViewPort(0f, 1f, 0.0f, 1f);
+        farViewPort = renderManager.createMainView("FarView", farCam);
+        farViewPort.setBackgroundColor(ColorRGBA.BlackNoAlpha);
+        farViewPort.attachScene(scene);
+
+        nearCam.setViewPort(0f, 1f, 0.0f, 1f);
+        nearViewPort = renderManager.createMainView("NearView", nearCam);
+        nearViewPort.setBackgroundColor(ColorRGBA.BlackNoAlpha);
+        nearViewPort.setClearFlags(false, true, true);
+        nearViewPort.attachScene(scene);
     }
 }
