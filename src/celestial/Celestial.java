@@ -47,8 +47,10 @@ public class Celestial extends PhysicsEntity implements Serializable {
     protected SolarSystem currentSystem;
     //discovery
     private boolean discoveredByPlayer = false;
-    private Node cameraRestPoint;
-    private Node lineOfSightPoint;
+    
+    //camera
+    private transient Node cameraRestPoint;
+    private transient Node lineOfSightPoint;
 
     public Celestial(float mass, Universe universe) {
         super(mass);
