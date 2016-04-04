@@ -41,6 +41,8 @@ import com.jme3.post.filters.FogFilter;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
+import com.jme3.scene.CameraNode;
+import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.Control;
 import com.jme3.shadow.CompareMode;
@@ -59,6 +61,7 @@ public class AstralCamera implements Control {
     //engine resources
     private final Camera farCam;
     private final Camera nearCam;
+    private Node cameraNode = new Node();
     protected FilterPostProcessor chaseFilter;
     protected FogFilter chaseFog;
     protected BloomFilter chaseBloom;
@@ -83,11 +86,11 @@ public class AstralCamera implements Control {
                 Quaternion rotation = target.getPhysicsRotation();
                 Vector3f lookAtUpVector = rotation.mult(Vector3f.UNIT_Y);
                 Vector3f cameraLocation = farCam.getLocation();
-                Vector3f restPointLocation = target.getCameraRestPoint();
+                Vector3f restPointLocation = target.getCameraRestPoint().getWorldTranslation();
                 Vector3f currentVelocity = target.getLinearVelocity().clone();
 
                 //record position for camera to follow
-                TargetPlacement newPlacement = new TargetPlacement(target.getCameraRestPoint().clone(), rotation.clone());
+                TargetPlacement newPlacement = new TargetPlacement(restPointLocation.clone(), rotation.clone());
                 cachedTargetPlacements.add(newPlacement);
 
                 if (trailingCount == trailingFactor) {
@@ -114,8 +117,8 @@ public class AstralCamera implements Control {
 
                 } else {
                     //try to move to behind celestial
-                    nearCam.setLocation(target.getCameraRestPoint().interpolate(nearCam.getLocation(), .5f));
-                    farCam.setLocation(target.getCameraRestPoint().interpolate(farCam.getLocation(), .5f));
+                    nearCam.setLocation(target.getCameraRestPoint().getWorldTranslation().interpolate(nearCam.getLocation(), .5f));
+                    farCam.setLocation(target.getCameraRestPoint().getWorldTranslation().interpolate(farCam.getLocation(), .5f));
                     trailingCount++;
                 }
 
@@ -213,6 +216,8 @@ public class AstralCamera implements Control {
         //chaseFilter.addFilter(chaseBloom);
 
         cachedTargetPlacements = new ArrayList<>();
+        
+        cameraNode = new Node();
     }
 
     public Celestial getTarget() {
@@ -223,6 +228,7 @@ public class AstralCamera implements Control {
         freeCamera();
         this.target = target;
         this.target.getSpatial().addControl(this);
+        target.getCameraRestPoint().attachChild(cameraNode);
         trailingCount = 0;
         trailingFactor = TRAILING_FACTOR;
     }
@@ -287,6 +293,7 @@ public class AstralCamera implements Control {
     public void freeCamera() {
         if (target != null) {
             target.getSpatial().removeControl(this);
+            target.getCameraRestPoint().detachAllChildren();
             target = null;
         }
     }
