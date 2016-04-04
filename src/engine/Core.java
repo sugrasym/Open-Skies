@@ -1071,6 +1071,7 @@ public class Core {
             //unpack universe
             setUniverse(everything.getUniverse());
             //enter the player's system
+            playerShip = universe.getPlayerShip();
             addSystem(playerShip.getCurrentSystem());
             //reset camera
             planetAppState.getAstralCamera().setTarget(playerShip);

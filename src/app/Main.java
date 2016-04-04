@@ -29,7 +29,6 @@ import com.jme3.post.FilterPostProcessor;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.plugins.blender.BlenderModelLoader;
 import com.jme3.system.AppSettings;
-import engine.AstralCamera;
 import engine.Core;
 import jmeplanet.PlanetAppState;
 import lib.astral.AstralIO;
@@ -101,9 +100,6 @@ public class Main extends SimpleApplication {
         
         //setup post processing
         fpp = new FilterPostProcessor(assetManager);
-        /*bloom.setDownSamplingFactor(4.0f);
-         bloom.setBloomIntensity(2.0f);
-         bloom.setBlurScale(1.0f);*/
         viewPort.addProcessor(fpp);
         //remove cruft
         setDisplayFps(false);
