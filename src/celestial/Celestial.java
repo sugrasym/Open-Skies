@@ -132,14 +132,14 @@ public class Celestial extends PhysicsEntity implements Serializable {
         this.discoveredByPlayer = true;
     }
 
-    public Vector3f getCameraRestPoint() {
+    public Node getCameraRestPoint() {
         //hasn't been constructed so just stare into space
         if (cameraRestPoint == null) {
             cameraRestPoint = new Node();
             cameraRestPoint.move(0, 4, 30);
             ((Node) getSpatial()).attachChild(cameraRestPoint);
         }
-        return cameraRestPoint.getWorldTranslation();
+        return cameraRestPoint;
     }
     
     public Vector3f getLineOfSightPoint(){

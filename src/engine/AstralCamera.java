@@ -47,7 +47,6 @@ import com.jme3.shadow.CompareMode;
 import com.jme3.shadow.DirectionalLightShadowRenderer;
 import com.jme3.shadow.EdgeFilteringMode;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import jmeplanet.Planet;
 
@@ -86,7 +85,7 @@ public class AstralCamera implements Control {
                 Vector3f currentVelocity = target.getLinearVelocity().clone();
 
                 //record position for camera to follow
-                TargetPlacement newPlacement = new TargetPlacement(target.getCameraRestPoint().clone(), rotation.clone());
+                TargetPlacement newPlacement = new TargetPlacement(target.getCameraRestPoint().getWorldTranslation().clone(), rotation.clone());
                 cachedTargetPlacements.add(newPlacement);
                 trailingCount++;
 
@@ -208,7 +207,7 @@ public class AstralCamera implements Control {
         chaseBloom.setExposureCutOff(0.1f);
         chaseBloom.setBloomIntensity(1.45f);
         //chaseFilter.addFilter(chaseBloom);
-
+        
         cachedTargetPlacements = new LinkedList<>();
     }
 
@@ -284,6 +283,7 @@ public class AstralCamera implements Control {
     public void freeCamera() {
         if (target != null) {
             target.getSpatial().removeControl(this);
+            target.getCameraRestPoint().detachAllChildren();
             target = null;
         }
     }
