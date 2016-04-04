@@ -67,14 +67,12 @@ public class AstralCamera implements Control {
     protected boolean shadowsEnabled = true;
     protected DirectionalLightShadowRenderer dlsr;
     private Celestial target;
-    private float cameraSpeed = 0f;
     private final ArrayList<TargetPlacement> cachedTargetPlacements;
     private final RenderManager renderManager;
-    public static final float MAX_DISTANCE = 10f;
-    public static final float MIN_DISTANCE = .1f;
-    public static final float REST_SNAP_POINT = 1f;
-    public static final float CAMERA_ACCELERATION = .001f;
-    public static final float MAX_CAMERA_SPEED = 50f;
+    private int trailingCount = 0;
+    private int trailingFactor = 0;
+    private Vector3f lastTargetVelocity = new Vector3f();
+    public static int TRAILING_FACTOR = 10;
 
     @Override
     public void update(float f) {
@@ -86,29 +84,42 @@ public class AstralCamera implements Control {
                 Vector3f lookAtUpVector = rotation.mult(Vector3f.UNIT_Y);
                 Vector3f cameraLocation = farCam.getLocation();
                 Vector3f restPointLocation = target.getCameraRestPoint();
+                Vector3f currentVelocity = target.getLinearVelocity().clone();
 
-                //move towards center behind
-                float xShift = 0;
-                float yShift = 0;
-                float zShift = 0;
-                float xDiff = cameraLocation.x - restPointLocation.x;
-                float yDiff = cameraLocation.y - restPointLocation.y;
-                float zDiff = cameraLocation.z - restPointLocation.z;
+                //record position for camera to follow
+                TargetPlacement newPlacement = new TargetPlacement(target.getCameraRestPoint().clone(), rotation.clone());
+                cachedTargetPlacements.add(newPlacement);
 
-                if (Math.abs(xDiff) > 0) {
-                    xShift = getShiftAmount(xDiff);
-                }
-                if (Math.abs(yDiff) > 0) {
-                    yShift = getShiftAmount(yDiff);
-                }
-                if (Math.abs(zDiff) > 0) {
-                    zShift = getShiftAmount(zDiff);
-                }
-                cameraLocation.x += xShift;
-                cameraLocation.y += yShift;
-                cameraLocation.z += zShift;
-                nearCam.setLocation(cameraLocation);
+                if (trailingCount == trailingFactor) {
+                    //check if we are no longer accelerating
+                    if (lastTargetVelocity.subtract(currentVelocity).length() == 0) {
+                        if (trailingFactor > 1) {
+                            cachedTargetPlacements.remove(0);
+                            trailingFactor--;
+                            trailingCount--;
+                        }
+                    } else {
+                        //increase the "rope"
+                        if(trailingFactor < TRAILING_FACTOR) trailingFactor++;
+                    }
 
+                    //we've moved enough to matter
+                    //get the oldest placement in buffer
+                    TargetPlacement placementToLookAt = cachedTargetPlacements.remove(0);
+
+                    trailingCount = cachedTargetPlacements.size();
+                    nearCam.setLocation(nearCam.getLocation().interpolate(placementToLookAt.location, f));
+                    farCam.setLocation(farCam.getLocation().interpolate(placementToLookAt.location, f));
+                    lookAtUpVector = rotation.mult(Vector3f.UNIT_Y);
+
+                } else {
+                    //try to move to behind celestial
+                    nearCam.setLocation(target.getCameraRestPoint().interpolate(nearCam.getLocation(), .5f));
+                    farCam.setLocation(target.getCameraRestPoint().interpolate(farCam.getLocation(), .5f));
+                    trailingCount++;
+                }
+
+                lastTargetVelocity = currentVelocity;
                 farCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
                 nearCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
             } else if (mode == Mode.RTS) {
@@ -212,6 +223,8 @@ public class AstralCamera implements Control {
         freeCamera();
         this.target = target;
         this.target.getSpatial().addControl(this);
+        trailingCount = 0;
+        trailingFactor = TRAILING_FACTOR;
     }
 
     public void addLight(DirectionalLight light, AssetManager assetManager) {
