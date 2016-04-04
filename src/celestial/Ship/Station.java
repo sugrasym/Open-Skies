@@ -76,10 +76,10 @@ public class Station extends Ship {
     protected void loadSpatial(AssetManager assets, String name) {
         //load model
         try {
-            spatial = assets.loadModel("Models/Stations/" + _class + "/Model.blend");
+            setSpatial(assets.loadModel("Models/Stations/" + _class + "/Model.blend"));
         } catch (Exception e) {
             System.out.println("Error: Model for station " + _class + " not found! Using placeholder.");
-            spatial = assets.loadModel("Models/Stations/UnknownStation/Model.blend");
+            setSpatial(assets.loadModel("Models/Stations/UnknownStation/Model.blend"));
         }
     }
 
@@ -90,16 +90,16 @@ public class Station extends Ship {
         mat.setTexture("DiffuseMap",
                 assets.loadTexture("Models/Stations/" + _class + "/tex.png"));
         //setup texture
-        spatial.setShadowMode(RenderQueue.ShadowMode.CastAndReceive);
-        spatial.setMaterial(mat);
+        getSpatial().setShadowMode(RenderQueue.ShadowMode.CastAndReceive);
+        getSpatial().setMaterial(mat);
         //store
-        center.attachChild(spatial);
+        center.attachChild(getSpatial());
     }
 
     @Override
     protected void constructPhysics() {
         //setup physics
-        CollisionShape meshShape = CollisionShapeFactory.createMeshShape(spatial);
+        CollisionShape meshShape = CollisionShapeFactory.createMeshShape(getSpatial());
         physics = new RigidBodyControl(meshShape, getMass());
         center.addControl(physics);
         physics.setSleepingThresholds(0, 0);

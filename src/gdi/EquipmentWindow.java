@@ -238,7 +238,7 @@ public class EquipmentWindow extends AstralWindow {
 
         @Override
         public void render(Graphics f) {
-            BufferedImage frame = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+            BufferedImage frame = Utility.CreateCompatibleImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
             if (ship != null) {
                 //get graphics
                 Graphics2D gfx = (Graphics2D) frame.getGraphics();

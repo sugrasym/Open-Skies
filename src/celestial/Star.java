@@ -64,7 +64,7 @@ public class Star extends Planet {
     public void construct(AssetManager assets) {
         //create geometry
         Sphere objectSphere = new Sphere(64, 64, radius);
-        spatial = new Geometry("StarSphere", objectSphere);
+        setSpatial(new Geometry("StarSphere", objectSphere));
         //retrieve texture
         mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
         //setup color
@@ -74,7 +74,7 @@ public class Star extends Planet {
         float b = Float.parseFloat(arr[2]);
         ColorRGBA col = new ColorRGBA(r, g, b, 1f);
         mat.setColor("Color", col);
-        spatial.setMaterial(mat);
+        getSpatial().setMaterial(mat);
         //initializes the physics as a sphere
         SphereCollisionShape sphereShape = new SphereCollisionShape(radius);
         //setup dynamic physics
@@ -82,14 +82,14 @@ public class Star extends Planet {
         //setup particle
         setupCoreParticle(assets, col);
         //add physics to mesh
-        spatial.addControl(physics);
+        getSpatial().addControl(physics);
         //setup light
         light = new PointLight();
         light.setRadius(Float.MAX_VALUE);
         light.setColor(col);
         //store physics name control
         nameControl.setParent(this);
-        spatial.addControl(nameControl);
+        getSpatial().addControl(nameControl);
         //death zone
         setAtmosphereScaler(0.1f);
     }
@@ -129,7 +129,7 @@ public class Star extends Planet {
     @Override
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         //node.attachChild(spatial);
-        physics.getPhysicsSpace().add(spatial);
+        physics.getPhysicsSpace().add(getSpatial());
         node.addLight(light);
         node.attachChild(emitter);
     }
@@ -137,7 +137,7 @@ public class Star extends Planet {
     @Override
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         //node.detachChild(spatial);
-        physics.getPhysicsSpace().remove(spatial);
+        physics.getPhysicsSpace().remove(getSpatial());
         node.removeLight(light);
         node.detachChild(emitter);
     }

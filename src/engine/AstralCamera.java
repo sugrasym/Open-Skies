@@ -29,6 +29,8 @@ package engine;
 import celestial.Celestial;
 import com.jme3.app.Application;
 import com.jme3.asset.AssetManager;
+import com.jme3.export.JmeExporter;
+import com.jme3.export.JmeImporter;
 import com.jme3.light.DirectionalLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Quaternion;
@@ -40,9 +42,11 @@ import com.jme3.renderer.Camera;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.control.Control;
 import com.jme3.shadow.CompareMode;
 import com.jme3.shadow.DirectionalLightShadowRenderer;
 import com.jme3.shadow.EdgeFilteringMode;
+import java.io.IOException;
 import java.util.ArrayList;
 import jmeplanet.Planet;
 
@@ -50,7 +54,7 @@ import jmeplanet.Planet;
  *
  * @author nwiehoff, Geoff Hibbert
  */
-public class AstralCamera {
+public class AstralCamera implements Control {
 
     //engine resources
     private final Camera farCam;
@@ -63,10 +67,96 @@ public class AstralCamera {
     protected boolean shadowsEnabled = true;
     protected DirectionalLightShadowRenderer dlsr;
     private Celestial target;
+    private float cameraSpeed = 0f;
     private final ArrayList<TargetPlacement> cachedTargetPlacements;
     private final RenderManager renderManager;
-    public static float MAX_DISTANCE = 50f;
-    public static float MIN_DISTANCE = .1f;
+    public static final float MAX_DISTANCE = 10f;
+    public static final float MIN_DISTANCE = .1f;
+    public static final float REST_SNAP_POINT = 1f;
+    public static final float CAMERA_ACCELERATION = .001f;
+    public static final float MAX_CAMERA_SPEED = 50f;
+
+    @Override
+    public void update(float f) {
+        if (target != null) {
+            if (mode == Mode.COCKPIT) {
+                //TODO: Handle using a different cam for cockpit
+            } else if (mode == Mode.NORMAL) {
+                Quaternion rotation = target.getPhysicsRotation();
+                Vector3f lookAtUpVector = rotation.mult(Vector3f.UNIT_Y);
+                Vector3f cameraLocation = farCam.getLocation();
+                Vector3f restPointLocation = target.getCameraRestPoint();
+                float distance = cameraLocation.distance(restPointLocation);
+
+                //always be at least as close as the max distance
+                if (distance >= MAX_DISTANCE) {
+                    farCam.setLocation(cameraLocation.interpolate(restPointLocation, 1f - (MAX_DISTANCE / distance)));
+                    nearCam.setLocation(cameraLocation.interpolate(restPointLocation, 1f - (MAX_DISTANCE / distance)));
+
+                    distance = MAX_DISTANCE;
+                }
+
+                if (distance <= MIN_DISTANCE) {
+                    farCam.setLocation(cameraLocation.interpolate(restPointLocation, 1f - (MIN_DISTANCE / distance)));
+                    nearCam.setLocation(cameraLocation.interpolate(restPointLocation, 1f - (MIN_DISTANCE / distance)));
+
+                    distance = MIN_DISTANCE; //always move towards center behind
+
+                } else if (distance > MIN_DISTANCE) {
+                    farCam.setLocation(cameraLocation.interpolate(restPointLocation, .2f));
+                    nearCam.setLocation(cameraLocation.interpolate(restPointLocation, .2f));
+                } else {
+                    if (cameraLocation.x > restPointLocation.x) {
+                        cameraLocation.x -= .1f * f;
+                    }
+                    if (cameraLocation.x < restPointLocation.x) {
+                        cameraLocation.x += .1f * f;
+                    }
+                    if (cameraLocation.y > restPointLocation.y) {
+                        cameraLocation.y -= .1f * f;
+                    }
+                    if (cameraLocation.y < restPointLocation.y) {
+                        cameraLocation.y += .1f * f;
+                    }
+                    if (cameraLocation.z > restPointLocation.z) {
+                        cameraLocation.z -= .1f * f;
+                    }
+                    if (cameraLocation.z < restPointLocation.z) {
+                        cameraLocation.z += .1f * f;
+                    }
+                }
+                farCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
+                nearCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
+            } else if (mode == Mode.RTS) {
+                //TODO: Handle rotations to camera and distance to make viewport look right
+            }
+        }
+    }
+
+    @Override
+    public Control cloneForSpatial(Spatial sptl) {
+        return this;
+    }
+
+    @Override
+    public void setSpatial(Spatial sptl) {
+        //
+    }
+
+    @Override
+    public void render(RenderManager rm, ViewPort vp) {
+        //
+    }
+
+    @Override
+    public void write(JmeExporter je) throws IOException {
+        //
+    }
+
+    @Override
+    public void read(JmeImporter ji) throws IOException {
+        //
+    }
 
     enum Mode {
 
@@ -105,32 +195,6 @@ public class AstralCamera {
         cachedTargetPlacements = new ArrayList<>();
     }
 
-    public void periodicUpdate(float tpf) {
-        if (target != null) {
-            if (mode == Mode.COCKPIT) {
-                //TODO: Handle using a different cam for cockpit
-            } else if (mode == Mode.NORMAL) {
-                Quaternion rotation = target.getPhysicsRotation();
-                Vector3f lookAtUpVector = rotation.mult(Vector3f.UNIT_Y);
-                Vector3f cameraLocation = farCam.getLocation();
-                Vector3f restPointLocation = target.getCameraRestPoint();
-                float distance = cameraLocation.distance(restPointLocation);
-                //TODO: play with cam acceleration
-                if (distance > MAX_DISTANCE) {
-                    distance = MAX_DISTANCE;
-                }
-                if (distance > MIN_DISTANCE) {
-                    farCam.setLocation(cameraLocation.interpolate(restPointLocation, (distance / MAX_DISTANCE) / 9.8f));
-                    nearCam.setLocation(cameraLocation.interpolate(restPointLocation, (distance / MAX_DISTANCE) / 9.8f));
-                }
-                farCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
-                nearCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
-            } else if (mode == Mode.RTS) {
-                //TODO: Handle rotations to camera and distance to make viewport look right
-            }
-        }
-    }
-
     public Celestial getTarget() {
         return target;
     }
@@ -138,6 +202,7 @@ public class AstralCamera {
     public void setTarget(Celestial target) {
         freeCamera();
         this.target = target;
+        this.target.getSpatial().addControl(this);
     }
 
     public void addLight(DirectionalLight light, AssetManager assetManager) {
@@ -199,6 +264,7 @@ public class AstralCamera {
 
     public void freeCamera() {
         if (target != null) {
+            target.getSpatial().removeControl(this);
             target = null;
         }
     }

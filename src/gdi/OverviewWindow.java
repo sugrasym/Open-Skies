@@ -101,7 +101,7 @@ public class OverviewWindow extends AstralWindow {
 
         @Override
         public void render(Graphics f) {
-            BufferedImage frame = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+            BufferedImage frame = Utility.CreateCompatibleImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
             if (sensorShip != null) {
                 try {
                     //update sensor range display

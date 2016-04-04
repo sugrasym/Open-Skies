@@ -135,7 +135,7 @@ public class Projectile extends Celestial {
         emitter.setEndColor(endColor);
         emitter.emitAllParticles();
         //store as spatial
-        spatial = emitter;
+        setSpatial(emitter);
     }
 
     private void constructPhysics() {
@@ -153,8 +153,8 @@ public class Projectile extends Celestial {
         //store name
         nameControl.setParent(this);
         //add physics to mesh
-        spatial.addControl(physics);
-        spatial.addControl(nameControl);
+        getSpatial().addControl(physics);
+        getSpatial().addControl(nameControl);
     }
 
     /*

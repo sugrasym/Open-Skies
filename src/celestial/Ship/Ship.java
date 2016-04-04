@@ -330,7 +330,7 @@ public class Ship extends Celestial {
 
     @Override
     public void deconstruct() {
-        spatial = null;
+        setSpatial(null);
         mat = null;
         physics = null;
         killSounds();
@@ -339,16 +339,16 @@ public class Ship extends Celestial {
     protected void loadSpatial(AssetManager assets, String name) {
         //load model
         try {
-            spatial = assets.loadModel("Models/Ships/" + _class + "/Model.blend");
+            setSpatial(assets.loadModel("Models/Ships/" + _class + "/Model.blend"));
         } catch (Exception e) {
             System.out.println("Error: Model for ship " + _class + " not found! Using placeholder.");
-            spatial = assets.loadModel("Models/Ships/UnknownShip/Model.blend");
+            setSpatial(assets.loadModel("Models/Ships/UnknownShip/Model.blend"));
         }
     }
 
     protected void constructPhysics() {
         //setup physics
-        CollisionShape hullShape = CollisionShapeFactory.createDynamicMeshShape(spatial);
+        CollisionShape hullShape = CollisionShapeFactory.createDynamicMeshShape(getSpatial());
         physics = new RigidBodyControl(hullShape, getMass());
         center.addControl(physics);
         physics.setSleepingThresholds(0, 0);
@@ -365,10 +365,10 @@ public class Ship extends Celestial {
         mat.setTexture("DiffuseMap",
                 assets.loadTexture("Models/Ships/" + _class + "/tex.png"));
         //setup texture
-        spatial.setShadowMode(RenderQueue.ShadowMode.CastAndReceive);
-        spatial.setMaterial(mat);
+        getSpatial().setShadowMode(RenderQueue.ShadowMode.CastAndReceive);
+        getSpatial().setMaterial(mat);
         //store
-        center.attachChild(spatial);
+        center.attachChild(getSpatial());
     }
 
     protected void constructHardpoints(AssetManager assets) {
@@ -2330,13 +2330,6 @@ public class Ship extends Celestial {
         setRotation(this.physics.getPhysicsRotation().clone());
         node.detachChild(center);
         physics.getPhysicsSpace().remove(center);
-    }
-
-    /*
-     * For the camera
-     */
-    public Spatial getSpatial() {
-        return spatial;
     }
 
     /*

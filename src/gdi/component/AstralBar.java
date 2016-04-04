@@ -30,6 +30,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import gdi.Utility;
 
 /**
  *
@@ -49,7 +50,7 @@ public class AstralBar extends AstralComponent {
     public void render(Graphics f) {
         if (visible) {
             if (buffer == null) {
-                buffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+                buffer = Utility.CreateCompatibleImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
             }
             Graphics2D s = (Graphics2D)buffer.getGraphics();
             //draw the background

@@ -27,6 +27,7 @@
 package gdi.component;
 
 import com.jme3.math.Vector3f;
+import gdi.Utility;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -74,7 +75,7 @@ public class AstralList extends AstralComponent {
         if (visible) {
             try {
                 if (buffer == null) {
-                    buffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+                    buffer = Utility.CreateCompatibleImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
                 }
                 Graphics2D s = (Graphics2D) buffer.getGraphics();
                 //draw the background

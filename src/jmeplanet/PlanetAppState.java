@@ -84,15 +84,15 @@ public class PlanetAppState extends AbstractAppState implements Control {
     public void update(float tpf) {
 
         if (astralCamera != null) {
-            astralCamera.periodicUpdate(tpf);
+            if (sun != null) {
+                astralCamera.addLight(sun, app.getAssetManager());
+            }
         } else {
             //setup astral camera
             astralCamera = new AstralCamera(this.app);
             astralCamera.attachScene(scene);
-            if (sun != null) {
-                astralCamera.addLight(sun, app.getAssetManager());
-            }
         }
+        
         if (planets.size() > 0) {
             this.nearestPlanet = findNearestPlanet();
 

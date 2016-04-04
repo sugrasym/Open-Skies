@@ -34,6 +34,7 @@ import com.jme3.scene.Node;
 import com.jme3.scene.shape.Quad;
 import com.jme3.texture.Texture2D;
 import com.jme3.texture.plugins.AWTLoader;
+import gdi.Utility;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -76,9 +77,9 @@ public class AstralWindow extends AstralComponent {
         myTex = new Texture2D();
         awtLoader = new AWTLoader();
         if (alpha) {
-            buffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+            buffer = Utility.CreateCompatibleImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
         } else {
-            buffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+            buffer = Utility.CreateCompatibleImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
         }
         myTex.setImage(awtLoader.load(buffer, false));
         mat_background.setTexture("ColorMap", myTex);

@@ -106,8 +106,8 @@ public class StarMapWindow extends AstralWindow {
         public void render(Graphics f) {
             modeLabel.setText("ZOOM: " + zoom + "x");
             rangeLabel.setText("SCROLL: (" + offset.x + " , " + offset.getY() + ")");
-            BufferedImage frame = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
-            BufferedImage top = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+            BufferedImage frame = Utility.CreateCompatibleImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+            BufferedImage top = Utility.CreateCompatibleImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
             //get graphics
             Graphics2D gfx = (Graphics2D) frame.getGraphics();
             Graphics2D tfx = (Graphics2D) top.getGraphics();

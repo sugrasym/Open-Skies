@@ -68,11 +68,11 @@ public class Jumphole extends Planet {
     public void construct(AssetManager assets) {
         //create geometry
         Sphere objectSphere = new Sphere(64, 64, radius);
-        spatial = new Geometry("JumpholeSphere", objectSphere);
+        setSpatial(new Geometry("JumpholeSphere", objectSphere));
         //retrieve texture
         mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setColor("Color", START_COLOR);
-        spatial.setMaterial(mat);
+        getSpatial().setMaterial(mat);
         //initializes the physics as a sphere
         SphereCollisionShape sphereShape = new SphereCollisionShape(radius);
         //setup dynamic physics
@@ -80,9 +80,9 @@ public class Jumphole extends Planet {
         //setup particle
         setupCoreParticle(assets);
         //add physics to mesh
-        spatial.addControl(physics);
+        getSpatial().addControl(physics);
         nameControl.setParent(this);
-        spatial.addControl(nameControl);
+        getSpatial().addControl(nameControl);
     }
 
     private void setupCoreParticle(AssetManager assets) {
@@ -117,14 +117,14 @@ public class Jumphole extends Planet {
     @Override
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         //node.attachChild(spatial);
-        physics.getPhysicsSpace().add(spatial);
+        physics.getPhysicsSpace().add(getSpatial());
         node.attachChild(emitter);
     }
 
     @Override
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
         //node.detachChild(spatial);
-        physics.getPhysicsSpace().remove(spatial);
+        physics.getPhysicsSpace().remove(getSpatial());
         node.detachChild(emitter);
     }
 

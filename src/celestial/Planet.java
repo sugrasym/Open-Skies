@@ -86,7 +86,7 @@ public class Planet extends Celestial {
     @Override
     public void construct(AssetManager assets) {
         generateProceduralPlanet(assets);
-        if (spatial != null) {
+        if (getSpatial() != null) {
             CollisionShape hullShape;
             //initializes the physics as a sphere
             String group = type.getValue("group");
@@ -99,14 +99,14 @@ public class Planet extends Celestial {
             //setup dynamic physics
             physics = new RigidBodyControl(hullShape, getMass());
             //add physics to mesh
-            spatial.addControl(physics);
+            getSpatial().addControl(physics);
             if (atmosphereShell != null) {
                 atmospherePhysics = new RigidBodyControl(hullShape, getMass());
                 atmosphereShell.addControl(atmospherePhysics);
             }
             //store physics name control
             nameControl.setParent(this);
-            spatial.addControl(nameControl);
+            getSpatial().addControl(nameControl);
         }
     }
 
@@ -114,7 +114,7 @@ public class Planet extends Celestial {
     public void deconstruct() {
         setTex(null);
         mat = null;
-        spatial = null;
+        setSpatial(null);
         physics = null;
         atmosphereShell = null;
         atmospherePhysics = null;
@@ -137,7 +137,7 @@ public class Planet extends Celestial {
                         FractalDataSource planetDataSource = new FractalDataSource(seed);
                         planetDataSource.setHeightScale(heightScale * radius);
                         fractalPlanet = Utility.createEarthLikePlanet(assets, radius, null, planetDataSource);
-                        spatial = fractalPlanet;
+                        setSpatial(fractalPlanet);
                         setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
                         break;
                     }
@@ -145,7 +145,7 @@ public class Planet extends Celestial {
                         FractalDataSource moonDataSource = new FractalDataSource(seed);
                         moonDataSource.setHeightScale(heightScale * radius);
                         fractalPlanet = Utility.createMoonLikePlanet(assets, radius, moonDataSource);
-                        spatial = fractalPlanet;
+                        setSpatial(fractalPlanet);
                         setAtmosphereScaler(0);
                         break;
                     case "Ice": {
@@ -154,7 +154,7 @@ public class Planet extends Celestial {
                         planetDataSource.setHeightScale(heightScale * radius);
                         fractalPlanet = Utility.createIcePlanet(assets, radius, null, planetDataSource, seed);
                         setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
-                        spatial = fractalPlanet;
+                        setSpatial(fractalPlanet);
                         break;
                     }
                     case "Mars": {
@@ -165,7 +165,7 @@ public class Planet extends Celestial {
                         planetDataSource.setHeightScale(heightScale * radius);
                         fractalPlanet = Utility.createMarsLikePlanet(assets, radius, null, planetDataSource, hasWater, seed);
                         setAtmosphereScaler(Utility.ATMOSPHERE_MULTIPLIER);
-                        spatial = fractalPlanet;
+                        setSpatial(fractalPlanet);
                         break;
                     }
                 }
@@ -186,7 +186,7 @@ public class Planet extends Celestial {
                     //create geometry
                     Sphere objectSphere = new Sphere(256, 256, radius);
                     objectSphere.setTextureMode(Sphere.TextureMode.Projected);
-                    spatial = new Geometry("Planet", objectSphere);
+                    setSpatial(new Geometry("Planet", objectSphere));
                     //retrieve texture
                     mat = new Material(assets, "Common/MatDefs/Light/Lighting.j3md");
                     mat.setFloat("Shininess", 0.32f);
@@ -242,7 +242,7 @@ public class Planet extends Celestial {
                     Image load = new AWTLoader().load(buff, true);
                     setTex(new Texture2D(load));
                     mat.setTexture("DiffuseMap", getTex());
-                    spatial.setMaterial(mat);
+                    getSpatial().setMaterial(mat);
                 }   //rotate
                 setRotation(getRotation().fromAngles(FastMath.PI / 2, 0, 0));
                 //add an atmosphere
@@ -268,11 +268,11 @@ public class Planet extends Celestial {
     @Override
     protected void alive() {
         if (physics != null) {
-            if (spatial != null) {
+            if (getSpatial() != null) {
                 //planets do not move
                 physics.setPhysicsLocation(getLocation());
                 physics.setPhysicsRotation(getRotation());
-                spatial.setLocalRotation(getRotation());
+                getSpatial().setLocalRotation(getRotation());
                 if (atmosphereShell != null) {
                     atmospherePhysics.setPhysicsLocation(getLocation());
                     atmospherePhysics.setPhysicsRotation(getRotation());
@@ -284,9 +284,9 @@ public class Planet extends Celestial {
 
     @Override
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
-        if (spatial != null) {
-            node.attachChild(spatial);
-            physics.getPhysicsSpace().add(spatial);
+        if (getSpatial() != null) {
+            node.attachChild(getSpatial());
+            physics.getPhysicsSpace().add(getSpatial());
             if (fractalPlanet != null) {
                 planetAppState.addPlanet(fractalPlanet);
             }
@@ -300,8 +300,8 @@ public class Planet extends Celestial {
 
     @Override
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState) {
-        node.detachChild(spatial);
-        physics.getPhysicsSpace().remove(spatial);
+        node.detachChild(getSpatial());
+        physics.getPhysicsSpace().remove(getSpatial());
         if (fractalPlanet != null) {
             planetAppState.removePlanet(fractalPlanet);
         }

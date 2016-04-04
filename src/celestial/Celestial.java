@@ -135,7 +135,7 @@ public class Celestial extends PhysicsEntity implements Serializable {
         if (cameraRestPoint == null) {
             cameraRestPoint = new Node();
             cameraRestPoint.move(0, 4, 15);
-            ((Node) spatial).attachChild(cameraRestPoint);
+            ((Node) getSpatial()).attachChild(cameraRestPoint);
         }
         return cameraRestPoint.getWorldTranslation();
     }
@@ -145,7 +145,7 @@ public class Celestial extends PhysicsEntity implements Serializable {
         if (lineOfSightPoint == null) {
             lineOfSightPoint = new Node();
             lineOfSightPoint.move(0, 0, -50);
-            ((Node) spatial).attachChild(lineOfSightPoint);
+            ((Node) getSpatial()).attachChild(lineOfSightPoint);
         }
         return lineOfSightPoint.getWorldTranslation();
     }

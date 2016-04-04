@@ -56,7 +56,7 @@ public class PhysicsEntity implements Entity, Serializable {
     private String name = "";
     //texture and geometry crap
     protected transient Material mat;
-    protected transient Spatial spatial;
+    private transient Spatial spatial;
     
     //entity crap
     private State state = State.ALIVE;
@@ -94,16 +94,16 @@ public class PhysicsEntity implements Entity, Serializable {
     public void construct(AssetManager assets) {
         //create the mesh and material
         Box b = new Box(Vector3f.ZERO, 1, 1, 1);
-        spatial = new Geometry("Box", b);
+        setSpatial(new Geometry("Box", b));
         mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setColor("Color", ColorRGBA.Blue);
-        spatial.setMaterial(mat);
+        getSpatial().setMaterial(mat);
         //initializes the physics as a sphere
         SphereCollisionShape sphereShape = new SphereCollisionShape(1.0f);
         //setup dynamic physics
         physics = new RigidBodyControl(sphereShape, mass);
         //add physics to mesh
-        spatial.addControl(physics);
+        getSpatial().addControl(physics);
     }
 
     @Override
@@ -123,8 +123,8 @@ public class PhysicsEntity implements Entity, Serializable {
         this.physics.setLinearVelocity(getVelocity().clone());
         this.physics.setPhysicsLocation(location.clone());
         this.physics.setPhysicsRotation(rotation.clone());
-        node.attachChild(spatial);
-        physics.getPhysicsSpace().add(spatial);
+        node.attachChild(getSpatial());
+        physics.getPhysicsSpace().add(getSpatial());
     }
 
     @Override
@@ -132,8 +132,8 @@ public class PhysicsEntity implements Entity, Serializable {
         setVelocity(this.physics.getLinearVelocity().clone());
         location = this.physics.getPhysicsLocation().clone();
         rotation = this.physics.getPhysicsRotation().clone();
-        node.detachChild(spatial);
-        physics.getPhysicsSpace().remove(spatial);
+        node.detachChild(getSpatial());
+        physics.getPhysicsSpace().remove(getSpatial());
     }
 
     /*
@@ -247,6 +247,20 @@ public class PhysicsEntity implements Entity, Serializable {
 
     public void setVelocity(Vector3f velocity) {
         this.velocity = velocity;
+    }
+
+    /**
+     * @return the spatial
+     */
+    public Spatial getSpatial() {
+        return spatial;
+    }
+
+    /**
+     * @param spatial the spatial to set
+     */
+    public void setSpatial(Spatial spatial) {
+        this.spatial = spatial;
     }
 
     /*
