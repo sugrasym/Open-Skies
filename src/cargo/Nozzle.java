@@ -30,6 +30,8 @@ import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import com.jme3.effect.ParticleEmitter;
 import com.jme3.effect.ParticleMesh;
+import com.jme3.light.Light;
+import com.jme3.light.PointLight;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
@@ -43,13 +45,15 @@ import com.jme3.scene.shape.Box;
 public class Nozzle extends Hardpoint {
 
     transient ParticleEmitter emitter;
+    transient PointLight light;
     private final String rawStart;
     private final String rawEnd;
 
     public Nozzle(Ship host, String type, int size, Vector3f loc, String rawStart, String rawEnd) {
-        super(host, type, size, loc, Vector3f.UNIT_Z,0);
+        super(host, type, size, loc, Vector3f.UNIT_Z, 0);
         this.rawEnd = rawEnd;
         this.rawStart = rawStart;
+        light = new PointLight();
     }
 
     @Override
@@ -116,6 +120,10 @@ public class Nozzle extends Hardpoint {
             float a = Float.parseFloat(arr[3]);
             ColorRGBA col = new ColorRGBA(r, g, b, a);
             emitter.setStartColor(col);
+
+            light.setColor(col);
+            light.setRadius(4f);
+            getNode().addLight(light);
         }
         //setup end color
         {
@@ -127,6 +135,7 @@ public class Nozzle extends Hardpoint {
             ColorRGBA col = new ColorRGBA(r, g, b, a);
             emitter.setEndColor(col);
         }
+
     }
 
     @Override
