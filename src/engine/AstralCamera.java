@@ -86,32 +86,29 @@ public class AstralCamera implements Control {
                 Vector3f lookAtUpVector = rotation.mult(Vector3f.UNIT_Y);
                 Vector3f cameraLocation = farCam.getLocation();
                 Vector3f restPointLocation = target.getCameraRestPoint();
-                float distance = cameraLocation.distance(restPointLocation);
 
-                //always be at least as close as the max distance
-                if (distance >= MAX_DISTANCE) {
-                    farCam.setLocation(cameraLocation.interpolate(restPointLocation, 1f - (MAX_DISTANCE / distance)));
-                    nearCam.setLocation(cameraLocation.interpolate(restPointLocation, 1f - (MAX_DISTANCE / distance)));
+                //move towards center behind
+                float xShift = 0;
+                float yShift = 0;
+                float zShift = 0;
+                float xDiff = cameraLocation.x - restPointLocation.x;
+                float yDiff = cameraLocation.y - restPointLocation.y;
+                float zDiff = cameraLocation.z - restPointLocation.z;
 
-                    distance = MAX_DISTANCE;
+                if (Math.abs(xDiff) > 0) {
+                    xShift = getShiftAmount(xDiff);
                 }
-
-                if (distance <= MIN_DISTANCE) {
-                    farCam.setLocation(cameraLocation.interpolate(restPointLocation, 1f - (MIN_DISTANCE / distance)));
-                    nearCam.setLocation(cameraLocation.interpolate(restPointLocation, 1f - (MIN_DISTANCE / distance)));
-
-                    distance = MIN_DISTANCE;
+                if (Math.abs(yDiff) > 0) {
+                    yShift = getShiftAmount(yDiff);
                 }
-                
-                
-                //always move towards center behind
-                if(cameraLocation.x > restPointLocation.x) cameraLocation.x-=.1f * f;
-                if(cameraLocation.x < restPointLocation.x) cameraLocation.x+=.1f * f;
-                if(cameraLocation.y > restPointLocation.y) cameraLocation.y-=.1f * f;
-                if(cameraLocation.y < restPointLocation.y) cameraLocation.y+=.1f * f;
-                if(cameraLocation.z > restPointLocation.z) cameraLocation.z-=.1f * f;
-                if(cameraLocation.z < restPointLocation.z) cameraLocation.z+=.1f * f;
-                
+                if (Math.abs(zDiff) > 0) {
+                    zShift = getShiftAmount(zDiff);
+                }
+                cameraLocation.x += xShift;
+                cameraLocation.y += yShift;
+                cameraLocation.z += zShift;
+                nearCam.setLocation(cameraLocation);
+
                 farCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
                 nearCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
             } else if (mode == Mode.RTS) {
@@ -143,6 +140,31 @@ public class AstralCamera implements Control {
     @Override
     public void read(JmeImporter ji) throws IOException {
         //
+    }
+
+    private float getShiftAmount(float inputAmount) {
+        float shift;
+        float sign = Math.signum(inputAmount) * -1;
+        float amount = Math.abs(inputAmount);
+        if (amount > 20000) {
+            shift = 10000 * sign;
+        } else if (amount > 10000) {
+            shift = 2000 * sign;
+        } else if (amount > 5000) {
+            shift = 500 * sign;
+        } else if (amount > 2000) {
+            shift = 200 * sign;
+        } else if (amount > 1000) {
+            shift = 100 * sign;
+        } else if (amount > 100) {
+            shift = 20 * sign;
+        } else if (amount > 10) {
+            shift = 5 * sign;
+        } else {
+            shift = 1 * sign;
+        }
+
+        return shift;
     }
 
     enum Mode {
