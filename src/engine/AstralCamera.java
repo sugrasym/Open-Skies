@@ -48,6 +48,7 @@ import com.jme3.shadow.DirectionalLightShadowRenderer;
 import com.jme3.shadow.EdgeFilteringMode;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import jmeplanet.Planet;
 
 /**
@@ -67,7 +68,7 @@ public class AstralCamera implements Control {
     protected boolean shadowsEnabled = true;
     protected DirectionalLightShadowRenderer dlsr;
     private Celestial target;
-    private final ArrayList<TargetPlacement> cachedTargetPlacements;
+    private final LinkedList<TargetPlacement> cachedTargetPlacements;
     private final RenderManager renderManager;
     private int trailingCount = 0;
     private int trailingFactor = 0;
@@ -80,19 +81,19 @@ public class AstralCamera implements Control {
             if (mode == Mode.COCKPIT) {
                 //TODO: Handle using a different cam for cockpit
             } else if (mode == Mode.NORMAL) {
-                Quaternion rotation = target.getPhysicsRotation();
-                Vector3f lookAtUpVector = rotation.mult(Vector3f.UNIT_Y);
-                Vector3f cameraLocation = farCam.getLocation();
-                Vector3f restPointLocation = target.getCameraRestPoint();
+                Quaternion rotation = target.getPhysicsRotation().clone();
+                Vector3f lookAtUpVector = rotation.mult(Vector3f.UNIT_Y).clone();
                 Vector3f currentVelocity = target.getLinearVelocity().clone();
 
                 //record position for camera to follow
                 TargetPlacement newPlacement = new TargetPlacement(target.getCameraRestPoint().clone(), rotation.clone());
                 cachedTargetPlacements.add(newPlacement);
+                trailingCount++;
 
-                if (trailingCount == trailingFactor) {
+                if (trailingCount >= trailingFactor) {
                     //check if we are no longer accelerating
-                    if (lastTargetVelocity.subtract(currentVelocity).length() == 0) {
+                    if ((lastTargetVelocity.subtract(currentVelocity).length()) == 0
+                            && target.getAngularVelocity().length() < 0.05) {
                         if (trailingFactor > 1) {
                             cachedTargetPlacements.remove(0);
                             trailingFactor--;
@@ -100,28 +101,24 @@ public class AstralCamera implements Control {
                         }
                     } else {
                         //increase the "rope"
-                        if(trailingFactor < TRAILING_FACTOR) trailingFactor++;
+                        if (trailingFactor < TRAILING_FACTOR) {
+                            trailingFactor++;
+                        }
                     }
 
                     //we've moved enough to matter
                     //get the oldest placement in buffer
                     TargetPlacement placementToLookAt = cachedTargetPlacements.remove(0);
+                    trailingCount--;
 
-                    trailingCount = cachedTargetPlacements.size();
-                    nearCam.setLocation(nearCam.getLocation().interpolate(placementToLookAt.location, f));
-                    farCam.setLocation(farCam.getLocation().interpolate(placementToLookAt.location, f));
+                    nearCam.setLocation(placementToLookAt.location.clone());
+                    farCam.setLocation(placementToLookAt.location.clone());
                     lookAtUpVector = rotation.mult(Vector3f.UNIT_Y);
-
-                } else {
-                    //try to move to behind celestial
-                    nearCam.setLocation(target.getCameraRestPoint().interpolate(nearCam.getLocation(), .5f));
-                    farCam.setLocation(target.getCameraRestPoint().interpolate(farCam.getLocation(), .5f));
-                    trailingCount++;
                 }
 
                 lastTargetVelocity = currentVelocity;
-                farCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
-                nearCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
+                farCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector.clone());
+                nearCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector.clone());
             } else if (mode == Mode.RTS) {
                 //TODO: Handle rotations to camera and distance to make viewport look right
             }
@@ -212,7 +209,7 @@ public class AstralCamera implements Control {
         chaseBloom.setBloomIntensity(1.45f);
         //chaseFilter.addFilter(chaseBloom);
 
-        cachedTargetPlacements = new ArrayList<>();
+        cachedTargetPlacements = new LinkedList<>();
     }
 
     public Celestial getTarget() {
