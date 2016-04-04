@@ -100,31 +100,18 @@ public class AstralCamera implements Control {
                     farCam.setLocation(cameraLocation.interpolate(restPointLocation, 1f - (MIN_DISTANCE / distance)));
                     nearCam.setLocation(cameraLocation.interpolate(restPointLocation, 1f - (MIN_DISTANCE / distance)));
 
-                    distance = MIN_DISTANCE; //always move towards center behind
-
-                } else if (distance > MIN_DISTANCE) {
-                    farCam.setLocation(cameraLocation.interpolate(restPointLocation, .2f));
-                    nearCam.setLocation(cameraLocation.interpolate(restPointLocation, .2f));
-                } else {
-                    if (cameraLocation.x > restPointLocation.x) {
-                        cameraLocation.x -= .1f * f;
-                    }
-                    if (cameraLocation.x < restPointLocation.x) {
-                        cameraLocation.x += .1f * f;
-                    }
-                    if (cameraLocation.y > restPointLocation.y) {
-                        cameraLocation.y -= .1f * f;
-                    }
-                    if (cameraLocation.y < restPointLocation.y) {
-                        cameraLocation.y += .1f * f;
-                    }
-                    if (cameraLocation.z > restPointLocation.z) {
-                        cameraLocation.z -= .1f * f;
-                    }
-                    if (cameraLocation.z < restPointLocation.z) {
-                        cameraLocation.z += .1f * f;
-                    }
+                    distance = MIN_DISTANCE;
                 }
+                
+                
+                //always move towards center behind
+                if(cameraLocation.x > restPointLocation.x) cameraLocation.x-=.1f * f;
+                if(cameraLocation.x < restPointLocation.x) cameraLocation.x+=.1f * f;
+                if(cameraLocation.y > restPointLocation.y) cameraLocation.y-=.1f * f;
+                if(cameraLocation.y < restPointLocation.y) cameraLocation.y+=.1f * f;
+                if(cameraLocation.z > restPointLocation.z) cameraLocation.z-=.1f * f;
+                if(cameraLocation.z < restPointLocation.z) cameraLocation.z+=.1f * f;
+                
                 farCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
                 nearCam.lookAt(target.getLineOfSightPoint(), lookAtUpVector);
             } else if (mode == Mode.RTS) {
