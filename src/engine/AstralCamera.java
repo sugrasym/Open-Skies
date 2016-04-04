@@ -29,13 +29,11 @@ package engine;
 import celestial.Celestial;
 import com.jme3.app.Application;
 import com.jme3.asset.AssetManager;
-import com.jme3.export.InputCapsule;
 import com.jme3.export.JmeExporter;
 import com.jme3.export.JmeImporter;
 import com.jme3.light.DirectionalLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.filters.BloomFilter;
@@ -49,7 +47,6 @@ import com.jme3.shadow.CompareMode;
 import com.jme3.shadow.DirectionalLightShadowRenderer;
 import com.jme3.shadow.EdgeFilteringMode;
 import java.io.IOException;
-import java.util.LinkedList;
 import jmeplanet.Planet;
 
 /**
@@ -59,77 +56,84 @@ import jmeplanet.Planet;
 public class AstralCamera implements Control {
 
     //engine resources
-    private final Camera farCam;
     private Camera nearCam;
+    private final Camera farCam;
+    private final RenderManager renderManager;
+    private final AssetManager AssetManager;
+    
+    //effects
     protected FilterPostProcessor chaseFilter;
     protected FogFilter chaseFog;
     protected BloomFilter chaseBloom;
+    protected DirectionalLightShadowRenderer dlsr;
+    
+    //viewports
     protected ViewPort farViewPort;
     protected ViewPort nearViewPort;
-    protected boolean shadowsEnabled = true;
-    protected DirectionalLightShadowRenderer dlsr;
+    
+    //object being tracked
     private Celestial target;
-    private LinkedList<TargetPlacement> cachedTargetPlacements;
-    private final RenderManager renderManager;
-    private int trailingCount = 0;
-    private int trailingFactor = 0;
-    private Vector3f lastTargetVelocity = new Vector3f();
-    public static int TRAILING_FACTOR = 12;
-    protected float minVerticalRotation = 0.00f;
-    protected float maxVerticalRotation = FastMath.PI / 2;
+    
+    //properties
+    protected boolean shadowsEnabled = true;
+    protected boolean enabled = true;
+    protected boolean smoothMotion = true;
+    
     protected float minDistance = 1.0f;
     protected float maxDistance = 40.0f;
+    protected float offsetDistance = 0.002f;
     protected float distance = 20;
-    protected float rotationSpeed = 1.0f;
-    protected float rotation = 0;
-    protected float trailingRotationInertia = 0.05f;
-    protected float zoomSensitivity = 2f;
-    protected float rotationSensitivity = 5f;
-    protected float chasingSensitivity = 5f;
-    protected float trailingSensitivity = 0.5f;
-    protected float vRotation = FastMath.PI / 6;
-    protected boolean smoothMotion = true;
-    protected boolean trailingEnabled = true;
-    protected float rotationLerpFactor = 0;
-    protected float trailingLerpFactor = 0;
-    protected boolean rotating = false;
-    protected boolean vRotating = false;
-    protected float targetRotation = rotation;
-    protected Vector3f initialUpVec;
-    protected float targetVRotation = vRotation;
-    protected float vRotationLerpFactor = 0;
-    protected float targetDistance = distance;
     protected float distanceLerpFactor = 0;
-    protected boolean zooming = false;
-    protected boolean trailing = false;
-    protected boolean chasing = false;
+    
+    protected boolean rotating = false;
+    protected float rotation = 0;
+    protected float rotationSpeed = 1.0f;
+    protected float rotationSensitivity = 5f;
+    protected float rotationLerpFactor = 0;
     protected boolean veryCloseRotation = true;
     protected boolean canRotate;
-    protected float offsetDistance = 0.002f;
-    protected Vector3f prevPos;
-    protected boolean targetMoves = false;
-    protected boolean enabled = true;
-    protected final Vector3f targetDir = new Vector3f();
-    protected float previousTargetRotation;
-    protected final Vector3f pos = new Vector3f();
-    protected Vector3f targetLocation = new Vector3f(0, 0, 0);
-    protected boolean dragToRotate = true;
+    
+    protected boolean trailing = false;
+    protected boolean trailingEnabled = true;
+    protected float trailingRotationInertia = 0.05f;
+    protected float trailingSensitivity = 0.5f;
+    protected float trailingLerpFactor = 0;
+    
+    protected boolean chasing = false;
+    protected float chasingSensitivity = 5f;
+    
+    protected Vector3f initialUpVec;
     protected Vector3f lookAtOffset = new Vector3f(0, 0, 0);
-    protected boolean leftClickRotate = true;
-    protected boolean rightClickRotate = true;
-    protected Vector3f temp = new Vector3f(0, 0, 0);
-    protected boolean invertYaxis = false;
-    protected boolean invertXaxis = false;
+    
+    protected boolean vRotating = false;
+    protected float vRotation = FastMath.PI / 6;
+    protected float vRotationLerpFactor = 0;
+    protected float minVRotation = 0.00f;
+    protected float maxVRotation = FastMath.PI / 2;
+    
+    protected boolean zRotating = false;
+    protected float zRotationLerpFactor;
+    protected float zRotation;
+    protected float maxZRotation;
+    protected float minZRotation;
+    
     protected boolean zoomin;
-    protected boolean hideCursorOnRotate = true;
-    private AssetManager AssetManager;
-    private float zRotationLerpFactor;
-    private float targetZRotation;
-    private float zRotation;
-    private float maxZRotation;
-    private float minZRotation;
-    private boolean zRotating = false;
-
+    protected boolean zooming = false;
+    protected float zoomSensitivity = 2f;
+    
+    protected Vector3f prevPos;
+    protected final Vector3f pos = new Vector3f();
+    protected Vector3f temp = new Vector3f(0, 0, 0);
+        
+    protected float targetVRotation = vRotation;
+    protected float targetZRotation = zRotation;
+    protected float targetRotation = rotation;
+    protected float targetDistance = distance;
+    protected boolean targetMoves = false;
+    protected final Vector3f targetDir = new Vector3f();
+    protected Vector3f targetLocation = new Vector3f(0, 0, 0);
+    protected float previousTargetRotation;
+        
     enum Mode {
 
         COCKPIT,
@@ -176,7 +180,6 @@ public class AstralCamera implements Control {
         chaseBloom.setBloomIntensity(1.45f);
         //chaseFilter.addFilter(chaseBloom);
 
-        cachedTargetPlacements = new LinkedList<>();
     }
 
     @Override
@@ -235,6 +238,15 @@ public class AstralCamera implements Control {
                             } else {
                                 targetRotation = FastMath.acos(a.dot(b));
                             }
+                            //the z unit vector
+                            Vector3f c = Vector3f.UNIT_Z;
+                            //computation of the rotation angle between the z axis and the trail
+                            if (targetDir.y > 0) {
+                                targetRotation = FastMath.TWO_PI - FastMath.acos(a.dot(c));
+                            } else {
+                                targetRotation = FastMath.acos(a.dot(c));
+                            }
+                            
                             if (targetRotation - rotation > FastMath.PI || targetRotation - rotation < -FastMath.PI) {
                                 targetRotation -= FastMath.TWO_PI;
                             }
@@ -321,9 +333,12 @@ public class AstralCamera implements Control {
                     nearCam.setLocation(pos.addLocal(lookAtOffset));
                     farCam.setLocation(pos.addLocal(lookAtOffset));
                 }
+                
+                
                 //keeping track on the previous position of the target
                 prevPos.set(targetLocation);
-
+                
+                
                 farCam.lookAt(targetLocation, initialUpVec);
                 nearCam.lookAt(targetLocation, initialUpVec);
             } else if (mode == Mode.RTS) {
@@ -388,8 +403,6 @@ public class AstralCamera implements Control {
         freeCamera();
         this.target = target;
         this.target.getSpatial().addControl(this);
-        trailingCount = 0;
-        trailingFactor = TRAILING_FACTOR;
     }
 
     public void addLight(DirectionalLight light, AssetManager assetManager) {
@@ -514,8 +527,8 @@ public class AstralCamera implements Control {
             targetDistance = minDistance;
         }
         if (veryCloseRotation) {
-            if ((targetVRotation < minVerticalRotation) && (targetDistance > (minDistance + 1.0f))) {
-                targetVRotation = minVerticalRotation;
+            if ((targetVRotation < minVRotation) && (targetDistance > (minDistance + 1.0f))) {
+                targetVRotation = minVRotation;
             }
         }
     }
@@ -528,17 +541,17 @@ public class AstralCamera implements Control {
         vRotating = true;
         float lastGoodRot = targetVRotation;
         targetVRotation += value * rotationSpeed;
-        if (targetVRotation > maxVerticalRotation) {
+        if (targetVRotation > maxVRotation) {
             targetVRotation = lastGoodRot;
         }
         if (veryCloseRotation) {
-            if ((targetVRotation < minVerticalRotation) && (targetDistance > (minDistance + 1.0f))) {
-                targetVRotation = minVerticalRotation;
+            if ((targetVRotation < minVRotation) && (targetDistance > (minDistance + 1.0f))) {
+                targetVRotation = minVRotation;
             } else if (targetVRotation < -FastMath.DEG_TO_RAD * 90) {
                 targetVRotation = lastGoodRot;
             }
         } else {
-            if ((targetVRotation < minVerticalRotation)) {
+            if ((targetVRotation < minVRotation)) {
                 targetVRotation = lastGoodRot;
             }
         }
@@ -648,7 +661,7 @@ public class AstralCamera implements Control {
      * around the target
      */
     public float getMaxVerticalRotation() {
-        return maxVerticalRotation;
+        return maxVRotation;
     }
 
     /**
@@ -658,7 +671,7 @@ public class AstralCamera implements Control {
      * @param maxVerticalRotation
      */
     public void setMaxVerticalRotation(float maxVerticalRotation) {
-        this.maxVerticalRotation = maxVerticalRotation;
+        this.maxVRotation = maxVerticalRotation;
     }
 
     /**
@@ -667,7 +680,7 @@ public class AstralCamera implements Control {
      * around the target
      */
     public float getMinVerticalRotation() {
-        return minVerticalRotation;
+        return minVRotation;
     }
 
     /**
@@ -677,7 +690,7 @@ public class AstralCamera implements Control {
      * @param minHeight
      */
     public void setMinVerticalRotation(float minHeight) {
-        this.minVerticalRotation = minHeight;
+        this.minVRotation = minHeight;
     }
 
     /**
@@ -951,13 +964,4 @@ public class AstralCamera implements Control {
     public Vector3f getUpVector() {
         return initialUpVec;
     }
-
-    public boolean isHideCursorOnRotate() {
-        return hideCursorOnRotate;
-    }
-
-    public void setHideCursorOnRotate(boolean hideCursorOnRotate) {
-        this.hideCursorOnRotate = hideCursorOnRotate;
-    }
-
 }
