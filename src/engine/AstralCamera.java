@@ -72,7 +72,7 @@ public class AstralCamera implements Control {
     private int trailingCount = 0;
     private int trailingFactor = 0;
     private Vector3f lastTargetVelocity = new Vector3f();
-    public static int TRAILING_FACTOR = 8;
+    public static int TRAILING_FACTOR = 12;
 
     @Override
     public void update(float f) {
@@ -92,7 +92,7 @@ public class AstralCamera implements Control {
                 if (trailingCount >= trailingFactor) {
                     //check if we are no longer accelerating
                     if ((lastTargetVelocity.subtract(currentVelocity).length()) == 0
-                            && target.getAngularVelocity().length() < 0.05) {
+                            && target.getAngularVelocity().length() < 0.2) {
                         if (trailingFactor > 1) {
                             cachedTargetPlacements.remove(0);
                             trailingFactor--;

@@ -136,7 +136,7 @@ public class Celestial extends PhysicsEntity implements Serializable {
         //hasn't been constructed so just stare into space
         if (cameraRestPoint == null) {
             cameraRestPoint = new Node();
-            cameraRestPoint.move(0, 4, 30);
+            cameraRestPoint.move(0, 8, 30);
             ((Node) getSpatial()).attachChild(cameraRestPoint);
         }
         return cameraRestPoint;
@@ -146,7 +146,7 @@ public class Celestial extends PhysicsEntity implements Serializable {
         //default camera will be looking at where the front of this object is pointing
         if (lineOfSightPoint == null) {
             lineOfSightPoint = new Node();
-            lineOfSightPoint.move(0, 0, -50);
+            lineOfSightPoint.move(0, 0, -30);
             ((Node) getSpatial()).attachChild(lineOfSightPoint);
         }
         return lineOfSightPoint.getWorldTranslation();
