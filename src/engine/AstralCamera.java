@@ -72,7 +72,7 @@ public class AstralCamera implements Control {
     private int trailingCount = 0;
     private int trailingFactor = 0;
     private Vector3f lastTargetVelocity = new Vector3f();
-    public static int TRAILING_FACTOR = 10;
+    public static int TRAILING_FACTOR = 8;
 
     @Override
     public void update(float f) {
