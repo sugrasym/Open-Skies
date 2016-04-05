@@ -490,9 +490,6 @@ public class SolarSystem implements Entity, Serializable {
                 Vector3f cLoc = celestials.get(a).getPhysicsLocation().clone();
                 celestials.get(a).setLocation(cLoc.subtract(pLoc));
             }
-
-            universe.getPlayerShip().setLocation(new Vector3f(0, 0, 0));
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -717,7 +714,7 @@ public class SolarSystem implements Entity, Serializable {
 
     @Override
     public Vector3f getPhysicsLocation() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public Universe getUniverse() {
