@@ -51,11 +51,11 @@ public class Nebula extends Celestial {
     public static final int MIN_PARTICLES = 50;
     public static final int MAX_PARTICLES = 2000;
     //end constants
-    Random rnd = new Random();
+    private final Random rnd = new Random();
     private final Term type;
     private ColorRGBA color = ColorRGBA.Black;
     private transient NebulaEmitter emitter;
-    Vector3f volume;
+    private final Vector3f volume;
     private transient Vector3f pastLocation;
 
     public Nebula(Universe universe, String name, Term type, ColorRGBA color, Vector3f volume) {

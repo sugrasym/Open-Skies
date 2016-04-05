@@ -107,6 +107,7 @@ public class Jumphole extends Planet {
         emitter.getParticleInfluencer().setVelocityVariation(1f);
         emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_XYZ);
         emitter.setParticlesPerSec(2);
+        emitter.setInWorldSpace(false);
     }
 
     @Override
