@@ -335,7 +335,7 @@ public class Core {
         //do last
         initPhysicsListeners();
         initHud();
-        bulletAppState.getPhysicsSpace().enableDebug(assets);
+        //bulletAppState.getPhysicsSpace().enableDebug(assets);
     }
 
     private void initHud() {

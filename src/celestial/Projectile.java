@@ -32,6 +32,7 @@ import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.bullet.collision.shapes.SphereCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.effect.Particle;
 import com.jme3.effect.ParticleEmitter;
 import com.jme3.effect.ParticleMesh;
 import com.jme3.material.Material;
@@ -40,6 +41,7 @@ import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import entity.Entity;
 import java.util.ArrayList;
+import java.util.Random;
 import universe.Universe;
 
 /**
@@ -56,7 +58,7 @@ public class Projectile extends Celestial {
     public static final float NAV_ANGLE_TOLERANCE = 0.05f;
     //particle effect
 
-    transient ParticleEmitter emitter;
+    protected transient ProjectileEffectEmitter emitter;
     //stats
     private float shieldDamage;
     private float hullDamage;
@@ -109,7 +111,7 @@ public class Projectile extends Celestial {
     }
 
     private void constructProjectile(AssetManager assets) {
-        emitter = new ParticleEmitter("Emitter", ParticleMesh.Type.Triangle, numParticles);
+        emitter = new ProjectileEffectEmitter("Emitter", ParticleMesh.Type.Triangle, numParticles);
         Material trailMat = new Material(assets, "Common/MatDefs/Misc/Particle.j3md");
         trailMat.setTexture("Texture", assets.loadTexture(texture));
         emitter.setMaterial(trailMat);
@@ -315,8 +317,8 @@ public class Projectile extends Celestial {
         }
         //steer
         physics.applyTorque(Vector3f.UNIT_X.mult(getTurning() * pitch));
-        physics.applyTorque(Vector3f.UNIT_Y.mult(getTurning()  * yaw));
-        physics.applyTorque(Vector3f.UNIT_Z.mult(getTurning()  * roll));
+        physics.applyTorque(Vector3f.UNIT_Y.mult(getTurning() * yaw));
+        physics.applyTorque(Vector3f.UNIT_Z.mult(getTurning() * roll));
         //reset steering
         pitch = 0;
         yaw = 0;
@@ -442,7 +444,7 @@ public class Projectile extends Celestial {
         //drop an explosion
         dropExplosion();
         //damage anything in fuse range
-        if(proximityFuse > 0) {
+        if (proximityFuse > 0) {
             aoeDamageFromFuse();
         }
         //die
@@ -624,8 +626,8 @@ public class Projectile extends Celestial {
     }
 
     public float getTurning() {
-        if(target != null) {
-            if(target.getVelocity().length() < LOW_TORQUE_VELOCITY) {
+        if (target != null) {
+            if (target.getVelocity().length() < LOW_TORQUE_VELOCITY) {
                 return Math.min(turning, LOW_TURNING);
             }
         }
@@ -658,5 +660,32 @@ public class Projectile extends Celestial {
 
     public void setProximityFuse(float proximityFuse) {
         this.proximityFuse = proximityFuse;
+    }
+
+    @Override
+    public void setLocation(Vector3f loc) {
+        if (emitter != null) {
+            Vector3f delta = loc.subtract(getPhysicsLocation());
+            emitter.setLocalTranslation(loc.clone());
+            emitter.applyParticleDelta(delta);
+        }
+
+        super.setLocation(loc);
+    }
+
+    public class ProjectileEffectEmitter extends ParticleEmitter {
+
+        public ProjectileEffectEmitter(String name, ParticleMesh.Type type, int numParticles) {
+            super(name, type, numParticles);
+        }
+
+        public void applyParticleDelta(Vector3f offset) {
+            if (this.isInWorldSpace()) {
+                Particle[] particles = getParticles();
+                for (int a = 0; a < particles.length; a++) {
+                    particles[a].position.addLocal(offset);
+                }
+            }
+        }
     }
 }

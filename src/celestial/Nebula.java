@@ -145,7 +145,7 @@ public class Nebula extends Celestial {
         public void applyParticleDelta(Vector3f offset) {
             Particle[] particles = getParticles();
             for (int a = 0; a < particles.length; a++) {
-                particles[a].position.add(offset);
+                particles[a].position.addLocal(offset);
             }
         }
 
