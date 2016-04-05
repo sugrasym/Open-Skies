@@ -85,7 +85,7 @@ public class PlanetAppState extends AbstractAppState implements Control {
 
         if (astralCamera != null) {
             if (sun != null) {
-                astralCamera.addLight(sun, app.getAssetManager());
+                astralCamera.setSun(sun, app.getAssetManager());
             }
         } else {
             //setup astral camera

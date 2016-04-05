@@ -44,10 +44,11 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.Control;
 import com.jme3.shadow.CompareMode;
+import com.jme3.shadow.DirectionalLightShadowFilter;
 import com.jme3.shadow.DirectionalLightShadowRenderer;
 import com.jme3.shadow.EdgeFilteringMode;
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import jmeplanet.Planet;
 
 /**
@@ -57,22 +58,99 @@ import jmeplanet.Planet;
 public class AstralCamera implements Control {
 
     //engine resources
+
+    private Camera nearCam;
     private final Camera farCam;
-    private final Camera nearCam;
-    protected FilterPostProcessor chaseFilter;
-    protected FogFilter chaseFog;
-    protected BloomFilter chaseBloom;
+    private final RenderManager renderManager;
+    private final AssetManager AssetManager;
+
+    //effects
+    protected FilterPostProcessor nearFilter;
+    protected FilterPostProcessor farFilter;
+    protected FogFilter fog;
+    protected BloomFilter bloom;
+    protected DirectionalLightShadowRenderer dlsr;
+    protected DirectionalLightShadowFilter dlsf;
+
+    //viewports
     protected ViewPort farViewPort;
     protected ViewPort nearViewPort;
-    protected boolean shadowsEnabled = true;
-    protected DirectionalLightShadowRenderer dlsr;
+
+    //object being tracked
     private Celestial target;
-    private final LinkedList<TargetPlacement> cachedTargetPlacements;
-    private final RenderManager renderManager;
+
+    //properties
+    protected boolean shadowsEnabled = false;
+    protected boolean enabled = true;
+    protected boolean inertia = true;
+
+    protected Vector3f upVector;
+    private Vector3f lastTargetVelocity = new Vector3f();
+
+    enum Mode {
+
+        COCKPIT,
+        NORMAL,
+        RTS
+    }
+    Mode mode = Mode.NORMAL;
+    
+    private ArrayList<TargetPlacement> cachedTargetPlacements;
     private int trailingCount = 0;
     private int trailingFactor = 0;
-    private Vector3f lastTargetVelocity = new Vector3f();
     public static int TRAILING_FACTOR = 20;
+
+    public AstralCamera(Application app) {
+        this.farCam = app.getCamera();
+        this.renderManager = app.getRenderManager();
+        this.farViewPort = app.getViewPort();
+        this.AssetManager = app.getAssetManager();
+        init();
+    }
+
+    public AstralCamera(Camera appCamera, RenderManager rm, ViewPort vp, AssetManager am) {
+        this.farCam = appCamera;
+        this.renderManager = rm;
+        this.farViewPort = vp;
+        this.AssetManager = am;
+        init();
+    }
+
+    private void init() {
+        this.upVector = farCam.getUp().clone();
+        this.nearFilter = new FilterPostProcessor(AssetManager);
+        this.farFilter = new FilterPostProcessor(AssetManager);
+
+        farCam.setViewPort(0f, 1f, 0.0f, 1f);
+        farViewPort = renderManager.createMainView("FarView", farCam);
+        farViewPort.setBackgroundColor(ColorRGBA.BlackNoAlpha);
+
+        nearCam = this.farCam.clone();
+        nearCam.setViewPort(0f, 1f, 0.0f, 1f);
+        nearViewPort = renderManager.createMainView("NearView", nearCam);
+        nearViewPort.setBackgroundColor(ColorRGBA.BlackNoAlpha);
+        nearViewPort.setClearFlags(false, true, true);
+
+        farCam.setFrustumPerspective(45f, (float) farCam.getWidth() / farCam.getHeight(), 300f, 1e7f);
+        nearCam.setFrustumPerspective(45f, (float) nearCam.getWidth() / nearCam.getHeight(), 1f, 310f);
+
+        //near effects
+        fog = new FogFilter();
+        nearFilter.addFilter(fog);
+        nearViewPort.addProcessor(nearFilter);
+
+        //far effects
+        bloom = new BloomFilter();
+        bloom.setDownSamplingFactor(2);
+        bloom.setBlurScale(1.37f);
+        bloom.setExposurePower(3.30f);
+        bloom.setExposureCutOff(0.1f);
+        bloom.setBloomIntensity(1.45f);
+        //farFilter.addFilter(bloom);
+        farViewPort.addProcessor(farFilter);
+        
+        cachedTargetPlacements = new ArrayList<TargetPlacement>();
+    }
 
     @Override
     public void update(float f) {
@@ -125,13 +203,10 @@ public class AstralCamera implements Control {
     }
 
     @Override
-    public Control cloneForSpatial(Spatial sptl) {
-        return this;
-    }
-
-    @Override
     public void setSpatial(Spatial sptl) {
-        //
+        Vector3f currentPosition = new Vector3f(target.getSpatial().getWorldTranslation());
+        nearCam.setLocation(currentPosition);
+        farCam.setLocation(currentPosition);
     }
 
     @Override
@@ -149,68 +224,6 @@ public class AstralCamera implements Control {
         //
     }
 
-    private float getShiftAmount(float inputAmount) {
-        float shift;
-        float sign = Math.signum(inputAmount) * -1;
-        float amount = Math.abs(inputAmount);
-        if (amount > 20000) {
-            shift = 10000 * sign;
-        } else if (amount > 10000) {
-            shift = 2000 * sign;
-        } else if (amount > 5000) {
-            shift = 500 * sign;
-        } else if (amount > 2000) {
-            shift = 200 * sign;
-        } else if (amount > 1000) {
-            shift = 100 * sign;
-        } else if (amount > 100) {
-            shift = 20 * sign;
-        } else if (amount > 10) {
-            shift = 5 * sign;
-        } else {
-            shift = 1 * sign;
-        }
-
-        return shift;
-    }
-
-    enum Mode {
-
-        COCKPIT,
-        NORMAL,
-        RTS
-    }
-    Mode mode = Mode.NORMAL;
-
-    public AstralCamera(Application app) {
-        this.farCam = app.getCamera();
-        this.renderManager = app.getRenderManager();
-
-        farViewPort = app.getViewPort();
-
-        farCam.setViewPort(0f, 1f, 0f, 1f);
-        nearCam = this.farCam.clone();
-
-        farCam.setFrustumPerspective(45f, (float) farCam.getWidth() / farCam.getHeight(), 300f, 1e7f);
-        nearCam.setFrustumPerspective(45f, (float) nearCam.getWidth() / nearCam.getHeight(), 1f, 310f);
-
-        chaseFilter = new FilterPostProcessor(app.getAssetManager());
-        farViewPort.addProcessor(chaseFilter);
-
-        chaseFog = new FogFilter();
-        chaseFilter.addFilter(chaseFog);
-
-        chaseBloom = new BloomFilter();
-        chaseBloom.setDownSamplingFactor(2);
-        chaseBloom.setBlurScale(1.37f);
-        chaseBloom.setExposurePower(3.30f);
-        chaseBloom.setExposureCutOff(0.1f);
-        chaseBloom.setBloomIntensity(1.45f);
-        //chaseFilter.addFilter(chaseBloom);
-        
-        cachedTargetPlacements = new LinkedList<>();
-    }
-
     public Celestial getTarget() {
         return target;
     }
@@ -219,51 +232,64 @@ public class AstralCamera implements Control {
         freeCamera();
         this.target = target;
         this.target.getSpatial().addControl(this);
-        trailingCount = 0;
-        trailingFactor = TRAILING_FACTOR;
     }
 
-    public void addLight(DirectionalLight light, AssetManager assetManager) {
-        dlsr = new DirectionalLightShadowRenderer(assetManager, 1024, 3);
-        dlsr.setLight(light);
-        dlsr.setLambda(0.55f);
-        dlsr.setShadowIntensity(0.6f);
-        dlsr.setEdgeFilteringMode(EdgeFilteringMode.PCFPOISSON);
-        dlsr.setShadowCompareMode(CompareMode.Hardware);
-        dlsr.setShadowZExtend(100f);
+    public void setSun(DirectionalLight sun, AssetManager assetManager) {
         if (shadowsEnabled) {
-            farViewPort.addProcessor(dlsr);
+            if (dlsr != null) {
+                nearViewPort.removeProcessor(dlsr);
+                farViewPort.removeProcessor(dlsr);
+            }
+            dlsr = new DirectionalLightShadowRenderer(assetManager, 1024, 3);
+
+            dlsr.setLight(sun);
+            dlsr.setLambda(0.55f);
+            dlsr.setShadowIntensity(0.6f);
+            dlsr.setEdgeFilteringMode(EdgeFilteringMode.PCFPOISSON);
+            dlsr.setShadowCompareMode(CompareMode.Hardware);
+            dlsr.setShadowZExtend(100f);
+
             nearViewPort.addProcessor(dlsr);
+
+            if (dlsf != null) {
+                nearFilter.removeFilter(dlsf);
+            }
+            dlsf = new DirectionalLightShadowFilter(assetManager, 1024, 3);
+            dlsf.setLight(sun);
+            dlsf.setEnabled(true);
+
+            nearFilter.addFilter(dlsf);
+            farFilter.addFilter(dlsf);
         }
     }
 
     public void updateFogAndBloom(Planet planet) {
         if (planet.getIsInOcean()) {
             // turn on underwater fogging
-            chaseFog.setFogColor(planet.getUnderwaterFogColor());
-            chaseFog.setFogDistance(planet.getUnderwaterFogDistance());
-            chaseFog.setFogDensity(planet.getUnderwaterFogDensity());
-            chaseFog.setEnabled(true);
-            chaseBloom.setEnabled(true);
+            fog.setFogColor(planet.getUnderwaterFogColor());
+            fog.setFogDistance(planet.getUnderwaterFogDistance());
+            fog.setFogDensity(planet.getUnderwaterFogDensity());
+            fog.setEnabled(true);
+            bloom.setEnabled(true);
         } else {
             if (planet.getIsInAtmosphere()) {
                 // turn on atomosphere fogging
-                chaseFog.setFogColor(planet.getAtmosphereFogColor());
-                chaseFog.setFogDistance(planet.getAtmosphereFogDistance());
-                chaseFog.setFogDensity(planet.getAtmosphereFogDensity());
-                chaseFog.setEnabled(true);
-                chaseBloom.setEnabled(false);
+                fog.setFogColor(planet.getAtmosphereFogColor());
+                fog.setFogDistance(planet.getAtmosphereFogDistance());
+                fog.setFogDensity(planet.getAtmosphereFogDensity());
+                fog.setEnabled(true);
+                bloom.setEnabled(false);
             } else {
                 // in space
-                chaseFog.setEnabled(false);
-                chaseBloom.setEnabled(true);
+                fog.setEnabled(false);
+                bloom.setEnabled(true);
             }
         }
     }
 
     public void stopFogAndBloom() {
-        chaseFog.setEnabled(false);
-        chaseBloom.setEnabled(true);
+        fog.setEnabled(false);
+        bloom.setEnabled(true);
     }
 
     public void setShadowsEnabled(boolean enabled) {
@@ -281,7 +307,7 @@ public class AstralCamera implements Control {
     }
 
     public void freeCamera() {
-        if (target != null && target.getSpatial() != null) {
+        if (target != null) {
             target.getSpatial().removeControl(this);
             target = null;
         }
@@ -300,15 +326,55 @@ public class AstralCamera implements Control {
     }
 
     public void attachScene(Spatial scene) {
-        farCam.setViewPort(0f, 1f, 0.0f, 1f);
-        farViewPort = renderManager.createMainView("FarView", farCam);
-        farViewPort.setBackgroundColor(ColorRGBA.BlackNoAlpha);
         farViewPort.attachScene(scene);
-
-        nearCam.setViewPort(0f, 1f, 0.0f, 1f);
-        nearViewPort = renderManager.createMainView("NearView", nearCam);
-        nearViewPort.setBackgroundColor(ColorRGBA.BlackNoAlpha);
-        nearViewPort.setClearFlags(false, true, true);
         nearViewPort.attachScene(scene);
+    }
+
+    /**
+     * Return the enabled/disabled state of the camera
+     *
+     * @return true if the camera is enabled
+     */
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    /**
+     * Enable or disable the camera
+     *
+     * @param enabled true to enable
+     */
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    /**
+     * clone this camera for a spatial
+     *
+     * @param spatial
+     * @return
+     */
+    @Override
+    public Control cloneForSpatial(Spatial spatial) {
+        AstralCamera ac = new AstralCamera(this.farCam, this.renderManager, this.farViewPort, this.AssetManager);
+        return ac;
+    }
+
+    /**
+     * Sets the up vector of the camera used for the lookAt on the target
+     *
+     * @param up
+     */
+    public void setUpVector(Vector3f up) {
+        upVector = up;
+    }
+
+    /**
+     * Returns the up vector of the camera used for the lookAt on the target
+     *
+     * @return
+     */
+    public Vector3f getUpVector() {
+        return upVector;
     }
 }
