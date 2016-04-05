@@ -56,6 +56,7 @@ public class Nebula extends Celestial {
     private ColorRGBA color = ColorRGBA.Black;
     private transient NebulaEmitter emitter;
     Vector3f volume;
+    private transient Vector3f pastLocation;
 
     public Nebula(Universe universe, String name, Term type, ColorRGBA color, Vector3f volume) {
         super(Float.POSITIVE_INFINITY, universe);
@@ -107,10 +108,22 @@ public class Nebula extends Celestial {
 
     @Override
     protected void alive() {
+        if(pastLocation == null) {
+            pastLocation = getLocation().clone();
+        }
+        
         if (emitter != null) {
             emitter.setLocalTranslation(getLocation().x, getLocation().y,
                     getLocation().z);
+            //update particle positions
+            if (pastLocation != null) {
+                Vector3f delta = getLocation().subtract(pastLocation);
+                emitter.applyParticleDelta(delta);
+            }
         }
+
+        //cache past location
+        pastLocation = getLocation().clone();
     }
 
     @Override
@@ -127,6 +140,13 @@ public class Nebula extends Celestial {
 
         public NebulaEmitter(String name, ParticleMesh.Type type, int numParticles) {
             super(name, type, numParticles);
+        }
+
+        public void applyParticleDelta(Vector3f offset) {
+            Particle[] particles = getParticles();
+            for (int a = 0; a < particles.length; a++) {
+                particles[a].position.add(offset);
+            }
         }
 
         public void emittParticleVolume() {

@@ -90,15 +90,15 @@ public class Field extends Celestial implements Serializable {
         rockScale = Integer.parseInt(field.getValue("rockScale"));
         diversity = Integer.parseInt(field.getValue("diversity"));
         count = Integer.parseInt(field.getValue("count"));
-        
+
         String mineableRaw = field.getValue("mineable");
-        if(mineableRaw != null) {
+        if (mineableRaw != null) {
             mineable = Boolean.parseBoolean(mineableRaw);
-            if(mineable) {
+            if (mineable) {
                 resource = field.getValue("resource");
             }
         }
-        
+
         type = field;
     }
 
@@ -276,6 +276,12 @@ public class Field extends Celestial implements Serializable {
 
     @Override
     public void setLocation(Vector3f location) {
+        Vector3f offset = this.location.subtract(location);
+        if (zones != null) {
+            for (int a = 0; a < zones.size(); a++) {
+                zones.get(a).applyOffset(offset.mult(-1.0f));
+            }
+        }
         this.location = location;
     }
 
@@ -410,6 +416,12 @@ public class Field extends Celestial implements Serializable {
                 roids[a].getControl(RigidBodyControl.class).setAngularVelocity(Vector3f.ZERO);
                 roids[a].getControl(RigidBodyControl.class).clearForces();
                 bulletAppState.getPhysicsSpace().add(roids[a]);
+            }
+        }
+
+        public void applyOffset(Vector3f offset) {
+            for (int a = 0; a < roids.length; a++) {
+                roids[a].getControl(RigidBodyControl.class).setPhysicsLocation(roids[a].getControl(RigidBodyControl.class).getPhysicsLocation().add(offset));
             }
         }
     }

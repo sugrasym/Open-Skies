@@ -157,6 +157,9 @@ public class PhysicsEntity implements Entity, Serializable {
     @Override
     public void setLocation(Vector3f loc) {
         location = loc.clone();
+        if(physics != null) {
+            physics.setPhysicsLocation(loc.clone());
+        }
     }
 
     @Override

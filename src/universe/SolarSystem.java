@@ -482,6 +482,17 @@ public class SolarSystem implements Entity, Serializable {
                     celestials.get(a).periodicUpdate(tpf);
                 }
             }
+
+            //center system around player
+            Vector3f pLoc = universe.getPlayerShip().getPhysicsLocation().clone();
+
+            for (int a = 0; a < celestials.size(); a++) {
+                Vector3f cLoc = celestials.get(a).getPhysicsLocation().clone();
+                celestials.get(a).setLocation(cLoc.subtract(pLoc));
+            }
+
+            universe.getPlayerShip().setLocation(new Vector3f(0, 0, 0));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
