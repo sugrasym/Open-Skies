@@ -180,11 +180,7 @@ public class Field extends Celestial implements Serializable {
         float b = (z * z) / (w * w);
         float c = (y * y) / (h * h);
         float sum = a + b + c;
-        if (sum <= 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return sum <= 1;
     }
 
     private boolean noExclusionZone() {
@@ -344,7 +340,6 @@ public class Field extends Celestial implements Serializable {
             this.map = toClone.getMap().clone();
             this.rot = toClone.getRot().clone();
             this.roids = toClone.getRoids().clone();
-            //this.block = toClone.getBlock().clone(true);
         }
 
         public void constructBlock() {
@@ -353,14 +348,14 @@ public class Field extends Celestial implements Serializable {
                 roids[a] = asteroid.clone();
                 roids[a].setLocalTranslation(map[a].x, map[a].y, map[a].z);
                 roids[a].rotate(rot[a].x, rot[a].y, rot[a].z);
-                roids[a].scale(getRockScale());
+                roids[a].scale(new Random().nextInt(getRockScale()) + 1);
                 CollisionShape hullShape = CollisionShapeFactory.createDynamicMeshShape(roids[a]);
                 RigidBodyControl box = new RigidBodyControl(hullShape);
                 //box.setMass(0);
                 //box.setKinematic(false);
                 roids[a].addControl(box);
                 roids[a].addControl(nameControl);
-                System.out.println("Working - " + ((float) a / (float) map.length) * 100.0f);
+                System.out.println("Generating asteroid field - " + ((float) a / (float) map.length) * 100.0f);
             }
         }
 
@@ -421,8 +416,10 @@ public class Field extends Celestial implements Serializable {
 
         public void applyOffset(Vector3f offset) {
             for (int a = 0; a < roids.length; a++) {
+                roids[a].getControl(RigidBodyControl.class).activate();
                 roids[a].getControl(RigidBodyControl.class).setPhysicsLocation(roids[a].getControl(RigidBodyControl.class).getPhysicsLocation().add(offset));
             }
+            location.addLocal(offset);
         }
     }
 

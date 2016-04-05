@@ -2,8 +2,8 @@
 name=Dark Asteroid Field
 group=rock
 blockSize=10000
-count=1000
-rockScale=10
+count=550
+rockScale=50
 diversity=4
 asset=Dark Asteroid
 mineable=true
@@ -14,8 +14,8 @@ resource=Ore
 name=Ice Asteroid Field
 group=rock
 blockSize=10000
-count=1000
-rockScale=10
+count=550
+rockScale=50
 diversity=4
 asset=Ice Asteroid
 [/Field]
