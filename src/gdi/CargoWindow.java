@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -204,13 +204,13 @@ public class CargoWindow extends AstralWindow {
             Hardpoint socket = tmp.getSocket();
             if (socket != null) {
                 //it is mounted
-                if(ship.isDocked()) {
+                if (ship.isDocked()) {
                     optionList.addToList(CMD_UNMOUNT);
                 }
                 canEject = false;
             } else {
                 //it is not mounted
-                if(ship.isDocked()) {
+                if (ship.isDocked()) {
                     optionList.addToList(CMD_MOUNT);
                 }
                 optionList.addToList(CMD_PACKAGE);
@@ -306,45 +306,40 @@ public class CargoWindow extends AstralWindow {
     private void parseCommand(String command) {
         if (command != null) {
             switch (command) {
-                case CMD_TRASH:
-                    {
-                        /*
-                        * This command simply destroys an item.
-                        */
-                        Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                        ship.removeFromCargoBay(selected);
-                        break;
+                case CMD_TRASH: {
+                    /*
+                     * This command simply destroys an item.
+                     */
+                    Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                    ship.removeFromCargoBay(selected);
+                    break;
+                }
+                case CMD_EJECT: {
+                    Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                    ship.ejectFromCargoBay(selected);
+                    break;
+                }
+                case CMD_UNMOUNT: {
+                    Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                    Equipment tmp = (Equipment) selected;
+                    ship.unfit(tmp);
+                    break;
+                }
+                case CMD_MOUNT: {
+                    Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                    Equipment tmp = (Equipment) selected;
+                    ship.fit(tmp);
+                    break;
+                }
+                case CMD_STACK: {
+                    Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                    ArrayList<Item> cargoBay = ship.getCargoBay();
+                    if (cargoBay.contains(selected)) {
+                        stackItem(cargoBay, selected);
                     }
-                case CMD_EJECT:
-                    {
-                        Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                        ship.ejectFromCargoBay(selected);
-                        break;
-                    }
-                case CMD_UNMOUNT:
-                    {
-                        Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                        Equipment tmp = (Equipment) selected;
-                        ship.unfit(tmp);
-                        break;
-                    }
-                case CMD_MOUNT:
-                    {
-                        Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                        Equipment tmp = (Equipment) selected;
-                        ship.fit(tmp);
-                        break;
-                    }
-                case CMD_STACK:
-                    {
-                        Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
-                        ArrayList<Item> cargoBay = ship.getCargoBay();
-                        if (cargoBay.contains(selected)) {
-                            stackItem(cargoBay, selected);
-                }       break;
-                    }
-                case CMD_SPLIT:
-                {
+                    break;
+                }
+                case CMD_SPLIT: {
                     Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                     ArrayList<Item> cargoBay = ship.getCargoBay();
                     if (cargoBay.contains(selected)) {
@@ -353,10 +348,10 @@ public class CargoWindow extends AstralWindow {
                             cargoBay.add(tmp);
                             selected.setQuantity(selected.getQuantity() - 1);
                         }
-                }       break;
                     }
-                case CMD_SPLITALL:
-                {
+                    break;
+                }
+                case CMD_SPLITALL: {
                     ArrayList<Item> cargoBay = ship.getCargoBay();
                     Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                     if (ship.hasInCargo(selected)) {
@@ -376,10 +371,10 @@ public class CargoWindow extends AstralWindow {
                                 ship.addToCargoBay(tmp);
                             }
                         }
-                }       break;
+                    }
+                    break;
                 }
-                case CMD_ASSEMBLE:
-                {
+                case CMD_ASSEMBLE: {
                     Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                     if (selected.getQuantity() == 1) {
                         Weapon tmp = new Weapon(selected.getName());
@@ -389,11 +384,11 @@ public class CargoWindow extends AstralWindow {
                         } else {
                             //failure, add the old one back
                             ship.addToCargoBay(selected);
+                        }
                     }
-                }       break;
+                    break;
                 }
-                case CMD_PACKAGE:
-                {
+                case CMD_PACKAGE: {
                     Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                     if (selected.getQuantity() == 1) {
                         Equipment tmp = (Equipment) selected;
@@ -404,11 +399,11 @@ public class CargoWindow extends AstralWindow {
                         } else {
                             //failure
                             ship.addToCargoBay(selected);
+                        }
                     }
-                    }       break;
+                    break;
                 }
-                case CMD_DEPLOY:
-                {
+                case CMD_DEPLOY: {
                     Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                     if (selected.getQuantity() == 1) {
                         //deploy the station
@@ -445,12 +440,12 @@ public class CargoWindow extends AstralWindow {
                             //since it's not NPC make sure it has no start cash
                             ret.clearWares();
                         }
-                    }       break;
+                    }
+                    break;
                 }
                 case CMD_CLAIMSOV:
                     break;
-                case CMD_USEPASTE:
-                {
+                case CMD_USEPASTE: {
                     Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                     for (int a = 0; a < selected.getQuantity(); a++) {
                         //if the hp of the ship is less than the max, use a unit of paste
@@ -461,12 +456,13 @@ public class CargoWindow extends AstralWindow {
                         //limit to max hull
                         if (ship.getHull() > ship.getMaxHull()) {
                             ship.setHull(ship.getMaxHull());
+                        }
+                    }       //remove if needed
+                    if (selected.getQuantity() <= 0) {
+                        ship.removeFromCargoBay(selected);
                     }
-                }       //remove if needed
-                if (selected.getQuantity() <= 0) {
-                    ship.removeFromCargoBay(selected);
-                }       break;
-                    }
+                    break;
+                }
             }
         }
     }

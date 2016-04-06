@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,9 @@ import lib.astral.Parser.Term;
  * @author nwiehoff
  */
 public class ResourceCache {
+
     //parser cache
+
     private Parser universeCache = new Parser("UNIVERSE.txt");
     private Parser shipCache = new Parser("SHIP.txt");
     private Parser itemCache = new Parser("ITEM.txt");
@@ -51,7 +53,7 @@ public class ResourceCache {
     private Parser missionCache = new Parser("MISSIONS.txt");
     private Parser nameCache = new Parser("NAMES.txt");
     private Parser quoteCache = new Parser("QUOTES.txt");
-    
+
     private Term cargoContainerTerm;
 
     public ResourceCache() {
@@ -65,9 +67,9 @@ public class ResourceCache {
     private void init() throws Exception {
         //init the cargo container term
         ArrayList<Term> shipTerms = shipCache.getTermsOfType("Ship");
-        for(int a = 0; a < shipTerms.size(); a++) {
+        for (int a = 0; a < shipTerms.size(); a++) {
             Term test = shipTerms.get(a);
-            if(test.getValue("type").equals("Container")) {
+            if (test.getValue("type").equals("Container")) {
                 cargoContainerTerm = test;
                 break;
             }
@@ -99,9 +101,8 @@ public class ResourceCache {
     }
 
     /*public Parser getExplosionCache() {
-        return explosionCache;
-    }*/
-
+     return explosionCache;
+     }*/
     public Parser getProcessCache() {
         return processCache;
     }
@@ -129,11 +130,11 @@ public class ResourceCache {
     public Parser getNameCache() {
         return nameCache;
     }
-    
+
     public Parser getQuoteCache() {
         return quoteCache;
     }
-    
+
     public Term getCargoContainerTerm() {
         return cargoContainerTerm;
     }

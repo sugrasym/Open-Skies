@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -131,12 +131,14 @@ public class Conversation implements Serializable {
                         currentNode.setMessage(currentNode.getMessage().replace("<#MISSION>", body));
                     } else {
                         currentNode = findNode("END");
-                    }   break;
+                    }
+                    break;
                 case "START_MISSION":
                     //assign generated mission
                     if (tmpMission != null) {
                         owner.getUniverse().getPlayerMissions().add(tmpMission);
-                }   break;
+                    }
+                    break;
                 case "RUMOR":
                     //get a rumor
                     if (owner.getFaction().getRumorList().size() > 0) {
@@ -144,8 +146,9 @@ public class Conversation implements Serializable {
                         currentNode = findNode(pick);
                     } else {
                         currentNode = findNode("END");
-                }   break;
-            //nope
+                    }
+                    break;
+                //nope
                 default:
                     break;
             }

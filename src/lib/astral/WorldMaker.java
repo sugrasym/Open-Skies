@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -58,8 +58,8 @@ public class WorldMaker {
 
     public WorldMaker() {
         //generate universe
-        String out = generate(31337, 1, 7, 80, 100, 1000, 64000,
-                200000, 500, 5000, 0, 0.40f, 0.40f);
+        String out = generate(31337, 0, 8, 80, 100, 1000, 64000,
+                200000, 800, 6500, 0, 0.40f, 0.40f);
         //save
         AstralIO.writeFile("new-UNIVERSE.txt", out);
         System.out.println(out);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -171,11 +171,11 @@ public class TradeWindow extends AstralWindow {
                 ArrayList<Item> selling = station.getStationSelling();
                 for (int a = 0; a < selling.size(); a++) {
                     Item tmp = selling.get(a);
-                    if(tmp.getType().equals("ship")) {
+                    if (tmp.getType().equals("ship")) {
                         //make sure there is a port available to sell at
                         ArrayList<DockingPort> ports = station.getPorts();
-                        for(int n = 0; n < ports.size(); n++) {
-                            if(ports.get(n).isEmpty()) {
+                        for (int n = 0; n < ports.size(); n++) {
+                            if (ports.get(n).isEmpty()) {
                                 productList.addToList(tmp);
                                 break;
                             }
@@ -459,7 +459,7 @@ public class TradeWindow extends AstralWindow {
             String turning = test.getValue("turning");
             //add
             propertyList.addToList("Type:         " + type);
-            propertyList.addToList("Damage:       " + shieldDamage +" / " 
+            propertyList.addToList("Damage:       " + shieldDamage + " / "
                     + hullDamage);
             propertyList.addToList("Range:        " + range);
             propertyList.addToList("Muzzle Vel:   " + speed);

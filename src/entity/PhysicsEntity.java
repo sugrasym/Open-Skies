@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -57,7 +57,7 @@ public class PhysicsEntity implements Entity, Serializable {
     //texture and geometry crap
     protected transient Material mat;
     private transient Spatial spatial;
-    
+
     //entity crap
     private State state = State.ALIVE;
     /*
@@ -157,7 +157,7 @@ public class PhysicsEntity implements Entity, Serializable {
     @Override
     public void setLocation(Vector3f loc) {
         location = loc.clone();
-        if(physics != null) {
+        if (physics != null) {
             physics.setPhysicsLocation(loc.clone());
         }
     }
@@ -232,11 +232,11 @@ public class PhysicsEntity implements Entity, Serializable {
     public Vector3f getLinearVelocity() {
         return physics.getLinearVelocity();
     }
-    
+
     public final float distanceTo(PhysicsEntity a) {
         return a.getLocation().distance(getLocation());
     }
-    
+
     /*
      * For those Aristotlian worlds.
      */

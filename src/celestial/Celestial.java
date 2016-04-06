@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -47,7 +47,7 @@ public class Celestial extends PhysicsEntity implements Serializable {
     protected SolarSystem currentSystem;
     //discovery
     private boolean discoveredByPlayer = false;
-    
+
     //camera
     private transient Node cameraRestPoint;
     private transient Node lineOfSightPoint;
@@ -119,6 +119,15 @@ public class Celestial extends PhysicsEntity implements Serializable {
     public void construct(Universe universe) {
         construct(universe.getAssets());
     }
+    
+    @Override
+    public void deconstruct() {
+        super.deconstruct();
+        
+        //reset camera tracking aids
+        cameraRestPoint = null;
+        lineOfSightPoint = null;
+    }
 
     public boolean isDiscoveredByPlayer() {
         return discoveredByPlayer;
@@ -141,8 +150,8 @@ public class Celestial extends PhysicsEntity implements Serializable {
         }
         return cameraRestPoint.getWorldTranslation();
     }
-    
-    public Vector3f getLineOfSightPoint(){
+
+    public Vector3f getLineOfSightPoint() {
         //default camera will be looking at where the front of this object is pointing
         if (lineOfSightPoint == null) {
             lineOfSightPoint = new Node();

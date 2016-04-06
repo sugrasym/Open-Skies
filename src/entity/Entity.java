@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,9 @@ import jmeplanet.PlanetAppState;
  * @author Nathan Wiehoff
  */
 public interface Entity {
+
     public enum State {
+
         ALIVE,
         DYING,
         DEAD
@@ -45,35 +47,50 @@ public interface Entity {
     /*
      * Updates the object.
      */
+
     public void periodicUpdate(float tpf);
+
     public void oosPeriodicUpdate(float tpf);
     /*
      * Constructs and deconstructs the object. Must be called AFTER the
      * constructor has been called for cleanliness.
      */
+
     public void construct(AssetManager assets);
+
     public void deconstruct();
     /*
      * Used for attaching and removing the entity from a node
      */
+
     public void attach(Node node, BulletAppState physics, PlanetAppState planetAppState);
+
     public void detach(Node node, BulletAppState physics, PlanetAppState planetAppState);
     /*
      * Used for getting and setting the state of an object
      */
+
     public State getState();
+
     public void setState(State state);
     /*
      * Used for getting/setting the location and rotation of an object.
      */
+
     public Vector3f getLocation();
+
     public void setLocation(Vector3f loc);
+
     public Vector3f getPhysicsLocation();
+
     public Quaternion getRotation();
+
     public void setRotation(Quaternion rot);
     /*
      * Name
      */
+
     public String getName();
+
     public void setName(String name);
 }

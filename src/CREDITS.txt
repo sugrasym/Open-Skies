@@ -1,4 +1,7 @@
-Outlier: Open Skies was developed by Nathan Wiehoff, masternerdguy@yahoo.com .
+Outlier: Open Skies was developed by SUGRA-SYM LLC.
+Nathan Wiehoff, nathan@sugsym.com
+Geoffrey Hibbert, geoff@sugsym.com
+
 Additional open source software used in this project are as follows:
 
 jmeplanet

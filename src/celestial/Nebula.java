@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -108,10 +108,10 @@ public class Nebula extends Celestial {
 
     @Override
     protected void alive() {
-        if(pastLocation == null) {
+        if (pastLocation == null) {
             pastLocation = getLocation().clone();
         }
-        
+
         if (emitter != null) {
             emitter.setLocalTranslation(getLocation().x, getLocation().y,
                     getLocation().z);

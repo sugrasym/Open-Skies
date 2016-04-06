@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -248,18 +248,18 @@ public class Weapon extends Equipment {
     public boolean inFiringCone(Celestial target) {
 
         //turrets always hit oos
-        if(host.getCurrentSystem() != host.getCurrentSystem().getUniverse().getPlayerShip().getCurrentSystem()) {
+        if (host.getCurrentSystem() != host.getCurrentSystem().getUniverse().getPlayerShip().getCurrentSystem()) {
             return true;
         }
-        
+
         if (isCannon() || isMissile()) {
             return true;
-        } else if(isTurret() || isBattery()) {
+        } else if (isTurret() || isBattery()) {
             Vector3f targetLoc = adjustedTargetLocation(target);
             Vector3f turretUp = adjustedTurretLocation();
             float t = turretUp.angleBetween(targetLoc);
-            
-            if( t <= getSocket().getGimbal()) {
+
+            if (t <= getSocket().getGimbal()) {
                 return true;
             }
         }
@@ -280,15 +280,15 @@ public class Weapon extends Equipment {
                 .normalize();
         return targetLoc;
     }
-    
+
     public boolean isCannon() {
         return getType().equals(Item.TYPE_CANNON);
     }
-    
+
     public boolean isMissile() {
         return getType().equals(Item.TYPE_MISSILE);
     }
-    
+
     public boolean isBattery() {
         return getType().equals(Item.TYPE_BATTERY);
     }
@@ -388,7 +388,7 @@ public class Weapon extends Equipment {
             }
 
             vel = vel.add(host.getLinearVelocity());
-            
+
             Vector3f loc = getSocket().getNode().getWorldTranslation()
                     .add(vel.mult(Math.min(tpf, Core.DEFAULT_TICK)));
 
@@ -549,7 +549,7 @@ public class Weapon extends Equipment {
         }
         return ret;
     }
-    
+
     public float distanceTo(Vector3f loc) {
         return loc.distance(getSocket().getNode().getWorldTranslation());
     }

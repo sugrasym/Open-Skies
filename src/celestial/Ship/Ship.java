@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -47,7 +47,6 @@ import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Node;
-import com.jme3.scene.Spatial;
 import entity.Entity;
 import java.util.ArrayList;
 import java.util.Random;
@@ -330,6 +329,7 @@ public class Ship extends Celestial {
 
     @Override
     public void deconstruct() {
+        super.deconstruct();
         setSpatial(null);
         mat = null;
         physics = null;
@@ -476,7 +476,12 @@ public class Ship extends Celestial {
         if (getAutopilot() == Autopilot.AVOID_PLANET_2) {
             Planet test = getNearestPlanetInSystem();
             //rotate the ship away from the planet
-            Vector3f avoidance = test.getLocation().cross(getLocation());
+            Vector3f avoidance;
+            if(getLocation().length() == 0) {
+                avoidance = test.getLocation().cross(Vector3f.UNIT_Y);
+            } else {
+                avoidance = test.getLocation().cross(getLocation());
+            }
             if (pointNoseAtVector(getSteeringData(avoidance,
                     Vector3f.UNIT_Y), NAV_ANGLE_TOLERANCE)) {
                 //accelerate away
@@ -3203,7 +3208,15 @@ public class Ship extends Celestial {
      * on the acceleration of the craft and what the craft is doing
      */
     protected float getFlightHold() {
-        return 3 * getAcceleration();
+        float drag;
+        if (engine == EngineMode.COMBAT) {
+            drag = COMBAT_DAMP;
+        } else if (engine == EngineMode.CRUISE) {
+            drag = CRUISE_DAMP;
+        } else {
+            drag = 0;
+        }
+        return ((getMass() * getAcceleration()) / drag) * 0.68f;
     }
 
     protected float getFollowHold() {

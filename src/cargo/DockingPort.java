@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -176,11 +176,11 @@ public class DockingPort implements Serializable {
         alignNode.move(align);
         //System.out.println(loc);
     }
-    
+
     public Vector3f rawPortPosition() {
         return host.getLocation().add(loc);
     }
-    
+
     public Vector3f rawAlignPosition() {
         return host.getLocation().add(align);
     }

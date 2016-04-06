@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -59,12 +59,14 @@ import universe.Universe;
  * @author nwiehoff
  */
 public class Planet extends Celestial {
-    public static final float MIN_ATMOSPHERE_DAMAGE_VELOCITY = 10f;
-    public static final float ATMOSPHERE_DAMAGE_SCALER = 8f;
+
+    public static final float MIN_ATMOSPHERE_DAMAGE_VELOCITY = 50f;
+    public static final float ATMOSPHERE_DAMAGE_SCALER = 4f;
 
     private transient Texture2D tex;
-    transient jmeplanet.Planet fractalPlanet;
-    transient jmeplanet.Planet atmosphereShell;
+    private transient jmeplanet.Planet fractalPlanet;
+    private transient jmeplanet.Planet atmosphereShell;
+    private transient CollisionShape hullShape;
     protected transient RigidBodyControl atmospherePhysics;
     private Term type;
     private int seed = 0;
@@ -87,7 +89,6 @@ public class Planet extends Celestial {
     public void construct(AssetManager assets) {
         generateProceduralPlanet(assets);
         if (getSpatial() != null) {
-            CollisionShape hullShape;
             //initializes the physics as a sphere
             String group = type.getValue("group");
             if (!group.equals("rock")) {
@@ -97,11 +98,14 @@ public class Planet extends Celestial {
                         fractalPlanet.getDataSource());
             }
             //setup dynamic physics
-            physics = new RigidBodyControl(hullShape, getMass());
+            physics = new RigidBodyControl(hullShape, 0);
+            physics.setKinematic(false);
+            physics.setSleepingThresholds(0, 0);
             //add physics to mesh
             getSpatial().addControl(physics);
             if (atmosphereShell != null) {
                 atmospherePhysics = new RigidBodyControl(hullShape, getMass());
+                atmospherePhysics.setSleepingThresholds(0, 0);
                 atmosphereShell.addControl(atmospherePhysics);
             }
             //store physics name control
@@ -112,12 +116,14 @@ public class Planet extends Celestial {
 
     @Override
     public void deconstruct() {
+        super.deconstruct();
         setTex(null);
         mat = null;
         setSpatial(null);
         physics = null;
         atmosphereShell = null;
         atmospherePhysics = null;
+        hullShape = null;
     }
 
     private void generateProceduralPlanet(AssetManager assets) {
@@ -277,6 +283,10 @@ public class Planet extends Celestial {
                     atmospherePhysics.setPhysicsLocation(getLocation());
                     atmospherePhysics.setPhysicsRotation(getRotation());
                     atmosphereShell.setLocalRotation(getRotation());
+                }
+
+                if (hullShape instanceof PlanetCollisionShape) {
+                    ((PlanetCollisionShape) hullShape).setCenter(getPhysicsLocation());
                 }
             }
         }

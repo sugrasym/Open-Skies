@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -107,10 +107,10 @@ public class Equipment extends Item implements Serializable {
             }
             ret = "(" + percent + "%) " + getName();
         } else {
-            ret = (getName()+ " [OFFLINE]");
+            ret = (getName() + " [OFFLINE]");
         }
-        if(quantity != 1) {
-            ret += " ["+quantity+"]";
+        if (quantity != 1) {
+            ret += " [" + quantity + "]";
         }
         return ret;
     }
@@ -138,15 +138,15 @@ public class Equipment extends Item implements Serializable {
     public void setSocket(Hardpoint socket) {
         this.socket = socket;
     }
-    
+
     public void construct(AssetManager assets) {
         //TODO
     }
-    
+
     public void deconstruct() {
         killSound();
     }
-    
+
     public void killSound() {
         //TODO
     }

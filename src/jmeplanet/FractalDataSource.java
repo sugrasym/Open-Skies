@@ -1,54 +1,51 @@
 /*
-Copyright (c) 2012 Aaron Perkins
+ Copyright (c) 2012 Aaron Perkins
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-*/
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ */
 package jmeplanet;
 
 import com.jme3.math.Vector3f;
 
 /**
- * FractalDataSource generates height values from a
- * 3D fractal noise source.
- * 
- * Credits
- * This code has been adapted from noise++
- * Copyright (c) 2008, Urs C. Hanselmann
- * http://sourceforge.net/projects/noisepp/
+ * FractalDataSource generates height values from a 3D fractal noise source.
+ *
+ * Credits This code has been adapted from noise++ Copyright (c) 2008, Urs C.
+ * Hanselmann http://sourceforge.net/projects/noisepp/
  */
 public class FractalDataSource implements HeightDataSource {
-    
-    protected static final int NOISE_QUALITY_LOW=0;
-    protected static final int NOISE_QUALITY_STD=1;
-    protected static final int NOISE_QUALITY_HIGH=2;
-    protected static final int NOISE_QUALITY_FAST_LOW=3;
-    protected static final int NOISE_QUALITY_FAST_STD=4; 
-    protected static final int NOISE_QUALITY_FAST_HIGH=5;
+
+    protected static final int NOISE_QUALITY_LOW = 0;
+    protected static final int NOISE_QUALITY_STD = 1;
+    protected static final int NOISE_QUALITY_HIGH = 2;
+    protected static final int NOISE_QUALITY_FAST_LOW = 3;
+    protected static final int NOISE_QUALITY_FAST_STD = 4;
+    protected static final int NOISE_QUALITY_FAST_HIGH = 5;
     protected static final int NOISE_X_FACTOR = 1619;
     protected static final int NOISE_Y_FACTOR = 31337;
     protected static final int NOISE_Z_FACTOR = 6971;
     protected static final int NOISE_SEED_FACTOR = 1013;
     protected static final int NOISE_SHIFT = 8;
-    protected static final float FAST_NOISE_SCALE_FACTOR= 0.5f;
-    
-    private class Octave
-    {
+    protected static final float FAST_NOISE_SCALE_FACTOR = 0.5f;
+
+    private class Octave {
+
         int seed;
         float scale;
         float persistence;
@@ -68,9 +65,9 @@ public class FractalDataSource implements HeightDataSource {
     private float persistence = 0.625f;
     /// The noise scale factor.
     private float scale = 2.12f;
-    
+
     private Octave[] octaves;
-    
+
     private float heightScale = 1f;
     private float shift = 1f;
     private boolean minEnabled = false;
@@ -80,28 +77,28 @@ public class FractalDataSource implements HeightDataSource {
     public FractalDataSource() {
         this(0);
     }
-    
+
     public FractalDataSource(int seed) {
-        
+
         this.seed = seed;
-        
-        if (this.quality > NOISE_QUALITY_HIGH)
+
+        if (this.quality > NOISE_QUALITY_HIGH) {
             this.scale *= FAST_NOISE_SCALE_FACTOR;
-        
+        }
+
         this.octaves = new Octave[this.octaveCount];
         float curPersistence = 1.0f;
         int oSeed;
         float oScale = this.frequency;
-        for (int o=0;o<this.octaveCount;++o)
-        {
-                oSeed = (this.seed + o) & 0xffffffff;
-                this.octaves[o] = new Octave();
-                this.octaves[o].persistence = curPersistence;
-                this.octaves[o].scale = oScale;
-                this.octaves[o].seed = oSeed;
+        for (int o = 0; o < this.octaveCount; ++o) {
+            oSeed = (this.seed + o) & 0xffffffff;
+            this.octaves[o] = new Octave();
+            this.octaves[o].persistence = curPersistence;
+            this.octaves[o].scale = oScale;
+            this.octaves[o].seed = oSeed;
 
-                oScale *= lacunarity;
-                curPersistence *= persistence;
+            oScale *= lacunarity;
+            curPersistence *= persistence;
         }
 
     }
@@ -110,131 +107,123 @@ public class FractalDataSource implements HeightDataSource {
         this.min = min;
         this.minEnabled = true;
     }
-    
+
     public void setHeightScale(float heightScale) {
         this.heightScale = heightScale;
     }
-    
+
     public int getSeed() {
         return this.seed;
     }
-    
+
     public float getHeightScale() {
         return this.heightScale;
     }
-    
+
     public float getValue(Vector3f position) {
         float value = 0.0f;
         float signal = 1.0f;
 
-        for (int o=0;o<this.octaveCount;++o)
-        {
-                float nx = (position.x * this.octaves[o].scale);
-                float ny = (position.y * this.octaves[o].scale);
-                float nz = (position.z * this.octaves[o].scale);
-                signal = calculateGradient(nx, ny, nz, this.octaves[o].seed);
+        for (int o = 0; o < this.octaveCount; ++o) {
+            float nx = (position.x * this.octaves[o].scale);
+            float ny = (position.y * this.octaves[o].scale);
+            float nz = (position.z * this.octaves[o].scale);
+            signal = calculateGradient(nx, ny, nz, this.octaves[o].seed);
 
-                value += signal * this.octaves[o].persistence;
+            value += signal * this.octaves[o].persistence;
         }
-        
+
         // return value, shifting, clamping, and scaling
         //return FastMath.clamp((value + shift) / (shift * 2), min, max) * heightScale;
-
         value *= heightScale;
-        
-        if (this.minEnabled)
+
+        if (this.minEnabled) {
             value = Math.max(value, this.min);
-        
+        }
+
         return value;
     }
 
-    private float calculateGradient (float x, float y, float z, int seed)
-    {
-            //if (this.quality == NOISE_QUALITY_STD)
-                    return calcGradientCoherentNoiseStd (x, y, z, seed, this.scale);
-            /*
-            else if (this.quality == NOISE_QUALITY_HIGH)
-                    return Generator3D::calcGradientCoherentNoiseHigh (x, y, z, seed, mScale);
-            else if (this.quality == NOISE_QUALITY_LOW)
-                    return Generator3D::calcGradientCoherentNoiseLow (x, y, z, seed, mScale);
-            else if (this.quality == NOISE_QUALITY_FAST_STD)
-                    return Generator3D::calcGradientCoherentFastNoiseStd (x, y, z, seed, mScale);
-            else if (this.quality == NOISE_QUALITY_FAST_HIGH)
-                    return Generator3D::calcGradientCoherentFastNoiseHigh (x, y, z, seed, mScale);
-            else
-                    return Generator3D::calcGradientCoherentFastNoiseLow (x, y, z, seed, mScale);
-             * 
-             */
+    private float calculateGradient(float x, float y, float z, int seed) {
+        //if (this.quality == NOISE_QUALITY_STD)
+        return calcGradientCoherentNoiseStd(x, y, z, seed, this.scale);
+        /*
+         else if (this.quality == NOISE_QUALITY_HIGH)
+         return Generator3D::calcGradientCoherentNoiseHigh (x, y, z, seed, mScale);
+         else if (this.quality == NOISE_QUALITY_LOW)
+         return Generator3D::calcGradientCoherentNoiseLow (x, y, z, seed, mScale);
+         else if (this.quality == NOISE_QUALITY_FAST_STD)
+         return Generator3D::calcGradientCoherentFastNoiseStd (x, y, z, seed, mScale);
+         else if (this.quality == NOISE_QUALITY_FAST_HIGH)
+         return Generator3D::calcGradientCoherentFastNoiseHigh (x, y, z, seed, mScale);
+         else
+         return Generator3D::calcGradientCoherentFastNoiseLow (x, y, z, seed, mScale);
+         * 
+         */
     }
-    
-    private float calcGradientCoherentNoiseStd (float x, float y, float z, int seed, float scale)
-    {
-            //NOISE_GENERATOR_INTEGER_CLAMP_3D;
-            int x0 = (x > 0.0f ? (int)x : (int)x - 1); 
-            int x1 = x0 + 1;
-            int y0 = (y > 0.0f ? (int)y : (int)y - 1);
-            int y1 = y0 + 1;
-            int z0 = (z > 0.0f ? (int)z : (int)z - 1); 
-            int z1 = z0 + 1;
-            
-            float xs = cubicCurve3 (x - x0);
-            float ys = cubicCurve3 (y - y0);
-            float zs = cubicCurve3 (z - z0);
 
-            return interpGradientCoherentNoise(x, y, z, x0, x1, y0, y1, z0, z1, xs, ys, zs, seed, scale);
+    private float calcGradientCoherentNoiseStd(float x, float y, float z, int seed, float scale) {
+        //NOISE_GENERATOR_INTEGER_CLAMP_3D;
+        int x0 = (x > 0.0f ? (int) x : (int) x - 1);
+        int x1 = x0 + 1;
+        int y0 = (y > 0.0f ? (int) y : (int) y - 1);
+        int y1 = y0 + 1;
+        int z0 = (z > 0.0f ? (int) z : (int) z - 1);
+        int z1 = z0 + 1;
+
+        float xs = cubicCurve3(x - x0);
+        float ys = cubicCurve3(y - y0);
+        float zs = cubicCurve3(z - z0);
+
+        return interpGradientCoherentNoise(x, y, z, x0, x1, y0, y1, z0, z1, xs, ys, zs, seed, scale);
     }
-    
-    private float interpGradientCoherentNoise (float x, float y, float z, int x0, int x1, int y0, int y1, int z0, int z1, float xs, float ys, float zs, int seed, float scale)
-    {
-            float n0, n1, ix0, ix1, iy0, iy1;
-            n0 = calcGradientNoise(x, y, z, x0, y0, z0, seed);
-            n1 = calcGradientNoise(x, y, z, x1, y0, z0, seed);
-            ix0 = interpLinear (n0, n1, xs);
-            n0 = calcGradientNoise(x, y, z, x0, y1, z0, seed);
-            n1 = calcGradientNoise(x, y, z, x1, y1, z0, seed);
-            ix1 = interpLinear (n0, n1, xs);
-            iy0 = interpLinear (ix0, ix1, ys);
-            n0 = calcGradientNoise(x, y, z, x0, y0, z1, seed);
-            n1 = calcGradientNoise(x, y, z, x1, y0, z1, seed);
-            ix0 = interpLinear (n0, n1, xs);
-            n0 = calcGradientNoise(x, y, z, x0, y1, z1, seed);
-            n1 = calcGradientNoise(x, y, z, x1, y1, z1, seed);
-            ix1 = interpLinear (n0, n1, xs);
-            iy1 = interpLinear (ix0, ix1, ys);
 
-            return interpLinear (iy0, iy1, zs) * scale;
+    private float interpGradientCoherentNoise(float x, float y, float z, int x0, int x1, int y0, int y1, int z0, int z1, float xs, float ys, float zs, int seed, float scale) {
+        float n0, n1, ix0, ix1, iy0, iy1;
+        n0 = calcGradientNoise(x, y, z, x0, y0, z0, seed);
+        n1 = calcGradientNoise(x, y, z, x1, y0, z0, seed);
+        ix0 = interpLinear(n0, n1, xs);
+        n0 = calcGradientNoise(x, y, z, x0, y1, z0, seed);
+        n1 = calcGradientNoise(x, y, z, x1, y1, z0, seed);
+        ix1 = interpLinear(n0, n1, xs);
+        iy0 = interpLinear(ix0, ix1, ys);
+        n0 = calcGradientNoise(x, y, z, x0, y0, z1, seed);
+        n1 = calcGradientNoise(x, y, z, x1, y0, z1, seed);
+        ix0 = interpLinear(n0, n1, xs);
+        n0 = calcGradientNoise(x, y, z, x0, y1, z1, seed);
+        n1 = calcGradientNoise(x, y, z, x1, y1, z1, seed);
+        ix1 = interpLinear(n0, n1, xs);
+        iy1 = interpLinear(ix0, ix1, ys);
+
+        return interpLinear(iy0, iy1, zs) * scale;
     }
-    
-    private float calcGradientNoise (float fx, float fy, float fz, int ix, int iy, int iz, int seed)
-    {
-            int vIndex = (NOISE_X_FACTOR * ix + NOISE_Y_FACTOR * iy + NOISE_Z_FACTOR * iz + NOISE_SEED_FACTOR * seed) & 0xffffffff;
-            vIndex ^= (vIndex >> NOISE_SHIFT);
-            vIndex &= 0xff;
 
-            float xGradient = randomVectors3D[(vIndex<<2)];
-            float yGradient = randomVectors3D[(vIndex<<2)+1];
-            float zGradient = randomVectors3D[(vIndex<<2)+2];
+    private float calcGradientNoise(float fx, float fy, float fz, int ix, int iy, int iz, int seed) {
+        int vIndex = (NOISE_X_FACTOR * ix + NOISE_Y_FACTOR * iy + NOISE_Z_FACTOR * iz + NOISE_SEED_FACTOR * seed) & 0xffffffff;
+        vIndex ^= (vIndex >> NOISE_SHIFT);
+        vIndex &= 0xff;
 
-            float xDelta = fx - ix;
-            float yDelta = fy - iy;
-            float zDelta = fz - iz;
-            return (xGradient * xDelta + yGradient * yDelta + zGradient * zDelta);
+        float xGradient = randomVectors3D[(vIndex << 2)];
+        float yGradient = randomVectors3D[(vIndex << 2) + 1];
+        float zGradient = randomVectors3D[(vIndex << 2) + 2];
+
+        float xDelta = fx - ix;
+        float yDelta = fy - iy;
+        float zDelta = fz - iz;
+        return (xGradient * xDelta + yGradient * yDelta + zGradient * zDelta);
     }
-    
+
     /// Calculates a third-order interpolant
-    private float cubicCurve3 (float a)
-    {
-            return (a * a * (3f - 2f * a));
+    private float cubicCurve3(float a) {
+        return (a * a * (3f - 2f * a));
     }
-    
+
     /// Performs linear interpolation
-    private float interpLinear (float left, float right, float a)
-    {
-            return ((1f - a) * left) + (a * right);
+    private float interpLinear(float left, float right, float a) {
+        return ((1f - a) * left) + (a * right);
     }
-    
-    private final static float[] randomVectors3D = new float[]
-    {
+
+    private final static float[] randomVectors3D = new float[]{
         -0.763874f, -0.596439f, -0.246489f, 0.0f,
         0.396055f, 0.904518f, -0.158073f, 0.0f,
         -0.499004f, -0.8665f, -0.0131631f, 0.0f,
@@ -492,5 +481,5 @@ public class FractalDataSource implements HeightDataSource {
         0.991353f, 0.112814f, 0.0670273f, 0.0f,
         0.0337884f, -0.979891f, -0.196654f, 0.0f
     };
-    
+
 }

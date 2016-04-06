@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,6 @@ import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import entity.Entity;
 import java.util.ArrayList;
-import java.util.Random;
 import universe.Universe;
 
 /**
@@ -124,18 +123,18 @@ public class Projectile extends Celestial {
         emitter.setHighLife(lowLife);
         emitter.getParticleInfluencer().setVelocityVariation(variation);
         emitter.getParticleInfluencer().setInitialVelocity(pVel);
-        if (!isGuided) {
-            emitter.setInWorldSpace(false);
-        } else {
-            emitter.setInWorldSpace(true);
-        }
         emitter.setSelectRandomImage(true);
         emitter.setEnabled(true);
         emitter.setParticlesPerSec(emitterRate);
         //setup start color
         emitter.setStartColor(startColor);
         emitter.setEndColor(endColor);
-        emitter.emitAllParticles();
+        if (!isGuided) {
+            emitter.setInWorldSpace(false);
+            emitter.emitAllParticles();
+        } else {
+            emitter.setInWorldSpace(true);
+        }
         //store as spatial
         setSpatial(emitter);
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -483,15 +483,29 @@ public class SolarSystem implements Entity, Serializable {
                 }
             }
 
-            //center system around player
-            Vector3f pLoc = universe.getPlayerShip().getPhysicsLocation().clone();
-
-            for (int a = 0; a < celestials.size(); a++) {
-                Vector3f cLoc = celestials.get(a).getPhysicsLocation().clone();
-                celestials.get(a).setLocation(cLoc.subtract(pLoc));
-            }
+            centerPlayer();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void centerPlayer() {
+        //center system around player
+        Vector3f pLoc = universe.getPlayerShip().getPhysicsLocation().clone();
+
+        for (int a = 0; a < celestials.size(); a++) {
+            Vector3f cLoc = celestials.get(a).getPhysicsLocation().clone();
+            celestials.get(a).setLocation(cLoc.subtract(pLoc));
+        }
+    }
+
+    private void uncenterPlayer() {
+        //center system around player
+        Vector3f pLoc = universe.getPlayerShip().getPhysicsLocation().clone();
+
+        for (int a = 0; a < celestials.size(); a++) {
+            Vector3f cLoc = celestials.get(a).getPhysicsLocation().clone();
+            celestials.get(a).setLocation(cLoc.add(pLoc));
         }
     }
 
@@ -654,6 +668,9 @@ public class SolarSystem implements Entity, Serializable {
 
     @Override
     public void deconstruct() {
+        //cleanup centering
+        uncenterPlayer();
+        
         //cleanup skybox
         if (skybox != null) {
             skybox.dispose();

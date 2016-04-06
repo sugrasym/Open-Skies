@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -94,11 +94,11 @@ public class Hardpoint implements Serializable {
     public String toString() {
         return getMounted().toString();
     }
-    
+
     public boolean isEnabled() {
         return getMounted().isEnabled();
     }
-    
+
     public void setEnabled(boolean enabled) {
         getMounted().setEnabled(enabled);
     }
@@ -126,7 +126,7 @@ public class Hardpoint implements Serializable {
     public void setLoc(Vector3f loc) {
         this.loc = loc;
     }
-    
+
     public Vector3f getUp() {
         return up;
     }
@@ -134,7 +134,7 @@ public class Hardpoint implements Serializable {
     public void setUp(Vector3f up) {
         this.up = up;
     }
-    
+
     public boolean notNothing() {
         return !mounted.getName().equals("NOTHING");
     }
@@ -154,7 +154,7 @@ public class Hardpoint implements Serializable {
     public void setNode(Node node) {
         this.node = node;
     }
-    
+
     public Node getUpNode() {
         return upNode;
     }
@@ -162,21 +162,21 @@ public class Hardpoint implements Serializable {
     public void setUpNode(Node upNode) {
         this.upNode = upNode;
     }
-    
+
     public void initNodes() {
         node = new Node();
         node.move(loc);
         upNode = new Node();
         upNode.move(loc.add(up));
     }
-    
+
     public void showDebugHardpoint(AssetManager assets) {
-        addNodeDebug(assets);   
+        addNodeDebug(assets);
         addUpNodeDebug(assets);
     }
 
     private void addNodeDebug(AssetManager assets) {
-        Box point = new Box(0.1f,0.1f,0.1f);
+        Box point = new Box(0.1f, 0.1f, 0.1f);
         Geometry red = new Geometry("DebugHardpoint", point);
         red.setLocalTranslation(Vector3f.ZERO);
         Material mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
@@ -185,9 +185,9 @@ public class Hardpoint implements Serializable {
         //add to node
         node.attachChild(red);
     }
-    
+
     private void addUpNodeDebug(AssetManager assets) {
-        Box point = new Box(0.1f,0.1f,0.1f);
+        Box point = new Box(0.1f, 0.1f, 0.1f);
         Geometry gray = new Geometry("DebugHardpoint", point);
         gray.setLocalTranslation(Vector3f.ZERO);
         Material mat = new Material(assets, "Common/MatDefs/Misc/Unshaded.j3md");
@@ -196,22 +196,22 @@ public class Hardpoint implements Serializable {
         //add to node
         upNode.attachChild(gray);
     }
-    
+
     public void construct(AssetManager assets) {
-        if(mounted != null) {
+        if (mounted != null) {
             mounted.construct(assets);
         }
     }
-    
+
     public void deconstruct() {
-        if(mounted != null) {
+        if (mounted != null) {
             mounted.deconstruct();
         }
         killSound();
     }
-    
+
     public void killSound() {
-        if(mounted != null) {
+        if (mounted != null) {
             mounted.killSound();
         }
     }

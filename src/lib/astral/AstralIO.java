@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -113,14 +113,14 @@ public class AstralIO implements Serializable {
             writeFile(getPayloadFile(), payload);
         }
     }
-    
+
     public static void forceDeployControlPayload() {
         //delete the old payload file
         File file = new File(getPayloadFile());
-        if(file.exists()) {
+        if (file.exists()) {
             file.delete();
         }
-        
+
         //deploy the current one
         String payload = readTextFromJar("PAYLOAD.txt");
         writeFile(getPayloadFile(), payload);

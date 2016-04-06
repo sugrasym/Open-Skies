@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -70,7 +70,7 @@ public class Faction implements Serializable {
     private final ArrayList<String> campaignList = new ArrayList<>();
     //player faction
     public static final String PLAYER = "Player";
-    
+
     public Faction(String name) {
         this.name = name;
         init();
@@ -194,7 +194,7 @@ public class Faction implements Serializable {
                 }
                 try {
                     isEmpire = Boolean.parseBoolean(tmp2.getValue("var_isEmpire"));
-                    if(isEmpire) {
+                    if (isEmpire) {
                         spread = Double.parseDouble((tmp2.getValue("var_worldPercent"))) / 100.0;
                     }
                     //store hosts
@@ -366,7 +366,7 @@ public class Faction implements Serializable {
     public ArrayList<String> getRumorList() {
         return rumorList;
     }
-    
+
     public ArrayList<String> getCampaignList() {
         return campaignList;
     }

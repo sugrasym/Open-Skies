@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -52,7 +52,7 @@ public class AstralBar extends AstralComponent {
             if (buffer == null) {
                 buffer = Utility.CreateCompatibleImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
             }
-            Graphics2D s = (Graphics2D)buffer.getGraphics();
+            Graphics2D s = (Graphics2D) buffer.getGraphics();
             //draw the background
             s.setColor(getBarColor());
             s.fillRect(0, 0, (int) (percentage * getWidth()), getHeight());

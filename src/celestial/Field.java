@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -186,7 +186,7 @@ public class Field extends Celestial implements Serializable {
     private boolean noExclusionZone() {
         for (int a = 0; a < universe.getPlayerShip().getCurrentSystem().getCelestials().size(); a++) {
             Entity test = universe.getPlayerShip().getCurrentSystem().getCelestials().get(a);
-            if (test instanceof Planet) {
+            if (test instanceof Planet && !(test instanceof Jumphole)) {
                 Planet tmp = (Planet) test;
                 double dist = tmp.getLocation().distance(universe.getPlayerShip().getPhysicsLocation());
                 if (Math.max(dist - tmp.getRadius(), 0) < blockSize) {

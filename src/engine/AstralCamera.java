@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Nathan Wiehoff
+ * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,6 @@ import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.filters.BloomFilter;
-import com.jme3.post.filters.FogFilter;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
@@ -58,7 +57,6 @@ import jmeplanet.Planet;
 public class AstralCamera implements Control {
 
     //engine resources
-
     private Camera nearCam;
     private final Camera farCam;
     private final RenderManager renderManager;
@@ -67,7 +65,6 @@ public class AstralCamera implements Control {
     //effects
     protected FilterPostProcessor nearFilter;
     protected FilterPostProcessor farFilter;
-    protected FogFilter fog;
     protected BloomFilter bloom;
     protected DirectionalLightShadowRenderer dlsr;
     protected DirectionalLightShadowFilter dlsf;
@@ -94,7 +91,7 @@ public class AstralCamera implements Control {
         RTS
     }
     Mode mode = Mode.NORMAL;
-    
+
     private ArrayList<TargetPlacement> cachedTargetPlacements;
     private int trailingCount = 0;
     private int trailingFactor = 0;
@@ -135,8 +132,6 @@ public class AstralCamera implements Control {
         nearCam.setFrustumPerspective(45f, (float) nearCam.getWidth() / nearCam.getHeight(), 1f, 310f);
 
         //near effects
-        fog = new FogFilter();
-        nearFilter.addFilter(fog);
         nearViewPort.addProcessor(nearFilter);
 
         //far effects
@@ -148,8 +143,8 @@ public class AstralCamera implements Control {
         bloom.setBloomIntensity(1.45f);
         //farFilter.addFilter(bloom);
         farViewPort.addProcessor(farFilter);
-        
-        cachedTargetPlacements = new ArrayList<TargetPlacement>();
+
+        cachedTargetPlacements = new ArrayList<>();
     }
 
     @Override
@@ -161,7 +156,7 @@ public class AstralCamera implements Control {
                 Quaternion rotation = target.getPhysicsRotation().clone();
                 Vector3f lookAtUpVector = rotation.mult(Vector3f.UNIT_Y).clone();
                 Vector3f currentVelocity = target.getLinearVelocity().clone();
-
+                
                 //record position for camera to follow
                 TargetPlacement newPlacement = new TargetPlacement(target.getCameraRestPoint().clone(), rotation.clone());
                 cachedTargetPlacements.add(newPlacement);
@@ -265,30 +260,18 @@ public class AstralCamera implements Control {
 
     public void updateFogAndBloom(Planet planet) {
         if (planet.getIsInOcean()) {
-            // turn on underwater fogging
-            fog.setFogColor(planet.getUnderwaterFogColor());
-            fog.setFogDistance(planet.getUnderwaterFogDistance());
-            fog.setFogDensity(planet.getUnderwaterFogDensity());
-            fog.setEnabled(true);
             bloom.setEnabled(true);
         } else {
             if (planet.getIsInAtmosphere()) {
-                // turn on atomosphere fogging
-                fog.setFogColor(planet.getAtmosphereFogColor());
-                fog.setFogDistance(planet.getAtmosphereFogDistance());
-                fog.setFogDensity(planet.getAtmosphereFogDensity());
-                fog.setEnabled(true);
                 bloom.setEnabled(false);
             } else {
                 // in space
-                fog.setEnabled(false);
                 bloom.setEnabled(true);
             }
         }
     }
 
     public void stopFogAndBloom() {
-        fog.setEnabled(false);
         bloom.setEnabled(true);
     }
 
@@ -307,7 +290,7 @@ public class AstralCamera implements Control {
     }
 
     public void freeCamera() {
-        if (target != null) {
+        if (target != null && target.getSpatial() != null) {
             target.getSpatial().removeControl(this);
             target = null;
         }
