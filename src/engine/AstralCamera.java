@@ -37,7 +37,6 @@ import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.filters.BloomFilter;
-import com.jme3.post.filters.FogFilter;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
@@ -67,7 +66,6 @@ public class AstralCamera implements Control {
     //effects
     protected FilterPostProcessor nearFilter;
     protected FilterPostProcessor farFilter;
-    protected FogFilter fog;
     protected BloomFilter bloom;
     protected DirectionalLightShadowRenderer dlsr;
     protected DirectionalLightShadowFilter dlsf;
@@ -135,8 +133,6 @@ public class AstralCamera implements Control {
         nearCam.setFrustumPerspective(45f, (float) nearCam.getWidth() / nearCam.getHeight(), 1f, 310f);
 
         //near effects
-        fog = new FogFilter();
-        nearFilter.addFilter(fog);
         nearViewPort.addProcessor(nearFilter);
 
         //far effects
@@ -265,30 +261,18 @@ public class AstralCamera implements Control {
 
     public void updateFogAndBloom(Planet planet) {
         if (planet.getIsInOcean()) {
-            // turn on underwater fogging
-            fog.setFogColor(planet.getUnderwaterFogColor());
-            fog.setFogDistance(planet.getUnderwaterFogDistance());
-            fog.setFogDensity(planet.getUnderwaterFogDensity());
-            fog.setEnabled(true);
             bloom.setEnabled(true);
         } else {
             if (planet.getIsInAtmosphere()) {
-                // turn on atomosphere fogging
-                fog.setFogColor(planet.getAtmosphereFogColor());
-                fog.setFogDistance(planet.getAtmosphereFogDistance());
-                fog.setFogDensity(planet.getAtmosphereFogDensity());
-                fog.setEnabled(true);
                 bloom.setEnabled(false);
             } else {
                 // in space
-                fog.setEnabled(false);
                 bloom.setEnabled(true);
             }
         }
     }
 
     public void stopFogAndBloom() {
-        fog.setEnabled(false);
         bloom.setEnabled(true);
     }
 

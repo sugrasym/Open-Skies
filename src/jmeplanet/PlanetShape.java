@@ -8,7 +8,7 @@ import com.jme3.math.Vector3f;
 
 public class PlanetShape extends ConcaveShape {
     
-    protected Vector3f center;
+    private Vector3f center;
     protected float radius;
     protected HeightDataSource dataSource;
     protected javax.vecmath.Vector3f scaling;
@@ -22,16 +22,15 @@ public class PlanetShape extends ConcaveShape {
     @Override
     public void getAabb(Transform t, javax.vecmath.Vector3f aabbMin, javax.vecmath.Vector3f aabbMax) {
         t = null;
-	aabbMin.set(center.x-radius, center.y-radius, center.z-radius);
-	aabbMax.set(center.x+radius, center.y+radius, center.z+radius);
+	aabbMin.set(getCenter().x-radius, getCenter().y-radius, getCenter().z-radius);
+	aabbMax.set(getCenter().x+radius, getCenter().y+radius, getCenter().z+radius);
     }
 
     @Override
     public void processAllTriangles(TriangleCallback callback, javax.vecmath.Vector3f aabbMin, javax.vecmath.Vector3f aabbMax) {
-        
         // add local translation
-        aabbMin.add(convert(this.center));
-        aabbMax.add(convert(this.center));
+        aabbMin.add(convert(this.getCenter()));
+        aabbMax.add(convert(this.getCenter()));
         
         // calculate 8 corners of the AABB
         Vector3f bottomFrontLeft = convert(aabbMin);
@@ -53,29 +52,30 @@ public class PlanetShape extends ConcaveShape {
         Vector3f rightCenter = new Vector3f(aabbMax.x, aabbMin.y + halfSize.y, aabbMin.z + halfSize.z);
 
         // calculate the position of the vertex on the terrain by "projecting" the corners of the AABB
-        Vector3f bottomFrontLeftVertex = calculateTerrainVertex(bottomFrontLeft, this.center);
-        Vector3f bottomFrontRightVertex = calculateTerrainVertex(bottomFrontRight, this.center);
-        Vector3f bottomBackLeftVertex = calculateTerrainVertex(bottomBackLeft, this.center);
-        Vector3f bottomBackRightVertex = calculateTerrainVertex(bottomBackRight, this.center);
-        Vector3f topBackRightVertex = calculateTerrainVertex(topBackRight, this.center);
-        Vector3f topFrontRightVertex = calculateTerrainVertex(topFrontRight, this.center);
-        Vector3f topBackLeftVertex = calculateTerrainVertex(topBackLeft, this.center);
-        Vector3f topFrontLeftVertex = calculateTerrainVertex(topFrontLeft, this.center);
+        Vector3f bottomFrontLeftVertex = calculateTerrainVertex(bottomFrontLeft, this.getCenter());
+        Vector3f bottomFrontRightVertex = calculateTerrainVertex(bottomFrontRight, this.getCenter());
+        Vector3f bottomBackLeftVertex = calculateTerrainVertex(bottomBackLeft, this.getCenter());
+        Vector3f bottomBackRightVertex = calculateTerrainVertex(bottomBackRight, this.getCenter());
+        Vector3f topBackRightVertex = calculateTerrainVertex(topBackRight, this.getCenter());
+        Vector3f topFrontRightVertex = calculateTerrainVertex(topFrontRight, this.getCenter());
+        Vector3f topBackLeftVertex = calculateTerrainVertex(topBackLeft, this.getCenter());
+        Vector3f topFrontLeftVertex = calculateTerrainVertex(topFrontLeft, this.getCenter());
 
         // determine which of the corners of the AABB are colliding with the terrain
-        boolean bottomFrontLeftCollides = bottomFrontLeft.distance(this.center) <= bottomFrontLeftVertex.distance(this.center);
-        boolean bottomFrontRightCollides = bottomFrontRight.distance(this.center) <= bottomFrontRightVertex.distance(this.center);
-        boolean bottomBackLeftCollides = bottomBackLeft.distance(this.center) <= bottomBackLeftVertex.distance(this.center);
-        boolean bottomBackRightCollides = bottomBackRight.distance(this.center) <= bottomBackRightVertex.distance(this.center);
-        boolean topBackRightCollides = topBackRight.distance(this.center) <= topBackRightVertex.distance(this.center);
-        boolean topFrontRightCollides = topFrontRight.distance(this.center) <= topFrontRightVertex.distance(this.center);
-        boolean topBackLeftCollides = topBackLeft.distance(this.center) <= topBackLeftVertex.distance(this.center);
-        boolean topFrontLeftCollides = topFrontLeft.distance(this.center) <= topFrontLeftVertex.distance(this.center);
-
+        //NOTE: I have no idea why this works after the camera changes...
+        boolean bottomFrontLeftCollides = true;
+        boolean bottomFrontRightCollides = true;
+        boolean bottomBackLeftCollides = true;
+        boolean bottomBackRightCollides = true;
+        boolean topBackRightCollides = true;
+        boolean topFrontRightCollides = true;
+        boolean topBackLeftCollides = true;
+        boolean topFrontLeftCollides = true;
+        
         // find which 3 sides are closest in order to prevent extraneous triangle processing
-        boolean frontCloser = frontCenter.distance(this.center) < backCenter.distance(this.center);
-        boolean bottomCloser = bottomCenter.distance(this.center) < topCenter.distance(this.center);
-        boolean leftCloser = leftCenter.distance(this.center) < rightCenter.distance(this.center);
+        boolean frontCloser = frontCenter.distance(this.getCenter()) < backCenter.distance(this.getCenter());
+        boolean bottomCloser = bottomCenter.distance(this.getCenter()) < topCenter.distance(this.getCenter());
+        boolean leftCloser = leftCenter.distance(this.getCenter()) < rightCenter.distance(this.getCenter());
 
         if (frontCloser)
         {
@@ -235,6 +235,14 @@ public class PlanetShape extends ConcaveShape {
         newVec.x = oldVec.x;
         newVec.y = oldVec.y;
         newVec.z = oldVec.z;
+    }
+
+    public Vector3f getCenter() {
+        return center;
+    }
+
+    public void setCenter(Vector3f center) {
+        this.center = center;
     }
  
 }

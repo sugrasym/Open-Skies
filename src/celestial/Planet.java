@@ -31,6 +31,7 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.collision.shapes.SphereCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
 import com.jme3.material.RenderState.BlendMode;
 import com.jme3.math.ColorRGBA;
@@ -65,6 +66,7 @@ public class Planet extends Celestial {
     private transient Texture2D tex;
     transient jmeplanet.Planet fractalPlanet;
     transient jmeplanet.Planet atmosphereShell;
+    transient CollisionShape hullShape;
     protected transient RigidBodyControl atmospherePhysics;
     private Term type;
     private int seed = 0;
@@ -87,7 +89,6 @@ public class Planet extends Celestial {
     public void construct(AssetManager assets) {
         generateProceduralPlanet(assets);
         if (getSpatial() != null) {
-            CollisionShape hullShape;
             //initializes the physics as a sphere
             String group = type.getValue("group");
             if (!group.equals("rock")) {
@@ -97,7 +98,9 @@ public class Planet extends Celestial {
                         fractalPlanet.getDataSource());
             }
             //setup dynamic physics
-            physics = new RigidBodyControl(hullShape, getMass());
+            physics = new RigidBodyControl(hullShape, 0);
+            physics.setKinematic(false);
+            physics.setSleepingThresholds(0, 0);
             //add physics to mesh
             getSpatial().addControl(physics);
             if (atmosphereShell != null) {
@@ -118,6 +121,7 @@ public class Planet extends Celestial {
         physics = null;
         atmosphereShell = null;
         atmospherePhysics = null;
+        hullShape = null;
     }
 
     private void generateProceduralPlanet(AssetManager assets) {
@@ -277,6 +281,10 @@ public class Planet extends Celestial {
                     atmospherePhysics.setPhysicsLocation(getLocation());
                     atmospherePhysics.setPhysicsRotation(getRotation());
                     atmosphereShell.setLocalRotation(getRotation());
+                }
+                
+                if(hullShape instanceof PlanetCollisionShape) {
+                    ((PlanetCollisionShape) hullShape).setCenter(getPhysicsLocation());
                 }
             }
         }
