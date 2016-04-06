@@ -47,7 +47,6 @@ import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Node;
-import com.jme3.scene.Spatial;
 import entity.Entity;
 import java.util.ArrayList;
 import java.util.Random;
@@ -3203,7 +3202,15 @@ public class Ship extends Celestial {
      * on the acceleration of the craft and what the craft is doing
      */
     protected float getFlightHold() {
-        return 3 * getAcceleration();
+        float drag;
+        if(engine == EngineMode.COMBAT) {
+            drag = COMBAT_DAMP;
+        } else if(engine == EngineMode.CRUISE) {
+            drag = CRUISE_DAMP;
+        } else {
+            drag = 0;
+        }
+        return ((getMass() * getAcceleration()) / drag) * 0.68f;
     }
 
     protected float getFollowHold() {

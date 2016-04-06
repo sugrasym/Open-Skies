@@ -59,8 +59,8 @@ import universe.Universe;
  * @author nwiehoff
  */
 public class Planet extends Celestial {
-    public static final float MIN_ATMOSPHERE_DAMAGE_VELOCITY = 10f;
-    public static final float ATMOSPHERE_DAMAGE_SCALER = 8f;
+    public static final float MIN_ATMOSPHERE_DAMAGE_VELOCITY = 50f;
+    public static final float ATMOSPHERE_DAMAGE_SCALER = 4f;
 
     private transient Texture2D tex;
     private transient jmeplanet.Planet fractalPlanet;
