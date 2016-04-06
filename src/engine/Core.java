@@ -940,6 +940,7 @@ public class Core {
                     } else {
                         //transition to the new system
                         resetScene();
+                        playerShip.deconstruct();
                         addSystem(playerShip.getCurrentSystem());
                         planetAppState.getAstralCamera().setTarget(playerShip);
                         //make sure the new system is flagged for graphics
