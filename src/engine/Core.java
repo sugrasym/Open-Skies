@@ -87,7 +87,6 @@ public class Core {
     public static final float TICK_DIVIDER = 4.0f;
     //game objects
     private Universe universe;
-    private Ship playerShip;
 
     God god;
 
@@ -380,8 +379,8 @@ public class Core {
         ArrayList<Term> types = ships.getTermsOfType("Ship");
         for (int a = 0; a < types.size(); a++) {
             if (types.get(a).getValue("type").equals(shipName)) {
-                playerShip = new Ship(getUniverse(), types.get(a), Faction.PLAYER);
-                playerShip.setName("Your " + shipName);
+                universe.setPlayerShip(new Ship(getUniverse(), types.get(a), Faction.PLAYER));
+                getPlayerShip().setName("Your " + shipName);
                 break;
             }
         }
@@ -390,20 +389,18 @@ public class Core {
         float y = Float.parseFloat(game.getValue("y"));
         float z = Float.parseFloat(game.getValue("z"));
         long cash = Long.parseLong(game.getValue("cash"));
-        playerShip.setLocation(new Vector3f(x, y, z));
-        playerShip.setCurrentSystem(start);
-        playerShip.setCash(cash);
-        start.putEntityInSystem(playerShip);
+        getPlayerShip().setLocation(new Vector3f(x, y, z));
+        getPlayerShip().setCurrentSystem(start);
+        getPlayerShip().setCash(cash);
         //store initial cargo
         String cargo = game.getValue("cargo");
-        playerShip.addInitialCargo(cargo);
+        getPlayerShip().addInitialCargo(cargo);
         //store initial equipment
         String install = game.getValue("install");
-        playerShip.addInitialEquipment(install);
+        getPlayerShip().addInitialEquipment(install);
         //setup start system
         addSystem(start);
-        //setup player shortcut
-        getUniverse().setPlayerShip(playerShip);
+        start.putEntityInSystem(getPlayerShip());
         //inform hud of new universe
         hud.reset();
         hud.setUniverse(getUniverse());
@@ -627,126 +624,126 @@ public class Core {
                     hud.toggleMenuHomeWindow();
                 }
             }
-            if (!universe.getPlayerShip().isDocked()) {
+            if (!getPlayerShip().isDocked()) {
                 //docking
                 if (name.equals("KEY_F1")) {
                     if (keyPressed) {
-                        if (playerShip.getTarget() instanceof Station) {
-                            playerShip.cmdDock((Station) playerShip.getTarget());
+                        if (getPlayerShip().getTarget() instanceof Station) {
+                            getPlayerShip().cmdDock((Station) getPlayerShip().getTarget());
                         }
                     }
                 }
                 if (name.equals("KEY_H")) {
                     if (keyPressed) {
-                        if (playerShip.getTarget() != null) {
-                            playerShip.getTarget().hail();
+                        if (getPlayerShip().getTarget() != null) {
+                            getPlayerShip().getTarget().hail();
                             hud.commWindow.setVisible(true);
                         }
                     }
                 }
                 //fire
                 if (name.equals(KEY_FIRE)) {
-                    playerShip.setFiring(keyPressed);
+                    getPlayerShip().setFiring(keyPressed);
                 }
                 //all stop
                 if (name.equals(KEY_STOP)) {
-                    playerShip.cmdAllStop();
+                    getPlayerShip().cmdAllStop();
                 }
                 //handle nav actions
                 if (name.equals(KEY_ROLL_LEFT)) {
                     if (keyPressed) {
-                        playerShip.setRoll(1);
+                        getPlayerShip().setRoll(1);
                     } else {
-                        playerShip.setRoll(0);
+                        getPlayerShip().setRoll(0);
                     }
                 }
                 if (name.equals(KEY_ROLL_RIGHT)) {
                     if (keyPressed) {
-                        playerShip.setRoll(-1);
+                        getPlayerShip().setRoll(-1);
                     } else {
-                        playerShip.setRoll(0);
+                        getPlayerShip().setRoll(0);
                     }
                 }
                 if (name.equals(KEY_FORWARD_THRUST)) {
                     if (keyPressed) {
-                        playerShip.setThrottle(1);
+                        getPlayerShip().setThrottle(1);
                     } else {
-                        playerShip.setThrottle(0);
+                        getPlayerShip().setThrottle(0);
                     }
                 }
                 if (name.equals(KEY_REVERSE_THRUST)) {
                     if (keyPressed) {
-                        playerShip.setThrottle(-1);
+                        getPlayerShip().setThrottle(-1);
                     } else {
-                        playerShip.setThrottle(0);
+                        getPlayerShip().setThrottle(0);
                     }
                 }
                 if (name.equals(KEY_YAW_LEFT)) {
                     if (keyPressed) {
-                        playerShip.setYaw(1);
+                        getPlayerShip().setYaw(1);
                     } else {
-                        playerShip.setYaw(0);
+                        getPlayerShip().setYaw(0);
                     }
                 }
                 if (name.equals(KEY_YAW_RIGHT)) {
                     if (keyPressed) {
-                        playerShip.setYaw(-1);
+                        getPlayerShip().setYaw(-1);
                     } else {
-                        playerShip.setYaw(0);
+                        getPlayerShip().setYaw(0);
                     }
                 }
                 if (name.equals(KEY_PITCH_UP)) {
                     if (keyPressed) {
-                        playerShip.setPitch(-1);
+                        getPlayerShip().setPitch(-1);
                     } else {
-                        playerShip.setPitch(0);
+                        getPlayerShip().setPitch(0);
                     }
                 }
                 if (name.equals(KEY_PITCH_DOWN)) {
                     if (keyPressed) {
-                        playerShip.setPitch(1);
+                        getPlayerShip().setPitch(1);
                     } else {
-                        playerShip.setPitch(0);
+                        getPlayerShip().setPitch(0);
                     }
                 }
                 if (name.equals(KEY_TOGGLE_MISSILES)) {
                     if (keyPressed) {
-                        playerShip.toggleMissiles();
+                        getPlayerShip().toggleMissiles();
                     }
                 }
                 if (name.equals(KEY_TOGGLE_CANNONS)) {
                     if (keyPressed) {
-                        playerShip.toggleCannons();
+                        getPlayerShip().toggleCannons();
                     }
                 }
                 if (name.equals(KEY_TOGGLE_TURRETS)) {
                     if (keyPressed) {
-                        playerShip.toggleTurrets();
+                        getPlayerShip().toggleTurrets();
                     }
                 }
                 if (name.equals(KEY_CONFIGURE_COMBAT)) {
                     if (keyPressed) {
-                        playerShip.configureForCombat();
+                        getPlayerShip().configureForCombat();
                     }
                 }
                 if (name.equals(KEY_CONFIGURE_CRUISE)) {
                     if (keyPressed) {
-                        playerShip.configureForCruise();
+                        getPlayerShip().configureForCruise();
                     }
                 }
                 if (name.equals(KEY_TGT_NEAREST_ENEMY)) {
                     if (keyPressed) {
-                        playerShip.targetNearestHostileShip();
+                        getPlayerShip().targetNearestHostileShip();
                     }
                 }
                 if (name.equals(KEY_TGT_NEAREST_FRIENDLY)) {
                     if (keyPressed) {
-                        playerShip.targetNearestFriendlyShip();
+                        getPlayerShip().targetNearestFriendlyShip();
                     }
                 }
                 if (name.equals(KEY_TGT_NEAREST_NEUTRAL)) {
                     if (keyPressed) {
-                        playerShip.targetNearestNeutralShip();
+                        getPlayerShip().targetNearestNeutralShip();
                     }
                 }
             } else {
@@ -760,7 +757,7 @@ public class Core {
                 //undock
                 if (name.equals("KEY_F1")) {
                     if (keyPressed) {
-                        playerShip.cmdUndock();
+                        getPlayerShip().cmdUndock();
                     }
                 }
             }
@@ -772,32 +769,32 @@ public class Core {
         @Override
         public void onJoyAxisEvent(JoyAxisEvent evt) {
             if (getState() == GameState.IN_SPACE) {
-                if (!universe.getPlayerShip().isDocked()) {
+                if (!getPlayerShip().isDocked()) {
                     if (Math.abs(evt.getAxis().getAxisId()) == JOYSTICK_PITCH_AXIS) {
                         if (Math.abs(evt.getValue()) > JOYSTICK_DEADZONE_ROTATION) {
-                            playerShip.setYaw(-evt.getValue());
+                            getPlayerShip().setYaw(-evt.getValue());
                         } else {
-                            playerShip.setYaw(0);
+                            getPlayerShip().setYaw(0);
                         }
                     } else if (evt.getAxis().getAxisId() == JOYSTICK_YAW_AXIS) {
                         if (Math.abs(evt.getValue()) > JOYSTICK_DEADZONE_ROTATION) {
-                            playerShip.setPitch(evt.getValue());
+                            getPlayerShip().setPitch(evt.getValue());
                         } else {
-                            playerShip.setPitch(0);
+                            getPlayerShip().setPitch(0);
                         }
                     } else if (evt.getAxis().getAxisId() == JOYSTICK_ROLL_AXIS) {
                         if (Math.abs(evt.getValue()) > JOYSTICK_DEADZONE_ROTATION) {
-                            playerShip.setRoll(-evt.getValue());
+                            getPlayerShip().setRoll(-evt.getValue());
                         } else {
-                            playerShip.setRoll(0);
+                            getPlayerShip().setRoll(0);
                         }
                     } /*
                      * POV / HAT used for thrust
                      */ else if (evt.getAxis().getAxisId() == JOYSTICK_THROTTLE_AXIS) {
                         if (Math.abs(evt.getValue()) > JOYSTICK_DEADZONE_THROTTLE) { //deadzone but it really should be mapped to a HAT axis
-                            playerShip.setThrottle(evt.getValue());
+                            getPlayerShip().setThrottle(evt.getValue());
                         } else {
-                            playerShip.setThrottle(0);
+                            getPlayerShip().setThrottle(0);
                         }
                     }
                 }
@@ -807,11 +804,11 @@ public class Core {
         @Override
         public void onJoyButtonEvent(JoyButtonEvent evt) {
             if (getState() == GameState.IN_SPACE) {
-                if (!universe.getPlayerShip().isDocked()) {
+                if (!getPlayerShip().isDocked()) {
                     if (evt.getButton().getButtonId() == JOYSTICK_FIRE_BUTTON) {
-                        playerShip.setFiring(evt.isPressed());
+                        getPlayerShip().setFiring(evt.isPressed());
                     } else if (evt.getButton().getButtonId() == JOYSTICK_SEC_BUTTON) {
-                        playerShip.toggleMissiles();
+                        getPlayerShip().toggleMissiles();
                     }
                 }
             }
@@ -930,21 +927,21 @@ public class Core {
             boolean godSafe = true;
             //update systems
             for (int a = 0; a < getUniverse().getSystems().size(); a++) {
-                if (getUniverse().getSystems().get(a) != playerShip.getCurrentSystem()) {
+                if (getUniverse().getSystems().get(a) != getPlayerShip().getCurrentSystem()) {
                     getUniverse().getSystems().get(a).oosPeriodicUpdate(tpf);
                 } else {
                     //make sure there is no transition to be done
-                    if (playerShip.getCurrentSystem().hasGraphics()) {
+                    if (getPlayerShip().getCurrentSystem().hasGraphics()) {
                         //update
-                        playerShip.getCurrentSystem().periodicUpdate(tpf);
+                        getPlayerShip().getCurrentSystem().periodicUpdate(tpf);
                     } else {
                         //transition to the new system
                         resetScene();
-                        playerShip.deconstruct();
-                        addSystem(playerShip.getCurrentSystem());
-                        planetAppState.getAstralCamera().setTarget(playerShip);
+                        getPlayerShip().deconstruct();
+                        addSystem(getPlayerShip().getCurrentSystem());
+                        planetAppState.getAstralCamera().setTarget(getPlayerShip());
                         //make sure the new system is flagged for graphics
-                        playerShip.getCurrentSystem().forceGraphics();
+                        getPlayerShip().getCurrentSystem().forceGraphics();
                         godSafe = false;
                     }
                 }
@@ -960,8 +957,8 @@ public class Core {
             //see if we need to reset the camera
             AstralCamera camera = planetAppState.getAstralCamera();
             if (camera != null) {
-                if (playerShip != camera.getTarget()) {
-                    camera.setTarget(playerShip);
+                if (getPlayerShip() != camera.getTarget()) {
+                    camera.setTarget(getPlayerShip());
                     resetHUD();
                 }
             }
@@ -973,8 +970,8 @@ public class Core {
     }
 
     private boolean handlePlayerDeath() {
-        if (playerShip == null
-                || playerShip.getState() == State.DEAD) {
+        if (getPlayerShip() == null
+                || getPlayerShip().getState() == State.DEAD) {
             setState(GameState.GAME_OVER);
             return true;
         }
@@ -1020,14 +1017,14 @@ public class Core {
 
     private void updateSpaceAudio() {
         //center audio listener on player
-        listener.setLocation(playerShip.getLocation());
+        listener.setLocation(getPlayerShip().getLocation());
         //play sound effects for ships
-        SolarSystem playerSystem = playerShip.getCurrentSystem();
+        SolarSystem playerSystem = getPlayerShip().getCurrentSystem();
         ArrayList<Entity> celestials = playerSystem.getCelestials();
         for (int a = 0; a < celestials.size(); a++) {
             if (celestials.get(a) instanceof Ship) {
                 Ship tmp = (Ship) celestials.get(a);
-                if (tmp.distanceTo(playerShip) < Universe.SOUND_RANGE) {
+                if (tmp.distanceTo(getPlayerShip()) < Universe.SOUND_RANGE) {
                     if (tmp.getSoundQue() != null) {
                         for (int b = 0; b < tmp.getSoundQue().size(); b++) {
                             //I'm not permitting looping sounds to be played by ships using the que
@@ -1045,6 +1042,10 @@ public class Core {
                 }
             }
         }
+    }
+
+    private Ship getPlayerShip() {
+        return universe.getPlayerShip();
     }
 
     /*
@@ -1072,10 +1073,9 @@ public class Core {
             //unpack universe
             setUniverse(everything.getUniverse());
             //enter the player's system
-            playerShip = universe.getPlayerShip();
-            addSystem(playerShip.getCurrentSystem());
+            addSystem(getPlayerShip().getCurrentSystem());
             //reset camera
-            planetAppState.getAstralCamera().setTarget(playerShip);
+            planetAppState.getAstralCamera().setTarget(getPlayerShip());
             //restore HUD
             if (hud != null) {
                 hud.setUniverse(getUniverse());
@@ -1094,7 +1094,7 @@ public class Core {
     private void unloadUniverse() {
         //unload universe
         if (getUniverse() != null) {
-            removeSystem(playerShip.getCurrentSystem());
+            removeSystem(getPlayerShip().getCurrentSystem());
             getUniverse().setPlayerShip(null);
             setUniverse(null);
         }
@@ -1126,26 +1126,26 @@ public class Core {
                 switchTrack(true, menuTrack);
             }
         } else if (state == GameState.IN_SPACE) {
-            if (universe.getPlayerShip() != null) {
+            if (getPlayerShip() != null) {
                 boolean danger = false;
-                ArrayList<Ship> tests = universe.getPlayerShip().getShipsInSensorRange();
+                ArrayList<Ship> tests = getPlayerShip().getShipsInSensorRange();
                 for (int a = 0; a < tests.size(); a++) {
-                    if (universe.getPlayerShip().isHostileToMe(tests.get(a))) {
+                    if (getPlayerShip().isHostileToMe(tests.get(a))) {
                         danger = true;
                         break;
                     }
                 }
                 if (!danger) {
-                    if (ambientTrack.equals(universe.getPlayerShip().getCurrentSystem().getAmbientMusic()) && isAmbient) {
+                    if (ambientTrack.equals(getPlayerShip().getCurrentSystem().getAmbientMusic()) && isAmbient) {
                         //do nothing
                     } else {
-                        switchTrack(true, universe.getPlayerShip().getCurrentSystem().getAmbientMusic());
+                        switchTrack(true, getPlayerShip().getCurrentSystem().getAmbientMusic());
                     }
                 } else if (danger) {
-                    if (dangerTrack.equals(universe.getPlayerShip().getCurrentSystem().getDangerMusic()) && !isAmbient) {
+                    if (dangerTrack.equals(getPlayerShip().getCurrentSystem().getDangerMusic()) && !isAmbient) {
                         //do nothing
                     } else {
-                        switchTrack(false, universe.getPlayerShip().getCurrentSystem().getDangerMusic());
+                        switchTrack(false, getPlayerShip().getCurrentSystem().getDangerMusic());
                     }
                 }
             }
