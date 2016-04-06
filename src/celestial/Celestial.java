@@ -119,6 +119,15 @@ public class Celestial extends PhysicsEntity implements Serializable {
     public void construct(Universe universe) {
         construct(universe.getAssets());
     }
+    
+    @Override
+    public void deconstruct() {
+        super.deconstruct();
+        
+        //reset camera tracking aids
+        cameraRestPoint = null;
+        lineOfSightPoint = null;
+    }
 
     public boolean isDiscoveredByPlayer() {
         return discoveredByPlayer;

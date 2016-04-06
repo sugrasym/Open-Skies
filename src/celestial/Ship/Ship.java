@@ -329,6 +329,7 @@ public class Ship extends Celestial {
 
     @Override
     public void deconstruct() {
+        super.deconstruct();
         setSpatial(null);
         mat = null;
         physics = null;

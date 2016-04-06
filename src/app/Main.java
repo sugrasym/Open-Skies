@@ -33,8 +33,8 @@ import jmeplanet.PlanetAppState;
 import lib.astral.AstralIO;
 
 /**
- * Hour by hour, one more change I'm sewing them together, take great pains -
- * Rarity
+ * Hour by hour, one more change I'm sewing them together, take great pains 
+ *   - Rarity
  */
 public class Main extends SimpleApplication {
     //fpp

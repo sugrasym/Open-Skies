@@ -116,6 +116,7 @@ public class Planet extends Celestial {
 
     @Override
     public void deconstruct() {
+        super.deconstruct();
         setTex(null);
         mat = null;
         setSpatial(null);

@@ -144,7 +144,7 @@ public class AstralCamera implements Control {
         //farFilter.addFilter(bloom);
         farViewPort.addProcessor(farFilter);
 
-        cachedTargetPlacements = new ArrayList<TargetPlacement>();
+        cachedTargetPlacements = new ArrayList<>();
     }
 
     @Override
@@ -156,7 +156,7 @@ public class AstralCamera implements Control {
                 Quaternion rotation = target.getPhysicsRotation().clone();
                 Vector3f lookAtUpVector = rotation.mult(Vector3f.UNIT_Y).clone();
                 Vector3f currentVelocity = target.getLinearVelocity().clone();
-
+                
                 //record position for camera to follow
                 TargetPlacement newPlacement = new TargetPlacement(target.getCameraRestPoint().clone(), rotation.clone());
                 cachedTargetPlacements.add(newPlacement);
