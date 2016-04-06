@@ -476,7 +476,12 @@ public class Ship extends Celestial {
         if (getAutopilot() == Autopilot.AVOID_PLANET_2) {
             Planet test = getNearestPlanetInSystem();
             //rotate the ship away from the planet
-            Vector3f avoidance = test.getLocation().cross(getLocation());
+            Vector3f avoidance;
+            if(getLocation().length() == 0) {
+                avoidance = test.getLocation().cross(Vector3f.UNIT_Y);
+            } else {
+                avoidance = test.getLocation().cross(getLocation());
+            }
             if (pointNoseAtVector(getSteeringData(avoidance,
                     Vector3f.UNIT_Y), NAV_ANGLE_TOLERANCE)) {
                 //accelerate away
