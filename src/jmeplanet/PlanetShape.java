@@ -7,7 +7,7 @@ import com.bulletphysics.linearmath.Transform;
 import com.jme3.math.Vector3f;
 
 public class PlanetShape extends ConcaveShape {
-    
+
     private Vector3f center;
     protected float radius;
     protected HeightDataSource dataSource;
@@ -18,12 +18,12 @@ public class PlanetShape extends ConcaveShape {
         this.radius = radius;
         this.dataSource = dataSource;
     }
-    
+
     @Override
     public void getAabb(Transform t, javax.vecmath.Vector3f aabbMin, javax.vecmath.Vector3f aabbMax) {
         t = null;
-	aabbMin.set(getCenter().x-radius, getCenter().y-radius, getCenter().z-radius);
-	aabbMax.set(getCenter().x+radius, getCenter().y+radius, getCenter().z+radius);
+        aabbMin.set(getCenter().x - radius, getCenter().y - radius, getCenter().z - radius);
+        aabbMax.set(getCenter().x + radius, getCenter().y + radius, getCenter().z + radius);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class PlanetShape extends ConcaveShape {
         // add local translation
         aabbMin.add(convert(this.getCenter()));
         aabbMax.add(convert(this.getCenter()));
-        
+
         // calculate 8 corners of the AABB
         Vector3f bottomFrontLeft = convert(aabbMin);
         Vector3f bottomFrontRight = new Vector3f(aabbMax.x, aabbMin.y, aabbMin.z);
@@ -71,112 +71,79 @@ public class PlanetShape extends ConcaveShape {
         boolean topFrontRightCollides = true;
         boolean topBackLeftCollides = true;
         boolean topFrontLeftCollides = true;
-        
+
         // find which 3 sides are closest in order to prevent extraneous triangle processing
         boolean frontCloser = frontCenter.distance(this.getCenter()) < backCenter.distance(this.getCenter());
         boolean bottomCloser = bottomCenter.distance(this.getCenter()) < topCenter.distance(this.getCenter());
         boolean leftCloser = leftCenter.distance(this.getCenter()) < rightCenter.distance(this.getCenter());
 
-        if (frontCloser)
-        {
-          //create triangles for front side
-          if (bottomFrontLeftCollides || bottomFrontRightCollides || topFrontRightCollides)
-              {
-                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]
-                    {convert(bottomFrontLeftVertex), convert(bottomFrontRightVertex), convert(topFrontRightVertex)};
+        if (frontCloser) {
+            //create triangles for front side
+            if (bottomFrontLeftCollides || bottomFrontRightCollides || topFrontRightCollides) {
+                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]{convert(bottomFrontLeftVertex), convert(bottomFrontRightVertex), convert(topFrontRightVertex)};
                 callback.processTriangle(vertices, 0, 0);
-              }
-          if (topFrontRightCollides || topFrontLeftCollides || bottomFrontLeftCollides)
-              {
-                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]
-                    {convert(topFrontRightVertex), convert(topFrontLeftVertex), convert(bottomFrontLeftVertex)};
+            }
+            if (topFrontRightCollides || topFrontLeftCollides || bottomFrontLeftCollides) {
+                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]{convert(topFrontRightVertex), convert(topFrontLeftVertex), convert(bottomFrontLeftVertex)};
                 callback.processTriangle(vertices, 0, 0);
-              }
-        }
-        else
-        {
-          //create triangles for back side
-          if (bottomBackLeftCollides || bottomBackRightCollides || topBackRightCollides)
-              {
-                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]
-                    {convert(bottomBackLeftVertex), convert(bottomBackRightVertex), convert(topBackRightVertex)};
+            }
+        } else {
+            //create triangles for back side
+            if (bottomBackLeftCollides || bottomBackRightCollides || topBackRightCollides) {
+                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]{convert(bottomBackLeftVertex), convert(bottomBackRightVertex), convert(topBackRightVertex)};
                 callback.processTriangle(vertices, 0, 0);
-              }
-          if (topBackRightCollides || topBackLeftCollides || bottomBackLeftCollides)
-              {
-                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]
-                    {convert(topBackRightVertex), convert(topBackLeftVertex), convert(bottomBackLeftVertex)};
+            }
+            if (topBackRightCollides || topBackLeftCollides || bottomBackLeftCollides) {
+                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]{convert(topBackRightVertex), convert(topBackLeftVertex), convert(bottomBackLeftVertex)};
                 callback.processTriangle(vertices, 0, 0);
-              }
+            }
         }
 
-        if (bottomCloser)
-        {
-          //create triangles for bottom side
-          if (bottomFrontLeftCollides || bottomFrontRightCollides || bottomBackRightCollides)
-              {
-                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]
-                    {convert(bottomFrontLeftVertex), convert(bottomFrontRightVertex), convert(bottomBackRightVertex)};
+        if (bottomCloser) {
+            //create triangles for bottom side
+            if (bottomFrontLeftCollides || bottomFrontRightCollides || bottomBackRightCollides) {
+                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]{convert(bottomFrontLeftVertex), convert(bottomFrontRightVertex), convert(bottomBackRightVertex)};
                 callback.processTriangle(vertices, 0, 0);
-              }
-          if (bottomBackRightCollides || bottomBackLeftCollides || bottomFrontLeftCollides)
-              {
-                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]
-                    {convert(bottomBackRightVertex), convert(bottomBackLeftVertex), convert(bottomFrontLeftVertex)};
+            }
+            if (bottomBackRightCollides || bottomBackLeftCollides || bottomFrontLeftCollides) {
+                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]{convert(bottomBackRightVertex), convert(bottomBackLeftVertex), convert(bottomFrontLeftVertex)};
                 callback.processTriangle(vertices, 0, 0);
-              }
-        }
-        else
-        {
-          //create triangles for top side
-          if (topFrontLeftCollides || topFrontRightCollides || topBackRightCollides)
-              {
-                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]
-                    {convert(topFrontLeftVertex), convert(topFrontRightVertex), convert(topBackRightVertex)};
+            }
+        } else {
+            //create triangles for top side
+            if (topFrontLeftCollides || topFrontRightCollides || topBackRightCollides) {
+                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]{convert(topFrontLeftVertex), convert(topFrontRightVertex), convert(topBackRightVertex)};
                 callback.processTriangle(vertices, 0, 0);
-              }
-          if (topBackRightCollides || topBackLeftCollides || topFrontLeftCollides)
-              {
-                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]
-                    {convert(topBackRightVertex), convert(topBackLeftVertex), convert(topFrontLeftVertex)};
+            }
+            if (topBackRightCollides || topBackLeftCollides || topFrontLeftCollides) {
+                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]{convert(topBackRightVertex), convert(topBackLeftVertex), convert(topFrontLeftVertex)};
                 callback.processTriangle(vertices, 0, 0);
-              }
+            }
         }
 
-        if (leftCloser)
-        {
-          //create triangles for left side
-          if (bottomBackLeftCollides || bottomFrontLeftCollides || topFrontLeftCollides)
-              {
-                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]
-                    {convert(bottomBackLeftVertex), convert(bottomFrontLeftVertex), convert(topFrontLeftVertex)};
+        if (leftCloser) {
+            //create triangles for left side
+            if (bottomBackLeftCollides || bottomFrontLeftCollides || topFrontLeftCollides) {
+                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]{convert(bottomBackLeftVertex), convert(bottomFrontLeftVertex), convert(topFrontLeftVertex)};
                 callback.processTriangle(vertices, 0, 0);
-              }
-          if (topFrontLeftCollides || topBackLeftCollides || bottomBackLeftCollides)
-              {
-                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]
-                    {convert(topFrontLeftVertex), convert(topBackLeftVertex), convert(bottomBackLeftVertex)};
+            }
+            if (topFrontLeftCollides || topBackLeftCollides || bottomBackLeftCollides) {
+                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]{convert(topFrontLeftVertex), convert(topBackLeftVertex), convert(bottomBackLeftVertex)};
                 callback.processTriangle(vertices, 0, 0);
-              }
+            }
+        } else {
+            //create triangles for right side
+            if (bottomBackRightCollides || bottomFrontRightCollides || topFrontRightCollides) {
+                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]{convert(bottomBackRightVertex), convert(bottomFrontRightVertex), convert(topFrontRightVertex)};
+                callback.processTriangle(vertices, 0, 0);
+            }
+            if (topFrontRightCollides || topBackRightCollides || bottomBackRightCollides) {
+                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]{convert(topFrontRightVertex), convert(topBackRightVertex), convert(bottomBackRightVertex)};
+                callback.processTriangle(vertices, 0, 0);
+            }
         }
-        else
-        {
-          //create triangles for right side
-          if (bottomBackRightCollides || bottomFrontRightCollides || topFrontRightCollides)
-              {
-                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]
-                    {convert(bottomBackRightVertex), convert(bottomFrontRightVertex), convert(topFrontRightVertex)};
-                callback.processTriangle(vertices, 0, 0);
-              }
-          if (topFrontRightCollides || topBackRightCollides || bottomBackRightCollides)
-              {
-                javax.vecmath.Vector3f vertices[] = new javax.vecmath.Vector3f[]
-                    {convert(topFrontRightVertex), convert(topBackRightVertex), convert(bottomBackRightVertex)};
-                callback.processTriangle(vertices, 0, 0);
-              }
-        }        
     }
-    
+
     @Override
     public String getName() {
         return "Planet";
@@ -184,7 +151,7 @@ public class PlanetShape extends ConcaveShape {
 
     @Override
     public void calculateLocalInertia(float mass, javax.vecmath.Vector3f inertia) {
-        
+
     }
 
     @Override
@@ -194,44 +161,39 @@ public class PlanetShape extends ConcaveShape {
 
     @Override
     public BroadphaseNativeType getShapeType() {
-       return BroadphaseNativeType.FAST_CONCAVE_MESH_PROXYTYPE;
+        return BroadphaseNativeType.FAST_CONCAVE_MESH_PROXYTYPE;
     }
 
     @Override
     public javax.vecmath.Vector3f getLocalScaling(javax.vecmath.Vector3f scaling) {
         return this.scaling;
     }
-    
-    private Vector3f calculateTerrainVertex(Vector3f position, Vector3f center)
-    {        
+
+    private Vector3f calculateTerrainVertex(Vector3f position, Vector3f center) {
         Vector3f normalized = position.subtract(center).normalize();
         float result = this.dataSource.getValue(normalized);
         return normalized.mult(radius + result);
     }
-    
-    private com.jme3.math.Vector3f convert(javax.vecmath.Vector3f oldVec)
-    {
+
+    private com.jme3.math.Vector3f convert(javax.vecmath.Vector3f oldVec) {
         com.jme3.math.Vector3f newVec = new com.jme3.math.Vector3f();
-        convert(oldVec,newVec);
+        convert(oldVec, newVec);
         return newVec;
     }
 
-    private void convert(javax.vecmath.Vector3f oldVec, com.jme3.math.Vector3f newVec)
-    {
+    private void convert(javax.vecmath.Vector3f oldVec, com.jme3.math.Vector3f newVec) {
         newVec.x = oldVec.x;
         newVec.y = oldVec.y;
         newVec.z = oldVec.z;
     }
 
-    private javax.vecmath.Vector3f convert(com.jme3.math.Vector3f oldVec)
-    {
+    private javax.vecmath.Vector3f convert(com.jme3.math.Vector3f oldVec) {
         javax.vecmath.Vector3f newVec = new javax.vecmath.Vector3f();
-        convert(oldVec,newVec);
+        convert(oldVec, newVec);
         return newVec;
     }
 
-    private void convert(com.jme3.math.Vector3f oldVec, javax.vecmath.Vector3f newVec)
-    {
+    private void convert(com.jme3.math.Vector3f oldVec, javax.vecmath.Vector3f newVec) {
         newVec.x = oldVec.x;
         newVec.y = oldVec.y;
         newVec.z = oldVec.z;
@@ -244,5 +206,5 @@ public class PlanetShape extends ConcaveShape {
     public void setCenter(Vector3f center) {
         this.center = center;
     }
- 
+
 }

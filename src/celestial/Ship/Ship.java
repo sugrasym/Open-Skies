@@ -3203,9 +3203,9 @@ public class Ship extends Celestial {
      */
     protected float getFlightHold() {
         float drag;
-        if(engine == EngineMode.COMBAT) {
+        if (engine == EngineMode.COMBAT) {
             drag = COMBAT_DAMP;
-        } else if(engine == EngineMode.CRUISE) {
+        } else if (engine == EngineMode.CRUISE) {
             drag = CRUISE_DAMP;
         } else {
             drag = 0;

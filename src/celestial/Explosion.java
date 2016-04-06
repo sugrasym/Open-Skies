@@ -81,7 +81,7 @@ public class Explosion extends Projectile {
             setState(State.DYING);
         }
     }
-    
+
     @Override
     protected void dying() {
         //since this extends projectile we don't want to draw another explosion

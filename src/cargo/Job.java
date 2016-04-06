@@ -24,7 +24,6 @@
  * A manufacturing process that takes an input and returns an output
  * on a schedule.
  */
-
 package cargo;
 
 import celestial.Ship.Station;

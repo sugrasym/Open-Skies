@@ -44,7 +44,7 @@ public class StandingWindow extends AstralWindow {
     AstralList infoList = new AstralList(this);
     Faction viewing = null;
     protected Ship ship;
-    
+
     public StandingWindow(AssetManager assets) {
         super(assets, 500, 400, false);
         generate();

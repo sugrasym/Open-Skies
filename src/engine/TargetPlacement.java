@@ -19,7 +19,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package engine;
 
 import com.jme3.math.Quaternion;
@@ -30,6 +29,7 @@ import com.jme3.math.Vector3f;
  * @author Geoff Hibbert
  */
 public class TargetPlacement {
+
     public final Vector3f location;
     public final Quaternion rotation;
 
@@ -37,5 +37,5 @@ public class TargetPlacement {
         this.location = location;
         this.rotation = rotation;
     }
-    
+
 }

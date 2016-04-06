@@ -46,7 +46,7 @@ public class Parser implements Serializable {
         //call the parser
         parse();
     }
-    
+
     public Parser(String file, boolean local) {
         //read the text
         text = AstralIO.readFile(file, local);

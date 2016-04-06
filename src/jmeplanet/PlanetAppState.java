@@ -92,7 +92,7 @@ public class PlanetAppState extends AbstractAppState implements Control {
             astralCamera = new AstralCamera(this.app);
             astralCamera.attachScene(scene);
         }
-        
+
         if (planets.size() > 0) {
             this.nearestPlanet = findNearestPlanet();
 

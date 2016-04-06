@@ -19,7 +19,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package app;
 
 import com.jme3.app.SimpleApplication;
@@ -34,9 +33,8 @@ import jmeplanet.PlanetAppState;
 import lib.astral.AstralIO;
 
 /**
- *  Hour by hour, one more change 
- *  I'm sewing them together, take great pains 
- *      - Rarity
+ * Hour by hour, one more change I'm sewing them together, take great pains -
+ * Rarity
  */
 public class Main extends SimpleApplication {
     //fpp
@@ -59,7 +57,7 @@ public class Main extends SimpleApplication {
         settings.setSettingsDialogImage("splash.png");
         settings.setMinResolution(800, 600);
         app.setSettings(settings);
-        
+
         //set renderer properties
         String osName = System.getProperty("os.name");
         String renderMode = "DirectX";
@@ -70,7 +68,7 @@ public class Main extends SimpleApplication {
             renderMode = "OpenGL";
         }
         System.out.println("Running on " + osName + " using " + renderMode);
-        
+
         //start
         app.start();
     }
@@ -79,10 +77,10 @@ public class Main extends SimpleApplication {
     public void simpleInitApp() {
         //setup game directory
         AstralIO.setupGameDir();
-        
+
         //register models
         assetManager.registerLoader(BlenderModelLoader.class, "blend");
-        
+
         //init physics
         bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState);
@@ -90,14 +88,14 @@ public class Main extends SimpleApplication {
 
         //setup camera
         flyCam.setEnabled(false);
-        
+
         //setup planet generator
         planetAppState = new PlanetAppState(rootNode, null);
         stateManager.attach(planetAppState);
-        
+
         //start engine
         core = new Core(rootNode, guiNode, bulletAppState, assetManager, planetAppState, inputManager, settings, listener);
-        
+
         //setup post processing
         fpp = new FilterPostProcessor(assetManager);
         viewPort.addProcessor(fpp);
@@ -118,12 +116,12 @@ public class Main extends SimpleApplication {
     public void simpleRender(RenderManager rm) {
         core.render(rm);
     }
-    
+
     @Override
     public void gainFocus() {
         core.setFocus(true);
     }
-    
+
     @Override
     public void loseFocus() {
         core.setFocus(false);

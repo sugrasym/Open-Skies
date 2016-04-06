@@ -51,7 +51,8 @@ public class AstralInput extends AstralLabel {
             case "KEY_BACKSPACE":
                 if (getText().length() > 0) {
                     setText(getText().substring(0, getText().length() - 1));
-                }   break;
+                }
+                break;
             case "KEY_RETURN":
                 //return
                 setVisible(false);
@@ -67,11 +68,12 @@ public class AstralInput extends AstralLabel {
                 break;
             default:
                 String in = ke.split("_")[1];
-                if(shiftDown) {
+                if (shiftDown) {
                     in = in.toUpperCase();
                 } else {
                     in = in.toLowerCase();
-                }   setText(getText() + in);
+                }
+                setText(getText() + in);
                 break;
         }
     }
@@ -89,7 +91,7 @@ public class AstralInput extends AstralLabel {
     public void setCanReturn(boolean canReturn) {
         this.canReturn = canReturn;
     }
-    
+
     @Override
     public void render(Graphics f) {
         if (visible) {
@@ -101,9 +103,9 @@ public class AstralInput extends AstralLabel {
             s.setColor(backColor);
             s.fillRect(0, 0, getWidth(), getHeight());
             //draw focus color
-            if(focused) {
+            if (focused) {
                 s.setColor(focusColor);
-                s.drawRect(0, 0, width-1, height-1);
+                s.drawRect(0, 0, width - 1, height - 1);
             }
             //draw the text
             s.setFont(font);

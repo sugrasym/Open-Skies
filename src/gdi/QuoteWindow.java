@@ -42,7 +42,7 @@ import universe.Universe;
  * @author nwiehoff
  */
 public class QuoteWindow extends AstralWindow {
-    
+
     float living = 0;
     private static final float MAX_LIFE = 15;
 
@@ -77,7 +77,7 @@ public class QuoteWindow extends AstralWindow {
         setVisible(true);
         setFocused(false);
     }
-    
+
     private void makeQuote() {
         Parser parse = Universe.getCache().getQuoteCache();
         Term pick = parse.getTerms().get(new Random().nextInt(parse.getTerms().size()));
@@ -88,20 +88,20 @@ public class QuoteWindow extends AstralWindow {
         //store the quote
         quoteLabel.setText(quote);
     }
-    
+
     @Override
     public void handleMouseReleasedEvent(String me, Vector3f mouseLoc) {
         super.handleMouseReleasedEvent(me, mouseLoc);
         setFocused(false);
         living = MAX_LIFE + 1;
     }
-    
+
     public void update(float tpf) {
         living += tpf;
     }
-    
+
     public boolean doneShowing() {
-        if(living > MAX_LIFE) {
+        if (living > MAX_LIFE) {
             living = 0;
             return true;
         }

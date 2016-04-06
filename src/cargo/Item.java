@@ -115,7 +115,7 @@ public class Item implements Serializable {
 
     //Accesors + Mutators
     public double getVolume() {
-        return volume * (double)quantity;
+        return volume * (double) quantity;
     }
 
     public void setVolume(int volume) {
@@ -123,7 +123,7 @@ public class Item implements Serializable {
     }
 
     public double getMass() {
-        return mass * (double)quantity;
+        return mass * (double) quantity;
     }
 
     public void setMass(double mass) {

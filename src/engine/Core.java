@@ -75,6 +75,7 @@ import universe.Universe;
 public class Core {
 
     public enum GameState {
+
         QUOTE,
         MAIN_MENU,
         IN_SPACE,
@@ -87,16 +88,16 @@ public class Core {
     //game objects
     private Universe universe;
     private Ship playerShip;
-    
+
     God god;
-    
+
     //nodes
     Node rootNode;
     Node guiNode;
-    
+
     //hud
     HUD hud;
-    
+
     //engine resources
     BulletAppState bulletAppState;
     PlanetAppState planetAppState;
@@ -105,18 +106,18 @@ public class Core {
     InputManager input;
     Listener listener;
     private float tpf;
-    
+
     //render safety
     boolean hudRendering = false;
     boolean hasFocus = true;
-    
+
     //music
     private static final String menuTrack = "Audio/Music/Acclimated.wav";
     private String ambientTrack = "";
     private String dangerTrack = "";
     boolean isAmbient = true;
     private AudioNode music;
-    
+
     //control mapping
     private int JOYSTICK_PITCH_AXIS;
     private int JOYSTICK_YAW_AXIS;
@@ -152,7 +153,7 @@ public class Core {
     private int JOYSTICK_SEC_BUTTON;
     private float JOYSTICK_DEADZONE_ROTATION;
     private float JOYSTICK_DEADZONE_THROTTLE;
-    
+
     //control switches
     private boolean shiftDown = false;
 
@@ -164,7 +165,7 @@ public class Core {
         this.bulletAppState = bulletAppState;
         this.assets = assets;
         this.planetAppState = planetAppState;
-        
+
         this.input = input;
         this.settings = settings;
         this.listener = listener;
@@ -375,7 +376,7 @@ public class Core {
         //determine start ship
         Parser ships = new Parser("SHIP.txt");
         String shipName = game.getValue("ship");
-        
+
         ArrayList<Term> types = ships.getTermsOfType("Ship");
         for (int a = 0; a < types.size(); a++) {
             if (types.get(a).getValue("type").equals(shipName)) {
@@ -906,7 +907,7 @@ public class Core {
     private void doGameOverUpdate(float tpf) {
         //todo: make this a proper state
         //for now return to menu
-    suicide();
+        suicide();
         setState(GameState.MAIN_MENU);
         isAmbient = true;
         ambientTrack = "";
@@ -963,7 +964,7 @@ public class Core {
                     resetHUD();
                 }
             }
-            
+
             //update sound
             updateSpaceAudio();
             updateMusic();

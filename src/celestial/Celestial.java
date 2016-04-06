@@ -47,7 +47,7 @@ public class Celestial extends PhysicsEntity implements Serializable {
     protected SolarSystem currentSystem;
     //discovery
     private boolean discoveredByPlayer = false;
-    
+
     //camera
     private transient Node cameraRestPoint;
     private transient Node lineOfSightPoint;
@@ -141,8 +141,8 @@ public class Celestial extends PhysicsEntity implements Serializable {
         }
         return cameraRestPoint.getWorldTranslation();
     }
-    
-    public Vector3f getLineOfSightPoint(){
+
+    public Vector3f getLineOfSightPoint() {
         //default camera will be looking at where the front of this object is pointing
         if (lineOfSightPoint == null) {
             lineOfSightPoint = new Node();

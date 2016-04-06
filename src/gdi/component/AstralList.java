@@ -114,7 +114,7 @@ public class AstralList extends AstralComponent {
 
     @Override
     public void periodicUpdate() {
-        if(!isFocused() || !isVisible()) {
+        if (!isFocused() || !isVisible()) {
             scrollDirection = 0;
             dragging = false;
         }
@@ -248,8 +248,7 @@ public class AstralList extends AstralComponent {
 
     @Override
     public void handleMouseMovedEvent(String me, Vector3f mouseLoc) {
-        switch(me)
-        {
+        switch (me) {
             case "MOUSE_SCROLLUP":
                 scrollUp();
                 break;
@@ -258,7 +257,7 @@ public class AstralList extends AstralComponent {
                 break;
         }
     }
-    
+
     private void checkForListIntersection(Rectangle mouseRect) {
         int displayableLines = getHeight() / getFont().getSize();
         for (int a = 0; a < displayableLines; a++) {

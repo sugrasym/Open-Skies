@@ -108,10 +108,10 @@ public class Nebula extends Celestial {
 
     @Override
     protected void alive() {
-        if(pastLocation == null) {
+        if (pastLocation == null) {
             pastLocation = getLocation().clone();
         }
-        
+
         if (emitter != null) {
             emitter.setLocalTranslation(getLocation().x, getLocation().y,
                     getLocation().z);

@@ -57,7 +57,6 @@ import jmeplanet.Planet;
 public class AstralCamera implements Control {
 
     //engine resources
-
     private Camera nearCam;
     private final Camera farCam;
     private final RenderManager renderManager;
@@ -92,7 +91,7 @@ public class AstralCamera implements Control {
         RTS
     }
     Mode mode = Mode.NORMAL;
-    
+
     private ArrayList<TargetPlacement> cachedTargetPlacements;
     private int trailingCount = 0;
     private int trailingFactor = 0;
@@ -144,7 +143,7 @@ public class AstralCamera implements Control {
         bloom.setBloomIntensity(1.45f);
         //farFilter.addFilter(bloom);
         farViewPort.addProcessor(farFilter);
-        
+
         cachedTargetPlacements = new ArrayList<TargetPlacement>();
     }
 
@@ -291,7 +290,7 @@ public class AstralCamera implements Control {
     }
 
     public void freeCamera() {
-        if (target != null) {
+        if (target != null && target.getSpatial() != null) {
             target.getSpatial().removeControl(this);
             target = null;
         }

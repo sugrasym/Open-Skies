@@ -16,11 +16,12 @@ import java.awt.image.BufferedImage;
  * @author Geoff
  */
 public class Utility {
+
     public static BufferedImage CreateCompatibleImage(int width, int height, int TYPE_INT_ARGB) {
-                GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice device = env.getDefaultScreenDevice();
         GraphicsConfiguration config = device.getDefaultConfiguration();
         return config.createCompatibleImage(width, height, Transparency.TRANSLUCENT);
     }
-    
+
 }

@@ -53,9 +53,9 @@ public class AstralComponent {
         this.width = width;
         this.height = height;
     }
-    
+
     public AstralComponent() {
-        
+
     }
 
     /*
@@ -74,7 +74,6 @@ public class AstralComponent {
     /*
      * Event handling
      */
-
     public void handleKeyPressedEvent(String ke, boolean shiftDown) {
     }
 

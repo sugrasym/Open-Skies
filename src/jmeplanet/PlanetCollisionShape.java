@@ -9,20 +9,20 @@ public class PlanetCollisionShape extends CollisionShape {
     private Vector3f center;
     protected float radius;
     protected HeightDataSource dataSource;
-    
+
     public PlanetCollisionShape(Vector3f center, float radius, HeightDataSource dataSource) {
         this.center = center;
         this.radius = radius;
         this.dataSource = dataSource;
         createShape();
     }
-    
+
     private void createShape() {
         cShape = new PlanetShape(getCenter(), radius, dataSource);
         cShape.setLocalScaling(Converter.convert(getScale()));
         cShape.setMargin(margin);
     }
-    
+
     public PlanetShape getShape() {
         return (PlanetShape) cShape;
     }
@@ -35,5 +35,5 @@ public class PlanetCollisionShape extends CollisionShape {
         this.center = center;
         getShape().setCenter(center);
     }
-    
+
 }

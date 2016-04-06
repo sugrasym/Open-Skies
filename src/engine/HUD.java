@@ -91,7 +91,7 @@ public class HUD {
         this.width = width;
         this.height = height;
     }
-    
+
     private void configureForQuote(Core engine) {
         remove();
         //clear old windows
@@ -200,7 +200,7 @@ public class HUD {
         //add markers
         iffManager.add();
         //add windows
-        for (int a = windows.size()-1; a >= 0; a--) {
+        for (int a = windows.size() - 1; a >= 0; a--) {
             windows.get(a).add(guiNode);
         }
     }
@@ -213,7 +213,7 @@ public class HUD {
             windows.get(a).remove(guiNode);
         }
     }
-    
+
     public void reset() {
         remove();
         windows.clear();
@@ -232,13 +232,13 @@ public class HUD {
             e.printStackTrace();
         }
     }
-    
+
     private void doQuoteUpdate(Core engine, float tpf) {
         if (windows.isEmpty()) {
             configureForQuote(engine);
         } else {
             quoteWindow.update(tpf);
-            if(quoteWindow.doneShowing()) {
+            if (quoteWindow.doneShowing()) {
                 reset();
                 engine.setState(GameState.MAIN_MENU);
             }
@@ -258,7 +258,7 @@ public class HUD {
         }
         //store camera
         this.camera = engine.getCamera();
-        
+
         //update iffs
         iffManager.periodicUpdate(tpf);
         //resets windows if a new marker or window was added
@@ -267,7 +267,7 @@ public class HUD {
             add();
             resetWindowFlag = false;
         }
-        
+
         //special update on simple windows
         health.updateHealth(getUniverse().getPlayerShip());
         fuel.updateFuel(getUniverse().getPlayerShip());
@@ -324,7 +324,7 @@ public class HUD {
             }
         }
     }
-    
+
     public void handleMouseAction(GameState state, String name, boolean mousePressed, Vector3f mouseLoc) {
         //handle event
         for (int a = 0; a < windows.size(); a++) {
@@ -341,8 +341,8 @@ public class HUD {
     }
 
     public boolean handleKeyAction(GameState state, String name, boolean keyPressed, boolean shiftDown) {
-        if(state == GameState.IN_SPACE) {
-            if("KEY_ESCAPE".equals(name)) {
+        if (state == GameState.IN_SPACE) {
+            if ("KEY_ESCAPE".equals(name)) {
                 hideCentralWindows();
                 return true;
             }
@@ -462,13 +462,13 @@ public class HUD {
         hideCentralWindows();
         standingWindow.setVisible(visible);
     }
-    
+
     public void toggleMenuHomeWindow() {
         boolean visible = !menuHomeWindow.isVisible();
         hideCentralWindows();
         menuHomeWindow.setVisible(visible);
     }
-    
+
     public void toggleCommWindow() {
         boolean visible = !commWindow.isVisible();
         commWindow.setVisible(visible);
@@ -499,7 +499,7 @@ public class HUD {
                 sightMarker.add(guiNode);
             }
             if (velocityMarker == null) {
-                velocityMarker = new VelocityMarker(assets, universe.getPlayerShip(), camera, 
+                velocityMarker = new VelocityMarker(assets, universe.getPlayerShip(), camera,
                         25, 25, width, height);
                 velocityMarker.add(guiNode);
             }

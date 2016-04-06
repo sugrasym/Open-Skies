@@ -47,6 +47,7 @@ import java.util.Random;
  *
  */
 public class Utility {
+
     public static final float ATMOSPHERE_MULTIPLIER = .045f;
 
     public static Node createGridAxis(AssetManager assetManager, int lines, int spacing) {
@@ -84,11 +85,12 @@ public class Utility {
     }
 
     public static class SkyBoxContainer {
+
         private Spatial skybox;
         private Material mat;
         private TextureCubeMap map;
         private final DesktopAssetManager am;
-        
+
         public SkyBoxContainer(Spatial skybox, Material mat, TextureCubeMap map,
                 DesktopAssetManager am) {
             this.skybox = skybox;
@@ -96,11 +98,11 @@ public class Utility {
             this.map = map;
             this.am = am;
         }
-        
+
         public Spatial getSkyBox() {
             return skybox;
         }
-        
+
         public void dispose() {
             mat = null;
             skybox = null;
@@ -109,7 +111,7 @@ public class Utility {
             System.gc();
         }
     }
-    
+
     public static SkyBoxContainer createSkyBox(AssetManager assetManager, String textureName, boolean correctAxis) {
         Mesh sphere = new Sphere(10, 10, 10000f);
         sphere.setStatic();
@@ -149,8 +151,8 @@ public class Utility {
         mat.setVector3("NormalScale", Vector3f.UNIT_XYZ);
         sky.setMaterial(mat);
 
-        SkyBoxContainer con = new SkyBoxContainer(sky, mat, cubemap, 
-                (DesktopAssetManager)assetManager);
+        SkyBoxContainer con = new SkyBoxContainer(sky, mat, cubemap,
+                (DesktopAssetManager) assetManager);
         return con;
     }
 

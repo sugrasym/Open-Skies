@@ -176,11 +176,11 @@ public class DockingPort implements Serializable {
         alignNode.move(align);
         //System.out.println(loc);
     }
-    
+
     public Vector3f rawPortPosition() {
         return host.getLocation().add(loc);
     }
-    
+
     public Vector3f rawAlignPosition() {
         return host.getLocation().add(align);
     }

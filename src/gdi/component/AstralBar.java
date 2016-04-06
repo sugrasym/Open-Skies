@@ -52,7 +52,7 @@ public class AstralBar extends AstralComponent {
             if (buffer == null) {
                 buffer = Utility.CreateCompatibleImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
             }
-            Graphics2D s = (Graphics2D)buffer.getGraphics();
+            Graphics2D s = (Graphics2D) buffer.getGraphics();
             //draw the background
             s.setColor(getBarColor());
             s.fillRect(0, 0, (int) (percentage * getWidth()), getHeight());
