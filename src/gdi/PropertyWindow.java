@@ -39,6 +39,7 @@ import entity.Entity;
 import entity.Entity.State;
 import gdi.component.AstralInput;
 import gdi.component.AstralList;
+import gdi.component.AstralListItem;
 import gdi.component.AstralWindow;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -475,9 +476,9 @@ public class PropertyWindow extends AstralWindow {
                 behave(selected);
                 infoList.addToList("--Basic--");
                 infoList.addToList(" ");
-                infoList.addToList("Credits:      " + selected.getCash());
-                infoList.addToList("Behavior:     " + selected.getBehavior());
-                infoList.addToList("Autopilot:    " + selected.getAutopilot());
+                infoList.addToList(new AstralListItem("Credits:      " + selected.getCash(), "How many credits this specific property is holding."));
+                infoList.addToList(new AstralListItem("Behavior:     " + selected.getBehavior(), "The current behavior pattern of this property."));
+                infoList.addToList(new AstralListItem("Autopilot:    " + selected.getAutopilot(), "Autopilot status."));
                 /*
                  * Specifics
                  */
@@ -485,7 +486,7 @@ public class PropertyWindow extends AstralWindow {
                 infoList.addToList("--Advanced--");
                 infoList.addToList(" ");
                 if (selected.getHomeBase() != null) {
-                    infoList.addToList("Homebase:     " + selected.getHomeBase().getName());
+                    infoList.addToList(new AstralListItem("Homebase:     " + selected.getHomeBase().getName(), "The home base for this property."));
                     infoList.addToList("              " + selected.getHomeBase().getCurrentSystem());
                     infoList.addToList(" ");
                 }
@@ -493,9 +494,9 @@ public class PropertyWindow extends AstralWindow {
                 infoList.addToList(" ");
                 infoList.addToList("--Integrity--");
                 infoList.addToList(" ");
-                infoList.addToList("Shield:       " + roundTwoDecimal(100.0 * (selected.getShield() / selected.getMaxShield())) + "%");
-                infoList.addToList("Hull:         " + roundTwoDecimal(100.0 * (selected.getHull() / selected.getMaxHull())) + "%");
-                infoList.addToList("Fuel:         " + roundTwoDecimal(100.0 * (selected.getFuel() / selected.getMaxFuel())) + "%");
+                infoList.addToList(new AstralListItem("Shield:       " + roundTwoDecimal(100.0 * (selected.getShield() / selected.getMaxShield())) + "%", "TOOLTIPPLACEHOLDER"));
+                infoList.addToList(new AstralListItem("Hull:         " + roundTwoDecimal(100.0 * (selected.getHull() / selected.getMaxHull())) + "%", "TOOLTIPPLACEHOLDER"));
+                infoList.addToList(new AstralListItem("Fuel:         " + roundTwoDecimal(100.0 * (selected.getFuel() / selected.getMaxFuel())) + "%", "TOOLTIPPLACEHOLDER"));
                 infoList.addToList(" ");
                 infoList.addToList("--Fitting--");
                 infoList.addToList(" ");
@@ -528,7 +529,7 @@ public class PropertyWindow extends AstralWindow {
                 //fill info on process status
                 Station test = (Station) selected;
                 for (int a = 0; a < test.getJobs().size(); a++) {
-                    infoList.addToList("Job:          " + test.getJobs().get(a));
+                    infoList.addToList(new AstralListItem("Job:          " + test.getJobs().get(a), "TOOLTIPPLACEHOLDER"));
                 }
                 //fill info on resource and product quantities
                 infoList.addToList(" ");
@@ -536,14 +537,14 @@ public class PropertyWindow extends AstralWindow {
                     int q = test.getStationBuying().get(a).getQuantity();
                     int m = test.getStationBuying().get(a).getStore();
                     String n = test.getStationBuying().get(a).getName();
-                    infoList.addToList("Resource:     " + n + " [" + q + " / " + m + "]");
+                    infoList.addToList(new AstralListItem("Resource:     " + n + " [" + q + " / " + m + "]", "TOOLTIPPLACEHOLDER"));
                 }
                 infoList.addToList(" ");
                 for (int a = 0; a < test.getStationSelling().size(); a++) {
                     int q = test.getStationSelling().get(a).getQuantity();
                     int m = test.getStationSelling().get(a).getStore();
                     String n = test.getStationSelling().get(a).getName();
-                    infoList.addToList("Product:      " + n + " [" + q + " / " + m + "]");
+                    infoList.addToList(new AstralListItem("Product:      " + n + " [" + q + " / " + m + "]", "TOOLTIPPLACEHOLDER"));
                 }
                 infoList.addToList(" ");
             }
@@ -551,21 +552,21 @@ public class PropertyWindow extends AstralWindow {
              * More autopilot info
              */
             if (selected.getAutopilot() == Autopilot.FLY_TO_CELESTIAL) {
-                infoList.addToList("Waypoint:     " + selected.getFlyToTarget().getName());
+                infoList.addToList(new AstralListItem("Waypoint:     " + selected.getFlyToTarget().getName(), "TOOLTIPPLACEHOLDER"));
                 appendDistanceAndETA(selected);
             }
             if (selected.getPort() != null) {
                 if (selected.getAutopilot() == Autopilot.DOCK_STAGE1) {
-                    infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
+                    infoList.addToList(new AstralListItem("Docking At:   " + selected.getPort().getParent().getName(), "TOOLTIPPLACEHOLDER"));
                     appendDistanceAndETA(selected);
                 } else if (selected.getAutopilot() == Autopilot.DOCK_STAGE2) {
-                    infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
+                    infoList.addToList(new AstralListItem("Docking At:   " + selected.getPort().getParent().getName(), "TOOLTIPPLACEHOLDER"));
                 }
             }
             if (selected.getAutopilot() == Autopilot.FOLLOW) {
-                infoList.addToList("Target:       " + selected.getFlyToTarget().getName());
-                infoList.addToList("Range:        " + selected.getRange());
-                infoList.addToList("Distance:     " + roundTwoDecimal(selected.distanceTo(selected.getFlyToTarget())));
+                infoList.addToList(new AstralListItem("Target:       " + selected.getFlyToTarget().getName(), "TOOLTIPPLACEHOLDER"));
+                infoList.addToList(new AstralListItem("Range:        " + selected.getRange(), "TOOLTIPPLACEHOLDER"));
+                infoList.addToList(new AstralListItem("Distance:     " + roundTwoDecimal(selected.distanceTo(selected.getFlyToTarget())), "TOOLTIPPLACEHOLDER"));
                 //infoList.addToList("Rel Speed:    " + roundTwoDecimal(selected.getVelocity().subtract(selected.getFlyToTarget().getVelocity()).length()));
             }
             //breaking space
@@ -575,7 +576,7 @@ public class PropertyWindow extends AstralWindow {
              */ if (selected.getBehavior() == Behavior.PATROL) {
                 //what are we flying to?
                 if (selected.getTarget() != null) {
-                    infoList.addToList("Attacking:    " + selected.getTarget().getName());
+                    infoList.addToList(new AstralListItem("Attacking:    " + selected.getTarget().getName(), "TOOLTIPPLACEHOLDER"));
                 } else {
                     infoList.addToList("NO AIM");
                 }
@@ -584,9 +585,9 @@ public class PropertyWindow extends AstralWindow {
                 Station end = selected.getSellToStation();
                 Item ware = selected.getWorkingWare();
                 if (start != null && end != null && ware != null) {
-                    infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
-                    infoList.addToList("From:         " + start.getName());
-                    infoList.addToList("To:           " + end.getName());
+                    infoList.addToList(new AstralListItem("Ware:         " + selected.getWorkingWare().getName(), "TOOLTIPPLACEHOLDER"));
+                    infoList.addToList(new AstralListItem("From:         " + start.getName(), "TOOLTIPPLACEHOLDER"));
+                    infoList.addToList(new AstralListItem("To:           " + end.getName(), "TOOLTIPPLACEHOLDER"));
                 } else {
                     infoList.addToList("No Trades Available");
                 }
@@ -595,10 +596,10 @@ public class PropertyWindow extends AstralWindow {
                 Station end = selected.getSellToStation();
                 Item ware = selected.getWorkingWare();
                 if (start != null && end != null && ware != null) {
-                    infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
-                    infoList.addToList("From:         " + start.getName());
+                    infoList.addToList(new AstralListItem("Ware:         " + selected.getWorkingWare().getName(), "TOOLTIPPLACEHOLDER"));
+                    infoList.addToList(new AstralListItem("From:         " + start.getName(), "TOOLTIPPLACEHOLDER"));
                     infoList.addToList("              " + start.getCurrentSystem());
-                    infoList.addToList("To:           " + end.getName());
+                    infoList.addToList(new AstralListItem("To:           " + end.getName(), "TOOLTIPPLACEHOLDER"));
                     infoList.addToList("              " + end.getCurrentSystem());
                 }
             } /*else if (selected.getBehavior() == Behavior.SUPPLY_HOMEBASE) {
@@ -635,8 +636,8 @@ public class PropertyWindow extends AstralWindow {
     private void appendDistanceAndETA(Ship selected) {
         float dist = selected.getLocation().distance(selected.getFlyToTarget().getLocation());
         float eta = dist / (selected.getVelocity().subtract(selected.getFlyToTarget().getVelocity())).length();
-        infoList.addToList("Distance:     " + roundTwoDecimal(dist));
-        infoList.addToList("ETA:          " + roundTwoDecimal(eta) + "s");
+        infoList.addToList(new AstralListItem("Distance:     " + roundTwoDecimal(dist), "TOOLTIPPLACEHOLDER"));
+        infoList.addToList(new AstralListItem("ETA:          " + roundTwoDecimal(eta) + "s", "TOOLTIPPLACEHOLDER"));
     }
 
     private double roundTwoDecimal(double d) {
@@ -712,7 +713,7 @@ public class PropertyWindow extends AstralWindow {
              */
             optionList.addToList("--Transfer--");
             optionList.addToList(" ");
-            optionList.addToList(CMD_MOVEFUNDS);
+            optionList.addToList(new AstralListItem(CMD_MOVEFUNDS, "TOOLTIPPLACEHOLDER"));
             /*
              * Some actions are only possible while both ships are docked in the same
              * station. This is the block for those.
@@ -722,7 +723,7 @@ public class PropertyWindow extends AstralWindow {
                     Station a = selected.getPort().getParent();
                     Station b = selected.getCurrentSystem().getUniverse().getPlayerShip().getPort().getParent();
                     if (a == b) {
-                        optionList.addToList(CMD_SWITCH);
+                        optionList.addToList(new AstralListItem(CMD_SWITCH, "TOOLTIPPLACEHOLDER"));
                     }
                 }
             }
@@ -732,59 +733,59 @@ public class PropertyWindow extends AstralWindow {
              */
             optionList.addToList("--Console--");
             optionList.addToList(" ");
-            optionList.addToList(CMD_RENAME);
-            optionList.addToList(CMD_REMOTECARGO);
+            optionList.addToList(new AstralListItem(CMD_RENAME, "TOOLTIPPLACEHOLDER"));
+            optionList.addToList(new AstralListItem(CMD_REMOTECARGO, "TOOLTIPPLACEHOLDER"));
             optionList.addToList(" ");
-            optionList.addToList(CMD_NONE);
+            optionList.addToList(new AstralListItem(CMD_NONE, "TOOLTIPPLACEHOLDER"));
             if (!isStation) {
                 optionList.addToList(" ");
-                optionList.addToList(CMD_TRADE);
+                optionList.addToList(new AstralListItem(CMD_TRADE, "TOOLTIPPLACEHOLDER"));
                 if (selected.hasGroupInCargo("jumpdrive")) {
-                    optionList.addToList(CMD_UTRADE);
+                    optionList.addToList(new AstralListItem(CMD_UTRADE, "TOOLTIPPLACEHOLDER"));
                     if (selected.getHomeBase() != null) {
                         optionList.addToList(" ");
-                        optionList.addToList(CMD_CLEARHOME);
+                        optionList.addToList(new AstralListItem(CMD_CLEARHOME, "TOOLTIPPLACEHOLDER"));
                         //optionList.addToList(CMD_SUPPLYHOME);
                         //optionList.addToList(CMD_REPRESENTHOME);
                         optionList.addToList(" ");
                     } else {
                         optionList.addToList(" ");
-                        optionList.addToList(CMD_SETHOME);
+                        optionList.addToList(new AstralListItem(CMD_SETHOME, "TOOLTIPPLACEHOLDER"));
                         optionList.addToList(" ");
                     }
                 }
-                optionList.addToList(CMD_PATROL);
+                optionList.addToList(new AstralListItem(CMD_PATROL, "TOOLTIPPLACEHOLDER"));
             }
             optionList.addToList(" ");
             /*
              * Some things can't be done while docked.
              */
             if (selected.isDocked()) {
-                optionList.addToList(CMD_UNDOCK);
-                optionList.addToList(CMD_TRADEWITH);
+                optionList.addToList(new AstralListItem(CMD_UNDOCK, "TOOLTIPPLACEHOLDER"));
+                optionList.addToList(new AstralListItem(CMD_TRADE, "TOOLTIPPLACEHOLDER"));
             } else {
                 if (isStation) {
-                    optionList.addToList(CMD_SETBUY);
-                    optionList.addToList(CMD_SETSELL);
+                    optionList.addToList(new AstralListItem(CMD_SETBUY, "TOOLTIPPLACEHOLDER"));
+                    optionList.addToList(new AstralListItem(CMD_SETSELL, "TOOLTIPPLACEHOLDER"));
                     optionList.addToList("");
                 } else {
-                    optionList.addToList(CMD_DOCK);
-                    optionList.addToList(CMD_FLYTO);
-                    optionList.addToList(CMD_FOLLOW);
-                    optionList.addToList(CMD_ALLSTOP);
+                    optionList.addToList(new AstralListItem(CMD_DOCK, "TOOLTIPPLACEHOLDER"));
+                    optionList.addToList(new AstralListItem(CMD_FLYTO, "TOOLTIPPLACEHOLDER"));
+                    optionList.addToList(new AstralListItem(CMD_FOLLOW, "TOOLTIPPLACEHOLDER"));
+                    optionList.addToList(new AstralListItem(CMD_ALLSTOP, "TOOLTIPPLACEHOLDER"));
                     if (selected.hasGroupInCargo("jumpdrive")) {
                         optionList.addToList(" ");
-                        optionList.addToList(CMD_JUMP);
+                        optionList.addToList(new AstralListItem(CMD_JUMP, "TOOLTIPPLACEHOLDER"));
                     }
                     optionList.addToList(" ");
                     optionList.addToList("--Combat--");
                     optionList.addToList(" ");
-                    optionList.addToList(CMD_ATTACK);
+                    optionList.addToList(new AstralListItem(CMD_ATTACK, "TOOLTIPPLACEHOLDER"));
                     optionList.addToList(" ");
                 }
                 optionList.addToList("--Red Zone--");
                 optionList.addToList(" ");
-                optionList.addToList(CMD_DESTRUCT);
+                optionList.addToList(new AstralListItem(CMD_DESTRUCT, "TOOLTIPPLACEHOLDER"));
             }
         }
     }
@@ -800,7 +801,10 @@ public class PropertyWindow extends AstralWindow {
         }
         super.handleMouseReleasedEvent(me, mouseLoc);
         if (optionList.isFocused()) {
-            String command = (String) optionList.getItemAtIndex(optionList.getIndex());
+            Object selectedOption = optionList.getItemAtIndex(optionList.getIndex());
+            String command = CMD_NONE;
+            if (selectedOption instanceof AstralListItem) command = ((AstralListItem)selectedOption).getText();
+            else command = (String) selectedOption;
             parseCommand(command);
         }
     }

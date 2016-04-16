@@ -35,6 +35,7 @@ import celestial.Ship.Station;
 import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
 import gdi.component.AstralList;
+import gdi.component.AstralListItem;
 import gdi.component.AstralWindow;
 import java.util.ArrayList;
 import lib.astral.Parser;
@@ -43,7 +44,7 @@ import universe.Universe;
 public class CargoWindow extends AstralWindow {
 
     public static final String CMD_TRASH = "Trash";
-    public static final String CMD_EJECT = "Eject";
+        public static final String CMD_EJECT = "Eject";
     public static final String CMD_UNMOUNT = "Unmount";
     public static final String CMD_MOUNT = "Mount";
     public static final String CMD_STACK = "Stack";
@@ -54,6 +55,7 @@ public class CargoWindow extends AstralWindow {
     public static final String CMD_DEPLOY = "Deploy";
     public static final String CMD_CLAIMSOV = "Claim System";
     public static final String CMD_USEPASTE = "Use Repair Paste";
+    
     AstralList cargoList = new AstralList(this);
     AstralList propertyList = new AstralList(this);
     AstralList optionList = new AstralList(this);
@@ -121,27 +123,27 @@ public class CargoWindow extends AstralWindow {
             if (index < logicalCargoList.size()) {
                 Item selected = (Item) cargoList.getItemAtIndex(index);
                 //fill
-                propertyList.addToList("--GLOBAL--");
-                propertyList.addToList(" ");
-                propertyList.addToList("Credits:      " + ship.getCash());
-                propertyList.addToList("Bay Volume:   " + ship.getCargo());
-                propertyList.addToList("Volume Used:  " + ship.getBayUsed());
-                propertyList.addToList("Percent Used: " + ship.getBayUsed() / ship.getCargo() * 100.0 + "%");
-                propertyList.addToList("Vessel Mass:  " + ship.getMass());
-                propertyList.addToList(" ");
-                propertyList.addToList("--BASIC--");
-                propertyList.addToList(" ");
-                propertyList.addToList("Name:         " + selected.getName());
-                propertyList.addToList("Type:         " + selected.getType());
-                propertyList.addToList("Mass:         " + selected.getMass());
-                propertyList.addToList("Volume:       " + selected.getVolume());
-                propertyList.addToList(" ");
-                propertyList.addToList("--MARKET--");
-                propertyList.addToList(" ");
-                propertyList.addToList("Min Price:    " + selected.getMinPrice());
-                propertyList.addToList("Max Price:    " + selected.getMaxPrice());
-                propertyList.addToList(" ");
-                propertyList.addToList("--DETAIL--");
+                propertyList.addToList(new AstralListItem("--GLOBAL--"));
+                propertyList.addToList(new AstralListItem(" "));
+                propertyList.addToList(new AstralListItem("Credits:      " + ship.getCash(), "The amount of credits this property is carrying."));
+                propertyList.addToList(new AstralListItem("Bay Volume:   " + ship.getCargo(), "The amount of volume this property uses in your cargo bay."));
+                propertyList.addToList(new AstralListItem("Volume Used:  " + ship.getBayUsed(), "The amount of volume this property uses."));
+                propertyList.addToList(new AstralListItem("Percent Used: " + ship.getBayUsed() / ship.getCargo() * 100.0 + "%", "Percentage of cargo volume used."));
+                propertyList.addToList(new AstralListItem("Vessel Mass:  " + ship.getMass(), "The mass of this property."));
+                propertyList.addToList(new AstralListItem(" "));
+                propertyList.addToList(new AstralListItem("--BASIC--"));
+                propertyList.addToList(new AstralListItem(" "));
+                propertyList.addToList(new AstralListItem("Name:         " + selected.getName(), "Name of property."));
+                propertyList.addToList(new AstralListItem("Type:         " + selected.getType(), "Type of property."));
+                propertyList.addToList(new AstralListItem("Mass:         " + selected.getMass(), "The mass of the property."));
+                propertyList.addToList(new AstralListItem("Volume:       " + selected.getVolume(), "The volume of the property."));
+                propertyList.addToList(new AstralListItem(" "));
+                propertyList.addToList(new AstralListItem("--MARKET--"));
+                propertyList.addToList(new AstralListItem(" "));
+                propertyList.addToList(new AstralListItem("Min Price:    " + selected.getMinPrice(), "The minimum price of this property."));
+                propertyList.addToList(new AstralListItem("Max Price:    " + selected.getMaxPrice(), "The maximum price of this property."));
+                propertyList.addToList(new AstralListItem(" "));
+                propertyList.addToList(new AstralListItem("--DETAIL--"));
                 fillDescriptionLines(selected);
                 fillCommandLines(selected);
             }
@@ -205,15 +207,15 @@ public class CargoWindow extends AstralWindow {
             if (socket != null) {
                 //it is mounted
                 if (ship.isDocked()) {
-                    optionList.addToList(CMD_UNMOUNT);
+                    optionList.addToList(new AstralListItem(CMD_UNMOUNT, "Unmounts this property."));
                 }
                 canEject = false;
             } else {
                 //it is not mounted
                 if (ship.isDocked()) {
-                    optionList.addToList(CMD_MOUNT);
+                    optionList.addToList(new AstralListItem(CMD_MOUNT, "Mounts this property."));
                 }
-                optionList.addToList(CMD_PACKAGE);
+                optionList.addToList(new AstralListItem(CMD_PACKAGE, "Package this property."));
             }
             optionList.addToList(" ");
         } else {
@@ -223,7 +225,7 @@ public class CargoWindow extends AstralWindow {
             /*if (selected.getGroup().equals("sovtransfer")) {
              if (!ship.isDocked()) {
              optionList.addToList("--Setup--");
-             optionList.addToList(CMD_CLAIMSOV);
+             optionList.addToList(new AstralListItem(CMD_CLAIMSOV, "Using sovereignty, claim this system."));
              optionList.addToList(" ");
              }
              }*/
@@ -234,7 +236,7 @@ public class CargoWindow extends AstralWindow {
             if (selected.getGroup().equals("constructionkit")) {
                 if (!ship.isDocked()) {
                     optionList.addToList("--Setup--");
-                    optionList.addToList(CMD_DEPLOY);
+                    optionList.addToList(new AstralListItem(CMD_DEPLOY, "Deploys this property."));
                     optionList.addToList(" ");
                 }
             }
@@ -243,7 +245,7 @@ public class CargoWindow extends AstralWindow {
              */
             if (selected.getGroup().equals("repairkit")) {
                 optionList.addToList("--Setup--");
-                optionList.addToList(CMD_USEPASTE);
+                optionList.addToList(new AstralListItem(CMD_USEPASTE, "Pretty self-explanatory."));
                 optionList.addToList(" ");
             }
             /*
@@ -251,7 +253,7 @@ public class CargoWindow extends AstralWindow {
              */
             if (selected.getType().equals(Item.TYPE_CANNON)) {
                 optionList.addToList("--Setup--");
-                optionList.addToList(CMD_ASSEMBLE);
+                optionList.addToList(new AstralListItem(CMD_ASSEMBLE, "Assemble this property."));
                 optionList.addToList(" ");
             }
             /*
@@ -281,15 +283,15 @@ public class CargoWindow extends AstralWindow {
         }
         //for packaging and repackaging
         optionList.addToList("--Packaging--");
-        optionList.addToList(CMD_STACK);
-        optionList.addToList(CMD_SPLIT);
-        optionList.addToList(CMD_SPLITALL);
+        optionList.addToList(new AstralListItem(CMD_STACK, "Stack this property with other quantities"));
+        optionList.addToList(new AstralListItem(CMD_SPLIT, "Split the property into stacks."));
+        optionList.addToList(new AstralListItem(CMD_SPLITALL, "Split all quantity into stacks."));
         //doing these last for safety.
         optionList.addToList(" ");
         optionList.addToList("--Dangerous--");
-        optionList.addToList(CMD_TRASH);
+        optionList.addToList(new AstralListItem(CMD_TRASH, "Destroy this property."));
         if (!ship.isDocked() && canEject) {
-            optionList.addToList(CMD_EJECT);
+            optionList.addToList(new AstralListItem(CMD_EJECT, "Eject this property into space."));
         }
     }
 
@@ -298,8 +300,8 @@ public class CargoWindow extends AstralWindow {
         super.handleMouseReleasedEvent(me, mouseLoc);
         //get the module and toggle its enabled status
         if (optionList.isFocused()) {
-            String command = (String) optionList.getItemAtIndex(optionList.getIndex());
-            parseCommand(command);
+            AstralListItem command = (AstralListItem) optionList.getItemAtIndex(optionList.getIndex());
+            parseCommand(command.getText());
         }
     }
 

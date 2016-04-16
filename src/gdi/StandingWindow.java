@@ -30,6 +30,7 @@ import celestial.Ship.Ship;
 import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
 import gdi.component.AstralList;
+import gdi.component.AstralListItem;
 import gdi.component.AstralWindow;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -135,8 +136,8 @@ public class StandingWindow extends AstralWindow {
         if (selected != null) {
             infoList.addToList("--Basic--");
             infoList.addToList(" ");
-            infoList.addToList("Name:         " + selected.getName());
-            infoList.addToList("Empire:       " + selected.isEmpire());
+            infoList.addToList(new AstralListItem("Name:         " + selected.getName(), "TOOLTIPPLACEHOLDER"));
+            infoList.addToList(new AstralListItem("Empire:       " + selected.isEmpire(), "TOOLTIPPLACEHOLDER"));
             if (selected.isEmpire()) {
                 infoList.addToList("Extent:       " + (100 * (selected.getSpread())) + "%");
             }

@@ -35,6 +35,7 @@ import com.jme3.math.Vector3f;
 import gdi.component.AstralInput;
 import gdi.component.AstralLabel;
 import gdi.component.AstralList;
+import gdi.component.AstralListItem;
 import gdi.component.AstralWindow;
 import java.util.ArrayList;
 import lib.astral.Parser;
@@ -194,23 +195,23 @@ public class TradeWindow extends AstralWindow {
                     Item selected = (Item) lastFocus.getItemAtIndex(index);
                     propertyList.addToList("--GLOBAL--");
                     propertyList.addToList(" ");
-                    propertyList.addToList("Credits:      " + ship.getCash());
-                    propertyList.addToList("Bay Volume:   " + ship.getCargo());
-                    propertyList.addToList("Volume Used:  " + ship.getBayUsed());
-                    propertyList.addToList("Percent Used: " + ship.getBayUsed() / ship.getCargo() * 100.0 + "%");
-                    propertyList.addToList("Vessel Mass:  " + ship.getMass());
+                    propertyList.addToList(new AstralListItem("Credits:      " + ship.getCash(), "TOOLTIPPLACEHOLDER"));
+                    propertyList.addToList(new AstralListItem("Bay Volume:   " + ship.getCargo(), "TOOLTIPPLACEHOLDER"));
+                    propertyList.addToList(new AstralListItem("Volume Used:  " + ship.getBayUsed(), "TOOLTIPPLACEHOLDER"));
+                    propertyList.addToList(new AstralListItem("Percent Used: " + ship.getBayUsed() / ship.getCargo() * 100.0 + "%", "TOOLTIPPLACEHOLDER"));
+                    propertyList.addToList(new AstralListItem("Vessel Mass:  " + ship.getMass(), "TOOLTIPPLACEHOLDER"));
                     propertyList.addToList(" ");
                     propertyList.addToList("--BASIC--");
                     propertyList.addToList(" ");
-                    propertyList.addToList("Name:         " + selected.getName());
-                    propertyList.addToList("Type:         " + selected.getType());
-                    propertyList.addToList("Mass:         " + selected.getMass() / selected.getQuantity());
-                    propertyList.addToList("Volume:       " + selected.getVolume() / selected.getQuantity());
+                    propertyList.addToList(new AstralListItem("Name:         " + selected.getName(), "TOOLTIPPLACEHOLDER"));
+                    propertyList.addToList(new AstralListItem("Type:         " + selected.getType(), "TOOLTIPPLACEHOLDER"));
+                    propertyList.addToList(new AstralListItem("Mass:         " + selected.getMass() / selected.getQuantity(), "TOOLTIPPLACEHOLDER"));
+                    propertyList.addToList(new AstralListItem("Volume:       " + selected.getVolume() / selected.getQuantity(), "TOOLTIPPLACEHOLDER"));
                     propertyList.addToList(" ");
                     propertyList.addToList("--MARKET--");
                     propertyList.addToList(" ");
-                    propertyList.addToList("Min Price:    " + selected.getMinPrice());
-                    propertyList.addToList("Max Price:    " + selected.getMaxPrice());
+                    propertyList.addToList(new AstralListItem("Min Price:    " + selected.getMinPrice(), "TOOLTIPPLACEHOLDER"));
+                    propertyList.addToList(new AstralListItem("Max Price:    " + selected.getMaxPrice(), "TOOLTIPPLACEHOLDER"));
                     propertyList.addToList(" ");
                     propertyList.addToList("--DETAIL--");
                     propertyList.addToList(" ");
@@ -405,7 +406,7 @@ public class TradeWindow extends AstralWindow {
                     String hpType = det[0];
                     String hpSize = det[1];
                     String txt = hpType + " size " + hpSize;
-                    propertyList.addToList("Hardpoint:    " + txt);
+                    propertyList.addToList(new AstralListItem("Hardpoint:    " + txt, "TOOLTIPPLACEHOLDER"));
                 }
             }
             propertyList.addToList(" ");
@@ -419,15 +420,15 @@ public class TradeWindow extends AstralWindow {
             String mass = test.getValue("mass");
             String cargo = test.getValue("cargo");
             //add
-            propertyList.addToList("Shield:       " + mShield);
-            propertyList.addToList("Shield Regen: " + rShield);
-            propertyList.addToList("Hull:         " + mHull);
-            propertyList.addToList("Fuel:         " + fuel);
-            propertyList.addToList("Sensor:       " + sensor);
-            propertyList.addToList("Cargo:        " + cargo);
-            propertyList.addToList("Mass:         " + mass);
-            propertyList.addToList("Thrust:       " + thrust);
-            propertyList.addToList("Torque:       " + torque);
+            propertyList.addToList(new AstralListItem("Shield:       " + mShield, "TOOLTIPPLACEHOLDER"));
+            propertyList.addToList(new AstralListItem("Shield Regen: " + rShield, "TOOLTIPPLACEHOLDER"));
+            propertyList.addToList(new AstralListItem("Hull:         " + mHull, "TOOLTIPPLACEHOLDER"));
+            propertyList.addToList(new AstralListItem("Fuel:         " + fuel, "TOOLTIPPLACEHOLDER"));
+            propertyList.addToList(new AstralListItem("Sensor:       " + sensor, "TOOLTIPPLACEHOLDER"));
+            propertyList.addToList(new AstralListItem("Cargo:        " + cargo, "TOOLTIPPLACEHOLDER"));
+            propertyList.addToList(new AstralListItem("Mass:         " + mass, "TOOLTIPPLACEHOLDER"));
+            propertyList.addToList(new AstralListItem("Thrust:       " + thrust, "TOOLTIPPLACEHOLDER"));
+            propertyList.addToList(new AstralListItem("Torque:       " + torque, "TOOLTIPPLACEHOLDER"));
         }
     }
 
@@ -458,23 +459,23 @@ public class TradeWindow extends AstralWindow {
             String accel = test.getValue("accel");
             String turning = test.getValue("turning");
             //add
-            propertyList.addToList("Type:         " + type);
-            propertyList.addToList("Damage:       " + shieldDamage + " / "
-                    + hullDamage);
-            propertyList.addToList("Range:        " + range);
-            propertyList.addToList("Muzzle Vel:   " + speed);
-            propertyList.addToList("Cooldown:     " + refire);
+            propertyList.addToList(new AstralListItem("Type:         " + type, "TOOLTIPPLACEHOLDER"));
+            propertyList.addToList(new AstralListItem("Damage:       " + shieldDamage + " / "
+                    + hullDamage, "TOOLTIPPLACEHOLDER"));
+            propertyList.addToList(new AstralListItem("Range:        " + range, "TOOLTIPPLACEHOLDER"));
+            propertyList.addToList(new AstralListItem("Muzzle Vel:   " + speed, "TOOLTIPPLACEHOLDER"));
+            propertyList.addToList(new AstralListItem("Cooldown:     " + refire, "TOOLTIPPLACEHOLDER"));
             if (guided != null) {
-                propertyList.addToList("Guided:       " + guided);
+                propertyList.addToList(new AstralListItem("Guided:       " + guided, "TOOLTIPPLACEHOLDER"));
             }
             if (ammo != null) {
-                propertyList.addToList("Ammo:         " + ammo);
+                propertyList.addToList(new AstralListItem("Ammo:         " + ammo, "TOOLTIPPLACEHOLDER"));
             }
             if (accel != null) {
-                propertyList.addToList("Accel:        " + accel);
+                propertyList.addToList(new AstralListItem("Accel:        " + accel, "TOOLTIPPLACEHOLDER"));
             }
             if (turning != null) {
-                propertyList.addToList("Turning:      " + turning);
+                propertyList.addToList(new AstralListItem("Turning:      " + turning, "TOOLTIPPLACEHOLDER"));
             }
         }
     }

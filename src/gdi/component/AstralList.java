@@ -236,6 +236,7 @@ public class AstralList extends AstralComponent {
             }
             dragging = false;
         } else {
+            //clicking on list item
             //determine the relative mouse location
             int rx = oldMx = (int) mouseLoc.x - x;
             int ry = oldMy = (int) mouseLoc.y - y;
@@ -255,6 +256,8 @@ public class AstralList extends AstralComponent {
             case "MOUSE_SCROLLDOWN":
                 scrollDown();
                 break;
+            default:
+                
         }
     }
 
