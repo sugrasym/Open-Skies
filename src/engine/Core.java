@@ -57,6 +57,7 @@ import entity.Entity.State;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jmeplanet.PlanetAppState;
@@ -182,8 +183,8 @@ public class Core {
         try {
             Parser p = new Parser(AstralIO.getPayloadFile(), false);
             ArrayList<Term> maps = p.getTermsOfType("Mapper");
-            for (int a = 0; a < maps.size(); a++) {
-                Term map = maps.get(a);
+            for (Iterator<Term> it = maps.iterator(); it.hasNext();) {
+                Term map = it.next();
                 if (map.getValue("name").equals("Controls")) {
 
                     //get joystick axis

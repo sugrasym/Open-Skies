@@ -507,9 +507,9 @@ public class PropertyWindow extends AstralWindow {
                 infoList.addToList(" ");
                 infoList.addToList("--Cargo--");
                 infoList.addToList(" ");
-                ArrayList<Item> cargo = selected.getCargoBay();
-                for (int a = 0; a < cargo.size(); a++) {
-                    infoList.addToList(cargo.get(a));
+                ArrayList<Item> _cargo = selected.getCargoBay();
+                for (int a = 0; a < _cargo.size(); a++) {
+                    infoList.addToList(_cargo.get(a));
                 }
                 infoList.addToList(" ");
                 //more
@@ -668,7 +668,7 @@ public class PropertyWindow extends AstralWindow {
             //fill
             int lineWidth = (((infoList.getWidth() - 10) / (infoList.getFont().getSize())));
             int cursor = 0;
-            String tmp = "";
+            String _tmp = "";
             String[] words = description.split(" ");
             for (int a = 0; a < words.length; a++) {
                 if (a < 0) {
@@ -677,28 +677,28 @@ public class PropertyWindow extends AstralWindow {
                 int len = words[a].length();
                 if (cursor < lineWidth && !words[a].equals("/br/")) {
                     if (cursor + len <= lineWidth) {
-                        tmp += " " + words[a];
+                        _tmp += " " + words[a];
                         cursor += len;
                     } else {
                         if (lineWidth > len) {
-                            infoList.addToList(tmp);
-                            tmp = "";
+                            infoList.addToList(_tmp);
+                            _tmp = "";
                             cursor = 0;
                             a--;
                         } else {
-                            tmp += "[LEN!]";
+                            _tmp += "[LEN!]";
                         }
                     }
                 } else {
-                    infoList.addToList(tmp);
-                    tmp = "";
+                    infoList.addToList(_tmp);
+                    _tmp = "";
                     cursor = 0;
                     if (!words[a].equals("/br/")) {
                         a--;
                     }
                 }
             }
-            infoList.addToList(tmp);
+            infoList.addToList(_tmp);
         }
     }
 
@@ -803,8 +803,11 @@ public class PropertyWindow extends AstralWindow {
         if (optionList.isFocused()) {
             Object selectedOption = optionList.getItemAtIndex(optionList.getIndex());
             String command = CMD_NONE;
-            if (selectedOption instanceof AstralListItem) command = ((AstralListItem)selectedOption).getText();
-            else command = (String) selectedOption;
+            if (selectedOption instanceof AstralListItem) {
+                command = ((AstralListItem) selectedOption).getText();
+            } else {
+                command = (String) selectedOption;
+            }
             parseCommand(command);
         }
     }
