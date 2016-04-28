@@ -54,7 +54,7 @@ public class AstralList extends AstralComponent {
     protected int scrollPosition = 0;
     private int scrollDirection = 0;
     //for getting info about my location
-    private AstralWindow parent;
+    private final AstralWindow parent;
     //for the scroll bar
     private int oldMx;
     private int oldMy;

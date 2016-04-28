@@ -553,38 +553,41 @@ public class Core {
     private final ActionListener actionListener = new ActionListener() {
         @Override
         public void onAction(String name, boolean keyPressed, float tpf) {
-            if (name.equals("KEY_LSHIFT")) {
-                shiftDown = keyPressed;
-            }
-            Vector2f origin = input.getCursorPosition();
-            String[] split = name.split("_");
-            switch (split[0]) {
-                case "KEY":
-                    if (!hud.handleKeyAction(getState(), name, keyPressed, shiftDown)) {
+            try {
+                if (name.equals("KEY_LSHIFT")) {
+                    shiftDown = keyPressed;
+                }
+                Vector2f origin = input.getCursorPosition();
+                String[] split = name.split("_");
+                switch (split[0]) {
+                    case "KEY":
+                        if (!hud.handleKeyAction(getState(), name, keyPressed, shiftDown)) {
+                            if (getState() == GameState.IN_SPACE) {
+                                handleInSpaceKeys(name, keyPressed);
+                            }
+                        }
+                        break;
+                    case "MOUSE":
+                        hud.handleMouseAction(getState(), name, keyPressed,
+                                new Vector3f(origin.x, origin.y, 0));
+                        break;
+                    default:
                         if (getState() == GameState.IN_SPACE) {
-                            handleInSpaceKeys(name, keyPressed);
+                            //quickload and quicksave
+                            switch (name) {
+                                case "QuickSave":
+                                    save("Quick");
+                                    break;
+                                case "QuickLoad":
+                                    load("Quick");
+                                    break;
+                            }
                         }
-                    }
-                    break;
-                case "MOUSE":
-                    hud.handleMouseAction(getState(), name, keyPressed,
-                            new Vector3f(origin.x, origin.y, 0));
-                    break;
-                default:
-                    if (getState() == GameState.IN_SPACE) {
-                        //quickload and quicksave
-                        switch (name) {
-                            case "QuickSave":
-                                save("Quick");
-                                break;
-                            case "QuickLoad":
-                                load("Quick");
-                                break;
-                        }
-                    }
-                    break;
+                        break;
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-
         }
 
         private void handleInSpaceKeys(String name, boolean keyPressed) {
