@@ -44,7 +44,7 @@ import universe.Universe;
 public class CargoWindow extends AstralWindow {
 
     public static final String CMD_TRASH = "Trash";
-        public static final String CMD_EJECT = "Eject";
+    public static final String CMD_EJECT = "Eject";
     public static final String CMD_UNMOUNT = "Unmount";
     public static final String CMD_MOUNT = "Mount";
     public static final String CMD_STACK = "Stack";
@@ -55,7 +55,7 @@ public class CargoWindow extends AstralWindow {
     public static final String CMD_DEPLOY = "Deploy";
     public static final String CMD_CLAIMSOV = "Claim System";
     public static final String CMD_USEPASTE = "Use Repair Paste";
-    
+
     AstralList cargoList = new AstralList(this);
     AstralList propertyList = new AstralList(this);
     AstralList optionList = new AstralList(this);
@@ -300,8 +300,10 @@ public class CargoWindow extends AstralWindow {
         super.handleMouseReleasedEvent(me, mouseLoc);
         //get the module and toggle its enabled status
         if (optionList.isFocused()) {
-            AstralListItem command = (AstralListItem) optionList.getItemAtIndex(optionList.getIndex());
-            parseCommand(command.getText());
+            if (optionList.getItemAtIndex(optionList.getIndex()) instanceof AstralListItem) {
+                AstralListItem command = (AstralListItem) optionList.getItemAtIndex(optionList.getIndex());
+                parseCommand(command.getText());
+            }
         }
     }
 

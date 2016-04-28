@@ -345,8 +345,8 @@ public class Core {
     }
 
     private void initPhysicsListeners() {
-        CollisionListener listener = new CollisionListener();
-        bulletAppState.getPhysicsSpace().addCollisionListener(listener);
+        CollisionListener _listener = new CollisionListener();
+        bulletAppState.getPhysicsSpace().addCollisionListener(_listener);
     }
 
     private void initGod() {
