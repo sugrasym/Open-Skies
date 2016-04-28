@@ -29,11 +29,13 @@ import com.jme3.renderer.RenderManager;
 import com.jme3.scene.plugins.blender.BlenderModelLoader;
 import com.jme3.system.AppSettings;
 import engine.Core;
+import java.io.File;
+import java.io.PrintStream;
 import jmeplanet.PlanetAppState;
 import lib.astral.AstralIO;
 
 /**
- * Hour by hour, one more change I'm sewing them together, take great pains 
+ * Hour by hour, one more change I'm sewing them together, take great pains
  *   - Rarity
  */
 public class Main extends SimpleApplication {
@@ -44,8 +46,20 @@ public class Main extends SimpleApplication {
     //engine
     private BulletAppState bulletAppState;
     Core core;
+    //debug redirect flag
+    public static final boolean REDIRECT_CONSOLE_OUTPUT = true;
 
     public static void main(String[] args) {
+        //if set, redirect the all System.out output to a log file
+        if (REDIRECT_CONSOLE_OUTPUT) {
+            try {
+                System.setOut(new PrintStream(new File(System.nanoTime() + "-output-log.txt")));
+            } catch (Exception e) {
+                System.out.println("Failed to redirect output.");
+                e.printStackTrace();
+            }
+        }
+
         Main app = new Main();
         //override settings for joystick
         AppSettings settings = new AppSettings(true);
