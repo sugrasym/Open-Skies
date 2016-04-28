@@ -33,6 +33,7 @@ import java.io.File;
 import java.io.PrintStream;
 import jmeplanet.PlanetAppState;
 import lib.astral.AstralIO;
+import lib.astral.AstralStream;
 
 /**
  * Hour by hour, one more change I'm sewing them together, take great pains
@@ -50,10 +51,16 @@ public class Main extends SimpleApplication {
     public static final boolean REDIRECT_CONSOLE_OUTPUT = true;
 
     public static void main(String[] args) {
-        //if set, redirect the all System.out output to a log file
+        //if set, redirect the all System.out output to multiple sources
         if (REDIRECT_CONSOLE_OUTPUT) {
             try {
-                System.setOut(new PrintStream(new File(System.nanoTime() + "-output-log.txt")));
+                //setup outputs
+                AstralStream master = new AstralStream();
+                master.add(System.out);
+                master.add(new PrintStream(new File(System.nanoTime() + "-output-log.txt")));
+                
+                //apply new stream
+                System.setOut(new PrintStream(master));
             } catch (Exception e) {
                 System.out.println("Failed to redirect output.");
                 e.printStackTrace();
