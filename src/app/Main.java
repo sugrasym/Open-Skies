@@ -33,6 +33,7 @@ import java.io.File;
 import java.io.PrintStream;
 import jmeplanet.PlanetAppState;
 import lib.astral.AstralIO;
+import lib.astral.AstralPrint;
 import lib.astral.AstralStream;
 
 /**
@@ -47,24 +48,21 @@ public class Main extends SimpleApplication {
     //engine
     private BulletAppState bulletAppState;
     Core core;
-    //debug redirect flag
-    public static final boolean REDIRECT_CONSOLE_OUTPUT = true;
 
     public static void main(String[] args) {
-        //if set, redirect the all System.out output to multiple sources
-        if (REDIRECT_CONSOLE_OUTPUT) {
-            try {
-                //setup outputs
-                AstralStream master = new AstralStream();
-                master.add(System.out);
-                master.add(new PrintStream(new File(System.currentTimeMillis() + "-output-log.txt")));
-                
-                //apply new stream
-                System.setOut(new PrintStream(master));
-            } catch (Exception e) {
-                System.out.println("Failed to redirect output.");
-                e.printStackTrace();
-            }
+        //redirect console output to various endpoints in addition to console
+        try {
+            //setup outputs
+            AstralStream master = new AstralStream();
+            master.add(System.out);
+            master.add(new PrintStream(new File(System.currentTimeMillis() + "-output-log.txt")));
+            //todo: add stream for in-game console when implemented
+
+            //apply new stream
+            System.setOut(new AstralPrint(master));
+        } catch (Exception e) {
+            System.out.println("Failed to redirect output.");
+            e.printStackTrace();
         }
 
         Main app = new Main();
