@@ -57,7 +57,7 @@ public class Main extends SimpleApplication {
                 //setup outputs
                 AstralStream master = new AstralStream();
                 master.add(System.out);
-                master.add(new PrintStream(new File(System.nanoTime() + "-output-log.txt")));
+                master.add(new PrintStream(new File(System.currentTimeMillis() + "-output-log.txt")));
                 
                 //apply new stream
                 System.setOut(new PrintStream(master));
