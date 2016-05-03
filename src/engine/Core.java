@@ -119,40 +119,43 @@ public class Core {
     private AudioNode music;
 
     //control mapping
-    private int JOYSTICK_PITCH_AXIS;
-    private int JOYSTICK_YAW_AXIS;
-    private int JOYSTICK_ROLL_AXIS;
-    private int JOYSTICK_THROTTLE_AXIS;
-    private String KEY_YAW_LEFT;
-    private String KEY_YAW_RIGHT;
-    private String KEY_FORWARD_THRUST;
-    private String KEY_REVERSE_THRUST;
-    private String KEY_PITCH_UP;
-    private String KEY_PITCH_DOWN;
-    private String KEY_ROLL_LEFT;
-    private String KEY_ROLL_RIGHT;
-    private String KEY_EQUIPMENT_WINDOW;
-    private String KEY_OVERVIEW_WINDOW;
-    private String KEY_CARGO_WINDOW;
-    private String KEY_PROPERTY_WINDOW;
-    private String KEY_STARMAP_WINDOW;
-    private String KEY_TRADE_WINDOW;
-    private String KEY_STANDING_WINDOW;
-    private String KEY_COMM_WINDOW;
-    private String KEY_TGT_NEAREST_ENEMY;
-    private String KEY_TGT_NEAREST_FRIENDLY;
-    private String KEY_TGT_NEAREST_NEUTRAL;
-    private String KEY_FIRE;
-    private String KEY_STOP;
-    private String KEY_TOGGLE_MISSILES;
-    private String KEY_TOGGLE_CANNONS;
-    private String KEY_TOGGLE_TURRETS;
-    private String KEY_CONFIGURE_COMBAT;
-    private String KEY_CONFIGURE_CRUISE;
-    private int JOYSTICK_FIRE_BUTTON;
-    private int JOYSTICK_SEC_BUTTON;
-    private float JOYSTICK_DEADZONE_ROTATION;
-    private float JOYSTICK_DEADZONE_THROTTLE;
+    private static class ControlMap {
+
+        public static int JOYSTICK_PITCH_AXIS;
+        public static int JOYSTICK_YAW_AXIS;
+        public static int JOYSTICK_ROLL_AXIS;
+        public static int JOYSTICK_THROTTLE_AXIS;
+        public static String KEY_YAW_LEFT;
+        public static String KEY_YAW_RIGHT;
+        public static String KEY_FORWARD_THRUST;
+        public static String KEY_REVERSE_THRUST;
+        public static String KEY_PITCH_UP;
+        public static String KEY_PITCH_DOWN;
+        public static String KEY_ROLL_LEFT;
+        public static String KEY_ROLL_RIGHT;
+        public static String KEY_EQUIPMENT_WINDOW;
+        public static String KEY_OVERVIEW_WINDOW;
+        public static String KEY_CARGO_WINDOW;
+        public static String KEY_PROPERTY_WINDOW;
+        public static String KEY_STARMAP_WINDOW;
+        public static String KEY_TRADE_WINDOW;
+        public static String KEY_STANDING_WINDOW;
+        public static String KEY_COMM_WINDOW;
+        public static String KEY_TGT_NEAREST_ENEMY;
+        public static String KEY_TGT_NEAREST_FRIENDLY;
+        public static String KEY_TGT_NEAREST_NEUTRAL;
+        public static String KEY_FIRE;
+        public static String KEY_STOP;
+        public static String KEY_TOGGLE_MISSILES;
+        public static String KEY_TOGGLE_CANNONS;
+        public static String KEY_TOGGLE_TURRETS;
+        public static String KEY_CONFIGURE_COMBAT;
+        public static String KEY_CONFIGURE_CRUISE;
+        public static int JOYSTICK_FIRE_BUTTON;
+        public static int JOYSTICK_SEC_BUTTON;
+        public static float JOYSTICK_DEADZONE_ROTATION;
+        public static float JOYSTICK_DEADZONE_THROTTLE;
+    }
 
     //control switches
     private boolean shiftDown = false;
@@ -234,50 +237,50 @@ public class Core {
                     String joyDeadRotation = map.getValue("j_deadzone_rotation");
 
                     //parse into mappings
-                    JOYSTICK_PITCH_AXIS = Integer.parseInt(pitchString);
-                    JOYSTICK_YAW_AXIS = Integer.parseInt(yawString);
-                    JOYSTICK_ROLL_AXIS = Integer.parseInt(rollString);
-                    JOYSTICK_THROTTLE_AXIS = Integer.parseInt(throttleString);
+                    ControlMap.JOYSTICK_PITCH_AXIS = Integer.parseInt(pitchString);
+                    ControlMap.JOYSTICK_YAW_AXIS = Integer.parseInt(yawString);
+                    ControlMap.JOYSTICK_ROLL_AXIS = Integer.parseInt(rollString);
+                    ControlMap.JOYSTICK_THROTTLE_AXIS = Integer.parseInt(throttleString);
 
-                    KEY_FORWARD_THRUST = keyForwardThrustString.trim();
-                    KEY_REVERSE_THRUST = keyReverseThrustString.trim();
-                    KEY_YAW_LEFT = keyYawLeftString.trim();
-                    KEY_YAW_RIGHT = keyYawRightString.trim();
+                    ControlMap.KEY_FORWARD_THRUST = keyForwardThrustString.trim();
+                    ControlMap.KEY_REVERSE_THRUST = keyReverseThrustString.trim();
+                    ControlMap.KEY_YAW_LEFT = keyYawLeftString.trim();
+                    ControlMap.KEY_YAW_RIGHT = keyYawRightString.trim();
 
-                    KEY_PITCH_UP = keyPitchUpString.trim();
-                    KEY_PITCH_DOWN = keyPitchDownString.trim();
+                    ControlMap.KEY_PITCH_UP = keyPitchUpString.trim();
+                    ControlMap.KEY_PITCH_DOWN = keyPitchDownString.trim();
 
-                    KEY_ROLL_LEFT = keyRollLeftString.trim();
-                    KEY_ROLL_RIGHT = keyRollRightString.trim();
+                    ControlMap.KEY_ROLL_LEFT = keyRollLeftString.trim();
+                    ControlMap.KEY_ROLL_RIGHT = keyRollRightString.trim();
 
-                    KEY_EQUIPMENT_WINDOW = keyEquipmentWindowString.trim();
-                    KEY_OVERVIEW_WINDOW = keyOverviewWindowString.trim();
-                    KEY_CARGO_WINDOW = keyCargoWindowString.trim();
-                    KEY_PROPERTY_WINDOW = keyPropertyWindowString.trim();
-                    KEY_STARMAP_WINDOW = keyStarmapWindowString.trim();
-                    KEY_TRADE_WINDOW = keyTradeWindowString.trim();
-                    KEY_STANDING_WINDOW = keyStandingWindowString.trim();
-                    KEY_COMM_WINDOW = keyCommWindowString.trim();
+                    ControlMap.KEY_EQUIPMENT_WINDOW = keyEquipmentWindowString.trim();
+                    ControlMap.KEY_OVERVIEW_WINDOW = keyOverviewWindowString.trim();
+                    ControlMap.KEY_CARGO_WINDOW = keyCargoWindowString.trim();
+                    ControlMap.KEY_PROPERTY_WINDOW = keyPropertyWindowString.trim();
+                    ControlMap.KEY_STARMAP_WINDOW = keyStarmapWindowString.trim();
+                    ControlMap.KEY_TRADE_WINDOW = keyTradeWindowString.trim();
+                    ControlMap.KEY_STANDING_WINDOW = keyStandingWindowString.trim();
+                    ControlMap.KEY_COMM_WINDOW = keyCommWindowString.trim();
 
-                    KEY_TGT_NEAREST_ENEMY = keyNearestEnemyString.trim();
-                    KEY_TGT_NEAREST_FRIENDLY = keyNearestFriendlyString.trim();
-                    KEY_TGT_NEAREST_NEUTRAL = keyNearestNeutralString.trim();
+                    ControlMap.KEY_TGT_NEAREST_ENEMY = keyNearestEnemyString.trim();
+                    ControlMap.KEY_TGT_NEAREST_FRIENDLY = keyNearestFriendlyString.trim();
+                    ControlMap.KEY_TGT_NEAREST_NEUTRAL = keyNearestNeutralString.trim();
 
-                    KEY_FIRE = keyFireString.trim();
-                    KEY_STOP = keyStopString.trim();
+                    ControlMap.KEY_FIRE = keyFireString.trim();
+                    ControlMap.KEY_STOP = keyStopString.trim();
 
-                    KEY_TOGGLE_MISSILES = keyToggleMissilesString.trim();
-                    KEY_TOGGLE_CANNONS = keyToggleCannonsString.trim();
-                    KEY_TOGGLE_TURRETS = keyToggleTurretsString.trim();
+                    ControlMap.KEY_TOGGLE_MISSILES = keyToggleMissilesString.trim();
+                    ControlMap.KEY_TOGGLE_CANNONS = keyToggleCannonsString.trim();
+                    ControlMap.KEY_TOGGLE_TURRETS = keyToggleTurretsString.trim();
 
-                    KEY_CONFIGURE_COMBAT = keyConfigureCombatString.trim();
-                    KEY_CONFIGURE_CRUISE = keyConfigureCruiseString.trim();
+                    ControlMap.KEY_CONFIGURE_COMBAT = keyConfigureCombatString.trim();
+                    ControlMap.KEY_CONFIGURE_CRUISE = keyConfigureCruiseString.trim();
 
-                    JOYSTICK_FIRE_BUTTON = Integer.parseInt(joyFireButton.trim());
-                    JOYSTICK_SEC_BUTTON = Integer.parseInt(joySecButton.trim());
+                    ControlMap.JOYSTICK_FIRE_BUTTON = Integer.parseInt(joyFireButton.trim());
+                    ControlMap.JOYSTICK_SEC_BUTTON = Integer.parseInt(joySecButton.trim());
 
-                    JOYSTICK_DEADZONE_THROTTLE = Float.parseFloat(joyDeadThrottle.trim());
-                    JOYSTICK_DEADZONE_ROTATION = Float.parseFloat(joyDeadRotation.trim());
+                    ControlMap.JOYSTICK_DEADZONE_THROTTLE = Float.parseFloat(joyDeadThrottle.trim());
+                    ControlMap.JOYSTICK_DEADZONE_ROTATION = Float.parseFloat(joyDeadRotation.trim());
 
                     System.out.println("Sucessfully applied custom mappings from " + AstralIO.getPayloadFile());
 
@@ -289,40 +292,40 @@ public class Core {
             System.out.println("Setting controls to defaults as fallback!");
 
             //default mappings
-            JOYSTICK_PITCH_AXIS = 0;
-            JOYSTICK_YAW_AXIS = 1;
-            JOYSTICK_ROLL_AXIS = 2;
-            JOYSTICK_THROTTLE_AXIS = 3;
-            KEY_FORWARD_THRUST = "KEY_W";
-            KEY_REVERSE_THRUST = "KEY_S";
-            KEY_YAW_LEFT = "KEY_A";
-            KEY_YAW_RIGHT = "KEY_D";
-            KEY_PITCH_UP = "KEY_UP";
-            KEY_PITCH_DOWN = "KEY_DOWN";
-            KEY_ROLL_LEFT = "KEY_Q";
-            KEY_ROLL_RIGHT = "KEY_E";
-            KEY_EQUIPMENT_WINDOW = "KEY_1";
-            KEY_OVERVIEW_WINDOW = "KEY_2";
-            KEY_CARGO_WINDOW = "KEY_3";
-            KEY_PROPERTY_WINDOW = "KEY_4";
-            KEY_STARMAP_WINDOW = "KEY_5";
-            KEY_TRADE_WINDOW = "KEY_6";
-            KEY_STANDING_WINDOW = "KEY_7";
-            KEY_COMM_WINDOW = "KEY_8";
-            KEY_TGT_NEAREST_ENEMY = "KEY_R";
-            KEY_TGT_NEAREST_FRIENDLY = "KEY_T";
-            KEY_TGT_NEAREST_NEUTRAL = "KEY_Y";
-            KEY_FIRE = "KEY_SPACE";
-            KEY_STOP = "KEY_HOME";
-            KEY_TOGGLE_MISSILES = "KEY_J";
-            KEY_TOGGLE_CANNONS = "KEY_K";
-            KEY_TOGGLE_TURRETS = "KEY_L";
-            KEY_CONFIGURE_COMBAT = "KEY_C";
-            KEY_CONFIGURE_CRUISE = "KEY_V";
-            JOYSTICK_FIRE_BUTTON = 0;
-            JOYSTICK_SEC_BUTTON = 1;
-            JOYSTICK_DEADZONE_THROTTLE = 0.1f;
-            JOYSTICK_DEADZONE_ROTATION = 0.01f;
+            ControlMap.JOYSTICK_PITCH_AXIS = 0;
+            ControlMap.JOYSTICK_YAW_AXIS = 1;
+            ControlMap.JOYSTICK_ROLL_AXIS = 2;
+            ControlMap.JOYSTICK_THROTTLE_AXIS = 3;
+            ControlMap.KEY_FORWARD_THRUST = "KEY_W";
+            ControlMap.KEY_REVERSE_THRUST = "KEY_S";
+            ControlMap.KEY_YAW_LEFT = "KEY_A";
+            ControlMap.KEY_YAW_RIGHT = "KEY_D";
+            ControlMap.KEY_PITCH_UP = "KEY_UP";
+            ControlMap.KEY_PITCH_DOWN = "KEY_DOWN";
+            ControlMap.KEY_ROLL_LEFT = "KEY_Q";
+            ControlMap.KEY_ROLL_RIGHT = "KEY_E";
+            ControlMap.KEY_EQUIPMENT_WINDOW = "KEY_1";
+            ControlMap.KEY_OVERVIEW_WINDOW = "KEY_2";
+            ControlMap.KEY_CARGO_WINDOW = "KEY_3";
+            ControlMap.KEY_PROPERTY_WINDOW = "KEY_4";
+            ControlMap.KEY_STARMAP_WINDOW = "KEY_5";
+            ControlMap.KEY_TRADE_WINDOW = "KEY_6";
+            ControlMap.KEY_STANDING_WINDOW = "KEY_7";
+            ControlMap.KEY_COMM_WINDOW = "KEY_8";
+            ControlMap.KEY_TGT_NEAREST_ENEMY = "KEY_R";
+            ControlMap.KEY_TGT_NEAREST_FRIENDLY = "KEY_T";
+            ControlMap.KEY_TGT_NEAREST_NEUTRAL = "KEY_Y";
+            ControlMap.KEY_FIRE = "KEY_SPACE";
+            ControlMap.KEY_STOP = "KEY_HOME";
+            ControlMap.KEY_TOGGLE_MISSILES = "KEY_J";
+            ControlMap.KEY_TOGGLE_CANNONS = "KEY_K";
+            ControlMap.KEY_TOGGLE_TURRETS = "KEY_L";
+            ControlMap.KEY_CONFIGURE_COMBAT = "KEY_C";
+            ControlMap.KEY_CONFIGURE_CRUISE = "KEY_V";
+            ControlMap.JOYSTICK_FIRE_BUTTON = 0;
+            ControlMap.JOYSTICK_SEC_BUTTON = 1;
+            ControlMap.JOYSTICK_DEADZONE_THROTTLE = 0.1f;
+            ControlMap.JOYSTICK_DEADZONE_ROTATION = 0.01f;
 
             System.out.println("Redeploying payload file");
             AstralIO.forceDeployControlPayload();
@@ -594,32 +597,32 @@ public class Core {
         private void handleInSpaceKeys(String name, boolean keyPressed) {
             //these keys show and hide GDI elements
             if (keyPressed) {
-                if (name.equals(KEY_EQUIPMENT_WINDOW)) {
+                if (name.equals(ControlMap.KEY_EQUIPMENT_WINDOW)) {
                     //toggle equipment window
                     hud.toggleEquipmentWindow();
                 }
-                if (name.equals(KEY_OVERVIEW_WINDOW)) {
+                if (name.equals(ControlMap.KEY_OVERVIEW_WINDOW)) {
                     //toggle overview window
                     hud.toggleSensorWindow();
                 }
-                if (name.equals(KEY_CARGO_WINDOW)) {
+                if (name.equals(ControlMap.KEY_CARGO_WINDOW)) {
                     //toggle cargo window
                     hud.toggleCargoWindow();
                 }
-                if (name.equals(KEY_PROPERTY_WINDOW)) {
+                if (name.equals(ControlMap.KEY_PROPERTY_WINDOW)) {
                     //toggle property window
                     hud.togglePropertyWindow();
                 }
-                if (name.equals(KEY_STARMAP_WINDOW)) {
+                if (name.equals(ControlMap.KEY_STARMAP_WINDOW)) {
                     //toggle property window
                     hud.toggleStarMapWindow();
                 }
                 // * 6 is handled when docked * //
-                if (name.equals(KEY_STANDING_WINDOW)) {
+                if (name.equals(ControlMap.KEY_STANDING_WINDOW)) {
                     //toggle standing window
                     hud.toggleStandingWindow();
                 }
-                if (name.equals(KEY_COMM_WINDOW)) {
+                if (name.equals(ControlMap.KEY_COMM_WINDOW)) {
                     //toggle comm window
                     hud.toggleCommWindow();
                 }
@@ -646,106 +649,106 @@ public class Core {
                     }
                 }
                 //fire
-                if (name.equals(KEY_FIRE)) {
+                if (name.equals(ControlMap.KEY_FIRE)) {
                     getPlayerShip().setFiring(keyPressed);
                 }
                 //all stop
-                if (name.equals(KEY_STOP)) {
+                if (name.equals(ControlMap.KEY_STOP)) {
                     getPlayerShip().cmdAllStop();
                 }
                 //handle nav actions
-                if (name.equals(KEY_ROLL_LEFT)) {
+                if (name.equals(ControlMap.KEY_ROLL_LEFT)) {
                     if (keyPressed) {
                         getPlayerShip().setRoll(1);
                     } else {
                         getPlayerShip().setRoll(0);
                     }
                 }
-                if (name.equals(KEY_ROLL_RIGHT)) {
+                if (name.equals(ControlMap.KEY_ROLL_RIGHT)) {
                     if (keyPressed) {
                         getPlayerShip().setRoll(-1);
                     } else {
                         getPlayerShip().setRoll(0);
                     }
                 }
-                if (name.equals(KEY_FORWARD_THRUST)) {
+                if (name.equals(ControlMap.KEY_FORWARD_THRUST)) {
                     if (keyPressed) {
                         getPlayerShip().setThrottle(1);
                     } else {
                         getPlayerShip().setThrottle(0);
                     }
                 }
-                if (name.equals(KEY_REVERSE_THRUST)) {
+                if (name.equals(ControlMap.KEY_REVERSE_THRUST)) {
                     if (keyPressed) {
                         getPlayerShip().setThrottle(-1);
                     } else {
                         getPlayerShip().setThrottle(0);
                     }
                 }
-                if (name.equals(KEY_YAW_LEFT)) {
+                if (name.equals(ControlMap.KEY_YAW_LEFT)) {
                     if (keyPressed) {
                         getPlayerShip().setYaw(1);
                     } else {
                         getPlayerShip().setYaw(0);
                     }
                 }
-                if (name.equals(KEY_YAW_RIGHT)) {
+                if (name.equals(ControlMap.KEY_YAW_RIGHT)) {
                     if (keyPressed) {
                         getPlayerShip().setYaw(-1);
                     } else {
                         getPlayerShip().setYaw(0);
                     }
                 }
-                if (name.equals(KEY_PITCH_UP)) {
+                if (name.equals(ControlMap.KEY_PITCH_UP)) {
                     if (keyPressed) {
                         getPlayerShip().setPitch(-1);
                     } else {
                         getPlayerShip().setPitch(0);
                     }
                 }
-                if (name.equals(KEY_PITCH_DOWN)) {
+                if (name.equals(ControlMap.KEY_PITCH_DOWN)) {
                     if (keyPressed) {
                         getPlayerShip().setPitch(1);
                     } else {
                         getPlayerShip().setPitch(0);
                     }
                 }
-                if (name.equals(KEY_TOGGLE_MISSILES)) {
+                if (name.equals(ControlMap.KEY_TOGGLE_MISSILES)) {
                     if (keyPressed) {
                         getPlayerShip().toggleMissiles();
                     }
                 }
-                if (name.equals(KEY_TOGGLE_CANNONS)) {
+                if (name.equals(ControlMap.KEY_TOGGLE_CANNONS)) {
                     if (keyPressed) {
                         getPlayerShip().toggleCannons();
                     }
                 }
-                if (name.equals(KEY_TOGGLE_TURRETS)) {
+                if (name.equals(ControlMap.KEY_TOGGLE_TURRETS)) {
                     if (keyPressed) {
                         getPlayerShip().toggleTurrets();
                     }
                 }
-                if (name.equals(KEY_CONFIGURE_COMBAT)) {
+                if (name.equals(ControlMap.KEY_CONFIGURE_COMBAT)) {
                     if (keyPressed) {
                         getPlayerShip().configureForCombat();
                     }
                 }
-                if (name.equals(KEY_CONFIGURE_CRUISE)) {
+                if (name.equals(ControlMap.KEY_CONFIGURE_CRUISE)) {
                     if (keyPressed) {
                         getPlayerShip().configureForCruise();
                     }
                 }
-                if (name.equals(KEY_TGT_NEAREST_ENEMY)) {
+                if (name.equals(ControlMap.KEY_TGT_NEAREST_ENEMY)) {
                     if (keyPressed) {
                         getPlayerShip().targetNearestHostileShip();
                     }
                 }
-                if (name.equals(KEY_TGT_NEAREST_FRIENDLY)) {
+                if (name.equals(ControlMap.KEY_TGT_NEAREST_FRIENDLY)) {
                     if (keyPressed) {
                         getPlayerShip().targetNearestFriendlyShip();
                     }
                 }
-                if (name.equals(KEY_TGT_NEAREST_NEUTRAL)) {
+                if (name.equals(ControlMap.KEY_TGT_NEAREST_NEUTRAL)) {
                     if (keyPressed) {
                         getPlayerShip().targetNearestNeutralShip();
                     }
@@ -753,7 +756,7 @@ public class Core {
             } else {
                 //docked only windows
                 if (keyPressed) {
-                    if (name.equals(KEY_TRADE_WINDOW)) {
+                    if (name.equals(ControlMap.KEY_TRADE_WINDOW)) {
                         //toggle trade window
                         hud.toggleTradeWindow();
                     }
@@ -774,28 +777,28 @@ public class Core {
         public void onJoyAxisEvent(JoyAxisEvent evt) {
             if (getState() == GameState.IN_SPACE) {
                 if (!getPlayerShip().isDocked()) {
-                    if (Math.abs(evt.getAxis().getAxisId()) == JOYSTICK_PITCH_AXIS) {
-                        if (Math.abs(evt.getValue()) > JOYSTICK_DEADZONE_ROTATION) {
+                    if (Math.abs(evt.getAxis().getAxisId()) == ControlMap.JOYSTICK_PITCH_AXIS) {
+                        if (Math.abs(evt.getValue()) > ControlMap.JOYSTICK_DEADZONE_ROTATION) {
                             getPlayerShip().setYaw(-evt.getValue());
                         } else {
                             getPlayerShip().setYaw(0);
                         }
-                    } else if (evt.getAxis().getAxisId() == JOYSTICK_YAW_AXIS) {
-                        if (Math.abs(evt.getValue()) > JOYSTICK_DEADZONE_ROTATION) {
+                    } else if (evt.getAxis().getAxisId() == ControlMap.JOYSTICK_YAW_AXIS) {
+                        if (Math.abs(evt.getValue()) > ControlMap.JOYSTICK_DEADZONE_ROTATION) {
                             getPlayerShip().setPitch(evt.getValue());
                         } else {
                             getPlayerShip().setPitch(0);
                         }
-                    } else if (evt.getAxis().getAxisId() == JOYSTICK_ROLL_AXIS) {
-                        if (Math.abs(evt.getValue()) > JOYSTICK_DEADZONE_ROTATION) {
+                    } else if (evt.getAxis().getAxisId() == ControlMap.JOYSTICK_ROLL_AXIS) {
+                        if (Math.abs(evt.getValue()) > ControlMap.JOYSTICK_DEADZONE_ROTATION) {
                             getPlayerShip().setRoll(-evt.getValue());
                         } else {
                             getPlayerShip().setRoll(0);
                         }
                     } /*
                      * POV / HAT used for thrust
-                     */ else if (evt.getAxis().getAxisId() == JOYSTICK_THROTTLE_AXIS) {
-                        if (Math.abs(evt.getValue()) > JOYSTICK_DEADZONE_THROTTLE) { //deadzone but it really should be mapped to a HAT axis
+                     */ else if (evt.getAxis().getAxisId() == ControlMap.JOYSTICK_THROTTLE_AXIS) {
+                        if (Math.abs(evt.getValue()) > ControlMap.JOYSTICK_DEADZONE_THROTTLE) { //deadzone but it really should be mapped to a HAT axis
                             getPlayerShip().setThrottle(evt.getValue());
                         } else {
                             getPlayerShip().setThrottle(0);
@@ -809,9 +812,9 @@ public class Core {
         public void onJoyButtonEvent(JoyButtonEvent evt) {
             if (getState() == GameState.IN_SPACE) {
                 if (!getPlayerShip().isDocked()) {
-                    if (evt.getButton().getButtonId() == JOYSTICK_FIRE_BUTTON) {
+                    if (evt.getButton().getButtonId() == ControlMap.JOYSTICK_FIRE_BUTTON) {
                         getPlayerShip().setFiring(evt.isPressed());
-                    } else if (evt.getButton().getButtonId() == JOYSTICK_SEC_BUTTON) {
+                    } else if (evt.getButton().getButtonId() == ControlMap.JOYSTICK_SEC_BUTTON) {
                         getPlayerShip().toggleMissiles();
                     }
                 }
