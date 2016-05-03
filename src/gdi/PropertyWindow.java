@@ -602,30 +602,29 @@ public class PropertyWindow extends AstralWindow {
                     infoList.addToList(new AstralListItem("To:           " + end.getName(), "TOOLTIPPLACEHOLDER"));
                     infoList.addToList("              " + end.getCurrentSystem());
                 }
-            } /*else if (selected.getBehavior() == Behavior.SUPPLY_HOMEBASE) {
-             Station start = selected.getBuyFromStation();
-             Station end = selected.getSellToStation();
-             Item ware = selected.getWorkingWare();
-             if (start != null && end != null && ware != null) {
-             infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
-             infoList.addToList("From:         " + start.getName());
-             infoList.addToList("              " + start.getCurrentSystem());
-             infoList.addToList("To:           " + end.getName());
-             infoList.addToList("              " + end.getCurrentSystem());
-             }
-             } else if (selected.getBehavior() == Behavior.REPRESENT_HOMEBASE) {
-             Station start = selected.getBuyFromStation();
-             Station end = selected.getSellToStation();
-             Item ware = selected.getWorkingWare();
-             if (start != null && end != null && ware != null) {
-             infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
-             infoList.addToList("From:         " + start.getName());
-             infoList.addToList("              " + start.getCurrentSystem());
-             infoList.addToList("To:           " + end.getName());
-             infoList.addToList("              " + end.getCurrentSystem());
-             }
-             }*/
-
+            } else if (selected.getBehavior() == Behavior.SUPPLY_HOMEBASE) {
+                Station start = selected.getBuyFromStation();
+                Station end = selected.getSellToStation();
+                Item ware = selected.getWorkingWare();
+                if (start != null && end != null && ware != null) {
+                    infoList.addToList(new AstralListItem("Ware:         " + selected.getWorkingWare().getName(), "TOOLTIPPLACEHOLDER"));
+                    infoList.addToList(new AstralListItem("From:         " + start.getName(), "TOOLTIPPLACEHOLDER"));
+                    infoList.addToList("              " + start.getCurrentSystem());
+                    infoList.addToList(new AstralListItem("To:           " + end.getName(), "TOOLTIPPLACEHOLDER"));
+                    infoList.addToList("              " + end.getCurrentSystem());
+                }
+            } else if (selected.getBehavior() == Behavior.REPRESENT_HOMEBASE) {
+                Station start = selected.getBuyFromStation();
+                Station end = selected.getSellToStation();
+                Item ware = selected.getWorkingWare();
+                if (start != null && end != null && ware != null) {
+                    infoList.addToList(new AstralListItem("Ware:         " + selected.getWorkingWare().getName(), "TOOLTIPPLACEHOLDER"));
+                    infoList.addToList(new AstralListItem("From:         " + start.getName(), "TOOLTIPPLACEHOLDER"));
+                    infoList.addToList("              " + start.getCurrentSystem());
+                    infoList.addToList(new AstralListItem("To:           " + end.getName(), "TOOLTIPPLACEHOLDER"));
+                    infoList.addToList("              " + end.getCurrentSystem());
+                }
+            }
         }
     }
 
@@ -745,8 +744,8 @@ public class PropertyWindow extends AstralWindow {
                     if (selected.getHomeBase() != null) {
                         optionList.addToList(" ");
                         optionList.addToList(new AstralListItem(CMD_CLEARHOME, "TOOLTIPPLACEHOLDER"));
-                        //optionList.addToList(CMD_SUPPLYHOME);
-                        //optionList.addToList(CMD_REPRESENTHOME);
+                        optionList.addToList(CMD_SUPPLYHOME);
+                        optionList.addToList(CMD_REPRESENTHOME);
                         optionList.addToList(" ");
                     } else {
                         optionList.addToList(" ");
@@ -992,8 +991,10 @@ public class PropertyWindow extends AstralWindow {
                     break;
                 }
                 case CMD_SUPPLYHOME:
+                    selected.setBehavior(Behavior.SUPPLY_HOMEBASE);
                     break;
                 case CMD_REPRESENTHOME:
+                    selected.setBehavior(Behavior.REPRESENT_HOMEBASE);
                     break;
             }
         }

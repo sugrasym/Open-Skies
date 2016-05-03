@@ -7,7 +7,7 @@ y=17040
 z=10657
 cash=50000
 install=Arrow Missile/Arrow Missile/Talon A-7/Talon A-7
-cargo=Arrow Missile Ammunition~50
+cargo=Jumpdrive~1/Arrow Missile Ammunition~50
 [/NewGame]
 
 [Ship]
@@ -18,7 +18,7 @@ x=17906
 y=17040
 z=10757
 faction=Player
-cargo=Dart Missile Ammunition~12
+cargo=Jumpdrive~1/Dart Missile Ammunition~12
 install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 [/Ship]
 
