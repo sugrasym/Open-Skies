@@ -2,9 +2,9 @@
 name=Default
 ship=Sparrow
 system=Sigma 7-2
-x=-78729
+x=-78829
 y=-84056
-z=-70508
+z=70408
 cash=50000
 install=Arrow Missile/Arrow Missile/Talon A-7/Talon A-7
 cargo=Jumpdrive~1/Arrow Missile Ammunition~50
