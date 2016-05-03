@@ -93,7 +93,7 @@ x=0
 y=0
 z=0
 l=192000
-w=32000
+w=192000
 h=192000
 seed=1100752664
 [/Field]
@@ -233,7 +233,7 @@ seed=586395234
 [Planet]
 name='Cape La Plata'
 system=Upsilon WC4-W8S
-texture=Martian
+texture=BandedGas
 x=75138
 y=0
 z=90758
@@ -306,7 +306,7 @@ x=0
 y=0
 z=0
 l=244575
-w=32000
+w=244575
 h=244575
 seed=-1764671638
 [/Field]
@@ -447,7 +447,7 @@ seed=1012686084
 [Planet]
 name='Cape Jenkins'
 system=Kappa X-38LM
-texture=Frozen
+texture=BandedGas
 x=11300
 y=0
 z=121073
@@ -623,7 +623,7 @@ x=0
 y=0
 z=0
 l=192000
-w=32000
+w=192000
 h=192000
 seed=1860261935
 [/Field]
@@ -631,7 +631,7 @@ seed=1860261935
 [Planet]
 name='James Major'
 system=Alpha CJZ-3MR
-texture=Frozen
+texture=Terran
 x=48512
 y=0
 z=53906
@@ -993,7 +993,7 @@ seed=-1215037196
 [Planet]
 name='Peterson Minor'
 system=Alpha FE1-XE4
-texture=Terran
+texture=Barren
 x=-12187
 y=0
 z=51661
@@ -1021,7 +1021,7 @@ seed=-1331317126
 [Planet]
 name='Santiago'
 system=Alpha FE1-XE4
-texture=Barren
+texture=BandedGas
 x=59644
 y=0
 z=-103307
@@ -1049,7 +1049,7 @@ seed=1908748617
 [Planet]
 name='Ele'
 system=Alpha FE1-XE4
-texture=Frozen
+texture=Barren
 x=-18594
 y=0
 z=53012
@@ -1180,7 +1180,7 @@ x=0
 y=0
 z=0
 l=540117
-w=32000
+w=540117
 h=540117
 seed=549792895
 [/Field]
@@ -1343,7 +1343,7 @@ x=0
 y=0
 z=0
 l=503595
-w=32000
+w=503595
 h=503595
 seed=712988862
 [/Field]
@@ -1351,7 +1351,7 @@ seed=712988862
 [Planet]
 name='Cape Guangzhou'
 system=Lambda V-0
-texture=BandedGas
+texture=Barren
 x=117899
 y=0
 z=-27461
@@ -1488,7 +1488,7 @@ seed=1793982480
 [Planet]
 name='New Mohammed'
 system=Alpha 00-NS
-texture=WetMartian
+texture=Martian
 x=65388
 y=0
 z=44116
@@ -1502,7 +1502,7 @@ seed=30158990
 [Planet]
 name='Port Chengdu'
 system=Alpha 00-NS
-texture=Frozen
+texture=Barren
 x=106415
 y=0
 z=34458
@@ -1594,7 +1594,7 @@ x=0
 y=0
 z=0
 l=411042
-w=32000
+w=411042
 h=411042
 seed=-1519772238
 [/Field]
@@ -1602,7 +1602,7 @@ seed=-1519772238
 [Planet]
 name='Grant'
 system=Iota G-WCXG
-texture=WetMartian
+texture=Frozen
 x=108034
 y=0
 z=7825
@@ -1616,7 +1616,7 @@ seed=1537892542
 [Planet]
 name='Port Jordan'
 system=Iota G-WCXG
-texture=BandedGas
+texture=Frozen
 x=-89582
 y=0
 z=23304
@@ -1630,7 +1630,7 @@ seed=-2076798622
 [Planet]
 name='Allahabad'
 system=Iota G-WCXG
-texture=Terran
+texture=BandedGas
 x=-96155
 y=0
 z=62572
@@ -1820,7 +1820,7 @@ x=0
 y=0
 z=0
 l=192000
-w=32000
+w=192000
 h=192000
 seed=509443157
 [/Field]
@@ -1828,7 +1828,7 @@ seed=509443157
 [Planet]
 name='San Pedro Sula'
 system=Gamma 7-GJ
-texture=Martian
+texture=BandedGas
 x=-16210
 y=0
 z=55975
@@ -1954,7 +1954,7 @@ seed=2086373261
 [Planet]
 name='Omeka'
 system=Iota 3XB5-BD
-texture=BandedGas
+texture=Barren
 x=85325
 y=0
 z=112272
@@ -1968,7 +1968,7 @@ seed=74530988
 [Planet]
 name='Huaiyin'
 system=Iota 3XB5-BD
-texture=Martian
+texture=Terran
 x=39989
 y=0
 z=-6183
@@ -1982,7 +1982,7 @@ seed=1208011772
 [Planet]
 name='Port Henry Major'
 system=Iota 3XB5-BD
-texture=BandedGas
+texture=Barren
 x=149939
 y=0
 z=57824
@@ -2077,7 +2077,7 @@ seed=-1037482652
 [Planet]
 name='Port São Paulo'
 system=Lambda A0EL-Z3M
-texture=Barren
+texture=BandedGas
 x=50422
 y=0
 z=-58426
@@ -2232,7 +2232,7 @@ x=0
 y=0
 z=0
 l=500454
-w=32000
+w=500454
 h=500454
 seed=1761880287
 [/Field]
@@ -2240,7 +2240,7 @@ seed=1761880287
 [Planet]
 name='Ciudad Guayana'
 system=Omicron ONH-09
-texture=BandedGas
+texture=Barren
 x=-165359
 y=0
 z=-46824
@@ -2268,7 +2268,7 @@ seed=-113192250
 [Planet]
 name='Jacob'
 system=Omicron ONH-09
-texture=BandedGas
+texture=Terran
 x=68919
 y=0
 z=71767
@@ -2282,7 +2282,7 @@ seed=1014834267
 [Planet]
 name='Port Young'
 system=Omicron ONH-09
-texture=BandedGas
+texture=Barren
 x=-67542
 y=0
 z=-49647
@@ -2296,7 +2296,7 @@ seed=-1339623994
 [Planet]
 name='New White'
 system=Omicron ONH-09
-texture=BandedGas
+texture=WetMartian
 x=-90598
 y=0
 z=-128452
@@ -2310,7 +2310,7 @@ seed=942985296
 [Planet]
 name='Shantou'
 system=Omicron ONH-09
-texture=BandedGas
+texture=Barren
 x=103139
 y=0
 z=-98878
@@ -2397,7 +2397,7 @@ x=0
 y=0
 z=0
 l=488817
-w=32000
+w=488817
 h=488817
 seed=-846312582
 [/Field]
@@ -2527,7 +2527,7 @@ x=0
 y=0
 z=0
 l=298245
-w=32000
+w=298245
 h=298245
 seed=1660765890
 [/Field]
@@ -2535,7 +2535,7 @@ seed=1660765890
 [Planet]
 name='Irkutsk'
 system=Tau HP-BAJZ
-texture=BandedGas
+texture=Barren
 x=-55684
 y=0
 z=18053
@@ -2549,7 +2549,7 @@ seed=-450638672
 [Planet]
 name='San Salvador'
 system=Tau HP-BAJZ
-texture=Barren
+texture=BandedGas
 x=73707
 y=0
 z=-83572
@@ -2563,7 +2563,7 @@ seed=1676624581
 [Planet]
 name='Shenzhen'
 system=Tau HP-BAJZ
-texture=BandedGas
+texture=Terran
 x=-50202
 y=0
 z=-12123
@@ -2577,7 +2577,7 @@ seed=-1379086019
 [Planet]
 name='Madrid'
 system=Tau HP-BAJZ
-texture=Terran
+texture=Frozen
 x=85354
 y=0
 z=-10420
@@ -2591,7 +2591,7 @@ seed=-583735736
 [Planet]
 name='New Webb'
 system=Tau HP-BAJZ
-texture=Martian
+texture=BandedGas
 x=-6233
 y=0
 z=8628
@@ -2605,7 +2605,7 @@ seed=185343401
 [Planet]
 name='New Anderson'
 system=Tau HP-BAJZ
-texture=Terran
+texture=Barren
 x=-23711
 y=0
 z=-65271
@@ -2745,7 +2745,7 @@ x=0
 y=0
 z=0
 l=427449
-w=32000
+w=427449
 h=427449
 seed=1700238367
 [/Field]
@@ -2753,7 +2753,7 @@ seed=1700238367
 [Planet]
 name='Alfonso Major'
 system=Zeta H4R-9GV
-texture=Barren
+texture=BandedGas
 x=56237
 y=0
 z=54134
@@ -2858,7 +2858,7 @@ seed=871891427
 [Planet]
 name='Cape Mason'
 system=Mu Q3-PMY8
-texture=Barren
+texture=BandedGas
 x=47588
 y=0
 z=91581
@@ -2872,7 +2872,7 @@ seed=1773927696
 [Planet]
 name='Warren'
 system=Mu Q3-PMY8
-texture=BandedGas
+texture=Barren
 x=76253
 y=0
 z=84863
@@ -2900,7 +2900,7 @@ seed=-206256284
 [Planet]
 name='New Nelson'
 system=Mu Q3-PMY8
-texture=Barren
+texture=BandedGas
 x=88889
 y=0
 z=31035
@@ -3035,7 +3035,7 @@ seed=-1519858407
 [Planet]
 name='James'
 system=Beta Y-IYSQ
-texture=Terran
+texture=BandedGas
 x=66135
 y=0
 z=-90111
@@ -3049,7 +3049,7 @@ seed=-1148304928
 [Planet]
 name='Agadir'
 system=Beta Y-IYSQ
-texture=Barren
+texture=BandedGas
 x=-21359
 y=0
 z=-104765
@@ -3063,7 +3063,7 @@ seed=145830669
 [Planet]
 name='Kwangju'
 system=Beta Y-IYSQ
-texture=BandedGas
+texture=Terran
 x=-149162
 y=0
 z=-30121
@@ -3077,7 +3077,7 @@ seed=-401213110
 [Planet]
 name='Lucio Minor'
 system=Beta Y-IYSQ
-texture=BandedGas
+texture=Frozen
 x=-48691
 y=0
 z=-32994
@@ -3230,7 +3230,7 @@ x=0
 y=0
 z=0
 l=490272
-w=32000
+w=490272
 h=490272
 seed=-516450733
 [/Field]
@@ -3238,7 +3238,7 @@ seed=-516450733
 [Planet]
 name='Robert'
 system=Omega VXO-U1
-texture=Martian
+texture=BandedGas
 x=-76021
 y=0
 z=94680
@@ -3266,7 +3266,7 @@ seed=998683123
 [Planet]
 name='Wenzhou Major'
 system=Omega VXO-U1
-texture=Barren
+texture=Terran
 x=28810
 y=0
 z=146953
@@ -3280,7 +3280,7 @@ seed=1664225703
 [Planet]
 name='Cape Marseille'
 system=Omega VXO-U1
-texture=BandedGas
+texture=Frozen
 x=77682
 y=0
 z=107291
@@ -3424,7 +3424,7 @@ seed=1458347730
 [Planet]
 name='Snyder'
 system=Kappa ZQKC-4
-texture=Frozen
+texture=WetMartian
 x=-5369
 y=0
 z=-1475
@@ -3452,7 +3452,7 @@ seed=-141000024
 [Planet]
 name='Osaka'
 system=Kappa ZQKC-4
-texture=Frozen
+texture=BandedGas
 x=-49310
 y=0
 z=88873
@@ -3466,7 +3466,7 @@ seed=790035173
 [Planet]
 name='Adana'
 system=Kappa ZQKC-4
-texture=Barren
+texture=BandedGas
 x=36341
 y=0
 z=-71736
@@ -3615,7 +3615,7 @@ seed=-2002082263
 [Planet]
 name='Victoria'
 system=Rho AG2-0GN
-texture=Terran
+texture=BandedGas
 x=-10345
 y=0
 z=-125526
@@ -3629,7 +3629,7 @@ seed=1413837387
 [Planet]
 name='Ramos'
 system=Rho AG2-0GN
-texture=Martian
+texture=BandedGas
 x=100791
 y=0
 z=153595
@@ -3643,7 +3643,7 @@ seed=86406479
 [Planet]
 name='Mitchel'
 system=Rho AG2-0GN
-texture=Barren
+texture=Martian
 x=68739
 y=0
 z=27446
@@ -3657,7 +3657,7 @@ seed=1085875169
 [Planet]
 name='Lilongwe'
 system=Rho AG2-0GN
-texture=BandedGas
+texture=Barren
 x=63038
 y=0
 z=-145269
@@ -3761,7 +3761,7 @@ seed=-1085704567
 [Planet]
 name='San Francisco Major'
 system=Lambda TUJQ-34
-texture=Frozen
+texture=BandedGas
 x=-107712
 y=0
 z=45216
@@ -3775,7 +3775,7 @@ seed=1899065418
 [Planet]
 name='Navi Mumbai'
 system=Lambda TUJQ-34
-texture=Frozen
+texture=BandedGas
 x=72871
 y=0
 z=-161540
@@ -3789,7 +3789,7 @@ seed=44615438
 [Planet]
 name='Port Parker'
 system=Lambda TUJQ-34
-texture=BandedGas
+texture=Barren
 x=-142672
 y=0
 z=-109511
@@ -3947,7 +3947,7 @@ x=0
 y=0
 z=0
 l=192000
-w=32000
+w=192000
 h=192000
 seed=1462225567
 [/Field]
@@ -4094,7 +4094,7 @@ x=0
 y=0
 z=0
 l=310479
-w=32000
+w=310479
 h=310479
 seed=-2005933580
 [/Field]
@@ -4182,7 +4182,7 @@ seed=788151432
 [Planet]
 name='Steward'
 system=Epsilon SVF7-QD
-texture=Martian
+texture=BandedGas
 x=-62188
 y=0
 z=12385
@@ -4196,7 +4196,7 @@ seed=140930266
 [Planet]
 name='Acapulco'
 system=Epsilon SVF7-QD
-texture=BandedGas
+texture=Barren
 x=-40508
 y=0
 z=-29395
@@ -4210,7 +4210,7 @@ seed=1857680097
 [Planet]
 name='Buster'
 system=Epsilon SVF7-QD
-texture=Barren
+texture=Martian
 x=23179
 y=0
 z=-14674
@@ -4224,7 +4224,7 @@ seed=-1695440495
 [Planet]
 name='Port Said'
 system=Epsilon SVF7-QD
-texture=WetMartian
+texture=Barren
 x=16037
 y=0
 z=31498
@@ -4378,7 +4378,7 @@ x=0
 y=0
 z=0
 l=196044
-w=32000
+w=196044
 h=196044
 seed=-1043062817
 [/Field]
@@ -4400,7 +4400,7 @@ seed=-1762793549
 [Planet]
 name='Thomas'
 system=Tau YHO-CTY
-texture=Frozen
+texture=BandedGas
 x=58265
 y=0
 z=39312
@@ -4414,7 +4414,7 @@ seed=-939679779
 [Planet]
 name='Parker'
 system=Tau YHO-CTY
-texture=Barren
+texture=BandedGas
 x=22787
 y=0
 z=38198
@@ -4684,7 +4684,7 @@ seed=-795028890
 [Planet]
 name='Tiberius'
 system=Mu N-LIND
-texture=Frozen
+texture=BandedGas
 x=-14783
 y=0
 z=49482
@@ -4698,7 +4698,7 @@ seed=1078160685
 [Planet]
 name='Antalya'
 system=Mu N-LIND
-texture=Barren
+texture=Terran
 x=13492
 y=0
 z=-61034
@@ -4712,7 +4712,7 @@ seed=-808891688
 [Planet]
 name='New Chiclayo Major'
 system=Mu N-LIND
-texture=WetMartian
+texture=BandedGas
 x=-50360
 y=0
 z=35915
@@ -4812,7 +4812,7 @@ x=0
 y=0
 z=0
 l=192000
-w=32000
+w=192000
 h=192000
 seed=2002865698
 [/Field]
@@ -4820,7 +4820,7 @@ seed=2002865698
 [Planet]
 name='Port Phillips'
 system=Iota O-9BFU
-texture=Terran
+texture=Martian
 x=31556
 y=0
 z=-61914
@@ -4996,7 +4996,7 @@ seed=-444690274
 [Planet]
 name='Port Webb'
 system=Iota D8HH-AWBQ
-texture=Terran
+texture=Barren
 x=-107424
 y=0
 z=-68912
@@ -5153,7 +5153,7 @@ seed=2122919469
 [Planet]
 name='Santo Domingo'
 system=Sigma V-GODL
-texture=Terran
+texture=Frozen
 x=-11022
 y=0
 z=-153662
@@ -5301,7 +5301,7 @@ seed=-873543274
 [Planet]
 name='Akoni'
 system=Kappa 2-WK8
-texture=Frozen
+texture=Barren
 x=63558
 y=0
 z=-94745
@@ -5329,7 +5329,7 @@ seed=-1691297483
 [Planet]
 name='Edmonton'
 system=Kappa 2-WK8
-texture=BandedGas
+texture=Terran
 x=118697
 y=0
 z=-64028
@@ -5357,7 +5357,7 @@ seed=-4365498
 [Planet]
 name='Ulhasnagar'
 system=Kappa 2-WK8
-texture=BandedGas
+texture=Barren
 x=125378
 y=0
 z=-138980
@@ -5371,7 +5371,7 @@ seed=95588998
 [Planet]
 name='Reys'
 system=Kappa 2-WK8
-texture=Barren
+texture=BandedGas
 x=-162874
 y=0
 z=56723
@@ -5413,7 +5413,7 @@ x=0
 y=0
 z=0
 l=264228
-w=32000
+w=264228
 h=264228
 seed=302811793
 [/Field]
@@ -5421,7 +5421,7 @@ seed=302811793
 [Planet]
 name='Cody'
 system=Beta VFI6-Z
-texture=Barren
+texture=BandedGas
 x=-41571
 y=0
 z=-69068
@@ -5668,7 +5668,7 @@ seed=-1229403296
 [Planet]
 name='Cunningham'
 system=Chi 6S-79
-texture=WetMartian
+texture=Barren
 x=68278
 y=0
 z=9437
@@ -5682,7 +5682,7 @@ seed=1619149558
 [Planet]
 name='Nicole'
 system=Chi 6S-79
-texture=BandedGas
+texture=Barren
 x=-78152
 y=0
 z=-19814
@@ -5696,7 +5696,7 @@ seed=-545586422
 [Planet]
 name='San Luis Potosí'
 system=Chi 6S-79
-texture=Barren
+texture=BandedGas
 x=-28574
 y=0
 z=-13199
@@ -5840,7 +5840,7 @@ x=0
 y=0
 z=0
 l=249312
-w=32000
+w=249312
 h=249312
 seed=-430670617
 [/Field]
@@ -5848,7 +5848,7 @@ seed=-430670617
 [Planet]
 name='Göteborg'
 system=Psi FPAW-C96
-texture=BandedGas
+texture=Terran
 x=14454
 y=0
 z=31835
@@ -5876,7 +5876,7 @@ seed=1281461022
 [Planet]
 name='Nagoya'
 system=Psi FPAW-C96
-texture=WetMartian
+texture=Barren
 x=-6550
 y=0
 z=43612
@@ -5890,7 +5890,7 @@ seed=1777241531
 [Planet]
 name='Port Jaipur Major'
 system=Psi FPAW-C96
-texture=BandedGas
+texture=Barren
 x=20503
 y=0
 z=8125
@@ -5918,7 +5918,7 @@ seed=1174803038
 [Planet]
 name='Rebecca'
 system=Psi FPAW-C96
-texture=Frozen
+texture=BandedGas
 x=4228
 y=0
 z=-66422
@@ -6018,7 +6018,7 @@ x=0
 y=0
 z=0
 l=435861
-w=32000
+w=435861
 h=435861
 seed=-1227373087
 [/Field]
@@ -6224,7 +6224,7 @@ x=0
 y=0
 z=0
 l=387999
-w=32000
+w=387999
 h=387999
 seed=155377997
 [/Field]
@@ -6297,7 +6297,7 @@ seed=814648401
 [Planet]
 name='Fergusson'
 system=Sigma 5-RQ
-texture=Barren
+texture=BandedGas
 x=-3809
 y=0
 z=51741
@@ -6325,7 +6325,7 @@ seed=650176743
 [Planet]
 name='Chelsey'
 system=Sigma 5-RQ
-texture=Martian
+texture=Barren
 x=29168
 y=0
 z=-100284
@@ -6407,7 +6407,7 @@ seed=492188150
 [Planet]
 name='São Bernardo do Campo'
 system=Zeta S3OU-1A
-texture=Barren
+texture=BandedGas
 x=27135
 y=0
 z=-328
@@ -6435,7 +6435,7 @@ seed=-878428654
 [Planet]
 name='Veracruz Major'
 system=Zeta S3OU-1A
-texture=Terran
+texture=BandedGas
 x=47679
 y=0
 z=11129
@@ -6449,7 +6449,7 @@ seed=45873367
 [Planet]
 name='New Novosibirsk'
 system=Zeta S3OU-1A
-texture=BandedGas
+texture=Frozen
 x=42483
 y=0
 z=70525
@@ -6659,7 +6659,7 @@ seed=-1554469008
 [Planet]
 name='Skip'
 system=Nu 5WO-6
-texture=BandedGas
+texture=Frozen
 x=59031
 y=0
 z=-16307
@@ -6673,7 +6673,7 @@ seed=954431447
 [Planet]
 name='New Cooper'
 system=Nu 5WO-6
-texture=Barren
+texture=Frozen
 x=48593
 y=0
 z=-58910
@@ -6687,7 +6687,7 @@ seed=1465359005
 [Planet]
 name='Wene'
 system=Nu 5WO-6
-texture=Terran
+texture=BandedGas
 x=14275
 y=0
 z=-35183
@@ -6701,7 +6701,7 @@ seed=-1826920232
 [Planet]
 name='New Yangzhou'
 system=Nu 5WO-6
-texture=BandedGas
+texture=Frozen
 x=46134
 y=0
 z=-57970
@@ -6715,7 +6715,7 @@ seed=800803903
 [Planet]
 name='Cape Indore'
 system=Nu 5WO-6
-texture=Terran
+texture=Barren
 x=3524
 y=0
 z=-42830
@@ -6811,7 +6811,7 @@ seed=-58266124
 [Planet]
 name='Kurt'
 system=Delta AR74-Q
-texture=BandedGas
+texture=Terran
 x=117236
 y=0
 z=102268
@@ -6825,7 +6825,7 @@ seed=-192056700
 [Planet]
 name='Rodriguez Major'
 system=Delta AR74-Q
-texture=Barren
+texture=BandedGas
 x=-31145
 y=0
 z=67570
@@ -6839,7 +6839,7 @@ seed=1453060464
 [Planet]
 name='Wuxi'
 system=Delta AR74-Q
-texture=BandedGas
+texture=Barren
 x=103888
 y=0
 z=-94300
@@ -6853,7 +6853,7 @@ seed=-408400320
 [Planet]
 name='Cape Ben'
 system=Delta AR74-Q
-texture=BandedGas
+texture=Frozen
 x=-94660
 y=0
 z=-114666
@@ -6993,7 +6993,7 @@ x=0
 y=0
 z=0
 l=348399
-w=32000
+w=348399
 h=348399
 seed=-102518468
 [/Field]
@@ -7197,7 +7197,7 @@ seed=-248676659
 [Planet]
 name='Lucio'
 system=Gamma MB-QLR
-texture=Barren
+texture=Terran
 x=-82221
 y=0
 z=-69663
@@ -7252,7 +7252,7 @@ x=0
 y=0
 z=0
 l=315720
-w=32000
+w=315720
 h=315720
 seed=755605200
 [/Field]
@@ -7260,7 +7260,7 @@ seed=755605200
 [Planet]
 name='Reys'
 system=Mu A20-U5
-texture=BandedGas
+texture=Barren
 x=-86813
 y=0
 z=-95829
@@ -7497,7 +7497,7 @@ seed=-53067500
 [Planet]
 name='Adam'
 system=Gamma E-M3
-texture=Frozen
+texture=BandedGas
 x=-31875
 y=0
 z=-38512
@@ -7701,7 +7701,7 @@ seed=244905137
 [Planet]
 name='Sally'
 system=Eta R-C3C
-texture=WetMartian
+texture=BandedGas
 x=105936
 y=0
 z=-5756
@@ -7715,7 +7715,7 @@ seed=1001050597
 [Planet]
 name='Cape Chris'
 system=Eta R-C3C
-texture=Barren
+texture=BandedGas
 x=80106
 y=0
 z=-125022
@@ -7743,7 +7743,7 @@ seed=-1540113222
 [Planet]
 name='Fuzhou'
 system=Eta R-C3C
-texture=Martian
+texture=BandedGas
 x=42637
 y=0
 z=-109002
@@ -7757,7 +7757,7 @@ seed=-1134792800
 [Planet]
 name='Port Zhangjiakou'
 system=Eta R-C3C
-texture=Frozen
+texture=BandedGas
 x=99515
 y=0
 z=67855
@@ -7908,7 +7908,7 @@ x=0
 y=0
 z=0
 l=332172
-w=32000
+w=332172
 h=332172
 seed=-829146330
 [/Field]
@@ -7988,7 +7988,7 @@ x=0
 y=0
 z=0
 l=192000
-w=32000
+w=192000
 h=192000
 seed=1663234249
 [/Field]
@@ -8169,7 +8169,7 @@ x=0
 y=0
 z=0
 l=192000
-w=32000
+w=192000
 h=192000
 seed=71719899
 [/Field]
@@ -8281,7 +8281,7 @@ x=0
 y=0
 z=0
 l=281544
-w=32000
+w=281544
 h=281544
 seed=1895620510
 [/Field]
@@ -8289,7 +8289,7 @@ seed=1895620510
 [Planet]
 name='New Melissa Major'
 system=Psi WC-AQKX
-texture=Barren
+texture=Terran
 x=-77196
 y=0
 z=2402
@@ -8303,7 +8303,7 @@ seed=942536579
 [Planet]
 name='Cape Irene'
 system=Psi WC-AQKX
-texture=BandedGas
+texture=WetMartian
 x=-57570
 y=0
 z=-80019
@@ -8317,7 +8317,7 @@ seed=1244455229
 [Planet]
 name='Hicks'
 system=Psi WC-AQKX
-texture=BandedGas
+texture=Frozen
 x=-92231
 y=0
 z=-16273
@@ -8434,7 +8434,7 @@ x=0
 y=0
 z=0
 l=354372
-w=32000
+w=354372
 h=354372
 seed=-34629298
 [/Field]
@@ -8442,7 +8442,7 @@ seed=-34629298
 [Planet]
 name='New Carolla'
 system=Iota J6-KGI
-texture=BandedGas
+texture=WetMartian
 x=18014
 y=0
 z=-114012
@@ -8706,7 +8706,7 @@ seed=-2129303816
 [Planet]
 name='Owens'
 system=Phi 7D-AG7
-texture=BandedGas
+texture=Barren
 x=-1295
 y=0
 z=152835
@@ -8850,7 +8850,7 @@ x=0
 y=0
 z=0
 l=546330
-w=32000
+w=546330
 h=546330
 seed=1982268800
 [/Field]
@@ -8872,7 +8872,7 @@ seed=1259798331
 [Planet]
 name='Cape Fay'
 system=Epsilon A-YIRY
-texture=Terran
+texture=BandedGas
 x=-12953
 y=0
 z=176268
@@ -8886,7 +8886,7 @@ seed=932458835
 [Planet]
 name='Port Kennedy'
 system=Epsilon A-YIRY
-texture=Barren
+texture=Terran
 x=159370
 y=0
 z=61151
@@ -8900,7 +8900,7 @@ seed=-818429216
 [Planet]
 name='Moris'
 system=Epsilon A-YIRY
-texture=WetMartian
+texture=Barren
 x=-15630
 y=0
 z=-119929
@@ -8914,7 +8914,7 @@ seed=-374577695
 [Planet]
 name='Warri'
 system=Epsilon A-YIRY
-texture=BandedGas
+texture=Terran
 x=93551
 y=0
 z=6745
@@ -8928,7 +8928,7 @@ seed=1562757047
 [Planet]
 name='Port Crawford'
 system=Epsilon A-YIRY
-texture=Martian
+texture=BandedGas
 x=-61838
 y=0
 z=-110821
@@ -9004,7 +9004,7 @@ seed=-1021577054
 [Planet]
 name='Port Lusaka'
 system=Xi W5-S2L
-texture=Barren
+texture=Frozen
 x=87661
 y=0
 z=-95024
@@ -9018,7 +9018,7 @@ seed=539273117
 [Planet]
 name='Düsseldorf'
 system=Xi W5-S2L
-texture=Terran
+texture=Frozen
 x=76867
 y=0
 z=-58385
@@ -9046,7 +9046,7 @@ seed=-1427711333
 [Planet]
 name='Cape Medan'
 system=Xi W5-S2L
-texture=Terran
+texture=BandedGas
 x=-92708
 y=0
 z=17480
@@ -9060,7 +9060,7 @@ seed=1591754453
 [Planet]
 name='Harrison'
 system=Xi W5-S2L
-texture=Martian
+texture=BandedGas
 x=-34481
 y=0
 z=140270
@@ -9165,7 +9165,7 @@ x=0
 y=0
 z=0
 l=536712
-w=32000
+w=536712
 h=536712
 seed=-1901490579
 [/Field]
@@ -9173,7 +9173,7 @@ seed=-1901490579
 [Planet]
 name='Kayseri'
 system=Zeta 1-F5
-texture=Frozen
+texture=WetMartian
 x=-38233
 y=0
 z=-139679
@@ -9307,7 +9307,7 @@ seed=-42052628
 [Planet]
 name='Bradley'
 system=Xi 2ROE-WER
-texture=WetMartian
+texture=BandedGas
 x=-109825
 y=0
 z=95081
@@ -9485,7 +9485,7 @@ x=0
 y=0
 z=0
 l=192000
-w=32000
+w=192000
 h=192000
 seed=-1844433879
 [/Field]
@@ -9493,7 +9493,7 @@ seed=-1844433879
 [Planet]
 name='Huainan Major'
 system=Iota 96C-I3O
-texture=BandedGas
+texture=Barren
 x=20568
 y=0
 z=63505
@@ -9614,7 +9614,7 @@ seed=-791164360
 [Planet]
 name='Su'
 system=Xi L8C-DUG
-texture=Barren
+texture=Martian
 x=-36045
 y=0
 z=-40548
@@ -9628,7 +9628,7 @@ seed=1616277826
 [Planet]
 name='Belgrade'
 system=Xi L8C-DUG
-texture=BandedGas
+texture=Martian
 x=36440
 y=0
 z=-63887
@@ -9724,7 +9724,7 @@ x=0
 y=0
 z=0
 l=192000
-w=32000
+w=192000
 h=192000
 seed=960067160
 [/Field]
@@ -9812,7 +9812,7 @@ x=0
 y=0
 z=0
 l=192000
-w=32000
+w=192000
 h=192000
 seed=1061773632
 [/Field]
@@ -9931,7 +9931,7 @@ seed=-240745963
 [Planet]
 name='Cape Tangshan Minor'
 system=Theta 7MPP-1ZXL
-texture=Barren
+texture=BandedGas
 x=-50922
 y=0
 z=-71142
@@ -10007,7 +10007,7 @@ seed=1021940408
 [Planet]
 name='Campo Grande'
 system=Delta 4-3
-texture=BandedGas
+texture=Barren
 x=-141699
 y=0
 z=-35781
@@ -10021,7 +10021,7 @@ seed=87105959
 [Planet]
 name='Cape Amsterdam Major'
 system=Delta 4-3
-texture=BandedGas
+texture=Barren
 x=38724
 y=0
 z=85803
@@ -10035,7 +10035,7 @@ seed=1272235026
 [Planet]
 name='Port Yancheng'
 system=Delta 4-3
-texture=Terran
+texture=BandedGas
 x=24115
 y=0
 z=-45175
@@ -10049,7 +10049,7 @@ seed=588124291
 [Planet]
 name='Randy'
 system=Delta 4-3
-texture=BandedGas
+texture=WetMartian
 x=-145397
 y=0
 z=32920
@@ -10063,7 +10063,7 @@ seed=1376637782
 [Planet]
 name='Simmons'
 system=Delta 4-3
-texture=Barren
+texture=BandedGas
 x=61310
 y=0
 z=-60872
@@ -10185,7 +10185,7 @@ seed=1807692470
 [Planet]
 name='Umm Durman'
 system=Mu 3-I1J
-texture=BandedGas
+texture=Frozen
 x=58658
 y=0
 z=-6052
@@ -10302,7 +10302,7 @@ x=0
 y=0
 z=0
 l=406332
-w=32000
+w=406332
 h=406332
 seed=1301039087
 [/Field]
@@ -10324,7 +10324,7 @@ seed=-1541923154
 [Planet]
 name='Cape Patterson'
 system=Psi NA-L
-texture=Frozen
+texture=BandedGas
 x=-81780
 y=0
 z=118001
@@ -10392,7 +10392,7 @@ x=0
 y=0
 z=0
 l=354156
-w=32000
+w=354156
 h=354156
 seed=1865613941
 [/Field]
@@ -10400,7 +10400,7 @@ seed=1865613941
 [Planet]
 name='Jose'
 system=Epsilon V9-Z
-texture=Martian
+texture=BandedGas
 x=-7355
 y=0
 z=-69184
@@ -10414,7 +10414,7 @@ seed=1101834669
 [Planet]
 name='Fisher'
 system=Epsilon V9-Z
-texture=BandedGas
+texture=Terran
 x=-55016
 y=0
 z=-111841
@@ -10428,7 +10428,7 @@ seed=-816394998
 [Planet]
 name='Pietermaritzburg'
 system=Epsilon V9-Z
-texture=BandedGas
+texture=Barren
 x=100288
 y=0
 z=-15284
@@ -10442,7 +10442,7 @@ seed=-1497921636
 [Planet]
 name='Danny'
 system=Epsilon V9-Z
-texture=Barren
+texture=BandedGas
 x=-53074
 y=0
 z=66443
@@ -10456,7 +10456,7 @@ seed=244808237
 [Planet]
 name='Dan'
 system=Epsilon V9-Z
-texture=Frozen
+texture=Barren
 x=80202
 y=0
 z=-15489
@@ -10470,7 +10470,7 @@ seed=-1788367162
 [Planet]
 name='West'
 system=Epsilon V9-Z
-texture=Frozen
+texture=BandedGas
 x=31821
 y=0
 z=74612
@@ -10484,7 +10484,7 @@ seed=2045712464
 [Planet]
 name='Rose'
 system=Epsilon V9-Z
-texture=Barren
+texture=Martian
 x=-103216
 y=0
 z=-71962
@@ -10580,7 +10580,7 @@ x=0
 y=0
 z=0
 l=192000
-w=32000
+w=192000
 h=192000
 seed=-2146236379
 [/Field]
@@ -10717,3 +10717,4 @@ tiltY=-1.6101915
 tiltZ=-1.3634636
 faction=Southern Coalition
 [/Station]
+

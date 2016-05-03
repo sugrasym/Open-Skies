@@ -231,8 +231,6 @@ public class WorldMaker {
                         y = 0;
                         z = 0;
                         r = size * 3;
-                        //int hScale = rnd.nextInt(3) + 2;
-                        int h = 32000;
                         //seed
                         seed = rnd.nextInt();
                         //generate entry
@@ -245,7 +243,7 @@ public class WorldMaker {
                                 + "y=" + y + "\n"
                                 + "z=" + z + "\n"
                                 + "l=" + r + "\n"
-                                + "w=" + h + "\n"
+                                + "w=" + r + "\n"
                                 + "h=" + r + "\n"
                                 + "seed=" + seed + "\n"
                                 + "[/Field]\n\n";
