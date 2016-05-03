@@ -28,7 +28,6 @@ package gdi;
 import com.jme3.asset.AssetManager;
 import com.jme3.math.Vector3f;
 import engine.Core;
-import entity.Entity;
 import entity.Entity.State;
 import gdi.component.AstralLabel;
 import gdi.component.AstralList;

@@ -1,10 +1,10 @@
 [NewGame]
 name=Default
 ship=Sparrow
-system=Sigma 7-2
-x=-78829
-y=-84056
-z=70408
+system=Mu C-AVZ
+x=-51882
+y=52624
+z=-56944
 cash=50000
 install=Arrow Missile/Arrow Missile/Talon A-7/Talon A-7
 cargo=Jumpdrive~1/Arrow Missile Ammunition~50
@@ -13,10 +13,10 @@ cargo=Jumpdrive~1/Arrow Missile Ammunition~50
 [Ship]
 name=Sparrow
 ship=Sparrow
-system=Sigma 7-2
-x=-78829
-y=-84056
-z=70508
+system=Mu C-AVZ
+x=-51882
+y=52624
+z=-56844
 faction=Player
 cargo=Jumpdrive~1/Dart Missile Ammunition~12
 install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
@@ -24,7 +24,7 @@ install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 
 [Station]
 name=Your Industrial Kitchen
-system=Sigma 7-2
+system=Mu C-AVZ
 station=Industrial Kitchen
 x=-32099
 y=28368
@@ -37,7 +37,7 @@ faction=Player
 
 [Station]
 name=Your Computer Plant
-system=Sigma 7-2
+system=Mu C-AVZ
 station=Computer Plant
 x=-32299
 y=-28368
