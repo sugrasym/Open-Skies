@@ -32,6 +32,9 @@ import engine.Core;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import jmeplanet.PlanetAppState;
 import lib.astral.AstralIO;
 import lib.astral.AstralPrint;
@@ -53,7 +56,7 @@ public class Main extends SimpleApplication {
     public static void main(String[] args) {
         //redirect console output to various endpoints in addition to console
         try {
-            String prefix = System.currentTimeMillis() + "";
+            String prefix = getLogPrefix();
 
             redirectOutput(prefix);
             redirectError(prefix);
@@ -87,6 +90,11 @@ public class Main extends SimpleApplication {
 
         //start
         app.start();
+    }
+
+    private static String getLogPrefix() {
+        Format formatter = new SimpleDateFormat("yyyyMMdd HHmmss");
+        return formatter.format(new Date());
     }
 
     private static void redirectOutput(String prefix) throws FileNotFoundException {
