@@ -54,8 +54,10 @@ public class PropertyWindow extends AstralWindow {
         WAITING_FOR_STATION, //waiting for a station to dock at
         WAITING_FOR_CREDITS, //waiting for credits to be specified
         WAITING_FOR_NAME, //waiting for a new name
-        WAITING_FOR_BUY, //waiting for a buy price to be specified
-        WAITING_FOR_SELL, //waiting for a sell price to be specified
+        WAITING_FOR_BUY_ITEM, //waiting for an item to be specified for setting buy price
+        WAITING_FOR_SELL_ITEM, //waiting for an item to be specified for setting sell price
+        WAITING_FOR_BUY_PRICE, //waiting for a buy price to be specified
+        WAITING_FOR_SELL_PRICE, //waiting for a sell price to be specified
         WAITING_FOR_ATTACK, //waiting for a ship to attack
         WAITING_FOR_CELESTIAL, //waiting for a celestial to fly to
         WAITING_FOR_CELESTIAL_RANGE, //waiting for range to fly to celestial to
@@ -99,7 +101,9 @@ public class PropertyWindow extends AstralWindow {
     //remote operation
     TradeWindow trader;
     CargoWindow cargo;
-    protected Ship tmp;
+    protected Ship tmpShip;
+    protected Item tmpItem;
+    protected Station tmpStation;
 
     public PropertyWindow(AssetManager assets) {
         super(assets, 500, 400, false);
@@ -252,45 +256,61 @@ public class PropertyWindow extends AstralWindow {
                 //normal mode
                 mode = Mode.NONE;
             }
-        } else if (mode == Mode.WAITING_FOR_BUY) {
-            try {
-                if (input.canReturn()) {
+        } else if (mode == Mode.WAITING_FOR_BUY_ITEM) {
+            Object raw = inputList.getItemAtIndex(inputList.getIndex());
+            if (raw instanceof Item) {
+                Item pick = (Item) raw;
+                //store item
+                tmpItem = pick;
+                //hide it
+                hideInputList();
+                try {
+                    //show the next step
+                    showInput(Integer.toString(tmpStation.getStaticBuyPrice(pick)));
                     //get price
-                    String nm = input.getText();
-                    int price = Integer.parseInt(nm);
-                    //push
-                    Object selectedProperty = propertyList.getItemAtIndex(propertyList.getIndex());
-                    if (selectedProperty instanceof Station) {
-                        Station selectedStation = (Station) selectedProperty;
-                        selectedStation.setBuyPrice(price);
-                    }
-                    //normal mode
+                    mode = Mode.WAITING_FOR_BUY_PRICE;
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                     mode = Mode.NONE;
                 }
-            } catch (Exception e) {
-                System.out.println("Malformed input");
-                //normal mode
-                mode = Mode.NONE;
             }
-        } else if (mode == Mode.WAITING_FOR_SELL) {
-            try {
-                if (input.canReturn()) {
-                    //get price
-                    String nm = input.getText();
-                    int price = Integer.parseInt(nm);
-                    //push
-                    Object selectedProperty = propertyList.getItemAtIndex(propertyList.getIndex());
-                    if (selectedProperty instanceof Station) {
-                        Station selectedStation = (Station) selectedProperty;
-                        selectedStation.setSellPrice(price);
-                    }
-                    //normal mode
+        } else if (mode == Mode.WAITING_FOR_BUY_PRICE) {
+            if (input.canReturn()) {
+                try {
+                    tmpStation.setStaticBuyPrice(tmpItem, Integer.parseInt(input.getText()));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                } finally {
                     mode = Mode.NONE;
                 }
-            } catch (Exception e) {
-                System.out.println("Malformed input");
-                //normal mode
-                mode = Mode.NONE;
+            }
+        } else if (mode == Mode.WAITING_FOR_SELL_ITEM) {
+            Object raw = inputList.getItemAtIndex(inputList.getIndex());
+            if (raw instanceof Item) {
+                Item pick = (Item) raw;
+                //store item
+                tmpItem = pick;
+                //hide it
+                hideInputList();
+                try {
+                    //show the next step
+                    showInput(Integer.toString(tmpStation.getStaticSellPrice(pick)));
+                    //get price
+                    mode = Mode.WAITING_FOR_SELL_PRICE;
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    mode = Mode.NONE;
+                }
+            }
+        } else if (mode == Mode.WAITING_FOR_SELL_PRICE) {
+            if (input.canReturn()) {
+                try {
+                    tmpStation.setStaticSellPrice(tmpItem, Integer.parseInt(input.getText()));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                } finally {
+                    mode = Mode.NONE;
+                }
             }
         } else if (mode == Mode.WAITING_FOR_STATION) {
             Object raw = inputList.getItemAtIndex(inputList.getIndex());
@@ -389,13 +409,13 @@ public class PropertyWindow extends AstralWindow {
             if (!visible) {
                 mode = Mode.NONE;
             } else {
-                trader.update(tmp);
+                trader.update(tmpShip);
             }
         } else if (mode == Mode.WAITING_FOR_CARGO) {
             if (!visible) {
                 mode = Mode.NONE;
             } else {
-                cargo.update(tmp);
+                cargo.update(tmpShip);
             }
         } else if (mode == Mode.WAITING_FOR_JUMP) {
             Object raw = inputList.getItemAtIndex(inputList.getIndex());
@@ -854,7 +874,7 @@ public class PropertyWindow extends AstralWindow {
                 case CMD_TRADEWITH:
                     mode = Mode.WAITING_FOR_TRADE;
                     trader.setVisible(true);
-                    tmp = selected;
+                    tmpShip = selected;
                     break;
                 case CMD_DOCK: {
                     ArrayList<Object> choice = new ArrayList<>();
@@ -874,20 +894,34 @@ public class PropertyWindow extends AstralWindow {
                 }
                 case CMD_SETBUY:
                     if (selectedStation != null) {
-                        mode = Mode.WAITING_FOR_BUY;
-                        showInput(Integer.toString(selectedStation.getBuyPrice()));
+                        tmpStation = selectedStation;
+                        ArrayList<Object> choice = new ArrayList<>();
+                        choice.add("--Select Item To Set Buy Price--");
+                        choice.add(" ");
+                        for (int a = 0; a < selectedStation.getStationBuying().size(); a++) {
+                            choice.add(selectedStation.getStationBuying().get(a));
+                        }
+                        showInputList(choice);
+                        mode = Mode.WAITING_FOR_BUY_ITEM;
                     }
                     break;
                 case CMD_SETSELL:
                     if (selectedStation != null) {
-                        mode = Mode.WAITING_FOR_SELL;
-                        showInput(Integer.toString(selectedStation.getSellPrice()));
+                        tmpStation = selectedStation;
+                        ArrayList<Object> choice = new ArrayList<>();
+                        choice.add("--Select Item To Set Sell Price--");
+                        choice.add(" ");
+                        for (int a = 0; a < selectedStation.getStationSelling().size(); a++) {
+                            choice.add(selectedStation.getStationSelling().get(a));
+                        }
+                        showInputList(choice);
+                        mode = Mode.WAITING_FOR_SELL_ITEM;
                     }
                     break;
                 case CMD_REMOTECARGO:
                     mode = Mode.WAITING_FOR_CARGO;
                     cargo.setVisible(true);
-                    tmp = selected;
+                    tmpShip = selected;
                     break;
                 case CMD_ATTACK: {
                     mode = Mode.WAITING_FOR_ATTACK;

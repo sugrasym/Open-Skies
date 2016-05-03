@@ -35,6 +35,7 @@ import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import lib.Faction;
@@ -47,17 +48,20 @@ import universe.Universe;
  * @author nwiehoff
  */
 public class Station extends Ship {
+
+    private static final int AUTOCALCULATE_PRICE = -1;
     //market
 
     protected ArrayList<Item> stationSelling = new ArrayList<>();
     protected ArrayList<Item> stationBuying = new ArrayList<>();
+    //optional static pricing
+    private final ArrayList<ItemPrice> sellingPrice = new ArrayList<>();
+    private final ArrayList<ItemPrice> buyingPrice = new ArrayList<>();
     //docking
     protected ArrayList<DockingPort> ports = new ArrayList<>();
     //manufacturing
     protected ArrayList<Job> jobs = new ArrayList<>();
     protected boolean economyExempt = false;
-    private int buyPrice;
-    private int sellPrice;
 
     public Station(Universe universe, Term type, String faction) {
         super(universe, type, faction);
@@ -424,8 +428,12 @@ public class Station extends Ship {
         for (int a = 0; a < stationBuying.size(); a++) {
             if (stationBuying.get(a).getName().equals(item.getName())) {
                 //return the static price if it is set
-                if (buyPrice != 0) {
-                    return buyPrice;
+                try {
+                    if (getStaticBuyPrice(item) != AUTOCALCULATE_PRICE) {
+                        return getStaticBuyPrice(item);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
 
                 //get info we need to calculate the price
@@ -441,10 +449,13 @@ public class Station extends Ship {
             for (int a = 0; a < stationSelling.size(); a++) {
                 if (stationSelling.get(a).getName().equals(item.getName())) {
                     //return the static price if it is set
-                    if (sellPrice != 0) {
-                        return sellPrice;
+                    try {
+                        if (getStaticSellPrice(item) != AUTOCALCULATE_PRICE) {
+                            return getStaticSellPrice(item);
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
                     }
-
                     //get info we need to calculate the price
                     max = stationSelling.get(a).getMaxPrice();
                     min = stationSelling.get(a).getMinPrice();
@@ -500,6 +511,15 @@ public class Station extends Ship {
                 Job p = new Job(this, arr[a], stationSelling, stationBuying);
                 jobs.add(p);
             }
+        }
+
+        //sets up initial prices
+        for (int a = 0; a < stationSelling.size(); a++) {
+            sellingPrice.add(new ItemPrice(stationSelling.get(a), AUTOCALCULATE_PRICE));
+        }
+
+        for (int a = 0; a < stationBuying.size(); a++) {
+            buyingPrice.add(new ItemPrice(stationBuying.get(a), AUTOCALCULATE_PRICE));
         }
     }
 
@@ -578,20 +598,97 @@ public class Station extends Ship {
         }
         return false;
     }
+    
+    /*
+     * These methods are involved in setting static prices for wares. When a static
+     * price is set, all transactions of that ware in this station will happen at
+     * the specified price, no matter what the quantity in stock is.
+     */
 
-    public int getBuyPrice() {
-        return buyPrice;
+    public int getStaticBuyPrice(Item ware) throws Exception {
+        for (int a = 0; a < buyingPrice.size(); a++) {
+            if (buyingPrice.get(a).getItem().getName().equals(ware.getName())) {
+                return buyingPrice.get(a).getPrice();
+            }
+        }
+
+        throw new Exception("Station does not buy item " + ware);
     }
 
-    public void setBuyPrice(int price) {
-        buyPrice = price;
+    public void setStaticBuyPrice(Item ware, int price) throws Exception {
+        if (price != AUTOCALCULATE_PRICE) {
+            //lock price in range
+            if (price < ware.getMinPrice()) {
+                price = ware.getMinPrice();
+            }
+
+            if (price > ware.getMaxPrice()) {
+                price = ware.getMaxPrice();
+            }
+        }
+
+        for (int a = 0; a < buyingPrice.size(); a++) {
+            if (buyingPrice.get(a).getItem().getName().equals(ware.getName())) {
+                buyingPrice.get(a).setPrice(price);
+                return;
+            }
+        }
+
+        throw new Exception("Station does not buy item " + ware);
     }
 
-    public int getSellPrice() {
-        return sellPrice;
+    public int getStaticSellPrice(Item ware) throws Exception {
+        for (int a = 0; a < sellingPrice.size(); a++) {
+            if (sellingPrice.get(a).getItem().getName().equals(ware.getName())) {
+                return sellingPrice.get(a).getPrice();
+            }
+        }
+
+        throw new Exception("Station does not buy sell " + ware);
     }
 
-    public void setSellPrice(int price) {
-        sellPrice = price;
+    public void setStaticSellPrice(Item ware, int price) throws Exception {
+        if (price != AUTOCALCULATE_PRICE) {
+            //lock price in range
+            if (price < ware.getMinPrice()) {
+                price = ware.getMinPrice();
+            }
+
+            if (price > ware.getMaxPrice()) {
+                price = ware.getMaxPrice();
+            }
+        }
+
+        for (int a = 0; a < sellingPrice.size(); a++) {
+            if (sellingPrice.get(a).getItem().getName().equals(ware.getName())) {
+                sellingPrice.get(a).setPrice(price);
+                return;
+            }
+        }
+
+        throw new Exception("Station does not buy sell " + ware);
+    }
+
+    private class ItemPrice implements Serializable {
+
+        private final Item item;
+        private int price;
+
+        public ItemPrice(Item item, int price) {
+            this.item = item;
+            this.price = price;
+        }
+
+        public Item getItem() {
+            return item;
+        }
+
+        public int getPrice() {
+            return price;
+        }
+
+        public void setPrice(int price) {
+            this.price = price;
+        }
     }
 }
