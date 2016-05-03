@@ -23,7 +23,7 @@ install=Dart Missile/Dart Missile/Talon A-7/Talon A-7
 [/Ship]
 
 [Station]
-name=Papa's Meatball Emporium
+name=Your Industrial Kitchen
 system=Kappa X-38LM
 station=Industrial Kitchen
 x=-32099
@@ -36,7 +36,7 @@ faction=Player
 [/Station]
 
 [Station]
-name=Fry's Electronics
+name=Your Computer Plant
 system=Kappa X-38LM
 station=Computer Plant
 x=-32299

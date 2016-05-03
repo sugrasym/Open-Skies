@@ -3666,7 +3666,9 @@ public class Ship extends Celestial {
         } else {
             drag = 0;
         }
-        return ((getMass() * getAcceleration()) / drag) * 0.68f;
+
+        float max = (float) (((getThrust() / drag) - (tpf * getThrust())) / getMass()) * 0.85f;
+        return max;
     }
 
     protected float getFollowHold() {
