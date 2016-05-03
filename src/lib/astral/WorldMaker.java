@@ -457,7 +457,7 @@ public class WorldMaker {
             stops[a] = sumAtIndex(a, prob);
         }
         //pick a random point on the spectrum
-        float val = new Random().nextFloat();
+        float val = rnd.nextFloat();
         //figure out where this lies on the array
         int index = 0;
         {
