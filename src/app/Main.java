@@ -30,6 +30,7 @@ import com.jme3.scene.plugins.blender.BlenderModelLoader;
 import com.jme3.system.AppSettings;
 import engine.Core;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import jmeplanet.PlanetAppState;
 import lib.astral.AstralIO;
@@ -52,14 +53,10 @@ public class Main extends SimpleApplication {
     public static void main(String[] args) {
         //redirect console output to various endpoints in addition to console
         try {
-            //setup outputs
-            AstralStream master = new AstralStream();
-            master.add(System.out);
-            master.add(new PrintStream(new File(System.currentTimeMillis() + "-output-log.txt")));
-            //todo: add stream for in-game console when implemented
+            String prefix = System.currentTimeMillis() + "";
 
-            //apply new stream
-            System.setOut(new AstralPrint(master));
+            redirectOutput(prefix);
+            redirectError(prefix);
         } catch (Exception e) {
             System.out.println("Failed to redirect output.");
             e.printStackTrace();
@@ -90,6 +87,28 @@ public class Main extends SimpleApplication {
 
         //start
         app.start();
+    }
+
+    private static void redirectOutput(String prefix) throws FileNotFoundException {
+        //setup outputs
+        AstralStream master = new AstralStream();
+        master.add(System.out);
+        master.add(new PrintStream(new File(prefix + "-output-log.txt")));
+        //todo: add stream for in-game console when implemented
+
+        //apply new stream
+        System.setOut(new AstralPrint(master));
+    }
+
+    private static void redirectError(String prefix) throws FileNotFoundException {
+        //setup outputs
+        AstralStream master = new AstralStream();
+        master.add(System.err);
+        master.add(new PrintStream(new File(prefix + "-error-log.txt")));
+        //todo: add stream for in-game console when implemented
+
+        //apply new stream
+        System.setErr(new AstralPrint(master));
     }
 
     @Override
