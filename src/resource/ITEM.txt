@@ -388,6 +388,7 @@ minPrice=0
 maxPrice=0
 store=1000
 description=Empty space.
+group=nothing
 [/Item]
 
 [Item]

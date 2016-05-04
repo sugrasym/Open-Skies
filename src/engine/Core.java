@@ -558,7 +558,7 @@ public class Core {
         @Override
         public void onAction(String name, boolean keyPressed, float tpf) {
             try {
-                if (name.equals("KEY_LSHIFT")) {
+                if (name.equals("KEY_LSHIFT") || name.equals("KEY_RSHIFT")) {
                     shiftDown = keyPressed;
                 }
                 Vector2f origin = input.getCursorPosition();

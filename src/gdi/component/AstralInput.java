@@ -66,6 +66,8 @@ public class AstralInput extends AstralLabel {
                 break;
             case "KEY_LSHIFT":
                 break;
+            case "KEY_RSHIFT":
+                break;
             default:
                 String in = ke.split("_")[1];
                 if (shiftDown) {
