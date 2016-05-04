@@ -218,83 +218,87 @@ public class CargoWindow extends AstralWindow {
                     if (ship.isDocked()) {
                         optionList.addToList("--Fitting--");
                         optionList.addToList(new AstralListItem(CMD_UNMOUNT, "Unmounts this equipment."));
+                        optionList.addToList(" ");
                     }
                     canEject = false;
                     isMounted = true;
                 } else {
                     //it is not mounted
-                    if (ship.isDocked()) {
+                    if (ship.isDocked() && selected.getQuantity() == 1) {
                         optionList.addToList("--Fitting--");
                         optionList.addToList(new AstralListItem(CMD_MOUNT, "Mounts this equipment."));
                         optionList.addToList(new AstralListItem(CMD_PACKAGE, "Package this equipment."));
+                        optionList.addToList(" ");
                     }
                 }
-                optionList.addToList(" ");
             }
         } else {
-            /*
-             * Options for sov papers
-             */
-            /*if (selected.getGroup().equals("sovtransfer")) {
-             if (!ship.isDocked()) {
-             optionList.addToList("--Setup--");
-             optionList.addToList(new AstralListItem(CMD_CLAIMSOV, "Using sovereignty, claim this system."));
-             optionList.addToList(" ");
-             }
-             }*/
-            /*
-             * Options for stations
-             */
-            //determine if this is a station
-            if (selected.getGroup().equals("constructionkit")) {
-                if (!ship.isDocked()) {
-                    optionList.addToList("--Setup--");
-                    optionList.addToList(new AstralListItem(CMD_DEPLOY, "Deploys this kit and constructs your station."));
-                    optionList.addToList(" ");
+            //these actions cannot be performed on stacks
+            if (selected.getQuantity() == 1) {
+                /*
+                 * Options for sov papers
+                 */
+                /*if (selected.getGroup().equals("sovtransfer")) {
+                 if (!ship.isDocked()) {
+                 optionList.addToList("--Setup--");
+                 optionList.addToList(new AstralListItem(CMD_CLAIMSOV, "Using sovereignty, claim this system."));
+                 optionList.addToList(" ");
+                 }
+                 }*/
+                /*
+                 * Options for stations
+                 */
+                //determine if this is a station
+                if (selected.getGroup().equals("constructionkit")) {
+                    if (!ship.isDocked()) {
+                        optionList.addToList("--Setup--");
+                        optionList.addToList(new AstralListItem(CMD_DEPLOY, "Deploys this kit and constructs your station."));
+                        optionList.addToList(" ");
+                    }
                 }
-            }
 
-            //these actions can only be performed while docked
-            if (ship.isDocked()) {
-                /*
-                 * Options for repair kits
-                 */
-                if (selected.getGroup().equals("repairkit")) {
-                    optionList.addToList("--Setup--");
-                    optionList.addToList(new AstralListItem(CMD_USEPASTE, "Pretty self-explanatory."));
-                    optionList.addToList(" ");
-                }
-                /*
-                 * Options for cannons
-                 */
-                if (selected.getType().equals(Item.TYPE_CANNON)) {
-                    optionList.addToList("--Setup--");
-                    optionList.addToList(new AstralListItem(CMD_ASSEMBLE, "Assemble this cannon."));
-                    optionList.addToList(" ");
-                }
-                /*
-                 * Options for missiles
-                 */
-                if (selected.getType().equals(Item.TYPE_MISSILE)) {
-                    optionList.addToList("--Setup--");
-                    optionList.addToList(new AstralListItem(CMD_ASSEMBLE, "Assemble this launcher."));
-                    optionList.addToList(" ");
-                }
-                /*
-                 * Options for turret
-                 */
-                if (selected.getType().equals(Item.TYPE_TURRET)) {
-                    optionList.addToList("--Setup--");
-                    optionList.addToList(new AstralListItem(CMD_ASSEMBLE, "Assemble this turret."));
-                    optionList.addToList(" ");
-                }
-                /*
-                 * Options for battery
-                 */
-                if (selected.getType().equals(Item.TYPE_BATTERY)) {
-                    optionList.addToList("--Setup--");
-                    optionList.addToList(new AstralListItem(CMD_ASSEMBLE, "Assemble this battery."));
-                    optionList.addToList(" ");
+                //these actions can only be performed while docked
+                if (ship.isDocked()) {
+                    /*
+                     * Options for repair kits
+                     */
+                    if (selected.getGroup().equals("repairkit")) {
+                        optionList.addToList("--Setup--");
+                        optionList.addToList(new AstralListItem(CMD_USEPASTE, "Pretty self-explanatory."));
+                        optionList.addToList(" ");
+                    }
+                    /*
+                     * Options for cannons
+                     */
+                    if (selected.getType().equals(Item.TYPE_CANNON)) {
+                        optionList.addToList("--Setup--");
+                        optionList.addToList(new AstralListItem(CMD_ASSEMBLE, "Assemble this cannon."));
+                        optionList.addToList(" ");
+                    }
+                    /*
+                     * Options for missiles
+                     */
+                    if (selected.getType().equals(Item.TYPE_MISSILE)) {
+                        optionList.addToList("--Setup--");
+                        optionList.addToList(new AstralListItem(CMD_ASSEMBLE, "Assemble this launcher."));
+                        optionList.addToList(" ");
+                    }
+                    /*
+                     * Options for turret
+                     */
+                    if (selected.getType().equals(Item.TYPE_TURRET)) {
+                        optionList.addToList("--Setup--");
+                        optionList.addToList(new AstralListItem(CMD_ASSEMBLE, "Assemble this turret."));
+                        optionList.addToList(" ");
+                    }
+                    /*
+                     * Options for battery
+                     */
+                    if (selected.getType().equals(Item.TYPE_BATTERY)) {
+                        optionList.addToList("--Setup--");
+                        optionList.addToList(new AstralListItem(CMD_ASSEMBLE, "Assemble this battery."));
+                        optionList.addToList(" ");
+                    }
                 }
             }
         }
