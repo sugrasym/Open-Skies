@@ -1,16 +1,16 @@
 /*
  * Copyright (c) 2016 SUGRA-SYM LLC (Nathan Wiehoff, Geoffrey Hibbert)
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -144,6 +144,7 @@ public class CargoWindow extends AstralWindow {
                 propertyList.addToList(new AstralListItem("Max Price:    " + selected.getMaxPrice(), "The maximum price of this property."));
                 propertyList.addToList(new AstralListItem(" "));
                 propertyList.addToList(new AstralListItem("--DETAIL--"));
+                propertyList.addToList(new AstralListItem(" "));
                 fillDescriptionLines(selected);
                 fillCommandLines(selected);
             }
@@ -200,24 +201,36 @@ public class CargoWindow extends AstralWindow {
 
     private void fillCommandLines(Item selected) {
         boolean canEject = true;
+        boolean isMounted = false;
+        boolean isNothing = false;
+
+        //do nothing test
+        if (selected.getGroup() != null && selected.getGroup().equals("nothing")) {
+            isNothing = true;
+        }
+
         if (selected instanceof Equipment) {
-            optionList.addToList("--Fitting--");
-            Equipment tmp = (Equipment) selected;
-            Hardpoint socket = tmp.getSocket();
-            if (socket != null) {
-                //it is mounted
-                if (ship.isDocked()) {
-                    optionList.addToList(new AstralListItem(CMD_UNMOUNT, "Unmounts this property."));
+            if (!isNothing) {
+                Equipment tmp = (Equipment) selected;
+                Hardpoint socket = tmp.getSocket();
+                if (socket != null) {
+                    //it is mounted
+                    if (ship.isDocked()) {
+                        optionList.addToList("--Fitting--");
+                        optionList.addToList(new AstralListItem(CMD_UNMOUNT, "Unmounts this equipment."));
+                    }
+                    canEject = false;
+                    isMounted = true;
+                } else {
+                    //it is not mounted
+                    if (ship.isDocked()) {
+                        optionList.addToList("--Fitting--");
+                        optionList.addToList(new AstralListItem(CMD_MOUNT, "Mounts this equipment."));
+                        optionList.addToList(new AstralListItem(CMD_PACKAGE, "Package this equipment."));
+                    }
                 }
-                canEject = false;
-            } else {
-                //it is not mounted
-                if (ship.isDocked()) {
-                    optionList.addToList(new AstralListItem(CMD_MOUNT, "Mounts this property."));
-                }
-                optionList.addToList(new AstralListItem(CMD_PACKAGE, "Package this property."));
+                optionList.addToList(" ");
             }
-            optionList.addToList(" ");
         } else {
             /*
              * Options for sov papers
@@ -236,62 +249,68 @@ public class CargoWindow extends AstralWindow {
             if (selected.getGroup().equals("constructionkit")) {
                 if (!ship.isDocked()) {
                     optionList.addToList("--Setup--");
-                    optionList.addToList(new AstralListItem(CMD_DEPLOY, "Deploys this property."));
+                    optionList.addToList(new AstralListItem(CMD_DEPLOY, "Deploys this kit and constructs your station."));
                     optionList.addToList(" ");
                 }
             }
-            /*
-             * Options for repair kits
-             */
-            if (selected.getGroup().equals("repairkit")) {
-                optionList.addToList("--Setup--");
-                optionList.addToList(new AstralListItem(CMD_USEPASTE, "Pretty self-explanatory."));
-                optionList.addToList(" ");
-            }
-            /*
-             * Options for cannons
-             */
-            if (selected.getType().equals(Item.TYPE_CANNON)) {
-                optionList.addToList("--Setup--");
-                optionList.addToList(new AstralListItem(CMD_ASSEMBLE, "Assemble this property."));
-                optionList.addToList(" ");
-            }
-            /*
-             * Options for missiles
-             */
-            if (selected.getType().equals(Item.TYPE_MISSILE)) {
-                optionList.addToList("--Setup--");
-                optionList.addToList(CMD_ASSEMBLE);
-                optionList.addToList(" ");
-            }
-            /*
-             * Options for turret
-             */
-            if (selected.getType().equals(Item.TYPE_TURRET)) {
-                optionList.addToList("--Setup--");
-                optionList.addToList(CMD_ASSEMBLE);
-                optionList.addToList(" ");
-            }
-            /*
-             * Options for battery
-             */
-            if (selected.getType().equals(Item.TYPE_BATTERY)) {
-                optionList.addToList("--Setup--");
-                optionList.addToList(CMD_ASSEMBLE);
-                optionList.addToList(" ");
+
+            //these actions can only be performed while docked
+            if (ship.isDocked()) {
+                /*
+                 * Options for repair kits
+                 */
+                if (selected.getGroup().equals("repairkit")) {
+                    optionList.addToList("--Setup--");
+                    optionList.addToList(new AstralListItem(CMD_USEPASTE, "Pretty self-explanatory."));
+                    optionList.addToList(" ");
+                }
+                /*
+                 * Options for cannons
+                 */
+                if (selected.getType().equals(Item.TYPE_CANNON)) {
+                    optionList.addToList("--Setup--");
+                    optionList.addToList(new AstralListItem(CMD_ASSEMBLE, "Assemble this cannon."));
+                    optionList.addToList(" ");
+                }
+                /*
+                 * Options for missiles
+                 */
+                if (selected.getType().equals(Item.TYPE_MISSILE)) {
+                    optionList.addToList("--Setup--");
+                    optionList.addToList(new AstralListItem(CMD_ASSEMBLE, "Assemble this launcher."));
+                    optionList.addToList(" ");
+                }
+                /*
+                 * Options for turret
+                 */
+                if (selected.getType().equals(Item.TYPE_TURRET)) {
+                    optionList.addToList("--Setup--");
+                    optionList.addToList(new AstralListItem(CMD_ASSEMBLE, "Assemble this turret."));
+                    optionList.addToList(" ");
+                }
+                /*
+                 * Options for battery
+                 */
+                if (selected.getType().equals(Item.TYPE_BATTERY)) {
+                    optionList.addToList("--Setup--");
+                    optionList.addToList(new AstralListItem(CMD_ASSEMBLE, "Assemble this battery."));
+                    optionList.addToList(" ");
+                }
             }
         }
-        //for packaging and repackaging
-        optionList.addToList("--Packaging--");
-        optionList.addToList(new AstralListItem(CMD_STACK, "Stack this property with other quantities"));
-        optionList.addToList(new AstralListItem(CMD_SPLIT, "Split the property into stacks."));
-        optionList.addToList(new AstralListItem(CMD_SPLITALL, "Split all quantity into stacks."));
-        //doing these last for safety.
-        optionList.addToList(" ");
-        optionList.addToList("--Dangerous--");
-        optionList.addToList(new AstralListItem(CMD_TRASH, "Destroy this property."));
-        if (!ship.isDocked() && canEject) {
-            optionList.addToList(new AstralListItem(CMD_EJECT, "Eject this property into space."));
+        if (!isMounted && !isNothing) {
+            //for packaging and repackaging
+            optionList.addToList("--Packaging--");
+            optionList.addToList(new AstralListItem(CMD_STACK, "Stack this property with other quantities"));
+            optionList.addToList(new AstralListItem(CMD_SPLIT, "Split the property into stacks."));
+            optionList.addToList(new AstralListItem(CMD_SPLITALL, "Split all quantity into stacks."));
+            //doing these last for safety.
+            optionList.addToList(" ");
+            optionList.addToList("--Dangerous--");
+            optionList.addToList(new AstralListItem(CMD_TRASH, "Destroy this property."));
+            if (!ship.isDocked() && canEject) {
+                optionList.addToList(new AstralListItem(CMD_EJECT, "Eject this property into space."));
+            }
         }
     }
 
