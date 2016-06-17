@@ -84,7 +84,7 @@ public class MenuHomeWindow extends AstralWindow {
         logoLabel.setHeight(50);
         logoLabel.setVisible(true);
         //setup version label
-        versionLabel.setText("Alpha 3.3");
+        versionLabel.setText("Alpha 3.3+");
         versionLabel.setFont(new Font("Monospaced", Font.PLAIN, 14));
         versionLabel.setX(0);
         versionLabel.setY(height - 17);
