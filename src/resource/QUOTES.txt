@@ -1,13 +1,6 @@
 ################################################################################
-#Carl Sagan was a pretty cool dude.
-#He has tons of awesome quotes, so I'm going to keep it down to 2 really nice 
-#ones.
+#Carl Sagan
 ################################################################################
-
-[Quote]
-body=Imagination will often carry us to worlds that never were./br/But without it we go nowhere.
-source=Carl Sagan
-[/Quote]
 
 [Quote]
 body=If you wish to make an apple pie from scratch, you must first invent the universe.
@@ -32,38 +25,10 @@ body=The worthwhile problems are the ones you can really solve or help solve,/br
 source=Richard Feynman
 [/Quote]
 
-################################################################################
-#Thomas Paine
-################################################################################
-
-[Quote]
-body=Where knowledge is a duty, ignorance is a crime.
-source=Thomas Paine
-[/Quote]
-
-################################################################################
-#John F Kennedy
-################################################################################
-
-[Quote]
-body=My call is not to those who believe they belong to the past./br/My call is to those who believe in the future.
-source=John F Kennedy
-[/Quote]
-
-################################################################################
-#Confucius
-################################################################################
-
-[Quote]
-body=The superior man is modest in his speech, but exceeds in his actions.
-source=Confucius
-[/Quote]
 
 ################################################################################
 #Zecora
 #Yes the cartoon Zebra.
-#I have some serious historical heavyweights in here, lets break it up a bit.
-#And this actually is a damn good quote.
 ################################################################################
 
 [Quote]
@@ -86,11 +51,6 @@ source=Jean-Luc Picard/br/Star Trek: The Next Generation
 ################################################################################
 
 [Quote]
-body=I do not need any promise of eternity to be happy. My eternity is now./br/I have only one interest: to fulfill my purpose here where I am./br/This purpose is not given me by my parents or my surroundings./br/It is induced by some unknown factors./br/These factors make me a part of eternity. 
-source=Albert Einstein
-[/Quote]
-
-[Quote]
 body=We cannot solve our problems with the same thinking we used when we created them. 
 source=Albert Einstein
 [/Quote]
@@ -102,15 +62,6 @@ source=Albert Einstein
 [Quote]
 body=Yes, it is love that will save our world and our civilization, love even for enemies.
 source=Martin Luther King Jr.
-[/Quote]
-
-################################################################################
-#Eleanor Roosevelt
-################################################################################
-
-[Quote]
-body=We face the future fortified with the lessons we have learned from the past./br/It is today that we must create the world of the future.
-source=Eleanor Roosevelt
 [/Quote]
 
 ################################################################################
@@ -131,37 +82,6 @@ body=The journey is the reward.
 source=Taoist Proverb
 [/Quote]
 
-[Quote]
-body=To see things in the seed, that is genius.
-source=Taoist Proverb
-[/Quote]
-
-################################################################################
-#Socrates
-################################################################################
-
-[Quote]
-body=There is only one good, knowledge, and one evil, ignorance.
-source=Socrates
-[/Quote]
-
-################################################################################
-#Friedrich Nietzsche
-################################################################################
-
-[Quote]
-body=In some remote corner of the universe, poured out and glittering in innumerable solar systems,/br/there once was a star on which clever animals invented knowledge.
-source=Friedrich Nietzsche
-[/Quote]
-
-################################################################################
-#David Bowman
-################################################################################
-
-[Quote]
-body=My God — it's full of stars!
-source=David Bowman/br/2001: A Space Odyssey (Novel)
-[/Quote]
 
 ################################################################################
 #Willy Wonka
