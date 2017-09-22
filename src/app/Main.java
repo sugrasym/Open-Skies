@@ -86,6 +86,7 @@ public class Main extends SimpleApplication {
             System.setProperty("sun.java2d.opengl", "True");
             renderMode = "OpenGL";
         }
+        
         System.out.println("Running on " + osName + " using " + renderMode);
 
         //start

@@ -89,7 +89,7 @@ public class Core {
     //game objects
     private Universe universe;
 
-    God god;
+    Life life;
 
     //nodes
     Node rootNode;
@@ -353,9 +353,9 @@ public class Core {
         bulletAppState.getPhysicsSpace().addCollisionListener(_listener);
     }
 
-    private void initGod() {
-        god = null;
-        god = new God(getUniverse());
+    private void initLife() {
+        life = null;
+        life = new Life(getUniverse());
     }
 
     public void newGame(String name) {
@@ -408,8 +408,8 @@ public class Core {
         //inform hud of new universe
         hud.reset();
         hud.setUniverse(getUniverse());
-        //start god
-        initGod();
+        //start life
+        initLife();
         //start game
         setState(GameState.IN_SPACE);
 
@@ -931,7 +931,7 @@ public class Core {
 
     private void doSpaceUpdate(float tpf) {
         if (!handlePlayerDeath()) {
-            boolean godSafe = true;
+            boolean lifeSafe = true;
             //update systems
             for (int a = 0; a < getUniverse().getSystems().size(); a++) {
                 if (getUniverse().getSystems().get(a) != getPlayerShip().getCurrentSystem()) {
@@ -949,13 +949,13 @@ public class Core {
                         planetAppState.getAstralCamera().setTarget(getPlayerShip());
                         //make sure the new system is flagged for graphics
                         getPlayerShip().getCurrentSystem().forceGraphics();
-                        godSafe = false;
+                        lifeSafe = false;
                     }
                 }
             }
-            //update god
-            if (godSafe) {
-                god.periodicUpdate();
+            //update life
+            if (lifeSafe) {
+                life.periodicUpdate();
             }
             //update player missions
             for (int a = 0; a < universe.getPlayerMissions().size(); a++) {
@@ -1089,8 +1089,8 @@ public class Core {
             }
             //restore assets
             getUniverse().setAssets(assets);
-            //restore god
-            initGod();
+            //restore life
+            initLife();
             //go
             setState(GameState.IN_SPACE);
         } catch (Exception e) {

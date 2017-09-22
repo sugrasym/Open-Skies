@@ -51,7 +51,7 @@ import universe.Universe;
  *
  * @author nwiehoff
  */
-public class God {
+public class Life {
 
     private final Universe universe;
     private final ArrayList<SuperFaction> factions = new ArrayList<>();
@@ -64,7 +64,7 @@ public class God {
     //timing
     private long lastFrame;
 
-    public God(Universe universe) {
+    public Life(Universe universe) {
         this.universe = universe;
         //generate lists
         initFactions();
@@ -94,7 +94,7 @@ public class God {
             checkPatrols();
             checkTraders();
             checkMerchants();
-            System.out.println("God cycled.");
+            System.out.println("Life cycled.");
         }
     }
 
